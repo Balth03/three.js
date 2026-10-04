@@ -1,0 +1,23 @@
+{
+  "name": "taxi-monde",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "npm run dev -w @taxi/client",
+    "build": "npm run build -w @taxi/client",
+    "preview": "npm run preview -w @taxi/client",
+    "typecheck": "tsc -p packages/shared && tsc -p apps/client --noEmit && tsc -p apps/server --noEmit",
+    "test": "vitest run",
+    "server": "npm run start -w @taxi/server",
+    "city:fetch": "python3 tools/osm-import/fetch_overture.py",
+    "city:terrain": "python3 tools/osm-import/fetch_terrain.py",
+    "city:build": "python3 tools/osm-import/build_city.py",
+    "sim:economy": "node --experimental-strip-types tools/sim/economy.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.0"
+  }
+}

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+tools/osm-import/cache/
+__pycache__/
+*.log
+.DS_Store
+apps/*/dist/
+test-results/
+screenshots/tmp/

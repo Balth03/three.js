@@ -1,0 +1,9 @@
+{
+  "name": "@taxi/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node --experimental-strip-types src/main.ts" },
+  "dependencies": { "@taxi/shared": "*", "ws": "^8.18.0" },
+  "devDependencies": { "@types/ws": "^8.5.12", "@types/node": "^22.0.0" }
+}

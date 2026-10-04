@@ -1,0 +1,35 @@
+:root {
+  --bg: #0b0d10;
+  --glass: rgba(16, 19, 24, 0.58);
+  --glass-strong: rgba(14, 17, 21, 0.82);
+  --line: rgba(255, 255, 255, 0.09);
+  --text: #eef1f4;
+  --muted: #9aa3ad;
+  --accent: #f4c242;   /* taxi amber */
+  --accent-2: #4fd1a5; /* free / positive */
+  --danger: #ff5a4f;
+  --radius: 14px;
+  --font: 'Inter', 'SF Pro Display', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', ui-monospace, 'Cascadia Mono', Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font-family: var(--font); overflow: hidden; -webkit-font-smoothing: antialiased; }
+canvas#game { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; outline: none; }
+#ui { position: fixed; inset: 0; pointer-events: none; user-select: none; }
+#ui .interactive, #ui button, #ui input, #ui select { pointer-events: auto; }
+.fatal { position: absolute; inset: 0; padding: 40px; background: #120c0c; color: #ffb4ad; pointer-events: auto; overflow: auto; }
+.fatal pre { white-space: pre-wrap; font-family: var(--mono); font-size: 12px; }
+
+/* ---------- loading */
+.loading { position: absolute; inset: 0; display: grid; place-items: center; background: radial-gradient(120% 90% at 50% 100%, #1d1a14 0%, #0b0d10 55%, #07080a 100%); transition: opacity .8s ease; pointer-events: auto; z-index: 50; }
+.loading.done { opacity: 0; pointer-events: none; }
+.loading-inner { width: min(440px, 80vw); text-align: center; }
+.brand { font-weight: 800; letter-spacing: .32em; font-size: 30px; }
+.brand-mark { color: var(--accent); }
+.brand-dot { color: #fff; opacity: .5; margin: 0 .2em; }
+.brand-name { color: #fff; }
+.loading-city { margin-top: 10px; color: var(--muted); letter-spacing: .5em; text-transform: uppercase; font-size: 12px; }
+.loading-bar { margin: 38px auto 12px; height: 3px; background: rgba(255,255,255,.08); border-radius: 3px; overflow: hidden; }
+.loading-bar > div { height: 100%; width: 0; background: linear-gradient(90deg, #f4c242, #ffe28a); transition: width .25s ease; box-shadow: 0 0 12px rgba(244,194,66,.6); }
+.loading-label { font-size: 12px; color: var(--muted); min-height: 16px; }
+.loading-credit { margin-top: 60px; font-size: 10px; color: #5c636b; }

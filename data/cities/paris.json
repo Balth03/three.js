@@ -1,0 +1,46 @@
+{
+  "id": "paris",
+  "name": { "fr": "Paris", "en": "Paris" },
+  "country": "FR",
+  "drivingSide": "right",
+  "style": "haussmann",
+  "currency": "EUR",
+  "timezone": "Europe/Paris",
+  "origin": { "lon": 2.3008, "lat": 48.8665 },
+  "spawn": { "lon": 2.30495, "lat": 48.87085, "heading": 116 },
+  "import": { "bbox": [2.224, 48.812, 2.472, 48.904] },
+  "slice": { "bbox": [2.2780, 48.8510, 2.3290, 48.8800] },
+  "terrain": { "zoom": 15, "smoothSigma": 28, "percentileWindow": 15, "percentile": 25, "quayDrop": 6.5 },
+  "defaults": {
+    "floorHeight": 3.05,
+    "groundFloorHeight": 4.2,
+    "buildingHeight": [16.5, 24.5],
+    "speedLimit": { "motorway": 70, "trunk": 50, "primary": 50, "secondary": 50, "tertiary": 30, "residential": 30, "unclassified": 30, "living_street": 20, "service": 20 }
+  },
+  "excludeRoadNamePrefixes": ["Port ", "Voie Georges Pompidou", "Voie Georges-Pompidou", "Voie Mazas", "Voie Express", "Quai bas", "Berges", "Souterrain", "Tunnel", "Parking"],
+  "roadOverrides": [
+    { "name": "Avenue des Champs-Élysées", "lanesPerDirection": 4, "width": 27 },
+    { "name": "Place Charles de Gaulle", "lanes": 6, "width": 21 },
+    { "name": "Place de la Concorde", "lanes": 5, "width": 18 },
+    { "name": "Avenue de la Grande Armée", "lanesPerDirection": 3, "width": 21 },
+    { "name": "Avenue Foch", "lanesPerDirection": 2, "width": 14 },
+    { "name": "Avenue Kléber", "lanesPerDirection": 2, "width": 14 },
+    { "name": "Avenue Marceau", "lanesPerDirection": 2, "width": 13 },
+    { "name": "Avenue d'Iéna", "lanesPerDirection": 2, "width": 13 },
+    { "name": "Avenue de Friedland", "lanesPerDirection": 2, "width": 14 },
+    { "name": "Avenue Montaigne", "lanesPerDirection": 1, "width": 10 },
+    { "name": "Avenue George V", "lanesPerDirection": 2, "width": 13 },
+    { "name": "Avenue de New York", "lanesPerDirection": 2, "width": 14 },
+    { "name": "Avenue du Président Kennedy", "lanesPerDirection": 2, "width": 14 },
+    { "name": "Cours la Reine", "lanes": 4, "width": 14 },
+    { "name": "Cours Albert Ier", "lanes": 4, "width": 14 },
+    { "name": "Quai Branly", "lanesPerDirection": 2, "width": 14 },
+    { "name": "Quai d'Orsay", "lanesPerDirection": 2, "width": 14 },
+    { "name": "Boulevard Périphérique", "lanesPerDirection": 4, "width": 28 }
+  ],
+  "landmarks": [
+    { "id": "arc_de_triomphe", "model": "arcDeTriomphe", "lon": 2.295028, "lat": 48.873778, "exclude": { "names": ["Arc de Triomphe"], "radius": 40 }, "rotationFrom": "footprint" },
+    { "id": "tour_eiffel", "model": "eiffelTower", "lon": 2.294481, "lat": 48.858370, "exclude": { "names": ["Tour Eiffel"], "radius": 75 }, "rotationFrom": "footprint" },
+    { "id": "obelisque", "model": "obelisk", "lon": 2.321150, "lat": 48.865470, "exclude": { "radius": 6 }, "rotation": 0 }
+  ]
+}
