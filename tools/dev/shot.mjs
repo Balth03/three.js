@@ -8,7 +8,7 @@ page.setDefaultTimeout(600000);
 const logs = [];
 page.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning' || m.text().startsWith('[test]')) logs.push(`[${m.type()}] ${m.text()}`); });
 page.on('pageerror', (e) => logs.push(`[pageerror] ${e.message}`));
-const port = process.env.PORT ?? 5175;
+const port = process.env.PORT ?? 5190;
 await page.goto(`http://localhost:${port}/?shot&${query}`);
 const t0 = Date.now();
 await page.waitForFunction(() => window.game && window.game.paused !== undefined && document.querySelector('.loading') === null, null, { timeout: 400000 }).catch(() => logs.push('timeout waiting for game'));

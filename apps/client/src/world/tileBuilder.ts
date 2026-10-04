@@ -215,7 +215,7 @@ export class TileBuilder {
       const area = Math.abs(signedArea(ring));
       let inset: Float64Array | null = null;
       if (hauss) {
-        const dIn = Math.min(1.9, Math.sqrt(area) * 0.16);
+        const dIn = Math.min(2.7, Math.sqrt(area) * 0.2);
         inset = insetRing(ring, dIn);
       }
       // cornice ledge (protruding band) for haussmann buildings

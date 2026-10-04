@@ -7,3 +7,4 @@ __pycache__/
 apps/*/dist/
 test-results/
 screenshots/tmp/
+screenshots/dev/*.wav

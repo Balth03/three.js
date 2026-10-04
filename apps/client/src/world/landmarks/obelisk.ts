@@ -5,7 +5,7 @@ import type { Landmark, LandmarkCollider, LandmarkOptions } from './types';
 
 /*
  * Luxor Obelisk, Place de la Concorde. 22.83 m pink granite monolith with a gilded pyramidion, on a ~9 m grey
- * granite pedestal. Total ≈ 31.8 m. Rotation irrelevant (square plan).
+ * granite pedestal. Total ≈ 32.3 m. Rotation irrelevant (square plan).
  */
 
 const V = (x: number, y: number, z: number): THREE.Vector3 => new THREE.Vector3(x, y, z);
@@ -106,7 +106,7 @@ export function createObelisk(opts: LandmarkOptions = {}): Landmark {
     }
   }
   // ---------------------------------------------------------------- gilded pyramidion
-  const apex = V(0, 31.8, 0);
+  const apex = V(0, 32.3, 0);
   for (let f = 0; f < 4; f++) {
     const a0 = (f * Math.PI) / 2 + Math.PI / 4;
     const a1 = a0 + Math.PI / 2;
@@ -115,16 +115,13 @@ export function createObelisk(opts: LandmarkOptions = {}): Landmark {
     const p1 = V(Math.cos(a1) * r, Y1, Math.sin(a1) * r);
     gold.tri(p0, p1, apex);
   }
-  // thin gilded band at the base of the pyramidion
-  gold.uvScale = 1;
-  frustum(gold, B + 0.015, B + 0.015, Y1 - 0.06, Y1, 1);
 
   // ---------------------------------------------------------------- materials
   const hiero = hieroglyphTextures(high ? 256 : 128, high ? 2048 : 1024, 31);
   hiero.map.wrapS = hiero.map.wrapT = THREE.ClampToEdgeWrapping;
   hiero.normalMap.wrapS = hiero.normalMap.wrapT = THREE.ClampToEdgeWrapping;
-  const grey = greyGraniteTextures(high ? 512 : 256, 41);
-  const dieT = pedestalDieTextures(high ? 512 : 256, 51);
+  const grey = greyGraniteTextures(high ? 256 : 128, 41);
+  const dieT = pedestalDieTextures(high ? 256 : 128, 51);
   dieT.map.wrapS = dieT.map.wrapT = THREE.ClampToEdgeWrapping;
   dieT.normalMap.wrapS = dieT.normalMap.wrapT = THREE.ClampToEdgeWrapping;
 
@@ -175,7 +172,7 @@ export function createObelisk(opts: LandmarkOptions = {}): Landmark {
     object: group,
     colliders,
     update(_t: number, night: number): void {
-      uNight.value = smoothstep(0.15, 0.85, night) * 1.2;
+      uNight.value = smoothstep(0.15, 0.85, night) * 0.75;
     },
     dispose(): void {
       disposeObject(group);

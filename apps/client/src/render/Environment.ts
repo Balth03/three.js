@@ -132,7 +132,7 @@ export class Environment {
     // sun light: colour from elevation, intensity attenuated by clouds
     const warm = 1 - smoothstep(0.0, 0.35, sh);
     const sunCol = new THREE.Color().setRGB(1.0, lerp(0.96, 0.62, warm), lerp(0.9, 0.38, warm));
-    const sunI = 3.4 * smoothstep(-0.02, 0.12, sh) * (1 - cloud * 0.82);
+    const sunI = 3.2 * smoothstep(-0.02, 0.12, sh) * (1 - cloud * 0.82);
     const moonI = 0.12 * smoothstep(0.0, 0.2, this.moonDir.y) * this.night * (1 - cloud * 0.7);
     const useSun = sunI > moonI;
     const L = useSun ? this.sunDir : this.moonDir;
@@ -149,11 +149,11 @@ export class Environment {
     this.hemi.intensity = lerp(0.05, 0.25, day) * (1 + cloud * 0.5);
     this.hemi.color.setRGB(lerp(0.25, 0.7, day), lerp(0.3, 0.8, day), lerp(0.45, 0.95, day));
     // fog
-    const fogDensity = 0.00055 + this.weather.fog * 0.0028 + r * 0.0012;
+    const fogDensity = (0.00032 + this.weather.fog * 0.0026 + r * 0.0012) * (1 - this.night * 0.35);
     this.fog.density = fogDensity;
     const fogDay = new THREE.Color().setRGB(lerp(0.62, 0.55, cloud), lerp(0.7, 0.58, cloud), lerp(0.82, 0.62, cloud));
     const fogSet = new THREE.Color(0.95, 0.62, 0.42);
-    const fogNight = new THREE.Color(0.05, 0.048, 0.055).lerp(new THREE.Color(0.12, 0.08, 0.05), 0.4);
+    const fogNight = new THREE.Color(0.018, 0.017, 0.02).lerp(new THREE.Color(0.06, 0.04, 0.025), 0.4);
     const fc = fogNight.clone().lerp(fogSet, smoothstep(-0.1, 0.02, sh) * (1 - smoothstep(0.05, 0.3, sh)) * (1 - cloud));
     fc.lerp(fogDay, day);
     this.fog.color.copy(fc).multiplyScalar(1);
@@ -197,7 +197,7 @@ export class Environment {
       this.envTimer = 1.5;
       this.bakeEnv();
     }
-    this.scene.environmentIntensity = lerp(0.25, 1.0, day) * (1 - cloud * 0.15) + this.lightning * 2;
+    this.scene.environmentIntensity = lerp(0.35, 0.6, day) * (1 + cloud * 0.35) + this.lightning * 2;
   }
 
   bakeEnv(): void {

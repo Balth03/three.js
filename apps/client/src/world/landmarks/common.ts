@@ -22,25 +22,39 @@ export function hash2(x: number, y: number, seed = 0): number {
   return (h >>> 0) / 4294967296;
 }
 
-const smooth = (t: number): number => t * t * (3 - 2 * t);
-
 /** 2D value noise in [0,1], optionally periodic (period in lattice cells). */
 export function valueNoise2(x: number, y: number, seed = 0, period = 0): number {
   const xi = Math.floor(x);
   const yi = Math.floor(y);
   const xf = x - xi;
   const yf = y - yi;
-  const wrap = (v: number): number => (period > 0 ? ((v % period) + period) % period : v);
-  const x0 = wrap(xi);
-  const x1 = wrap(xi + 1);
-  const y0 = wrap(yi);
-  const y1 = wrap(yi + 1);
-  const a = hash2(x0, y0, seed);
-  const b = hash2(x1, y0, seed);
-  const c = hash2(x0, y1, seed);
-  const d = hash2(x1, y1, seed);
-  const u = smooth(xf);
-  const v = smooth(yf);
+  let x0 = xi;
+  let x1 = xi + 1;
+  let y0 = yi;
+  let y1 = yi + 1;
+  if (period > 0) {
+    const p = Math.round(period);
+    x0 = ((x0 % p) + p) % p;
+    x1 = ((x1 % p) + p) % p;
+    y0 = ((y0 % p) + p) % p;
+    y1 = ((y1 % p) + p) % p;
+  }
+  const sx = Math.imul(seed | 0, 1442695041);
+  const hx0 = Math.imul(x0, 374761393);
+  const hx1 = Math.imul(x1, 374761393);
+  const hy0 = Math.imul(y0, 668265263);
+  const hy1 = Math.imul(y1, 668265263);
+  const H = (h: number): number => {
+    h = Math.imul(h ^ (h >>> 13), 1274126177);
+    h ^= h >>> 16;
+    return (h >>> 0) / 4294967296;
+  };
+  const a = H((hx0 + hy0 + sx) | 0);
+  const b = H((hx1 + hy0 + sx) | 0);
+  const c = H((hx0 + hy1 + sx) | 0);
+  const d = H((hx1 + hy1 + sx) | 0);
+  const u = xf * xf * (3 - 2 * xf);
+  const v = yf * yf * (3 - 2 * yf);
   return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
 }
 
@@ -104,11 +118,15 @@ export class MeshBuilder {
     return this;
   }
 
+  /** Per-vertex colour multipliers for the next emitted triangle (consumed in order). */
+  private kQueue: number[] | null = null;
+
   private pushVertex(p: V3, n: V3, u: number, v: number): void {
     this.pos.push(p.x, p.y, p.z);
     this.nor.push(n.x, n.y, n.z);
     this.uvs.push(u, v);
-    const k = this.colorFn ? this.colorFn(p, n) : 1;
+    let k = this.colorFn ? this.colorFn(p, n) : 1;
+    if (this.kQueue && this.kQueue.length) k *= this.kQueue.shift()!;
     this.col.push(this.color.r * k, this.color.g * k, this.color.b * k);
     this.glw.push(this.glowFn ? this.glowFn(p, n) : this.glow);
   }
@@ -160,6 +178,23 @@ export class MeshBuilder {
     }
     const n = _n.clone();
     this.emit(a, b, c, n, n, n, uva, uvb, uvc);
+  }
+
+  /** Triangle with smooth normals and per-vertex colour multipliers. */
+  triK(a: V3, b: V3, c: V3, na: V3, nb: V3, nc: V3, ka: number, kb: number, kc: number): void {
+    _ab.subVectors(b, a);
+    _ac.subVectors(c, a);
+    _n.crossVectors(_ab, _ac);
+    if (_n.lengthSq() < 1e-24) return;
+    _v.copy(na).add(nb).add(nc);
+    if (_v.dot(_n) < 0) {
+      this.kQueue = [ka, kc, kb];
+      this.emit(a, c, b, na.clone(), nc.clone(), nb.clone());
+    } else {
+      this.kQueue = [ka, kb, kc];
+      this.emit(a, b, c, na.clone(), nb.clone(), nc.clone());
+    }
+    this.kQueue = null;
   }
 
   private emit(a: V3, b: V3, c: V3, na: V3, nb: V3, nc: V3, uva?: number[] | null, uvb?: number[] | null, uvc?: number[] | null): void {
@@ -404,40 +439,43 @@ export function addRelief(mb: MeshBuilder, frame: ReliefFrame, nu: number, nv: n
     const cav = s / c - h; // positive in cavities
     return clamp01(1 - aoStrength * Math.max(0, cav) * 2.2 - (h < 0.05 ? 0.12 : 0));
   });
-  const base = mb.color.clone();
-  const emitV = (k: number): [V3, V3, number] => [P[k], N[k], AO[k]];
   for (let j = 0; j < nv; j++) {
     for (let i = 0; i < nu; i++) {
       const q = [idx(i, j), idx(i + 1, j), idx(i + 1, j + 1), idx(i, j + 1)];
-      // choose diagonal following the shorter span for nicer shading
-      const tris = [
-        [q[0], q[1], q[2]],
-        [q[0], q[2], q[3]],
-      ];
+      // split along the diagonal with the smaller height difference (less faceting on ridges)
+      const d02 = Math.abs(H[q[0]] - H[q[2]]);
+      const d13 = Math.abs(H[q[1]] - H[q[3]]);
+      const tris =
+        d02 <= d13
+          ? [
+              [q[0], q[1], q[2]],
+              [q[0], q[2], q[3]],
+            ]
+          : [
+              [q[0], q[1], q[3]],
+              [q[1], q[2], q[3]],
+            ];
       for (const t of tris) {
         if (hole[t[0]] || hole[t[1]] || hole[t[2]]) continue;
-        const [pa, na, aa] = emitV(t[0]);
-        const [pb, nb, ab] = emitV(t[1]);
-        const [pc, nc, ac] = emitV(t[2]);
-        // per-tri colour from the average AO keeps API simple
-        const ao = (aa + ab + ac) / 3;
-        mb.color.copy(base).multiplyScalar(ao);
-        mb.tri(pa, pb, pc, na, nb, nc);
+        mb.triK(P[t[0]], P[t[1]], P[t[2]], N[t[0]], N[t[1]], N[t[2]], AO[t[0]], AO[t[1]], AO[t[2]]);
       }
     }
   }
-  mb.color.copy(base);
 }
 
 /** Gaussian blob helper for relief composition. */
-export function blob(u: number, v: number, cu: number, cv: number, su: number, sv: number, angle = 0): number {
+export function blob(u: number, v: number, cu: number, cv: number, su: number, sv: number, angle = 0, sharp = 1): number {
   const du = u - cu;
   const dv = v - cv;
   const c = Math.cos(angle);
   const s = Math.sin(angle);
   const x = (du * c + dv * s) / su;
   const y = (-du * s + dv * c) / sv;
-  return Math.exp(-(x * x + y * y));
+  const r2 = x * x + y * y;
+  if (r2 > 10) return 0;
+  if (sharp === 1) return Math.exp(-r2);
+  if (sharp === 1.5) return Math.exp(-r2 * Math.sqrt(r2));
+  return Math.exp(-Math.pow(r2, sharp));
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -665,7 +703,11 @@ export interface NightPatch {
   key: string;
 }
 
-/** Patches a MeshStandardMaterial with local-position varyings, colour variation and night emissive term. */
+/**
+ * Patches a MeshStandardMaterial with local-position varyings, colour variation and night emissive term.
+ * Available in emissiveGLSL: lmPos (local position), lmN (world normal), lmNL (local normal), lmNdotV, lmGlow,
+ * diffuseColor, plus the declared uniforms.
+ */
 export function applyNightPatch(mat: THREE.MeshStandardMaterial, patch: NightPatch): void {
   mat.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, patch.uniforms);
@@ -675,12 +717,14 @@ export function applyNightPatch(mat: THREE.MeshStandardMaterial, patch: NightPat
         `#include <common>
 attribute float glow;
 varying vec3 lmPosV;
+varying vec3 lmNrmV;
 varying float lmGlowV;`,
       )
       .replace(
         '#include <begin_vertex>',
         `#include <begin_vertex>
 lmPosV = transformed;
+lmNrmV = objectNormal;
 lmGlowV = glow;`,
       );
     const decl = Object.keys(patch.uniforms)
@@ -698,6 +742,7 @@ lmGlowV = glow;`,
         '#include <common>',
         `#include <common>
 varying vec3 lmPosV;
+varying vec3 lmNrmV;
 varying float lmGlowV;
 ${decl}
 ${GLSL_NOISE}
@@ -717,6 +762,8 @@ ${patch.fragDecl ?? ''}`,
 {
   vec3 lmPos = lmPosV; float lmGlow = lmGlowV;
   vec3 lmN = inverseTransformDirection(normal, viewMatrix);
+  vec3 lmNL = normalize(lmNrmV) * (gl_FrontFacing ? 1.0 : -1.0); // local-space normal
+  float lmNdotV = abs(dot(normal, normalize(vViewPosition)));
   vec3 lmE = vec3(0.0);
   ${patch.emissiveGLSL}
   totalEmissiveRadiance += lmE;

@@ -17,7 +17,7 @@ export class Sky {
     uFog: { value: 0 }, // haze
     uCityGlow: { value: new THREE.Color(0.9, 0.5, 0.25) },
     uSunVisible: { value: 1 },
-    uGround: { value: new THREE.Color(0.08, 0.075, 0.07) },
+    uGround: { value: new THREE.Color(0.22, 0.19, 0.16) },
     uEnvPass: { value: 0 },
   };
 

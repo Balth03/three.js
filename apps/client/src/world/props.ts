@@ -324,8 +324,7 @@ export function crownMaterial(): THREE.MeshStandardMaterial {
       {
         // translucency: leaves glow when back-lit by the sun
         vec4 lf = sampleLightField(vWorld.xz);
-        reflectedLight.directDiffuse += lf.rgb * 0.5 * BRDF_Lambert(material.diffuseColor);
-        reflectedLight.indirectDiffuse *= 1.15;
+        reflectedLight.directDiffuse += lf.rgb * 0.22 * BRDF_Lambert(material.diffuseColor);
       }
     `,
   });

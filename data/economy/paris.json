@@ -1,0 +1,18 @@
+{
+  "currency": "EUR",
+  "pickup": 4.4,
+  "minimumFare": 8.0,
+  "tariffs": [
+    { "id": "A", "label": "Tarif A (jour)", "perKm": 1.36, "perHourWaiting": 42.0 },
+    { "id": "B", "label": "Tarif B (soir, dimanche)", "perKm": 1.68, "perHourWaiting": 42.0 },
+    { "id": "C", "label": "Tarif C (banlieue)", "perKm": 1.92, "perHourWaiting": 42.0 }
+  ],
+  "schedule": [
+    { "from": 10, "to": 17, "tariff": "A" },
+    { "from": 17, "to": 10, "tariff": "B" }
+  ],
+  "supplements": { "luggage": 0, "extraPassenger": 5.5, "airport": 0 },
+  "waitingSpeedKmh": 10,
+  "tips": { "base": 0.22, "comfortWeight": 0.6, "timeWeight": 0.4, "max": 25 },
+  "gameScale": { "distance": 2.0, "comment": "Game distances are short: fares are scaled so a 3-minute ride pays like a 12-minute real one." }
+}

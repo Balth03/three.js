@@ -57,7 +57,7 @@ export function limestoneTextures(size: number, meters: number, seed = 7): PBRTe
       const d = Math.min(dx, dy);
       const u = x / size;
       const v = y / size;
-      const n1 = fbm2(u * period * 4, v * period * 4, 3, seed, period * 4);
+      const n1 = fbm2(u * period * 4, v * period * 4, 2, seed, period * 4);
       const n2 = valueNoise2(u * 96, v * 96, seed + 3, 96);
       const grain = hash2(x, y, seed) - 0.5;
       const joint = 1 - clamp01((d - jointW * 0.5) / jointW);
@@ -307,16 +307,16 @@ export function hieroglyphTextures(w: number, h: number, seed = 31): PBRTextures
   const hImg = ctx.getImageData(0, 0, w, h).data;
   const heightFn = (x: number, y: number): number => {
     const v = hImg[(y * w + x) * 4] / 255;
-    return v * 0.9 + 0.1 * fbm2(x / 6, y / 6, 2, seed, 0);
+    return v * 0.9 + 0.1 * valueNoise2(x / 6, y / 6, seed);
   };
   const colorFn = (x: number, y: number, hgt: number): [number, number, number] => {
     // Aswan granite: pink feldspar base with dark biotite and grey quartz specks
     const s = hash2(x, y, seed + 5);
     const big = valueNoise2(x / 3, y / 3, seed + 6);
-    const patch = fbm2(x / 60, y / 60, 3, seed + 7);
-    let r = 0.78 + 0.08 * patch;
+    const patch = valueNoise2(x / 60, y / 60, seed + 7);
+    let r = 0.74 + 0.08 * patch;
     let g = 0.6 + 0.06 * patch;
-    let b = 0.54 + 0.05 * patch;
+    let b = 0.55 + 0.05 * patch;
     if (big > 0.72) {
       r *= 0.55;
       g *= 0.58;
@@ -327,7 +327,7 @@ export function hieroglyphTextures(w: number, h: number, seed = 31): PBRTextures
       b = b * 0.8 + 0.15;
     }
     const sp = (s - 0.5) * 0.12;
-    const incised = hgt < 0.55 ? 0.7 : 1;
+    const incised = hgt < 0.55 ? 0.52 : 1;
     // weathering: lighter streaks downwards
     const streak = 0.94 + 0.08 * valueNoise2(x / 8, y / 160, seed + 8);
     return [(r + sp) * incised * streak, (g + sp) * incised * streak, (b + sp) * incised * streak];
@@ -473,4 +473,25 @@ export function pedestalDieTextures(size: number, seed = 51): PBRTextures {
   pbr.roughnessMap = rmTex;
   pbr.metalnessMap = rmTex;
   return pbr;
+}
+
+/** Joint-free carved limestone (for sculpture): fine chisel noise + pores, tileable. */
+export function carvedStoneTextures(size: number, seed = 13): PBRTextures {
+  const per = 8;
+  const heightFn = (x: number, y: number): number => {
+    const u = x / size;
+    const v = y / size;
+    const n = fbm2(u * per * 2, v * per * 2, 4, seed, per * 2);
+    const chisel = valueNoise2(u * 64 + n * 3, v * 64, seed + 1, 64);
+    const pore = hash2(x, y, seed + 2) > 0.985 ? -0.25 : 0;
+    return 0.5 + 0.3 * n + 0.15 * chisel + pore;
+  };
+  const colorFn = (x: number, y: number, hgt: number): [number, number, number] => {
+    const u = x / size;
+    const v = y / size;
+    const n = fbm2(u * per, v * per, 3, seed + 3, per);
+    const c = clamp01(0.9 + 0.1 * n + (hgt - 0.5) * 0.12 + (hash2(x, y, seed + 4) - 0.5) * 0.03);
+    return [c, c * 0.985, c * 0.955];
+  };
+  return texturesFromFields(size, size, heightFn, colorFn, 2.5);
 }

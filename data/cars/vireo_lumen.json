@@ -1,0 +1,43 @@
+{
+  "id": "vireo_lumen",
+  "name": "Lumen",
+  "brand": "Vireo",
+  "description": { "fr": "Berline hybride propulsion, la reine des stations de taxi parisiennes : silencieuse en ville, vive quand il faut.", "en": "Rear-drive hybrid saloon, the queen of Paris taxi ranks: silent in town, lively when needed." },
+  "mass": 1640,
+  "inertia": [560, 2950, 2750],
+  "comHeight": 0.5,
+  "comOffsetZ": 0.04,
+  "dimensions": { "length": 4.92, "width": 1.86, "height": 1.47 },
+  "wheelbase": 2.94,
+  "trackFront": 1.6,
+  "trackRear": 1.61,
+  "wheel": { "radius": 0.34, "width": 0.245, "inertia": 1.15 },
+  "suspension": {
+    "staticLength": 0.14, "droop": 0.1, "bump": 0.085,
+    "springFront": 34000, "springRear": 37000,
+    "bumpFront": 2300, "reboundFront": 3900, "bumpRear": 2400, "reboundRear": 4100,
+    "antiRollFront": 21000, "antiRollRear": 13000
+  },
+  "steering": { "maxAngle": 37, "ackermann": 0.6, "rate": 135 },
+  "tires": {
+    "longitudinal": { "peakSlip": 0.11, "shape": 1.55, "curvature": 0.3, "peak": 1.0 },
+    "lateral": { "peakSlip": 0.135, "shape": 1.38, "curvature": 0.15, "peak": 0.98 },
+    "loadSensitivity": 0.08,
+    "rollingResistance": 0.012,
+    "relaxation": 0.4
+  },
+  "engine": {
+    "idleRpm": 800, "maxRpm": 6600, "stallRpm": 2300,
+    "torqueCurve": [[800, 190], [1500, 300], [2000, 350], [4500, 350], [5500, 320], [6200, 280], [6600, 240]],
+    "inertia": 0.18, "engineBrake": 65,
+    "electric": { "torque": 260, "maxSpeed": 14 },
+    "cylinders": 4
+  },
+  "gearbox": { "ratios": [-3.5, 4.0, 2.6, 1.8, 1.35, 1.05, 0.84, 0.68], "final": 3.2, "shiftTime": 0.22, "efficiency": 0.9, "upRpm": [2300, 6300], "downRpm": [1250, 3600] },
+  "drive": "RWD",
+  "diff": { "type": "lsd", "lock": 0.25 },
+  "brakes": { "maxTorque": 5400, "frontBias": 0.68, "handbrakeTorque": 2600 },
+  "aero": { "cd": 0.27, "frontalArea": 2.25, "cl": 0.05 },
+  "fuel": { "type": "hybrid", "capacity": 50, "consumption": 5.1 },
+  "capacity": { "passengers": 4, "luggage": 3 }
+}

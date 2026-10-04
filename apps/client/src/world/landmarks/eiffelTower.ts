@@ -112,11 +112,23 @@ export function createEiffelTower(opts: LandmarkOptions = {}): Landmark {
       latticeQuad(a0, a1, b1, b0, 'LEG', 0, 1);
       addSparkles(a0, a1, b1, b0);
       if (diag) {
+        // the X members' flanges as real geometry (depth/parallax up close); the lattice web stays textured
         const cw = a0.distanceTo(a1);
-        const dw = THREE.MathUtils.clamp(cw * 0.055, 0.3, 1.1);
+        const fw = Math.max(0.14, cw * 0.017);
+        const off = cw * 0.042;
         const n = new THREE.Vector3().subVectors(a1, a0).cross(new THREE.Vector3().subVectors(b0, a0)).normalize();
-        iron.beam(a0, b1, dw, dw * 0.55, n, false, undefined, undefined, beamUV(dw));
-        iron.beam(a1, b0, dw, dw * 0.55, n, false, undefined, undefined, beamUV(dw));
+        for (const [p, q] of [
+          [a0, b1],
+          [a1, b0],
+        ]) {
+          const dir = new THREE.Vector3().subVectors(q, p).normalize();
+          const perp = new THREE.Vector3().crossVectors(n, dir).normalize();
+          for (const sgn of [-1, 1]) {
+            const pp = p.clone().addScaledVector(perp, sgn * off);
+            const qq = q.clone().addScaledVector(perp, sgn * off);
+            iron.beam(pp, qq, fw, fw * 2.2, perp, false, undefined, undefined, { u0: 0.82, u1: 0.98, vPerM: 0.01 });
+          }
+        }
       }
     }
   };
@@ -245,8 +257,8 @@ export function createEiffelTower(opts: LandmarkOptions = {}): Landmark {
           return V(-w, y, x);
       }
     };
-    const intr = (th: number): THREE.Vector3 => onFace(A * Math.cos(th), YSPR + (37.6 - YSPR) * Math.sin(th), 0.6);
-    const extr = (th: number): THREE.Vector3 => onFace(A * Math.cos(th), YSPR + 5.5 + (41.2 - YSPR - 5.5) * Math.sin(th), 0.6);
+    const intr = (th: number): THREE.Vector3 => onFace(A * Math.cos(th), YSPR + (39.0 - YSPR) * Math.sin(th), 0.6);
+    const extr = (th: number): THREE.Vector3 => onFace(A * Math.cos(th), YSPR + 6.5 + (43.4 - YSPR - 6.5) * Math.sin(th), 0.6);
     let s = 0;
     for (let i = 0; i < arcSegs; i++) {
       const t0 = (Math.PI * i) / arcSegs;
@@ -296,12 +308,33 @@ export function createEiffelTower(opts: LandmarkOptions = {}): Landmark {
   };
   iron.setColor(brown);
   ring(iron, O1, I1, 57.0, 57.8);
-  bandAround(O1, 50.4, 57.0, 'TRUSS', 17, true);
-  bandAround(I1 + 0.3, 52.2, 57.0, 'TRUSS', 17);
-  ring(iron, O1 + 0.15, O1 - 0.6, 50.2, 50.8); // bottom chord
+  bandAround(O1, 47.6, 57.0, 'TRUSS', 25, true);
+  bandAround(I1 + 0.3, 50.0, 57.0, 'TRUSS', 19);
+  ring(iron, O1 + 0.15, O1 - 0.6, 47.3, 47.9); // bottom chord
   bandAround(O1 + 0.25, 57.8, 62.1, 'GALLERY', 34, true);
   ring(iron, O1 + 0.8, O1 - 2.2, 62.1, 62.8); // gallery cornice
   ring(iron, O1 + 0.45, O1 - 1.2, 62.8, 63.2);
+  // floor girders under the deck (seen when driving below)
+  {
+    const [v0, v1] = atlas.band('TRUSS');
+    const step = 4.4;
+    for (let k = -Math.floor(O1 / step); k <= Math.floor(O1 / step); k++) {
+      const t = k * step;
+      for (const sgn of [-1, 1]) {
+        const a = V(t, 54.6, sgn * I1);
+        const b = V(t, 54.6, sgn * O1);
+        const c = V(t, 57.0, sgn * O1);
+        const d = V(t, 57.0, sgn * I1);
+        const L = (O1 - I1) / 7;
+        lattice.quad(a, b, c, d, null, [[0, v0], [L, v0], [L, v1], [0, v1]]);
+        const a2 = V(sgn * I1, 54.6, t);
+        const b2 = V(sgn * O1, 54.6, t);
+        const c2 = V(sgn * O1, 57.0, t);
+        const d2 = V(sgn * I1, 57.0, t);
+        lattice.quad(a2, b2, c2, d2, null, [[0, v0], [L, v0], [L, v1], [0, v1]]);
+      }
+    }
+  }
   // glass pavilions set back inside the gallery
   {
     const r = O1 - 2.0;
@@ -317,8 +350,17 @@ export function createEiffelTower(opts: LandmarkOptions = {}): Landmark {
 
   // ---------------------------------------------------------------- 2nd floor
   const O2 = eiffelOuter(Y2) + 0.35;
-  iron.box(-O2, 115.1, -O2, O2, 116.0, O2);
+  iron.box(-O2, 115.4, -O2, O2, 116.0, O2);
   bandAround(O2, 112.3, 115.1, 'TRUSS', 12, true);
+  {
+    const [v0, v1] = atlas.band('TRUSS');
+    const L = (2 * O2) / 7;
+    for (let k = -4; k <= 4; k++) {
+      const t = k * 4.4;
+      lattice.quad(V(t, 113.6, -O2), V(t, 113.6, O2), V(t, 115.4, O2), V(t, 115.4, -O2), null, [[0, v0], [L, v0], [L, v1], [0, v1]]);
+      lattice.quad(V(-O2, 113.6, t), V(O2, 113.6, t), V(O2, 115.4, t), V(-O2, 115.4, t), null, [[0, v0], [L, v0], [L, v1], [0, v1]]);
+    }
+  }
   bandAround(O2 + 0.2, 116.0, 117.7, 'RAIL', 12);
   iron.box(-O2 - 0.3, 117.7, -O2 - 0.3, O2 + 0.3, 118.0, O2 + 0.3, 0b111111);
   {
@@ -425,13 +467,17 @@ export function createEiffelTower(opts: LandmarkOptions = {}): Landmark {
 
   // ---------------------------------------------------------------- materials
   const uNight = { value: 0 };
-  const uGold = { value: new THREE.Color(1.0, 0.5, 0.16) };
-  const uGoldI = { value: 2.4 };
+  const uGold = { value: new THREE.Color(1.0, 0.3, 0.04) };
+  const uGoldI = { value: 1.0 };
   const uWarm = { value: new THREE.Color(1.0, 0.72, 0.42) };
   const goldGLSL = /* glsl */ `
     float hgt = lmPos.y;
-    float var = 0.82 + 0.3 * lmNoise(lmPos * 0.08);
-    float fl = var * mix(1.1, 0.95, smoothstep(0.0, 280.0, hgt));
+    float var = 0.75 + 0.45 * lmNoise(lmPos * 0.08);
+    // lamps sit inside the structure: grazing faces glow more than faces seen head-on (reads the 3D lattice)
+    float rim = mix(1.3, 0.6, lmNdotV);
+    // texture luminance (material colour is white, brown comes from vertex colours): darker rivet/lattice holes
+    float texLum = clamp(diffuseColor.g / max(vColor.g, 1e-3), 0.0, 1.2);
+    float fl = var * rim * (0.3 + 0.7 * texLum) * mix(1.05, 0.9, smoothstep(0.0, 280.0, hgt));
     float mast = step(294.0, hgt);
     lmE = uGold * (fl * uNight * uGoldI * (1.0 - mast));
   `;
@@ -458,7 +504,7 @@ export function createEiffelTower(opts: LandmarkOptions = {}): Landmark {
     emissiveGLSL: `
       float mull = max(step(0.9, fract((lmPos.x + lmPos.z) / 2.4)), step(0.86, fract(lmPos.y / 1.9)));
       float cell = lmHash(floor(vec3((lmPos.x + lmPos.z) / 2.4, lmPos.y / 1.9, 0.0)));
-      lmE = uWarm * uNight * (1.0 - mull) * (0.8 + 1.4 * step(0.25, cell));
+      lmE = uWarm * uNight * (1.0 - mull) * (0.35 + 0.75 * step(0.25, cell));
     `,
     key: 'eiffel-glass',
   });
@@ -534,7 +580,7 @@ export function createEiffelTower(opts: LandmarkOptions = {}): Landmark {
   // ---------------------------------------------------------------- beacon: two rotating beams
   const BEAM_LEN = high ? 1800 : 1200;
   const beamGeo = (() => {
-    const g1 = new THREE.CylinderGeometry(42, 0.5, BEAM_LEN, high ? 28 : 16, 1, true);
+    const g1 = new THREE.CylinderGeometry(24, 0.4, BEAM_LEN, high ? 28 : 16, 1, true);
     g1.translate(0, BEAM_LEN / 2, 0);
     g1.rotateZ(-Math.PI / 2 + 0.02);
     const g2 = g1.clone();
@@ -547,7 +593,7 @@ export function createEiffelTower(opts: LandmarkOptions = {}): Landmark {
     return mb.build();
   })();
   const beamMat = new THREE.ShaderMaterial({
-    uniforms: { uOn: { value: 0 }, uLen: { value: BEAM_LEN }, uColor: { value: new THREE.Color(1.0, 0.93, 0.8).multiplyScalar(0.5) } },
+    uniforms: { uOn: { value: 0 }, uLen: { value: BEAM_LEN }, uColor: { value: new THREE.Color(1.0, 0.92, 0.78).multiplyScalar(0.12) } },
     vertexShader: /* glsl */ `
       uniform float uLen;
       varying float vAlong; varying vec3 vN; varying vec3 vV;
@@ -566,7 +612,7 @@ export function createEiffelTower(opts: LandmarkOptions = {}): Landmark {
         e = pow(e, 2.2);
         float a = clamp(vAlong, 0.0, 1.0);
         float fall = pow(1.0 - a, 2.4) * smoothstep(0.0, 0.004, a);
-        float core = 1.0 + 6.0 * exp(-a * 60.0);
+        float core = 1.0 + 3.0 * exp(-a * 80.0);
         gl_FragColor = vec4(uColor * e * fall * core * uOn, 1.0);
         #include <tonemapping_fragment>
         #include <colorspace_fragment>

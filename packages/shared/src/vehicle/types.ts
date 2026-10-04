@@ -14,7 +14,7 @@ export interface CarSpec {
   name: string;
   brand: string;
   mass: number;
-  /** Principal inertia [roll(x), yaw(y), pitch(z)] kg·m² */
+  /** Principal inertia [roll (about Z, the long axis), yaw (Y), pitch (X)] kg·m² */
   inertia: [number, number, number];
   comHeight: number;
   /** CoM longitudinal offset from the wheelbase centre, +ve = towards the rear (local +Z). */

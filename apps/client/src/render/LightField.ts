@@ -37,9 +37,9 @@ export class LightField {
       transparent: true, depthTest: false, depthWrite: false,
       blending: THREE.CustomBlending, blendEquation: THREE.AddEquation, blendSrc: THREE.OneFactor, blendDst: THREE.OneFactor,
       blendSrcAlpha: THREE.OneFactor, blendDstAlpha: THREE.OneFactor,
-      uniforms: { uColor: { value: new THREE.Color(1.0, 0.72, 0.42) }, uI: { value: 1.6 } },
+      uniforms: { uColor: { value: new THREE.Color(1.0, 0.72, 0.42) }, uI: { value: 5.0 } },
       vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * instanceMatrix * vec4(position, 1.0); }',
-      fragmentShader: 'varying vec2 vUv; uniform vec3 uColor; uniform float uI; void main(){ float r = length(vUv - 0.5) * 2.0; float f = pow(max(0.0, 1.0 - r), 1.8) + 0.25 * max(0.0, 1.0 - r * 3.0); gl_FragColor = vec4(uColor * f * uI, 0.0); }',
+      fragmentShader: 'varying vec2 vUv; uniform vec3 uColor; uniform float uI; void main(){ float r = length(vUv - 0.5) * 2.0; float f = pow(max(0.0, 1.0 - r), 2.2) + 0.6 * pow(max(0.0, 1.0 - r * 2.5), 2.0); gl_FragColor = vec4(uColor * f * uI, 0.0); }',
     });
     const headMat = new THREE.ShaderMaterial({
       transparent: true, depthTest: false, depthWrite: false,
@@ -79,7 +79,7 @@ export class LightField {
       const lx = x - ox, lz = z - oz;
       if (lx < -20 || lz < -20 || lx > this.size + 20 || lz > this.size + 20) return;
       // texture v axis: we map world z -> y (flipped later by uv convention: uv = (xz - origin)/size)
-      this.m.makeScale(22, 22, 1).setPosition(lx, lz, 0);
+      this.m.makeScale(36, 36, 1).setPosition(lx, lz, 0);
       this.lamps.setMatrixAt(n, this.m);
       this.m.makeScale(1.6, 1.6, 1).setPosition(lx, lz, 0);
       this.heads.setMatrixAt(n, this.m);

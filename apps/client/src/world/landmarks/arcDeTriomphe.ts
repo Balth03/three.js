@@ -3,7 +3,7 @@ import { MeshBuilder, addRelief, applyNightPatch, blob, disposeObject, fbm2, mul
 import type { ReliefFrame } from './common';
 import { archRing, extrudeProfile } from './extrude';
 import type { ProfilePoint } from './extrude';
-import { cofferTextures, limestoneTextures } from './textures';
+import { carvedStoneTextures, cofferTextures, limestoneTextures } from './textures';
 import type { Landmark, LandmarkCollider, LandmarkOptions } from './types';
 
 /*
@@ -68,13 +68,14 @@ function figure(parts: Part[], bx: number, by: number, h: number, lean: number, 
   const hipX = bx + lean * 0.35 * h;
   // legs (striding)
   const stride = 0.1 + rnd() * 0.12;
-  parts.push([bx - stride * h * 0.5 + lean * 0.1 * h, by + 0.23 * h, 0.065 * h, 0.24 * h, -stride * 1.2 + lean, 0.85 * d]);
-  parts.push([bx + stride * h * 0.5 + lean * 0.12 * h, by + 0.23 * h, 0.065 * h, 0.24 * h, stride * 1.2 + lean, 0.95 * d]);
+  parts.push([bx - stride * h * 0.5 + lean * 0.1 * h, by + 0.23 * h, 0.05 * h, 0.24 * h, -stride * 1.2 + lean, 0.85 * d]);
+  parts.push([bx + stride * h * 0.5 + lean * 0.12 * h, by + 0.23 * h, 0.05 * h, 0.24 * h, stride * 1.2 + lean, 0.95 * d]);
   // pelvis + torso
-  parts.push([hipX, by + 0.5 * h, 0.12 * h, 0.08 * h, 0, 1.1 * d]);
-  parts.push([bx + lean * 0.6 * h, by + 0.66 * h, 0.13 * h, 0.15 * h, lean * 0.8, 1.35 * d]);
+  parts.push([hipX, by + 0.5 * h, 0.1 * h, 0.075 * h, 0, 1.1 * d]);
+  parts.push([bx + lean * 0.6 * h, by + 0.66 * h, 0.105 * h, 0.15 * h, lean * 0.8, 1.35 * d]);
   // head
-  parts.push([bx + lean * 0.95 * h, by + 0.89 * h, 0.055 * h, 0.065 * h, 0, 1.25 * d]);
+  parts.push([bx + lean * 0.95 * h, by + 0.9 * h, 0.05 * h, 0.06 * h, 0, 1.45 * d]);
+  parts.push([bx + lean * 0.9 * h, by + 0.835 * h, 0.03 * h, 0.03 * h, 0, 1.1 * d]); // neck
   // arms
   const sx = bx + lean * 0.75 * h;
   const sy = by + 0.78 * h;
@@ -84,10 +85,10 @@ function figure(parts: Part[], bx: number, by: number, h: number, lean: number, 
   ] as const) {
     const ax = sx + side * 0.1 * h + Math.cos(a) * 0.17 * h;
     const ay = sy + Math.sin(a) * 0.17 * h;
-    parts.push([ax, ay, 0.19 * h, 0.04 * h, a, 1.15 * d]);
+    parts.push([ax, ay, 0.18 * h, 0.032 * h, a, 1.2 * d]);
   }
   // cloak / drapery mass behind
-  parts.push([bx + lean * 0.5 * h - 0.05 * h, by + 0.55 * h, 0.2 * h, 0.3 * h, lean * 0.5, 0.6 * d]);
+  parts.push([bx + lean * 0.5 * h - 0.05 * h, by + 0.55 * h, 0.15 * h, 0.28 * h, lean * 0.5, 0.45 * d]);
   // shield or weapon
   if (rnd() < 0.5) parts.push([bx + (rnd() < 0.5 ? -1 : 1) * 0.2 * h, by + 0.55 * h, 0.09 * h, 0.1 * h, 0, 1.3 * d]);
 }
@@ -129,15 +130,15 @@ function groupHeight(seed: number): (u: number, v: number) => number {
   return (u: number, v: number): number => {
     const X = u * W;
     const Y = v * H;
-    let h = 0.22;
-    for (const p of parts) h = smax(h, p[5] * blob(X, Y, p[0], p[1], p[2], p[3], p[4]), 0.35);
+    let h = 0.06;
+    for (const p of parts) h = smax(h, p[5] * blob(X, Y, p[0], p[1], p[2], p[3], p[4], 1.7), 0.18);
     // drapery folds + chisel noise
     const folds = Math.sin(X * 3.1 + fbm2(X * 0.6, Y * 0.6, 2, seed) * 6 + Y * 0.8) * 0.06;
     h += folds * smoothstep(0.3, 0.9, h) + (fbm2(X * 1.6, Y * 1.6, 3, seed + 5) - 0.5) * 0.18 * smoothstep(0.2, 0.6, h);
     // fade to the slab at the edges
     const e = Math.min(X, W - X, Y + 0.6, H - Y);
     h *= smoothstep(-0.05, 0.45, e);
-    return h * 1.15;
+    return h * 1.35;
   };
 }
 
@@ -165,7 +166,7 @@ function processionHeight(seed: number, W: number, H: number, depth: number, spa
     let h = 0;
     for (const p of parts) {
       if (Math.abs(X - p[0]) > 3 * Math.max(p[2], p[3]) + 0.5) continue;
-      h = smax(h, p[5] * blob(X, Y, p[0], p[1], p[2], p[3], p[4]), 0.3);
+      h = smax(h, p[5] * blob(X, Y, p[0], p[1], p[2], p[3], p[4], 1.5), 0.2);
     }
     h += (valueNoise2(X * 3, Y * 3, seed) - 0.5) * 0.12 * h;
     const e = framed ? Math.min(X, W - X, Y, H - Y) : Math.min(Y + 0.1, H - Y);
@@ -208,12 +209,14 @@ function fameHeight(seed: number, W: number, H: number): (u: number, v: number) 
 
 export function createArcDeTriomphe(opts: LandmarkOptions = {}): Landmark {
   const high = (opts.quality ?? 'high') === 'high';
-  const texSize = high ? 1024 : 512;
+  const texSize = high ? 512 : 256;
   const arcSegs = high ? 28 : 14;
 
   const stone = new MeshBuilder();
   stone.uvScale = 8;
   const coffer = new MeshBuilder();
+  const sculpt = new MeshBuilder();
+  sculpt.uvScale = 3;
   const dark = new MeshBuilder();
   dark.uvScale = 1;
 
@@ -359,7 +362,7 @@ export function createArcDeTriomphe(opts: LandmarkOptions = {}): Landmark {
         width: 8,
         height: 11.6,
       };
-      addRelief(stone, frame, gNu, gNv, groupHeight(gSeed++), 0.45);
+      addRelief(sculpt, frame, gNu, gNv, groupHeight(gSeed++), 0.6);
     }
   }
 
@@ -373,8 +376,8 @@ export function createArcDeTriomphe(opts: LandmarkOptions = {}): Landmark {
     faceBox(stone, f, uc, w + 0.7, y0 + h, y0 + h + 0.35, 0, 0.22);
     faceBox(stone, f, uc - w / 2 - 0.175, 0.35, y0, y0 + h, 0, 0.22);
     faceBox(stone, f, uc + w / 2 + 0.175, 0.35, y0, y0 + h, 0, 0.22);
-    stone.setColor(0.9);
-    addRelief(stone, { origin: f.c.clone().addScaledVector(f.u, uc - w / 2).setY(y0), uAxis: f.u.clone(), vAxis: V(0, 1, 0), normal: f.n.clone(), width: w, height: h }, bNu, bNv, processionHeight(seed, w, h, 0.38, 0.95), 0.6);
+    sculpt.setColor(0.92);
+    addRelief(sculpt, { origin: f.c.clone().addScaledVector(f.u, uc - w / 2).setY(y0), uAxis: f.u.clone(), vAxis: V(0, 1, 0), normal: f.n.clone(), width: w, height: h }, bNu, bNv, processionHeight(seed, w, h, 0.38, 0.95), 0.7);
     stone.setColor(SC);
   };
   let pSeed = 301;
@@ -387,7 +390,7 @@ export function createArcDeTriomphe(opts: LandmarkOptions = {}): Landmark {
   for (const f of FACES.slice(0, 2)) {
     for (const side of [-1, 1]) {
       const u = f.u.clone().multiplyScalar(side);
-      addRelief(stone, { origin: f.c.clone().addScaledVector(u, 0.3).setY(22.0), uAxis: u, vAxis: V(0, 1, 0), normal: f.n.clone(), width: 9.7, height: YE - 22.0 - 0.02 }, fNu, fNv, fameHeight(500 + side, 9.7, YE - 22.0), 0.5);
+      addRelief(sculpt, { origin: f.c.clone().addScaledVector(u, 0.3).setY(22.0), uAxis: u, vAxis: V(0, 1, 0), normal: f.n.clone(), width: 9.7, height: YE - 22.0 - 0.02 }, fNu, fNv, fameHeight(500 + side, 9.7, YE - 22.0), 0.5);
     }
   }
 
@@ -400,7 +403,7 @@ export function createArcDeTriomphe(opts: LandmarkOptions = {}): Landmark {
   let frSeed = 700;
   for (const f of FACES) {
     const W = f.half * 2 + 0.2;
-    addRelief(stone, { origin: f.c.clone().addScaledVector(f.n, 0.1).addScaledVector(f.u, -W / 2).setY(32.05), uAxis: f.u.clone(), vAxis: V(0, 1, 0), normal: f.n.clone(), width: W, height: 3.3 }, Math.round(W * frNu), high ? 7 : 4, processionHeight(frSeed++, W, 3.3, 0.3, 0.75, false), 0.5);
+    addRelief(sculpt, { origin: f.c.clone().addScaledVector(f.n, 0.1).addScaledVector(f.u, -W / 2).setY(32.05), uAxis: f.u.clone(), vAxis: V(0, 1, 0), normal: f.n.clone(), width: W, height: 3.3 }, Math.round(W * frNu), high ? 7 : 4, processionHeight(frSeed++, W, 3.3, 0.3, 0.75, false), 0.5);
   }
   belt(stone, 35.4, 35.8, 0.38);
   // modillions under the corona
@@ -510,11 +513,12 @@ export function createArcDeTriomphe(opts: LandmarkOptions = {}): Landmark {
 
   // ---------------------------------------------------------------- materials
   const lime = limestoneTextures(texSize, 8, 7);
-  const cof = cofferTextures(high ? 512 : 256, 11);
+  const cof = cofferTextures(high ? 256 : 128, 11);
+  const carved = carvedStoneTextures(high ? 256 : 128, 13);
   const stoneColor = new THREE.Color().setRGB(0.94, 0.88, 0.77, THREE.SRGBColorSpace);
   const uNight = { value: 0 };
-  const uFloodColor = { value: new THREE.Color(1.0, 0.74, 0.46) };
-  const uFloodI = { value: 1.25 };
+  const uFloodColor = { value: new THREE.Color(1.0, 0.66, 0.36) };
+  const uFloodI = { value: 0.62 };
   const stoneColorGLSL = /* glsl */ `
     float n1 = lmFbm(lmPos * 0.32);
     float n2 = lmNoise(vec3(lmPos.x * 1.7 + lmPos.z * 1.7, lmPos.y * 0.09, 3.1));
@@ -527,15 +531,19 @@ export function createArcDeTriomphe(opts: LandmarkOptions = {}): Landmark {
     float h = lmPos.y;
     float up = lmN.y;
     float vert = 1.0 - abs(up);
-    float fl = mix(1.3, 0.72, smoothstep(0.0, 50.0, h));
-    fl *= 0.42 + 0.58 * vert + 0.7 * max(-up, 0.0) - 0.22 * max(up, 0.0);
-    fl += lmGlow * 1.1;
+    float fl = mix(1.45, 0.62, smoothstep(0.0, 50.0, h));
+    fl *= 0.35 + 0.65 * vert + 0.8 * max(-up, 0.0) - 0.2 * max(up, 0.0);
+    // light pools from the ground projectors along the facades
+    fl *= 0.85 + 0.3 * sin(lmPos.x * 0.55 + lmPos.z * 0.55) * (1.0 - smoothstep(0.0, 25.0, h));
+    fl += lmGlow * 0.55;
     lmE = diffuseColor.rgb * uFloodColor * (fl * uNight * uFloodI);
   `;
   const stoneMat = new THREE.MeshStandardMaterial({ color: stoneColor, map: lime.map, normalMap: lime.normalMap, normalScale: new THREE.Vector2(0.8, 0.8), roughness: 0.86, metalness: 0, vertexColors: true });
   applyNightPatch(stoneMat, { uniforms: { uNight, uFloodColor, uFloodI }, colorGLSL: stoneColorGLSL, emissiveGLSL: floodGLSL, key: 'arc-stone' });
   const cofferMat = new THREE.MeshStandardMaterial({ color: stoneColor, map: cof.map, normalMap: cof.normalMap, normalScale: new THREE.Vector2(1.2, 1.2), roughness: 0.88, metalness: 0, vertexColors: true });
   applyNightPatch(cofferMat, { uniforms: { uNight, uFloodColor, uFloodI }, colorGLSL: stoneColorGLSL, emissiveGLSL: floodGLSL, key: 'arc-coffer' });
+  const sculptMat = new THREE.MeshStandardMaterial({ color: stoneColor, map: carved.map, normalMap: carved.normalMap, normalScale: new THREE.Vector2(0.9, 0.9), roughness: 0.88, metalness: 0, vertexColors: true });
+  applyNightPatch(sculptMat, { uniforms: { uNight, uFloodColor, uFloodI }, colorGLSL: stoneColorGLSL, emissiveGLSL: floodGLSL, key: 'arc-sculpt' });
   const darkMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.42, metalness: 0.75, vertexColors: true });
   applyNightPatch(darkMat, { uniforms: { uNight, uFloodColor, uFloodI }, emissiveGLSL: 'lmE = diffuseColor.rgb * uFloodColor * uNight * 0.6;', key: 'arc-dark' });
 
@@ -551,6 +559,7 @@ export function createArcDeTriomphe(opts: LandmarkOptions = {}): Landmark {
   };
   mk(stone, stoneMat, 'arc-stone');
   mk(coffer, cofferMat, 'arc-coffers');
+  mk(sculpt, sculptMat, 'arc-sculpture');
   mk(dark, darkMat, 'arc-tomb');
 
   // ---------------------------------------------------------------- eternal flame

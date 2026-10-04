@@ -270,7 +270,7 @@ export class VehicleSim {
       if (world.castWheelRay(ox, oy, oz, -this.ux, -this.uy, -this.uz, rayLen, hit)) {
         w.contact = true;
         wheelsOnGround++;
-        w.length = Math.max(sus.staticLength - sus.bump, hit.distance - s.wheel.radius);
+        w.length = Math.max(0.0, hit.distance - s.wheel.radius);
         w.nx = hit.nx; w.ny = hit.ny; w.nz = hit.nz; w.surface = hit.surface; w.collider = hit.collider;
         w.px = ox - this.ux * hit.distance; w.py = oy - this.uy * hit.distance; w.pz = oz - this.uz * hit.distance;
       } else {
@@ -289,9 +289,10 @@ export class VehicleSim {
       let f = w.spring * (L0 - w.length);
       f += (w.compressionVel > 0 ? w.bump : w.rebound) * w.compressionVel;
       const minL = sus.staticLength - sus.bump;
-      if (w.length < minL + 0.025) {
-        const pen = minL + 0.025 - w.length;
-        f += pen * w.spring * 12 + Math.max(0, w.compressionVel) * w.bump * 3;
+      if (w.length < minL + 0.02) {
+        // progressive rubber bump stop (never saturates, so the body cannot collapse onto the outer wheels)
+        const pen = minL + 0.02 - w.length;
+        f += w.spring * (pen * 6 + pen * pen * 400) + Math.max(0, w.compressionVel) * w.bump * 2;
         bumpImpulse = Math.max(bumpImpulse, Math.min(1, w.compressionVel * 0.4));
       }
       const arb = w.front ? sus.antiRollFront : sus.antiRollRear;
@@ -508,7 +509,7 @@ export class VehicleSim {
       const Fy = fsy + wfy * fxF + wry * fyF;
       const Fz2 = fsz + wfz * fxF + wrz * fyF;
       // tyre forces applied slightly above ground (reduces jacking/roll exaggeration), suspension at contact
-      cp.x = w.px + this.ux * 0.12; cp.y = w.py + this.uy * 0.12; cp.z = w.pz + this.uz * 0.12;
+      cp.x = w.px + this.ux * 0.05; cp.y = w.py + this.uy * 0.05; cp.z = w.pz + this.uz * 0.05;
       body.applyImpulseAtPoint(Fx * dt, Fy * dt, Fz2 * dt, cp.x, cp.y, cp.z);
       w.spin += w.omega * dt;
       alpha = 0;

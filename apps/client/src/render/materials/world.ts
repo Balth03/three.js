@@ -17,11 +17,11 @@ export function createFacadeMaterial(): THREE.MeshStandardMaterial {
       float gWin; float gLit; vec3 gLitCol; float gGlass; float gIron; float lfHeight; float wetSpec;
       vec3 stoneTint(float s){
         // Lutetian limestone, cream to warm grey, some darker (pollution) and some freshly cleaned
-        vec3 a = vec3(0.80, 0.735, 0.62), b = vec3(0.72, 0.68, 0.60), c = vec3(0.86, 0.80, 0.68);
+        vec3 a = vec3(0.64, 0.585, 0.49), b = vec3(0.56, 0.53, 0.47), c = vec3(0.70, 0.65, 0.55);
         return s < 0.5 ? mix(a, b, s * 2.0) : mix(a, c, (s - 0.5) * 2.0);
       }
       vec3 plasterTint(float s){
-        vec3 cols[6] = vec3[6](vec3(0.85,0.82,0.76), vec3(0.78,0.74,0.68), vec3(0.62,0.6,0.58), vec3(0.72,0.55,0.45), vec3(0.88,0.86,0.82), vec3(0.66,0.62,0.52));
+        vec3 cols[6] = vec3[6](vec3(0.68,0.65,0.6), vec3(0.62,0.58,0.53), vec3(0.5,0.48,0.46), vec3(0.58,0.42,0.34), vec3(0.72,0.7,0.66), vec3(0.54,0.5,0.42));
         return cols[int(floor(s * 5.999))];
       }
     `,
@@ -64,29 +64,63 @@ export function createFacadeMaterial(): THREE.MeshStandardMaterial {
           col *= 1.0 - 0.10 * smoothstep(0.6, 1.0, fbm(vec2(u * 0.6, v * 0.08) + seed * 11.0)) ;
           bool tooNarrow = L < 2.2;
           if (v < gfH) {
-            // ground floor: rusticated stone + shop fronts / porte cochère
+            // ground floor: rusticated stone, shops grouped over 1-3 bays, porte-cochère doors, closed shops with steel shutters
             float rust = 1.0 - aaband(0.06, 0.94, fract(v / 0.48));
             col *= 1.0 - rust * 0.22;
-            float shopX = aaband(0.08, 0.92, bx);
-            float shopY = aaband(0.35, gfH - 0.75, v);
-            float isDoor = step(0.82, h21(vec2(bay, seed * 13.0)));
-            if (!tooNarrow) {
-              float shop = shopX * shopY;
-              if (shop > 0.0) {
-                float frame = 1.0 - aaband(0.11, 0.89, bx) * aaband(0.45, gfH - 0.85, v);
-                vec3 shopFrame = mix(vec3(0.08, 0.10, 0.09), vec3(0.35, 0.08, 0.08), step(0.7, h21(vec2(bay * 0.37, seed))));
-                shopFrame = mix(shopFrame, vec3(0.05), step(0.4, h21(vec2(seed, 3.3))));
-                vec3 glassC = vec3(0.04, 0.05, 0.06);
-                col = mix(col, mix(glassC, shopFrame, frame), shop);
-                gGlass = shop * (1.0 - frame);
-                // awning / signboard band
-                float sign = aaband(gfH - 1.35, gfH - 0.85, v) * shopX;
-                col = mix(col, shopFrame * 1.3, sign * 0.9);
-                float shopLit = step(0.25, h21(vec2(bay, seed * 5.0))) * uShopLit;
-                gLit = max(gLit, gGlass * shopLit * (1.0 - isDoor));
-                gLitCol = mix(vec3(1.0, 0.85, 0.62), vec3(1.0, 0.95, 0.9), h21(vec2(bay, 1.0)));
-                gWin = gGlass;
-              }
+            float shopId = floor(bay / (1.0 + floor(h21(vec2(seed, 9.1)) * 2.5)));
+            float hs = h21(vec2(shopId, seed * 13.0));
+            float isDoor = step(0.86, h21(vec2(bay, seed * 3.0)));
+            float isShop = step(0.18, hs) * (1.0 - isDoor);
+            float openingX = aaband(0.07, 0.93, bx);
+            float top0 = gfH - 1.05;
+            if (!tooNarrow && isDoor > 0.5) {
+              // porte cochère: arched timber door, dark green / brown, with panels
+              float dx = abs(bx - 0.5) * 2.0;
+              float arch = 2.9 + sqrt(max(0.0, 1.0 - dx * dx)) * 0.5;
+              float door = aaband(0.15, 0.85, bx) * step(v, arch) * step(0.05, v);
+              vec3 wood = mix(vec3(0.09, 0.13, 0.11), vec3(0.20, 0.12, 0.07), step(0.5, h21(vec2(bay, 4.0))));
+              float panel = aaband(0.2, 0.47, bx) + aaband(0.53, 0.8, bx);
+              panel *= aaband(0.3, 1.3, v) + aaband(1.5, 2.6, v);
+              wood *= 1.0 - (1.0 - panel) * 0.25;
+              col = mix(col, wood, door);
+            } else if (!tooNarrow && isShop > 0.5) {
+              float shopY = aaband(0.3, top0, v);
+              float shop = openingX * shopY;
+              // shop front frame colour: black, deep green, burgundy, navy, natural wood
+              float fc = h21(vec2(shopId, seed * 5.0));
+              vec3 frameC = fc < 0.3 ? vec3(0.03) : fc < 0.5 ? vec3(0.04, 0.09, 0.06) : fc < 0.65 ? vec3(0.22, 0.04, 0.05) : fc < 0.8 ? vec3(0.03, 0.05, 0.12) : vec3(0.28, 0.17, 0.09);
+              float mull = 1.0 - aaband(0.12, 0.88, bx) * aaband(0.42, top0 - 0.12, v);
+              mull = max(mull, aaband(0.49, 0.51, bx) * step(h21(vec2(bay, 2.0)), 0.5));
+              float open = step(h21(vec2(shopId, 77.0 + seed)), uShopLit * 0.9 + (1.0 - uNight) * 0.9);
+              // interior: back wall colour, shelves, display items, warm or cool lighting
+              vec3 interior = mix(vec3(0.55, 0.45, 0.32), vec3(0.75, 0.73, 0.70), step(0.5, hs)) * 0.35;
+              float shelves = aaband(0.05, 0.12, fract(v / 0.7)) * step(0.4, hs);
+              float items = step(0.55, vnoise(vec2(u * 3.0, floor(v / 0.7) * 7.0 + shopId)));
+              interior = mix(interior, interior * 0.4, shelves);
+              interior = mix(interior, mix(vec3(0.6, 0.2, 0.15), vec3(0.2, 0.3, 0.55), h21(vec2(u, v) * 0.3 + shopId)) * 0.4, items * 0.6 * step(1.0, v));
+              vec3 glassC = mix(vec3(0.02, 0.025, 0.03), interior, 0.65);
+              // steel roller shutter when closed
+              float shutter = 1.0 - open;
+              vec3 shutterC = vec3(0.36, 0.37, 0.38) * (0.8 + 0.2 * aaband(0.0, 0.5, fract(v * 9.0)));
+              vec3 front = mix(glassC, shutterC, shutter);
+              col = mix(col, mix(front, frameC, mull), shop);
+              gGlass = shop * (1.0 - mull) * (1.0 - shutter);
+              // fascia sign band above: frame colour with "lettering"
+              float sign = aaband(top0 + 0.1, top0 + 0.75, v) * openingX;
+              float letters = aaband(0.2, 0.8, fract(u * 2.3)) * aaband(top0 + 0.28, top0 + 0.57, v) * step(0.35, vnoise(vec2(u * 1.7, shopId))) * aaband(0.2, 0.8, bx);
+              vec3 letterC = mix(vec3(0.85, 0.75, 0.45), vec3(0.95), step(0.5, fc));
+              col = mix(col, mix(frameC * 1.2, letterC, letters), sign);
+              gLit = max(gLit, gGlass * open * smoothstep(0.0, 1.0, uShopLit));
+              gLit = max(gLit, letters * sign * open * 0.6 * step(0.6, hs));
+              gLitCol = mix(vec3(1.0, 0.72, 0.45), vec3(0.9, 0.9, 0.85), step(0.7, hs)) * (0.35 + 1.6 * interior);
+              gWin = gGlass;
+            } else if (!tooNarrow) {
+              // residential ground floor window with railing
+              float win = aaband(0.3, 0.7, bx) * aaband(1.0, 3.0, v);
+              col = mix(col, vec3(0.04, 0.045, 0.05), win);
+              gGlass = win; gWin = win;
+              float bars = aaband(0.4, 0.6, fract(u * 6.0)) * win;
+              col = mix(col, vec3(0.03), bars);
             }
           } else if (v < top) {
             // upper floors
@@ -171,7 +205,7 @@ export function createFacadeMaterial(): THREE.MeshStandardMaterial {
     afterRoughness: 'roughnessFactor = mix(roughnessFactor, 0.06, gGlass); roughnessFactor = mix(roughnessFactor, 0.45, gIron); roughnessFactor *= 1.0 - uWet * 0.3;',
     afterMetalness: 'metalnessFactor = mix(metalnessFactor, 0.4, gIron);',
     afterEmissive: /* glsl */ `
-      totalEmissiveRadiance += gLitCol * gLit * 3.2 * smoothstep(0.05, 0.6, uNight);
+      totalEmissiveRadiance += gLitCol * gLit * 1.6 * smoothstep(0.05, 0.6, uNight);
     `,
     afterLights: LIGHTFIELD_APPLY,
   });
@@ -192,10 +226,10 @@ export function createRoofMaterial(): THREE.MeshStandardMaterial {
         float nz = fbm(vWorld.xz * 0.3 + seed * 50.0);
         if (kind < 0.5) {
           // zinc flat top
-          col = vec3(0.40, 0.43, 0.46) * (0.85 + 0.25 * nz);
+          col = vec3(0.27, 0.29, 0.31) * (0.8 + 0.3 * nz);
           float seam = 1.0 - aaband(0.03, 0.97, fract(vWorld.x * 2.2));
           col *= 1.0 - seam * 0.15;
-          rMetal = 0.55; rRough = 0.42;
+          rMetal = 0.3; rRough = 0.5;
         } else if (kind < 1.5) {
           bool slate = fract(seed * 9.7) > 0.72;
           if (slate) {
@@ -205,10 +239,10 @@ export function createRoofMaterial(): THREE.MeshStandardMaterial {
             col *= 1.0 - (1.0 - aaband(0.0, 0.9, row)) * 0.35 - (1.0 - aaband(0.03, 0.97, tile)) * 0.2;
             rRough = 0.5; rMetal = 0.1;
           } else {
-            col = vec3(0.43, 0.46, 0.50) * (0.82 + 0.3 * nz);
+            col = vec3(0.30, 0.325, 0.355) * (0.8 + 0.3 * nz);
             float seam = 1.0 - aaband(0.06, 0.94, fract(u / 0.48));
             col = mix(col, col * 1.25, seam);
-            rMetal = 0.6; rRough = 0.38;
+            rMetal = 0.35; rRough = 0.45;
           }
           // dormer windows (lucarnes)
           float bw = 2.9 + fract(seed * 13.7) * 0.7;
@@ -226,7 +260,7 @@ export function createRoofMaterial(): THREE.MeshStandardMaterial {
           rRough = mix(rRough, 0.08, dw * (1.0 - dframe));
           rMetal = mix(rMetal, 0.0, dw);
         } else if (kind < 2.5) {
-          col = vec3(0.82, 0.76, 0.64) * (0.9 + 0.15 * nz);
+          col = vec3(0.66, 0.61, 0.51) * (0.9 + 0.15 * nz);
           col *= 0.85 + 0.15 * smoothstep(0.2, 0.9, v);
           rRough = 0.85;
         } else if (kind < 3.5) {
@@ -288,9 +322,12 @@ export function createRoadMaterial(): THREE.MeshStandardMaterial {
           vec2 cell = floor(q); vec2 f = fract(q);
           float stoneR = h21(cell);
           float joint = 1.0 - aaband(0.08, 0.92, f.x) * aaband(0.1, 0.9, f.y);
-          col = mix(vec3(0.20, 0.19, 0.185), vec3(0.32, 0.31, 0.30), stoneR) * (0.8 + 0.3 * n2);
-          col = mix(col, vec3(0.06, 0.06, 0.055), joint * 0.85);
-          rPuddle = joint;
+          // fade the sett pattern to its average colour when it gets smaller than a pixel (no moiré)
+          float fw = length(fwidth(q));
+          float detail = 1.0 - smoothstep(0.25, 0.7, fw);
+          vec3 stoneC = mix(vec3(0.20, 0.19, 0.185), vec3(0.32, 0.31, 0.30), mix(0.5, stoneR, detail)) * (0.8 + 0.3 * mix(0.5, n2, detail));
+          col = mix(stoneC, vec3(0.06, 0.06, 0.055), mix(0.3, joint, detail) * 0.85);
+          rPuddle = joint * detail;
         } else {
           col = vec3(0.085, 0.087, 0.09) * (0.78 + 0.35 * n1 + 0.12 * n2);
           // patch repairs and lane wear

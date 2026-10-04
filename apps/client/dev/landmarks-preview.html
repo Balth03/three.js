@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Landmarks preview</title>
+    <style>
+      html, body { margin: 0; height: 100%; background: #0b0e14; overflow: hidden; }
+      canvas { display: block; }
+      #hud { position: fixed; left: 10px; top: 8px; font: 12px/1.4 system-ui, sans-serif; color: #fff; text-shadow: 0 1px 2px #000; pointer-events: none; white-space: pre; }
+      #hud.hidden { display: none; }
+    </style>
+  </head>
+  <body>
+    <div id="hud"></div>
+    <script type="module" src="./landmarks-preview.ts"></script>
+  </body>
+</html>

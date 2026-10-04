@@ -91,19 +91,20 @@ export function createLatticeAtlas(S: number): LatticeAtlas {
     ctx.rect(0, 0, S, S);
     ctx.clip();
     // frame (horizontal struts are lattice girders too)
-    latticeGirder(ctx, -S * 0.1, S * 0.03, S * 1.1, S * 0.03, 60 * k, 13 * k, 6 * k, 60 * k);
-    latticeGirder(ctx, -S * 0.1, S * 0.97, S * 1.1, S * 0.97, 60 * k, 13 * k, 6 * k, 60 * k);
-    ctx.fillRect(0, 0, 22 * k, S);
-    ctx.fillRect(S - 22 * k, 0, 22 * k, S);
+    latticeGirder(ctx, -S * 0.1, S * 0.035, S * 1.1, S * 0.035, 72 * k, 15 * k, 7 * k, 60 * k);
+    latticeGirder(ctx, -S * 0.1, S * 0.965, S * 1.1, S * 0.965, 72 * k, 15 * k, 7 * k, 60 * k);
+    latticeGirder(ctx, -S * 0.1, S * 0.5, S * 1.1, S * 0.5, 40 * k, 9 * k, 5 * k, 40 * k);
+    ctx.fillRect(0, 0, 24 * k, S);
+    ctx.fillRect(S - 24 * k, 0, 24 * k, S);
     // secondary diamond
     const m = S / 2;
-    latticeGirder(ctx, m, 0, S, m, 34 * k, 8 * k, 4 * k, 36 * k);
-    latticeGirder(ctx, S, m, m, S, 34 * k, 8 * k, 4 * k, 36 * k);
-    latticeGirder(ctx, m, S, 0, m, 34 * k, 8 * k, 4 * k, 36 * k);
-    latticeGirder(ctx, 0, m, m, 0, 34 * k, 8 * k, 4 * k, 36 * k);
+    latticeGirder(ctx, m, 0, S, m, 58 * k, 11 * k, 5 * k, 44 * k);
+    latticeGirder(ctx, S, m, m, S, 58 * k, 11 * k, 5 * k, 44 * k);
+    latticeGirder(ctx, m, S, 0, m, 58 * k, 11 * k, 5 * k, 44 * k);
+    latticeGirder(ctx, 0, m, m, 0, 58 * k, 11 * k, 5 * k, 44 * k);
     // main X
-    latticeGirder(ctx, 0, 0, S, S, 78 * k, 15 * k, 7 * k, 64 * k);
-    latticeGirder(ctx, S, 0, 0, S, 78 * k, 15 * k, 7 * k, 64 * k);
+    latticeGirder(ctx, 0, 0, S, S, 104 * k, 19 * k, 8 * k, 70 * k);
+    latticeGirder(ctx, S, 0, 0, S, 104 * k, 19 * k, 8 * k, 70 * k);
     // centre gusset
     ctx.beginPath();
     ctx.arc(m, m, 40 * k, 0, Math.PI * 2);
@@ -235,7 +236,7 @@ export function createLatticeAtlas(S: number): LatticeAtlas {
     }
   }
   const bands = [0, 0.1875, 0.25, 0.375, 0.5, 1];
-  const texture = coveragePreservingMips(data, W, H, 0.5, 1.07, bands);
+  const texture = coveragePreservingMips(data, W, H, 0.5, 1.1, bands);
   const inset = 1.5 / H;
   return {
     texture,

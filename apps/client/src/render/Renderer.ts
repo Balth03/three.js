@@ -76,7 +76,7 @@ class FilmEffect extends Effect {
         ['uSaturation', new THREE.Uniform(1.05)],
         ['uContrast', new THREE.Uniform(1.04)],
         ['uVignette', new THREE.Uniform(0.35)],
-        ['uGrain', new THREE.Uniform(0.025)],
+        ['uGrain', new THREE.Uniform(0.012)],
         ['uCA', new THREE.Uniform(0.0015)],
         ['uTime', new THREE.Uniform(0)],
         ['uTint', new THREE.Uniform(new THREE.Vector3(1, 1, 1))],
@@ -114,7 +114,7 @@ export class Renderer {
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.NoToneMapping;
     this.renderer.shadowMap.enabled = this.quality.shadows;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.shadowMap.type = THREE.PCFShadowMap;
     this.renderer.info.autoReset = false;
     this.camera = new THREE.PerspectiveCamera(62, 1, 0.1, 6000);
     this.buildComposer();
@@ -135,6 +135,9 @@ export class Renderer {
       this.ao.configuration.halfRes = true;
       this.ao.configuration.depthAwareUpsampling = true;
       this.ao.configuration.gammaCorrection = false;
+      // transparent glass (car windows) must not enter the AO depth pass: avoids NaN white-outs with MSAA
+      (this.ao as unknown as { autoDetectTransparency: boolean }).autoDetectTransparency = false;
+      (this.ao.configuration as unknown as { transparencyAware: boolean }).transparencyAware = false;
       this.composer.addPass(this.ao);
     }
     this.bloom = new BloomEffect({ mipmapBlur: true, luminanceThreshold: 1.1, luminanceSmoothing: 0.3, intensity: 0.9, radius: 0.72, kernelSize: KernelSize.MEDIUM });
