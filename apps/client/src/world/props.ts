@@ -290,9 +290,11 @@ export function treeGeometry(lod: 'near' | 'far'): { trunk: THREE.BufferGeometry
 }
 
 let leafTex: THREE.CanvasTexture | null = null;
-export function crownMaterial(): THREE.MeshStandardMaterial {
+export function crownMaterial(alphaToCoverage = false): THREE.MeshStandardMaterial {
   leafTex ??= leafTexture();
   const m = new THREE.MeshStandardMaterial({ map: leafTex, alphaTest: 0.45, side: THREE.DoubleSide, roughness: 0.8, metalness: 0 });
+  // with MSAA, alpha-to-coverage gives soft, non-aliased leaf edges
+  m.alphaToCoverage = alphaToCoverage;
   patchMaterial(m, {
     name: 'crown',
     vertexMain: /* glsl */ `

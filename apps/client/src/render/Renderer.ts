@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { EffectComposer, RenderPass, EffectPass, BloomEffect, Effect, SMAAEffect, BlendFunction, KernelSize } from 'postprocessing';
+import { EffectComposer, RenderPass, EffectPass, BloomEffect, Effect, SMAAEffect, SMAAPreset, BlendFunction, KernelSize } from 'postprocessing';
 import { N8AOPostPass } from 'n8ao';
 
 export type Quality = 'low' | 'medium' | 'high' | 'ultra';
@@ -16,7 +16,7 @@ export interface QualitySettings {
 }
 
 export const QUALITY: Record<Quality, QualitySettings> = {
-  low: { pixelRatio: 0.75, shadows: false, shadowMap: 1024, msaa: 0, ao: false, bloom: true, viewDistance: 450, treeDetailDistance: 60 },
+  low: { pixelRatio: 0.85, shadows: false, shadowMap: 1024, msaa: 0, ao: false, bloom: true, viewDistance: 450, treeDetailDistance: 60 },
   medium: { pixelRatio: 1, shadows: true, shadowMap: 1024, msaa: 0, ao: false, bloom: true, viewDistance: 600, treeDetailDistance: 100 },
   high: { pixelRatio: 1, shadows: true, shadowMap: 2048, msaa: 4, ao: true, bloom: true, viewDistance: 800, treeDetailDistance: 150 },
   ultra: { pixelRatio: 1.25, shadows: true, shadowMap: 4096, msaa: 4, ao: true, bloom: true, viewDistance: 1000, treeDetailDistance: 220 },
@@ -76,7 +76,7 @@ class FilmEffect extends Effect {
         ['uSaturation', new THREE.Uniform(1.05)],
         ['uContrast', new THREE.Uniform(1.04)],
         ['uVignette', new THREE.Uniform(0.35)],
-        ['uGrain', new THREE.Uniform(0.012)],
+        ['uGrain', new THREE.Uniform(0.0)],
         ['uCA', new THREE.Uniform(0.0015)],
         ['uTime', new THREE.Uniform(0)],
         ['uTint', new THREE.Uniform(new THREE.Vector3(1, 1, 1))],
@@ -144,8 +144,10 @@ export class Renderer {
     const effects: Effect[] = [];
     if (q.bloom) effects.push(this.bloom);
     effects.push(this.film);
-    if (q.msaa === 0) effects.push(new SMAAEffect());
     this.composer.addPass(new EffectPass(this.camera, ...effects));
+    // SMAA on every quality level, in its own pass after tone mapping (on top of MSAA it cleans up
+    // shading/specular edges and alpha-tested foliage that MSAA cannot see)
+    this.composer.addPass(new EffectPass(this.camera, new SMAAEffect({ preset: SMAAPreset.ULTRA })));
   }
 
   setQuality(name: Quality): void {

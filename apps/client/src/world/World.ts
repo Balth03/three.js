@@ -71,8 +71,8 @@ export class WorldStreamer {
   onTileLoaded: ((t: TileBuildResult) => void) | null = null;
   onTileUnloaded: ((i: number, j: number) => void) | null = null;
 
-  constructor(readonly city: City, private physics: Physics | null, shadows: boolean) {
-    this.instances = new Instances(shadows);
+  constructor(readonly city: City, private physics: Physics | null, shadows: boolean, msaa = 0) {
+    this.instances = new Instances(shadows, msaa);
     this.group.add(this.instances.group);
     this.available = new Set(city.meta.tiles.map(([i, j]) => `${i}_${j}`));
     const n = Math.max(2, Math.min(4, (navigator.hardwareConcurrency || 4) - 1));
@@ -140,7 +140,7 @@ export class WorldStreamer {
     if (r.groundMask) {
       mask = new THREE.Texture(r.groundMask as unknown as HTMLImageElement);
       mask.flipY = false; mask.needsUpdate = true; mask.colorSpace = THREE.NoColorSpace;
-      mask.minFilter = THREE.LinearMipmapLinearFilter; mask.magFilter = THREE.LinearFilter; mask.generateMipmaps = true;
+      mask.minFilter = THREE.LinearMipmapLinearFilter; mask.magFilter = THREE.LinearFilter; mask.generateMipmaps = true; mask.anisotropy = 8;
       textures.push(mask);
     }
     const groundMat = M.createGroundMaterial(mask, new THREE.Vector2(r.ox, r.oz), this.city.meta.tileSize);

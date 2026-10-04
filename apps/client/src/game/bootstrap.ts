@@ -45,7 +45,7 @@ export async function bootstrap(): Promise<void> {
   if (params.time !== null) env.time = params.time;
   if (params.weather) env.setWeather(params.weather, true);
   const lightField = new LightField(640, 1024);
-  const world = new WorldStreamer(city, physics, renderer.quality.shadows);
+  const world = new WorldStreamer(city, physics, renderer.quality.shadows, renderer.quality.msaa);
   world.radius = renderer.quality.viewDistance;
   world.instances.treeDetailDistance = renderer.quality.treeDetailDistance;
   renderer.scene.add(world.group);

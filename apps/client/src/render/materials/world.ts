@@ -33,6 +33,13 @@ export function createFacadeMaterial(): THREE.MeshStandardMaterial {
         gWin = 0.0; gLit = 0.0; gGlass = 0.0; gIron = 0.0; gLitCol = vec3(0.0); wetSpec = 0.0;
         vec3 col;
         float nz = fbm(vec2(u * 0.35, v * 0.35) + seed * 91.0);
+        // pattern level-of-detail from screen-space derivatives (metres per pixel): fine details fade to their
+        // average before they can alias, so distant façades stay smooth instead of shimmering
+        float fwM = max(fwidth(u), fwidth(v));
+        float dFine = 1.0 - smoothstep(0.035, 0.12, fwM);
+        float dMid = 1.0 - smoothstep(0.15, 0.45, fwM);
+        float dFar = 1.0 - smoothstep(0.45, 1.3, fwM);
+        vec3 farCol = kind > 1.5 && kind < 2.5 ? vec3(0.24, 0.27, 0.31) : kind > 0.5 && kind < 1.5 ? stoneTint(fract(seed * 3.7)) * 0.74 : plasterTint(fract(seed * 5.3)) * 0.78;
         if (kind > 1.5 && kind < 2.5) {
           // glass curtain wall tower
           float bw = 1.5, fh = 3.8;
@@ -58,15 +65,15 @@ export function createFacadeMaterial(): THREE.MeshStandardMaterial {
           float course = v / 0.52;
           float joint = 1.0 - aaband(0.04, 0.96, fract(course));
           float blockU = fract(u / 1.1 + 0.5 * mod(floor(course), 2.0));
-          joint = max(joint, (1.0 - aaband(0.015, 0.985, blockU)) * 0.6);
+          joint = max(joint, (1.0 - aaband(0.015, 0.985, blockU)) * 0.6) * dFine;
           col = stone * (1.0 - joint * 0.12);
           // dirt streaks below cornices/windows
           col *= 1.0 - 0.10 * smoothstep(0.6, 1.0, fbm(vec2(u * 0.6, v * 0.08) + seed * 11.0)) ;
           bool tooNarrow = L < 2.2;
           if (v < gfH) {
             // ground floor: rusticated stone, shops grouped over 1-3 bays, porte-cochère doors, closed shops with steel shutters
-            float rust = 1.0 - aaband(0.06, 0.94, fract(v / 0.48));
-            col *= 1.0 - rust * 0.22;
+            float rust = (1.0 - aaband(0.06, 0.94, fract(v / 0.48))) * dFine;
+            col *= 1.0 - rust * 0.22 - (1.0 - dFine) * 0.03;
             float shopId = floor(bay / (1.0 + floor(h21(vec2(seed, 9.1)) * 2.5)));
             float hs = h21(vec2(shopId, seed * 13.0));
             float isDoor = step(0.86, h21(vec2(bay, seed * 3.0)));
@@ -145,6 +152,7 @@ export function createFacadeMaterial(): THREE.MeshStandardMaterial {
               float frame = 1.0 - aaband(0.06, 0.94, fx) * aaband(0.04, 0.96, fyy);
               frame = max(frame, 1.0 - aaband(0.0, 0.47, fx) - aaband(0.53, 1.0, fx));
               frame = max(frame, aaband(0.72, 0.75, fyy));
+              frame *= dMid;
               float h = h21(vec2(bay, fl) + seed * 71.0);
               vec3 inside = mix(vec3(0.03, 0.035, 0.04), vec3(0.11, 0.10, 0.09), h * 0.7);
               // curtains
@@ -168,6 +176,7 @@ export function createFacadeMaterial(): THREE.MeshStandardMaterial {
             float scroll = aaband(0.3, 0.7, fract((u + fy * 1.3) * 3.0)) * aaband(0.14, 0.3, fy);
             float rail = railH * max(max(bars, scroll), aaband(0.32, 0.36, fy) + aaband(0.08, 0.11, fy));
             float railMask = balc > 0.5 ? 1.0 : aaband(wx0 - 0.01, wx1 + 0.01, bx) * (tooNarrow ? 0.0 : 1.0);
+            rail = mix(railH * 0.42, rail, dFine);
             gIron = rail * railMask;
             col = mix(col, vec3(0.025, 0.028, 0.03), gIron);
             // balcony slab shadow line
@@ -197,6 +206,12 @@ export function createFacadeMaterial(): THREE.MeshStandardMaterial {
             if (v < 3.2) gLit = max(gLit, win * uShopLit * step(0.5, h));
           }
         }
+        // far: average colour, windows become a soft glow instead of sparkling pixels
+        col = mix(farCol, col, dFar);
+        gLit = mix(uWindowLit * 0.32 * step(kind, 2.5), gLit, dFar);
+        gLitCol = mix(vec3(1.0, 0.78, 0.5), gLitCol, dFar);
+        gGlass *= dFar;
+        gIron *= dFar;
         // rain darkening of porous stone
         col *= 1.0 - uWet * 0.25 * (1.0 - gGlass);
         diffuseColor.rgb = col;
@@ -227,7 +242,8 @@ export function createRoofMaterial(): THREE.MeshStandardMaterial {
         if (kind < 0.5) {
           // zinc flat top
           col = vec3(0.27, 0.29, 0.31) * (0.8 + 0.3 * nz);
-          float seam = 1.0 - aaband(0.03, 0.97, fract(vWorld.x * 2.2));
+          float fwR = length(fwidth(vWorld.xz));
+          float seam = (1.0 - aaband(0.03, 0.97, fract(vWorld.x * 2.2))) * (1.0 - smoothstep(0.04, 0.15, fwR));
           col *= 1.0 - seam * 0.15;
           rMetal = 0.3; rRough = 0.5;
         } else if (kind < 1.5) {
@@ -240,7 +256,7 @@ export function createRoofMaterial(): THREE.MeshStandardMaterial {
             rRough = 0.5; rMetal = 0.1;
           } else {
             col = vec3(0.30, 0.325, 0.355) * (0.8 + 0.3 * nz);
-            float seam = 1.0 - aaband(0.06, 0.94, fract(u / 0.48));
+            float seam = (1.0 - aaband(0.06, 0.94, fract(u / 0.48))) * (1.0 - smoothstep(0.05, 0.16, max(fwidth(u), fwidth(v))));
             col = mix(col, col * 1.25, seam);
             rMetal = 0.35; rRough = 0.45;
           }
@@ -418,7 +434,7 @@ export function createGroundMaterial(mask: THREE.Texture | null, tileOrigin: THR
         side = mix(side, side * 0.82, smoothstep(0.6, 0.7, fbm(p * 0.25 + 2.0)) * 0.5);
         vec3 grassC = mix(vec3(0.10, 0.17, 0.05), vec3(0.17, 0.21, 0.07), fbm(p * 0.35 + 5.0)) * (0.8 + 0.4 * n2);
         vec2 sl = fract(p * vec2(1.0 / 0.6, 1.0 / 0.4) + vec2(0.5 * mod(floor(p.y / 0.4), 2.0), 0.0));
-        float slabJ = 1.0 - aaband(0.03, 0.97, sl.x) * aaband(0.04, 0.96, sl.y);
+        float slabJ = (1.0 - aaband(0.03, 0.97, sl.x) * aaband(0.04, 0.96, sl.y)) * (1.0 - smoothstep(0.03, 0.1, length(fwidth(p))));
         vec3 paveC = vec3(0.52, 0.50, 0.46) * (0.85 + 0.2 * h21(floor(p * vec2(1.0 / 0.6, 1.0 / 0.4)))) * (1.0 - slabJ * 0.3);
         vec3 gravelC = vec3(0.58, 0.52, 0.42) * (0.8 + 0.25 * n2 + 0.1 * n);
         vec3 col = side;
@@ -459,7 +475,7 @@ export function createCurbMaterial(): THREE.MeshStandardMaterial {
       {
         float ramp = step(1.5, vCurb.y);
         vec3 granite = vec3(0.46, 0.45, 0.43) * (0.85 + 0.25 * vnoise(vWorld.xz * 14.0));
-        float joint = 1.0 - aaband(0.01, 0.99, fract(vCurb.x / 1.0));
+        float joint = (1.0 - aaband(0.01, 0.99, fract(vCurb.x / 1.0))) * (1.0 - smoothstep(0.02, 0.08, fwidth(vCurb.x)));
         granite *= 1.0 - joint * 0.4;
         vec3 side = vec3(0.21, 0.205, 0.2) * (0.85 + 0.2 * fbm(vWorld.xz * 0.6));
         vec3 col = mix(granite, side, ramp);

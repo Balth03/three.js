@@ -29,9 +29,9 @@ export class Instances {
   treeDetailDistance = 150;
   readonly lampPositions: number[] = [];
 
-  constructor(private shadows: boolean) {
+  constructor(private shadows: boolean, msaa = 0) {
     const near = P.treeGeometry('near'), far = P.treeGeometry('far');
-    const trunkMat = P.trunkMaterial(), crownMat = P.crownMaterial();
+    const trunkMat = P.trunkMaterial(), crownMat = P.crownMaterial(msaa > 0);
     const mk = (g: THREE.BufferGeometry, m: THREE.Material, cap: number, shadow: boolean) => {
       const im = new THREE.InstancedMesh(g, m, cap);
       im.count = 0; im.frustumCulled = false; im.castShadow = shadow && this.shadows; im.receiveShadow = true;
