@@ -11,9 +11,11 @@ Prerequisites: **Node.js ≥ 20** (22 recommended) and a desktop browser with We
 ```bash
 git clone -b claude/taxi-game-webgl-y4ina6 https://github.com/Balth03/three.js taxi-monde
 cd taxi-monde
-npm install          # if npm complains about peer dependencies: npm install --legacy-peer-deps
-npm run dev          # then open http://localhost:5173
+npm install
+npm run dev
 ```
+
+Then open http://localhost:5173 (Chrome or Edge recommended).
 
 Paris data (OSM roads, buildings, trees, terrain) is already generated in `data/cities/paris/`: you don't need the Python pipeline to play.
 
