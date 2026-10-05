@@ -18,14 +18,14 @@ export const anecdotesAdults: AnecdoteDef[] = [
   ]),
   A('coloc_dishes', '🍽️', 0, { age: [18, 30] }, [
     `La pile de vaisselle de la coloc a atteint [[un mètre|le plafond|l'autonomie]]. On l'a baptisée {w:nickname}.`,
-    `J'ai fait la vaisselle de toute la coloc {w:time}. Personne ne l'a remarqué. Je suis un héros de l'ombre.`,
+    `J'ai fait la vaisselle de toute la coloc {w:time}. Personne ne l'a remarqué. Je suis {un héros|une héroïne} de l'ombre.`,
     `Un tableau de répartition des tâches a été affiché dans la coloc. Il a tenu [[deux jours|six heures|un week-end]], puis a servi à emballer {w:food}.`,
   ], [
     `The flat's dish pile reached [[three feet|the ceiling|sentience]]. We named it {w:nickname}.`,
     `I did the whole flat's dishes {w:time}. Nobody noticed. I am an unsung hero.`,
     `A chore chart went up in the flat. It lasted [[two days|six hours|one weekend]], then got used to wrap {w:food}.`,
   ]),
-  A('coloc_noise', '🔊', 1, { age: [18, 30] }, [
+  A('coloc_noise', '🔊', 2, { age: [18, 30] }, [
     `La copine de mon coloc fait {w:sound} chaque nuit à travers la cloison. J'ai acheté des bouchons d'oreilles industriels.`,
     `Mon coloc a ramené quelqu'un {w:time}. Les murs sont fins. Je connais maintenant son surnom intime : {w:nickname}.`,
     `J'ai mis {w:song} à fond pour couvrir les bruits de la chambre d'à côté. Ça n'a pas suffi.`,
@@ -36,11 +36,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
   ]),
   A('coloc_hair', '🪮', 2, { age: [18, 30] }, [
     `J'ai débouché la douche de la coloc et sorti une boule de cheveux grosse comme {w:animal}. Elle a bougé.`,
-    `Le siphon de la coloc dégageait {w:smell}. J'ai trouvé {w:gross} coincé dedans. J'ai crié.`,
+    `Le siphon de la coloc dégageait {w:smell}. Dedans : {w:gross}. J'ai crié.`,
     `Quelqu'un dans la coloc ne tire jamais la chasse. On a ouvert une enquête. Les suspects nient. Il règne {w:smell} dans le couloir.`,
   ], [
     `I unclogged the flat's shower and pulled out a hairball the size of {w:animal}. It moved.`,
-    `The flat's drain gave off {w:smell}. I found {w:gross} stuck in it. I screamed.`,
+    `The flat's drain gave off {w:smell}. Inside: {w:gross}. I screamed.`,
     `Someone in the flat never flushes. We've opened an investigation. The suspects deny everything. There's {w:smell} in the hallway.`,
   ]),
   A('dating_app', '📱', 1, { age: [18, 30] }, [
@@ -174,11 +174,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
   A('gym_fart', '💨', 2, { age: [18, 30] }, [
     `En plein squat, j'ai lâché {w:sound}. Toute la salle a arrêté de respirer. Moi aussi.`,
     `J'ai forcé sur le développé couché et il s'est passé quelque chose dans mon short. On ne reviendra pas là-dessus.`,
-    `Le mec du tapis d'à côté sentait {w:smell}. Il me draguait. J'ai couru plus vite que jamais.`,
+    `Le mec du tapis d'à côté dégageait {w:smell}. Il me draguait. J'ai couru plus vite que jamais.`,
   ], [
     `Mid-squat I let out {w:sound}. The whole gym stopped breathing. So did I.`,
     `I pushed too hard on bench press and something happened in my shorts. We will not discuss it.`,
-    `The guy on the next treadmill smelled like {w:smell}. He was hitting on me. I ran faster than ever.`,
+    `The guy on the next treadmill gave off {w:smell}. He was hitting on me. I ran faster than ever.`,
   ]),
   A('appart_hunt', '🏚️', 0, { age: [18, 32] }, [
     `J'ai visité un studio de [[9|11|12]] m² avec les toilettes dans la cuisine. Trente candidats faisaient la queue.`,
@@ -192,11 +192,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
   A('appart_mold', '🍄', 1, { age: [18, 32] }, [
     `Il y a une tache d'humidité au plafond qui ressemble à {w:celeb}. Elle grandit. Je crois qu'elle me juge.`,
     `Le chauffage de mon appart fait {w:sound} et chauffe autant qu'une bougie. Merci pour le loyer, connard de proprio.`,
-    `Mon appart sent {w:smell} depuis que je l'ai loué. L'agence dit que c'est « du caractère ».`,
+    `Mon appart dégage {w:smell} depuis que je l'ai loué. L'agence dit que c'est « du caractère ».`,
   ], [
     `There's a damp stain on the ceiling that looks like {w:celeb}. It's growing. I think it's judging me.`,
     `My heater makes {w:sound} and gives off as much heat as a candle. Thanks for the rent, asshole landlord.`,
-    `My flat has smelled like {w:smell} since I moved in. The agency calls it "character".`,
+    `My flat has given off {w:smell} since I moved in. The agency calls it "character".`,
   ]),
   A('cockroach', '🪳', 2, { age: [18, 35] }, [
     `J'ai écrasé un cafard avec {w:object}. Il a fait un bruit de chips. J'en ai encore la chair de poule.`,
@@ -210,11 +210,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
   A('night_bus', '🚌', 1, { age: [18, 30] }, [
     `Dans le bus de nuit, un type a mangé {w:food} à mains nues en me fixant. J'ai changé de place trois fois.`,
     `J'ai raté le dernier métro et marché {w:weather} jusqu'à chez moi en chantant {w:song}.`,
-    `Le bus de nuit sentait {w:smell} et quelqu'un pleurait au fond. Ambiance de samedi.`,
+    `Le bus de nuit dégageait {w:smell} et quelqu'un pleurait au fond. Ambiance de samedi.`,
   ], [
     `On the night bus, a guy ate {w:food} with his bare hands while staring at me. I switched seats three times.`,
     `I missed the last train and walked home {w:weather} singing {w:song}.`,
-    `The night bus smelled like {w:smell} and someone was crying at the back. Saturday vibes.`,
+    `The night bus gave off {w:smell} and someone was crying at the back. Saturday vibes.`,
   ]),
   A('kebab_3am', '🌯', 2, { age: [18, 30] }, [
     `Kebab de 3 h du matin. Une giclée de sauce blanche m'a atterri dans l'œil. J'ai cru devenir aveugle.`,
@@ -423,7 +423,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `I had to poop at my date's place. No paper. I used {w:object}.`,
     `I clogged the toilet at a party. I panicked and left through the ground-floor window yelling "{w:exclaim}".`,
   ]),
-  A('roomie_pet', '🐹', 1, { age: [18, 30] }, [
+  A('roomie_pet', '🐹', 2, { age: [18, 30] }, [
     `Mon coloc a adopté {w:animal} sans demander. Il dort dans mon panier à linge. La bestiole, pas le coloc.`,
     `Le chat de la coloc a chié dans ma chaussure. On a eu une discussion. Il n'a rien regretté. Ma chaussure dégage désormais {w:smell}.`,
     `On a voté en réunion de coloc pour adopter {w:animal}. Il a déjà mangé deux câbles et un caleçon.`,
@@ -649,7 +649,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `A truck ahead of me was carrying {w:animal}. We stared at each other in traffic for an hour. A real connection.`,
     `I flipped off a driver. It was my new boss, driving {w:vehicle}. Monday is going to be long.`,
   ]),
-  A('meeting', '📊', 0, { age: [25, 65], job: true }, [
+  A('meeting', '📊', 1, { age: [25, 65], job: true }, [
     `Réunion de [[1 h|2 h|3 h]] chez {employer} qui aurait pu être un mail. Pour tout buffet : {w:food}.`,
     `En visio, j'ai oublié de couper ma caméra et je me suis curé le nez devant toute la direction. Le PDG a dit « {w:exclaim} ».`,
     `Mon collègue a dit « on se fait un point » [[12|19|27]] fois aujourd'hui. Je fais un point sur ma démission.`,
@@ -661,11 +661,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `The company retreat theme was "{w:hobby} and leadership". I pretended to believe in it.`,
   ]),
   A('office_microwave', '🍲', 1, { age: [22, 65], job: true }, [
-    `Quelqu'un a réchauffé du poisson au micro-ondes du bureau. L'étage entier sent {w:smell}. Les RH enquêtent.`,
+    `Quelqu'un a réchauffé du poisson au micro-ondes du bureau. L'étage entier dégage {w:smell}. Les RH enquêtent.`,
     `On m'a volé {w:food} dans le frigo du boulot. J'ai mis une caméra. C'est le directeur.`,
     `J'ai fait exploser {w:food} dans le micro-ondes du bureau. Je n'ai pas nettoyé. Je ne nettoierai jamais.`,
   ], [
-    `Someone microwaved fish at the office. The whole floor smells like {w:smell}. HR is investigating.`,
+    `Someone microwaved fish at the office. The whole floor gives off {w:smell}. HR is investigating.`,
     `Someone stole {w:food} from the work fridge. I set up a camera. It's the director.`,
     `I exploded {w:food} in the office microwave. I didn't clean it. I never will.`,
   ]),
@@ -705,7 +705,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `My kid asked me why the sky is blue, why we die and what {w:object} is. At 7:12 a.m.`,
     `I dropped the kids at school in my pyjamas. Nobody noticed. Well, every parent noticed.`,
   ]),
-  A('kids_drawing', '🖍️', 0, { age: [25, 55], has: 'child' }, [
+  A('kids_drawing', '🖍️', 1, { age: [25, 55], has: 'child' }, [
     `Mon enfant m'a dessiné en {w:animal}. Il paraît que c'est ressemblant.`,
     `Réunion parents-profs : mon enfant a raconté à toute la classe que je pratique {w:hobby} tout nu{|e}.`,
     `Mon enfant m'a offert {w:gift} pour la fête des parents. J'ai pleuré. Puis je l'ai rangé dans un placard pour toujours.`,
@@ -759,7 +759,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `School show: my kid played {w:animal} number 3. I filmed for 47 minutes.`,
     `I forgot to pick my kid up from school. He forgave me in exchange for {w:food}.`,
   ]),
-  A('baby_sleep', '🍼', 1, { age: [22, 50], has: 'child' }, [
+  A('baby_sleep', '🍼', 2, { age: [22, 50], has: 'child' }, [
     `Le bébé a dormi [[2|3|4]] heures cette nuit. Au boulot, j'ai mis le café dans l'imprimante et appelé mon boss « {w:nickname} ».`,
     `Couche explosive : le caca est monté jusque dans le dos du bébé. Il a souri. Je n'ai pas souri.`,
     `J'ai chanté {w:song} au bébé pendant une heure pour l'endormir. C'est moi qui me suis endormi{|e}.`,
@@ -914,7 +914,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `Drill accident: the bit went through the wall, then a bit of my {w:bodypart}. There's blood up to the ceiling.`,
     `I cut tiles without gloves. The living room looks like a crime scene. I finished the job with one less working finger.`,
   ]),
-  A('neighbour_noise', '🏢', 0, { age: [22, 90] }, [
+  A('neighbour_noise', '🏢', 1, { age: [22, 90] }, [
     `Mon voisin passe l'aspirateur à [[6 h|23 h|minuit]] tous les jours. J'ai glissé un mot. Il l'a aspiré.`,
     `La voisine du dessus déplace des meubles à 2 h du matin. Ou alors elle fait des claquettes avec {w:animal}.`,
     `Mes voisins ont fait une fête et ne m'ont pas invité{|e}. J'ai fait semblant d'être contrarié{|e} par le bruit. Je suis allé{|e} me plaindre avec {w:drink} à la main. Je suis resté{|e} jusqu'à 4 h.`,
@@ -950,7 +950,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `Beginners' class, subject: {w:hobby}. I was the only one who hadn't known the teacher for twenty years.`,
     `I ran a 10K. I was overtaken by {w:animal} and an 82-year-old man.`,
   ]),
-  A('gym_crossfit', '💪', 1, { age: [30, 55] }, [
+  A('gym_crossfit', '💪', 2, { age: [30, 55] }, [
     `Mon collègue fait du CrossFit et ne parle que de ça. J'ai inventé une allergie à la sueur pour qu'il se taise.`,
     `Cours de yoga : pendant la posture du chien tête en bas, j'ai lâché une caisse. Le prof a dit « libère tes énergies ».`,
     `J'ai fait un marathon. Je n'ai plus d'ongles de pied, plus de tétons intacts, mais une médaille.`,
@@ -995,7 +995,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `At the barbecue an uncle explained {w:conspiracy}. Nobody dared interrupt, he was holding the tongs.`,
     `I lit the barbecue with way too much lighter fluid. No more eyebrows, but the sausages are great.`,
   ]),
-  A('holiday_family', '🏖️', 0, { age: [28, 60], has: 'child' }, [
+  A('holiday_family', '🏖️', 1, { age: [28, 60], has: 'child' }, [
     `Vacances en famille {w:far_place} : [[9|11|14]] heures de route, deux vomis, une crise de nerfs. On recommencera l'an prochain.`,
     `Au camping, les enfants se sont fait des amis et moi un ennemi : le voisin de l'emplacement 42.`,
     `On a passé les vacances {w:at_place} parce que les enfants ont voté. Je n'aurais jamais dû instaurer la démocratie.`,
@@ -1004,7 +1004,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `At the campsite the kids made friends and I made an enemy: the guy on pitch 42.`,
     `We spent the holidays {w:at_place} because the kids voted. I should never have introduced democracy.`,
   ]),
-  A('holiday_adult', '🌴', 1, { age: [30, 65] }, [
+  A('holiday_adult', '🌴', 2, { age: [30, 65] }, [
     `Vacances {w:far_place} en all inclusive. J'ai bu {w:drink} à 10 h du matin sans culpabilité.`,
     `À l'hôtel, un couple a fait l'amour bruyamment dans la chambre voisine toute la semaine. On a fini par leur offrir {w:drink}.`,
     `J'ai attrapé la turista {w:far_place}. J'ai vu le plafond de la salle de bain plus que la plage.`,
@@ -1076,7 +1076,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `A friend's divorce party: piñata shaped like her ex, we smashed it with {w:object}.`,
     `My buddy going through a divorce lives in his garage with {w:animal}. He says it's "temporary".`,
   ]),
-  A('lottery', '🎟️', 0, { age: [18, 120] }, [
+  A('lottery', '🎟️', 1, { age: [18, 120] }, [
     `J'ai joué au Loto avec les dates de naissance de toute ma famille. J'ai gagné 2 €. Je les ai rejoués {w:excuse}.`,
     `J'ai gratté [[10|20|35]] tickets. Gain total : un ticket gratuit. Perdu aussi.`,
     `J'ai rêvé que je gagnais au Loto et que je m'achetais {w:vehicle}. Au réveil, on m'avait encore volé mon vélo.`,
@@ -1094,7 +1094,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `I found an ad for a hair transplant {w:far_place}. Bookmarked it. Just in case.`,
     `The barber asked "what are we doing today?". I said "a miracle".`,
   ]),
-  A('wrinkle', '🪞', 0, { age: [30, 55] }, [
+  A('wrinkle', '🪞', 1, { age: [30, 55] }, [
     `J'ai découvert une ride en forme de point d'interrogation sur mon front. Ma vie, résumée.`,
     `On m'a vouvoyé{|e} {w:at_place} pour la première fois. J'ai vieilli de dix ans dans la journée.`,
     `Une jeune m'a dit que mes références étaient « vintage ». J'ai dû m'asseoir et boire {w:drink}.`,
@@ -1193,7 +1193,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `I bought a sex toy that makes {w:sound}. The neighbours think I adopted a pet.`,
     `In bed, my date announced they collect {w:object}. I put my trousers back on at lightning speed.`,
   ]),
-  A('tax_season', '🧾', 0, { age: [22, 90], job: true }, [
+  A('tax_season', '🧾', 1, { age: [22, 90], job: true }, [
     `J'ai fait ma déclaration d'impôts. J'ai compris une case sur douze. J'ai coché celle-là et fêté ça avec {w:drink}.`,
     `Les impôts m'ont envoyé un remboursement de [[4|11|23]] €. J'ai fait une fête {w:at_place}.`,
     `J'ai passé le week-end à trier mes factures dans des boîtes à chaussures. L'une contenait {w:food}.`,
@@ -1203,11 +1203,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `Spent the weekend sorting receipts into shoeboxes. One contained {w:food}.`,
   ]),
   A('cooking_dinner_party', '🍽️', 1, { age: [28, 70] }, [
-    `J'ai organisé un dîner. J'ai servi {w:food} brûlé{|e} et prétendu que c'était « fumé ».`,
+    `J'ai organisé un dîner. J'ai servi {w:food} façon charbon de bois en prétendant que c'était « fumé ».`,
     `Dîner entre amis : un invité a parlé de son régime pendant trois heures en mangeant tout le fromage et {w:food}.`,
     `Mes invités sont partis à 2 h. J'ai trouvé un inconnu dans la baignoire à 9 h. Il voulait du café et {w:food}.`,
   ], [
-    `I hosted a dinner party. I served burnt {w:food} and claimed it was "smoked".`,
+    `I hosted a dinner party. I served {w:food}, charred volcano-style, claiming it was "smoked".`,
     `Dinner with friends: a guest talked about their diet for three hours while eating all the cheese and {w:food}.`,
     `My guests left at 2 a.m. I found a stranger in the bathtub at 9 a.m. He wanted coffee and {w:food}.`,
   ]),
@@ -1383,7 +1383,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `My doctor looks [[12|15|19]] years younger than my grandson. He called me "young man".`,
     `The doctor asked if I had any pain. I pulled out a two-page list. Pain number one: my {w:bodypart}.`,
   ]),
-  A('pills', '💊', 0, { age: [62, 120] }, [
+  A('pills', '💊', 1, { age: [62, 120] }, [
     `Mon pilulier a [[21|28|35]] cases. J'ai avalé les médicaments du mardi un jeudi. Je me sens mardi. Pour fêter ça : {w:drink}.`,
     `J'ai confondu mon médicament pour le cœur avec un bonbon à la menthe. Ou l'inverse. Je verrai bien. J'ai aussi avalé {w:object}, je crois.`,
     `Le pharmacien me connaît par mon prénom, celui de mon chien et le nom de toutes mes maladies.`,
@@ -1619,7 +1619,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `I missed the toilet at night. I peed in the laundry basket. Then in my Sunday shoe.`,
     `My bowel movements have become my main topic of conversation. The mailman knows everything.`,
   ]),
-  A('senior_hospital', '🏥', 1, { age: [65, 120] }, [
+  A('senior_hospital', '🏥', 2, { age: [65, 120] }, [
     `Hospitalisé{|e} pour une broutille. J'ai dragué l'infirmier, volé trois desserts et engueulé le chef de service.`,
     `On m'a mis une chemise d'hôpital ouverte dans le dos. Tout le couloir a vu mes fesses. Ils ne s'en remettront pas.`,
     `Le chirurgien m'a dit que j'avais « des artères de jeune homme ». Il mentait, mais j'ai bu à sa santé.`,
@@ -1658,11 +1658,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
   A('senior_dance', '💃', 1, { age: [60, 100] }, [
     `Thé dansant : j'ai fait un tango sur {w:song} avec un monsieur de 88 ans. Il a perdu un chausson en route.`,
     `Au bal des seniors, j'ai bu {w:drink} et fait la chenille. Ma hanche a protesté en morse.`,
-    `J'ai rencontré quelqu'un au thé dansant. Il sent {w:smell} et il danse comme un dieu.`,
+    `J'ai rencontré quelqu'un au thé dansant. Il dégage {w:smell} et il danse comme un dieu.`,
   ], [
     `Tea dance: I tangoed to {w:song} with an 88-year-old gentleman. He lost a slipper along the way.`,
     `At the seniors' ball I drank {w:drink} and did the conga. My hip protested in Morse code.`,
-    `I met someone at the tea dance. He smells like {w:smell} and dances like a god.`,
+    `I met someone at the tea dance. He gives off {w:smell} and dances like a god.`,
   ]),
   A('senior_will', '📜', 1, { age: [65, 120], has: 'child' }, [
     `J'ai menacé mes enfants de léguer ma fortune à {w:animal}. Ils m'appellent tous les jours depuis.`,
@@ -1736,7 +1736,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `I cut out an article about {w:animal} and sent it to the whole family. By mail.`,
     `I wrote a letter to the editor exposing {w:conspiracy}. They printed it. I'm famous at the betting café.`,
   ]),
-  A('senior_travel_far', '🌍', 0, { age: [60, 95] }, [
+  A('senior_travel_far', '🌍', 1, { age: [60, 95] }, [
     `J'ai fait un voyage {w:far_place} pour mes [[65|70|75]] ans. J'ai envoyé quarante cartes postales et une photo floue.`,
     `Croisière pour retraités : buffet à volonté, bingo, mal de mer. J'ai vomi en élégance.`,
     `J'ai voyagé {w:far_place} avec mon groupe de randonnée. Trois d'entre nous sont rentrés avec une prothèse neuve.`,
@@ -1754,7 +1754,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `At the seniors' banquet I had too much walnut wine. I puked in the mayor's hat. He put it back on without noticing.`,
     `Pastis at 11 a.m. with the club boys. By noon we were singing {w:song} standing on the bocce table.`,
   ]),
-  A('senior_dentures', '🦷', 1, { age: [65, 120] }, [
+  A('senior_dentures', '🦷', 2, { age: [65, 120] }, [
     `J'ai mordu dans {w:food} et mon dentier est resté planté dedans. J'ai fini le repas en le suçant.`,
     `Mon dentier est tombé du balcon. Un chien l'a ramassé. Il sourit mieux que moi maintenant.`,
     `J'ai éternué si fort que mon dentier a atterri dans le décolleté de la voisine. Elle a gardé.`,
@@ -1993,11 +1993,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
   A('pr_hooch', '🍶', 2, { age: [18, 120], prison: true }, [
     `On a fabriqué de l'alcool de prison dans un sac poubelle avec des fruits et du pain. Ça a un goût de chaussette fermentée et de regrets.`,
     `J'ai bu du pruno fait maison. J'ai vomi par le nez, vu ma grand-mère décédée et dansé sur {w:song}.`,
-    `Notre alambic clandestin a explosé sous le lit. La cellule sent {w:smell} et le plafond est violet.`,
+    `Notre alambic clandestin a explosé sous le lit. La cellule dégage {w:smell} et le plafond est violet.`,
   ], [
     `We brewed prison hooch in a garbage bag with fruit and bread. It tastes like fermented socks and regret.`,
     `I drank homemade hooch. I puked through my nose, saw my dead grandma and danced to {w:song}.`,
-    `Our secret still exploded under the bed. The cell smells like {w:smell} and the ceiling is purple.`,
+    `Our secret still exploded under the bed. The cell gives off {w:smell} and the ceiling is purple.`,
   ]),
   A('pr_tv', '📺', 0, { age: [18, 120], prison: true }, [
     `Le bloc entier a voté pour regarder {w:show}. J'ai voté contre. J'ai perdu. La démocratie, c'est dur.`,
@@ -2036,11 +2036,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `In visiting, someone tried to smuggle {w:object} in their mouth. The guards pulled it out. Gross.`,
   ]),
   A('pr_conjugal', '💋', 2, { age: [18, 120], prison: true }, [
-    `Visite conjugale : 45 minutes dans une pièce qui sent {w:smell} avec un matelas en plastique. On a fait de notre mieux.`,
+    `Visite conjugale : 45 minutes dans une pièce qui dégage {w:smell} avec un matelas en plastique. On a fait de notre mieux.`,
     `Mon voisin de cellule a eu une visite conjugale. Le bloc entier a entendu. Il a eu une ovation au réfectoire et double ration : {w:food}.`,
     `J'ai demandé une visite conjugale. On m'a envoyé un formulaire de 14 pages. J'ai perdu l'envie à la page 3.`,
   ], [
-    `Conjugal visit: 45 minutes in a room smelling of {w:smell} on a plastic mattress. We did our best.`,
+    `Conjugal visit: 45 minutes in a room with {w:smell} on a plastic mattress. We did our best.`,
     `My cell neighbour got a conjugal visit. The whole block heard. He got a standing ovation in the mess hall and a double serving: {w:food}.`,
     `I requested a conjugal visit. They sent a 14-page form. I lost the urge by page 3.`,
   ]),
@@ -2217,7 +2217,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `A student called me "mom" in class. He's 17. He moved away out of shame.`,
   ]),
   A('job_nurse', '💉', 2, { age: [22, 70], job: ['nurse', 'doctor', 'surgeon'] }, [
-    `Aux urgences ce soir : un homme avec {w:object} coincé là où le soleil ne brille pas. Il a juré qu'il avait « glissé ».`,
+    `Aux urgences ce soir : un homme et {w:object}, réunis là où le soleil ne brille pas. Il a juré qu'il avait « glissé ».`,
     `Un patient m'a vomi dessus, puis m'a dit « {w:compliment} ». J'ai été touché{|e}. Et mouillé{|e}.`,
     `Garde de nuit : un doigt coupé, un pied dans un bocal et un monsieur qui voulait juste un sandwich. Normal.`,
   ], [
@@ -2225,7 +2225,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `A patient puked on me, then said "{w:compliment}". I was touched. And wet.`,
     `Night shift: one severed finger, a foot in a jar and a gentleman who just wanted a sandwich. Normal.`,
   ]),
-  A('job_police', '🚓', 1, { age: [20, 65], job: ['police', 'detective', 'prison_guard'] }, [
+  A('job_police', '🚓', 2, { age: [20, 65], job: ['police', 'detective', 'prison_guard'] }, [
     `J'ai fait une planque de [[6|9|14]] heures dans une voiture. J'ai mangé {w:food} et fait pipi dans une bouteille.`,
     `Un suspect m'a dit « {w:threat} ». Je l'ai noté dans le PV, mot pour mot. Le juge a ri.`,
     `J'ai arrêté un mec pour {w:crime_small}. C'était mon cousin. Le repas de Noël va être tendu.`,
@@ -2244,11 +2244,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `My code works and I don't know why. I'll never touch it again. It's afraid of me, I'm afraid of it.`,
   ]),
   A('job_driver', '🚕', 1, { age: [20, 70], job: ['uber_driver', 'driver', 'delivery'] }, [
-    `Un client a mangé {w:food} dans ma voiture. Ma banquette sent {w:smell} depuis.`,
+    `Un client a mangé {w:food} dans ma voiture. Ma banquette dégage {w:smell} depuis.`,
     `J'ai conduit un mec bourré qui m'a raconté sa vie et m'a laissé{|e} une étoile. Merci, connard.`,
     `Un couple s'est engueulé pendant toute la course. À la fin, ils m'ont demandé de trancher. J'ai donné tort aux deux.`,
   ], [
-    `A passenger ate {w:food} in my car. My seat has smelled like {w:smell} ever since.`,
+    `A passenger ate {w:food} in my car. My seat has given off {w:smell} ever since.`,
     `I drove a drunk guy who told me his life story and gave me one star. Thanks, asshole.`,
     `A couple argued the whole ride. At the end they asked me to settle it. I said they were both wrong.`,
   ]),
@@ -2333,7 +2333,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `I took a 220-volt shock. I smelled {w:smell} and saw my ancestors. They told me to flip the breaker.`,
     `On site I dropped a hammer from the 3rd floor. It landed eight inches from the foreman. He never thanked me for missing.`,
   ]),
-  A('job_politician', '🎙️', 1, { age: [25, 90], job: ['politician', 'diplomat'] }, [
+  A('job_politician', '🎙️', 2, { age: [25, 90], job: ['politician', 'diplomat'] }, [
     `J'ai serré [[400|700|1 100]] mains au marché. J'ai attrapé un rhume et une promesse de vote.`,
     `J'ai embrassé un bébé pour la photo. Il m'a vomi dessus. La photo a fait la une.`,
     `En meeting, j'ai promis {w:object} pour tous. La salle a applaudi. Je ne sais pas comment je vais faire.`,
@@ -2345,11 +2345,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
   A('job_farmer', '🐄', 2, { age: [18, 80], job: ['farmer', 'zookeeper', 'vet'] }, [
     `J'ai aidé une vache à vêler. J'avais le bras dedans jusqu'à l'épaule. Le veau est sorti. Ma dignité est restée dedans.`,
     `{w:animal} m'a craché dessus, puis m'a mordu{|e}, puis a fait caca sur ma botte. Journée normale.`,
-    `J'ai glissé dans la fosse à lisier. Je sens {w:smell} depuis trois jours, malgré [[cinq|huit|douze]] douches.`,
+    `J'ai glissé dans la fosse à lisier. Je dégage {w:smell} depuis trois jours, malgré [[cinq|huit|douze]] douches.`,
   ], [
     `I helped a cow give birth. Had my arm in up to the shoulder. The calf came out. My dignity stayed in.`,
     `{w:animal} spat on me, then bit me, then pooped on my boot. Normal day.`,
-    `I slipped into the slurry pit. I've smelled like {w:smell} for three days, despite [[five|eight|twelve]] showers.`,
+    `I slipped into the slurry pit. I've been giving off {w:smell} for three days, despite [[five|eight|twelve]] showers.`,
   ]),
   // ───────────── Influence ─────────────
   A('fol_hate', '📲', 1, { age: [18, 90], followers: [10000, 1e12] }, [
@@ -2435,11 +2435,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
   ]),
   A('fol_merch', '👕', 1, { age: [18, 90], followers: [100000, 1e12] }, [
     `J'ai lancé ma ligne de t-shirts avec mon surnom, « {w:nickname} ». Fabriqués on ne sait où. Vendus 49 €.`,
-    `Mon parfum est sorti. Il sent {w:smell}. Rupture de stock en deux heures.`,
+    `Mon parfum est sorti. Il dégage {w:smell}. Rupture de stock en deux heures.`,
     `J'ai sorti une chanson. Les critiques l'ont comparée avec {w:sound}. Disque d'or quand même.`,
   ], [
     `I launched a T-shirt line with my nickname, "{w:nickname}". Made who knows where. Sold for $49.`,
-    `My perfume came out. It smells like {w:smell}. Sold out in two hours.`,
+    `My perfume came out. It gives off {w:smell}. Sold out in two hours.`,
     `I released a song. Critics compared it to {w:sound}. Went gold anyway.`,
   ]),
   // ───────────── Addictions ─────────────
@@ -2561,7 +2561,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `I filled up. I looked at the price. I pushed the car home on principle.`,
     `I sang {w:song} at the top of my lungs at a red light. The driver next to me was filming.`,
   ]),
-  A('as_car_kids', '🚸', 1, { age: [25, 120], asset: 'car', has: 'child' }, [
+  A('as_car_kids', '🚸', 2, { age: [25, 120], asset: 'car', has: 'child' }, [
     `[[Six|Huit|Onze]] heures de route avec les enfants : « on arrive quand ? » toutes les quatre minutes. J'ai pensé à les vendre.`,
     `Un enfant a vomi {w:food} sur la banquette arrière. L'autre a vomi en voyant le premier. Effet domino.`,
     `J'ai retrouvé une frite fossilisée et {w:object} dans le siège auto. Archéologie familiale.`,
@@ -2597,7 +2597,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `I found a dead rat in the wall. By the smell. After two weeks. It had gone liquid.`,
     `The pipes backed up during my 40th birthday party. Poop reached the buffet. We moved the party to the garden.`,
   ]),
-  A('as_house_garden', '🌳', 0, { age: [18, 120], asset: 'house' }, [
+  A('as_house_garden', '🌳', 1, { age: [18, 120], asset: 'house' }, [
     `J'ai passé le week-end à tondre, tailler et désherber. Lundi, le jardin avait l'air exactement pareil.`,
     `Le voisin a installé un nain de jardin face à ma fenêtre. Je lui ai répondu avec {w:object}. Guerre froide.`,
     `J'ai organisé une crémaillère. Les invités ont cassé {w:object} et vomi dans les hortensias. Ils ont adoré.`,
@@ -2698,11 +2698,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `I dug in my ear at the office. My coworker saw the result. She moved desks.`,
   ]),
   A('foot_fungus', '🦶', 2, { age: [18, 120] }, [
-    `Mes pieds sentent {w:smell}. J'ai enlevé mes chaussures chez des amis. Le chat s'est évanoui.`,
+    `Mes pieds dégagent {w:smell}. J'ai enlevé mes chaussures chez des amis. Le chat s'est évanoui.`,
     `J'ai une mycose entre les orteils qui a changé de couleur trois fois cette semaine. Elle a l'air de s'amuser.`,
     `J'ai retiré mes chaussettes après une journée {w:weather}. Elles sont restées debout toutes seules.`,
   ], [
-    `My feet smell like {w:smell}. I took off my shoes at friends'. The cat fainted.`,
+    `My feet give off {w:smell}. I took off my shoes at friends'. The cat fainted.`,
     `I have a fungus between my toes that changed colour three times this week. It seems to be having fun.`,
     `I took off my socks after a day {w:weather}. They stayed standing on their own.`,
   ]),
@@ -2797,11 +2797,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `I sold my blood, my hair and nearly a kidney. The kidney buyer cancelled: "too much booze in it".`,
   ]),
   A('kids_questions_trash', '👶', 2, { age: [25, 60], has: 'child' }, [
-    `Mon enfant a demandé à voix haute dans le bus pourquoi le monsieur d'à côté sentait {w:smell}. Le monsieur a répondu.`,
+    `Mon enfant a demandé à voix haute dans le bus pourquoi le monsieur d'à côté dégageait {w:smell}. Le monsieur a répondu.`,
     `Mon gamin a trouvé une capote usagée au parc et l'a gonflée comme un ballon. Je l'ai désinfecté à la javel. Le gamin, pas le ballon.`,
     `Mon enfant a raconté à la maîtresse que papa et maman font des bruits « comme {w:animal} » la nuit. Convocation lundi.`,
   ], [
-    `My kid asked loudly on the bus why the man next to us smelled like {w:smell}. The man answered.`,
+    `My kid asked loudly on the bus why the man next to us gave off {w:smell}. The man answered.`,
     `My kid found a used condom at the park and blew it up like a balloon. I disinfected him with bleach. The kid, not the balloon.`,
     `My kid told the teacher that mom and dad make noises "like {w:animal}" at night. Meeting on Monday.`,
   ]),

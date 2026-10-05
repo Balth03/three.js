@@ -211,13 +211,13 @@ export const holidayEvents: EventDef[] = [
     scene: { place: 'home', mood: 'shock', prop: 'cake' },
     text: {
       fr: [
-        "Tu fêtes tes {age} ans avec tes potes. {a.rel} a décidé de « rester un peu ». {a:Il|Elle} vient de lancer {w:song} sur l'enceinte et danse.",
+        "Tu fêtes tes {age} ans avec tes potes. {a:Ton père|Ta mère} a décidé de « rester un peu ». {a:Il|Elle} vient de lancer {w:song} sur l'enceinte et danse.",
         "Pour ton anniversaire, {a.rel} a sorti les photos de toi bébé, tout nu dans la baignoire. Tes amis sont fascinés.",
         "Ta soirée d'anniversaire débute à peine que {a.rel} t'appelle devant tout le monde par ton surnom de bébé : « {w:nickname} ».",
         "{a.rel} a préparé un quiz « Qui connaît le mieux {first} ? » pour ton anniversaire. Question 1 : à quel âge as-tu arrêté les couches ?",
       ],
       en: [
-        "You're celebrating your {age}th with your friends. {a.rel} decided to 'stick around a bit'. {a:He|She} just put on {w:song} and started dancing.",
+        "You're celebrating your {age}th with your friends. {a:Your dad|Your mom} decided to 'stick around a bit'. {a:He|She} just put on {w:song} and started dancing.",
         "For your birthday, {a.rel} brought out baby photos of you, naked in the bathtub. Your friends are fascinated.",
         "Your birthday party has barely started and {a.rel} calls you by your baby nickname in front of everyone: '{w:nickname}'.",
         "{a.rel} prepared a 'Who knows {first} best?' quiz for your birthday. Question 1: at what age did you stop wearing diapers?",
@@ -226,7 +226,7 @@ export const holidayEvents: EventDef[] = [
     choices: [
       {
         label: { fr: 'Le supplier de partir', en: 'Beg them to leave' },
-        text: { fr: ["J'ai supplié à voix basse. {a.my} est parti{a:|e} en disant « Amusez-vous bien, mes poussins ! ». Le mot « poussins » me hante.", "{a.my} a fini par monter. On l'entendait chanter à l'étage toute la soirée."], en: ["I begged in a whisper. {a.my} left saying 'Have fun, my little chickadees!' The word 'chickadees' haunts me.", "{a.my} finally went upstairs. We could hear {a.him} singing all night."] },
+        text: { fr: ["J'ai supplié à voix basse. {a:Mon père|Ma mère} est parti{a:|e} en disant « Amusez-vous bien, mes poussins ! ». Le mot « poussins » me hante.", "{a.my} a fini par monter. On l'entendait chanter à l'étage toute la soirée."], en: ["I begged in a whisper. {a:My dad|My mom} left saying 'Have fun, my little chickadees!' The word 'chickadees' haunts me.", "{a.my} finally went upstairs. We could hear {a.him} singing all night."] },
         fx: { happy: 2, rel: -3, stress: 3 },
         mood: 'neutral',
       },
@@ -327,7 +327,7 @@ export const holidayEvents: EventDef[] = [
       },
       {
         label: { fr: 'Rester raisonnable', en: 'Stay sensible' },
-        text: { fr: ["J'ai bu deux verres et j'ai ramené {a.first} chez {a.him}… chez elle… enfin, chez quelqu'un. {a:Il|Elle} m'a vomi sur les chaussures en disant « t'es ma mère ».", "J'ai été la personne sobre de la soirée. J'ai tenu les cheveux de {a.first} pendant quarante minutes. C'est ça, l'amitié adulte."], en: ["I had two drinks and took {a.first} home. Or someone's home. {a:He|She} puked on my shoes saying 'you're my mom'.", "I was the sober one. I held {a.first}'s hair for forty minutes. That's adult friendship."] },
+        text: { fr: ["J'ai bu deux verres et j'ai ramené {a.first} chez {a:lui|elle}. Ou chez quelqu'un. {a:Il|Elle} m'a vomi sur les chaussures en disant « t'es ma mère ».", "J'ai été la personne sobre de la soirée. J'ai tenu les cheveux de {a.first} pendant quarante minutes. C'est ça, l'amitié adulte."], en: ["I had two drinks and took {a.first} home. Or someone's home. {a:He|She} puked on my shoes saying 'you're my mom'.", "I was the sober one. I held {a.first}'s hair for forty minutes. That's adult friendship."] },
         fx: { happy: 3, rel: 10, karma: 3 },
         mood: 'neutral',
       },
@@ -411,7 +411,7 @@ export const holidayEvents: EventDef[] = [
       },
       {
         label: { fr: 'Dîner tranquille', en: 'Quiet dinner' },
-        text: { fr: ["Dîner chic, vin cher, couché{|e} à 23 h. J'ai trouvé ça merveilleux. C'est fini, je suis vieux{|vieille}.", "Restaurant, {w:food}, discussion sur les taux d'intérêt. Personne n'a vomi. Une première dans l'histoire de mes anniversaires."], en: ["Fancy dinner, expensive wine, in bed by 11. I found it wonderful. It's over, I'm old.", "Restaurant, {w:food}, a chat about interest rates. Nobody puked. A first in my birthday history."] },
+        text: { fr: ["Dîner chic, vin cher, couché{|e} à 23 h. J'ai trouvé ça merveilleux. C'est fini, je suis {vieux|vieille}.", "Restaurant, {w:food}, discussion sur les taux d'intérêt. Personne n'a vomi. Une première dans l'histoire de mes anniversaires."], en: ["Fancy dinner, expensive wine, in bed by 11. I found it wonderful. It's over, I'm old.", "Restaurant, {w:food}, a chat about interest rates. Nobody puked. A first in my birthday history."] },
         fx: { happy: 5, stress: -5, money: -120 },
         mood: 'neutral',
       },
@@ -435,9 +435,9 @@ export const holidayEvents: EventDef[] = [
     scene: { place: 'party', mood: 'shock', prop: 'champagne' },
     text: {
       fr: [
-        "Pour fêter tes quarante ans, {a.first} a engagé un strip-teaseur{|} déguisé en {w:weird_job}. Il est en retard, il est enrhumé et il sent {w:smell}.",
+        "Pour fêter tes quarante ans, {a.first} a engagé un strip-teaseur déguisé en {w:weird_job}. Il est en retard, il est enrhumé et il sent {w:smell}.",
         "Soirée surprise pour tes quarante ans : {a.first} a loué une salle, un DJ et un « invité mystère ». L'invité mystère, c'est ton ex.",
-        "La fête de tes quarante ans bat son plein. {a.first} a fait imprimer ta photo d'ado sur [[cinquante|cent|deux cents]] t-shirts. Tout le monde les porte.",
+        "La fête de tes quarante ans bat son plein. {a:Ton père|Ta mère} a fait imprimer ta photo d'ado sur [[cinquante|cent|deux cents]] t-shirts. Tout le monde les porte.",
         "{a.first} t'a organisé une fête « Quarante ans, quarante shots ». La première a un goût de {w:drink}. Il en reste trente-neuf.",
       ],
       en: [
@@ -760,19 +760,19 @@ export const holidayEvents: EventDef[] = [
       {
         label: { fr: 'Cadeau fait main', en: 'Handmade gift' },
         out: [
-          { w: 2, text: { fr: ["J'ai fabriqué un cadre photo avec des pâtes et de la colle. {a.my} a pleuré et l'a accroché au salon. Il perd une pâte par semaine.", "J'ai écrit un poème. Il ne rimait pas. {a.my} l'a lu trois fois en reniflant."], en: ["I made a photo frame out of pasta and glue. {a.my} cried and hung it in the living room. It loses a noodle a week.", "I wrote a poem. It didn't rhyme. {a.my} read it three times, sniffling."] }, fx: { happy: 5, rel: 12, karma: 2 }, mood: 'love' },
-          { w: 1, text: { fr: ["Mon cadeau fait main ressemblait à {w:object}. {a.my} a dit « oh, un… euh… merci ». Je l'ai vu{a:|e} le ranger au grenier.", "J'ai voulu faire un gâteau. J'ai fait {w:smell} dans toute la maison. {a.my} m'a emmené{|e} au resto pour éviter la suite."], en: ["My handmade gift looked like {w:object}. {a.my} said 'oh, a... uh... thanks'. I saw {a.him} put it in the attic.", "I tried to bake a cake. I made {w:smell} fill the whole house. {a.my} took me out to eat to avoid what came next."] }, fx: { happy: -2, rel: 3 }, mood: 'neutral' },
+          { w: 2, text: { fr: ["J'ai fabriqué un cadre photo avec des pâtes et de la colle. {a:Mon père|Ma mère} a pleuré et l'a accroché au salon. Il perd une pâte par semaine.", "J'ai écrit un poème. Il ne rimait pas. {a:Mon père|Ma mère} l'a lu trois fois en reniflant."], en: ["I made a photo frame out of pasta and glue. {a:My dad|My mom} cried and hung it in the living room. It loses a noodle a week.", "I wrote a poem. It didn't rhyme. {a:My dad|My mom} read it three times, sniffling."] }, fx: { happy: 5, rel: 12, karma: 2 }, mood: 'love' },
+          { w: 1, text: { fr: ["Mon cadeau fait main ressemblait à {w:object}. {a:Mon père|Ma mère} a dit « oh, un… euh… merci ». Je l'ai vu{a:|e} le ranger au grenier.", "J'ai voulu faire un gâteau. J'ai fait {w:smell} dans toute la maison. {a:Mon père|Ma mère} m'a emmené{|e} au resto pour éviter la suite."], en: ["My handmade gift looked like {w:object}. {a:My dad|My mom} said 'oh, a... uh... thanks'. I saw {a.him} put it in the attic.", "I tried to bake a cake. I made {w:smell} fill the whole house. {a:My dad|My mom} took me out to eat to avoid what came next."] }, fx: { happy: -2, rel: 3 }, mood: 'neutral' },
         ],
       },
       {
         label: { fr: 'Acheter en panique', en: 'Panic-buy something' },
-        text: { fr: ["J'ai acheté {w:gift} à la station-service, avec un paquet de chips en bonus. {a.my} a fait semblant d'être ravi{a:|e}. On connaît la chanson.", "J'ai offert une carte cadeau achetée au dernier moment. {a.my} a dit « c'est pratique ». Le mot le plus triste de la langue française."], en: ["I bought {w:gift} at a gas station, with a bonus bag of chips. {a.my} pretended to be thrilled. We know the drill.", "I gave a last-minute gift card. {a.my} said 'how practical'. The saddest phrase in the language."] },
+        text: { fr: ["J'ai acheté {w:gift} à la station-service, avec un paquet de chips en bonus. {a:Mon père|Ma mère} a fait semblant d'être ravi{a:|e}. On connaît la chanson.", "J'ai offert une carte cadeau achetée au dernier moment. {a:Mon père|Ma mère} a dit « c'est pratique ». Le mot le plus triste de la langue française."], en: ["I bought {w:gift} at a gas station, with a bonus bag of chips. {a:My dad|My mom} pretended to be thrilled. We know the drill.", "I gave a last-minute gift card. {a:My dad|My mom} said 'how practical'. The saddest phrase in the language."] },
         fx: { happy: 1, rel: 2, money: -40 },
         mood: 'neutral',
       },
       {
         label: { fr: 'Le gros cadeau', en: 'The big gift' },
-        text: { fr: ["J'ai offert un week-end {w:far_place}. {a.my} m'a serré{|e} si fort que j'ai entendu une côte craquer. La sienne, j'espère.", "J'ai payé un dîner dans un vrai restaurant. {a.my} a gardé le menu en souvenir et raconte à tout le monde que je « réussis ma vie »."], en: ["I gave a weekend {w:far_place}. {a.my} hugged me so hard I heard a rib crack. Theirs, I hope.", "I paid for dinner at a real restaurant. {a.my} kept the menu as a souvenir and tells everyone I'm 'doing great in life'."] },
+        text: { fr: ["J'ai offert un week-end {w:far_place}. {a:Mon père|Ma mère} m'a serré{|e} si fort que j'ai entendu une côte craquer. La sienne, j'espère.", "J'ai payé un dîner dans un vrai restaurant. {a:Mon père|Ma mère} a gardé le menu en souvenir et raconte à tout le monde que je « réussis ma vie »."], en: ["I gave a weekend {w:far_place}. {a:My dad|My mom} hugged me so hard I heard a rib crack. Theirs, I hope.", "I paid for dinner at a real restaurant. {a:My dad|My mom} kept the menu as a souvenir and tells everyone I'm 'doing great in life'."] },
         fx: { happy: 6, rel: 15, money: -600 },
         mood: 'love',
       },
@@ -1195,7 +1195,7 @@ export const holidayEvents: EventDef[] = [
       {
         label: { fr: 'Jouer le rôle à fond', en: 'Commit to the role' },
         out: [
-          { w: 2, odds: { looks: 1 }, text: { fr: ["« Ho ho ho ! » J'ai été si convaincant{|e} que {a.first} a pleuré de joie. Il y croira encore deux ans. Je suis un{|e} acteur{|trice} de génie.", "J'ai dansé, j'ai chanté, j'ai bu le verre de lait laissé près du sapin. {a.first} m'a dessiné en Père Noël. Le dessin est sur le frigo à vie."], en: ["'Ho ho ho!' I was so convincing {a.first} cried with joy. That'll buy two more years of belief. I'm a genius actor.", "I danced, I sang, I drank the glass of milk left by the tree. {a.first} drew me as Santa. The drawing is on the fridge forever."] }, fx: { happy: 9, rel: 12 }, mood: 'love' },
+          { w: 2, odds: { looks: 1 }, text: { fr: ["« Ho ho ho ! » J'ai été si convaincant{|e} que {a.first} a pleuré de joie. {a:Il|Elle} y croira encore deux ans. Je suis {un acteur|une actrice} de génie.", "J'ai dansé, j'ai chanté, j'ai bu le verre de lait laissé près du sapin. {a.first} m'a dessiné en Père Noël. Le dessin est sur le frigo à vie."], en: ["'Ho ho ho!' I was so convincing {a.first} cried with joy. That'll buy two more years of belief. I'm a genius actor.", "I danced, I sang, I drank the glass of milk left by the tree. {a.first} drew me as Santa. The drawing is on the fridge forever."] }, fx: { happy: 9, rel: 12 }, mood: 'love' },
           { w: 1, text: { fr: ["{a.first} a reconnu ma montre. « Papa ? » Non, « Maman » ? Bref, l'enfance s'est terminée ce soir-là, devant le sapin, à cause d'une montre.", "J'ai trébuché dans le piège. J'ai hurlé un gros mot. Le Père Noël dit des gros mots, maintenant. {a.first} les répète à l'école."], en: ["{a.first} recognized my watch. 'Dad? Mom?' Anyway, childhood ended that night, in front of the tree, because of a watch.", "I tripped on the trap. I screamed a swear word. Santa swears now. {a.first} repeats it at school."] }, fx: { happy: -4, rel: 2 }, mood: 'shock' },
         ],
       },
@@ -1305,13 +1305,13 @@ export const holidayEvents: EventDef[] = [
     scene: { place: 'office', mood: 'party', prop: 'microphone' },
     text: {
       fr: [
-        "Pot de Noël chez {employer}. Il y a un karaoké. {a.rel} {a.first} te tend le micro : « Allez, un duo ! » La chanson : {w:song}.",
+        "Pot de Noël chez {employer}. Il y a un karaoké. {a:Ton patron|Ta patronne}, {a.first}, te tend le micro : « Allez, un duo ! » La chanson : {w:song}.",
         "Fête de Noël de la boîte. {a.first}, ton boss, a déjà bu trois coupes et réclame un duo avec toi sur {w:song}. Tout le service te regarde.",
         "Soirée de Noël chez {employer}. Les petits fours sont secs, le DJ est le cousin du DRH, et {a.first} veut absolument chanter avec toi.",
         "Pot de Noël. Entre la bûche industrielle et {w:drink}, {a.first} a lancé : « Celui qui chante le plus fort aura sa prime. » Tu sens le regard des collègues.",
       ],
       en: [
-        "Christmas party at {employer}. There's karaoke. {a.rel} {a.first} hands you the mic: 'Come on, a duet!' The song: {w:song}.",
+        "Christmas party at {employer}. There's karaoke. Your boss {a.first} hands you the mic: 'Come on, a duet!' The song: {w:song}.",
         "Company Christmas party. {a.first}, your boss, has had three glasses and demands a duet with you on {w:song}. The whole department is watching.",
         "Christmas party at {employer}. The appetizers are dry, the DJ is HR's cousin, and {a.first} absolutely wants to sing with you.",
         "Christmas drinks. Between the factory Yule log and {w:drink}, {a.first} announced: 'Whoever sings loudest gets a bonus.' You feel your coworkers' eyes.",
@@ -1361,7 +1361,7 @@ export const holidayEvents: EventDef[] = [
         label: { fr: 'Céder à la tentation', en: 'Give in' },
         out: [
           { w: 1, text: { fr: ["On s'est embrassés contre la photocopieuse. Quelqu'un a appuyé sur « copier » avec ses fesses. Cinquante exemplaires. Le bac est plein.", "Ça a été torride, rapide, et dans un local qui sent l'encre. On a fait tomber une étagère entière de bilans 2014."], en: ["We made out against the copier. Somebody's butt hit 'copy'. Fifty copies. The tray is full.", "It was hot, fast, and in a room that smells like toner. We knocked over an entire shelf of 2014 reports."] }, fx: { happy: 10, rel: 15, chain: 'ho_office_morning_after' }, mood: 'love', icon: '🔥' },
-          { w: 1, text: { fr: ["On s'est embrassés. Ses lunettes sont tombées dans ma coupe. On a ri, on a recommencé, et on a été vus par le stagiaire. Le stagiaire sait tout, maintenant.", "Baiser passionné sous le gui. Puis le gui m'est tombé dans la bouche. J'ai toussé une baie sur sa chemise. L'élan a été coupé, mais pas complètement."], en: ["We kissed. {a.his} glasses fell into my drink. We laughed, kissed again, and got spotted by the intern. The intern knows everything now.", "Passionate kiss under the mistletoe. Then the mistletoe fell into my mouth. I coughed a berry onto {a.his} shirt. The mood was dented, not destroyed."] }, fx: { happy: 6, rel: 10, chain: 'ho_office_morning_after' }, mood: 'love' },
+          { w: 1, text: { fr: ["On s'est embrassés. Ses lunettes sont tombées dans ma coupe. On a ri, on a recommencé, et on a été vus par le stagiaire. Le stagiaire sait tout, maintenant.", "Baiser passionné sous le gui. Puis le gui m'est tombé dans la bouche. J'ai toussé une baie sur sa chemise. L'élan a été coupé, mais pas complètement."], en: ["We kissed. {a.first}'s glasses fell into my drink. We laughed, kissed again, and got spotted by the intern. The intern knows everything now.", "Passionate kiss under the mistletoe. Then the mistletoe fell into my mouth. I coughed a berry onto {a.his} shirt. The mood was dented, not destroyed."] }, fx: { happy: 6, rel: 10, chain: 'ho_office_morning_after' }, mood: 'love' },
         ],
       },
       {
@@ -1423,7 +1423,7 @@ export const holidayEvents: EventDef[] = [
       fr: [
         "Père Noël secret au bureau. Budget : 10 €. Tu as tiré {a.first}, que tu n'as jamais vu{a:|e} sourire. Ton paquet contient {w:gift}.",
         "Échange de cadeaux chez {employer}. {a.first} ouvre le tien devant tout le monde. Tu viens de te souvenir que tu as acheté le cadeau dans un sex-shop « pour rire ».",
-        "Le Père Noël secret du bureau, c'est aujourd'hui. Tu as reçu {w:gift}. Tu sais que c'est {a.first} : il{a:|le} est le{a:|la} seul{a:|e} à rire.",
+        "Le Père Noël secret du bureau, c'est aujourd'hui. Tu as reçu {w:gift}. Tu sais que c'est {a.first} : {a:il|elle} est {a:le seul|la seule} à rire.",
         "Secret Santa au boulot. {a.first} a mis dix minutes à déballer ton paquet, parce que tu as utilisé [[quatre|six|dix]] rouleaux de scotch. Dedans : {w:object}.",
       ],
       en: [
@@ -1437,7 +1437,7 @@ export const holidayEvents: EventDef[] = [
       {
         label: { fr: 'Assumer le cadeau', en: 'Own the gift' },
         out: [
-          { w: 1, text: { fr: ["J'ai dit « C'est utile, crois-moi » avec un clin d'œil. {a.first} a éclaté de rire. On est inséparables depuis. Le reste du service nous craint.", "J'ai assumé. Le menottes en fourrure rose sont devenues la mascotte du service. Elles sont accrochées au tableau blanc."], en: ["I said 'Trust me, it's useful' with a wink. {a.first} burst out laughing. We've been inseparable since. The rest of the department fears us.", "I owned it. The pink fluffy handcuffs became the department mascot. They hang on the whiteboard."] }, fx: { happy: 8, rel: 14 }, mood: 'party' },
+          { w: 1, text: { fr: ["J'ai dit « C'est utile, crois-moi » avec un clin d'œil. {a.first} a éclaté de rire. On est inséparables depuis. Le reste du service nous craint.", "J'ai assumé. Les menottes en fourrure rose sont devenues la mascotte du service. Elles sont accrochées au tableau blanc."], en: ["I said 'Trust me, it's useful' with a wink. {a.first} burst out laughing. We've been inseparable since. The rest of the department fears us.", "I owned it. The pink fluffy handcuffs became the department mascot. They hang on the whiteboard."] }, fx: { happy: 8, rel: 14 }, mood: 'party' },
           { w: 1, text: { fr: ["{a.first} a sorti un vibromasseur géant devant le PDG. Il s'est mis en marche tout seul. Il a vibré sur la table jusqu'à tomber dans la bûche. Je suis convoqué{|e} lundi.", "Le cadeau s'est mis à parler. Il disait des choses en espagnol, très fort. La DRH a pris des notes."], en: ["{a.first} pulled a giant vibrator out in front of the CEO. It switched on by itself. It buzzed across the table into the Yule log. I've been summoned on Monday.", "The gift started talking. It said things in Spanish, very loudly. HR took notes."] }, fx: { happy: -4, perf: -10, fame: 1 }, mood: 'shock' },
         ],
       },
@@ -1481,7 +1481,7 @@ export const holidayEvents: EventDef[] = [
       },
       {
         label: { fr: 'Arrêter un vice', en: 'Quit a vice' },
-        text: { fr: ["J'ai juré d'arrêter mes mauvaises habitudes. J'ai jeté mes clopes, mes chips et mon dignité de l'an dernier à la poubelle. Elles m'y attendent.", "Résolution : plus d'écrans après 22 h. J'ai tenu jusqu'à 0 h 04, le temps de poster ma résolution sur {w:app}."], en: ["I swore to quit my bad habits. I threw my cigarettes, my chips and last year's dignity in the trash. They're waiting for me there.", "Resolution: no screens after 10 p.m. I held out until 12:04 a.m., long enough to post my resolution on {w:app}."] },
+        text: { fr: ["J'ai juré d'arrêter mes mauvaises habitudes. J'ai jeté mes clopes, mes chips et ma dignité de l'an dernier à la poubelle. Elles m'y attendent.", "Résolution : plus d'écrans après 22 h. J'ai tenu jusqu'à 0 h 04, le temps de poster ma résolution sur {w:app}."], en: ["I swore to quit my bad habits. I threw my cigarettes, my chips and last year's dignity in the trash. They're waiting for me there.", "Resolution: no screens after 10 p.m. I held out until 12:04 a.m., long enough to post my resolution on {w:app}."] },
         fx: { happy: 2, discipline: 3, flag: ['ho_resolution', 'ho_res_vice'], schedule: { key: 'ho_resolution_check', years: 1 } },
         mood: 'proud',
       },
@@ -1604,7 +1604,7 @@ export const holidayEvents: EventDef[] = [
       {
         label: { fr: 'Rester éveillé{|e} jusqu\'à minuit', en: 'Stay up till midnight' },
         out: [
-          { w: 1, text: { fr: ["On a tenu jusqu'à minuit pile, on s'est embrassés, et on dormait à minuit deux. La plus belle soirée possible après trente ans.", "J'ai tenu. {a.first} non. {a:Il|Elle} ronflait à 23 h 52. J'ai embrassé son front à minuit et j'ai fini la bouteille seul{|e}. C'était beau quand même."], en: ["We made it to midnight sharp, kissed, and were asleep by 12:02. The best possible night after thirty.", "I made it. {a.first} didn't. {a:He|She} was snoring by 11:52. I kissed {a.his} forehead at midnight and finished the bottle alone. Still beautiful."] }, fx: { happy: 6, rel: 6 }, mood: 'sleepy' },
+          { w: 1, text: { fr: ["On a tenu jusqu'à minuit pile, on s'est embrassés, et on dormait à minuit deux. La soirée idéale, passé un certain âge.", "J'ai tenu. {a.first} non. {a:Il|Elle} ronflait à 23 h 52. J'ai embrassé son front à minuit et j'ai fini la bouteille seul{|e}. C'était beau quand même."], en: ["We made it to midnight sharp, kissed, and were asleep by 12:02. The ideal night, past a certain age.", "I made it. {a.first} didn't. {a:He|She} was snoring by 11:52. I kissed {a.his} forehead at midnight and finished the bottle alone. Still beautiful."] }, fx: { happy: 6, rel: 6 }, mood: 'sleepy' },
           { w: 1, text: { fr: ["On s'est disputés à 23 h 58 pour savoir quelle chaîne regarder. On a raté minuit. On s'est réconciliés à 0 h 15 sur {w:show}.", "On a regardé le décompte sur une chaîne qui avait trois minutes de retard. On s'est embrassés trop tard. Les voisins ont crié avant nous. Humiliant."], en: ["We argued at 11:58 about which channel to watch. Missed midnight. Made up at 12:15 a.m. over {w:show}.", "We watched the countdown on a channel running three minutes late. We kissed too late. The neighbors cheered before us. Humiliating."] }, fx: { happy: 2, rel: 2 }, mood: 'neutral' },
         ],
       },
@@ -1689,7 +1689,7 @@ export const holidayEvents: EventDef[] = [
         "Nouvel An entre potes chez {a.first}. Quelqu'un propose un « action ou vérité ». Quelqu'un d'autre propose de faire péter des pétards dans le jardin.",
       ],
       en: [
-        "First New Year's without parents! {a.first} is having a party. {a.his} parents are 'at a restaurant until 1 a.m.' Someone brought a bottle of cider.",
+        "First New Year's without parents! {a.first} is having a party. {a.first}'s parents are 'at a restaurant until 1 a.m.' Someone brought a bottle of cider.",
         "New Year's Eve at {a.first}'s. Twelve teens, {w:food}, a speaker and a bottle of sparkling wine stolen from {a.his} grandma's cupboard.",
         "Your parents let you go to {a.first}'s New Year's party. Curfew: 12:30 a.m. Your dad has already sent [[four|seven|eleven]] texts and it's 9 p.m.",
         "New Year's with friends at {a.first}'s. Someone suggests truth or dare. Someone else suggests setting off firecrackers in the yard.",
@@ -1700,12 +1700,12 @@ export const holidayEvents: EventDef[] = [
         label: { fr: 'Goûter le mousseux', en: 'Try the bubbly' },
         out: [
           { w: 2, text: { fr: ["J'ai bu deux gorgées et j'ai eu le hoquet jusqu'à minuit. On a dansé sur {w:song}, on a crié le décompte. J'avais l'impression d'être adulte. J'avais surtout le hoquet.", "Une demi-coupe et j'étais persuadé{|e} d'être drôle. Je l'étais. Un peu. On a ri jusqu'à 2 h."], en: ["I had two sips and got hiccups until midnight. We danced to {w:song}, screamed the countdown. I felt like an adult. Mostly I had hiccups.", "Half a glass and I was convinced I was hilarious. I was. A little. We laughed until 2 a.m."] }, fx: { happy: 8, rel: 6 }, mood: 'party' },
-          { w: 1, text: { fr: ["J'ai vomi dans les hortensias de la mère de {a.first} à 0 h 10. Ses parents sont rentrés à 0 h 11. On a accusé le chien. Il n'y a pas de chien chez {a.first}.", "Mes parents sont venus me chercher à 0 h 30 pile. J'avais une moustache dessinée au feutre. Je ne sais pas qui. Mon père a pris une photo."], en: ["I puked in {a.first}'s mom's hydrangeas at 12:10. {a.his} parents got home at 12:11. We blamed the dog. {a.first} doesn't have a dog.", "My parents picked me up at exactly 12:30. I had a mustache drawn on in marker. No idea who. Dad took a picture."] }, fx: { happy: -3, rel: 2, health: -2 }, mood: 'sick' },
+          { w: 1, text: { fr: ["J'ai vomi dans les hortensias de la mère de {a.first} à 0 h 10. Ses parents sont rentrés à 0 h 11. On a accusé le chien. Il n'y a pas de chien chez {a.first}.", "Mes parents sont venus me chercher à 0 h 30 pile. J'avais une moustache dessinée au feutre. Je ne sais pas qui. Mon père a pris une photo."], en: ["I puked in {a.first}'s mom's hydrangeas at 12:10. The parents got home at 12:11. We blamed the dog. {a.first} doesn't have a dog.", "My parents picked me up at exactly 12:30. I had a mustache drawn on in marker. No idea who. Dad took a picture."] }, fx: { happy: -3, rel: 2, health: -2 }, mood: 'sick' },
         ],
       },
       {
         label: { fr: 'Rester au soda', en: 'Stick to soda' },
-        text: { fr: ["Je suis resté{|e} au soda. J'ai été le{|la} seul{|e} à me souvenir de tout. J'ai des dossiers sur tout le monde pour les dix prochaines années.", "Soda toute la soirée. J'ai gagné au jeu de la bouteille, au karaoké et au concours de danse. La sobriété, c'est un avantage injuste."], en: ["I stuck to soda. I was the only one who remembered everything. I have dirt on everyone for the next ten years.", "Soda all night. I won spin-the-bottle, karaoke and the dance-off. Sobriety is an unfair advantage."] },
+        text: { fr: ["Je suis resté{|e} au soda. J'ai été le{|la} seul{|e} à me souvenir de tout. J'ai des dossiers sur tout le monde pour les dix prochaines années.", "Soda toute la soirée. J'ai gagné au blind test, au karaoké et au concours de danse. La sobriété, c'est un avantage injuste."], en: ["I stuck to soda. I was the only one who remembered everything. I have dirt on everyone for the next ten years.", "Soda all night. I won the music quiz, karaoke and the dance-off. Sobriety is an unfair advantage."] },
         fx: { happy: 5, smarts: 1, discipline: 2 },
         mood: 'happy',
       },
@@ -1799,13 +1799,13 @@ export const holidayEvents: EventDef[] = [
     text: {
       fr: [
         "Halloween ! Ta mère te propose un costume de fantôme : un drap avec deux trous. Les trous ne sont pas au niveau des yeux.",
-        "Pour Halloween, tu voulais être un vampire. Ta mère a fabriqué un costume de {w:animal}. Elle en est très fière.",
+        "Pour Halloween, tu voulais être un vampire. Ta mère a fabriqué ton costume. Thème : {w:animal}. Elle en est très fière.",
         "Halloween approche. Tous tes copains seront des super-héros. Ton père te propose d'y aller en « contrôleur fiscal ». Il trouve ça terrifiant.",
         "C'est Halloween et ton costume de citrouille est si large que tu ne passes pas la porte. Tu es coincé{|e} dans l'entrée. Tes amis attendent dehors.",
       ],
       en: [
         "Halloween! Your mom offers a ghost costume: a sheet with two holes. The holes aren't where your eyes are.",
-        "For Halloween, you wanted to be a vampire. Your mom made you {w:animal} costume instead. She's very proud.",
+        "For Halloween, you wanted to be a vampire. Your mom made your costume instead. Theme: {w:animal}. She's very proud.",
         "Halloween is coming. All your buddies will be superheroes. Your dad suggests going as a 'tax auditor'. He finds it terrifying.",
         "It's Halloween and your pumpkin costume is so wide you can't fit through the door. You're stuck in the hallway. Your friends are waiting outside.",
       ],
@@ -1839,7 +1839,7 @@ export const holidayEvents: EventDef[] = [
         "Halloween dans le quartier. La vieille dame du numéro [[12|8|23]] donne des raisins secs. Encore. Tes copains ont des œufs dans leur sac.",
         "Tu fais du porte-à-porte pour Halloween. Le dentiste du quartier distribue des brosses à dents. Il a un sourire satisfait.",
         "Halloween. Un monsieur t'ouvre en peignoir, te regarde longuement, et dit « on n'en a pas », puis te claque la porte au nez. Ton sac est presque vide.",
-        "Soirée Halloween. Une maison a laissé un saladier avec un panneau « Servez-vous, UN SEUL ». Personne ne regarde. Le saladier est plein de {w:food}… non, de bonbons.",
+        "Soirée Halloween. Une maison a laissé un saladier avec un panneau « Servez-vous, UN SEUL ». Personne ne regarde. Le saladier déborde de bonbons.",
       ],
       en: [
         "Halloween in the neighborhood. The old lady at number [[12|8|23]] is giving out raisins. Again. Your buddies have eggs in their bags.",
@@ -1922,13 +1922,13 @@ export const holidayEvents: EventDef[] = [
         "Soirée Halloween. Tu es venu{|e} déguisé{|e} en {w:celeb}. Quelqu'un d'autre a eu exactement la même idée, en mieux. Il te fixe depuis le bar.",
         "Fête d'Halloween chez un collègue. Ton costume de zombie est si réaliste qu'un invité ivre vient d'appeler les urgences pour toi.",
         "Halloween. Un type déguisé en tueur à la tronçonneuse fait vrombir un vrai moteur au milieu du salon. Il a l'air de trouver ça drôle. Il est seul à rire.",
-        "Soirée costumée d'Halloween. Personne ne comprend ton déguisement. Tu expliques pour la [[cinquième|dixième|quinzième]] fois que tu es « {w:object} hanté ».",
+        "Soirée costumée d'Halloween. Personne ne comprend ton déguisement. Tu expliques pour la [[cinquième|dixième|quinzième]] fois que tu es « {w:object} avec un fantôme dedans ».",
       ],
       en: [
         "Halloween party. You came dressed as {w:celeb}. Someone else had the exact same idea, but better. He's been staring at you from the bar.",
         "Halloween party at a coworker's. Your zombie costume is so realistic a drunk guest just called 911 for you.",
         "Halloween. A guy dressed as a chainsaw killer is revving a real engine in the middle of the living room. He thinks it's funny. He's the only one laughing.",
-        "Costume party. Nobody gets your costume. You explain for the [[fifth|tenth|fifteenth]] time that you're 'a haunted {w:object}'.",
+        "Costume party. Nobody gets your costume. You explain for the [[fifth|tenth|fifteenth]] time that you're '{w:object} with a ghost inside'.",
       ],
     },
     choices: [
@@ -1997,14 +1997,14 @@ export const holidayEvents: EventDef[] = [
     scene: { place: 'park', mood: 'happy' },
     text: {
       fr: [
-        "Tu accompagnes {a.first} pour Halloween. Son sac de bonbons pèse [[deux|trois|quatre]] kilos. Tu as faim. Il est presque endormi.",
-        "Soir d'Halloween. {a.first} est déguisé{a:|e} en {w:animal}. Tu as un costume aussi, ton conjoint a insisté. Tu es « {w:object} ».",
+        "Tu accompagnes {a.first} pour Halloween. Son sac de bonbons pèse [[deux|trois|quatre]] kilos. Tu as faim. {a:Il|Elle} est presque endormi{a:|e}.",
+        "Soir d'Halloween. {a.first} s'est déguisé{a:|e}. Thème : {w:animal}. Tu as un costume aussi, ton conjoint a insisté. Tu es « {w:object} ».",
         "Halloween avec {a.first}. Un autre parent du quartier te prend à part pour te parler de la « taxe parentale » sur les bonbons. Il en est à 40 %.",
         "Fin de la tournée d'Halloween. {a.first} compte ses bonbons sur la table. {a:Il|Elle} connaît le nombre exact. Toi, tu veux les chocolats.",
       ],
       en: [
-        "You're taking {a.first} trick-or-treating. {a.his} candy bag weighs [[four|six|eight]] pounds. You're hungry. The kid is half asleep.",
-        "Halloween night. {a.first} is dressed as {w:animal}. You have a costume too, your partner insisted. You're '{w:object}'.",
+        "You're taking {a.first} trick-or-treating. The candy bag weighs [[four|six|eight]] pounds. You're hungry. The kid is half asleep.",
+        "Halloween night. {a.first} is in costume. Theme: {w:animal}. You have a costume too, your partner insisted. You're '{w:object}'.",
         "Halloween with {a.first}. Another parent pulls you aside to talk about the 'parent tax' on candy. He's at 40%.",
         "End of the Halloween round. {a.first} is counting candy on the table. {a:He|She} knows the exact number. You want the chocolates.",
       ],
@@ -2019,7 +2019,7 @@ export const holidayEvents: EventDef[] = [
       },
       {
         label: { fr: 'Rentrer porter l\'enfant', en: 'Carry the kid home' },
-        text: { fr: ["J'ai porté {a.first} endormi{a:|e} sur mes épaules jusqu'à la maison. Il y avait du chocolat fondu dans mes cheveux. C'était le plus beau soir de l'année.", "Je l'ai porté{a:|e} jusqu'au lit, déguisement compris. {a:Il|Elle} a dormi en {w:animal}. Moi, j'ai mangé un seul bonbon. Le plus nul. Par amour."], en: ["I carried {a.first} home asleep on my shoulders. There was melted chocolate in my hair. Best night of the year.", "I carried {a.him} to bed, costume and all. The kid slept as {w:animal}. I ate a single candy. The worst one. Out of love."] },
+        text: { fr: ["J'ai porté {a.first} endormi{a:|e} sur mes épaules jusqu'à la maison. Il y avait du chocolat fondu dans mes cheveux. C'était le plus beau soir de l'année.", "Je l'ai porté{a:|e} jusqu'au lit, déguisement compris. {a:Il|Elle} a dormi dans son costume. Moi, j'ai mangé un seul bonbon. Le plus nul. Par amour."], en: ["I carried {a.first} home asleep on my shoulders. There was melted chocolate in my hair. Best night of the year.", "I carried {a.him} to bed, costume and all. The kid slept in costume. I ate a single candy. The worst one. Out of love."] },
         fx: { happy: 6, rel: 10, health: 1 },
         mood: 'love',
       },
@@ -2120,13 +2120,13 @@ export const holidayEvents: EventDef[] = [
     scene: { place: 'school', mood: 'love' },
     text: {
       fr: [
-        "Saint-Valentin à l'école. Il y a une carte anonyme dans ton cartable. Elle dit « Tu es mon {w:animal} préféré ». L'écriture ressemble beaucoup à celle de la maîtresse.",
+        "Saint-Valentin à l'école. Il y a une carte anonyme dans ton cartable. Elle dit « Tu es plus mignon{|ne} qu'{w:animal} ». L'écriture ressemble beaucoup à celle de la maîtresse.",
         "Pour la Saint-Valentin, la maîtresse demande à chacun d'écrire une carte à un camarade. Tu as tiré le garçon qui mange ses crottes de nez.",
         "La Saint-Valentin à l'école. Quelqu'un a glissé une sucette en forme de cœur dans ta trousse, avec un mot : « Signé : tu sais qui ». Tu ne sais pas qui.",
         "Saint-Valentin. Ton copain te demande de donner sa carte à quelqu'un de la classe, parce qu'il est trop timide. La carte est pour toi.",
       ],
       en: [
-        "Valentine's Day at school. There's an anonymous card in your backpack. It says 'You're my favorite {w:animal}'. The handwriting looks a lot like the teacher's.",
+        "Valentine's Day at school. There's an anonymous card in your backpack. It says 'You're cuter than {w:animal}'. The handwriting looks a lot like the teacher's.",
         "For Valentine's Day, the teacher has everyone write a card to a classmate. You drew the kid who eats his boogers.",
         "Valentine's Day at school. Someone slipped a heart-shaped lollipop into your pencil case with a note: 'Signed: you know who'. You don't know who.",
         "Valentine's Day. Your buddy asks you to deliver his card to someone in class, because he's too shy. The card is for you.",
@@ -2165,7 +2165,7 @@ export const holidayEvents: EventDef[] = [
         "Dîner aux chandelles. {a.first} te fait du pied sous la table. Puis tu réalises que ce n'est pas le pied de {a.first}. C'est celui du monsieur derrière toi.",
       ],
       en: [
-        "Valentine's dinner with {a.first}. Special [[$89|$120|$150]] menu: oysters, {w:food} foam and a violinist playing {w:song} way too close to your ear.",
+        "Valentine's dinner with {a.first}. Special [[$89|$120|$150]] menu: oysters, {w:food} turned into foam and a violinist playing {w:song} way too close to your ear.",
         "Valentine's restaurant. At the next table, a man just proposed to his girlfriend. She said no. The violinist keeps playing.",
         "Valentine's Day at a restaurant with {a.first}. The oysters smell weird. The waiter swears they're 'absolutely fresh'. He's sweating.",
         "Candlelit dinner. {a.first} is playing footsie under the table. Then you realize it's not {a.first}'s foot. It belongs to the man behind you.",
@@ -2220,7 +2220,7 @@ export const holidayEvents: EventDef[] = [
       },
       {
         label: { fr: 'Fouiller là où personne ne cherche', en: 'Search where no one looks' },
-        text: { fr: ["J'ai cherché dans les endroits bizarres : la boîte aux lettres, les bottes de papy, le barbecue. Jackpot. Il y avait même des œufs de l'an dernier. Je les ai mangés aussi.", "J'ai trouvé les œufs oubliés de mon oncle dans la gouttière. Mamie m'a nommé{|e} « meilleur{|e} chercheur{|se} de la famille ». J'ai un titre."], en: ["I searched the weird spots: the mailbox, Grandpa's boots, the grill. Jackpot. There were even eggs from last year. I ate those too.", "I found my uncle's forgotten eggs in the gutter. Grandma named me 'best hunter in the family'. I have a title."] },
+        text: { fr: ["J'ai cherché dans les endroits bizarres : la boîte aux lettres, les bottes de papy, le barbecue. Jackpot. Il y avait même des œufs de l'an dernier. Je les ai mangés aussi.", "J'ai trouvé les œufs oubliés de mon oncle dans la gouttière. Mamie m'a nommé{|e} « {meilleur chercheur|meilleure chercheuse} de la famille ». J'ai un titre."], en: ["I searched the weird spots: the mailbox, Grandpa's boots, the grill. Jackpot. There were even eggs from last year. I ate those too.", "I found my uncle's forgotten eggs in the gutter. Grandma named me 'best hunter in the family'. I have a title."] },
         fx: { happy: 6, smarts: 2 },
         mood: 'happy',
       },
@@ -2276,7 +2276,7 @@ export const holidayEvents: EventDef[] = [
       {
         label: { fr: 'Chercher l\'œuf', en: 'Hunt for the egg' },
         out: [
-          { w: 2, text: { fr: ["Je l'ai trouvé dans l'enceinte de la chaîne hi-fi. En le sortant, il a éclaté. Le jus soufre a giclé sur mon visage. J'ai vomi, le chat a vomi, la plante verte a jauni.", "L'œuf était dans le pot de la plante. Il a explosé quand je l'ai touché, un geyser vert odeur de mort. J'ai brûlé mes vêtements dans le jardin."], en: ["Found it inside the stereo speaker. When I pulled it out, it burst. Sulfur juice sprayed my face. I puked, the cat puked, the houseplant turned yellow.", "The egg was in the plant pot. It exploded when I touched it, a green geyser of death smell. I burned my clothes in the yard."] }, fx: { happy: -6, health: -4 }, mood: 'sick', icon: '🤮' },
+          { w: 2, text: { fr: ["Je l'ai trouvé dans l'enceinte de la chaîne hi-fi. En le sortant, il a éclaté. Le jus soufré a giclé sur mon visage. J'ai vomi, le chat a vomi, la plante verte a jauni.", "L'œuf était dans le pot de la plante. Il a explosé quand je l'ai touché, un geyser vert odeur de mort. J'ai brûlé mes vêtements dans le jardin."], en: ["Found it inside the stereo speaker. When I pulled it out, it burst. Sulfur juice sprayed my face. I puked, the cat puked, the houseplant turned yellow.", "The egg was in the plant pot. It exploded when I touched it, a green geyser of death smell. I burned my clothes in the yard."] }, fx: { happy: -6, health: -4 }, mood: 'sick', icon: '🤮' },
           { w: 1, text: { fr: ["Je ne l'ai jamais trouvé. J'ai déménagé. Les nouveaux locataires l'ont trouvé en décembre. Ils ont appelé la police.", "J'ai cherché pendant six heures. Il était dans ma poche de manteau. Je l'ai porté tout le printemps."], en: ["I never found it. I moved out. The new tenants found it in December. They called the police.", "I searched for six hours. It was in my coat pocket. I'd been wearing it all spring."] }, fx: { happy: -4, stress: 6, money: -200 }, mood: 'shock' },
         ],
       },
@@ -2478,7 +2478,7 @@ export const holidayEvents: EventDef[] = [
         label: { fr: 'Danser avec le pompier', en: 'Dance with the firefighter' },
         out: [
           { w: 2, odds: { looks: 1 }, text: { fr: ["On a dansé jusqu'à l'aube. J'ai fini dans la cabine du camion, avec la sirène qui s'est déclenchée au pire moment. Toute la caserne a applaudi.", "Slow, rock, madison, puis un tour en camion. Il m'a laissé{|e} essayer le casque. Et le reste. Vive la République."], en: ["We danced till dawn. I ended up in the truck cab, and the siren went off at the worst possible moment. The whole station applauded.", "Slow dance, rock, line dance, then a ride in the truck. He let me try on the helmet. And everything else. Vive la République."] }, fx: { happy: 12, stress: -6 }, mood: 'love', icon: '🔥' },
-          { w: 1, text: { fr: ["Il m'a fait tourner si vite que j'ai vomi le punch sur son uniforme d'apparat. Il a dit « j'ai connu pire » en s'essuyant. Il a été appelé pour un vrai incendie. Je crois qu'il a été soulagé.", "J'ai dansé avec lui, ma tante aussi, ma mère aussi. On s'est battues pour lui près du stand de merguez. Il est parti avec le DJ."], en: ["He spun me so fast I puked punch on his dress uniform. He said 'I've seen worse' while wiping off. He got called to a real fire. I think he was relieved.", "I danced with him, so did my aunt, so did my mom. We fought over him by the sausage stand. He left with the DJ."] }, fx: { happy: -3, health: -2 }, mood: 'sick' },
+          { w: 1, text: { fr: ["Il m'a fait tourner si vite que j'ai vomi le punch sur son uniforme d'apparat. Il a dit « j'ai connu pire » en s'essuyant. Il a été appelé pour un vrai incendie. Je crois qu'il a été soulagé.", "J'ai dansé avec lui, ma tante aussi, ma mère aussi. On s'est disputé le pompier près du stand de merguez. Il est parti avec le DJ."], en: ["He spun me so fast I puked punch on his dress uniform. He said 'I've seen worse' while wiping off. He got called to a real fire. I think he was relieved.", "I danced with him, so did my aunt, so did my mom. We fought over him by the sausage stand. He left with the DJ."] }, fx: { happy: -3, health: -2 }, mood: 'sick' },
         ],
       },
       {
@@ -2515,7 +2515,7 @@ export const holidayEvents: EventDef[] = [
       {
         label: { fr: 'Prendre le grill en main', en: 'Take over the grill' },
         out: [
-          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai pris le contrôle du barbecue. Viande parfaite, légumes grillés, saucisses dorées. On m'a proclamé{|e} « roi{|ne} du grill ». J'ai gardé la pince comme un sceptre.", "J'ai sauvé le barbecue. Le maître du grill a boudé dans son transat. Tout le monde a mangé. Personne n'a été malade. C'est rare."], en: ["I took over the grill. Perfect meat, grilled veggies, golden sausages. They crowned me 'grill royalty'. I kept the tongs like a scepter.", "I saved the barbecue. The grill master sulked in his lounge chair. Everyone ate. Nobody got sick. That's rare."] }, fx: { happy: 7, karma: 2 }, mood: 'proud' },
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai pris le contrôle du barbecue. Viande parfaite, légumes grillés, saucisses dorées. On m'a proclamé{|e} « {roi|reine} du grill ». J'ai gardé la pince comme un sceptre.", "J'ai sauvé le barbecue. Le maître du grill a boudé dans son transat. Tout le monde a mangé. Personne n'a été malade. C'est rare."], en: ["I took over the grill. Perfect meat, grilled veggies, golden sausages. They crowned me 'grill royalty'. I kept the tongs like a scepter.", "I saved the barbecue. The grill master sulked in his lounge chair. Everyone ate. Nobody got sick. That's rare."] }, fx: { happy: 7, karma: 2 }, mood: 'proud' },
           { w: 1, text: { fr: ["La graisse a fait une flamme de deux mètres. J'ai perdu les poils des avant-bras et le parasol du voisin. Les saucisses, elles, étaient parfaites.", "J'ai fait tomber toutes les côtelettes dans les braises. Le chien inconnu en a profité. Il est reparti avec six côtelettes. Il ne reviendra pas, il n'en a pas besoin."], en: ["The grease shot up a six-foot flame. I lost my forearm hair and the neighbor's umbrella. The sausages, however, were perfect.", "I dropped all the chops into the coals. The strange dog seized the moment. He left with six chops. He won't be back; he doesn't need to."] }, fx: { happy: -2, health: -3 }, mood: 'shock' },
         ],
       },
@@ -2631,7 +2631,7 @@ export const holidayEvents: EventDef[] = [
         label: { fr: 'Le grand toboggan', en: 'The big slide' },
         out: [
           { w: 3, text: { fr: ["J'ai fait le toboggan géant trente-sept fois. J'ai le maillot usé aux fesses et le sourire jusqu'aux oreilles. Les meilleures vacances de ma vie.", "J'ai descendu le toboggan à plat ventre, la tête la première. Le maître-nageur a sifflé. J'ai recommencé. Il a sifflé plus fort."], en: ["I did the giant slide thirty-seven times. My swimsuit is worn through at the butt and I'm grinning ear to ear. Best vacation ever.", "I went down the slide belly-first, head-first. The lifeguard blew his whistle. I did it again. He blew harder."] }, fx: { happy: 8, athletic: 2 }, mood: 'party' },
-          { w: 1, text: { fr: ["Je suis resté{|e} coincé{|e} au milieu du toboggan. L'enfant suivant m'a percuté{|e}, puis le suivant, puis le suivant. On est sortis en grappe. Le maître-nageur a démissionné.", "J'ai perdu mon maillot dans le toboggan. Je suis arrivé{|e} tout nu{|e} dans la piscine, devant tout le camping. On m'a prêté une serviette. Et un surnom."], en: ["I got stuck halfway down the slide. The next kid crashed into me, then the next, then the next. We came out in a cluster. The lifeguard quit.", "I lost my swimsuit in the slide. Arrived naked in the pool in front of the whole campsite. Someone lent me a towel. And a nickname."] }, fx: { happy: -2, stress: 4 }, mood: 'shock' },
+          { w: 1, text: { fr: ["Je suis resté{|e} coincé{|e} au milieu du toboggan. L'enfant suivant m'a percuté{|e}, puis le suivant, puis le suivant. On est sortis en grappe. Le maître-nageur a démissionné.", "J'ai perdu mon maillot dans le toboggan. Je suis arrivé{|e} {tout nu|toute nue} dans la piscine, devant tout le camping. On m'a prêté une serviette. Et un surnom."], en: ["I got stuck halfway down the slide. The next kid crashed into me, then the next, then the next. We came out in a cluster. The lifeguard quit.", "I lost my swimsuit in the slide. Arrived naked in the pool in front of the whole campsite. Someone lent me a towel. And a nickname."] }, fx: { happy: -2, stress: 4 }, mood: 'shock' },
         ],
       },
       {
@@ -2653,13 +2653,13 @@ export const holidayEvents: EventDef[] = [
     text: {
       fr: [
         "Cet été, j'ai passé deux semaines chez mamie. J'ai mangé {w:food} tous les midis, regardé {w:show} tous les soirs, et pris [[deux|trois|quatre]] kilos de bonheur.",
-        "Vacances d'été : j'ai attrapé un coup de soleil, des tiques et {w:animal} dans un bocal. J'ai dû relâcher {w:animal}. Pas les tiques.",
+        "Vacances d'été : j'ai attrapé un coup de soleil, des tiques et {w:animal} dans un bocal. J'ai dû relâcher la bestiole. Pas les tiques.",
         "Grandes vacances. J'ai appris à faire du vélo sans les mains, à tricher aux cartes et à dire un gros mot en patois. Papy était fier. Mamie, moins.",
         "Cet été, on est partis {w:to_place} en famille. Huit heures de voiture, trois disputes, un vomi sur l'autoroute. Je m'en souviendrai toute ma vie.",
       ],
       en: [
         "This summer, I spent two weeks at Grandma's. I ate {w:food} every lunch, watched {w:show} every night and gained [[four|six|eight]] pounds of happiness.",
-        "Summer vacation: I got a sunburn, ticks and {w:animal} in a jar. I had to release {w:animal}. Not the ticks.",
+        "Summer vacation: I got a sunburn, ticks and {w:animal} in a jar. I had to set the critter free. Not the ticks.",
         "Summer break. I learned to ride a bike no-handed, to cheat at cards and to say a swear word in the local dialect. Grandpa was proud. Grandma, less so.",
         "This summer, we went {w:to_place} as a family. Eight hours in the car, three fights, one puke on the highway. I'll remember it forever.",
       ],
@@ -2815,7 +2815,7 @@ export const holidayEvents: EventDef[] = [
       {
         label: { fr: 'Tout donner', en: 'Give it everything' },
         out: [
-          { w: 2, text: { fr: ["J'ai dansé comme si personne ne regardait. Tout le monde regardait. J'ai fait le grand écart, le moonwalk et un salto raté. J'ai été élu{|e} roi{|ne} de la soirée, à l'unanimité.", "Quatre heures de danse non-stop. J'ai fini en sueur, la cravate sur le front, à chanter {w:song} en duo avec la grand-mère de la mariée. Elle m'a embrassé{|e} sur la bouche. Légende."], en: ["I danced like nobody was watching. Everybody was watching. I did the splits, the moonwalk and a failed backflip. Unanimously crowned the night's royalty.", "Four hours of nonstop dancing. I ended up drenched, tie on my forehead, singing {w:song} with the bride's grandmother. She kissed me on the mouth. Legend."] }, fx: { happy: 12, athletic: 1, health: -2 }, mood: 'party' },
+          { w: 2, text: { fr: ["J'ai dansé comme si personne ne regardait. Tout le monde regardait. J'ai fait le grand écart, le moonwalk et un salto raté. J'ai été élu{|e} {roi|reine} de la soirée, à l'unanimité.", "Quatre heures de danse non-stop. J'ai fini en sueur, la cravate sur le front, à chanter {w:song} en duo avec la grand-mère de la mariée. Elle m'a embrassé{|e} sur la bouche. Légende."], en: ["I danced like nobody was watching. Everybody was watching. I did the splits, the moonwalk and a failed backflip. Unanimously crowned the night's royalty.", "Four hours of nonstop dancing. I ended up drenched, tie on my forehead, singing {w:song} with the bride's grandmother. She kissed me on the mouth. Legend."] }, fx: { happy: 12, athletic: 1, health: -2 }, mood: 'party' },
           { w: 1, text: { fr: ["Pendant le rock, j'ai lâché ma partenaire. Elle a traversé la piste, percuté la pièce montée, et les choux ont volé comme des balles. Un œil au beurre noir, deux blessés à la crème pâtissière.", "J'ai voulu faire glisser sur les genoux. Le parquet était ciré. J'ai glissé jusqu'à la table des mariés et je me suis encastré{|e} dans la nappe. Mon pantalon a craqué de la ceinture aux chevilles."], en: ["During the swing dance, I let go of my partner. She flew across the floor into the wedding cake, and the cream puffs flew like bullets. One black eye, two custard casualties.", "I tried a knee slide. The floor was waxed. I slid all the way to the head table and embedded myself in the tablecloth. My pants split from waist to ankles."] }, fx: { happy: 3, health: -5, looks: -1 }, mood: 'shock' },
         ],
       },
@@ -2853,8 +2853,8 @@ export const holidayEvents: EventDef[] = [
       {
         label: { fr: 'Plonger pour l\'attraper', en: 'Dive for it' },
         out: [
-          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai plongé comme un gardien de but et attrapé le bouquet en pleine extension. Tout le monde a crié. La tante a pleuré. D'après la tradition, je suis le{|la} prochain{|e}.", "J'ai bondi plus haut que tout le monde. J'ai le bouquet, un genou écorché et le regard noir de cinq cousines. Je le garde."], en: ["I dove like a goalkeeper and caught the bouquet at full stretch. Everyone screamed. The aunt cried. According to tradition, I'm next.", "I jumped higher than everyone. I've got the bouquet, a scraped knee and death glares from five cousins. I'm keeping it."] }, fx: { happy: 8, flag: 'ho_bouquet', schedule: { key: 'ho_bouquet_curse', years: 2 } }, mood: 'proud' },
-          { w: 1, text: { fr: ["J'ai plongé. La tante aussi. On s'est percutées en plein vol. Le bouquet a atterri dans les bras d'un serveur, marié depuis vingt ans. Il a haussé les épaules.", "J'ai plongé dans le vide. Le bouquet est tombé dans la piscine. Je l'ai suivi. J'ai tout de même ressorti le bouquet, trempé, triomphant{|e}, et sans mes faux cils."], en: ["I dove. So did the aunt. We collided mid-air. The bouquet landed in the arms of a waiter, married for twenty years. He shrugged.", "I dove into thin air. The bouquet fell in the pool. I followed it. I came up with the bouquet anyway, soaked, triumphant, minus my fake eyelashes."] }, fx: { happy: 3, health: -2, flag: 'ho_bouquet', schedule: { key: 'ho_bouquet_curse', years: 2 } }, mood: 'shock' },
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai plongé comme un gardien de but et attrapé le bouquet en pleine extension. Tout le monde a crié. La tante a pleuré. D'après la tradition, je suis {le prochain|la prochaine}.", "J'ai bondi plus haut que tout le monde. J'ai le bouquet, un genou écorché et le regard noir de cinq cousines. Je le garde."], en: ["I dove like a goalkeeper and caught the bouquet at full stretch. Everyone screamed. The aunt cried. According to tradition, I'm next.", "I jumped higher than everyone. I've got the bouquet, a scraped knee and death glares from five cousins. I'm keeping it."] }, fx: { happy: 8, flag: 'ho_bouquet', schedule: { key: 'ho_bouquet_curse', years: 2 } }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai plongé. La tante aussi. On s'est {percutés|percutées} en plein vol. Le bouquet a atterri dans les bras d'un serveur, marié depuis vingt ans. Il a haussé les épaules.", "J'ai plongé dans le vide. Le bouquet est tombé dans la piscine. Je l'ai suivi. J'ai tout de même ressorti le bouquet, trempé, triomphant{|e}, et sans mes faux cils."], en: ["I dove. So did the aunt. We collided mid-air. The bouquet landed in the arms of a waiter, married for twenty years. He shrugged.", "I dove into thin air. The bouquet fell in the pool. I followed it. I came up with the bouquet anyway, soaked, triumphant, minus my fake eyelashes."] }, fx: { happy: 3, health: -2, flag: 'ho_bouquet', schedule: { key: 'ho_bouquet_curse', years: 2 } }, mood: 'shock' },
         ],
       },
       {
@@ -2955,7 +2955,7 @@ export const holidayEvents: EventDef[] = [
         "Au mariage, on t'a placé{|e} à la « table des célibataires ». À ta droite, {a.first}, qui parle de son ex depuis l'entrée. À ta gauche, un homme qui collectionne {w:object}.",
         "Table des célibataires du mariage. {a.first}, assis{a:|e} à côté de toi, te fait du pied depuis le fromage et vient de te glisser un mot : « Chambre 12 ».",
         "Mariage, table 14 : les célibataires. Il y a un plan de table, et quelqu'un a clairement voulu que tu finisses avec {a.first}. Il y a des petits cœurs sur vos deux cartons.",
-        "Tu es à la table des célibataires. {a.first} t'explique {w:conspiracy}. C'est la quatrième théorie de la soirée. {a:Il|Elle} est vraiment très beau{a:|lle}, par contre.",
+        "Tu es à la table des célibataires. {a.first} t'explique {w:conspiracy}. C'est la quatrième théorie de la soirée. {a:Il|Elle} est vraiment {a:très beau|très belle}, par contre.",
       ],
       en: [
         "At the wedding, they seated you at the 'singles table'. On your right, {a.first}, who's been talking about their ex since the ceremony. On your left, a man who collects {w:object}.",
@@ -2992,7 +2992,7 @@ export const holidayEvents: EventDef[] = [
     scene: { place: 'castle', mood: 'neutral' },
     text: {
       fr: [
-        "{a.first} t'a choisi{|e} comme parrain{|} ou marraine{|} de son bébé. Le baptême est dimanche. Tu ne sais pas faire le signe de croix. Tu as une gueule de bois.",
+        "{a.first} t'a choisi{|e} comme {parrain|marraine} de son bébé. Le baptême est dimanche. Tu ne sais pas faire le signe de croix. Tu as une gueule de bois.",
         "Baptême du bébé de {a.first}. Tu es témoin. Le curé te demande si tu « renonces à Satan ». Tu hésites une seconde de trop.",
         "Baptême. Le bébé de {a.first} hurle depuis vingt minutes. Le curé s'approche avec l'eau bénite. Tu tiens le bébé. Le bébé a une couche pleine, tu le sens.",
         "Tu es au baptême du bébé de {a.first}. La réception est dans la salle des fêtes. Il y a {w:food}, des dragées et un oncle qui commence déjà à chanter.",
@@ -3008,7 +3008,7 @@ export const holidayEvents: EventDef[] = [
       {
         label: { fr: 'Assurer la cérémonie', en: 'Nail the ceremony' },
         out: [
-          { w: 2, text: { fr: ["Tout s'est bien passé. Le bébé a fait pipi sur l'aube du curé au moment exact où il le bénissait. Le curé a dit « c'est un signe ». Personne ne sait de quoi.", "J'ai récité les prières en lisant sur mon téléphone. Le bébé m'a souri. J'ai fondu. Je suis le meilleur parrain, la meilleure marraine, la meilleure personne."], en: ["It all went well. The baby peed on the priest's robe exactly as he blessed it. The priest said 'It's a sign.' Nobody knows of what.", "I recited the prayers off my phone. The baby smiled at me. I melted. Best godparent, best person."] }, fx: { happy: 7, rel: 12, karma: 3 }, mood: 'love' },
+          { w: 2, text: { fr: ["Tout s'est bien passé. Le bébé a fait pipi sur l'aube du curé au moment exact où il le bénissait. Le curé a dit « c'est un signe ». Personne ne sait de quoi.", "J'ai récité les prières en lisant sur mon téléphone. Le bébé m'a souri. J'ai fondu. Je suis {le meilleur parrain|la meilleure marraine} du monde."], en: ["It all went well. The baby peed on the priest's robe exactly as he blessed it. The priest said 'It's a sign.' Nobody knows of what.", "I recited the prayers off my phone. The baby smiled at me. I melted. Best godparent, best person."] }, fx: { happy: 7, rel: 12, karma: 3 }, mood: 'love' },
           { w: 1, text: { fr: ["En renonçant à Satan, j'ai éternué. Le bébé a sursauté et m'a vomi dans le col. Le curé a fait un signe de croix pour moi, en plus.", "J'ai fait tomber le cierge. Il a enflammé le voile de la grand-mère. On l'a éteinte avec l'eau bénite. Elle dit que c'était un miracle. Moi, un accident."], en: ["While renouncing Satan, I sneezed. The baby jumped and puked down my collar. The priest made an extra sign of the cross for me.", "I dropped the candle. It set Grandma's veil on fire. We put her out with holy water. She calls it a miracle. I call it an accident."] }, fx: { happy: -3, rel: 4, stress: 5 }, mood: 'shock' },
         ],
       },
@@ -3171,22 +3171,22 @@ export const holidayEvents: EventDef[] = [
     scene: { place: 'home', mood: 'proud', prop: 'champagne' },
     text: {
       fr: [
-        "Tes parents organisent une fête pour ton diplôme. {a.first} a fait imprimer une banderole avec ta photo de classe de CE1. Toute la famille est là, même le cousin qui sort de prison.",
-        "Fête de remise de diplôme dans le jardin. {a.first} prépare un discours. Il fait [[trois|cinq|huit]] pages recto verso et commence par ta naissance.",
-        "Pour célébrer ton diplôme, ta famille t'offre {w:gift} et une soirée {w:at_place}. {a.first} pleure déjà et il n'est que 15 h.",
-        "Fête de diplôme. Tes potes veulent t'emmener faire la tournée des bars. {a.first} veut que tu restes pour « la photo de famille ». Elle dure depuis quarante minutes.",
+        "Tes parents organisent une fête pour ton diplôme. {a:Ton père|Ta mère} a fait imprimer une banderole avec ta photo de classe de CE1. Toute la famille est là, même le cousin qui sort de prison.",
+        "Fête de remise de diplôme dans le jardin. {a:Ton père|Ta mère} prépare un discours. Il fait [[trois|cinq|huit]] pages recto verso et commence par ta naissance.",
+        "Pour célébrer ton diplôme, ta famille t'offre {w:gift} et une soirée {w:at_place}. {a:Ton père|Ta mère} pleure déjà et il n'est que 15 h.",
+        "Fête de diplôme. Tes potes veulent t'emmener faire la tournée des bars. {a:Ton père|Ta mère} veut que tu restes pour « la photo de famille ». Elle dure depuis quarante minutes.",
       ],
       en: [
-        "Your parents are throwing a graduation party. {a.first} printed a banner with your second-grade class photo. The whole family is here, even the cousin fresh out of prison.",
-        "Graduation party in the yard. {a.first} is preparing a speech. It's [[three|five|eight]] double-sided pages and starts with your birth.",
-        "To celebrate your diploma, your family gives you {w:gift} and a night {w:at_place}. {a.first} is already crying and it's only 3 p.m.",
-        "Graduation party. Your friends want to take you bar-hopping. {a.first} wants you to stay for 'the family photo'. It's been going on for forty minutes.",
+        "Your parents are throwing a graduation party. {a:Your dad|Your mom} printed a banner with your second-grade class photo. The whole family is here, even the cousin fresh out of prison.",
+        "Graduation party in the yard. {a:Your dad|Your mom} is preparing a speech. It's [[three|five|eight]] double-sided pages and starts with your birth.",
+        "To celebrate your diploma, your family gives you {w:gift} and a night {w:at_place}. {a:Your dad|Your mom} is already crying and it's only 3 p.m.",
+        "Graduation party. Your friends want to take you bar-hopping. {a:Your dad|Your mom} wants you to stay for 'the family photo'. It's been going on for forty minutes.",
       ],
     },
     choices: [
       {
         label: { fr: 'Rester avec la famille', en: 'Stay with the family' },
-        text: { fr: ["Je suis resté{|e}. Discours, larmes, gâteau, et mon oncle qui m'a demandé « et maintenant, tu fais quoi de ta vie ? » toutes les vingt minutes. {a.my} était aux anges. Moi, au purgatoire.", "J'ai écouté le discours en entier. Il y avait une anecdote sur mon premier pot de chambre. Tout le monde a applaudi. J'ai bu le champagne de trois personnes."], en: ["I stayed. Speeches, tears, cake, and my uncle asking 'so what are you doing with your life?' every twenty minutes. {a.my} was over the moon. I was in purgatory.", "I listened to the whole speech. It included a story about my first potty. Everyone clapped. I drank three people's champagne."] },
+        text: { fr: ["Je suis resté{|e}. Discours, larmes, gâteau, et mon oncle qui m'a demandé « et maintenant, tu fais quoi de ta vie ? » toutes les vingt minutes. {a:Mon père|Ma mère} était aux anges. Moi, au purgatoire.", "J'ai écouté le discours en entier. Il y avait une anecdote sur mon premier pot de chambre. Tout le monde a applaudi. J'ai bu le champagne de trois personnes."], en: ["I stayed. Speeches, tears, cake, and my uncle asking 'so what are you doing with your life?' every twenty minutes. {a:My dad|My mom} was over the moon. I was in purgatory.", "I listened to the whole speech. It included a story about my first potty. Everyone clapped. I drank three people's champagne."] },
         fx: { happy: 4, rel: 12 },
         mood: 'proud',
       },
@@ -3194,7 +3194,7 @@ export const holidayEvents: EventDef[] = [
         label: { fr: 'Tournée des bars', en: 'Bar crawl' },
         out: [
           { w: 2, text: { fr: ["Tournée des bars avec ma toge. J'ai bu dans mon chapeau de diplômé{|e}, dansé sur un comptoir et fini la nuit en lançant mon diplôme dans une fontaine. Je l'ai récupéré. Il est gondolé.", "On a fait sept bars. J'ai embrassé un inconnu au cinquième. J'ai pleuré au sixième. J'ai mangé {w:food} au septième. Diplômé{|e} et détruit{|e}."], en: ["Bar crawl in my gown. Drank out of my mortarboard, danced on a counter and ended the night tossing my diploma into a fountain. Got it back. It's warped.", "We hit seven bars. Kissed a stranger at the fifth. Cried at the sixth. Ate {w:food} at the seventh. Graduated and destroyed."] }, fx: { happy: 10, health: -4, rel: -4 }, mood: 'party' },
-          { w: 1, text: { fr: ["Je suis rentré{|e} à 6 h. {a.my} m'attendait dans le salon avec la banderole et la photo de famille sans moi. Personne ne souriait sur la photo.", "J'ai perdu ma toge, mon diplôme et ma dignité. Un SDF les a retrouvés. Il porte la toge mieux que moi."], en: ["I got home at 6 a.m. {a.my} was waiting in the living room with the banner and the family photo without me. Nobody was smiling in it.", "I lost my gown, my diploma and my dignity. A homeless man found them. He wears the gown better than I did."] }, fx: { happy: 2, health: -4, rel: -10 }, mood: 'sad' },
+          { w: 1, text: { fr: ["Je suis rentré{|e} à 6 h. {a:Mon père|Ma mère} m'attendait dans le salon avec la banderole et la photo de famille sans moi. Personne ne souriait sur la photo.", "J'ai perdu ma toge, mon diplôme et ma dignité. Un SDF les a retrouvés. Il porte la toge mieux que moi."], en: ["I got home at 6 a.m. {a:My dad|My mom} was waiting in the living room with the banner and the family photo without me. Nobody was smiling in it.", "I lost my gown, my diploma and my dignity. A homeless man found them. He wears the gown better than I did."] }, fx: { happy: 2, health: -4, rel: -10 }, mood: 'sad' },
         ],
       },
     ],
@@ -3212,7 +3212,7 @@ export const holidayEvents: EventDef[] = [
       fr: [
         "Pot de départ à la retraite de Gérard, 41 ans de maison chez {employer}. {a.first} te demande de faire un discours. Tu ne sais pas ce que Gérard faisait exactement.",
         "Pot de retraite au bureau. La collecte pour le cadeau a rapporté [[vingt-trois|trente-sept|quarante]] euros. Ça fait {w:gift}. {a.first} te charge de l'acheter.",
-        "C'est le départ en retraite de la doyenne du service. Il y a des chips, du mousseux tiède et {a.first} qui pleure dans un coin parce qu'il{a:|le} « sera le{a:|la} prochain{a:|e} ».",
+        "C'est le départ en retraite de la doyenne du service. Il y a des chips, du mousseux tiède et {a.first} qui pleure dans un coin parce qu'{a:il|elle} « sera {a:le prochain|la prochaine} ».",
         "Pot de départ. Le retraité, soulagé, a bu {w:drink} et commence à dire ce qu'il pense vraiment de la direction. Au micro. Le PDG est là.",
       ],
       en: [
@@ -3250,7 +3250,7 @@ export const holidayEvents: EventDef[] = [
     text: {
       fr: [
         "Baby shower chez {a.first}. Jeu numéro 1 : deviner le tour de ventre avec une ficelle. Jeu numéro 2 : boire du jus dans des biberons. Jeu numéro 3 : il y a une couche avec {w:food} dedans.",
-        "Baby shower. On te met un bandeau sur les yeux et on te demande de changer la couche d'un poupon. Le poupon est rempli de {w:food} pour « faire réaliste ».",
+        "Baby shower. On te met un bandeau sur les yeux et on te demande de changer la couche d'un poupon. Dans le poupon, on a mis {w:food} pour « faire réaliste ».",
         "Fête prénatale pour le bébé de {a.first}. Chaque invité doit donner un conseil de parent. Tu as {w:drink} à la main et aucun enfant. Ton tour arrive.",
         "Baby shower de {a.first}. Le cadeau collectif est un tire-lait. Le tien, c'est {w:gift}. Il y a un silence quand on l'ouvre.",
       ],
@@ -3265,7 +3265,7 @@ export const holidayEvents: EventDef[] = [
       {
         label: { fr: 'Jouer à fond', en: 'Play to win' },
         out: [
-          { w: 1, text: { fr: ["J'ai gagné tous les jeux. Au jeu de la couche, j'ai léché le contenu pour l'identifier. C'était bien de la purée de marron. J'avais parié ma réputation. J'ai gagné un body.", "J'ai bu le biberon de jus en six secondes. Record. J'ai eu le hoquet jusqu'au soir et j'ai rendu le jus dans le sac à langer. On m'a nommé{|e} « parrain{|} ou marraine{|} de secours »."], en: ["I won every game. At the diaper game, I licked the contents to identify them. It was chestnut purée. I'd bet my reputation. I won a onesie.", "I drained the juice bottle in six seconds. Record. Had hiccups all night and threw up the juice in the diaper bag. They named me 'backup godparent'."] }, fx: { happy: 7, rel: 8 }, mood: 'party' },
+          { w: 1, text: { fr: ["J'ai gagné tous les jeux. Au jeu de la couche, j'ai léché le contenu pour l'identifier. C'était bien de la purée de marron. J'avais parié ma réputation. J'ai gagné un body.", "J'ai bu le biberon de jus en six secondes. Record. J'ai eu le hoquet jusqu'au soir et j'ai rendu le jus dans le sac à langer. On m'a nommé{|e} « {parrain|marraine} de secours »."], en: ["I won every game. At the diaper game, I licked the contents to identify them. It was chestnut purée. I'd bet my reputation. I won a onesie.", "I drained the juice bottle in six seconds. Record. Had hiccups all night and threw up the juice in the diaper bag. They named me 'backup godparent'."] }, fx: { happy: 7, rel: 8 }, mood: 'party' },
           { w: 1, text: { fr: ["La couche de jeu ne contenait pas du chocolat. Le chien de la maison avait fait un échange. Je l'ai découvert en goûtant. Toute la fête a vu ma tête. Je ne mange plus de Nutella.", "J'ai trop serré la ficelle du ventre et j'ai fait sortir un pet à la future maman. Énorme. Elle a ri si fort qu'elle a cru perdre les eaux. Fausse alerte. Mais tout le monde a couru."], en: ["The game diaper didn't have chocolate in it. The house dog had made a swap. I found out by tasting. The whole party saw my face. I don't eat Nutella anymore.", "I pulled the belly string too tight and squeezed a fart out of the mom-to-be. Huge. She laughed so hard she thought her water broke. False alarm. But everyone ran."] }, fx: { happy: -4, health: -3, visual: 'poop' }, mood: 'sick', icon: '💩' },
         ],
       },
@@ -3289,13 +3289,13 @@ export const holidayEvents: EventDef[] = [
     text: {
       fr: [
         "{a.first} organise une gender reveal. Le résultat sera annoncé par un canon à confettis artisanal fabriqué par son beau-frère, qui a « fait l'armée ». La mèche fume déjà.",
-        "Gender reveal de {a.first} dans le jardin. Le sexe du bébé sera révélé par {w:animal} dressé qui doit percer un ballon. L'animal a l'air de vouloir autre chose.",
+        "Gender reveal de {a.first} dans le jardin. Le sexe du bébé sera révélé par un animal dressé, {w:animal}, qui doit percer un ballon. L'animal a l'air de vouloir autre chose.",
         "Fête pour révéler le sexe du bébé de {a.first}. Un avion d'épandage va larguer de la poudre rose ou bleue sur le jardin. Le pilote est un oncle. Il a bu {w:drink}.",
         "Gender reveal chez {a.first}. On t'a confié le rôle d'allumer la fusée colorée. Il y a [[douze|vingt|cinquante]] invités, un barbecue et une forêt très sèche juste derrière.",
       ],
       en: [
         "{a.first} is throwing a gender reveal. The result will be announced by a homemade confetti cannon built by an in-law who 'was in the army'. The fuse is already smoking.",
-        "{a.first}'s gender reveal in the yard. The baby's sex will be revealed by trained {w:animal} that's supposed to pop a balloon. The animal seems to have other plans.",
+        "{a.first}'s gender reveal in the yard. The baby's sex will be revealed by a trained animal, {w:animal}, that's supposed to pop a balloon. The animal seems to have other plans.",
         "Party to reveal {a.first}'s baby's sex. A crop duster will drop pink or blue powder on the yard. The pilot is an uncle. He had {w:drink}.",
         "Gender reveal at {a.first}'s. You've been put in charge of lighting the colored rocket. There are [[twelve|twenty|fifty]] guests, a barbecue and a very dry forest right behind.",
       ],
