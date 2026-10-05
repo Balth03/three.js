@@ -15,8 +15,8 @@ const doctorFx: Effect = {
       if (!d) continue;
       if (rand() < d.curable) { cure(life, content, c.id); continue; }
       // Incurable things (a missing finger…) aren't "treated" again and again.
-      if (d.curable <= 0 && life.used[`dr:${d.id}`] !== undefined) continue;
-      life.used[`dr:${d.id}`] = 1;
+      if (d.curable <= 0 && life.flags[`dr:${d.id}`] !== undefined) continue;
+      life.flags[`dr:${d.id}`] = 1;
       const fr = d.name.fr.toLowerCase(), en = d.name.en.toLowerCase();
       const KO: [string, string][] = [
         [`Le traitement n'a rien donné (${fr}). Le médecin a haussé les épaules et encaissé le chèque.`, `The treatment for ${en} didn't work. The doctor shrugged and cashed the cheque.`],
