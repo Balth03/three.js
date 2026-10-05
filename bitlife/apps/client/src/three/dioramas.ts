@@ -17,9 +17,9 @@ export interface Diorama {
   update?: (t: number) => void;
 }
 
-const S = 12; // plinth size
+export const S = 12; // plinth size
 
-function plinth(d: Diorama, grassColor = '#8FD16F', soil = '#B98563', stone = '#D9C7AE') {
+export function plinth(d: Diorama, grassColor = '#8FD16F', soil = '#B98563', stone = '#D9C7AE') {
   const g = new THREE.Group();
   const grassM = M(grassColor, { unique: true, rough: 0.9 });
   d.grass.push({ m: grassM, base: grassM.color.clone() });
@@ -43,13 +43,13 @@ function plinth(d: Diorama, grassColor = '#8FD16F', soil = '#B98563', stone = '#
   d.root.add(g);
 }
 
-function leafMat(d: Diorama, color: string) {
+export function leafMat(d: Diorama, color: string) {
   const m = M(color, { unique: true, rough: 0.85 });
   d.foliage.push({ m, base: m.color.clone() });
   return m;
 }
 
-function tree(d: Diorama, x: number, z: number, s = 1, kind: 'round' | 'pine' | 'tall' = 'round', color = '#5DBB63') {
+export function tree(d: Diorama, x: number, z: number, s = 1, kind: 'round' | 'pine' | 'tall' = 'round', color = '#5DBB63') {
   const g = new THREE.Group();
   g.position.set(x, 0, z);
   g.scale.setScalar(s);
@@ -75,7 +75,7 @@ function tree(d: Diorama, x: number, z: number, s = 1, kind: 'round' | 'pine' | 
   return g;
 }
 
-function bush(d: Diorama, x: number, z: number, s = 1, color = '#4FAF5A') {
+export function bush(d: Diorama, x: number, z: number, s = 1, color = '#4FAF5A') {
   const lm = leafMat(d, color);
   for (const [bx, bz, r] of [[0, 0, 0.42], [0.35, 0.1, 0.3], [-0.32, 0.05, 0.32]] as const) {
     const b = mesh(G.sphere(14), lm, x + bx * s, r * s * 0.8, z + bz * s);
@@ -84,7 +84,7 @@ function bush(d: Diorama, x: number, z: number, s = 1, color = '#4FAF5A') {
   }
 }
 
-function flowers(d: Diorama, x: number, z: number, n = 6, spread = 0.8) {
+export function flowers(d: Diorama, x: number, z: number, n = 6, spread = 0.8) {
   const cols = ['#FF7AA2', '#FFD166', '#FFFFFF', '#B28DFF', '#FF9F68'];
   for (let i = 0; i < n; i++) {
     const a = i * 2.4, r = spread * Math.sqrt((i + 0.5) / n);
@@ -96,7 +96,7 @@ function flowers(d: Diorama, x: number, z: number, n = 6, spread = 0.8) {
   }
 }
 
-function fence(d: Diorama, x0: number, z0: number, x1: number, z1: number, color = '#FFFFFF') {
+export function fence(d: Diorama, x0: number, z0: number, x1: number, z1: number, color = '#FFFFFF') {
   const len = Math.hypot(x1 - x0, z1 - z0);
   const n = Math.max(2, Math.round(len / 0.55));
   const m = M(color, { rough: 0.6 });
@@ -112,7 +112,7 @@ function fence(d: Diorama, x0: number, z0: number, x1: number, z1: number, color
   }
 }
 
-function lamp(d: Diorama, x: number, z: number) {
+export function lamp(d: Diorama, x: number, z: number) {
   d.root.add(mesh(G.cyl(0.05, 0.07, 2.2, 8), M('#3D4756', { rough: 0.4, metal: 0.5 }), x, 1.1, z));
   const bulbM = M('#FFF2C4', { emissive: '#FFD27A', ei: 0.8, unique: true });
   d.windows.push(bulbM);
@@ -121,7 +121,7 @@ function lamp(d: Diorama, x: number, z: number) {
   d.root.add(b);
 }
 
-function bench(d: Diorama, x: number, z: number, rot = 0) {
+export function bench(d: Diorama, x: number, z: number, rot = 0) {
   const g = new THREE.Group();
   const wood = M('#C58B5C', { rough: 0.7 });
   const iron = M('#3D4756', { rough: 0.4, metal: 0.4 });
@@ -133,7 +133,7 @@ function bench(d: Diorama, x: number, z: number, rot = 0) {
   d.root.add(g);
 }
 
-function car(d: Diorama, x: number, z: number, color = '#FF6B6B', rot = 0) {
+export function car(d: Diorama, x: number, z: number, color = '#FF6B6B', rot = 0) {
   const g = new THREE.Group();
   const body = M(color, { rough: 0.35, metal: 0.1 });
   g.add(mesh(G.box(2.0, 0.55, 1.0, 0.22), body, 0, 0.45, 0));
@@ -157,7 +157,7 @@ function car(d: Diorama, x: number, z: number, color = '#FF6B6B', rot = 0) {
   d.root.add(g);
 }
 
-function windowGrid(d: Diorama, parent: THREE.Object3D, cx: number, cy: number, z: number, cols: number, rows: number, w: number, h: number, gx: number, gy: number, frame = '#FFFFFF', glow = '#FFE29A', rotY = 0) {
+export function windowGrid(d: Diorama, parent: THREE.Object3D, cx: number, cy: number, z: number, cols: number, rows: number, w: number, h: number, gx: number, gy: number, frame = '#FFFFFF', glow = '#FFE29A', rotY = 0) {
   const fm = M(frame, { rough: 0.5 });
   const wm = M('#9FD3F5', { rough: 0.15, metal: 0.1, emissive: glow, ei: 0.15, unique: true });
   d.windows.push(wm);
@@ -176,7 +176,7 @@ function windowGrid(d: Diorama, parent: THREE.Object3D, cx: number, cy: number, 
   }
 }
 
-function path(d: Diorama, pts: [number, number][], color = '#EADCC6') {
+export function path(d: Diorama, pts: [number, number][], color = '#EADCC6') {
   const m = M(color, { rough: 0.95 });
   for (const [x, z] of pts) {
     const s = mesh(G.cyl(0.32, 0.34, 0.06, 14), m, x, 0.03, z, false);
@@ -185,13 +185,13 @@ function path(d: Diorama, pts: [number, number][], color = '#EADCC6') {
   }
 }
 
-function newD(place: Place): Diorama {
+export function newD(place: Place): Diorama {
   return { place, root: new THREE.Group(), foliage: [], grass: [], spots: [], windows: [] };
 }
 
 // ───────────────────────────── places ─────────────────────────────
 
-function house(d: Diorama, x: number, z: number, wall = '#FFF1DC', roof = '#E8765C', s = 1) {
+export function house(d: Diorama, x: number, z: number, wall = '#FFF1DC', roof = '#E8765C', s = 1) {
   const g = new THREE.Group();
   g.position.set(x, 0, z);
   g.scale.setScalar(s);
@@ -534,7 +534,10 @@ function buildCemetery(): Diorama {
   return d;
 }
 
-const BUILDERS: Record<Place, () => Diorama> = {
+import { EXTRA_BUILDERS } from './dioramas2.ts';
+
+const BUILDERS: Partial<Record<Place, () => Diorama>> = {
+  ...EXTRA_BUILDERS,
   home: buildHome, apartment: buildApartment, school: buildSchool, uni: buildUni, office: buildOffice,
   hospital: buildHospital, park: buildPark, cemetery: buildCemetery, party: buildApartment,
 };

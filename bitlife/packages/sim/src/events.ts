@@ -92,6 +92,7 @@ const emptyVars: Record<string, number | string> = {};
 export function queueEvent(life: Life, content: Content, id: string, rng: Rng, actorId?: number, front = false): Pending | null {
   const e = eventDef(content, id);
   if (!e) return null;
+  if ((e.rating ?? (e.mature ? 1 : 0)) > life.rating) return null;
   let actor: Npc | null | undefined = npcById(life, actorId);
   if (!actor && e.actor) actor = bindActor(life, content, e.actor, rng);
   if (e.actor && !actor) return null;

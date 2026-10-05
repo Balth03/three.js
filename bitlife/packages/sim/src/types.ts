@@ -243,7 +243,7 @@ export interface NewNpcSpec {
 
 export type ActorSpec = RoleSel | { role?: RoleSel; create?: NewNpcSpec; minRel?: number; maxRel?: number; living?: boolean };
 
-export type UiTarget = 'parole' | 'appeal' | 'bank' | 'jobs' | 'university' | 'grad' | 'dating' | 'relations' | 'activities' | 'shop' | 'realestate' | 'cars' | 'stocks' | 'business' | 'crime' | 'minigame:surgery' | 'minigame:trial' | 'minigame:heist' | 'minigame:escape' | 'minigame:cooking' | 'minigame:blackjack' | 'minigame:date' | 'minigame:match' | 'minigame:interrogation';
+export type UiTarget = 'parole' | 'appeal' | 'bank' | 'jobs' | 'university' | 'grad' | 'dating' | 'relations' | 'activities' | 'shop' | 'realestate' | 'cars' | 'stocks' | 'business' | 'crime' | 'minigame:surgery' | 'minigame:trial' | 'minigame:heist' | 'minigame:escape' | 'minigame:cooking' | 'minigame:blackjack' | 'minigame:date' | 'minigame:match' | 'minigame:interrogation' | 'minigame:case';
 
 export interface Effect {
   happy?: number; health?: number; smarts?: number; looks?: number;

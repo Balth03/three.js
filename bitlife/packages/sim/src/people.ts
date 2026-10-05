@@ -138,6 +138,9 @@ export function npcFromSpec(life: Life, content: Content, rng: Rng, spec: NewNpc
   }
   const pet = spec.role === 'pet';
   const [lo, hi] = spec.age ?? (pet ? [0, 3] : [-1, 1]);
-  const age = spec.abs || (pet && !spec.age) ? rng.int(lo, hi) : Math.max(0, life.age + rng.int(lo, hi));
+  let age = spec.abs || (pet && !spec.age) ? rng.int(lo, hi) : Math.max(0, life.age + rng.int(lo, hi));
+  // Romantic / adult interactions: never cross the 18 line in either direction
+  const romantic = spec.gender === 'attracted' || ['partner', 'fiance', 'spouse', 'ex'].includes(spec.role);
+  if (romantic) age = life.age >= 18 ? Math.max(18, age) : Math.min(17, Math.max(13, age));
   return makeNpc(life, content, rng, { role: spec.role, gender, age, species: spec.species });
 }

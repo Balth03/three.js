@@ -19,7 +19,7 @@ export { makeNpc, randomAppearance, inheritAppearance } from './people.ts';
 export { migrate } from './migrate.ts';
 export { autoplay } from './autoplay.ts';
 export type { AutoplayOpts } from './autoplay.ts';
-export { listCrimes, commitCrime, trial, escape, parole, imprison, release, crimeChance } from './crime.ts';
+export { listCrimes, commitCrime, trial, escape, parole, appeal, gamble, workMinigame, imprison, release, crimeChance } from './crime.ts';
 export type { CrimeView, Defense } from './crime.ts';
 export { assetOffers, canAfford, buyAsset, sellAsset, renovate, toggleRent, moveInto, maxLoan, takeLoan, repayLoans, debt, portfolioValue, buyStock, sellStock, startBusiness, investBusiness, sellBusiness, netWorth, homeAsset, initMarket } from './money.ts';
 export type { AssetOffer, Financing } from './money.ts';

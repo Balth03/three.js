@@ -11,7 +11,7 @@ import { VerticalTiltShiftShader } from 'three/examples/jsm/shaders/VerticalTilt
 import type { Mood, Place } from '@bl/sim';
 import { Avatar, type AvatarSpec } from './avatar.ts';
 import { buildDiorama, type Diorama } from './dioramas.ts';
-import { ease } from './kit.ts';
+import { ease, emojiTexture, G } from './kit.ts';
 
 export type Quality = 'low' | 'medium' | 'high';
 
@@ -267,6 +267,69 @@ export class Stage {
 
   play(kind: 'hop' | 'spin' | 'celebrate') { this.player?.play(kind); }
 
+  // ───────────────────────────── visual fx (particles, splats) ─────────────────────────────
+  private fxParts: { s: THREE.Sprite; v: THREE.Vector3; life: number; max: number; spin: number }[] = [];
+  private splats: { m: THREE.Mesh; life: number }[] = [];
+
+  fx(list: string[]) {
+    if (!this.player) return;
+    const origin = this.player.root.getWorldPosition(new THREE.Vector3());
+    origin.y += this.player.height * 0.6;
+    const EMO: Record<string, string[]> = {
+      gore: ['🩸', '🩸', '🦴', '💥'], money: ['💸', '💰', '🪙'], police: ['🚨', '🚔', '👮'], fire: ['🔥', '🔥', '💨'], confetti: ['🎉', '🎊', '✨'],
+      hearts: ['❤️', '💕', '💘'], poop: ['💩', '🤮', '💩'], explosion: ['💥', '🔥', '💨'], ghost: ['👻', '✨', '🕯️'],
+    };
+    for (const k of list) {
+      const set = EMO[k];
+      if (!set) continue;
+      const n = this.reducedMotion ? 4 : k === 'gore' || k === 'explosion' || k === 'confetti' ? 22 : 12;
+      for (let i = 0; i < n; i++) {
+        const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: emojiTexture(set[i % set.length]), transparent: true, depthWrite: false }));
+        s.position.copy(origin);
+        s.scale.setScalar(0.35 + Math.random() * 0.3);
+        this.scene.add(s);
+        const a = Math.random() * Math.PI * 2;
+        const sp = k === 'explosion' || k === 'gore' ? 3.5 : 2;
+        this.fxParts.push({ s, v: new THREE.Vector3(Math.cos(a) * sp * Math.random(), 2 + Math.random() * 3.5, Math.sin(a) * sp * Math.random()), life: 0, max: 1.6 + Math.random(), spin: (Math.random() - 0.5) * 6 });
+      }
+      if (k === 'gore' && this.current) {
+        // blood splats on the ground (cartoon)
+        for (let i = 0; i < 6; i++) {
+          const m = new THREE.Mesh(G.circle(0.25 + Math.random() * 0.45), new THREE.MeshStandardMaterial({ color: '#B3122E', roughness: 0.25, metalness: 0.1, transparent: true }));
+          m.rotation.x = -Math.PI / 2;
+          const p = this.player.root.position;
+          m.position.set(p.x + (Math.random() - 0.5) * 3, 0.02 + i * 0.002, p.z + (Math.random() - 0.5) * 2.5);
+          m.scale.set(1, 0.7 + Math.random() * 0.6, 1);
+          this.current.root.add(m);
+          this.splats.push({ m, life: 0 });
+        }
+      }
+      if (k === 'explosion' || k === 'gore') this.shake = 0.5;
+    }
+  }
+  private shake = 0;
+
+  private updateFx(dt: number) {
+    for (let i = this.fxParts.length - 1; i >= 0; i--) {
+      const p = this.fxParts[i];
+      p.life += dt;
+      p.v.y -= 6 * dt;
+      p.s.position.addScaledVector(p.v, dt);
+      (p.s.material as THREE.SpriteMaterial).rotation += p.spin * dt;
+      (p.s.material as THREE.SpriteMaterial).opacity = Math.max(0, 1 - p.life / p.max);
+      if (p.life > p.max) { this.scene.remove(p.s); (p.s.material as THREE.SpriteMaterial).dispose(); this.fxParts.splice(i, 1); }
+    }
+    for (let i = this.splats.length - 1; i >= 0; i--) {
+      const s = this.splats[i];
+      s.life += dt;
+      if (s.life > 12) {
+        const m = s.m.material as THREE.MeshStandardMaterial;
+        m.opacity -= dt * 0.5;
+        if (m.opacity <= 0) { s.m.removeFromParent(); m.dispose(); this.splats.splice(i, 1); }
+      }
+    }
+  }
+
   /** Year transition: seasons cycle + hop. */
   ageUpFx() {
     this.seasonAnim = { from: this.season, t: 0 };
@@ -353,6 +416,12 @@ export class Stage {
     this.camera.lookAt(tgt);
     // characters
     for (const p of this.chars.values()) p.avatar.update(dt, t);
+    this.updateFx(dt);
+    if (this.shake > 0) {
+      this.shake = Math.max(0, this.shake - dt);
+      this.camera.position.x += (Math.random() - 0.5) * this.shake * 0.6;
+      this.camera.position.y += (Math.random() - 0.5) * this.shake * 0.6;
+    }
     if (this.lastView?.dead && this.player) {
       this.player.root.position.y = 0.7 + Math.sin(t * 1.4) * 0.15;
     }

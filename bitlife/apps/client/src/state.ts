@@ -1,9 +1,14 @@
 import { signal } from '@preact/signals';
 import type { Lang, Life, Resolution, Tab } from '@bl/sim';
 import { loadSettings, type Settings } from './save.ts';
+import { loadProfile } from './profile.ts';
 
 export type Screen = 'title' | 'create' | 'game';
-export type Modal = null | { kind: 'jobs' } | { kind: 'university' } | { kind: 'grad' } | { kind: 'dating' } | { kind: 'npc'; id: number } | { kind: 'saves' } | { kind: 'settings' } | { kind: 'menu' } | { kind: 'profile' };
+export type MinigameKind = 'heist' | 'getaway' | 'escape' | 'trial' | 'blackjack' | 'surgery' | 'cooking' | 'match' | 'interrogation' | 'case' | 'date';
+export type Modal = null | { kind: 'jobs' } | { kind: 'university' } | { kind: 'grad' } | { kind: 'dating' } | { kind: 'npc'; id: number } | { kind: 'saves' } | { kind: 'settings' } | { kind: 'menu' } | { kind: 'profile' }
+  | { kind: 'crime' } | { kind: 'realestate' } | { kind: 'cars' } | { kind: 'shop' } | { kind: 'stocks' } | { kind: 'bank' } | { kind: 'business' }
+  | { kind: 'achievements' } | { kind: 'graveyard' } | { kind: 'tree' } | { kind: 'god' }
+  | { kind: 'minigame'; game: MinigameKind; title: string; onDone: (score: number, extra?: number) => void };
 
 const s0 = loadSettings();
 export const settings = signal<Settings>(s0);
@@ -19,6 +24,8 @@ export const toast = signal<{ text: string; id: number } | null>(null);
 export const photoMode = signal(false);
 export const ageBusy = signal(false);
 export const showDeath = signal(false);
+export const profile = signal(loadProfile());
+export const achToast = signal<{ id: string; n: number } | null>(null);
 
 export function bump() { rev.value++; }
 

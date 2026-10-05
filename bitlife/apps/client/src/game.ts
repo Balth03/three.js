@@ -6,7 +6,9 @@ import {
 } from '@bl/sim';
 import type { Stage, StageView } from './three/stage.ts';
 import type { AvatarSpec } from './three/avatar.ts';
-import { life, rev, result, modal, screen, tab, bump, showToast, ageBusy, showDeath, settings, lang } from './state.ts';
+import { life, rev, result, modal, screen, tab, bump, showToast, ageBusy, showDeath, settings, lang, profile, achToast, type MinigameKind } from './state.ts';
+import { commitCrime, trial, escape, parole, appeal, gamble, workMinigame, summarize, heirLife, netWorth, formatMoney, country as countryOf, type Loc } from '@bl/sim';
+import { mergeAchievements, bury } from './profile.ts';
 import { saveLife } from './save.ts';
 import { sfx, setMusicAge } from './audio.ts';
 import { t } from './i18n.ts';
@@ -69,7 +71,7 @@ function autosave() { const l = life.value; if (l) saveLife(l); }
 // ───────────────────────────── lifecycle ─────────────────────────────
 
 export function startLife(opts: NewLifeOptions) {
-  const l = createLife(content, { ...opts, family: settings.value.family });
+  const l = createLife(content, { rating: settings.value.rating, ...opts });
   life.value = l;
   result.value = null;
   modal.value = null;
@@ -118,6 +120,7 @@ export function doAgeUp() {
   const moodOf: Mood = rep.died ? 'sad' : rep.milestones.some((m) => m.startsWith('graduate') || m === 'promotion' || m === 'baby') ? 'proud' : rep.milestones.some((m) => m.startsWith('death') || m === 'fired') ? 'sad' : 'neutral';
   stage?.setMood(moodOf);
   if (rep.milestones.includes('promotion') || rep.milestones.some((m) => m.startsWith('graduate'))) setTimeout(() => { stage?.play('celebrate'); sfx.good(); }, 500);
+  checkAch();
   setTimeout(() => {
     ageBusy.value = false;
     if (rep.died) onDeath();
@@ -158,8 +161,25 @@ export function pickChoice(i: number) {
   afterResolution(res, true);
 }
 
+function checkAch() {
+  const l = life.value;
+  if (!l) return;
+  const p = profile.value;
+  const fresh = mergeAchievements(p, l);
+  if (fresh.length) {
+    profile.value = { ...p };
+    fresh.forEach((id, i) => setTimeout(() => { achToast.value = { id, n: Date.now() }; sfx.good(); }, 400 + i * 1600));
+  }
+  if (l.challenge && !p.challengesDone[l.challenge]) {
+    const ch = content.challenges.find((c) => c.id === l.challenge);
+    if (ch && ch.test(l)) { p.challengesDone[l.challenge] = Date.now(); profile.value = { ...p }; showToast(`🏆 ${ch.name[lang.value]} !`); sfx.good(); stage?.play('celebrate'); }
+  }
+}
+
 function afterResolution(res: Resolution, showCard: boolean) {
   const l = life.value!;
+  if (res.visual?.length) stage?.fx(res.visual);
+  checkAch();
   stage?.setMood(res.mood ?? (res.tone === 'good' ? 'happy' : res.tone === 'bad' ? 'sad' : 'neutral'));
   if (res.mood === 'love') sfx.love(); else if (res.tone === 'good') sfx.good(); else if (res.tone === 'bad') sfx.bad();
   if (res.deltas.some((d) => d.key === 'money' && d.value > 0)) setTimeout(() => sfx.coin(), 200);
@@ -183,12 +203,94 @@ export function continueAfterResult(res = result.value) {
   bump();
 }
 
-function openUi(target: string) {
-  if (target === 'jobs') modal.value = { kind: 'jobs' };
-  else if (target === 'university') modal.value = { kind: 'university' };
-  else if (target === 'grad') modal.value = { kind: 'grad' };
-  else if (target === 'dating') modal.value = { kind: 'dating' };
+const MG_TITLES: Record<string, Loc<string>> = {
+  heist: { fr: 'Le casse', en: 'The heist' }, getaway: { fr: 'La fuite', en: 'The getaway' }, escape: { fr: 'L\'évasion', en: 'The escape' },
+  trial: { fr: 'Ta plaidoirie', en: 'Your defense' }, blackjack: { fr: 'Blackjack', en: 'Blackjack' }, surgery: { fr: 'Au bloc opératoire', en: 'In the OR' },
+  cooking: { fr: 'Coup de feu en cuisine', en: 'Dinner rush' }, match: { fr: 'Le grand match', en: 'The big match' }, interrogation: { fr: 'Interrogatoire', en: 'Interrogation' },
+  case: { fr: 'Plaidoirie', en: 'Closing argument' }, date: { fr: 'Le rencard', en: 'The date' },
+};
+
+export function openMinigame(game: MinigameKind, onDone: (score: number, extra?: number) => void) {
+  tab.value = null;
+  modal.value = { kind: 'minigame', game, title: MG_TITLES[game][lang.value], onDone: (score, extra) => { modal.value = null; onDone(score, extra); } };
   sfx.open();
+}
+
+function openUi(target: string) {
+  const l = life.value;
+  if (!l) return;
+  const simple = ['jobs', 'university', 'grad', 'dating', 'crime', 'realestate', 'cars', 'shop', 'stocks', 'bank', 'business'] as const;
+  if ((simple as readonly string[]).includes(target)) { modal.value = { kind: target } as typeof modal.value; sfx.open(); return; }
+  if (target === 'parole') { handleRes(parole(l, content)); return; }
+  if (target === 'appeal') { handleRes(appeal(l, content)); return; }
+  if (target === 'minigame:escape') { openMinigame('escape', (s) => handleRes(escape(l, content, s))); return; }
+  if (target === 'minigame:trial') {
+    openMinigame('trial', (s) => {
+      const v = trial(l, content, 'minigame', s);
+      const r: Resolution = { text: v, icon: '⚖️', tone: l.prison ? 'bad' : 'good', deltas: [], mood: l.prison ? 'cry' : 'proud' };
+      addLog(v, '⚖️', r.tone);
+      handleRes(r);
+    });
+    return;
+  }
+  if (target === 'minigame:blackjack') {
+    openMinigame('blackjack', (_s, net) => {
+      const c = countryOf(content, l.country);
+      const v = net ?? 0;
+      const txt = v >= 0 ? { fr: `Blackjack : j'ai gagné ${formatMoney(v, c, 'fr')} !`, en: `Blackjack: I won ${formatMoney(v, c, 'en')}!` } : { fr: `Blackjack : j'ai perdu ${formatMoney(-v, c, 'fr')}. La banque gagne toujours.`, en: `Blackjack: I lost ${formatMoney(-v, c, 'en')}. The house always wins.` };
+      handleRes(gamble(l, content, v, txt, '🃏'));
+    });
+    return;
+  }
+  const work: Record<string, { game: MinigameKind; icon: string; ok: Loc<string>; mid: Loc<string>; ko: Loc<string> }> = {
+    'minigame:surgery': { game: 'surgery', icon: '🩺', ok: { fr: 'Opération réussie : le patient a survécu et m\'a même remercié.', en: 'Surgery successful: the patient survived and even thanked me.' }, mid: { fr: 'Opération moyenne : j\'ai oublié une compresse à l\'intérieur. Personne ne saura.', en: 'Mediocre surgery: I left a sponge inside. Nobody will know.' }, ko: { fr: 'Opération ratée. Le sang a giclé jusqu\'au plafond et l\'interne s\'est évanoui.', en: 'Botched surgery. Blood hit the ceiling and the intern fainted.' } },
+    'minigame:cooking': { game: 'cooking', icon: '👨‍🍳', ok: { fr: 'Service parfait : un critique a pleuré dans sa soupe.', en: 'Perfect service: a critic cried into his soup.' }, mid: { fr: 'Service correct. Une table a renvoyé son steak « trop cru ».', en: 'Decent service. One table sent back a steak "too raw".' }, ko: { fr: 'Catastrophe en cuisine : feu, cris et un doigt dans le velouté.', en: 'Kitchen disaster: fire, screaming and a finger in the soup.' } },
+    'minigame:match': { game: 'match', icon: '🏟️', ok: { fr: 'J\'ai été l\'homme du match ! Le stade scandait mon nom.', en: 'Player of the match! The stadium chanted my name.' }, mid: { fr: 'Match moyen. J\'ai couru beaucoup, servi à peu.', en: 'Average match. Ran a lot, achieved little.' }, ko: { fr: 'Match catastrophique : but contre mon camp et carton rouge.', en: 'Disastrous match: own goal and a red card.' } },
+    'minigame:interrogation': { game: 'interrogation', icon: '🕵️', ok: { fr: 'Le suspect a craqué et tout avoué. Je suis un génie de l\'interrogatoire.', en: 'The suspect cracked and confessed. I am an interrogation genius.' }, mid: { fr: 'Aveux partiels. Il a juste admis avoir volé un yaourt.', en: 'Partial confession. He only admitted to stealing a yogurt.' }, ko: { fr: 'Le suspect m\'a fait craquer, moi. J\'ai pleuré devant le miroir sans tain.', en: 'The suspect broke ME. I cried in front of the one-way mirror.' } },
+    'minigame:case': { game: 'case', icon: '⚖️', ok: { fr: 'Affaire gagnée ! Mon client, un ordure notoire, est libre. Champagne.', en: 'Case won! My client, a notorious scumbag, walks free. Champagne.' }, mid: { fr: 'Verdict mitigé. Mon client a pris du sursis.', en: 'Mixed verdict. My client got a suspended sentence.' }, ko: { fr: 'Affaire perdue. Mon client m\'a craché dessus en partant.', en: 'Case lost. My client spat on me on the way out.' } },
+  };
+  const w = work[target];
+  if (w) { openMinigame(w.game, (s) => handleRes(workMinigame(l, content, s, s >= 0.7 ? w.ok : s >= 0.4 ? w.mid : w.ko, w.icon))); return; }
+}
+
+function addLog(t: Loc<string>, icon: string, tone: 'good' | 'bad' | 'neutral') {
+  const l = life.value!;
+  let y = l.log[l.log.length - 1];
+  if (!y || y.age !== l.age) { y = { age: l.age, year: l.year, lines: [] }; l.log.push(y); }
+  y.lines.push({ t, icon, tone });
+}
+
+/** Shows a resolution from any engine call (actions, purchases, minigames). */
+export function handleRes(res: Resolution | null) {
+  if (!res) return;
+  modal.value = null;
+  handle(res);
+}
+
+export function doCrime(id: string) {
+  const l = life.value;
+  if (!l || result.value) return;
+  const def = content.crimes.find((c) => c.id === id);
+  if (!def) return;
+  sfx.click();
+  if (def.minigame) {
+    openMinigame(def.minigame, (score) => handleRes(commitCrime(l, content, id, (score - 0.5) * 0.4)));
+    return;
+  }
+  modal.value = null;
+  handleRes(commitCrime(l, content, id));
+}
+
+export function continueAsHeir(childId: number) {
+  const l = life.value;
+  if (!l) return;
+  const n = heirLife(l, content, childId);
+  life.value = n;
+  result.value = null; modal.value = null; tab.value = null; showDeath.value = false; placeOverride = null;
+  screen.value = 'game';
+  refresh();
+  stage?.resetCamera();
+  autosave();
 }
 
 function onDeath() {
@@ -196,6 +298,14 @@ function onDeath() {
   placeOverride = null;
   syncStage();
   sfx.death();
+  const l = life.value;
+  if (l) {
+    checkAch();
+    const s = summarize(l, content);
+    const c = countryOf(content, l.country);
+    bury(profile.value, { id: l.id, first: l.first, last: l.last, gender: l.gender, born: l.birthYear, died: l.year, age: l.age, cause: l.death?.cause ?? { fr: '', en: '' }, netWorth: formatMoney(netWorth(l, content), c, lang.value), score: s.score, country: l.country, generation: l.generation, app: l.app, titles: s.titles, mode: l.mode });
+    profile.value = { ...profile.value };
+  }
   setTimeout(() => { showDeath.value = true; }, 1600);
   autosave();
 }

@@ -234,6 +234,7 @@ export function yearlyMarket(life: Life, content: Content, rng: Rng, shock = 1) 
   life.flags.marketMood = Math.round(mood * 1000) / 1000;
   for (const s of content.stocks) {
     const cur = life.market[s.id];
+    life.flags[`prev:${s.id}`] = cur;
     const ret = s.drift + mood * (s.kind === 'crypto' ? 2.2 : 1) + rng.gauss() * s.vol;
     let next = cur * Math.exp(ret) * shock;
     if (s.kind === 'crypto' && rng.chance(0.03)) next *= rng.chance(0.5) ? 0.08 : 6; // rug pull / moon

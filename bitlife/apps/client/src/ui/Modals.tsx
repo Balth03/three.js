@@ -7,6 +7,10 @@ import { t, tl } from '../i18n.ts';
 import { Sheet, Portrait, Bar, money, npcLabel, STAT_META, Btn } from './common.tsx';
 import { saveLife, loadLife, slotInfo, deleteSlot, SLOTS, exportLife, importLife, storeSettings, type Settings } from '../save.ts';
 import { setVolumes, sfx } from '../audio.ts';
+import { AssetShop, Stocks, Bank, BusinessSheet } from './Money.tsx';
+import { CrimeSheet } from './Crime.tsx';
+import { Achievements, Graveyard, FamilyTree, GodPanel } from './Meta.tsx';
+import { Minigame } from './Minigames.tsx';
 
 const close = () => { sfx.close(); modal.value = null; };
 
@@ -212,11 +216,12 @@ export function SettingsSheet() {
   return (
     <Sheet title={t('settings')} icon="⚙️" onClose={close}>
       <div class="setting"><span>{t('language')}</span>{seg(s.lang, [['fr', 'Français'], ['en', 'English']], (v) => set({ lang: v }))}</div>
+      <div class="setting"><span>{lang.value === 'fr' ? 'Contenu' : 'Content'}</span>{seg(String(s.rating) as '0' | '1' | '2', [['0', lang.value === 'fr' ? 'Tout public' : 'Family'], ['1', lang.value === 'fr' ? 'Adulte' : 'Adult'], ['2', '🔥 Trash']], (v) => { set({ rating: +v as 0 | 1 | 2, family: v === '0' }); const l = life.value; if (l) l.rating = +v as 0 | 1 | 2; })}</div>
       <div class="setting"><span>{t('quality')}</span>{seg(s.quality, [['low', t('q_low')], ['medium', t('q_medium')], ['high', t('q_high')]], (v) => set({ quality: v }))}</div>
       <div class="setting"><span>{t('music')}</span><input type="range" min="0" max="1" step="0.05" value={s.music} onInput={(e) => set({ music: +(e.target as HTMLInputElement).value })} /></div>
       <div class="setting"><span>{t('sfx')}</span><input type="range" min="0" max="1" step="0.05" value={s.sfx} onInput={(e) => set({ sfx: +(e.target as HTMLInputElement).value })} /></div>
       <div class="setting"><span>{t('text_size')}</span>{seg(String(s.textScale), [['0.9', 'A−'], ['1', 'A'], ['1.15', 'A+'], ['1.3', 'A++']], (v) => set({ textScale: +v }))}</div>
-      {([['reducedMotion', 'reduced_motion'], ['previews', 'previews'], ['family', 'family_mode'], ['dyslexic', 'dyslexic'], ['contrast', 'high_contrast']] as const).map(([k, key]) => (
+      {([['reducedMotion', 'reduced_motion'], ['previews', 'previews'], ['dyslexic', 'dyslexic'], ['contrast', 'high_contrast']] as const).map(([k, key]) => (
         <label class="setting" key={k}><span>{t(key)}</span><input type="checkbox" checked={s[k]} onChange={(e) => set({ [k]: (e.target as HTMLInputElement).checked } as Partial<Settings>)} /></label>
       ))}
       <p class="muted small">{t('controls')}</p>
@@ -240,6 +245,9 @@ function Menu() {
         <Btn cls="primary big" onClick={close}>▶ {t('resume')}</Btn>
         <Btn cls="big" onClick={() => { modal.value = { kind: 'saves' }; }}>💾 {t('saves')}</Btn>
         <Btn cls="big" onClick={() => { modal.value = { kind: 'settings' }; }}>⚙️ {t('settings')}</Btn>
+        <Btn cls="big" onClick={() => { modal.value = { kind: 'achievements' }; }}>🏆 {lang.value === 'fr' ? 'Succès' : 'Achievements'}</Btn>
+        <Btn cls="big" onClick={() => { modal.value = { kind: 'tree' }; }}>🌳 {lang.value === 'fr' ? 'Arbre généalogique' : 'Family tree'}</Btn>
+        {life.value?.mode === 'god' && <Btn cls="big" onClick={() => { modal.value = { kind: 'god' }; }}>⚡ {lang.value === 'fr' ? 'Mode Dieu' : 'God mode'}</Btn>}
         <Btn cls="big ghost" onClick={() => { modal.value = null; screen.value = 'title'; }}>🏠 {t('main_menu')}</Btn>
       </div>
       <p class="muted small">{t('controls')}</p>
@@ -262,6 +270,18 @@ export function Modals() {
     case 'saves': return <Saves />;
     case 'settings': return <SettingsSheet />;
     case 'menu': return <Menu />;
+    case 'crime': return l ? <CrimeSheet l={l} /> : null;
+    case 'realestate': return l ? <AssetShop l={l} kinds={['house']} title={lang.value === 'fr' ? 'Agence immobilière' : 'Real estate'} icon="🏠" /> : null;
+    case 'cars': return l ? <AssetShop l={l} kinds={['car', 'boat', 'aircraft']} title={lang.value === 'fr' ? 'Véhicules' : 'Vehicles'} icon="🚗" /> : null;
+    case 'shop': return l ? <AssetShop l={l} kinds={['luxury']} title={lang.value === 'fr' ? 'Boutique de luxe' : 'Luxury shop'} icon="💎" /> : null;
+    case 'stocks': return l ? <Stocks l={l} /> : null;
+    case 'bank': return l ? <Bank l={l} /> : null;
+    case 'business': return l ? <BusinessSheet l={l} /> : null;
+    case 'achievements': return <Achievements />;
+    case 'graveyard': return <Graveyard />;
+    case 'tree': return l ? <FamilyTree l={l} /> : null;
+    case 'god': return l ? <GodPanel l={l} /> : null;
+    case 'minigame': return l ? <Minigame game={m.game} title={m.title} onDone={m.onDone} l={l} /> : null;
   }
   return null;
 }

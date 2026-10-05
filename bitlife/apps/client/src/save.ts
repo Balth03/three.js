@@ -49,10 +49,10 @@ export async function importLife(file: File): Promise<Life> {
 
 export interface Settings {
   lang: 'fr' | 'en'; quality: 'low' | 'medium' | 'high'; music: number; sfx: number; reducedMotion: boolean;
-  textScale: number; previews: boolean; family: boolean; dyslexic: boolean; contrast: boolean;
+  textScale: number; previews: boolean; family: boolean; dyslexic: boolean; contrast: boolean; rating: 0 | 1 | 2;
 }
 
-export const defaultSettings: Settings = { lang: 'fr', quality: 'high', music: 0.4, sfx: 0.7, reducedMotion: false, textScale: 1, previews: true, family: true, dyslexic: false, contrast: false };
+export const defaultSettings: Settings = { lang: 'fr', quality: 'high', music: 0.4, sfx: 0.7, reducedMotion: false, textScale: 1, previews: true, family: true, dyslexic: false, contrast: false, rating: 2 };
 
 export function loadSettings(): Settings {
   try { return { ...defaultSettings, ...JSON.parse(localStorage.getItem('bl:settings') ?? '{}') }; } catch { return { ...defaultSettings }; }

@@ -5,13 +5,14 @@ import { Hud, TAB_ORDER } from './Hud.tsx';
 import { EventCard } from './EventCard.tsx';
 import { Modals } from './Modals.tsx';
 import { Title, Create, Death } from './Screens.tsx';
+import { ChallengeChip, AchievementToast } from './Meta.tsx';
 import { t } from '../i18n.ts';
 import { sfx, toggleMute, unlockAudio } from '../audio.ts';
 
 // Keyboard: abstract actions → remappable bindings
 export const bindings: Record<string, string[]> = {
   ageUp: ['Space'], choice1: ['Digit1', 'Numpad1'], choice2: ['Digit2', 'Numpad2'], choice3: ['Digit3', 'Numpad3'], choice4: ['Digit4', 'Numpad4'],
-  confirm: ['Enter', 'NumpadEnter'], nextTab: ['Tab'], menu: ['Escape'], fullscreen: ['KeyF'], mute: ['KeyM'], photo: ['KeyP'],
+  choice5: ['Digit5', 'Numpad5'], choice6: ['Digit6', 'Numpad6'], choice7: ['Digit7', 'Numpad7'], confirm: ['Enter', 'NumpadEnter'], nextTab: ['Tab'], menu: ['Escape'], fullscreen: ['KeyF'], mute: ['KeyM'], photo: ['KeyP'],
 };
 
 function actionOf(code: string): string | undefined {
@@ -85,12 +86,14 @@ export function App() {
           <Hud />
           <EventCard />
           <Death />
+          <ChallengeChip />
           <button class="menu-btn glass" onClick={() => { sfx.open(); modal.value = { kind: 'menu' }; }} title="Échap">☰</button>
         </>
       )}
       {photoMode.value && <div class="photo-hint glass">{t('photo_hint')}</div>}
       <Modals />
       {toast.value && <div class="toast glass" key={toast.value.id}>{toast.value.text}</div>}
+      <AchievementToast />
     </div>
   );
 }

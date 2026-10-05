@@ -1,0 +1,1433 @@
+// Special career events: sport, music & cinema, media, politics, military, space, aviation, spies, mafia,
+// surgery, police, law, kitchens, funeral trade and other jobs nobody's guidance counsellor ever mentioned.
+import type { EventDef } from '@bl/sim';
+
+const ATHLETES = ['footballer', 'basketball', 'boxer', 'tennis', 'f1_driver', 'jockey'];
+const BALL = ['footballer', 'basketball', 'tennis', 'boxer'];
+const MUSIC = ['rock_star', 'dj'];
+const SCREEN = ['actor', 'film_director', 'screenwriter'];
+const MILITARY = ['soldier', 'military_officer', 'navy_sailor', 'fighter_pilot'];
+const COPS = ['police', 'detective'];
+const KITCHEN = ['cook', 'pastry_chef'];
+const STREAM = ['streamer', 'influencer', 'pro_gamer'];
+
+export const careerEvents: EventDef[] = [
+  // ───────────────────────────── sport ─────────────────────────────
+  {
+    id: 'ca_sp_transfer',
+    icon: '✍️',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'office', mood: 'shock', prop: 'contract', fx: 'money' },
+    when: { job: ['footballer', 'basketball'] },
+    weight: 8,
+    cooldown: 3,
+    vars: { amount: [400000, 4000000] },
+    text: {
+      fr: ["Ton agent débarque en sueur : un club richissime d'un pays où il fait 52 °C t'offre {$amount} par an. Il y a une piscine dans le vestiaire et un faucon dans le contrat.", "Offre de transfert ! Un club rival te veut pour {$amount} par an. Leur président a fait fortune dans le gravier et porte une cape."],
+      en: ["Your agent bursts in, sweating: an absurdly rich club from a country where it's 52°C offers you {$amount} a year. There's a pool in the locker room and a falcon in the contract.", "Transfer offer! A rival club wants you for {$amount} a year. Their chairman made his fortune in gravel and wears a cape."],
+    },
+    choices: [
+      { label: { fr: 'Signer, évidemment', en: 'Sign, obviously' }, text: { fr: "J'ai signé en embrassant le blason de mon nouveau club devant les caméras. Mes anciens supporters brûlent mon maillot. Ils l'avaient payé 120 balles, tant pis pour eux.", en: "I signed and kissed my new club's crest for the cameras. My old fans are burning my jersey. They paid 120 bucks for it, their loss." }, fx: { money: 'amount', fame: 6, karma: -4, happy: 8 } },
+      { label: { fr: 'Rester fidèle', en: 'Stay loyal' }, text: { fr: "J'ai refusé par loyauté. Les supporters ont peint une fresque de moi sur un mur. Elle me donne un strabisme et trois genoux, mais c'est l'intention qui compte.", en: "I turned it down out of loyalty. The fans painted a mural of me. It gives me a squint and three knees, but it's the thought that counts." }, fx: { karma: 6, fame: 4, happy: 4, perf: 5 } },
+      {
+        label: { fr: 'Exiger le double', en: 'Demand double' },
+        out: [
+          { w: 2, text: { fr: "J'ai exigé le double. Ils ont dit oui sans réfléchir. J'aurais dû exiger le triple. Je vais y penser toute ma vie.", en: "I demanded double. They said yes without blinking. I should've asked for triple. That'll haunt me forever." }, fx: { money: 'amount', fame: 5, happy: 10 }, mood: 'party' },
+          { w: 1, text: { fr: "J'ai exigé le double. Ils ont recruté un gamin de 17 ans à ma place, pour moitié prix. Mon agent ne me rappelle plus.", en: "I demanded double. They signed a 17-year-old instead, at half the price. My agent stopped returning my calls." }, fx: { happy: -8, perf: -3 }, mood: 'sad' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'ca_sp_match',
+    icon: '🏟️',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'stadium', mood: 'proud', prop: 'scoreboard' },
+    when: { job: BALL },
+    weight: 10,
+    cooldown: 2,
+    text: {
+      fr: ["Match décisif ce soir. 40 000 personnes, dont ta mère qui hurle ton prénom en entier et un type déguisé en poulet.", "Derby au sommet. Le coach te prend par les épaules : « Si tu perds, je vends ta voiture. » Il n'a pas l'air de plaisanter."],
+      en: ["Decisive match tonight. 40,000 people, including your mother screaming your full name and a guy dressed as a chicken.", "Top-of-the-table derby. The coach grabs your shoulders: 'Lose and I'm selling your car.' He doesn't seem to be joking."],
+    },
+    choices: [
+      { label: { fr: 'Tout donner', en: 'Give it everything' }, text: { fr: "Je suis entré{|e} sur le terrain avec la rage d'un chihuahua sous caféine.", en: 'I walked onto the pitch with the fury of a caffeinated chihuahua.' }, fx: { open: 'minigame:match', stress: 4 } },
+      { label: { fr: 'Simuler une blessure', en: 'Fake an injury' }, text: { fr: "Je me suis effondré{|e} en hurlant après un contact imaginaire. Le ralenti a fait le tour du monde. On m'a nominé{|e} aux César.", en: 'I collapsed screaming after an imaginary tackle. The slow-mo went viral. Someone nominated me for an Oscar.' }, fx: { perf: -6, fame: 3, karma: -3, happy: 2 } },
+    ],
+  },
+  {
+    id: 'ca_sp_doping',
+    icon: '💉',
+    cat: 'career',
+    rating: 1,
+    scene: { place: 'office', mood: 'neutral', prop: 'syringe' },
+    when: { job: ATHLETES, noFlag: 'ca_doped' },
+    weight: 6,
+    cooldown: 5,
+    text: {
+      fr: ["Le « nutritionniste » de l'équipe te tend une seringue fluo. « Vitamines. Pour cheval. Mais t'inquiète, t'es costaud{|e}. »", "Un médecin russe très souriant te propose une cure « 100 % indétectable ». Son précédent patient a gagné trois médailles et un troisième rein."],
+      en: ["The team's 'nutritionist' hands you a neon syringe. 'Vitamins. For horses. But relax, you're sturdy.'", "A very smiley doctor offers you a '100% undetectable' treatment. His last patient won three medals and a third kidney."],
+    },
+    choices: [
+      {
+        label: { fr: 'Piquer', en: 'Inject' },
+        out: [
+          { w: 3, text: { fr: "Je me suis piqué{|e}. J'ai couru si vite que j'ai entendu les couleurs. Mon cœur bat à 220 au repos mais je suis en forme.", en: 'I injected. I ran so fast I could hear colours. My resting heart rate is 220 but I feel great.' }, fx: { athletic: 12, perf: 12, health: -8, flag: 'ca_doped', schedule: { key: 'ca_sp_doping_test', years: 1 } }, mood: 'party' },
+          { w: 1, text: { fr: "Je me suis piqué{|e}. Il m'a poussé des poils sur les épaules et ma voix est descendue de deux octaves. Mais j'ai gagné.", en: 'I injected. Hair sprouted on my shoulders and my voice dropped two octaves. But I won.' }, fx: { athletic: 10, perf: 10, looks: -8, flag: 'ca_doped', schedule: { key: 'ca_sp_doping_test', years: 1 } }, mood: 'shock' },
+        ],
+      },
+      { label: { fr: 'Refuser poliment', en: 'Politely decline' }, text: { fr: "J'ai dit non. Je cours désormais à l'eau du robinet et à la rancœur. Je finis cinquième, mais propre.", en: 'I said no. I now run on tap water and resentment. I finish fifth, but clean.' }, fx: { karma: 5, perf: -2 } },
+      { label: { fr: 'Le dénoncer', en: 'Report him' }, text: { fr: "Je l'ai balancé à l'agence antidopage. Il a été radié. Les trois quarts de mon équipe ne me parlent plus, curieusement les plus musclés.", en: 'I reported him to the anti-doping agency. He got banned. Three quarters of my team stopped talking to me, oddly the most muscular ones.' }, fx: { karma: 10, stress: 6, perf: -4 } },
+    ],
+  },
+  {
+    id: 'ca_sp_doping_test',
+    icon: '🧪',
+    cat: 'career',
+    rating: 1,
+    chainOnly: true,
+    scene: { place: 'hospital', mood: 'shock', prop: 'cup' },
+    when: { job: ATHLETES, flag: 'ca_doped' },
+    text: {
+      fr: ["Contrôle antidopage surprise. Un inspecteur te tend un gobelet et te regarde droit dans les yeux. Il ne va pas se retourner.", "Les contrôleurs débarquent à 6 h du matin. L'un d'eux tient le gobelet comme s'il s'agissait du Saint Graal."],
+      en: ["Surprise doping test. An inspector hands you a cup and stares you dead in the eye. He's not turning around.", "The testers show up at 6 a.m. One of them holds the cup like it's the Holy Grail."],
+    },
+    choices: [
+      {
+        label: { fr: 'Pisser et prier', en: 'Pee and pray' },
+        out: [
+          { w: 1, text: { fr: "Résultat positif à onze substances, dont une qui n'a pas encore de nom. Suspendu{|e} à vie. Ma photo est dans les manuels scolaires, chapitre « Contre-exemples ».", en: "Positive for eleven substances, one of which doesn't have a name yet. Banned for life. My photo is in textbooks, chapter 'Bad Examples'." }, fx: { fired: true, fame: 10, karma: -10, happy: -20, unflag: 'ca_doped' }, mood: 'cry' },
+          { w: 1, text: { fr: "Négatif. Le labo a perdu l'échantillon dans un déménagement. Je suis officiellement l'athlète le plus propre de l'histoire.", en: "Negative. The lab lost the sample during an office move. I am officially the cleanest athlete in history." }, fx: { happy: 10, unflag: 'ca_doped' }, mood: 'party' },
+        ],
+      },
+      { label: { fr: "Échanger l'urine", en: 'Swap the sample' }, text: { fr: "J'ai rempli le gobelet avec l'urine de mon chien, planquée dans un préservatif. Le labo a conclu que j'étais enceint{|e} d'un labrador. L'enquête est en cours.", en: "I filled the cup with my dog's pee, smuggled in a condom. The lab concluded I was pregnant with a labrador. Investigation ongoing." }, fx: { perf: -10, fame: 6, stress: 10, karma: -4 }, mood: 'shock' },
+    ],
+  },
+  {
+    id: 'ca_sp_injury',
+    icon: '🦴',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'stadium', mood: 'sick', prop: 'stretcher', fx: 'gore' },
+    when: { job: ['footballer', 'basketball'] },
+    weight: 6,
+    cooldown: 4,
+    text: {
+      fr: ["Un défenseur de 130 kilos te tacle à la hauteur du genou. Ton tibia sort de ta chaussette pour voir le match. Le public fait « OOOH » à l'unisson.", "Collision en plein vol. Ton genou plie dans un sens prévu uniquement pour les flamants roses. Un caméraman vomit dans sa propre caméra."],
+      en: ["A 290-pound defender tackles you at knee height. Your shinbone pokes out of your sock to watch the game. The crowd goes 'OOOH' in unison.", "Mid-air collision. Your knee bends in a direction designed only for flamingos. A cameraman throws up into his own camera."],
+    },
+    choices: [
+      { label: { fr: 'Remettre en place', en: 'Pop it back in' }, text: { fr: "J'ai remis l'os en place moi-même avec un « crac » audible jusqu'en tribune présidentielle. Puis je me suis évanoui{|e} face contre la pelouse. Légende.", en: "I shoved the bone back in myself with a crack audible from the VIP box. Then I fainted face-first into the turf. Legend." }, fx: { health: -25, fame: 8, athletic: -8, perf: -5, visual: 'gore' }, mood: 'sick' },
+      { label: { fr: 'Hurler sur le tacleur', en: 'Scream at the tackler' }, text: { fr: "Je l'ai traité de « frigo à moustache » pendant qu'on m'emportait. Il a pris un rouge. J'ai pris six mois de béquilles.", en: "I called him a 'mustached fridge' while they carried me off. He got a red card. I got six months on crutches." }, fx: { health: -22, athletic: -10, happy: -6, perf: -8 }, mood: 'angry' },
+      { label: { fr: 'Exiger de rejouer', en: 'Demand to play on' }, text: { fr: "J'ai refusé de sortir et marqué un but en sautillant, l'os à l'air. Le ballon a rebondi sur mon tibia. Ça compte quand même.", en: "I refused to come off and scored hopping, bone out. The ball bounced in off my shin. Still counts." }, fx: { health: -30, fame: 14, perf: 8, visual: 'gore' }, mood: 'proud' },
+    ],
+  },
+  {
+    id: 'ca_sp_cl_final',
+    icon: '🏆',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'stadium', mood: 'proud', prop: 'trophy', fx: 'confetti' },
+    when: { job: 'footballer', stat: { athletic: [60, 100] } },
+    weight: 4,
+    once: true,
+    text: {
+      fr: ["Finale de la Ligue des Champions. Tirs au but. Tout repose sur toi. 400 millions de personnes regardent. Ton lacet est défait.", "Dernière minute de la finale de Ligue des Champions, 1-1. Penalty pour ton équipe. Le gardien adverse fait des grimaces dignes d'un babouin."],
+      en: ["Champions League final. Penalty shootout. It all comes down to you. 400 million people are watching. Your shoelace is untied.", "Last minute of the Champions League final, 1-1. Penalty for your team. The opposing keeper is pulling faces worthy of a baboon."],
+    },
+    choices: [
+      {
+        label: { fr: 'Frapper en force', en: 'Blast it' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: "J'ai frappé si fort que le filet a craqué. Champion{|ne} d'Europe ! J'ai pleuré dans la coupe, puis bu dedans. C'était surtout mes larmes.", en: 'I hit it so hard the net tore. Champions of Europe! I cried into the trophy, then drank from it. Mostly tears.' }, fx: { fame: 20, happy: 25, promote: true, money: 500000, visual: 'confetti' }, mood: 'party' },
+          { w: 1, text: { fr: "Le ballon est parti dans la tribune et a assommé un prince saoudien. On a perdu. Mon nom est devenu un verbe : « faire un {last} ».", en: "The ball flew into the stands and knocked out a prince. We lost. My name became a verb: 'to pull a {last}'." }, fx: { fame: 10, happy: -20, perf: -10 }, mood: 'cry' },
+        ],
+      },
+      {
+        label: { fr: 'Panenka', en: 'Panenka chip' },
+        out: [
+          { w: 1, text: { fr: "Petite pichenette au milieu, le gardien plonge à gauche. Le stade explose. Je suis immortel{|le}. On donne mon prénom à des chiens.", en: 'Soft chip down the middle, the keeper dives left. The stadium erupts. I am immortal. People name dogs after me.' }, fx: { fame: 25, happy: 30, promote: true, money: 500000, visual: 'confetti' }, mood: 'party' },
+          { w: 1, text: { fr: "Panenka. Le gardien n'a pas bougé. Il l'a attrapée en bâillant. Je suis parti{|e} vivre sous une fausse identité pendant trois semaines.", en: "Panenka. The keeper didn't move. He caught it mid-yawn. I lived under a fake name for three weeks." }, fx: { fame: 8, happy: -25, perf: -12 }, mood: 'cry' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'ca_sp_ultras',
+    icon: '📣',
+    cat: 'career',
+    rating: 1,
+    scene: { place: 'park', mood: 'shock', prop: 'flare', fx: 'fire' },
+    when: { job: ATHLETES },
+    weight: 8,
+    cooldown: 4,
+    text: {
+      fr: ["Après une défaite, quarante ultras torse nu t'attendent sur le parking avec des fumigènes. Le chef a ton visage tatoué sur le ventre. Il le fait danser.", "Les ultras du club veulent te « parler ». Ils ont amené un mégaphone, une banderole « T'ES NUL » et, bizarrement, un gâteau."],
+      en: ["After a loss, forty shirtless ultras are waiting in the parking lot with flares. The leader has your face tattooed on his belly. He makes it dance.", "The club's ultras want to 'talk'. They brought a megaphone, a banner saying 'YOU SUCK' and, weirdly, a cake."],
+    },
+    choices: [
+      { label: { fr: 'Aller leur parler', en: 'Go talk to them' }, out: [
+        { w: 2, odds: { fame: 1 }, text: { fr: "J'ai pris le mégaphone et chanté leur chant avec eux. On a fini au bar à 4 h. Le chef m'appelle « frérot » et me doit 200 balles.", en: "I grabbed the megaphone and sang their chant with them. We ended up at a bar at 4 a.m. The leader calls me 'bro' and owes me 200 bucks." }, fx: { fame: 5, happy: 6, perf: 3 }, mood: 'party' },
+        { w: 1, text: { fr: "J'ai voulu parler. J'ai reçu le gâteau en pleine figure. C'était un fraisier. Je n'avais même pas faim.", en: "I tried to talk. I got the cake in the face. Strawberry. I wasn't even hungry." }, fx: { happy: -6, looks: -2 }, mood: 'angry' },
+      ] },
+      { label: { fr: 'Fuir par les cuisines', en: 'Flee through the kitchens' }, text: { fr: "J'ai fui en enjambant des cagettes de poireaux. Le lendemain, ma voiture était repeinte aux couleurs du club. Franchement, c'est plus joli.", en: 'I fled through the kitchens, hurdling crates of leeks. Next day my car was repainted in club colours. Honestly, it looks better.' }, fx: { stress: 6, karma: -1 } },
+    ],
+  },
+  {
+    id: 'ca_sp_retire',
+    icon: '👟',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'stadium', mood: 'cry', prop: 'jersey' },
+    when: { job: ATHLETES, age: [33, 60] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: ["Tes genoux craquent comme du papier bulle dès que tu descends un escalier. Ton coach te parle désormais au conditionnel.", "Un jeune de l'équipe t'a demandé si tu avais connu les cassettes vidéo. Ton kiné te conseille gentiment de « penser à la suite »."],
+      en: ["Your knees pop like bubble wrap every time you take the stairs. Your coach now speaks to you exclusively in the conditional tense.", "A young teammate asked if you remember VHS tapes. Your physio gently suggests you 'think about what's next'."],
+    },
+    choices: [
+      { label: { fr: 'Prendre ma retraite', en: 'Retire' }, text: { fr: "J'ai annoncé ma retraite en larmes, devant un stade debout. Dans trois semaines, je serai consultant télé et je dirai « il faut mettre de l'intensité » 40 fois par match.", en: "I announced my retirement in tears to a standing ovation. In three weeks I'll be a TV pundit saying 'they need more intensity' 40 times per game." }, fx: { retire: true, fame: 8, happy: 6, stress: -15 }, mood: 'cry' },
+      { label: { fr: 'Encore une saison', en: 'One more season' }, out: [
+        { w: 1, text: { fr: "Encore une saison. J'ai marqué un dernier but décisif de la tête, sans faire exprès. On ne retiendra que ça.", en: "One more season. I scored one last decisive header, by accident. That's all anyone will remember." }, fx: { fame: 6, perf: 6, happy: 8 }, mood: 'proud' },
+        { w: 1, text: { fr: "Encore une saison. Je me suis claqué les deux mollets à l'échauffement. En même temps. Les médecins sont impressionnés.", en: 'One more season. I tore both calves during warm-up. Simultaneously. The doctors are impressed.' }, fx: { health: -12, perf: -8, happy: -6 }, mood: 'sick' },
+      ] },
+    ],
+  },
+  {
+    id: 'ca_sp_sextape',
+    icon: '📼',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'villa', mood: 'shock', prop: 'phone', fx: 'hearts' },
+    when: { job: 'cat:sport', age: [18, 70] },
+    weight: 6,
+    cooldown: 6,
+    text: {
+      fr: ["Une sextape de toi circule sur Internet. Tu y portes uniquement tes protège-tibias et tu cries le nom de ton sponsor au moment le plus gênant.", "Fuite d'une vidéo très intime tournée dans ta villa. Les internautes notent surtout que tu gardes tes chaussettes de compression. Et que tu commentes toi-même l'action comme un match."],
+      en: ["A sex tape of you is all over the internet. You're wearing nothing but shin guards and shouting your sponsor's name at the worst possible moment.", "A very private video shot in your villa has leaked. Viewers mostly notice you keep your compression socks on. And that you commentate yourself like a match."],
+    },
+    choices: [
+      { label: { fr: 'Nier en bloc', en: 'Deny everything' }, text: { fr: "J'ai juré que c'était un sosie. Le sosie a mon tatouage, ma cicatrice et mon chien en arrière-plan. Personne ne me croit, sauf ma grand-mère.", en: "I swore it was a lookalike. The lookalike has my tattoo, my scar and my dog in the background. Nobody believes me except my grandma." }, fx: { fame: 8, karma: -3, stress: 10 }, mood: 'shock' },
+      { label: { fr: 'Assumer fièrement', en: 'Own it proudly' }, text: { fr: "J'ai posté « Au moins j'ai tenu les 90 minutes ». 4 millions de likes. Mon sponsor de chaussettes a doublé mon contrat.", en: "I posted 'At least I lasted the full 90 minutes.' 4 million likes. My sock sponsor doubled my contract." }, fx: { fame: 14, followers: 400000, money: 80000, happy: 6, visual: 'hearts' }, mood: 'party' },
+      { label: { fr: 'Pleurer en interview', en: 'Cry in an interview' }, text: { fr: "J'ai pleuré au JT en parlant de « moment de faiblesse humaine ». Le présentateur aussi. Personne ne sait pourquoi.", en: "I wept on the news about 'a moment of human weakness'. So did the anchor. Nobody knows why." }, fx: { fame: 6, karma: 2, perf: -4 }, mood: 'cry' },
+    ],
+  },
+  {
+    id: 'ca_sp_boxer_ear',
+    icon: '🥊',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'stadium', mood: 'angry', prop: 'ring', fx: 'gore' },
+    when: { job: 'boxer' },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: ["Douzième round. Ton adversaire, un colosse surnommé « le Congélateur », te mord l'oreille et repart avec un bout dans la bouche. Il mâche.", "Combat pour la ceinture. Ton œil droit gonfle comme une prune et l'arbitre sent fortement la tequila."],
+      en: ["Round twelve. Your opponent, a giant nicknamed 'The Freezer', bites your ear and walks off with a chunk in his mouth. He's chewing.", "Title fight. Your right eye swells like a plum and the referee reeks of tequila."],
+    },
+    choices: [
+      { label: { fr: 'Lui arracher le nez', en: 'Rip his nose off' }, text: { fr: "J'ai mordu en retour, plein nez. Sang partout, jusque dans le popcorn du premier rang. Disqualifiés tous les deux. Le pay-per-view a explosé.", en: 'I bit back, right on the nose. Blood everywhere, all the way into the front row popcorn. Both disqualified. Pay-per-view went through the roof.' }, fx: { fame: 12, money: 150000, health: -12, karma: -6, visual: 'gore' }, mood: 'angry' },
+      { label: { fr: 'Uppercut vengeur', en: 'Revenge uppercut' }, out: [
+        { w: 2, odds: { athletic: 1 }, text: { fr: "Uppercut. Il a craché trois dents et mon morceau d'oreille. KO. Ceinture. J'ai récupéré mon oreille dans un sachet de glaçons.", en: 'Uppercut. He spat out three teeth and my piece of ear. KO. Title. I got my ear back in a bag of ice.' }, fx: { fame: 15, promote: true, health: -10, money: 200000, visual: 'gore' }, mood: 'proud' },
+        { w: 1, text: { fr: "J'ai raté mon uppercut et frappé l'arbitre. Il s'est réveillé en chantant en espagnol. J'ai perdu par disqualification et un morceau d'oreille.", en: 'I missed and uppercut the referee. He woke up singing in Spanish. I lost by disqualification and a piece of ear.' }, fx: { health: -15, perf: -10, looks: -6 }, mood: 'sick' },
+      ] },
+    ],
+  },
+  {
+    id: 'ca_sp_f1_crash',
+    icon: '🏎️',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'stadium', mood: 'shock', prop: 'racecar', fx: 'explosion' },
+    when: { job: 'f1_driver' },
+    weight: 7,
+    cooldown: 3,
+    text: {
+      fr: ["Virage 7, 310 km/h. Ton aileron arrière s'envole comme un pigeon libéré. La voiture fait trois tonneaux et prend feu, avec toi dedans.", "Ton coéquipier te percute exprès au premier virage. Ta voiture explose. Ta combinaison ignifugée tient bon. Tes sourcils, beaucoup moins."],
+      en: ["Turn 7, 190 mph. Your rear wing flies off like a released pigeon. The car does three barrel rolls and catches fire, with you inside.", "Your teammate rams you on purpose at turn one. Your car explodes. Your fireproof suit holds. Your eyebrows, much less so."],
+    },
+    choices: [
+      { label: { fr: 'Sortir en flammes', en: 'Climb out on fire' }, text: { fr: "Je suis sorti{|e} de la carcasse en feu, j'ai salué la foule et je me suis roulé{|e} dans un bac à sable. Les fans m'appellent désormais « la Torche ».", en: "I climbed out of the burning wreck, waved to the crowd and rolled in a gravel trap. Fans now call me 'The Torch'." }, fx: { health: -18, fame: 12, disease: 'burns', visual: 'fire' }, mood: 'proud' },
+      { label: { fr: 'Frapper le coéquipier', en: 'Punch the teammate' }, text: { fr: "Je suis allé{|e} le frapper, casque contre casque, en direct mondial. On s'est fait mal tous les deux. Ce sport rend con.", en: 'I went over and headbutted him, helmet to helmet, live worldwide. We both hurt ourselves. This sport makes you stupid.' }, fx: { health: -10, fame: 8, perf: -8, disease: 'concussion' }, mood: 'angry' },
+      { label: { fr: 'Rester dedans', en: 'Stay put and wait' }, text: { fr: "Je suis resté{|e} assis{|e} à attendre les secours. Mes semelles ont fondu et collé aux pédales. On m'a désincarcéré{|e} en chaussettes. Fumantes.", en: 'I sat there waiting for the marshals. My soles melted onto the pedals. They extracted me in my socks. Smoking.' }, fx: { health: -14, disease: 'burns', perf: -4, visual: 'explosion' }, mood: 'sick' },
+    ],
+  },
+  {
+    id: 'ca_sp_jockey',
+    icon: '🏇',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'stadium', mood: 'shock', prop: 'horse', fx: 'poop' },
+    when: { job: 'jockey' },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: ["Grand Prix. Ton cheval, Tonnerre de Brest, s'arrête net à dix mètres de l'arrivée pour lâcher une bouse colossale devant les caméras.", "Ton cheval vient de comprendre qu'il est payé en carottes et toi en euros. Il te regarde de travers dans le box de départ."],
+      en: ["Grand Prix. Your horse, Thunderbutt, stops dead ten metres from the finish to drop a colossal dump in front of the cameras.", "Your horse just figured out he's paid in carrots and you're paid in cash. He's giving you side-eye in the starting gate."],
+    },
+    choices: [
+      { label: { fr: 'Fouetter', en: 'Use the whip' }, out: [
+        { w: 1, text: { fr: "J'ai fouetté. Il a rué. J'ai volé six mètres et atterri tête la première dans la bouse encore fumante. Le photo-finish est encadré dans tous les PMU du pays.", en: 'I whipped. He bucked. I flew six metres and landed head-first in the still-steaming dump. The photo finish is framed in every betting shop in the country.' }, fx: { health: -10, fame: 8, looks: -4, perf: -6, visual: 'poop' }, mood: 'sick' },
+        { w: 1, text: { fr: "Un coup de cravache, il repart comme une fusée en lâchant le reste en route. Victoire au mental. Le jockey derrière moi a tout pris.", en: 'One crack of the whip and he took off like a rocket, unloading the rest en route. Victory by willpower. The jockey behind me took it all.' }, fx: { fame: 6, perf: 8, money: 30000, visual: 'poop' }, mood: 'party' },
+      ] },
+      { label: { fr: 'Lui chuchoter', en: 'Whisper to him' }, text: { fr: "Je lui ai chuchoté « pense aux carottes ». Il a fini troisième en me fixant. On a une relation, maintenant. C'est compliqué.", en: "I whispered 'think of the carrots'. He finished third, staring at me. We have a relationship now. It's complicated." }, fx: { perf: 3, happy: 3 } },
+    ],
+  },
+  {
+    id: 'ca_sp_mascot',
+    icon: '🐻',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'stadium', mood: 'angry', prop: 'mascot', fx: 'gore' },
+    when: { job: 'mascot' },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: ["À la mi-temps, la mascotte adverse — un hot-dog géant — te fait un doigt d'honneur avec sa saucisse. 30 000 personnes ont vu. Ton costume d'ours sent le vieux fromage.", "Le hot-dog géant de l'équipe adverse t'a fait trébucher pendant ta chorégraphie. Le stade rit. Ta tête d'ours a roulé jusqu'au rond central."],
+      en: ["At half-time, the rival mascot — a giant hot dog — flips you off with its sausage. 30,000 people saw. Your bear suit smells like old cheese.", "The rival team's giant hot dog tripped you mid-dance. The stadium is laughing. Your bear head rolled all the way to the centre circle."],
+    },
+    choices: [
+      { label: { fr: 'Combat de mascottes', en: 'Mascot fight' }, text: { fr: "Je l'ai plaqué. J'ai arraché son pain, puis sa saucisse, puis son nez à l'intérieur. Du ketchup, puis du vrai sang. Le public a cru à un show. On m'a augmenté{|e}.", en: 'I tackled him. Ripped off his bun, then his sausage, then the actual nose inside. Ketchup, then real blood. The crowd thought it was a show. I got a raise.' }, fx: { perf: 10, fame: 6, karma: -5, money: 3000, visual: 'gore' }, mood: 'party' },
+      { label: { fr: 'Danser plus fort', en: 'Dance harder' }, text: { fr: "J'ai répondu par un moonwalk d'ours. Coup de chaleur dans le costume, j'ai vomi dans ma propre tête. J'ai fini la chorégraphie quand même. Respect.", en: "I answered with a bear moonwalk. Heatstroke in the suit, threw up inside my own head. Finished the routine anyway. Respect." }, fx: { health: -6, perf: 5, happy: -3 }, mood: 'sick' },
+    ],
+  },
+  {
+    id: 'ca_sp_auto_baby',
+    icon: '👶',
+    cat: 'career',
+    rating: 0,
+    auto: true,
+    when: { job: ATHLETES, stat: { fame: [30, 100] }, chance: 0.4 },
+    cooldown: 6,
+    text: {
+      fr: ["Un supporter a appelé son fils comme moi. Puis son chien. Puis son second fils. J'ai envoyé un maillot dédicacé à toute la famille.", "Des gamins ont imité ma célébration de but dans une cour de récré. Un surveillant a appelé ça « une épidémie »."],
+      en: ["A fan named his son after me. Then his dog. Then his second son. I sent a signed jersey to the whole family.", "Kids copied my goal celebration all over a playground. A teacher called it 'an outbreak'."],
+    },
+    fx: { fame: 3, happy: 4 },
+  },
+
+  // ───────────────────────────── music, cinema, stage ─────────────────────────────
+  {
+    id: 'ca_mu_tour',
+    icon: '🚌',
+    cat: 'career',
+    rating: 1,
+    scene: { place: 'party', mood: 'party', prop: 'tourbus' },
+    when: { job: MUSIC },
+    weight: 9,
+    cooldown: 3,
+    text: {
+      fr: ["Tournée mondiale, jour 43. Le bassiste a disparu à Prague, le batteur a épousé une serveuse à Lisbonne et le bus sent le kebab et les regrets.", "Tournée des stades. Ton manager t'annonce que la date de demain est à Clermont-Ferrand, mais que le bus, lui, est en route pour la Pologne."],
+      en: ["World tour, day 43. The bassist vanished in Prague, the drummer married a waitress in Lisbon and the bus smells of kebab and regret.", "Stadium tour. Your manager says tomorrow's show is in Cleveland, but the bus is apparently heading to Canada."],
+    },
+    choices: [
+      { label: { fr: 'Saccager la suite', en: 'Trash the hotel suite' }, text: { fr: "J'ai balancé la télé par la fenêtre, comme les grands. Elle a atterri sur ma propre voiture. Facture : un rein. Mais quelle photo.", en: "I threw the TV out the window, like the legends. It landed on my own car. Bill: one kidney. But what a photo." }, fx: { money: -25000, fame: 6, happy: 8 }, mood: 'party' },
+      { label: { fr: 'Annuler des dates', en: 'Cancel some dates' }, text: { fr: "J'ai annulé six concerts pour « épuisement ». J'étais en réalité à la plage. Un fan m'a pris{|e} en photo en pédalo.", en: 'I cancelled six shows for "exhaustion". I was actually at the beach. A fan photographed me on a pedal boat.' }, fx: { stress: -12, fame: -4, money: -15000, perf: -6 } },
+      { label: { fr: 'Jouer quand même', en: 'Play anyway' }, out: [
+        { w: 2, text: { fr: "Sans bassiste ni batteur, j'ai joué seul{|e} à la guitare devant 50 000 personnes. Version acoustique. Les critiques parlent de « dépouillement courageux ».", en: 'No bassist, no drummer, I played solo on guitar to 50,000 people. Acoustic version. Critics call it "brave minimalism".' }, fx: { fame: 8, perf: 8, happy: 6 }, mood: 'proud' },
+        { w: 1, text: { fr: "J'ai joué. Le public a réclamé le batteur. Puis le remboursement. Puis ma tête. J'ai fini sous un déluge de gobelets de bière.", en: 'I played. The crowd demanded the drummer. Then refunds. Then my head. I finished under a hail of beer cups.' }, fx: { fame: -4, happy: -8, stress: 8 }, mood: 'sad' },
+      ] },
+    ],
+  },
+  {
+    id: 'ca_mu_groupies',
+    icon: '💋',
+    cat: 'career',
+    rating: 1,
+    actor: { create: { role: 'acquaintance', age: [21, 34], abs: true, gender: 'attracted' } },
+    scene: { place: 'party', mood: 'love', prop: 'backstage', fx: 'hearts' },
+    when: { job: ['rock_star', 'dj', 'actor', 'comedian'], age: [18, 80] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: ["Après le concert, {a.first}, {a.age} ans, a réussi à passer la sécurité avec un faux badge « Plombier de scène ». {a:Il|Elle} veut « absolument discuter musique » dans ta loge.", "Une personne très insistante nommée {a.first} t'attend devant ta loge avec ton visage imprimé sur son t-shirt. Moulant."],
+      en: ["After the show, {a.first}, {a.age}, got past security with a fake 'Stage Plumber' badge. {a:He|She} 'absolutely wants to talk music' in your dressing room.", "A very insistent person named {a.first} is waiting outside your dressing room wearing a t-shirt with your face on it. A tight one."],
+    },
+    choices: [
+      { label: { fr: 'Discuter « musique »', en: 'Discuss "music"' }, text: { fr: "On a beaucoup « discuté musique ». Le lendemain, {a.first} avait volé ma setlist, une chaussette et mon numéro. Je ne regrette rien.", en: "We 'discussed music' at length. Next morning {a.first} had taken my setlist, one sock and my number. No regrets." }, fx: { happy: 12, stress: -6, rel: 20, keep: true, actorRole: 'friend' }, mood: 'love' },
+      { label: { fr: 'Donner un autographe', en: 'Just sign something' }, text: { fr: "J'ai signé son t-shirt, sur mon propre front. {a.first} a pleuré de joie. La sécurité l'a raccompagné{a:|e} doucement.", en: "I signed {a.his} t-shirt, right on my own printed forehead. {a.first} wept with joy. Security escorted {a.him} out gently." }, fx: { fame: 2, karma: 2 } },
+      { label: { fr: 'Appeler la sécurité', en: 'Call security' }, text: { fr: "J'ai appelé la sécurité. {a.first} s'est enfui{a:|e} par le conduit d'aération comme dans un film. On l'a retrouvé{a:|e} coincé{a:|e} au-dessus des toilettes.", en: "I called security. {a.first} escaped through an air vent like in a movie. They found {a.him} stuck above the toilets." }, fx: { stress: -2, happy: 2 } },
+    ],
+  },
+  {
+    id: 'ca_mu_backstage',
+    icon: '🍾',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'party', mood: 'party', prop: 'jacuzzi', fx: 'hearts' },
+    when: { job: MUSIC, age: [18, 80] },
+    weight: 6,
+    cooldown: 4,
+    text: {
+      fr: ["L'after-show dégénère : un jacuzzi gonflable, douze inconnus en sous-vêtements léopard, un nain de jardin qui tourne de main en main et une odeur de champagne tiède.", "Ta loge est devenue un club libertin improvisé. Quelqu'un a mis ta playlist « Romance » et il y a du lubrifiant sur la guitare de ta grand-mère."],
+      en: ["The after-party spirals: an inflatable hot tub, twelve strangers in leopard underwear, a garden gnome being passed around and the smell of warm champagne.", "Your dressing room has become an improvised swingers' club. Someone put on your 'Romance' playlist and there's lube on your grandmother's guitar."],
+    },
+    choices: [
+      { label: { fr: 'Plonger dans le jacuzzi', en: 'Dive into the tub' }, out: [
+        { w: 2, text: { fr: "J'ai plongé. Je ne sais pas combien de mains j'ai serrées, ni où. Réveil dans un placard, en peignoir, avec un nouveau tatouage « MAMAN » sur une fesse.", en: "I dived in. I don't know how many hands I shook, or where. Woke up in a closet in a bathrobe with a new 'MOM' tattoo on one butt cheek." }, fx: { happy: 15, stress: -10, health: -4, looks: -2 }, mood: 'party' },
+        { w: 1, text: { fr: "J'ai plongé. Trois semaines plus tard, ça me brûle quand je fais pipi. Le jacuzzi gonflable, lui, a été incinéré par l'hôtel.", en: 'I dived in. Three weeks later, it burns when I pee. The hotel incinerated the inflatable tub.' }, fx: { happy: 6, disease: 'std', health: -8 }, mood: 'sick' },
+      ] },
+      { label: { fr: 'Rentrer dormir', en: 'Go to bed' }, text: { fr: "Je suis rentré{|e} dormir avec une tisane. Les tabloïds titrent « La star la plus chiante du rock ». Ma mère est fière.", en: "I went to bed with herbal tea. Tabloids call me 'Rock's Most Boring Star'. My mother is proud." }, fx: { health: 4, fame: -3, karma: 3 }, mood: 'sleepy' },
+    ],
+  },
+  {
+    id: 'ca_mu_overdose',
+    icon: '🚑',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'hospital', mood: 'sick', prop: 'stretcher', fx: 'police' },
+    when: { job: ['rock_star', 'dj', 'actor', 'model'], age: [18, 80] },
+    weight: 5,
+    cooldown: 6,
+    text: {
+      fr: ["Tu te réveilles en réanimation, une sonde dans le nez, vêtu{|e} d'un costume de homard. Le médecin dit que ton sang contient « à peu près tout le tableau périodique ».", "Ton cœur s'est arrêté 40 secondes en pleine fête. Tu as vu une lumière blanche. C'était le flash d'un paparazzi."],
+      en: ["You wake up in the ICU with a tube up your nose, wearing a lobster costume. The doctor says your blood contains 'roughly the whole periodic table'.", "Your heart stopped for 40 seconds mid-party. You saw a white light. It was a paparazzo's flash."],
+    },
+    choices: [
+      { label: { fr: 'Cure de désintox', en: 'Go to rehab' }, text: { fr: "Trois mois de désintox dans un chalet suisse à 2 000 € la nuit. On y fait de la poterie et on pleure. J'ai fait un vase en forme de regret.", en: "Three months of rehab in a Swiss chalet at $2,000 a night. We do pottery and cry. I made a vase shaped like regret." }, fx: { money: -60000, health: 10, happy: 4, addiction: ['drugs', -40], karma: 3 }, mood: 'sad' },
+      { label: { fr: 'Retourner à la fête', en: 'Back to the party' }, text: { fr: "J'ai arraché ma perfusion et je suis reparti{|e} à la fête en blouse d'hôpital, fesses à l'air. J'ai vomi sur un ministre. Il a dit merci.", en: "I ripped out my IV and went back to the party in a hospital gown, butt out. I threw up on a minister. He said thank you." }, fx: { health: -20, fame: 8, addiction: ['drugs', 20], visual: 'poop' }, mood: 'party' },
+      { label: { fr: 'En faire une chanson', en: 'Write a song about it' }, text: { fr: "J'ai écrit « Lobster Overdose » depuis mon lit d'hôpital. Disque de platine. Mon médecin touche des droits d'auteur.", en: "I wrote 'Lobster Overdose' from my hospital bed. Platinum record. My doctor gets royalties." }, fx: { fame: 10, money: 90000, health: -5, perf: 8 }, mood: 'proud' },
+    ],
+  },
+  {
+    id: 'ca_mu_stagedive',
+    icon: '🤘',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'stadium', mood: 'shock', prop: 'stage', fx: 'gore' },
+    when: { job: MUSIC },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: ["Dernier morceau. La foule hurle ton nom. Tu as très envie de faire un slam. Le premier rang est composé de trois retraités et d'une poussette.", "Le public t'implore de sauter dans la fosse. Tu as 70 kilos de cuir sur le dos et la fosse est surtout composée de personnes en train de filmer."],
+      en: ["Last song. The crowd is chanting your name. You really want to stage dive. The front row is three pensioners and a stroller.", "The crowd begs you to jump into the pit. You're wearing 70 kilos of leather and the pit is mostly people filming."],
+    },
+    choices: [
+      { label: { fr: 'Sauter !', en: 'Jump!' }, out: [
+        { w: 1, text: { fr: "J'ai sauté. Ils se sont tous écartés pour mieux filmer. J'ai fait « SPLOTCH » sur le béton. Une dent a atterri dans un gobelet. Le gars l'a bue.", en: "I jumped. They all stepped aside to film better. I went SPLAT on the concrete. A tooth landed in someone's cup. He drank it." }, fx: { health: -18, looks: -6, fame: 10, disease: 'concussion', visual: 'gore' }, mood: 'sick' },
+        { w: 2, text: { fr: "J'ai sauté. Une forêt de mains m'a porté{|e} jusqu'au bar, où j'ai commandé une bière sans toucher le sol. Moment parfait. Ils m'ont volé mes bottes.", en: "I jumped. A forest of hands carried me all the way to the bar, where I ordered a beer without touching the ground. Perfect moment. They stole my boots." }, fx: { happy: 12, fame: 5, perf: 4 }, mood: 'party' },
+      ] },
+      { label: { fr: 'Casser ma guitare', en: 'Smash my guitar' }, text: { fr: "J'ai fracassé ma guitare sur l'ampli. Un éclat a traversé la joue du roadie. Il a dit « c'était rock ». Il dit ça pour tout.", en: "I smashed my guitar on the amp. A splinter went through the roadie's cheek. He said 'that was metal'. He says that about everything." }, fx: { fame: 4, money: -4000, karma: -2, visual: 'gore' } },
+    ],
+  },
+  {
+    id: 'ca_ac_oscars',
+    icon: '🏅',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'studio', mood: 'proud', prop: 'statuette', fx: 'confetti' },
+    when: { job: SCREEN, stat: { fame: [40, 100] } },
+    weight: 3,
+    once: true,
+    text: {
+      fr: ["Et l'Oscar est attribué à… TOI ! Tu montes sur scène. Tu as 45 secondes. Ton discours est écrit sur ta main, mais tu as transpiré.", "Ton nom résonne dans la salle. Tu as gagné l'Oscar. Tu rates une marche, tu te rattrapes au bras d'une légende du cinéma qui pousse un petit cri."],
+      en: ["And the Oscar goes to... YOU! You walk up on stage. You have 45 seconds. Your speech is written on your hand, but you've been sweating.", "Your name echoes through the hall. You've won the Oscar. You miss a step and grab the arm of a film legend, who lets out a little yelp."],
+    },
+    choices: [
+      { label: { fr: 'Remercier ma maman', en: 'Thank my mom' }, text: { fr: "J'ai remercié ma mère, mon chat, mon agent et « le petit monsieur du pressing ». La salle a pleuré. Le monsieur du pressing aussi, devant sa télé.", en: "I thanked my mom, my cat, my agent and 'the little guy at the dry cleaner'. The hall wept. So did the dry cleaner, at home." }, fx: { fame: 18, happy: 20, karma: 4, promote: true, visual: 'confetti' }, mood: 'cry' },
+      { label: { fr: 'Discours engagé', en: 'Political speech' }, text: { fr: "J'ai fait un discours de 12 minutes sur les pingouins. Ils ont coupé le micro, puis la lumière, puis le chauffage. J'ai continué dans le noir.", en: "I gave a 12-minute speech about penguins. They cut the mic, then the lights, then the heating. I kept going in the dark." }, fx: { fame: 20, karma: 6, happy: 10 }, mood: 'proud' },
+      { label: { fr: 'Juste « Merci. »', en: 'Just "Thanks."' }, text: { fr: "J'ai dit « Merci. » et je suis reparti{|e}. Le discours le plus court de l'histoire. Les réalisateurs m'adorent : je fais gagner du temps.", en: "I said 'Thanks.' and walked off. Shortest speech in history. Directors love me: I save time." }, fx: { fame: 15, happy: 14, promote: true }, mood: 'happy' },
+    ],
+  },
+  {
+    id: 'ca_ac_paparazzi',
+    icon: '📸',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'beach', mood: 'angry', prop: 'camera', fx: 'poop' },
+    when: { job: 'cat:art', stat: { fame: [35, 100] } },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: ["Des paparazzis t'ont photographié{|e} sur une plage déserte au moment précis où un fruit de mer douteux a décidé de quitter ton corps. Par le bas. En urgence.", "Un paparazzi est caché dans ta poubelle depuis trois jours. Il en sort pour te mitrailler en pyjama Bob l'éponge. Il sent la peau de banane."],
+      en: ["Paparazzi photographed you on a deserted beach at the exact moment some dodgy seafood decided to leave your body. From below. Urgently.", "A paparazzo has been hiding in your trash can for three days. He pops out to shoot you in SpongeBob pajamas. He smells of banana peel."],
+    },
+    choices: [
+      { label: { fr: 'Lui casser son objectif', en: 'Smash his lens' }, text: { fr: "J'ai pris son appareil et l'ai fracassé sur un rocher. Il avait un deuxième appareil. Il a pris la scène sous trois angles. Procès pour 40 000.", en: 'I grabbed his camera and smashed it on a rock. He had a second camera. Got the whole scene from three angles. Sued for 40 grand.' }, fx: { money: -40000, fame: 6, happy: 4, karma: -3 }, mood: 'angry' },
+      { label: { fr: 'Poser fièrement', en: 'Pose proudly' }, text: { fr: "J'ai fait un signe de paix, accroupi{|e}, en pleine action. La photo a fait la une. Une marque de papier toilette m'a proposé un contrat.", en: 'I flashed a peace sign, squatting, mid-business. The photo made the front page. A toilet paper brand offered me a deal.' }, fx: { fame: 10, money: 25000, followers: 150000, visual: 'poop' }, mood: 'party' },
+      { label: { fr: 'Fuir dans les vagues', en: 'Flee into the waves' }, text: { fr: "J'ai fui dans la mer. Une méduse m'a piqué{|e} là où personne ne veut être piqué. Les photos s'intitulent « Rien ne va plus ».", en: "I fled into the sea. A jellyfish stung me where nobody wants to be stung. The photos are titled 'It's All Going Wrong'." }, fx: { health: -6, happy: -8, fame: 4 }, mood: 'sick' },
+    ],
+  },
+  {
+    id: 'ca_ac_flop',
+    icon: '🎬',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'studio', mood: 'sad', prop: 'popcorn' },
+    when: { job: SCREEN },
+    weight: 8,
+    cooldown: 4,
+    vars: { amount: [20000, 200000] },
+    text: {
+      fr: ["Ton film « Le Mime qui murmurait aux baleines » sort ce week-end. Recette du premier jour : 312 €. Dont 9 € de ta tante.", "Ton blockbuster à 200 millions a fait moins d'entrées qu'un documentaire sur le gravier. Le studio envisage de ressortir le film sous un autre nom."],
+      en: ["Your movie 'The Mime Who Whispered to Whales' opens this weekend. Day-one box office: $312. Nine of which came from your aunt.", "Your 200-million blockbuster sold fewer tickets than a documentary about gravel. The studio is considering re-releasing it under a different name."],
+    },
+    choices: [
+      { label: { fr: 'Accuser la critique', en: 'Blame the critics' }, text: { fr: "J'ai déclaré que les critiques « n'étaient pas prêts ». Ils ne le seront jamais. Moi non plus d'ailleurs, j'ai revu le film.", en: "I declared the critics 'weren't ready'. They never will be. Neither am I, to be fair, I rewatched it." }, fx: { fame: -4, happy: -4, perf: -6 }, mood: 'angry' },
+      { label: { fr: 'En faire un film culte', en: 'Make it a cult classic' }, out: [
+        { w: 1, text: { fr: "J'ai organisé des projections de minuit où les gens lancent des cuillères sur l'écran. Le film est devenu culte. J'ai touché {$amount} et une cuillère dans l'œil.", en: "I organised midnight screenings where people throw spoons at the screen. It became a cult classic. I made {$amount} and took a spoon to the eye." }, fx: { money: 'amount', fame: 8, happy: 8 }, mood: 'party' },
+        { w: 2, text: { fr: "J'ai tenté les séances de minuit. Il est venu une personne. C'était le mime. Il ne m'a rien dit, évidemment.", en: "I tried midnight screenings. One person came. It was the mime. He didn't say anything, obviously." }, fx: { money: -5000, happy: -6 }, mood: 'sad' },
+      ] },
+      { label: { fr: 'Partir en Amérique du Sud', en: 'Flee to South America' }, text: { fr: "Je suis parti{|e} faire une « retraite spirituelle » au Pérou en attendant que ça se tasse. Un lama m'a reconnu{|e} et m'a craché dessus.", en: "I went on a 'spiritual retreat' in Peru until things blew over. A llama recognised me and spat on me." }, fx: { money: -8000, stress: -10, perf: -4 } },
+    ],
+  },
+  {
+    id: 'ca_ac_method',
+    icon: '🎭',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'studio', mood: 'shock', prop: 'cleaver', fx: 'gore' },
+    when: { job: 'actor' },
+    weight: 6,
+    cooldown: 5,
+    text: {
+      fr: ["Tu prépares ton rôle de boucher cannibale pour un film d'auteur. Ça fait six semaines que tu vis dans une chambre froide et que tu appelles ton chat « jambon ».", "Pour ton rôle de pirate manchot, ton coach d'acting t'explique que les vrais artistes « vivent le personnage jusqu'au bout ». Il te tend un hachoir."],
+      en: ["You're preparing for your role as a cannibal butcher in an arthouse film. For six weeks you've been living in a cold room and calling your cat 'ham'.", "For your role as a one-handed pirate, your acting coach explains that true artists 'live the character all the way'. He hands you a cleaver."],
+    },
+    choices: [
+      { label: { fr: "Aller jusqu'au bout", en: 'Go all the way' }, text: { fr: "Je me suis coupé un doigt pour la vérité du rôle. Le sang a giclé sur le réalisateur, qui a crié « COUPEZ ! », ce qui était de mauvais goût. Nomination aux Oscars.", en: "I chopped off a finger for the truth of the role. Blood sprayed all over the director, who yelled 'CUT!', which was in poor taste. Oscar nomination." }, fx: { disease: 'missing_finger', health: -15, fame: 14, perf: 12, visual: 'gore' }, mood: 'proud' },
+      { label: { fr: 'Croquer un figurant', en: 'Bite an extra' }, text: { fr: "Je suis resté{|e} dans le personnage et j'ai mordu un figurant au mollet. Il a hurlé, il y avait des morceaux. Il porte plainte, mais la prise est excellente.", en: 'I stayed in character and bit an extra on the calf. He screamed, chunks were involved. He is suing, but the take is excellent.' }, fx: { fame: 8, perf: 6, karma: -8, money: -30000, visual: 'gore' }, mood: 'shock' },
+      { label: { fr: 'Jouer, simplement', en: 'Just act' }, text: { fr: "J'ai simplement… joué. Avec un faux doigt en latex. Les puristes me traitent de vendu{|e}. J'ai dix doigts et zéro regret.", en: "I just... acted. With a latex fake finger. Purists call me a sellout. I have ten fingers and zero regrets." }, fx: { happy: 4, perf: 2 } },
+    ],
+  },
+  {
+    id: 'ca_ac_tabloid',
+    icon: '📰',
+    cat: 'career',
+    rating: 1,
+    scene: { place: 'home', mood: 'shock', prop: 'magazine' },
+    when: { job: ['cat:art', 'cat:media'], stat: { fame: [25, 100] }, noFlag: 'ca_tabloid' },
+    weight: 7,
+    cooldown: 5,
+    text: {
+      fr: ["Couverture d'un tabloïd : « {first} {last} : SON HISTOIRE D'AMOUR SECRÈTE AVEC UN DAUPHIN ». Photo floue à l'appui. Le dauphin n'a pas commenté.", "Un magazine people affirme que tu t'es fait greffer les fesses d'un cousin. Il y a un schéma. Il est très détaillé."],
+      en: ["Tabloid cover: '{first} {last}: SECRET LOVE AFFAIR WITH A DOLPHIN'. Blurry photo included. The dolphin declined to comment.", "A gossip magazine claims you had your cousin's butt grafted onto yours. There's a diagram. It's very detailed."],
+    },
+    choices: [
+      { label: { fr: 'Les attaquer en justice', en: 'Sue them' }, out: [
+        { w: 2, text: { fr: "Procès gagné. Le magazine m'a versé 60 000 et publié un démenti en page 47, entre un horoscope et une pub pour des culottes chauffantes.", en: "Won the lawsuit. The magazine paid me 60 grand and printed a retraction on page 47, between a horoscope and an ad for heated underwear." }, fx: { money: 60000, happy: 6, flag: 'ca_tabloid' }, mood: 'proud' },
+        { w: 1, text: { fr: "J'ai perdu le procès : le juge a vu la photo et a « des doutes ». J'ai payé les frais. Le dauphin, lui, n'a rien payé.", en: "I lost: the judge saw the photo and 'has doubts'. I paid costs. The dolphin paid nothing." }, fx: { money: -30000, happy: -8, flag: 'ca_tabloid' }, mood: 'angry' },
+      ] },
+      { label: { fr: 'Jouer le jeu', en: 'Play along' }, text: { fr: "J'ai posté une photo romantique avec une peluche de dauphin. Le public adore. Je suis l'égérie d'un aquarium.", en: "I posted a romantic photo with a plush dolphin. People love it. I'm now the face of an aquarium." }, fx: { fame: 6, followers: 80000, happy: 4, flag: 'ca_tabloid' }, mood: 'happy' },
+      { label: { fr: 'Ignorer', en: 'Ignore it' }, text: { fr: "J'ai ignoré l'article. Ma mère, non. Elle m'appelle tous les soirs pour savoir si le dauphin me traite bien.", en: "I ignored it. My mother didn't. She calls every night to ask if the dolphin treats me right." }, fx: { stress: 4, flag: 'ca_tabloid' } },
+    ],
+  },
+  {
+    id: 'ca_cm_heckler',
+    icon: '🎤',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'party', mood: 'angry', prop: 'microphone' },
+    when: { job: 'comedian' },
+    weight: 9,
+    cooldown: 3,
+    text: {
+      fr: ["En plein spectacle, un type bourré au premier rang crie « T'ES PAS DRÔLE ! » puis vomit dans le seau à glace de sa voisine. Le public te regarde.", "Un spectateur te hurle dessus depuis dix minutes. Il porte un t-shirt « Meilleur Tonton » et une tache de sauce qui ressemble à l'Italie."],
+      en: ["Mid-set, a drunk guy in the front row yells 'YOU'RE NOT FUNNY!' then throws up into his neighbour's ice bucket. The audience turns to you.", "A heckler has been shouting at you for ten minutes. He's wearing a 'World's Best Uncle' t-shirt and a sauce stain shaped like Italy."],
+    },
+    choices: [
+      { label: { fr: "L'humilier", en: 'Destroy him' }, out: [
+        { w: 3, odds: { smarts: 1 }, text: { fr: "« Monsieur, même votre vomi a quitté la salle plus dignement que vous allez le faire. » Ovation. Il est parti en pleurant dans son seau. Meilleure soirée de l'année.", en: "'Sir, even your vomit left the room with more dignity than you're about to.' Standing ovation. He left crying into his bucket. Best night of the year." }, fx: { perf: 10, fame: 5, happy: 10 }, mood: 'party' },
+        { w: 1, text: { fr: "J'ai tenté une vanne sur sa mère. Sa mère était à côté de lui. Elle était charmante. Et costaude. J'ai un œil au beurre noir.", en: "I tried a joke about his mom. His mom was sitting next to him. She was lovely. And strong. I have a black eye." }, fx: { health: -6, perf: -6, happy: -6 }, mood: 'sad' },
+      ] },
+      { label: { fr: 'Improviser sur le vomi', en: 'Riff on the vomit' }, text: { fr: "J'ai fait vingt minutes d'impro sur le seau à glace. J'ai décrit sa texture comme un sommelier. Trois personnes ont vomi par solidarité. La captation cartonne.", en: "I did twenty minutes of improv about the ice bucket. Described its texture like a sommelier. Three people threw up in solidarity. The special is a hit." }, fx: { perf: 8, fame: 8, money: 15000, visual: 'poop' }, mood: 'party' },
+    ],
+  },
+  {
+    id: 'ca_cl_party',
+    icon: '🤡',
+    cat: 'career',
+    rating: 1,
+    scene: { place: 'home', mood: 'shock', prop: 'balloons' },
+    when: { job: 'clown' },
+    weight: 10,
+    cooldown: 2,
+    text: {
+      fr: ["Anniversaire d'un enfant de 6 ans. Quinze gamins sous sucre te fixent comme une meute de loups. L'un d'eux tient une fourchette.", "Tu fais une animation dans un goûter. Un enfant t'annonce calmement : « Mon papa dit que t'as raté ta vie. » Son papa hoche la tête au fond."],
+      en: ["Six-year-old's birthday party. Fifteen sugar-crazed kids stare at you like a wolf pack. One of them is holding a fork.", "You're entertaining at a kids' party. A child calmly informs you: 'My dad says you failed at life.' His dad nods in the back."],
+    },
+    choices: [
+      { label: { fr: 'Sculpture de ballons', en: 'Balloon animals' }, out: [
+        { w: 2, text: { fr: "J'ai fait une girafe, un chien et un dinosaure. Les gamins hurlaient de joie. Une maman m'a laissé 20 balles de pourboire et son numéro.", en: "I made a giraffe, a dog and a dinosaur. The kids screamed with joy. A mom left me a 20-dollar tip and her number." }, fx: { perf: 6, money: 20, happy: 6 }, mood: 'happy' },
+        { w: 1, text: { fr: "Mon ballon a éclaté à côté de l'oreille du pépé. Il a cru à un attentat et s'est jeté sous la table. Il y est encore. Les enfants adorent.", en: "My balloon popped next to Grandpa's ear. He thought it was an attack and dove under the table. He's still there. The kids love it." }, fx: { perf: 2, happy: 4 }, mood: 'shock' },
+      ] },
+      { label: { fr: 'Clown triste', en: 'Sad clown act' }, text: { fr: "J'ai fait mon numéro de clown dépressif qui fume sous la pluie. Six enfants ont pleuré. Un seul a compris. Il ira loin, ce petit.", en: 'I did my depressed-clown-smoking-in-the-rain routine. Six kids cried. One understood. That kid will go far.' }, fx: { perf: -6, happy: -2, smarts: 2 }, mood: 'sad' },
+      { label: { fr: 'Fuir les gosses', en: 'Run from the kids' }, text: { fr: "Un gamin m'a planté sa fourchette dans le mollet. J'ai juré si fort qu'un enfant a appris quatre mots nouveaux. Les parents ne me paieront pas.", en: 'A kid stabbed his fork into my calf. I swore so hard one child learned four new words. The parents won\'t pay me.' }, fx: { health: -4, perf: -8, happy: -6 }, mood: 'angry' },
+    ],
+  },
+  {
+    id: 'ca_md_shoot',
+    icon: '👠',
+    cat: 'career',
+    rating: 1,
+    scene: { place: 'studio', mood: 'neutral', prop: 'spotlight' },
+    when: { job: 'model' },
+    weight: 9,
+    cooldown: 3,
+    text: {
+      fr: ["Le photographe veut que tu poses en manteau de jambon cru « pour la symbolique ». Il fait 34 °C. Les mouches ont déjà signé.", "Défilé haute couture : tes talons font 28 cm et ta robe est faite de sachets de thé usagés. Le créateur pleure d'émotion en coulisse."],
+      en: ["The photographer wants you to pose in a coat made of raw ham 'for the symbolism'. It's 93°F. The flies have already signed on.", "Couture runway: your heels are 11 inches and your outfit is made of used tea bags. The designer is weeping with emotion backstage."],
+    },
+    choices: [
+      { label: { fr: 'Faire la moue', en: 'Do the pout' }, text: { fr: "J'ai fait la moue la plus vide de l'histoire. Le photographe a hurlé « OUI ! DÉSESPOIR ! ». Couverture de magazine.", en: "I did the emptiest pout in history. The photographer screamed 'YES! DESPAIR!' Magazine cover." }, fx: { perf: 8, fame: 6, looks: 2 }, mood: 'proud' },
+      { label: { fr: 'Marcher quand même', en: 'Walk it anyway' }, out: [
+        { w: 2, text: { fr: "J'ai défilé comme une gazelle sous anxiolytiques. Personne n'a rien compris à la tenue. Donc c'était génial.", en: "I walked like a gazelle on Xanax. Nobody understood the outfit. Therefore it was genius." }, fx: { perf: 6, fame: 4 }, mood: 'happy' },
+        { w: 1, text: { fr: "Mon talon a cédé au milieu du podium. Je suis tombé{|e} sur un critique de mode, qui a perdu ses lunettes et sa dignité. On a fait la une ensemble.", en: "My heel snapped mid-runway. I fell onto a fashion critic, who lost his glasses and his dignity. We made the front page together." }, fx: { health: -6, fame: 8, disease: 'sprain' }, mood: 'shock' },
+      ] },
+      { label: { fr: 'Refuser le jambon', en: 'Refuse the ham' }, text: { fr: "J'ai refusé de porter de la charcuterie. On m'a traité{|e} de « diva » et remplacé{|e} par un mannequin en cire. Il a eu chaud, lui aussi.", en: "I refused to wear cold cuts. They called me a diva and replaced me with a wax mannequin. It melted too." }, fx: { perf: -8, karma: 2, happy: 2 } },
+    ],
+  },
+  {
+    id: 'ca_dj_auto',
+    icon: '🎧',
+    cat: 'career',
+    rating: 1,
+    auto: true,
+    when: { job: 'dj', chance: 0.5 },
+    cooldown: 4,
+    text: {
+      fr: ["J'ai mixé trois heures en boîte en appuyant sur un seul bouton. Le reste du temps, j'ai levé les bras et bu du rhum. Le public a parlé d'un « set mythique ».", "Mon ordinateur a planté en plein set. J'ai fait « Ouaiiis ! » au micro pendant quatre minutes. Personne n'a remarqué."],
+      en: ["I DJed a club for three hours by pressing a single button. The rest of the time I raised my arms and drank rum. People called it 'a legendary set'.", "My laptop crashed mid-set. I yelled 'Yeaaah!' into the mic for four minutes. Nobody noticed."],
+    },
+    fx: { perf: 4, happy: 3 },
+  },
+  {
+    id: 'ca_mg_saw',
+    icon: '🪚',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'studio', mood: 'shock', prop: 'saw', fx: 'gore' },
+    when: { job: 'magician' },
+    weight: 8,
+    cooldown: 4,
+    text: {
+      fr: ["Le tour de la femme coupée en deux. Ton assistante habituelle est malade, la remplaçante est une stagiaire qui n'a pas lu le mode d'emploi. Elle s'est mise dans la boîte à l'envers.", "Gala de magie devant 2 000 personnes. Ta scie électrique a été remplacée par une vraie, plus puissante, par un rival jaloux. Personne ne t'a prévenu{|e}."],
+      en: ["The sawing-a-woman-in-half trick. Your usual assistant is sick; the replacement is an intern who didn't read the manual. She got into the box backwards.", "Magic gala in front of 2,000 people. A jealous rival swapped your prop saw for a real, much stronger one. Nobody told you."],
+    },
+    choices: [
+      { label: { fr: 'Scier quand même', en: 'Saw anyway' }, text: { fr: "J'ai scié. Ses pieds ont remué, puis arrêté de remuer. Il y avait trop de rouge pour du ketchup. Le public a applaudi jusqu'à l'arrivée du SAMU. Elle va bien, globalement. Surtout la moitié du haut.", en: "I sawed. Her feet wiggled, then stopped wiggling. Too much red for ketchup. The crowd applauded until the ambulance arrived. She's mostly fine. Especially the top half." }, fx: { karma: -12, fame: 12, perf: -10, stress: 15, visual: 'gore' }, mood: 'shock' },
+      { label: { fr: 'Changer de tour', en: 'Switch tricks' }, text: { fr: "J'ai improvisé et sorti un lapin de mon chapeau. C'était le lapin du rival. Il est mort de peur. Le lapin, pas le rival. Dommage.", en: "I improvised and pulled a rabbit from my hat. It was the rival's rabbit. It died of fright. The rabbit, not the rival. Shame." }, fx: { perf: 2, happy: -3 } },
+      { label: { fr: 'Faire disparaître le rival', en: 'Make the rival vanish' }, text: { fr: "Je l'ai invité sur scène, enfermé dans la boîte et fait « disparaître ». Il a été retrouvé trois jours plus tard dans une consigne de gare. Tour de l'année.", en: "I invited him on stage, locked him in the box and made him 'disappear'. He was found three days later in a train station locker. Trick of the year." }, fx: { perf: 12, fame: 8, karma: -4, heat: 10 }, mood: 'party' },
+    ],
+  },
+  {
+    id: 'ca_art_auto_royalties',
+    icon: '💸',
+    cat: 'career',
+    rating: 1,
+    auto: true,
+    when: { job: ['cat:art'], chance: 0.5 },
+    cooldown: 5,
+    text: {
+      fr: ["J'ai reçu mon relevé de droits d'auteur annuel : 3,12 €. Ça ne couvre même pas le timbre de la lettre. Je l'ai encadré, par principe.", "Un restaurant chinois utilise une de mes œuvres en set de table. Sans autorisation. Je mange là-bas gratuitement depuis, c'est le deal."],
+      en: ["Got my yearly royalty statement: $3.12. Doesn't even cover the stamp. I framed it, on principle.", "A Chinese restaurant is using one of my works as a placemat. Without permission. I now eat there for free, that's the deal."],
+    },
+    fx: { happy: 2, money: 3 },
+  },
+
+  // ───────────────────────────── streamers, influencers ─────────────────────────────
+  {
+    id: 'ca_st_swat',
+    icon: '🚨',
+    cat: 'career',
+    rating: 1,
+    scene: { place: 'apartment', mood: 'shock', prop: 'webcam', fx: 'police' },
+    when: { job: STREAM },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: ["En plein live, ta porte explose. Douze policiers en tenue d'assaut. Un viewer a signalé une prise d'otages chez toi. 80 000 personnes regardent en direct.", "Un troll t'a « swatté{|e} ». Tu es en caleçon devant ta webcam, un fusil d'assaut braqué sur la tempe. Le chat bombarde l'écran d'emojis."],
+      en: ["Mid-stream, your door explodes. Twelve cops in tactical gear. A viewer reported a hostage situation at your place. 80,000 people are watching live.", "A troll swatted you. You're in your underwear in front of your webcam with an assault rifle pointed at your head. Chat is spamming emojis."],
+    },
+    choices: [
+      { label: { fr: 'Continuer le live', en: 'Keep streaming' }, text: { fr: "Menotté{|e} face contre le tapis, j'ai quand même remercié les abonnés. Un policier a fait un coucou à la caméra. Record d'audience absolu.", en: "Cuffed face-down on the rug, I still thanked my subs. One cop waved at the camera. All-time viewership record." }, fx: { followers: 120000, fame: 6, stress: 15, visual: 'police' }, mood: 'shock' },
+      { label: { fr: 'Couper et pleurer', en: 'End stream and cry' }, text: { fr: "J'ai coupé et pleuré dans les bras d'un CRS. Il sentait le café et la bonté. On s'écrit encore.", en: "I ended the stream and sobbed in a SWAT officer's arms. He smelled of coffee and kindness. We still text." }, fx: { stress: 10, happy: -6, followers: -5000 }, mood: 'cry' },
+    ],
+  },
+  {
+    id: 'ca_st_tts',
+    icon: '🔊',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'apartment', mood: 'shock', prop: 'webcam', fx: 'money' },
+    when: { job: STREAM },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: ["Un viewer donne 5 000 € avec un message lu par la synthèse vocale. Elle récite, avec une voix de GPS, une description très imagée de ce qu'il ferait à tes pieds.", "Don géant en live. Le message texte-parole lit lentement un poème sur ta grand-mère, la déclinaison complète du mot « fesses » et le numéro de ta carte vitale."],
+      en: ["A viewer donates $5,000 with a text-to-speech message. In a GPS voice, it recites a very vivid description of what he'd like to do to your feet.", "Huge donation live. The text-to-speech slowly reads a poem about your grandmother, every synonym for 'butt' and your social security number."],
+    },
+    choices: [
+      { label: { fr: 'Garder le fric', en: 'Keep the cash' }, text: { fr: "J'ai dit « merci pour le soutien ! » avec un sourire crispé. Le viewer a redonné 5 000 pour que je lise mes propres pieds. Je ne dirai pas ce que j'ai fait.", en: "I said 'thanks for the support!' with a frozen smile. He gave another 5,000 for me to read my own feet. I won't say what I did." }, fx: { money: 10000, karma: -4, happy: 2 }, mood: 'shock' },
+      { label: { fr: 'Le bannir', en: 'Ban him' }, text: { fr: "Banni. Il a créé 47 comptes en une heure pour continuer. Ma communauté a lancé un fonds pour lui offrir un psychologue.", en: "Banned. He made 47 accounts in an hour to keep going. My community started a fund to get him a therapist." }, fx: { karma: 4, followers: 15000, stress: 4 } },
+      { label: { fr: 'En faire un sketch', en: 'Turn it into a bit' }, text: { fr: "J'ai réagi en direct en enfilant des chaussettes de laine en hurlant « PAS AUJOURD'HUI ! ». Le clip a fait 12 millions de vues.", en: "I reacted live by pulling on wool socks and shouting 'NOT TODAY!'. The clip hit 12 million views." }, fx: { followers: 250000, fame: 5, happy: 6 }, mood: 'party' },
+    ],
+  },
+  {
+    id: 'ca_in_detox',
+    icon: '🍵',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'apartment', mood: 'sick', prop: 'teacup', fx: 'poop' },
+    when: { job: 'influencer' },
+    weight: 8,
+    cooldown: 4,
+    vars: { amount: [5000, 60000] },
+    text: {
+      fr: ["Une marque te propose {$amount} pour promouvoir son « thé détox minceur ». La composition : 98 % laxatif pour chevaux, 2 % paillettes.", "Partenariat rémunéré {$amount} : tu dois boire un « jus brûle-graisse » en story pendant 30 jours. L'étiquette est en cyrillique et elle fume légèrement."],
+      en: ["A brand offers you {$amount} to promote its 'slimming detox tea'. Ingredients: 98% horse laxative, 2% glitter.", "Paid partnership, {$amount}: drink a 'fat-burner juice' in your stories for 30 days. The label is in Cyrillic and it smokes slightly."],
+    },
+    choices: [
+      { label: { fr: 'Accepter et boire', en: 'Accept and drink' }, text: { fr: "J'ai bu en story. Quatre minutes plus tard, sprint vers les toilettes en direct. Le filtre « oreilles de chat » n'a rien caché. J'ai perdu 3 kilos et toute ma dignité.", en: "I drank it on my story. Four minutes later, live sprint to the toilet. The cat-ears filter hid nothing. Lost 6 pounds and all my dignity." }, fx: { money: 'amount', health: -8, weight: -0.04, followers: 60000, visual: 'poop' }, mood: 'sick' },
+      { label: { fr: 'Promouvoir sans boire', en: 'Promote, never drink' }, text: { fr: "J'ai fait semblant de boire, pris l'argent, et mes abonnés ont tout bu à ma place. 400 plaintes, une pénurie de papier toilette régionale.", en: "I faked drinking, took the money, and my followers drank it instead. 400 complaints and a regional toilet paper shortage." }, fx: { money: 'amount', karma: -10, followers: -30000 }, mood: 'neutral' },
+      { label: { fr: 'Dénoncer la marque', en: 'Expose the brand' }, text: { fr: "J'ai fait une vidéo pour dénoncer l'arnaque. Mes abonnés m'appellent « la conscience d'Internet ». La marque m'a envoyé un colis piégé plein de paillettes.", en: "I made a video exposing the scam. Followers call me 'the conscience of the internet'. The brand sent me a glitter bomb." }, fx: { karma: 8, followers: 40000, fame: 4 }, mood: 'proud' },
+    ],
+  },
+  {
+    id: 'ca_in_cancel',
+    icon: '🗑️',
+    cat: 'career',
+    rating: 1,
+    scene: { place: 'apartment', mood: 'cry', prop: 'ringlight' },
+    when: { job: ['streamer', 'influencer', 'comedian'], followers: [10000, 1e12] },
+    weight: 7,
+    cooldown: 5,
+    text: {
+      fr: ["Quelqu'un a déterré un tweet de toi, 2011 : « les pigeons sont des rats avec un abonnement premium ». La cause animale réclame ta tête.", "#{first}IsOverParty est en top tendance. Motif : tu as mangé une pizza ananas en live et souri pendant."],
+      en: ["Someone dug up a tweet of yours from 2011: 'pigeons are rats with a premium subscription'. Animal rights Twitter wants your head.", "#{first}IsOverParty is trending. Reason: you ate pineapple pizza on stream and smiled while doing it."],
+    },
+    choices: [
+      { label: { fr: "Vidéo d'excuses", en: 'Apology video' }, text: { fr: "Vidéo d'excuses en sweat gris, sans maquillage, avec des pauses dramatiques et une plante verte. Les gens ont surtout commenté la plante.", en: "Apology video in a grey hoodie, no makeup, dramatic pauses and a potted plant. People mostly commented on the plant." }, fx: { followers: -20000, karma: 2, happy: -4 }, mood: 'sad' },
+      { label: { fr: 'Doubler la mise', en: 'Double down' }, out: [
+        { w: 1, text: { fr: "J'ai posté « et les mouettes sont des pigeons qui ont fait Erasmus ». Le scandale a doublé. Mes abonnés aussi.", en: "I posted 'and seagulls are pigeons who studied abroad'. The scandal doubled. So did my followers." }, fx: { followers: 90000, fame: 6, karma: -4 }, mood: 'party' },
+        { w: 1, text: { fr: "J'ai doublé la mise. Tous mes sponsors sont partis, même la marque de croquettes. Je vis désormais du soutien de six comptes anonymes.", en: "I doubled down. All my sponsors left, even the cat food brand. I now live off six anonymous accounts." }, fx: { followers: -60000, money: -20000, happy: -10 }, mood: 'cry' },
+      ] },
+      { label: { fr: 'Disparaître un mois', en: 'Vanish for a month' }, text: { fr: "Je suis parti{|e} un mois « travailler sur moi ». Retour en grande pompe : tout le monde avait oublié. C'est presque vexant.", en: "I disappeared for a month to 'work on myself'. Grand comeback: everyone had forgotten. Almost insulting." }, fx: { stress: -10, followers: -5000 } },
+    ],
+  },
+  {
+    id: 'ca_in_auto_algo',
+    icon: '📈',
+    cat: 'career',
+    rating: 0,
+    auto: true,
+    when: { job: STREAM, chance: 0.5 },
+    cooldown: 3,
+    text: {
+      fr: ["L'algorithme m'a mis en avant sans raison sur une vidéo où je cherche mes clés. 200 000 vues. Je n'ai toujours pas trouvé mes clés.", "Une de mes vidéos a explosé en Indonésie. Je ne sais pas pourquoi. Je reçois des messages d'amour dans une langue que je ne lis pas."],
+      en: ["The algorithm randomly boosted a video of me looking for my keys. 200,000 views. I still haven't found my keys.", "One of my videos blew up in Indonesia. No idea why. I'm getting love messages in a language I can't read."],
+    },
+    fx: { followers: 25000, happy: 4 },
+  },
+
+  // ───────────────────────────── politics ─────────────────────────────
+  {
+    id: 'ca_po_campaign',
+    icon: '🗳️',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'studio', mood: 'neutral', prop: 'podium' },
+    when: { job: 'politician', noFlag: 'ca_campaign' },
+    weight: 9,
+    cooldown: 3,
+    text: {
+      fr: ["Campagne électorale ! Débat télévisé ce soir face à ton rival, un homme qui a déjà promis le TGV gratuit et des chiots à chaque foyer.", "Grand débat de l'entre-deux-tours. Ton adversaire a révisé ses chiffres. Toi, tu as révisé ton brushing."],
+      en: ["Election campaign! Televised debate tonight against your rival, a man who already promised free trains and a puppy for every household.", "The big runoff debate. Your opponent memorised his numbers. You memorised your blow-dry."],
+    },
+    choices: [
+      { label: { fr: 'Attaquer sur le fond', en: 'Debate the issues' }, out: [
+        { w: 2, odds: { smarts: 1 }, text: { fr: "J'ai démonté son programme chiffre par chiffre. Il a fini par dire « oui mais les chiots ». Les sondages grimpent.", en: "I took his platform apart, number by number. He ended up saying 'yes, but the puppies'. Polls are climbing." }, fx: { perf: 8, fame: 5, flag: 'ca_campaign', schedule: { key: 'ca_po_election', years: 1 } }, mood: 'proud' },
+        { w: 1, text: { fr: "J'ai confondu le PIB et le PMU pendant cinq minutes. Le clip tourne en boucle. Je n'ai jamais autant parlé de chevaux.", en: "I mixed up GDP and GPS for five minutes. The clip is on loop. I've never talked about satellites so much." }, fx: { perf: -6, fame: 6, flag: 'ca_campaign', schedule: { key: 'ca_po_election', years: 1 } }, mood: 'shock' },
+      ] },
+      { label: { fr: 'Promettre encore plus', en: 'Promise even more' }, text: { fr: "J'ai promis deux chiots par foyer, la semaine de trois jours et la mer à Lyon. Ovation. Je ne sais pas comment je vais faire.", en: "I promised two puppies per household, a three-day week and a beach in Kansas. Ovation. I have no idea how I'll do it." }, fx: { perf: 6, karma: -4, flag: 'ca_campaign', schedule: { key: 'ca_po_election', years: 1 } }, mood: 'party' },
+      { label: { fr: 'Ressortir son passé', en: 'Dig up his past' }, text: { fr: "J'ai révélé qu'il avait triché au Monopoly en 1994. Il s'est effondré en direct. Les électeurs aiment le sang, même au Monopoly.", en: "I revealed he cheated at Monopoly in 1994. He broke down live. Voters love blood, even Monopoly blood." }, fx: { perf: 5, karma: -6, flag: 'ca_campaign', schedule: { key: 'ca_po_election', years: 1 } }, mood: 'angry' },
+    ],
+  },
+  {
+    id: 'ca_po_election',
+    icon: '📊',
+    cat: 'career',
+    rating: 0,
+    chainOnly: true,
+    scene: { place: 'office', mood: 'shock', prop: 'tv', fx: 'confetti' },
+    when: { job: 'politician', flag: 'ca_campaign' },
+    text: {
+      fr: ["Soir d'élection, 19 h 59. Ton équipe a préparé deux discours, deux bouteilles et un carton de mouchoirs. Ton visage apparaît à l'écran…", "Le dépouillement est terminé. La présentatrice du journal ménage le suspense comme si elle était payée à la seconde."],
+      en: ["Election night, 7:59 p.m. Your team prepared two speeches, two bottles and a box of tissues. Your face appears on screen...", "The count is done. The news anchor drags out the suspense like she's paid by the second."],
+    },
+    choices: [
+      { label: { fr: 'Regarder le résultat', en: 'Watch the result' }, out: [
+        { w: 3, odds: { fame: 1 }, text: { fr: "ÉLU{|E} ! J'ai sauté sur la table, qui s'est effondrée. Premier discours de victoire, prononcé allongé{|e} dans les débris. Personne ne m'en tiendra rigueur.", en: "ELECTED! I jumped on the table, which collapsed. Victory speech delivered lying in the wreckage. No one will hold it against me." }, fx: { promote: true, fame: 12, happy: 20, unflag: 'ca_campaign', visual: 'confetti' }, mood: 'party' },
+        { w: 2, text: { fr: "Battu{|e} de 312 voix. Mon rival a gagné grâce aux chiots. J'ai félicité mon adversaire en serrant les dents si fort que j'en ai cassé une.", en: "Lost by 312 votes. My rival won on puppies. I congratulated him with my jaw clenched so hard I cracked a tooth." }, fx: { happy: -15, perf: -6, unflag: 'ca_campaign' }, mood: 'cry' },
+      ] },
+    ],
+  },
+  {
+    id: 'ca_po_babies',
+    icon: '👶',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'park', mood: 'sick', prop: 'stroller', fx: 'poop' },
+    when: { job: 'politician' },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: ["Bain de foule au marché. Une mère te tend son nourrisson pour la photo. Le bébé est rouge, gonflé, et il a ce regard qui précède l'apocalypse.", "Séance photo « proximité » dans une crèche. Ton conseiller com' te tend un bébé et murmure : « Embrassez-le, on gagne 3 points chez les 30-45. »"],
+      en: ["Walkabout at the market. A mother hands you her infant for a photo. The baby is red, swollen, and has that look that precedes the apocalypse.", "'Connecting with voters' photo op at a daycare. Your comms guy hands you a baby and whispers: 'Kiss it, it's worth 3 points with 30-to-45s.'"],
+    },
+    choices: [
+      { label: { fr: "L'embrasser", en: 'Kiss the baby' }, out: [
+        { w: 2, text: { fr: "Je me suis penché{|e} pour l'embrasser. Il m'a vomi du lait caillé directement dans la bouche, ouverte, au moment du flash. Photo de l'année. J'ai encore le goût.", en: "I leaned in for the kiss. He projectile-vomited curdled milk straight into my open mouth, right as the flash went off. Photo of the year. I can still taste it." }, fx: { fame: 10, perf: 6, health: -2, visual: 'poop' }, mood: 'sick' },
+        { w: 1, text: { fr: "Bisou réussi. Le bébé a souri. J'ai gagné 4 points. Puis j'ai senti une chaleur sur mon bras. La couche avait lâché. Sur ma chemise blanche.", en: "Successful kiss. Baby smiled. Up 4 points. Then I felt warmth on my arm. The diaper had given out. On my white shirt." }, fx: { perf: 8, happy: -2, visual: 'poop' }, mood: 'shock' },
+      ] },
+      { label: { fr: 'Serrer la main du père', en: "Shake the dad's hand" }, text: { fr: "J'ai poliment refusé le bébé et serré la main du père. Il venait de changer la couche. Il ne s'était pas lavé les mains.", en: "I politely declined the baby and shook the dad's hand. He'd just changed a diaper. He had not washed his hands." }, fx: { perf: 2, happy: -3 }, mood: 'sick' },
+    ],
+  },
+  {
+    id: 'ca_po_hottub',
+    icon: '🛁',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'villa', mood: 'shock', prop: 'newspaper', fx: 'hearts' },
+    when: { job: ['politician', 'diplomat'], age: [21, 90] },
+    weight: 6,
+    cooldown: 5,
+    text: {
+      fr: ["Un journal publie des photos de toi dans un jacuzzi, en compagnie de trois lobbyistes du pétrole et d'un homme déguisé en poney. Tout le monde a l'air très détendu.", "Scandale ! Des photos de ta soirée « séminaire » ont fuité. Tu portes un harnais en cuir et une écharpe tricolore. Rien d'autre. L'écharpe est de travers."],
+      en: ["A paper publishes photos of you in a hot tub with three oil lobbyists and a man dressed as a pony. Everyone looks very relaxed.", "Scandal! Photos from your 'seminar' evening leaked. You're wearing a leather harness and your official sash. Nothing else. The sash is crooked."],
+    },
+    choices: [
+      { label: { fr: 'Parler de « vie privée »', en: 'Claim "privacy"' }, text: { fr: "J'ai invoqué ma vie privée en conférence de presse. Un journaliste a demandé le nom du poney. Je l'ai donné par réflexe. Il s'appelle Bernard.", en: "I invoked my right to privacy at a press conference. A reporter asked for the pony's name. I gave it by reflex. It's Bernard." }, fx: { fame: 8, perf: -8, stress: 10 }, mood: 'shock' },
+      { label: { fr: 'Démissionner', en: 'Resign' }, text: { fr: "J'ai démissionné avec dignité, autant que possible avec ces photos. Le poney a écrit un livre. C'est un best-seller.", en: "I resigned with dignity, as much as possible given the photos. The pony wrote a book. It's a bestseller." }, fx: { quitJob: true, fame: 6, karma: 2, happy: -10 }, mood: 'sad' },
+      { label: { fr: 'Retourner la situation', en: 'Spin it' }, out: [
+        { w: 1, odds: { smarts: 1 }, text: { fr: "J'ai déclaré que c'était une réunion de travail sur « la transition énergétique équestre ». Ça a marché. +5 dans les sondages. Ce pays est formidable.", en: "I said it was a working meeting on 'equine energy transition'. It worked. Up 5 in the polls. What a country." }, fx: { perf: 8, fame: 8, karma: -5 }, mood: 'party' },
+        { w: 1, text: { fr: "J'ai tenté d'expliquer le harnais. Plus j'expliquais, pire c'était. J'ai fini par dire « c'est pour le dos ». Sondages en chute libre.", en: "I tried to explain the harness. The more I explained, the worse it got. I ended with 'it's for my back'. Polls in freefall." }, fx: { perf: -14, fame: 10, happy: -8 }, mood: 'cry' },
+      ] },
+    ],
+  },
+  {
+    id: 'ca_po_briefcase',
+    icon: '💼',
+    cat: 'career',
+    rating: 1,
+    scene: { place: 'office', mood: 'neutral', prop: 'briefcase', fx: 'money' },
+    when: { job: ['politician', 'judge', 'police', 'diplomat'], noFlag: 'ca_bribed' },
+    weight: 7,
+    cooldown: 4,
+    vars: { amount: [50000, 500000] },
+    text: {
+      fr: ["Un homme d'affaires en costume luisant pose une mallette sur ton bureau : {$amount} en liquide. « Pour vos œuvres. » Il te fait un clin d'œil qui dure trop longtemps.", "Un promoteur immobilier t'invite à déjeuner et oublie un sac de sport sous la table. Il contient {$amount} et un post-it : « Le parc, c'est mieux en parking. »"],
+      en: ["A businessman in a shiny suit puts a briefcase on your desk: {$amount} in cash. 'For your charities.' He winks for way too long.", "A real-estate developer takes you to lunch and 'forgets' a gym bag under the table. It holds {$amount} and a sticky note: 'The park would make a lovely parking lot.'"],
+    },
+    choices: [
+      { label: { fr: 'Prendre la mallette', en: 'Take the briefcase' }, text: { fr: "J'ai pris la mallette. J'ai acheté une montre, une pergola et le silence de mon beau-frère. Ce soir, je dors bien. Pour l'instant.", en: "I took the briefcase. Bought a watch, a pergola and my brother-in-law's silence. I sleep well tonight. For now." }, fx: { money: 'amount', karma: -12, flag: 'ca_bribed', schedule: { key: 'ca_po_probe', years: 2 } }, mood: 'happy' },
+      { label: { fr: 'Refuser', en: 'Refuse' }, text: { fr: "J'ai refusé. Il a souri et dit « tout le monde a un prix ». Le mien, visiblement, c'est plus. On m'a muté{|e} au service des archives.", en: "I refused. He smiled and said 'everyone has a price'. Mine is apparently higher. I've been transferred to archives." }, fx: { karma: 8, perf: -4 } },
+      { label: { fr: 'Le filmer en douce', en: 'Secretly film him' }, text: { fr: "J'ai tout filmé avec mon téléphone dans ma poche de chemise. On voit surtout mon téton, mais on l'entend très bien. Il est en garde à vue.", en: "I filmed it all with my phone in my shirt pocket. It's mostly my nipple, but you can hear him perfectly. He's in custody." }, fx: { karma: 10, fame: 6, perf: 6 }, mood: 'proud' },
+    ],
+  },
+  {
+    id: 'ca_po_probe',
+    icon: '🕵️',
+    cat: 'career',
+    rating: 1,
+    chainOnly: true,
+    scene: { place: 'office', mood: 'shock', prop: 'boxes', fx: 'police' },
+    when: { flag: 'ca_bribed' },
+    text: {
+      fr: ["6 h du matin. Perquisition. Des enquêteurs fouillent ton bureau, ta cave et ta pergola. L'un d'eux tient ta nouvelle montre avec des gants.", "La brigade financière sonne chez toi. Ils ont une photo de la mallette, une photo de la pergola et une photo de ton beau-frère, qui a tout balancé."],
+      en: ["6 a.m. Raid. Investigators are searching your office, your basement and your pergola. One holds your new watch with gloves.", "The fraud squad rings your doorbell. They have a photo of the briefcase, a photo of the pergola and a photo of your brother-in-law, who sang like a bird."],
+    },
+    choices: [
+      { label: { fr: 'Nier tout en bloc', en: 'Deny everything' }, out: [
+        { w: 1, text: { fr: "J'ai nié avec un aplomb de champion. Les preuves ont été « égarées ». Je suis blanchi{|e}. Ce pays mérite mieux. Moi non.", en: "I denied it with championship-level gall. The evidence got 'misplaced'. Cleared. This country deserves better. I don't." }, fx: { stress: 10, unflag: 'ca_bribed', karma: -4 }, mood: 'neutral' },
+        { w: 2, text: { fr: "J'ai nié. Le juge m'a montré la vidéo où je compte les billets en chantant. Inculpé{|e}.", en: "I denied it. The judge showed me the video of me counting the bills while singing. Charged." }, fx: { arrest: 'embezzle', fired: true, unflag: 'ca_bribed', visual: 'police' }, mood: 'cry' },
+      ] },
+      { label: { fr: 'Balancer le promoteur', en: 'Rat out the briber' }, text: { fr: "J'ai tout balancé contre une remise de peine. Le promoteur est tombé. Moi, j'ai juste perdu mon poste, ma pergola et toute ma crédibilité.", en: "I spilled everything for a reduced sentence. The developer went down. I just lost my job, my pergola and all credibility." }, fx: { fired: true, money: -60000, karma: 4, unflag: 'ca_bribed' }, mood: 'sad' },
+    ],
+  },
+  {
+    id: 'ca_po_assassin',
+    icon: '🎯',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'park', mood: 'shock', prop: 'podium', fx: 'gore' },
+    when: { job: ['politician', 'diplomat', 'judge'], stat: { fame: [30, 100] } },
+    weight: 4,
+    cooldown: 8,
+    text: {
+      fr: ["Discours en plein air. Un tireur sur un toit. La balle te frôle l'oreille et touche ton garde du corps, qui explose comme une pastèque dans un micro-ondes. Tu as de la cervelle sur tes fiches.", "Pendant une inauguration, un homme se jette sur toi avec un hachoir en hurlant « POUR LES CHIOTS ! ». Tu as encore les ciseaux du ruban à la main."],
+      en: ["Outdoor speech. A sniper on a roof. The bullet grazes your ear and hits your bodyguard, who pops like a watermelon in a microwave. There's brain on your notes.", "At a ribbon-cutting, a man lunges at you with a cleaver, screaming 'FOR THE PUPPIES!'. You're still holding the ceremonial scissors."],
+    },
+    choices: [
+      { label: { fr: 'Continuer le discours', en: 'Finish the speech' }, text: { fr: "J'ai essuyé mes fiches avec ma cravate et continué le discours. « Comme je le disais, la sécurité est ma priorité. » Plus 18 points. On m'appelle « {last} le Granit ».", en: "I wiped my notes with my tie and kept going. 'As I was saying, security is my priority.' Up 18 points. They call me '{last} the Granite'." }, fx: { fame: 15, perf: 12, stress: 20, visual: 'gore' }, mood: 'proud' },
+      { label: { fr: 'Ciseaux contre hachoir', en: 'Scissors vs cleaver' }, out: [
+        { w: 2, odds: { athletic: 1 }, text: { fr: "Je l'ai désarmé à coups de ciseaux géants. Il a perdu deux doigts et l'élection qu'il n'a jamais présentée. Ruban coupé, moral au plus haut.", en: "I disarmed him with the giant scissors. He lost two fingers and an election he never even ran in. Ribbon cut, morale high." }, fx: { fame: 14, perf: 10, health: -5, visual: 'gore' }, mood: 'proud' },
+        { w: 1, text: { fr: "Il m'a entaillé le bras jusqu'à l'os avant d'être plaqué par un retraité. Le retraité sera décoré. Moi, j'ai 42 points de suture.", en: "He sliced my arm to the bone before a pensioner tackled him. The pensioner gets a medal. I get 42 stitches." }, fx: { health: -25, fame: 8, stress: 15, visual: 'gore' }, mood: 'sick' },
+      ] },
+      { label: { fr: 'Me cacher derrière un enfant', en: 'Hide behind a kid' }, text: { fr: "J'ai eu le réflexe de me cacher derrière un enfant de chœur. Tout le monde s'en sortira, sauf ma carrière. La vidéo s'appelle « Le Courage ».", en: "I reflexively hid behind a choirboy. Everyone survived except my career. The video is titled 'Courage'." }, fx: { perf: -15, fame: 10, karma: -10 }, mood: 'shock' },
+    ],
+  },
+  {
+    id: 'ca_po_decree',
+    icon: '📜',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'castle', mood: 'proud', prop: 'pen' },
+    when: { job: 'politician', stat: { fame: [40, 100] } },
+    weight: 6,
+    cooldown: 3,
+    text: {
+      fr: ["Tu as enfin du vrai pouvoir. Ton conseiller te tend un stylo en or. « Une grande réforme, quelque chose qui restera. » Il a l'air terrifié.", "Conseil des ministres. Tout le monde attend ta grande décision. Le ministre de l'Économie mâchouille nerveusement un crayon."],
+      en: ["You finally have real power. Your advisor hands you a gold pen. 'A great reform. Something that will last.' He looks terrified.", "Cabinet meeting. Everyone awaits your big decision. The finance minister is nervously chewing a pencil."],
+    },
+    choices: [
+      { label: { fr: 'Interdire les lundis', en: 'Ban Mondays' }, text: { fr: "J'ai aboli les lundis. Le pays a sombré dans la confusion : les mardis sont devenus insupportables. Les gens réclament maintenant l'interdiction des mardis.", en: "I abolished Mondays. The country plunged into chaos: Tuesdays became unbearable. People now demand a ban on Tuesdays." }, fx: { fame: 10, happy: 6, perf: -4 }, mood: 'party' },
+      { label: { fr: 'Hymne national techno', en: 'Techno national anthem' }, text: { fr: "J'ai remplacé l'hymne national par un remix techno. Les matchs internationaux sont devenus des raves. Le PIB a augmenté de 2 % grâce aux ventes de bâtons lumineux.", en: "I replaced the national anthem with a techno remix. International matches turned into raves. GDP rose 2% thanks to glow stick sales." }, fx: { fame: 12, perf: 6, happy: 8 }, mood: 'party' },
+      { label: { fr: 'Guerre aux pigeons', en: 'War on pigeons' }, out: [
+        { w: 1, text: { fr: "J'ai déclaré la guerre aux pigeons. Ils ont gagné. Le traité de paix m'oblige à leur verser des miettes à vie. Je nourris l'ennemi, chaque matin, en silence.", en: "I declared war on pigeons. They won. The peace treaty requires me to pay them in crumbs forever. I feed the enemy every morning, in silence." }, fx: { fame: 8, perf: -6, happy: -4 }, mood: 'sad' },
+        { w: 1, text: { fr: "Guerre aux pigeons : victoire totale en trois semaines. Les statues sont propres. Je suis le premier dirigeant de l'histoire à avoir gagné une guerre. Contre des oiseaux, mais quand même.", en: "War on pigeons: total victory in three weeks. Statues are clean. I'm the first leader in history to win a war. Against birds, but still." }, fx: { fame: 10, perf: 10, karma: -2 }, mood: 'proud' },
+      ] },
+    ],
+  },
+  {
+    id: 'ca_po_auto_poll',
+    icon: '📉',
+    cat: 'career',
+    rating: 1,
+    auto: true,
+    when: { job: 'cat:politics', chance: 0.5 },
+    cooldown: 3,
+    text: {
+      fr: ["Un sondage m'a donné 4 % d'opinions favorables, soit moins que l'herpès. Mon équipe dit que la marge d'erreur est « énorme ».", "J'ai été filmé{|e} en train de manger un sandwich avec un couteau et une fourchette. Je suis « déconnecté{|e} du peuple ». Les sondages s'effondrent."],
+      en: ["A poll gave me a 4% approval rating, lower than herpes. My team says the margin of error is 'huge'.", "I was filmed eating a sandwich with a knife and fork. I'm 'out of touch'. My polls collapsed."],
+    },
+    fx: { perf: -3, stress: 4 },
+  },
+
+  // ───────────────────────────── military ─────────────────────────────
+  {
+    id: 'ca_mi_deploy',
+    icon: '🪖',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'park', mood: 'shock', prop: 'tent', fx: 'explosion' },
+    when: { job: MILITARY },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: ["Base avancée, désert, 3 h du matin. Une alerte retentit : un drone ennemi fonce droit sur les latrines, où se trouve ton capitaine. Et son journal intime.", "Patrouille dans une vallée hostile. Le blindé devant toi saute. Une botte fumante — avec encore le pied dedans — atterrit sur ton capot. Ton chauffeur hurle « C'EST LA MIENNE ? »"],
+      en: ["Forward base, desert, 3 a.m. Alarm: an enemy drone is diving straight at the latrines, where your captain is. With his diary.", "Patrol in a hostile valley. The armoured car ahead of you blows up. A smoking boot — foot still inside — lands on your hood. Your driver screams 'IS THAT MINE?'"],
+    },
+    choices: [
+      { label: { fr: 'Foncer au secours', en: 'Run to help' }, out: [
+        { w: 2, odds: { athletic: 1 }, text: { fr: "J'ai sorti le capitaine des latrines une seconde avant l'impact. On a été soufflés tous les deux dans un nuage marron et rouge. Il me doit la vie et un pressing.", en: "I dragged the captain out of the latrines one second before impact. We were both blasted through a brown and red cloud. He owes me his life and a dry-cleaning bill." }, fx: { fame: 5, perf: 12, health: -12, karma: 6, visual: 'gore', schedule: { key: 'ca_mi_ptsd', years: 1 } }, mood: 'proud' },
+        { w: 1, text: { fr: "J'ai couru. Le drone a été plus rapide. Il a plu des morceaux de capitaine et de papier toilette pendant dix minutes. J'ai gardé un bouton de sa veste. Je le serre la nuit.", en: "I ran. The drone was faster. It rained bits of captain and toilet paper for ten minutes. I kept a button from his jacket. I hold it at night." }, fx: { health: -10, happy: -15, stress: 20, visual: 'gore', schedule: { key: 'ca_mi_ptsd', years: 1 } }, mood: 'cry' },
+      ] },
+      { label: { fr: 'Se planquer', en: 'Take cover' }, text: { fr: "Je me suis planqué{|e} sous un camion et j'ai attendu que ça passe en récitant l'alphabet à l'envers. J'ai survécu. Mon dossier dit « prudent{|e} ». Mes camarades disent autre chose.", en: "I hid under a truck and waited it out reciting the alphabet backwards. I survived. My file says 'cautious'. My comrades say something else." }, fx: { perf: -6, stress: 12, schedule: { key: 'ca_mi_ptsd', years: 1 } }, mood: 'shock' },
+      { label: { fr: 'Abattre le drone', en: 'Shoot the drone down' }, text: { fr: "J'ai abattu le drone au fusil, en pleine nuit, du premier coup. Il s'est écrasé sur le mess. Personne n'est mort, mais le hachis parmentier est irrécupérable.", en: "I shot the drone down with my rifle, at night, first try. It crashed into the mess hall. Nobody died, but the shepherd's pie is a total loss." }, fx: { perf: 14, fame: 6, happy: 8, visual: 'explosion' }, mood: 'proud' },
+    ],
+  },
+  {
+    id: 'ca_mi_ptsd',
+    icon: '🧠',
+    cat: 'career',
+    rating: 1,
+    chainOnly: true,
+    scene: { place: 'home', mood: 'sad', prop: 'fireworks' },
+    text: {
+      fr: ["Depuis ton retour, un pétard du 14 Juillet t'a fait plonger sous une voiture. Tu dors avec les chaussures. Ton grille-pain te fait sursauter.", "Tu te réveilles en hurlant toutes les nuits. Hier, au supermarché, tu as rampé jusqu'au rayon surgelés en ordonnant aux clients de se mettre à couvert."],
+      en: ["Since you got back, a firecracker sent you diving under a car. You sleep with your boots on. Your toaster makes you flinch.", "You wake up screaming every night. Yesterday at the supermarket you army-crawled to the frozen aisle ordering shoppers to take cover."],
+    },
+    choices: [
+      { label: { fr: 'Voir un psy', en: 'See a therapist' }, text: { fr: "J'ai vu un psy spécialisé. On parle, je pleure, il prend des notes. Ça va mieux. Le grille-pain et moi, on a fait la paix.", en: "I saw a specialist. We talk, I cry, he takes notes. It's getting better. The toaster and I have made peace." }, fx: { disease: 'ptsd', happy: 4, stress: -10, money: -2000 }, mood: 'sad' },
+      { label: { fr: 'Serrer les dents', en: 'Tough it out' }, text: { fr: "J'ai serré les dents. Et la bouteille. Ça ne marche pas, mais au moins je ne sens plus mes dents.", en: "I gritted my teeth. And grabbed the bottle. It doesn't work, but at least I can't feel my teeth anymore." }, fx: { disease: 'ptsd', happy: -10, addiction: ['alcohol', 15] }, mood: 'sad' },
+      { label: { fr: 'Adopter un chien', en: 'Adopt a dog' }, text: { fr: "J'ai adopté un chien d'assistance. Il me réveille quand je fais un cauchemar et me lèche le nez. Mon cauchemar a désormais un fond de bave, c'est mieux.", en: "I adopted a service dog. He wakes me up from nightmares and licks my nose. My nightmares now have a drool layer, which is better." }, fx: { disease: 'ptsd', happy: 8, newNpc: { role: 'pet', species: 'dog' } }, mood: 'happy' },
+    ],
+  },
+  {
+    id: 'ca_mi_medal',
+    icon: '🎖️',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'castle', mood: 'proud', prop: 'flag' },
+    when: { job: MILITARY, stat: { discipline: [40, 100] } },
+    weight: 5,
+    cooldown: 6,
+    text: {
+      fr: ["Cérémonie officielle : tu vas être décoré{|e} pour bravoure. Le général qui doit t'épingler la médaille a 84 ans, des lunettes en cul de bouteille et la main qui tremble.", "On te remet une médaille. Le discours du colonel mentionne ton « courage exemplaire », mais il se trompe de prénom quatre fois."],
+      en: ["Official ceremony: you're being decorated for bravery. The general pinning the medal is 84, wears coke-bottle glasses and has a shaky hand.", "You're getting a medal. The colonel's speech mentions your 'exemplary courage', but he gets your name wrong four times."],
+    },
+    choices: [
+      { label: { fr: 'Rester au garde-à-vous', en: 'Stand at attention' }, text: { fr: "Le général m'a planté l'épingle directement dans le téton. Je n'ai pas bronché. On m'a remis une deuxième médaille, pour ça.", en: "The general jammed the pin right into my nipple. I didn't flinch. They gave me a second medal for that." }, fx: { fame: 6, perf: 10, discipline: 6, promote: true }, mood: 'proud' },
+      { label: { fr: 'Corriger mon prénom', en: 'Correct my name' }, text: { fr: "J'ai corrigé mon prénom au micro. Le colonel a rougi. La médaille est gravée avec le mauvais prénom de toute façon. Je l'ai gardée. C'est un collector.", en: "I corrected my name into the mic. The colonel blushed. The medal is engraved with the wrong name anyway. I kept it. It's a collector's item." }, fx: { fame: 4, happy: 6, perf: 4 }, mood: 'happy' },
+    ],
+  },
+  {
+    id: 'ca_mi_eject',
+    icon: '🪂',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'park', mood: 'shock', prop: 'parachute', fx: 'poop' },
+    when: { job: ['fighter_pilot', 'pilot'] },
+    weight: 6,
+    cooldown: 5,
+    text: {
+      fr: ["Ton moteur prend feu à 9 000 mètres. Alarme stridente, voyants rouges partout. Sous toi : des champs, une autoroute et un immense élevage de porcs.", "Panne totale en plein vol. Ta main est sur la poignée d'éjection. Tu n'as jamais testé. Personne ne teste. C'est un peu le principe."],
+      en: ["Your engine catches fire at 30,000 feet. Shrieking alarms, red lights everywhere. Below: fields, a highway and an enormous pig farm.", "Total failure mid-flight. Your hand is on the ejection handle. You've never tried it. Nobody tries it. That's kind of the point."],
+    },
+    choices: [
+      { label: { fr: "S'éjecter", en: 'Eject' }, text: { fr: "Éjection. Mes vertèbres se sont tassées de deux centimètres. Parachute, vent, et atterrissage dans la fosse à lisier des porcs. J'ai survécu. Je ne sentirai plus jamais bon.", en: "Ejected. My spine compressed by an inch. Parachute, wind, and a landing right in the pig manure lagoon. I survived. I will never smell good again." }, fx: { health: -12, looks: -4, disease: 'back_pain', fame: 4, visual: 'poop' }, mood: 'sick' },
+      { label: { fr: "Poser l'avion", en: 'Land the plane' }, out: [
+        { w: 1, odds: { smarts: 1 }, text: { fr: "J'ai posé l'avion en flammes sur l'autoroute, entre un camping-car et un camion de yaourts. Personne n'a été blessé. Les yaourts, si.", en: "I landed the burning jet on the highway, between an RV and a yogurt truck. No one was hurt. The yogurts were." }, fx: { fame: 12, perf: 15, promote: true, visual: 'fire' }, mood: 'proud' },
+        { w: 1, text: { fr: "J'ai tenté d'atterrir. J'ai rasé trois porcheries. Il pleut du jambon sur la région. On m'a éjecté{|e} moi-même — de l'armée de l'air.", en: "I tried to land. I flattened three pigsties. It's raining ham across the region. I got ejected anyway — from the air force." }, fx: { fired: true, health: -15, fame: 10, visual: 'gore' }, mood: 'shock' },
+      ] },
+    ],
+  },
+
+  // ───────────────────────────── police, detectives ─────────────────────────────
+  {
+    id: 'ca_cop_interro',
+    icon: '🔦',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'office', mood: 'neutral', prop: 'lamp', fx: 'police' },
+    when: { job: COPS },
+    weight: 10,
+    cooldown: 2,
+    text: {
+      fr: ["Salle d'interrogatoire. Le suspect mâche un chewing-gum depuis trois heures et répète « J'étais chez ma mère ». Sa mère est morte en 1998.", "Un suspect de meurtre est assis en face de toi. Il a du sang sur les chaussures et prétend que c'est « de la sauce tomate bio »."],
+      en: ["Interrogation room. The suspect has been chewing gum for three hours repeating 'I was at my mom's'. His mom died in 1998.", "A murder suspect sits across from you. He has blood on his shoes and claims it's 'organic tomato sauce'."],
+    },
+    choices: [
+      { label: { fr: "Mener l'interrogatoire", en: 'Run the interrogation' }, text: { fr: "J'ai allumé la lampe, posé un café froid devant lui et commencé à poser les questions qui fâchent.", en: 'I switched on the lamp, put a cold coffee in front of him and started asking the uncomfortable questions.' }, fx: { open: 'minigame:interrogation' } },
+      { label: { fr: 'Gentil flic, méchant flic', en: 'Good cop, bad cop' }, text: { fr: "J'ai joué le gentil flic et mon binôme le méchant. Il a confondu les rôles et m'a offert un croissant. Le suspect a avoué par pure confusion.", en: "I played good cop, my partner played bad cop. He mixed up the roles and offered me a croissant. The suspect confessed out of sheer confusion." }, fx: { perf: 6, happy: 2 } },
+    ],
+  },
+  {
+    id: 'ca_cop_cavity',
+    icon: '🧤',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'prison', mood: 'sick', prop: 'gloves', fx: 'poop' },
+    when: { job: ['police', 'prison_guard', 'detective'] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: ["Un suspect aurait caché la clé USB contenant toutes les preuves… à l'intérieur de lui-même. Ton chef te tend un gant en latex. « Tu es le plus jeune. »", "Fouille à corps. Le détenu sourit et dit : « Bonne chance. » Il a mangé trois cassoulets ce midi. Tu le sais, car tu as vu le plateau."],
+      en: ["A suspect allegedly hid the USB stick with all the evidence... inside himself. Your boss hands you a latex glove. 'You're the youngest.'", "Strip search. The inmate smiles and says: 'Good luck.' He had three servings of chili for lunch. You know because you saw the tray."],
+    },
+    choices: [
+      { label: { fr: 'Enfiler le gant', en: 'Glove up' }, out: [
+        { w: 2, text: { fr: "J'ai plongé. J'ai trouvé la clé USB, deux briquets, une figurine Kinder et ce qui était peut-être une alliance. L'affaire est résolue. Mon appétit, lui, est mort.", en: "I went in. Found the USB stick, two lighters, a Kinder Surprise toy and what may have been a wedding ring. Case solved. My appetite died." }, fx: { perf: 12, happy: -10, visual: 'poop' }, mood: 'sick' },
+        { w: 1, text: { fr: "Le cassoulet a jailli pile au moment critique. J'ai vu la lumière. Elle était marron. Le suspect a hurlé « JE VOUS AVAIS PRÉVENU ! ».", en: "The chili erupted at the critical moment. I saw the light. It was brown. The suspect yelled 'I WARNED YOU!'" }, fx: { happy: -15, health: -4, perf: 4, visual: 'poop' }, mood: 'sick' },
+      ] },
+      { label: { fr: 'Attendre la nature', en: 'Wait for nature' }, text: { fr: "On l'a mis sur un seau et on a attendu. Six heures. La clé USB est sortie, fonctionnelle. Le juge refuse de la brancher.", en: "We put him on a bucket and waited. Six hours. The USB stick came out, still working. The judge refuses to plug it in." }, fx: { perf: 6, stress: 6 } },
+      { label: { fr: 'Refiler au stagiaire', en: 'Hand it to the intern' }, text: { fr: "J'ai donné le gant au stagiaire avec un discours sur « l'apprentissage terrain ». Il a démissionné le soir même. Il a ouvert une boulangerie.", en: "I gave the glove to the intern with a speech about 'learning in the field'. He quit that evening. He opened a bakery." }, fx: { karma: -4, happy: 4, perf: -2 } },
+    ],
+  },
+
+  // ───────────────────────────── spies ─────────────────────────────
+  {
+    id: 'ca_spy_casino',
+    icon: '🎰',
+    cat: 'career',
+    rating: 1,
+    scene: { place: 'casino', mood: 'love', prop: 'martini' },
+    when: { job: 'spy', age: [18, 75] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: ["Mission à Monaco : séduire un trafiquant d'armes au casino et lui voler son badge. Il porte une bague à chaque doigt et un parfum qu'on sent depuis l'Italie.", "Mission : récupérer une micro-puce dans la chambre d'un oligarque. Ton gadget de la semaine est un stylo-laser qui fait aussi tire-bouchon. Il ne fait pas bien les deux."],
+      en: ["Mission in Monaco: seduce an arms dealer at the casino and steal his keycard. He wears a ring on every finger and a cologne you can smell from Italy.", "Mission: retrieve a microchip from an oligarch's suite. Your gadget of the week is a laser pen that's also a corkscrew. It's bad at both."],
+    },
+    choices: [
+      { label: { fr: 'Séduire la cible', en: 'Seduce the target' }, out: [
+        { w: 2, odds: { looks: 1 }, text: { fr: "Un regard, deux martinis, trois sous-entendus. Il m'a invité{|e} dans sa suite. Je suis reparti{|e} avec son badge, sa montre et son peignoir. Mission accomplie.", en: "One look, two martinis, three innuendos. He invited me to his suite. I left with his keycard, his watch and his bathrobe. Mission accomplished." }, fx: { perf: 12, happy: 8, money: 15000 }, mood: 'love' },
+        { w: 1, text: { fr: "Je lui ai fait du charme. Il m'a fait du charme. On s'est fait mutuellement les poches. On s'est démasqués en même temps. On a fini par boire un verre en riant. Je suis grillé{|e}.", en: "I flirted. He flirted back. We picked each other's pockets at the same time and unmasked each other. We had a drink and laughed. My cover's blown." }, fx: { perf: -10, happy: 4 }, mood: 'shock' },
+      ] },
+      { label: { fr: 'Utiliser le gadget', en: 'Use the gadget' }, text: { fr: "J'ai voulu découper la vitre au laser. Le stylo a débouché une bouteille de champagne. Le bouchon a assommé le garde. Mission réussie par accident, comme d'habitude.", en: "I tried to cut the window with the laser. The pen uncorked a bottle of champagne. The cork knocked out the guard. Mission accomplished by accident, as usual." }, fx: { perf: 8, happy: 6 }, mood: 'party' },
+    ],
+  },
+  {
+    id: 'ca_spy_double',
+    icon: '🎭',
+    cat: 'career',
+    rating: 1,
+    scene: { place: 'park', mood: 'neutral', prop: 'bench', fx: 'money' },
+    when: { job: 'spy', noFlag: 'ca_double' },
+    weight: 6,
+    cooldown: 5,
+    vars: { amount: [200000, 900000] },
+    text: {
+      fr: ["Sur un banc, un homme lit un journal à l'envers. Il te propose {$amount} pour devenir agent double. Il a un accent indéfinissable et des miettes de pain sur le menton.", "Une femme en imperméable te glisse une enveloppe : {$amount} et un mot : « Travaille pour nous. Sinon on montre à ta mère tes recherches Google. »"],
+      en: ["On a bench, a man reads an upside-down newspaper. He offers you {$amount} to become a double agent. Unplaceable accent, breadcrumbs on his chin.", "A woman in a trench coat slips you an envelope: {$amount} and a note: 'Work for us. Or we show your mother your Google searches.'"],
+    },
+    choices: [
+      { label: { fr: 'Devenir agent double', en: 'Become a double agent' }, text: { fr: "J'ai accepté. Deux salaires, deux téléphones, deux noms, zéro sommeil. Je me suis déjà dénoncé{|e} à moi-même par erreur, mais je l'ai bien pris.", en: "I accepted. Two salaries, two phones, two names, zero sleep. I've already accidentally reported myself to myself, but I took it well." }, fx: { money: 'amount', stress: 15, karma: -8, flag: 'ca_double', schedule: { key: 'ca_spy_burned', years: 2 } }, mood: 'neutral' },
+      { label: { fr: 'Le signaler', en: 'Report it' }, text: { fr: "J'ai signalé l'approche à ma hiérarchie. On m'a félicité{|e}, puis on m'a mis{|e} sur écoute, au cas où. Mon chef écoute mes appels à ma mère. Il trouve qu'elle a raison.", en: "I reported the approach. They congratulated me, then wiretapped me, just in case. My boss listens to my calls with my mother. He thinks she has a point." }, fx: { perf: 8, karma: 4, stress: 4 } },
+      { label: { fr: 'Devenir agent triple', en: 'Go triple agent' }, text: { fr: "J'ai accepté, puis j'ai tout raconté à mon chef, puis j'ai tout raconté à l'autre camp. Je ne sais plus pour qui je travaille. Les deux m'ont décoré{|e}.", en: "I accepted, then told my boss everything, then told the other side everything. I no longer know who I work for. Both sides gave me a medal." }, fx: { money: 'amount', perf: 6, stress: 20, flag: 'ca_double', schedule: { key: 'ca_spy_burned', years: 3 } }, mood: 'shock' },
+    ],
+  },
+  {
+    id: 'ca_spy_burned',
+    icon: '☠️',
+    cat: 'career',
+    rating: 2,
+    chainOnly: true,
+    scene: { place: 'castle', mood: 'shock', prop: 'chair', fx: 'gore' },
+    when: { flag: 'ca_double' },
+    text: {
+      fr: ["Tu te réveilles attaché{|e} à une chaise dans une cave. Un homme en tablier de boucher affûte une pince à épiler géante. Ta couverture a sauté. Des deux côtés.", "Les deux agences ont découvert ton double jeu le même jour. Un tueur à gages t'attend dans ta cuisine. Il a déjà mangé tes restes de lasagne."],
+      en: ["You wake up tied to a chair in a basement. A man in a butcher's apron is sharpening giant tweezers. Your cover's blown. On both sides.", "Both agencies found out about your double game on the same day. A hitman is waiting in your kitchen. He already ate your leftover lasagna."],
+    },
+    choices: [
+      { label: { fr: 'Se libérer', en: 'Break free' }, out: [
+        { w: 2, odds: { athletic: 1 }, text: { fr: "J'ai déboîté mon pouce, glissé hors des liens et assommé le tortionnaire avec sa propre pince. Une incisive à lui est restée plantée dans le mur. Je suis en cavale sous le nom de « Josiane ».", en: "I dislocated my thumb, slipped the ropes and knocked out the torturer with his own tweezers. One of his incisors stayed stuck in the wall. I'm on the run under the name 'Doris'." }, fx: { health: -12, quitJob: true, unflag: 'ca_double', visual: 'gore' }, mood: 'proud' },
+        { w: 1, text: { fr: "Il m'a arraché trois ongles et un secret d'État avant que je m'évanouisse. On m'a retrouvé{|e} sur un banc, sans ongles et sans emploi.", en: "He pulled out three of my fingernails and one state secret before I passed out. I was found on a bench, nail-less and jobless." }, fx: { health: -20, fired: true, unflag: 'ca_double', visual: 'gore' }, mood: 'cry' },
+      ] },
+      { label: { fr: 'Négocier', en: 'Negotiate' }, out: [
+        { w: 1, odds: { smarts: 1 }, text: { fr: "Je lui ai proposé de devenir lui-même agent double. Il a accepté. On a ouvert un cabinet de conseil. On fait du chiffre.", en: "I offered to make him a double agent too. He accepted. We opened a consulting firm. Business is good." }, fx: { money: 50000, quitJob: true, unflag: 'ca_double' }, mood: 'party' },
+        { w: 1, rating: 2, text: { fr: "Mauvais argument. Il a pris la pince. Ma dernière vision a été mes propres orteils sur un plateau d'argent.", en: "Wrong argument. He reached for the tweezers. My last sight was my own toes on a silver platter." }, fx: { die: { fr: 'démonté{|e} pièce par pièce par un tortionnaire après une carrière d\'agent double', en: 'taken apart piece by piece by a torturer after a career as a double agent' }, visual: 'gore' }, mood: 'shock' },
+      ] },
+    ],
+  },
+
+  // ───────────────────────────── space & aviation ─────────────────────────────
+  {
+    id: 'ca_as_launch',
+    icon: '🚀',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'studio', mood: 'shock', prop: 'rocket', fx: 'explosion' },
+    when: { job: 'astronaut' },
+    weight: 8,
+    once: true,
+    text: {
+      fr: ["Mission spatiale ! En pleine sortie extravéhiculaire, ton câble de sécurité se détache. Tu dérives lentement vers l'infini. La Terre est magnifique. Ton oxygène, limité.", "Dans la Station spatiale, un micrométéorite perce la coque. L'alarme hurle. Ton collègue russe colmate le trou avec un cornichon."],
+      en: ["Space mission! Mid-spacewalk, your safety tether comes loose. You drift slowly toward infinity. Earth is gorgeous. Your oxygen is limited.", "On the Space Station, a micrometeorite punctures the hull. The alarm is screaming. Your Russian colleague plugs the hole with a pickle."],
+    },
+    choices: [
+      { label: { fr: "Propulseur d'urgence", en: 'Emergency thruster' }, out: [
+        { w: 3, odds: { smarts: 1 }, text: { fr: "J'ai utilisé mon propulseur d'urgence avec la grâce d'un lamantin. Retour à la station. Le monde entier a regardé. J'ai fait la une sur six continents.", en: "I used my emergency thruster with the grace of a manatee. Back to the station. The whole world watched. Front page on six continents." }, fx: { fame: 18, perf: 15, promote: true }, mood: 'proud' },
+        { w: 1, text: { fr: "Le propulseur m'a envoyé{|e} dans la mauvaise direction. J'ai fait trois fois le tour de la station avant qu'on me rattrape au filet à papillons.", en: "The thruster sent me the wrong way. I orbited the station three times before they caught me with a butterfly net." }, fx: { fame: 10, health: -8, stress: 15 }, mood: 'shock' },
+      ] },
+      { label: { fr: 'Admirer la vue', en: 'Enjoy the view' }, text: { fr: "J'ai profité de la vue, persuadé{|e} que c'était la fin. Ce n'était pas la fin, mon collègue m'a récupéré{|e}. Mais j'ai eu le temps de pleurer dans mon casque. Ça ne s'évacue pas.", en: "I took in the view, sure it was the end. It wasn't, my colleague fetched me. But I had time to cry inside my helmet. It doesn't drain." }, fx: { happy: 10, smarts: 4, stress: 10 }, mood: 'cry' },
+    ],
+  },
+  {
+    id: 'ca_as_toilet',
+    icon: '🚽',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'studio', mood: 'sick', prop: 'spacestation', fx: 'poop' },
+    when: { job: 'astronaut' },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: ["Les toilettes à aspiration de la station sont en panne. Gravité zéro. Ton collègue a mangé du chili lyophilisé. Une petite boule marron flotte vers toi au ralenti.", "Six mois dans l'espace. Le recycleur d'urine transforme le pipi en eau potable. Il vient de tomber en panne à moitié du cycle. Tu as soif."],
+      en: ["The station's vacuum toilet is broken. Zero gravity. Your colleague ate freeze-dried chili. A small brown sphere floats toward you in slow motion.", "Six months in space. The urine recycler turns pee into drinking water. It just broke halfway through the cycle. You're thirsty."],
+    },
+    choices: [
+      { label: { fr: 'Esquiver en apesanteur', en: 'Zero-g dodge' }, out: [
+        { w: 1, text: { fr: "J'ai esquivé façon Matrix. La boule a percuté le hublot, puis la caméra en direct vers la NASA. Des enfants regardaient. L'éducation scientifique a pris un tournant.", en: "Matrix-style dodge. The sphere hit the porthole, then the live camera feed to mission control. Schoolkids were watching. Science education took a turn." }, fx: { fame: 8, happy: 6, visual: 'poop' }, mood: 'party' },
+        { w: 1, text: { fr: "Raté. En plein front. En apesanteur, ça ne tombe pas. Ça reste. J'ai passé la journée avec. Le contrôle au sol a coupé le son.", en: "Missed. Right in the forehead. In zero-g it doesn't fall off. It stays. I spent the day with it. Ground control muted us." }, fx: { happy: -12, looks: -4, health: -4, visual: 'poop' }, mood: 'sick' },
+      ] },
+      { label: { fr: 'Réparer la machine', en: 'Fix the machine' }, text: { fr: "J'ai réparé le recycleur avec du scotch et une prière. Ma gorgée d'eau avait un léger arrière-goût de collègue. On n'en parle pas.", en: "I fixed the recycler with duct tape and a prayer. My sip of water had a faint aftertaste of colleague. We don't talk about it." }, fx: { perf: 8, smarts: 2, happy: -4 }, mood: 'sick' },
+    ],
+  },
+  {
+    id: 'ca_pi_turbulence',
+    icon: '✈️',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'office', mood: 'shock', prop: 'cockpit' },
+    when: { job: ['pilot', 'flight'] },
+    weight: 9,
+    cooldown: 2,
+    text: {
+      fr: ["Turbulences violentes au-dessus de l'Atlantique. Le chariot de boissons s'envole dans l'allée. Un passager prie en latin. Un autre filme pour TikTok.", "Trou d'air de 300 mètres. Les plateaux-repas collent au plafond. Un passager en classe éco se retrouve en première, il refuse de redescendre."],
+      en: ["Violent turbulence over the Atlantic. The drinks cart takes flight down the aisle. One passenger prays in Latin. Another films for TikTok.", "A thousand-foot air pocket. Meal trays are stuck to the ceiling. An economy passenger lands in first class and refuses to go back."],
+    },
+    choices: [
+      { label: { fr: 'Annonce rassurante', en: 'Reassuring announcement' }, text: { fr: "« Mesdames et messieurs, ici votre équipage, tout va… AAAAH… très bien. » La cabine a applaudi à l'atterrissage, surtout par soulagement.", en: "'Ladies and gentlemen, this is your crew, everything is... AAAH... perfectly fine.' The cabin clapped on landing, mostly from relief." }, fx: { perf: 4, happy: 2, stress: 4 } },
+      { label: { fr: 'Servir le café quand même', en: 'Serve coffee anyway' }, text: { fr: "J'ai servi le café pendant les turbulences. Taux de réussite : 30 %. Le reste est sur les genoux d'un homme d'affaires qui crie encore.", en: "I served coffee mid-turbulence. Success rate: 30%. The rest is in a businessman's lap, and he's still screaming." }, fx: { perf: -4, karma: -1, happy: 4 }, mood: 'shock' },
+    ],
+  },
+  {
+    id: 'ca_pi_birdstrike',
+    icon: '🦆',
+    cat: 'career',
+    rating: 1,
+    scene: { place: 'park', mood: 'shock', prop: 'cockpit', fx: 'fire' },
+    when: { job: 'pilot' },
+    weight: 6,
+    cooldown: 5,
+    text: {
+      fr: ["Juste après le décollage, une nuée d'oies traverse les deux réacteurs. Ça sent le confit. Les deux moteurs sont morts. 180 passagers. Une rivière, droit devant.", "À mi-vol, ton copilote s'est enfermé dans les toilettes avec une crise d'angoisse et le manuel d'atterrissage d'urgence. Un moteur crache des flammes."],
+      en: ["Right after take-off, a flock of geese goes through both engines. Smells like roast dinner. Both engines dead. 180 passengers. A river dead ahead.", "Mid-flight, your co-pilot locked himself in the toilet with a panic attack and the emergency landing manual. One engine is spitting fire."],
+    },
+    choices: [
+      { label: { fr: 'Amerrir sur la rivière', en: 'Ditch in the river' }, out: [
+        { w: 2, odds: { smarts: 1 }, text: { fr: "Amerrissage parfait. 180 survivants debout sur les ailes. On fera un film sur moi avec un acteur plus beau que moi. Je suis d'accord.", en: "Perfect water landing. 180 survivors standing on the wings. They'll make a movie about me with a better-looking actor. I'm fine with it." }, fx: { fame: 20, perf: 15, karma: 8, promote: true }, mood: 'proud' },
+        { w: 1, text: { fr: "Amerrissage brutal. Tout le monde a survécu, mais on a perdu les bagages, un dentier et la dignité du copilote. Enquête ouverte.", en: "Rough water landing. Everyone survived, but we lost the luggage, one set of dentures and the co-pilot's dignity. Investigation opened." }, fx: { fame: 8, stress: 15, perf: -4 }, mood: 'shock' },
+      ] },
+      { label: { fr: 'Défoncer la porte', en: 'Kick the toilet door' }, text: { fr: "J'ai défoncé la porte des toilettes, arraché le manuel des mains du copilote et atterri d'urgence en lisant la page 12 à voix haute. L'avion sent la peur et le confit.", en: "I kicked in the toilet door, ripped the manual out of the co-pilot's hands and made an emergency landing reading page 12 aloud. The plane smells of fear and roast goose." }, fx: { perf: 10, fame: 6, stress: 10 }, mood: 'angry' },
+    ],
+  },
+
+  // ───────────────────────────── surgery & morgue ─────────────────────────────
+  {
+    id: 'ca_su_operation',
+    icon: '🩺',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'hospital', mood: 'neutral', prop: 'scalpel' },
+    when: { job: ['surgeon', 'doctor'] },
+    weight: 10,
+    cooldown: 2,
+    text: {
+      fr: ["Urgence au bloc : un homme est arrivé avec une télécommande coincée « par accident » à un endroit improbable. Elle change encore les chaînes.", "Opération à cœur ouvert. Le patient est le maire de la ville. Son épouse t'a glissé un mot : « Prenez votre temps. »"],
+      en: ["OR emergency: a man came in with a remote control 'accidentally' lodged somewhere improbable. It's still changing channels.", "Open-heart surgery. The patient is the mayor. His wife slipped you a note: 'Take your time.'"],
+    },
+    choices: [
+      { label: { fr: 'Opérer', en: 'Operate' }, text: { fr: "Je me suis lavé les mains en chantonnant, j'ai enfilé mes gants et j'ai demandé un scalpel d'une voix grave, comme à la télé.", en: 'I scrubbed in humming, snapped on my gloves and asked for a scalpel in a deep voice, like on TV.' }, fx: { open: 'minigame:surgery' } },
+      { label: { fr: "Refiler à l'interne", en: 'Give it to the intern' }, out: [
+        { w: 1, text: { fr: "L'interne s'en est sorti. Le patient va bien. L'interne veut maintenant mon poste, et il a l'air capable de l'avoir.", en: "The intern pulled it off. The patient is fine. The intern now wants my job, and looks like he could get it." }, fx: { perf: -2, stress: 4 } },
+        { w: 1, text: { fr: "L'interne a recousu le patient avec son téléphone à l'intérieur. Le patient sonne quand on l'appelle. Le conseil de l'ordre m'appelle aussi.", en: "The intern sewed the patient up with his own phone inside. The patient rings when you call him. The medical board is also calling me." }, fx: { perf: -10, stress: 10, karma: -2 }, mood: 'shock' },
+      ] },
+    ],
+  },
+  {
+    id: 'ca_su_forgot',
+    icon: '🧽',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'hospital', mood: 'shock', prop: 'xray', fx: 'gore' },
+    when: { job: ['surgeon', 'anesthetist'] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: ["Le patient d'hier revient avec des douleurs. La radio montre une éponge, deux pinces, et ce qui ressemble fortement à ta montre. Elle fait encore tic-tac.", "Après une opération de 9 heures, tu fais l'inventaire : il manque un scalpel, une compresse et ton alliance. Le patient se réveille en salle de réveil."],
+      en: ["Yesterday's patient is back with pains. The X-ray shows a sponge, two clamps and something that looks a lot like your watch. It's still ticking.", "After a 9-hour operation, you take inventory: one scalpel, one swab and your wedding ring are missing. The patient is waking up in recovery."],
+    },
+    choices: [
+      { label: { fr: 'Rouvrir discrètement', en: 'Quietly reopen' }, text: { fr: "Je l'ai rouvert « pour un contrôle de routine ». Tout récupéré, dans un festival de sang et de bruits de succion. Ma montre retarde de deux minutes, mais elle a vécu des choses.", en: "I reopened him 'for a routine check'. Got everything back amid a festival of blood and suction noises. My watch runs two minutes slow, but it's been through things." }, fx: { perf: 2, karma: -4, stress: 8, visual: 'gore' }, mood: 'neutral' },
+      { label: { fr: 'Avouer au patient', en: 'Tell the patient' }, text: { fr: "J'ai tout avoué. Il m'a fait un procès et gagné de quoi s'acheter un yacht. Il l'a appelé « Compresse ».", en: "I confessed everything. He sued and won enough for a yacht. He named it 'The Sponge'." }, fx: { money: -50000, karma: 6, perf: -10 }, mood: 'sad' },
+      { label: { fr: 'Accuser l\'anesthésiste', en: 'Blame the anesthetist' }, text: { fr: "J'ai accusé l'anesthésiste, qui a accusé l'infirmière, qui a accusé le patient de « s'être servi ». L'enquête a conclu à un « mystère médical ».", en: "I blamed the anesthetist, who blamed the nurse, who blamed the patient for 'helping himself'. The inquiry concluded 'medical mystery'." }, fx: { karma: -8, perf: 2, stress: 6 } },
+    ],
+  },
+  {
+    id: 'ca_he_auto_coroner',
+    icon: '🧟',
+    cat: 'career',
+    rating: 2,
+    auto: true,
+    when: { job: ['coroner', 'surgeon', 'anesthetist'], chance: 0.5 },
+    cooldown: 4,
+    text: {
+      fr: ["J'ai mangé mon sandwich thon-mayo à côté d'un corps ouvert. Mon collègue a dit « tu vas pas finir ça ? ». Il ne parlait pas du sandwich.", "Un cadavre s'est redressé sur ma table à cause des gaz. J'ai hurlé, il a pété. On est quittes."],
+      en: ["I ate my tuna-mayo sandwich next to an open body. My colleague asked 'you gonna finish that?'. He wasn't talking about the sandwich.", "A corpse sat up on my table because of gas build-up. I screamed, it farted. We're even."],
+    },
+    fx: { stress: 3, happy: 1 },
+  },
+
+  // ───────────────────────────── mafia ─────────────────────────────
+  {
+    id: 'ca_mf_hit',
+    icon: '🔫',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'villa', mood: 'angry', prop: 'cannoli', fx: 'gore' },
+    when: { job: 'mafia' },
+    weight: 9,
+    cooldown: 3,
+    text: {
+      fr: ["Le Parrain t'a confié un « contrat » : un comptable qui a parlé aux flics. Il est dans son jacuzzi, avec un masque à l'argile et des concombres sur les yeux.", "Contrat sur un boss rival. Il dîne dans une trattoria, une serviette nouée au cou, devant une montagne de spaghettis. Ses gardes du corps sont partis aux toilettes ensemble."],
+      en: ["The Godfather gave you a 'contract': an accountant who talked to the cops. He's in his hot tub with a clay mask and cucumbers on his eyes.", "A hit on a rival boss. He's dining in a trattoria, napkin tied around his neck, in front of a mountain of spaghetti. His bodyguards all went to the bathroom together."],
+    },
+    choices: [
+      { label: { fr: 'Faire le travail', en: 'Do the job' }, out: [
+        { w: 3, text: { fr: "Travail propre. Enfin, « propre » : il y avait de la sauce tomate et de la cervelle partout et je ne savais plus laquelle était laquelle. Le Parrain m'a embrassé{|e} sur les deux joues.", en: "Clean job. Well, 'clean': there was tomato sauce and brain everywhere and I couldn't tell which was which. The Godfather kissed me on both cheeks." }, fx: { perf: 14, money: 40000, karma: -15, heat: 15, counter: 'kills', visual: 'gore' }, mood: 'proud' },
+        { w: 1, text: { fr: "Mon flingue s'est enrayé. J'ai fini le boulot avec une poêle à paella. Ça a pris vingt minutes. Il y a des bouts de moi dans les moules.", en: "My gun jammed. I finished the job with a paella pan. It took twenty minutes. There are bits of me in the mussels." }, fx: { perf: 8, health: -12, heat: 25, karma: -15, counter: 'kills', visual: 'gore' }, mood: 'sick' },
+      ] },
+      { label: { fr: 'Le prévenir', en: 'Warn him' }, text: { fr: "Je l'ai prévenu et il a fui au Brésil. J'ai dit au Parrain que c'était fait. Il m'a demandé une preuve. Je lui ai ramené un concombre. Il me regarde bizarrement depuis.", en: "I warned him and he fled to Brazil. Told the Godfather it was done. He asked for proof. I brought back a cucumber. He's been looking at me funny since." }, fx: { karma: 10, perf: -10, stress: 15 }, mood: 'shock' },
+    ],
+  },
+  {
+    id: 'ca_mf_rat',
+    icon: '🐀',
+    cat: 'career',
+    rating: 2,
+    actor: { create: { role: 'acquaintance', age: [-10, 15], gender: 'any' } },
+    scene: { place: 'beach', mood: 'angry', prop: 'boat', fx: 'gore' },
+    when: { job: 'mafia' },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: ["{a.first}, ton bras droit depuis dix ans, porte un micro. Tu l'as découvert quand son ventre a fait « bip » pendant un baptême. La Famille attend ta décision.", "Le Parrain t'apprend que {a.first}, avec qui tu passes tous tes dimanches, est une balance. Il te tend une paire de bottes en ciment, pointure 43."],
+      en: ["{a.first}, your right hand for ten years, is wearing a wire. You found out when {a.his} belly went 'beep' during a christening. The Family awaits your decision.", "The Godfather tells you {a.first}, whom you spend every Sunday with, is a rat. He hands you a pair of cement boots, size 10."],
+    },
+    choices: [
+      { label: { fr: 'Promenade en bateau', en: 'A little boat trip' }, text: { fr: "J'ai emmené {a.first} faire « un tour en bateau ». Je suis rentré{|e} seul{|e}. Les poissons du port sont devenus énormes cette année. Je ne mange plus de dorade.", en: "I took {a.first} for 'a boat ride'. I came back alone. The fish in the harbour got huge this year. I don't eat sea bream anymore." }, fx: { actorDie: true, perf: 15, karma: -20, happy: -10, heat: 10, counter: 'kills', visual: 'gore' }, mood: 'sad' },
+      { label: { fr: "L'aider à fuir", en: 'Help them escape' }, out: [
+        { w: 1, text: { fr: "J'ai aidé {a.first} à fuir. {a:Il|Elle} m'envoie des cartes postales de Patagonie, sans signature. La Famille ne sait rien. Pour l'instant.", en: "I helped {a.first} escape. {a:He|She} sends me unsigned postcards from Patagonia. The Family knows nothing. For now." }, fx: { actorGone: true, karma: 12, stress: 15 }, mood: 'neutral' },
+        { w: 1, text: { fr: "La Famille l'a su. On m'a coupé le petit doigt au sécateur, en guise d'avertissement. Il est dans un bocal sur le bureau du Parrain, avec une étiquette.", en: "The Family found out. They took my pinkie with pruning shears, as a warning. It's in a jar on the Godfather's desk, with a label." }, fx: { actorGone: true, disease: 'missing_finger', health: -12, perf: -15, visual: 'gore' }, mood: 'cry' },
+      ] },
+      { label: { fr: 'Le retourner', en: 'Turn them' }, text: { fr: "J'ai convaincu {a.first} de raconter n'importe quoi aux flics. Les fédéraux enquêtent maintenant sur une mafia de collectionneurs de timbres. Génie.", en: "I convinced {a.first} to feed the cops nonsense. The feds are now investigating a stamp-collecting mafia. Genius." }, fx: { perf: 10, rel: 15, keep: true, actorRole: 'friend', heat: -10 }, mood: 'proud' },
+    ],
+  },
+  {
+    id: 'ca_mf_auto',
+    icon: '🥐',
+    cat: 'career',
+    rating: 1,
+    auto: true,
+    when: { job: 'mafia', chance: 0.5 },
+    cooldown: 3,
+    text: {
+      fr: ["J'ai racketté une boulangerie. Le boulanger n'avait pas de liquide, il m'a payé en croissants. Le Parrain a accepté, il les adore.", "J'ai dû porter un « message » à un commerçant. Le message était une tête de cheval en peluche. Le commerçant a trouvé ça mignon. On a échoué."],
+      en: ["I shook down a bakery. The baker had no cash, he paid me in croissants. The Godfather accepted, he loves them.", "I had to deliver a 'message' to a shopkeeper. The message was a plush horse head. He thought it was cute. We failed."],
+    },
+    fx: { perf: 2, heat: 3, karma: -2 },
+  },
+
+  // ───────────────────────────── law ─────────────────────────────
+  {
+    id: 'ca_law_case',
+    icon: '⚖️',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'court', mood: 'neutral', prop: 'gavel' },
+    when: { job: 'cat:law' },
+    weight: 10,
+    cooldown: 2,
+    text: {
+      fr: ["Affaire du siècle : un homme poursuit son voisin parce que son coq chante en ré mineur. Les deux sont venus avec leur coq. Les coqs se regardent.", "Grand procès médiatique : une star de télé-réalité est accusée d'avoir volé un flamant rose dans un zoo. Il y a des preuves. Il y a surtout des plumes."],
+      en: ["Case of the century: a man is suing his neighbour because his rooster crows in D minor. Both brought their roosters. The roosters are staring at each other.", "Big media trial: a reality TV star is accused of stealing a flamingo from a zoo. There's evidence. Mostly feathers."],
+    },
+    choices: [
+      { label: { fr: "Étudier l'affaire", en: 'Work the case' }, text: { fr: "J'ai ouvert le dossier, ajusté ma robe et inspiré profondément. Justice va être rendue. Normalement.", en: 'I opened the file, adjusted my robe and took a deep breath. Justice will be served. Probably.' }, fx: { open: 'minigame:case' } },
+      { label: { fr: 'Improviser', en: 'Wing it' }, out: [
+        { w: 1, odds: { smarts: 1 }, text: { fr: "J'ai improvisé une plaidoirie sur la liberté d'expression des volailles. Standing ovation. Même le coq s'est levé.", en: 'I improvised a plea on poultry free speech. Standing ovation. Even the rooster stood up.' }, fx: { perf: 8, fame: 3 }, mood: 'proud' },
+        { w: 1, text: { fr: "J'ai improvisé. J'ai cité un article de loi qui n'existe pas, puis la Bible, puis Shrek. Le juge a suspendu l'audience pour rire dans son bureau.", en: "I winged it. Cited a law that doesn't exist, then the Bible, then Shrek. The judge called a recess to laugh in chambers." }, fx: { perf: -6, happy: 3 }, mood: 'shock' },
+      ] },
+    ],
+  },
+
+  // ───────────────────────────── kitchens ─────────────────────────────
+  {
+    id: 'ca_ck_rush',
+    icon: '👨‍🍳',
+    cat: 'career',
+    rating: 0,
+    scene: { place: 'office', mood: 'angry', prop: 'stove', fx: 'fire' },
+    when: { job: KITCHEN },
+    weight: 10,
+    cooldown: 2,
+    text: {
+      fr: ["Coup de feu du samedi soir : 80 couverts, un critique gastronomique incognito en salle 4 — il a une fausse moustache — et ton commis pleure dans la chambre froide.", "Un chef étoilé hurleur passe en cuisine pour une émission de télé. Il goûte ta sauce, crache, puis te demande ton prénom en te fixant."],
+      en: ["Saturday night rush: 80 covers, an undercover food critic at table 4 — he's wearing a fake mustache — and your commis is crying in the walk-in.", "A famous screaming chef storms your kitchen for a TV show. He tastes your sauce, spits it out, then asks your name while staring at you."],
+    },
+    choices: [
+      { label: { fr: 'Aux fourneaux !', en: 'Fire up the stoves!' }, text: { fr: "J'ai noué mon tablier, hurlé « OUI CHEF ! » à personne en particulier et allumé tous les feux.", en: "I tied my apron, yelled 'YES CHEF!' at nobody in particular and lit every burner." }, fx: { open: 'minigame:cooking', stress: 4 } },
+      { label: { fr: 'Commander des pizzas', en: 'Order pizzas' }, text: { fr: "J'ai commandé 80 pizzas et les ai dressées à la pince à épiler avec de la fleur de sel. Le critique a parlé d'une « déconstruction audacieuse ». Une étoile.", en: "I ordered 80 pizzas and plated them with tweezers and sea salt flakes. The critic praised 'a daring deconstruction'. One star." }, fx: { perf: 6, money: -800, fame: 3 }, mood: 'party' },
+    ],
+  },
+  {
+    id: 'ca_ck_rat',
+    icon: '🐁',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'office', mood: 'shock', prop: 'pot', fx: 'gore' },
+    when: { job: KITCHEN },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: ["Un client hurle : il y a une queue de rat dans sa bouillabaisse. Le reste du rat, tu le sais, est dans la grande marmite. L'inspecteur sanitaire arrive dans dix minutes.", "Tu viens de trancher le bout de ton doigt avec la mandoline. Le bout est tombé dans le tartare du client de la 12. Il a déjà commencé à manger."],
+      en: ["A customer is screaming: there's a rat tail in his bouillabaisse. The rest of the rat, you know, is in the big stockpot. The health inspector arrives in ten minutes.", "You just sliced off your fingertip on the mandoline. It fell into table 12's steak tartare. He's already started eating."],
+    },
+    choices: [
+      { label: { fr: '« C\'est de la truffe »', en: '"It\'s a truffle"' }, text: { fr: "J'ai expliqué au client que c'était de la « truffe filamenteuse d'Auvergne ». Il l'a mangée. Il a laissé un pourboire et cinq étoiles. Le rat aussi, à sa manière.", en: "I told the customer it was 'filament truffle from the Alps'. He ate it. Left a tip and five stars. So did the rat, in its way." }, fx: { perf: 4, karma: -8, money: 50 }, mood: 'neutral' },
+      { label: { fr: 'Fermer la cuisine', en: 'Shut the kitchen' }, text: { fr: "J'ai tout fermé, tout jeté, tout désinfecté. J'ai trouvé une famille de rats dans le four à pizza. Ils avaient installé des rideaux.", en: "I shut it all down, threw everything out, disinfected everything. Found a family of rats living in the pizza oven. They'd put up curtains." }, fx: { perf: -4, karma: 6, money: -3000 } },
+      { label: { fr: 'Récupérer le doigt', en: 'Retrieve the finger' }, text: { fr: "J'ai fouillé le tartare du client à mains nues. Il a hurlé, j'ai saigné partout. On a retrouvé le bout dans sa joue. Le Guide m'a classé{|e} « expérience immersive ».", en: "I dug through his tartare bare-handed. He screamed, I bled everywhere. We found the tip in his cheek. The Guide rated me 'an immersive experience'." }, fx: { health: -8, perf: -6, fame: 4, disease: 'missing_finger', visual: 'gore' }, mood: 'sick' },
+    ],
+  },
+
+  // ───────────────────────────── funerals, crime scenes, clergy ─────────────────────────────
+  {
+    id: 'ca_un_funeral',
+    icon: '⚰️',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'cemetery', mood: 'shock', prop: 'coffin', fx: 'gore' },
+    when: { job: ['undertaker', 'priest'] },
+    weight: 9,
+    cooldown: 3,
+    text: {
+      fr: ["Enterrement en plein été. Le défunt pesait 160 kilos et ton embaumement était « approximatif ». Le cercueil gonfle doucement pendant l'éloge funèbre. Il fait des bruits.", "Pendant la mise en terre, une sangle cède. Le cercueil glisse, se fend et le défunt roule à moitié dehors, bras tendu vers sa veuve, comme pour une dernière demande."],
+      en: ["Funeral in high summer. The deceased weighed 350 pounds and your embalming was 'approximate'. The coffin is slowly swelling during the eulogy. It's making noises.", "During the burial, a strap snaps. The coffin slides, cracks open and the deceased half-rolls out, arm outstretched toward his widow, as if for one last request."],
+    },
+    choices: [
+      { label: { fr: 'Accélérer la cérémonie', en: 'Speed up the ceremony' }, out: [
+        { w: 1, text: { fr: "Trop tard. Le cercueil a explosé dans un « PLOF » que personne n'oubliera. Le curé a pris le plus gros. La veuve a ri nerveusement, puis vomi dans sa voilette.", en: "Too late. The coffin burst with a SPLORT nobody will ever forget. The priest took the brunt. The widow laughed nervously, then threw up into her veil." }, fx: { perf: -15, karma: -2, visual: 'gore' }, mood: 'sick' },
+        { w: 1, text: { fr: "J'ai coupé le discours du neveu et descendu le cercueil en quatrième vitesse. Ça a tenu jusqu'à la dernière pelletée. Après, ce n'est plus mon problème.", en: "I cut off the nephew's speech and lowered the coffin at top speed. It held until the last shovelful. After that, not my problem." }, fx: { perf: 4, stress: 6 } },
+      ] },
+      { label: { fr: 'Faire comme si de rien', en: 'Act natural' }, text: { fr: "J'ai remis le bras du défunt à l'intérieur en disant « il a toujours été tactile ». La famille m'a laissé un très bon avis en ligne.", en: "I tucked the deceased's arm back in, saying 'he was always a hugger'. The family left me a glowing online review." }, fx: { perf: 6, happy: 2 }, mood: 'neutral' },
+    ],
+  },
+  {
+    id: 'ca_cc_scene',
+    icon: '🧹',
+    cat: 'career',
+    rating: 2,
+    scene: { place: 'apartment', mood: 'sick', prop: 'bucket', fx: 'gore' },
+    when: { job: ['crime_cleaner', 'coroner', 'detective'] },
+    weight: 9,
+    cooldown: 3,
+    text: {
+      fr: ["Nouvelle scène de crime : un mari a découvert sa femme avec le livreur, puis la tronçonneuse. Il y a de la moquette blanche. Il y avait.", "On t'appelle pour un appartement où le locataire est mort il y a quatre mois, entouré de ses 23 chats. Les chats, eux, n'ont pas eu faim."],
+      en: ["New crime scene: a husband caught his wife with the delivery guy, then found the chainsaw. There's white carpet. There was.", "You're called to an apartment where the tenant died four months ago, surrounded by his 23 cats. The cats did not go hungry."],
+    },
+    choices: [
+      { label: { fr: 'Nettoyer en musique', en: 'Clean with music' }, text: { fr: "J'ai mis du disco et frotté en rythme. J'ai retrouvé un œil sous le canapé, un orteil dans le grille-pain et la télécommande, qu'on cherchait depuis le début.", en: "I put on disco and scrubbed in rhythm. Found an eyeball under the sofa, a toe in the toaster and the remote, which everyone had been looking for." }, fx: { perf: 8, money: 2000, visual: 'gore' }, mood: 'party' },
+      { label: { fr: 'Vomir dans le seau', en: 'Puke in the bucket' }, text: { fr: "J'ai vomi dans le seau. Puis j'ai dû nettoyer le seau. Puis j'ai revomi. Cercle vicieux. Le client a quand même payé.", en: "I threw up in the bucket. Then had to clean the bucket. Then threw up again. Vicious cycle. The client paid anyway." }, fx: { health: -4, happy: -6, money: 1500, visual: 'poop' }, mood: 'sick' },
+      { label: { fr: 'Adopter un chat', en: 'Adopt a cat' }, text: { fr: "J'ai adopté le chat le plus gros. Il me regarde dormir avec un air gourmand. Je ferme ma porte à clé.", en: "I adopted the fattest cat. It watches me sleep with a hungry look. I lock my bedroom door." }, fx: { happy: 4, newNpc: { role: 'pet', species: 'cat' } }, mood: 'shock' },
+    ],
+  },
+  {
+    id: 'ca_pr_confession',
+    icon: '⛪',
+    cat: 'career',
+    rating: 1,
+    scene: { place: 'castle', mood: 'shock', prop: 'confessional' },
+    when: { job: ['priest', 'rabbi', 'imam', 'cult_guru'] },
+    weight: 9,
+    cooldown: 3,
+    text: {
+      fr: ["Confession. Une petite voix derrière la grille : « Mon père, j'ai volé le vin de messe, je l'ai mélangé à du Red Bull et j'ai vendu ça en boîte. » C'est le sacristain.", "Un fidèle vient se confesser pour la troisième fois de la semaine. Le péché est toujours le même : il a « encore regardé la voisine se mettre de la crème solaire »."],
+      en: ["Confession. A small voice behind the grille: 'Father, I stole the communion wine, mixed it with Red Bull and sold it at a club.' It's the sexton.", "A parishioner comes to confess for the third time this week. Same sin every time: he 'watched the neighbour put on sunscreen again'."],
+    },
+    choices: [
+      { label: { fr: 'Absolution standard', en: 'Standard absolution' }, text: { fr: "Trois Je vous salue Marie et une amende de 50 balles pour le cocktail. Le sacristain a payé en liquide. Ça part dans le chauffage de l'église.", en: "Three Hail Marys and a 50-dollar fine for the cocktail. The sexton paid cash. It's going to the church heating." }, fx: { perf: 4, money: 50, karma: 2 } },
+      { label: { fr: 'Demander la recette', en: 'Ask for the recipe' }, text: { fr: "J'ai demandé la recette. On le vend maintenant à la kermesse sous le nom de « Saint-Esprit Boost ». Record de fréquentation à la messe de minuit.", en: "I asked for the recipe. We now sell it at the church fair as 'Holy Spirit Boost'. Record midnight mass attendance." }, fx: { perf: 8, money: 2000, karma: -3, happy: 6 }, mood: 'party' },
+      { label: { fr: 'Raconter au sermon', en: 'Tell it in the sermon' }, text: { fr: "J'ai raconté la confession au sermon, en changeant juste le prénom. Il n'y a qu'un sacristain. Il ne vient plus.", en: "I told the confession in my sermon, changing only the name. There's only one sexton. He doesn't come anymore." }, fx: { karma: -6, perf: -4, happy: 4 }, mood: 'shock' },
+    ],
+  },
+  {
+    id: 'ca_un_auto',
+    icon: '💀',
+    cat: 'career',
+    rating: 2,
+    auto: true,
+    when: { job: ['undertaker', 'crime_cleaner'], chance: 0.5 },
+    cooldown: 3,
+    text: {
+      fr: ["J'ai fait un test de cercueil en m'allongeant dedans. Le couvercle s'est refermé. Un collègue m'a sorti{|e} au bout de deux heures. Il était parti déjeuner.", "J'ai mis le dentier d'un client dans le mauvais corps. La famille a trouvé que mamie avait « un sourire différent ». Elle avait raison."],
+      en: ["I tested a coffin by lying in it. The lid closed. A colleague let me out two hours later. He'd been at lunch.", "I put a client's dentures in the wrong body. The family thought grandma had 'a different smile'. They were right."],
+    },
+    fx: { stress: 4, perf: 1 },
+  },
+];

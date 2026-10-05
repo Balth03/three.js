@@ -10,7 +10,17 @@ import { dropOut } from './edu.ts';
 import { kill } from './health.ts';
 import { queueEvent } from './events.ts';
 
-const FACILITIES = ['Fleury-Mérogis', 'la Santé', 'Rikers Island', 'Alcatraz (rénovée)', 'la Prison Centrale', 'Pénitencier de Sing Sing', 'la Maison d\'arrêt municipale'];
+const FACILITIES: Record<string, string[]> = {
+  fr: ['Fleury-Mérogis', 'la prison de la Santé', 'les Baumettes', 'la maison d\'arrêt de Fresnes'],
+  be: ['la prison de Saint-Gilles', 'la prison de Haren', 'la prison de Lantin'],
+  us: ['Rikers Island', 'Sing Sing', 'San Quentin', 'Alcatraz (reopened)', 'a Texas county jail'],
+  uk: ['HMP Belmarsh', 'HMP Wandsworth', 'HMP Barlinnie'],
+  ca: ['Kingston Penitentiary', 'Bordeaux Prison', 'Millhaven'],
+  jp: ['Fuchū Prison', 'Tokyo Detention House'],
+  it: ['Regina Coeli', 'San Vittore'], es: ['Soto del Real', 'la Modelo'], de: ['JVA Tegel', 'JVA Stammheim'],
+  ch: ['Champ-Dollon', 'Pöschwies'], br: ['Carandiru (reconstruite)', 'Papuda'], mx: ['Altiplano', 'Puente Grande'],
+  ma: ['la prison d\'Oukacha', 'la prison de Salé'], au: ['Long Bay', 'Pentridge (reopened)'],
+};
 
 export interface CrimeView { def: CrimeDef; ok: boolean; reason?: Loc<string>; chance: number }
 
@@ -146,7 +156,7 @@ export function imprison(life: Life, content: Content, crimeId: string, years: n
   if (life.prison) { life.prison.years += years; return; }
   if (life.job) leaveJob(life, content, 'fired', true);
   if (life.edu.enrolled) dropOut(life, content);
-  life.prison = { years, served: 0, crime: crimeId, respect: 20, escapes: 0, facility: rng.pick(FACILITIES) };
+  life.prison = { years, served: 0, crime: crimeId, respect: 20, escapes: 0, facility: rng.pick(FACILITIES[life.country] ?? FACILITIES.us) };
   life.record.push({ crime: crimeId, year: life.year, years });
   life.flags.record = life.year;
   life.heat = 0;
@@ -238,3 +248,46 @@ export function parole(life: Life, content: Content): Resolution | null {
 }
 
 export { renderLoc };
+
+/** Appeal: pay a lawyer, maybe get years off. */
+export function appeal(life: Life, content: Content): Resolution | null {
+  const p = life.prison;
+  if (!p) return null;
+  const rng = rngOf(life);
+  const before = snapshot(life);
+  life.used.appeal = 1;
+  const c = country(content, life.country);
+  life.money -= Math.round(toLocal(5000, c));
+  if (rng.chance(0.25 + (life.stats.smarts - 50) / 300)) {
+    const cut = Math.max(1, Math.round((p.years - p.served) * rng.range(0.3, 0.7)));
+    p.years = Math.max(p.served + 1, p.years - cut);
+    const t = { fr: `Appel gagné ! ${cut} an${cut > 1 ? 's' : ''} de moins. Mon avocat a fait sa danse de la victoire.`, en: `Appeal won! ${cut} year${cut > 1 ? 's' : ''} off. My lawyer did his victory dance.` };
+    addLine(life, t, '⚖️', 'good');
+    return { text: t, icon: '⚖️', tone: 'good', deltas: diff(life, before), mood: 'happy' };
+  }
+  const t = L('Appel rejeté. Le juge a dit « non » avant même que mon avocat ait fini sa phrase.', 'Appeal rejected. The judge said "no" before my lawyer finished his sentence.');
+  addLine(life, t, '⚖️', 'bad');
+  return { text: t, icon: '⚖️', tone: 'bad', deltas: diff(life, before), mood: 'sad' };
+}
+
+/** Applies the money outcome of a client-side minigame (casino…). */
+export function gamble(life: Life, content: Content, deltaLocal: number, text: Loc<string>, icon = '🎰'): Resolution {
+  const before = snapshot(life);
+  life.money += Math.round(deltaLocal);
+  life.addictions.gambling = clamp((life.addictions.gambling ?? 0) + 6);
+  if (deltaLocal > 0) life.counters.casinoWins = (life.counters.casinoWins ?? 0) + 1;
+  addLine(life, text, icon, deltaLocal >= 0 ? 'good' : 'bad');
+  void content;
+  return { text, icon, tone: deltaLocal >= 0 ? 'good' : 'bad', deltas: diff(life, before), mood: deltaLocal >= 0 ? 'party' : 'sad', visual: deltaLocal > 0 ? ['money'] : undefined };
+}
+
+/** Generic minigame result applied to a job (surgery, cooking, match…): perf change and log. */
+export function workMinigame(life: Life, content: Content, score: number, text: Loc<string>, icon: string): Resolution {
+  const before = snapshot(life);
+  if (life.job) life.job.perf = clamp(life.job.perf + (score - 0.45) * 40);
+  life.stats.happy = clamp(life.stats.happy + (score - 0.5) * 10);
+  life.used[`mg:${icon}`] = 1;
+  addLine(life, text, icon, score >= 0.5 ? 'good' : 'bad');
+  void content;
+  return { text, icon, tone: score >= 0.5 ? 'good' : 'bad', deltas: diff(life, before), mood: score >= 0.7 ? 'proud' : score >= 0.4 ? 'neutral' : 'sad' };
+}

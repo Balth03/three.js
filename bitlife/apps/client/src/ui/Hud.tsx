@@ -5,11 +5,14 @@ import { life, rev, tab, modal, lang, result, ageBusy, showToast } from '../stat
 import { doAgeUp, runAction } from '../game.ts';
 import { t, tl } from '../i18n.ts';
 import { Bar, StatRow, Portrait, money, npcLabel } from './common.tsx';
+import { PrisonPanel } from './Crime.tsx';
+import { OwnedAssets } from './Money.tsx';
+import { netWorth, portfolioValue, debt } from '@bl/sim';
 import { sfx } from '../audio.ts';
 
 export function TopBar({ l }: { l: Life }) {
   const c = content.countries.find((x) => x.id === l.country)!;
-  const occupation = l.job
+  const occupation = l.prison ? `🔒 ${lang.value === 'fr' ? 'Détenu' + (l.gender === 'f' ? 'e' : '') : 'Inmate'}` : l.job
     ? careerTitle(content, l.job.careerId, l.job.level, l.gender, lang.value)
     : l.edu.enrolled ? tl(stageLabel(content, l, l.edu.stage)) : l.alive ? (l.flags.pension ? t('pension') : l.age < 3 ? '👶' : t('no_job')) : t('dead_banner');
   return (
@@ -84,8 +87,8 @@ export function Dock({ l }: { l: Life }) {
   };
   const tabBtn = (x: (typeof TABS)[number]) => (
     <button key={x.id} class={`dock-btn ${tab.value === x.id ? 'on' : ''}`} onClick={() => toggle(x.id)} onMouseEnter={() => sfx.hover()}>
-      <span class="dock-icon">{x.icon}</span>
-      <span class="dock-label">{x.id === 'career' && l.age < 18 && !l.job ? t('tab_school') : t(x.key)}</span>
+      <span class="dock-icon">{x.id === 'career' && l.prison ? '🔒' : x.icon}</span>
+      <span class="dock-label">{x.id === 'career' && l.prison ? (lang.value === 'fr' ? 'Prison' : 'Prison') : x.id === 'career' && l.age < 18 && !l.job ? t('tab_school') : t(x.key)}</span>
     </button>
   );
   return (
@@ -224,11 +227,15 @@ function AssetsPanel({ l }: { l: Life }) {
       <div class="card info-card">
         <div class="card-title">💰 {t('money_total')}</div>
         <div class={`big-money ${l.money < 0 ? 'neg' : ''}`}>{money(l, l.money)}</div>
-        <div class="kv"><span>{t('home')}</span><b>{l.movedOut ? t('own_place') : t('living_with_parents')}</b></div>
-        {l.edu.loan > 0 && <div class="kv"><span>{t('student_loan')}</span><b class="neg">{money(l, -l.edu.loan)}</b></div>}
+        <div class="kv"><span>{lang.value === 'fr' ? 'Patrimoine net' : 'Net worth'}</span><b>{money(l, netWorth(l, content))}</b></div>
+        {Object.keys(l.portfolio).length > 0 && <div class="kv"><span>📈 {lang.value === 'fr' ? 'Portefeuille' : 'Portfolio'}</span><b>{money(l, portfolioValue(l, content))}</b></div>}
+        {debt(l) > 0 && <div class="kv"><span>💳 {lang.value === 'fr' ? 'Dettes' : 'Debts'}</span><b class="neg">{money(l, -debt(l))}</b></div>}
+        {l.followers > 0 && <div class="kv"><span>📱 {lang.value === 'fr' ? 'Abonnés' : 'Followers'}</span><b>{l.followers.toLocaleString(lang.value === 'fr' ? 'fr-FR' : 'en-US')}</b></div>}
+        <div class="kv"><span>{t('home')}</span><b>{l.flags.home !== undefined ? '🏠' : l.movedOut ? t('own_place') : t('living_with_parents')}</b></div>
       </div>
       <ActionGrid views={acts} />
-      <p class="muted small">{t('assets_soon')}</p>
+      <div class="group-title">{lang.value === 'fr' ? 'Mes biens' : 'My assets'}</div>
+      <OwnedAssets l={l} />
     </div>
   );
 }
@@ -237,9 +244,15 @@ function ActivitiesPanel({ l }: { l: Life }) {
   const all = listActions(l, content, 'activities');
   const lg = lang.value;
   const groups = [
-    { id: 'mind', title: lg === 'fr' ? 'Esprit & corps' : 'Mind & body' },
+    { id: 'crime', title: lg === 'fr' ? 'Crime' : 'Crime' },
+    { id: 'mind', title: lg === 'fr' ? 'Esprit & santé' : 'Mind & health' },
+    { id: 'body', title: lg === 'fr' ? 'Corps & look' : 'Body & looks' },
     { id: 'fun', title: lg === 'fr' ? 'Loisirs' : 'Fun' },
+    { id: 'social', title: lg === 'fr' ? 'Réseaux sociaux' : 'Social media' },
+    { id: 'love', title: lg === 'fr' ? 'Amour' : 'Love' },
+    { id: 'vices', title: lg === 'fr' ? 'Vices' : 'Vices' },
   ];
+  if (l.prison) return <PrisonPanel l={l} />;
   if (l.age < 3) return <p class="muted">{lg === 'fr' ? 'Tu es un bébé. Ton activité principale : baver.' : "You're a baby. Your main activity: drooling."}</p>;
   return (
     <div>
@@ -261,15 +274,15 @@ export function TabPanel({ l }: { l: Life }) {
   const tb = tab.value;
   if (!tb) return null;
   const meta = TABS.find((x) => x.id === tb)!;
-  const title = tb === 'career' && l.age < 18 && !l.job ? t('tab_school') : t(meta.key);
+  const title = tb === 'career' && l.prison ? 'Prison' : tb === 'career' && l.age < 18 && !l.job ? t('tab_school') : t(meta.key);
   return (
     <div class="tab-panel glass slide-up" key={tb}>
       <div class="sheet-head">
-        <h2><span class="sheet-icon">{meta.icon}</span>{title}</h2>
+        <h2><span class="sheet-icon">{tb === 'career' && l.prison ? '🔒' : meta.icon}</span>{title}</h2>
         <button class="x" onClick={() => { sfx.close(); tab.value = null; }}>✕</button>
       </div>
       <div class="sheet-body">
-        {tb === 'career' && <CareerPanel l={l} />}
+        {tb === 'career' && (l.prison ? <PrisonPanel l={l} /> : <CareerPanel l={l} />)}
         {tb === 'relations' && <RelationsPanel l={l} />}
         {tb === 'assets' && <AssetsPanel l={l} />}
         {tb === 'activities' && <ActivitiesPanel l={l} />}
