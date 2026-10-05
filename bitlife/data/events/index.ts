@@ -26,8 +26,11 @@ import { mafiaEvents } from './mafia.ts';
 import { chaosEvents } from './chaos.ts';
 import { love2Events } from './love2.ts';
 import { jobs2Events } from './jobs2.ts';
+import { hobbyEvents } from './hobby.ts';
+import { teen2Events } from './teen2.ts';
+import { prison2Events } from './prison2.ts';
 
 export const events: EventDef[] = [
   ...milestoneEvents, ...childhoodEvents, ...teenEvents, ...adultEvents, ...systemEvents, ...moneyEvents,
-  ...familyEvents, ...weirdEvents, ...healthEvents, ...crimeEvents, ...loveEvents, ...workEvents, ...lifeEvents, ...schoolEvents, ...careerEvents, ...darkEvents, ...socialEvents, ...worldEvents2, ...youngEvents, ...money2Events, ...babyEvents, ...health2Events, ...oldEvents, ...mafiaEvents, ...chaosEvents, ...love2Events, ...jobs2Events,
+  ...familyEvents, ...weirdEvents, ...healthEvents, ...crimeEvents, ...loveEvents, ...workEvents, ...lifeEvents, ...schoolEvents, ...careerEvents, ...darkEvents, ...socialEvents, ...worldEvents2, ...youngEvents, ...money2Events, ...babyEvents, ...health2Events, ...oldEvents, ...mafiaEvents, ...chaosEvents, ...love2Events, ...jobs2Events, ...hobbyEvents, ...teen2Events, ...prison2Events,
 ];
