@@ -16,12 +16,13 @@ import { actions2 } from './actions2.ts';
 import { relActions2 } from './relactions2.ts';
 import { careers2 } from './careers2.ts';
 import { actions3 } from './actions3.ts';
+import { actions4 } from './actions4.ts';
 import { relActions3 } from './relactions3.ts';
 import { achievements, worldEvents, scenarios, challenges } from './meta.ts';
 
 export const content: Content = {
   countries: [...countries, ...countries2], names: { ...names, ...names2 }, careers: [...careers, ...careers2], majors, grads, traits, talents,
-  diseases: [...diseases, ...diseases2], events, actions: [...actions, ...actions2, ...actions3], relActions: [...relActions, ...relActions2, ...relActions3], balance,
+  diseases: [...diseases, ...diseases2], events, actions: [...actions, ...actions2, ...actions3, ...actions4], relActions: [...relActions, ...relActions2, ...relActions3], balance,
   crimes, assets, stocks, sectors, achievements, worldEvents, scenarios, challenges,
 };
 export default content;

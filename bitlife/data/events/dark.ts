@@ -48,7 +48,7 @@ export const darkEvents: EventDef[] = [
     },
     choices: [
       { label: { fr: 'Appeler le numéro', en: 'Call the number' }, text: { fr: "J'ai appelé le numéro. Sa fille est arrivée en larmes. Le papi m'a serré dans ses bras en me disant : « Tu as grandi, Jean-Pierre. » Je n'ai pas eu le cœur de le corriger.", en: "I called the number. His daughter showed up in tears. Grandpa hugged me and said: 'You've grown, Jean-Pierre.' I didn't have the heart to correct him." }, fx: { karma: 8, happy: 6 }, mood: 'happy' },
-      { label: { fr: 'Jouer Jean-Pierre', en: 'Play Jean-Pierre' }, text: { fr: "J'ai joué Jean-Pierre tout l'après-midi. On a mangé un éclair, il m'a raconté « ma » guerre. Apparemment, j'ai été très courageux{|se}. J'ai fini par le ramener à la maison de retraite. On m'attendait avec un chèque de remerciement de 20 balles.", en: "I played Jean-Pierre all afternoon. We had an éclair, he told me about 'my' war. Apparently I was very brave. I eventually walked him back to the retirement home. They gave me a 20-buck thank-you check." }, fx: { karma: 6, happy: 8, money: 20 } },
+      { label: { fr: 'Jouer Jean-Pierre', en: 'Play Jean-Pierre' }, text: { fr: "J'ai joué Jean-Pierre tout l'après-midi. On a mangé un éclair, il m'a raconté « ma » guerre. Apparemment, j'ai été très {courageux|courageuse}. J'ai fini par le ramener à la maison de retraite. On m'attendait avec un chèque de remerciement de 20 balles.", en: "I played Jean-Pierre all afternoon. We had an éclair, he told me about 'my' war. Apparently I was very brave. I eventually walked him back to the retirement home. They gave me a 20-buck thank-you check." }, fx: { karma: 6, happy: 8, money: 20 } },
       { label: { fr: 'Faire semblant de rien', en: 'Pretend not to see' }, text: { fr: "J'ai traversé en regardant mon téléphone. Derrière moi, j'ai entendu « Jean-Pierre ? » une dernière fois. Ça m'a suivi{|e} toute la semaine.", en: "I crossed the street staring at my phone. Behind me, one last 'Jean-Pierre?'. It haunted me all week." }, fx: { karma: -6, happy: -4 }, mood: 'sad' },
     ],
   },
@@ -232,7 +232,7 @@ export const darkEvents: EventDef[] = [
     id: 'dk_cash_owner',
     icon: '🕶️',
     cat: 'dark',
-    rating: 2,
+    rating: 1,
     chainOnly: true,
     scene: { place: 'home', mood: 'shock', prop: 'door', fx: 'gore' },
     when: { flag: 'dk_cash_kept' },
@@ -246,7 +246,7 @@ export const darkEvents: EventDef[] = [
         label: { fr: 'Nier en bloc', en: 'Deny everything' },
         out: [
           { w: 1, odds: { smarts: 1 }, text: { fr: "J'ai nié avec un tel aplomb qu'ils se sont excusés et sont repartis cambrioler mon voisin. Il avait le même canapé.", en: "I denied it so convincingly they apologized and went to rob my neighbor instead. He had the same couch." }, fx: { karma: -6, happy: 6, unflag: 'dk_cash_kept' } },
-          { w: 2, text: { fr: "Clac. Mon auriculaire a fait un petit vol plané jusqu'à la gamelle du chat. Le chat l'a regardé. Puis il l'a mangé. J'ai payé avec les neuf doigts restants.", en: "Snip. My pinky did a little flight into the cat bowl. The cat looked at it. Then ate it. I paid with my remaining nine fingers." }, fx: { money: -10000, health: -15, disease: 'missing_finger', visual: 'gore', unflag: 'dk_cash_kept' }, mood: 'cry' },
+          { w: 2, rating: 2, text: { fr: "Clac. Mon auriculaire a fait un petit vol plané jusqu'à la gamelle du chat. Le chat l'a regardé. Puis il l'a mangé. J'ai payé avec les neuf doigts restants.", en: "Snip. My pinky did a little flight into the cat bowl. The cat looked at it. Then ate it. I paid with my remaining nine fingers." }, fx: { money: -10000, health: -15, disease: 'missing_finger', visual: 'gore', unflag: 'dk_cash_kept' }, mood: 'cry' },
         ],
       },
       { label: { fr: 'Sauter par la fenêtre', en: 'Jump out the window' }, text: { fr: "J'ai sauté par la fenêtre. Premier étage, haie de thuyas, cheville en vrac. J'ai déménagé dans une autre ville sous un faux nom. Je m'appelle Kévin, maintenant.", en: "I jumped out the window. Second floor, hedge, wrecked ankle. I moved to another city under a fake name. My name is Kevin now." }, fx: { health: -8, disease: 'sprain', stress: 12, moveOut: true, unflag: 'dk_cash_kept' } },
@@ -281,7 +281,7 @@ export const darkEvents: EventDef[] = [
         label: { fr: 'Jouer franc-jeu', en: 'Play fair' },
         out: [
           { w: 1, odds: { smarts: 1 }, text: { fr: "J'ai joué franc-jeu et j'ai gardé ma place. Ça arrive. Une fois par siècle. J'en ai profité.", en: "I played fair and kept my job. It happens. Once a century. I enjoyed it." }, fx: { karma: 8, perf: 5, happy: 8 }, mood: 'proud' },
-          { w: 1, text: { fr: "J'ai joué franc-jeu. {a.first} a tricher. Devine qui pointe au chômage. Indice : c'est moi, avec ma conscience propre et mon frigo vide.", en: "I played fair. {a.first} cheated. Guess who's unemployed. Hint: it's me, with my clean conscience and empty fridge." }, fx: { karma: 10, fired: true, happy: -10 }, mood: 'sad' },
+          { w: 1, text: { fr: "J'ai joué franc-jeu. {a.first} a triché. Devine qui pointe au chômage. Indice : c'est moi, avec ma conscience propre et mon frigo vide.", en: "I played fair. {a.first} cheated. Guess who's unemployed. Hint: it's me, with my clean conscience and empty fridge." }, fx: { karma: 10, fired: true, happy: -10 }, mood: 'sad' },
         ],
       },
     ],
@@ -356,14 +356,14 @@ export const darkEvents: EventDef[] = [
     weight: 6,
     cooldown: 6,
     text: {
-      fr: ["Il est 2 h du matin. La voiture de {a.first}, ton ex, est garée sous un lampadaire. Tu as tes clés à la main. Elles sont très pointues ce soir.", "Tu passes devant la voiture neuve de {a.first}, ton ex. Il y a un autocollant « Libre et heureux{a:|se} » sur la vitre arrière. Ta clé te démange."],
+      fr: ["Il est 2 h du matin. La voiture de {a.first}, ton ex, est garée sous un lampadaire. Tu as tes clés à la main. Elles sont très pointues ce soir.", "Tu passes devant la voiture neuve de {a.first}, ton ex. Il y a un autocollant « Libre et {a:heureux|heureuse} » sur la vitre arrière. Ta clé te démange."],
       en: ["It's 2 a.m. {a.first}'s car, your ex, is parked under a streetlight. You have your keys in your hand. They feel very pointy tonight.", "You walk past {a.first}'s new car, your ex. There's a 'Single & Happy' sticker on the back window. Your key is itching."],
     },
     choices: [
       {
         label: { fr: 'Graver un message', en: 'Carve a message' },
         out: [
-          { w: 2, text: { fr: "J'ai gravé « MENTEUR{a:|SE} » sur toute la portière. Ça m'a pris 25 minutes et toute ma colère. J'ai très bien dormi.", en: "I carved 'LIAR' along the whole door. Took me 25 minutes and all my rage. I slept like a baby." }, fx: { happy: 10, karma: -8, rel: -20, heat: 5 } },
+          { w: 2, text: { fr: "J'ai gravé « {a:MENTEUR|MENTEUSE} » sur toute la portière. Ça m'a pris 25 minutes et toute ma colère. J'ai très bien dormi.", en: "I carved 'LIAR' along the whole door. Took me 25 minutes and all my rage. I slept like a baby." }, fx: { happy: 10, karma: -8, rel: -20, heat: 5 } },
           { w: 1, text: { fr: "J'ai gravé « ORDURE » en lettres capitales sur la mauvaise voiture. C'était celle d'un juge. Il m'a reconnu{|e} au tribunal six mois plus tard.", en: "I carved 'SCUMBAG' in capital letters on the wrong car. It belonged to a judge. He recognized me in court six months later." }, fx: { karma: -8, arrest: 'vandal', visual: 'police' }, mood: 'shock' },
         ],
       },
@@ -440,12 +440,12 @@ export const darkEvents: EventDef[] = [
     id: 'dk_coffin_use',
     icon: '🪦',
     cat: 'dark',
-    rating: 2,
+    rating: 1,
     chainOnly: true,
     scene: { place: 'home', mood: 'shock', prop: 'coffin' },
     when: { flag: 'dk_coffin' },
     text: {
-      fr: ["Ton cercueil-table basse commence à te regarder bizarrement. Le chat dort dedans. Ton beau-frère a proposé de « le tester » après six bières.", "Six ans que ton cercueil attend. Il a pris de la valeur : le même modèle coûte désormais le double. Tu es devenu{|e} spéculateur{|rice} funéraire."],
+      fr: ["Ton cercueil-table basse commence à te regarder bizarrement. Le chat dort dedans. Ton beau-frère a proposé de « le tester » après six bières.", "Six ans que ton cercueil attend. Il a pris de la valeur : le même modèle coûte désormais le double. Tu es devenu{|e} {spéculateur|spéculatrice} funéraire."],
       en: ["Your coffin coffee table is starting to look at you funny. The cat sleeps in it. Your brother-in-law offered to 'test it' after six beers.", "Your coffin has been waiting six years. It gained value: the same model now costs double. You're a funeral speculator now."],
     },
     choices: [
@@ -541,7 +541,7 @@ export const darkEvents: EventDef[] = [
     },
     choices: [
       { label: { fr: 'Accepter l\'enveloppe', en: 'Take the envelope' }, text: { fr: "Dans l'enveloppe : {$amount} et un sandwich jambon-beurre, « pour la boucle ». J'ai mangé le sandwich en premier. Par principe.", en: "In the envelope: {$amount} and a ham sandwich, 'to close the loop'. I ate the sandwich first. On principle." }, fx: { money: 'amount', happy: 15 }, mood: 'happy' },
-      { label: { fr: 'Demander un job', en: 'Ask for a job' }, text: { fr: "Je lui ai demandé un boulot plutôt que de l'argent. Il m'a nommé{|e} « Directeur{|rice} de la Bienveillance ». Mon bureau a une vue mer et un toboggan.", en: "I asked for a job instead of money. He named me 'Chief Kindness Officer'. My office has an ocean view and a slide." }, fx: { money: 'amount', happy: 10, smarts: 2, open: 'jobs' } },
+      { label: { fr: 'Demander un job', en: 'Ask for a job' }, text: { fr: "Je lui ai demandé un boulot plutôt que de l'argent. Il m'a nommé{|e} « {Directeur|Directrice} de la Bienveillance ». Mon bureau a une vue mer et un toboggan.", en: "I asked for a job instead of money. He named me 'Chief Kindness Officer'. My office has an ocean view and a slide." }, fx: { money: 'amount', happy: 10, smarts: 2, open: 'jobs' } },
     ],
   },
 
@@ -843,7 +843,7 @@ export const darkEvents: EventDef[] = [
     },
     choices: [
       { label: { fr: 'Crevettes dans les tringles', en: 'Shrimp in the curtain rods' }, text: { fr: "J'ai bourré les tringles de crevettes crues. Au bout d'un mois, {a.first} a fait venir un désinfecteur, un plombier et un prêtre. Il a déménagé. Il a emporté les rideaux. Avec les tringles.", en: "I stuffed the curtain rods with raw shrimp. A month later {a.first} had called an exterminator, a plumber and a priest. They moved out. They took the curtains. With the rods." }, fx: { happy: 15, karma: -8, rel: -15, flag: 'dk_fish_war', schedule: { key: 'dk_enemy_retaliation', years: 1 } }, mood: 'party' },
-      { label: { fr: 'Hareng sous le lit', en: 'Herring under the bed' }, text: { fr: "J'ai scotché un hareng sous le sommier. {a.first} a cru pendant trois semaines que c'était son haleine. {a:il|elle} s'est fait enlever deux dents de sagesse. Pour rien.", en: "I taped a herring under the bed frame. {a.first} spent three weeks thinking it was their own breath. They had two wisdom teeth removed. For nothing." }, fx: { happy: 12, karma: -6, rel: -10, flag: 'dk_fish_war', schedule: { key: 'dk_enemy_retaliation', years: 1 } }, mood: 'happy' },
+      { label: { fr: 'Hareng sous le lit', en: 'Herring under the bed' }, text: { fr: "J'ai scotché un hareng sous le sommier. {a.first} a cru pendant trois semaines que c'était son haleine. {a:Il|Elle} s'est fait enlever deux dents de sagesse. Pour rien.", en: "I taped a herring under the bed frame. {a.first} spent three weeks thinking it was their own breath. They had two wisdom teeth removed. For nothing." }, fx: { happy: 12, karma: -6, rel: -10, flag: 'dk_fish_war', schedule: { key: 'dk_enemy_retaliation', years: 1 } }, mood: 'happy' },
       { label: { fr: 'Arroser ses plantes', en: 'Water their plants' }, text: { fr: "J'ai arrosé ses plantes. Toutes. Avec amour. {a.first} n'a jamais su que c'était moi. Ses plantes, si. Elles me saluent quand je passe.", en: "I watered their plants. All of them. With love. {a.first} never knew it was me. The plants did. They wave when I walk by." }, fx: { karma: 8, happy: 3 } },
     ],
   },
@@ -887,7 +887,7 @@ export const darkEvents: EventDef[] = [
         out: [
           { w: 3, odds: { athletic: 1 }, text: { fr: "J'ai tiré. Le broyeur a gardé ma manche, ma montre et le bout de mon petit doigt, qui a été recraché en confettis roses sur la haie du voisin. Le voisin a cru à une fête.", en: "I pulled. The chipper kept my sleeve, my watch and the tip of my pinky, which got spat out as pink confetti onto the neighbor's hedge. The neighbor thought it was a party." }, fx: { health: -12, disease: 'missing_finger', happy: -6, visual: 'gore' }, mood: 'cry' },
           { w: 1, text: { fr: "J'ai tiré trop tard. Le broyeur a pris le bras jusqu'au coude et l'a transformé en paillis fertile. Les rosiers de tonton Gilbert n'ont jamais été aussi beaux.", en: "I pulled too late. The chipper took the arm up to the elbow and turned it into nutrient-rich mulch. Uncle Gilbert's roses have never looked better." }, fx: { health: -30, athletic: -10, happy: -15, disease: 'ptsd', visual: 'gore' }, mood: 'cry' },
-          { w: 1, rating: 2, text: { fr: "J'ai tiré dans le mauvais sens. Le broyeur m'a avalé{|e} entier{|e} avec un « slurp » de vieux siphon. Tonton Gilbert a rempli dix sacs de compost et dit : « Il aurait voulu servir. »", en: "I pulled the wrong way. The chipper swallowed me whole with an old-drain slurp. Uncle Gilbert filled ten compost bags and said: 'They'd have wanted to be useful.'" }, fx: { die: { fr: "transformé{|e} en paillis dans le jardin de tonton Gilbert", en: "turned into mulch in Uncle Gilbert's garden" }, visual: 'gore' } },
+          { w: 1, rating: 2, text: { fr: "J'ai tiré dans le mauvais sens. Le broyeur m'a avalé{|e} {entier|entière} avec un « slurp » de vieux siphon. Tonton Gilbert a rempli dix sacs de compost et dit : « Il aurait voulu servir. »", en: "I pulled the wrong way. The chipper swallowed me whole with an old-drain slurp. Uncle Gilbert filled ten compost bags and said: 'They'd have wanted to be useful.'" }, fx: { die: { fr: "transformé{|e} en paillis dans le jardin de tonton Gilbert", en: "turned into mulch in Uncle Gilbert's garden" }, visual: 'gore' } },
         ],
       },
       { label: { fr: 'Couper l\'écharpe de Gilbert', en: 'Cut Gilbert\'s scarf' }, text: { fr: "J'ai eu le réflexe de couper l'écharpe de tonton Gilbert avant qu'elle n'entre dans la machine. Il m'a engueulé{|e} : « C'était du cachemire ! » Il est vivant et ingrat. Comme toute la famille.", en: "I had the reflex to cut Uncle Gilbert's scarf before it went into the machine. He yelled at me: 'That was cashmere!' He's alive and ungrateful. Like the whole family." }, fx: { karma: 8, happy: 4 } },
@@ -1031,7 +1031,7 @@ export const darkEvents: EventDef[] = [
     cooldown: 25,
     text: {
       fr: ["Camping avec {a.first}. À 4 h du matin, un grizzli de 400 kilos ouvre votre tente comme un paquet de chips. Il sent le saumon et la mauvaise humeur. {a.first} chuchote : « Fais le mort. »", "Randonnée avec {a.first}. Un ours brun sort des fourrés. Tu te souviens d'une règle : tu n'as pas besoin de courir plus vite que l'ours. Juste plus vite que {a.first}."],
-      en: ["Camping with {a.first}. At 4 a.m., an 900-pound grizzly opens your tent like a bag of chips. It smells like salmon and bad attitude. {a.first} whispers: 'Play dead.'", "Hiking with {a.first}. A brown bear walks out of the bushes. You remember a rule: you don't have to outrun the bear. Just {a.first}."],
+      en: ["Camping with {a.first}. At 4 a.m., a 900-pound grizzly opens your tent like a bag of chips. It smells like salmon and bad attitude. {a.first} whispers: 'Play dead.'", "Hiking with {a.first}. A brown bear walks out of the bushes. You remember a rule: you don't have to outrun the bear. Just {a.first}."],
     },
     choices: [
       {
@@ -1044,7 +1044,7 @@ export const darkEvents: EventDef[] = [
       {
         label: { fr: 'Courir plus vite que {a.first}', en: 'Outrun {a.first}' },
         out: [
-          { w: 2, text: { fr: "J'ai couru plus vite que {a.first}. L'ours l'a rattrapé{a:|e} et lui a arraché une oreille et un bout de mollet. {a:il|elle} a survécu. Notre amitié, non.", en: "I outran {a.first}. The bear caught them and took an ear and a chunk of calf. They survived. Our friendship didn't." }, fx: { karma: -15, rel: -50, actorRole: 'enemy', visual: 'gore' } },
+          { w: 2, text: { fr: "J'ai couru plus vite que {a.first}. L'ours l'a rattrapé{a:|e} et lui a arraché une oreille et un bout de mollet. {a:Il|Elle} a survécu. Notre amitié, non.", en: "I outran {a.first}. The bear caught them and took an ear and a chunk of calf. They survived. Our friendship didn't." }, fx: { karma: -15, rel: -50, actorRole: 'enemy', visual: 'gore' } },
           { w: 1, text: { fr: "{a.first} m'a fait un croche-patte. On avait eu la même idée. L'ours m'a mâchouillé le bras pendant que {a.first} filmait en courant. 2 millions de vues.", en: "{a.first} tripped me. We'd had the same idea. The bear chewed on my arm while {a.first} filmed while running. 2 million views." }, fx: { health: -22, disease: 'broken_arm', rel: -40, followers: 15000, visual: 'gore' }, mood: 'cry' },
           { w: 1, rating: 2, text: { fr: "On a couru tous les deux. L'ours était plus rapide que nous deux. Il a été très efficace.", en: "We both ran. The bear was faster than both of us. It was very efficient." }, fx: { die: { fr: "dévoré{|e} par un grizzli, en essayant de semer un ami", en: 'eaten by a grizzly while trying to ditch a friend' }, actorDie: true, visual: 'gore' } },
         ],
@@ -1186,7 +1186,7 @@ export const darkEvents: EventDef[] = [
           { w: 1, text: { fr: "Un ivrogne m'a entendu{|e} crier « Sortez-moi de là ! » depuis une tombe. Il a fait une crise cardiaque. J'ai dû lui faire un massage cardiaque en sortant. Il a survécu. Il ne boit plus. Je suis un miracle.", en: "A drunk heard me yelling 'Get me out!' from a grave. He had a heart attack. I had to do CPR when I got out. He survived. He quit drinking. I'm a miracle." }, fx: { karma: 6, happy: 6 } },
         ],
       },
-      { label: { fr: 'Faire le zombie', en: 'Do the zombie thing' }, text: { fr: "J'ai attendu que des gens passent pour sortir en grognant, une main d'abord. Une bande d'ados gothiques a hurlé, puis m'a demandé de rejoindre leur groupe de rock. J'ai été batteur{|se} six mois.", en: "I waited for people to pass and crawled out groaning, one hand first. A gang of goth teens screamed, then asked me to join their band. I was their drummer for six months." }, fx: { happy: 12, fame: 2 }, mood: 'party' },
+      { label: { fr: 'Faire le zombie', en: 'Do the zombie thing' }, text: { fr: "J'ai attendu que des gens passent pour sortir en grognant, une main d'abord. Une bande d'ados gothiques a hurlé, puis m'a demandé de rejoindre leur groupe de rock. J'ai été {batteur|batteuse} six mois.", en: "I waited for people to pass and crawled out groaning, one hand first. A gang of goth teens screamed, then asked me to join their band. I was their drummer for six months." }, fx: { happy: 12, fame: 2 }, mood: 'party' },
       { label: { fr: 'Dormir là', en: 'Sleep there' }, text: { fr: "J'ai dormi dans la tombe. Le lendemain matin, un convoi funéraire est arrivé avec un cercueil pour cette place. Le prêtre a dit qu'il n'avait jamais vu ça. Moi non plus, mais je suis jamais vraiment réveillé{|e} avant 11 h.", en: "I slept in the grave. The next morning a funeral procession arrived with a coffin for that spot. The priest said he'd never seen anything like it. Neither had I, but I'm never really awake before 11." }, fx: { health: -6, disease: 'cold', stress: -2 }, mood: 'sleepy' },
     ],
   },
@@ -1333,7 +1333,7 @@ export const darkEvents: EventDef[] = [
       {
         label: { fr: 'Faire semblant de pousser', en: 'Fake push them' },
         out: [
-          { w: 2, text: { fr: "J'ai fait « BOUH » en l'attrapant par le bras. {a.first} a hurlé, fait pipi dans son short et m'a frappé{|e} pendant cinq minutes. On en rit encore. {a:il|elle}, moins.", en: "I yelled 'BOO!' while grabbing their arm. {a.first} screamed, peed their shorts and hit me for five minutes. We still laugh about it. Well, I do." }, fx: { happy: 8, rel: -10 }, mood: 'happy' },
+          { w: 2, text: { fr: "J'ai fait « BOUH » en l'attrapant par le bras. {a.first} a hurlé, fait pipi dans son short et m'a frappé{|e} pendant cinq minutes. On en rit encore. {a:Il|Elle}, moins.", en: "I yelled 'BOO!' while grabbing their arm. {a.first} screamed, peed their shorts and hit me for five minutes. We still laugh about it. Well, I do." }, fx: { happy: 8, rel: -10 }, mood: 'happy' },
           { w: 1, text: { fr: "J'ai fait semblant. {a.first} a sursauté pour de vrai et basculé. Il y avait de l'eau en bas. Profonde, par chance. {a.first} est remonté{a:|e} avec une jambe cassée et le souvenir précis de mon visage.", en: "I faked it. {a.first} flinched for real and went over. There was water below. Deep, luckily. {a.first} came up with a broken leg and a vivid memory of my face." }, fx: { karma: -10, rel: -40, actorRole: 'enemy', stress: 10 }, mood: 'shock' },
         ],
       },
@@ -1374,7 +1374,7 @@ export const darkEvents: EventDef[] = [
       en: ["A scooter slammed into a pole. The delivery guy is on the ground, one leg bent at 90 degrees. Next to him, an influencer is livestreaming: 'Guys, this is so dark, like so he survives 🙏'. She asks you to film her 'helping'.", "Bike crash right in front of you. The cyclist's head is bleeding. A fitness influencer jogs up, steps over him and starts a story: 'This is why I do indoor rowing, fam.'"],
     },
     choices: [
-      { label: { fr: 'Aider le blessé', en: 'Help the victim' }, text: { fr: "J'ai poussé l'influenceur(se), fait un garrot avec sa ceinture de marque et appelé le 15. Le blessé a survécu. L'influenceur(se) a porté plainte pour « ceinture abîmée ». Le juge a ri.", en: "I shoved the influencer aside, made a tourniquet with their designer belt and called 911. The victim survived. The influencer sued over a 'damaged belt'. The judge laughed." }, fx: { karma: 12, happy: 6 }, mood: 'proud' },
+      { label: { fr: 'Aider le blessé', en: 'Help the victim' }, text: { fr: "J'ai écarté la star d'Instagram, fait un garrot avec sa ceinture de marque et appelé le 15. Le blessé a survécu. La star a porté plainte pour « ceinture abîmée ». Le juge a ri.", en: "I shoved the influencer aside, made a tourniquet with their designer belt and called 911. The victim survived. The influencer sued over a 'damaged belt'. The judge laughed." }, fx: { karma: 12, happy: 6 }, mood: 'proud' },
       { label: { fr: 'Balancer son téléphone', en: 'Yeet their phone' }, text: { fr: "J'ai pris son téléphone et je l'ai lancé dans une bouche d'égout, en direct. 300 000 personnes ont vu le noir complet. Les commentaires disaient « LÉGENDE ». Puis j'ai aidé le blessé.", en: "I grabbed their phone and threw it into a storm drain, on live. 300,000 people watched it go black. The comments said 'LEGEND'. Then I helped the victim." }, fx: { karma: 8, fame: 6, followers: 25000, happy: 10 }, mood: 'party' },
       { label: { fr: 'Filmer moi aussi', en: 'Film it too' }, text: { fr: "J'ai filmé aussi. Ma vidéo a fait 2 millions de vues avec le titre « Il a vu la mort de près 😱 ». J'ai gagné 400 balles de monétisation. Je n'ai pas réussi à les dépenser sans avoir honte. Enfin si, au bout d'une semaine.", en: "I filmed too. My video got 2 million views titled 'He saw death up close 😱'. I made 400 bucks in ad revenue. I couldn't spend it without feeling ashamed. Well, I could, after a week." }, fx: { karma: -12, money: 400, followers: 10000 } },
     ],
@@ -1452,7 +1452,7 @@ export const darkEvents: EventDef[] = [
           { w: 2, text: { fr: "J'ai cité mes droits. Ils m'ont plaqué{|e} au sol dans la sauce blanche « pour rébellion ». Garde à vue, nuit au poste. Ils ont mangé le kebab devant moi. C'était un très bon kebab.", en: "I cited my rights. They pinned me to the ground in the garlic sauce 'for resisting'. Overnight in a cell. They ate the kebab in front of me. It was a very good kebab." }, fx: { happy: -10, health: -5, heat: 10, visual: 'police' }, mood: 'angry' },
         ],
       },
-      { label: { fr: 'Partir en courant', en: 'Run for it' }, text: { fr: "J'ai couru. Trois flics, un kebab, une course-poursuite dans le centre-ville. Ils ont abandonné au bout de 200 mètres, essoufflés. J'ai fini mon kebab sur un banc, en héros{|ïne}.", en: "I ran. Three cops, one kebab, a chase through downtown. They gave up after 200 yards, out of breath. I finished my kebab on a bench, a hero." }, fx: { happy: 10, athletic: 3, heat: 15 }, mood: 'party' },
+      { label: { fr: 'Partir en courant', en: 'Run for it' }, text: { fr: "J'ai couru. Trois flics, un kebab, une course-poursuite dans le centre-ville. Ils ont abandonné au bout de 200 mètres, essoufflés. J'ai fini mon kebab sur un banc, en {héros|héroïne}.", en: "I ran. Three cops, one kebab, a chase through downtown. They gave up after 200 yards, out of breath. I finished my kebab on a bench, a hero." }, fx: { happy: 10, athletic: 3, heat: 15 }, mood: 'party' },
     ],
   },
 
@@ -1578,7 +1578,7 @@ export const darkEvents: EventDef[] = [
     once: true,
     text: {
       fr: ["Mariage de {a.first}. Tu es témoin. Les huîtres de midi étaient tièdes. Au moment où le maire demande « Si quelqu'un s'oppose à ce mariage… », ton intestin s'oppose. Fort.", "Tu dois faire le discours de témoin au mariage de {a.first}. Debout, micro en main, devant 200 invités. Ton ventre fait un bruit de baleine qui accouche. Le buffet de fruits de mer réclame sa liberté."],
-      en: ["{a.first}'s wedding. You're the best man/maid of honor. The lunch oysters were lukewarm. Right when the officiant asks 'If anyone objects to this marriage...', your bowels object. Loudly.", "You're giving the toast at {a.first}'s wedding. Standing, mic in hand, in front of 200 guests. Your stomach makes the sound of a whale giving birth. The seafood buffet demands its freedom."],
+      en: ["{a.first}'s wedding. You're in the wedding party. The lunch oysters were lukewarm. Right when the officiant asks 'If anyone objects to this marriage...', your bowels object. Loudly.", "You're giving the toast at {a.first}'s wedding. Standing, mic in hand, in front of 200 guests. Your stomach makes the sound of a whale giving birth. The seafood buffet demands its freedom."],
     },
     choices: [
       {

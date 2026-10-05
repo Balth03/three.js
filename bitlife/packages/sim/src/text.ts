@@ -193,6 +193,6 @@ export function plain(text: string): Loc<string> { return { fr: text, en: text }
 const SPECIES: Record<string, [string, string]> = {
   dog: ['chien', 'dog'], cat: ['chat', 'cat'], chat: ['chat', 'cat'], chien: ['chien', 'dog'], hamster: ['hamster', 'hamster'], fish: ['poisson rouge', 'goldfish'],
   parrot: ['perroquet', 'parrot'], snake: ['serpent', 'snake'], goat: ['chèvre', 'goat'], owl: ['hibou', 'owl'], squirrel: ['écureuil', 'squirrel'],
-  snail: ['escargot', 'snail'], dragon: ['dragon', 'dragon'], rabbit: ['lapin', 'rabbit'], horse: ['cheval', 'horse'], pig: ['cochon', 'pig'],
+  snail: ['escargot', 'snail'], spider: ['araignée', 'spider'], dragon: ['dragon', 'dragon'], rabbit: ['lapin', 'rabbit'], horse: ['cheval', 'horse'], pig: ['cochon', 'pig'],
 };
 export function speciesName(s: string | undefined, lang: Lang): string { if (!s) return ''; const v = SPECIES[s]; return v ? v[lang === 'fr' ? 0 : 1] : s; }

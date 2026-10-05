@@ -25,6 +25,7 @@ export const photoMode = signal(false);
 export const ageBusy = signal(false);
 export const showDeath = signal(false);
 export const profile = signal(loadProfile());
+export const retro = signal(false);
 export const achToast = signal<{ id: string; n: number } | null>(null);
 
 export function bump() { rev.value++; }

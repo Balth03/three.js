@@ -9,7 +9,7 @@ import type { AvatarSpec } from './three/avatar.ts';
 import { life, rev, result, modal, screen, tab, bump, showToast, ageBusy, showDeath, settings, lang, profile, achToast, type MinigameKind } from './state.ts';
 import { commitCrime, trial, escape, parole, appeal, gamble, workMinigame, summarize, heirLife, netWorth, formatMoney, country as countryOf, type Loc } from '@bl/sim';
 import { mergeAchievements, bury } from './profile.ts';
-import { saveLife } from './save.ts';
+import { saveLife, deleteSlot, AUTOSAVE } from './save.ts';
 import { sfx, setMusicAge } from './audio.ts';
 import { t } from './i18n.ts';
 
@@ -57,6 +57,7 @@ export function syncStage(focusId?: number) {
     player: { ...specOf(l), key: 'player' },
     others: companions(l, place, focusId).map((n) => ({ ...npcSpec(n, l.year), key: `npc${n.id}` })),
     dead: !l.alive,
+    pets: ['home', 'apartment', 'villa', 'mansion', 'castle', 'beach', 'park'].includes(place) ? living(l, 'pet').map((n) => ({ key: `pet${n.id}`, species: n.species ?? 'dog', seed: n.id })) : [],
     tombLines: !l.alive ? [`${l.first} ${l.last}`, `${l.birthYear} – ${l.year}`, lang.value === 'fr' ? 'Repose en paix' : 'Rest in peace'] : undefined,
   };
   stage.show(view);
@@ -82,11 +83,14 @@ export function startLife(opts: NewLifeOptions) {
   refresh();
   stage?.setMood('happy');
   stage?.resetCamera();
+  setTimeout(() => stage?.cinematic('birth'), 600);
+  lastMarriages = 0; lastPrison = false;
   autosave();
 }
 
 export function loadExisting(l: Life) {
   life.value = l;
+  lastMarriages = l.counters?.marriages ?? 0; lastPrison = !!l.prison;
   result.value = null;
   modal.value = null;
   tab.value = null;
@@ -119,6 +123,8 @@ export function doAgeUp() {
   refresh();
   const moodOf: Mood = rep.died ? 'sad' : rep.milestones.some((m) => m.startsWith('graduate') || m === 'promotion' || m === 'baby') ? 'proud' : rep.milestones.some((m) => m.startsWith('death') || m === 'fired') ? 'sad' : 'neutral';
   stage?.setMood(moodOf);
+  const cine = rep.died ? null : rep.milestones.includes('baby') ? 'baby' : rep.milestones.some((m) => m.startsWith('graduate')) ? 'graduation' : rep.milestones.includes('promotion') ? 'promotion' : rep.milestones.includes('released') ? 'release' : rep.milestones.includes('arrested') ? 'prison' : null;
+  if (cine) setTimeout(() => stage?.cinematic(cine), 450);
   if (rep.milestones.includes('promotion') || rep.milestones.some((m) => m.startsWith('graduate'))) setTimeout(() => { stage?.play('celebrate'); sfx.good(); }, 500);
   checkAch();
   setTimeout(() => {
@@ -176,9 +182,16 @@ function checkAch() {
   }
 }
 
+let lastMarriages = 0;
+let lastPrison = false;
 function afterResolution(res: Resolution, showCard: boolean) {
   const l = life.value!;
   if (res.visual?.length) stage?.fx(res.visual);
+  const m = l.counters.marriages ?? 0;
+  if (m > lastMarriages) setTimeout(() => stage?.cinematic('wedding'), 300);
+  lastMarriages = m;
+  if (!!l.prison && !lastPrison) setTimeout(() => stage?.cinematic('prison'), 300);
+  lastPrison = !!l.prison;
   checkAch();
   stage?.setMood(res.mood ?? (res.tone === 'good' ? 'happy' : res.tone === 'bad' ? 'sad' : 'neutral'));
   if (res.mood === 'love') sfx.love(); else if (res.tone === 'good') sfx.good(); else if (res.tone === 'bad') sfx.bad();
@@ -298,7 +311,9 @@ function onDeath() {
   placeOverride = null;
   syncStage();
   sfx.death();
+  stage?.cinematic('death');
   const l = life.value;
+  if (l?.mode === 'hardcore') deleteSlot(AUTOSAVE);
   if (l) {
     checkAch();
     const s = summarize(l, content);

@@ -6,6 +6,8 @@ import { EventCard } from './EventCard.tsx';
 import { Modals } from './Modals.tsx';
 import { Title, Create, Death } from './Screens.tsx';
 import { ChallengeChip, AchievementToast } from './Meta.tsx';
+import { Retro } from './Retro.tsx';
+import { retro } from '../state.ts';
 import { t } from '../i18n.ts';
 import { sfx, toggleMute, unlockAudio } from '../audio.ts';
 
@@ -81,7 +83,8 @@ export function App() {
       <div class="vignette" />
       {s === 'title' && <Title />}
       {s === 'create' && <Create />}
-      {s === 'game' && !photoMode.value && (
+      {retro.value && <Retro />}
+      {s === 'game' && !photoMode.value && !retro.value && (
         <>
           <Hud />
           <EventCard />

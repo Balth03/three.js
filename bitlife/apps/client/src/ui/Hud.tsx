@@ -128,7 +128,8 @@ function CareerPanel({ l }: { l: Life }) {
   const lg = lang.value;
   const e = l.edu;
   const school = listActions(l, content, 'school');
-  const career = listActions(l, content, 'career');
+  const career = listActions(l, content, 'career').filter((a) => a.def.group !== 'special');
+  const special = listActions(l, content, 'career').filter((a) => a.def.group === 'special');
   const major = content.majors.find((m) => m.id === e.major);
   const prog = content.grads.find((g) => g.id === e.gradProgram);
   return (
@@ -165,6 +166,12 @@ function CareerPanel({ l }: { l: Life }) {
             </>
           ) : <div class="kv"><span>{t('no_job')}</span><b>{l.flags.pension ? `${t('pension')} : ${money(l, Number(l.flags.pension))}${t('per_year')}` : ''}</b></div>}
           <ActionGrid views={career} />
+        </div>
+      )}
+      {special.length > 0 && (
+        <div class="card info-card">
+          <div class="card-title">⭐ {lang.value === 'fr' ? 'Carrières spéciales' : 'Special careers'}</div>
+          <ActionGrid views={special} />
         </div>
       )}
     </div>

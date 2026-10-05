@@ -10,7 +10,7 @@ export const worldEvents2: EventDef[] = [
     when: { country: ['fr'], age: [12, 75] },
     text: {
       fr: [
-        "Grève SNCF, RATP et, par solidarité, de la boulangerie d'en bas. Tu dois traverser {city} pour aller {[[au boulot|en cours]]}.",
+        "Grève SNCF, RATP et, par solidarité, de la boulangerie d'en bas. Tu dois traverser {city} pour aller [[au boulot|en cours]].",
         "Mouvement social « reconductible ». Ton train est « supprimé », pas « annulé » — nuance. Comment tu t'en sors ?",
       ],
       en: [
@@ -275,7 +275,7 @@ export const worldEvents2: EventDef[] = [
     id: 'ct_us_thanksgiving', icon: '🦃', cat: 'world', rating: 2, weight: 8, cooldown: 5,
     scene: { place: 'home', mood: 'shock', fx: 'fire' },
     when: { country: ['us'], age: [8, 90] },
-    actor: 'family',
+    actor: 'parent',
     text: {
       fr: [
         "Thanksgiving. {a.first} a décidé de faire frire une dinde entière de 11 kg dans une bassine d'huile, dans le garage, en tongs.",
@@ -289,7 +289,7 @@ export const worldEvents2: EventDef[] = [
     choices: [
       { label: { fr: 'Filmer pour TikTok', en: 'Film it' }, out: [
         { w: 2, text: { fr: "La dinde congelée a touché l'huile. Boule de feu de 4 mètres. {a.first} a perdu ses sourcils, la moitié du garage et toute crédibilité. Ma vidéo a fait 2 millions de vues.", en: "Frozen turkey hit hot oil. Twelve-foot fireball. {a.first} lost {a.his} eyebrows, half the garage and all credibility. My video got 2 million views." }, fx: { happy: 6, followers: 20000, fame: 4, rel: -5, visual: 'explosion' }, mood: 'shock' },
-        { w: 1, text: { fr: "L'huile bouillante a giclé sur les pieds de {a.first}. Ses orteils ont fondu comme des marshmallows. On a mangé la dinde aux urgences. Elle était bonne, honnêtement.", en: "Boiling oil splashed on {a.first}'s feet. {a.His} toes melted like marshmallows. We ate the turkey in the ER waiting room. It was good, honestly." }, fx: { happy: -2, rel: -8, followers: 5000, visual: 'gore' }, mood: 'shock' },
+        { w: 1, text: { fr: "L'huile bouillante a giclé sur les pieds de {a.first}. Ses orteils ont fondu comme des marshmallows. On a mangé la dinde aux urgences. Elle était bonne, honnêtement.", en: "Boiling oil splashed on {a.first}'s feet. {a:His|Her} toes melted like marshmallows. We ate the turkey in the ER waiting room. It was good, honestly." }, fx: { happy: -2, rel: -8, followers: 5000, visual: 'gore' }, mood: 'shock' },
       ] },
       { label: { fr: 'Appeler les pompiers', en: 'Call the fire dept.' }, text: { fr: "J'ai appelé les pompiers avant même qu'il allume le feu. Ils sont restés pour le repas. Le capitaine a découpé la dinde. Meilleur Thanksgiving.", en: "I called the fire department before he even lit the burner. They stayed for dinner. The captain carved the turkey. Best Thanksgiving ever." }, fx: { happy: 6, karma: 3, rel: -3 } },
       { label: { fr: 'Parler politique', en: 'Talk politics' }, text: { fr: "Pour détourner l'attention, j'ai lancé un sujet politique. La dinde a été épargnée. La famille, non. Oncle Bob dort chez nous, tante Linda a déménagé dans un autre État.", en: "To distract everyone, I brought up politics. The turkey was spared. The family wasn't. Uncle Bob is sleeping at ours, Aunt Linda moved to another state." }, fx: { happy: -4, stress: 8, rel: -10 }, mood: 'angry' },
@@ -400,7 +400,7 @@ export const worldEvents2: EventDef[] = [
     choices: [
       { label: { fr: 'Piler', en: 'Slam the brakes' }, out: [
         { w: 3, text: { fr: "J'ai pilé à un mètre de l'orignal. Il a léché mon pare-brise pendant dix minutes, puis il est reparti. Je crois qu'on est mariés maintenant.", en: "I stopped three feet from the moose. It licked my windshield for ten minutes, then left. I think we're married now." }, fx: { happy: 4, stress: 6 } },
-        { w: 2, text: { fr: "Le camion de sirop d'érable m'a percuté par l'arrière. La citerne a explosé. J'ai été retrouvé{|e} caramélisé{|e} dans 30 000 litres de sirop, vivant{|e}, collant{|e} et délicieux{|e}.", en: "The maple tanker rear-ended me. It burst. I was found caramelized in 8,000 gallons of syrup — alive, sticky and delicious." }, fx: { health: -10, happy: -3, fame: 3, visual: 'explosion' }, mood: 'shock' },
+        { w: 2, text: { fr: "Le camion de sirop d'érable m'a percuté par l'arrière. La citerne a explosé. J'ai été retrouvé{|e} caramélisé{|e} dans 30 000 litres de sirop, vivant{|e}, collant{|e} et {délicieux|délicieuse}.", en: "The maple tanker rear-ended me. It burst. I was found caramelized in 8,000 gallons of syrup — alive, sticky and delicious." }, fx: { health: -10, happy: -3, fame: 3, visual: 'explosion' }, mood: 'shock' },
       ] },
       { label: { fr: 'Klaxonner', en: 'Honk at it' }, out: [
         { w: 2, text: { fr: "J'ai klaxonné. L'orignal l'a pris personnellement et a chargé. Il a enfoncé la portière avec ses bois et m'a embroché la cuisse. J'ai saigné sur la banquette en m'excusant.", en: "I honked. The moose took it personally and charged. It rammed the door with its antlers and skewered my thigh. I bled all over the seat, apologizing." }, fx: { health: -15, visual: 'gore' }, mood: 'cry' },
@@ -421,13 +421,13 @@ export const worldEvents2: EventDef[] = [
         "{a.first} t'écrase le pied dans le métro de {city}. Vous vous excusez en même temps. Puis encore. La tension monte, poliment.",
       ],
       en: [
-        "Outside a Tim Hortons, {a.first} bumps into you. You say sorry. {a.He} says sorry. You apologize for apologizing. It's been 20 minutes.",
+        "Outside a Tim Hortons, {a.first} bumps into you. You say sorry. {a:He|She} says sorry. You apologize for apologizing. It's been 20 minutes.",
         "{a.first} steps on your foot on the {city} subway. You both apologize at once. Then again. The tension rises, politely.",
       ],
     },
     choices: [
       { label: { fr: "S'excuser une dernière fois", en: 'One last sorry' }, text: { fr: "J'ai dit « désolé{|e} » une 31e fois. {a.first} a craqué en premier. J'ai gagné. On est amis maintenant, désolé.", en: "I said sorry a 31st time. {a.first} cracked first. I won. We're friends now, sorry." }, fx: { happy: 5, rel: 15, keep: true, actorRole: 'friend' } },
-      { label: { fr: 'Offrir un café', en: 'Buy {a.him} a coffee' }, text: { fr: "J'ai offert un double-double à {a.first} pour clore l'incident. {a:Il|Elle} m'a offert un Timbits pour clore le café. Ça dure encore.", en: "I bought {a.first} a double-double to settle it. {a.He} bought me Timbits to settle the coffee. It's still going." }, fx: { money: -5, karma: 2, rel: 10, keep: true, actorRole: 'friend' } },
+      { label: { fr: 'Offrir un café', en: 'Buy {a.him} a coffee' }, text: { fr: "J'ai offert un double-double à {a.first} pour clore l'incident. {a:Il|Elle} m'a offert un Timbits pour clore le café. Ça dure encore.", en: "I bought {a.first} a double-double to settle it. {a:He|She} bought me Timbits to settle the coffee. It's still going." }, fx: { money: -5, karma: 2, rel: 10, keep: true, actorRole: 'friend' } },
       { label: { fr: 'Ne PAS s\'excuser', en: "DON'T apologize" }, text: { fr: "J'ai refusé de m'excuser. Une Mountie à cheval est apparue de nulle part et m'a regardé{|e} avec déception. Juste regardé{|e}. C'était pire qu'une amende.", en: "I refused to apologize. A Mountie on horseback appeared from nowhere and looked at me with disappointment. Just looked. Worse than a fine." }, fx: { karma: -3, stress: 5 } },
     ],
   },
@@ -564,8 +564,8 @@ export const worldEvents2: EventDef[] = [
     },
     choices: [
       { label: { fr: 'Faire la sieste aussi', en: 'Nap too' }, text: { fr: "J'ai fait une sieste de 3 heures. Je me suis réveillé{|e} à 18 h sans savoir quelle année on était. Dîner à 23 h. Coucher à 2 h. Le mode de vie parfait.", en: "I took a three-hour siesta. Woke up at 6 p.m. not knowing what year it was. Dinner at 11 p.m. Bed at 2 a.m. The perfect lifestyle." }, fx: { happy: 6, health: 3, stress: -6 } },
-      { label: { fr: 'Frapper chez le voisin', en: "Knock on the neighbor's" }, text: { fr: "Je suis allé{|e} me plaindre. Le voisin m'a servi un jambon pata negra et un verre de rioja. Je suis rentré{|e} à 21 h, sans ampoule, mais heureux{|se}.", en: "I went to complain. The neighbor served me pata negra ham and a glass of Rioja. I got home at 9 p.m., no lightbulb, but happy." }, fx: { happy: 7, weight: 0.01 } },
-      { label: { fr: 'Travailler quand même', en: 'Work through it' }, text: { fr: "J'ai voulu être productif{|ve} pendant la sieste. J'ai envoyé 12 e-mails. Personne n'a répondu avant le lendemain 11 h. Leçon apprise.", en: "I tried being productive during siesta. I sent 12 emails. Nobody replied until 11 a.m. the next day. Lesson learned." }, fx: { stress: 4, discipline: 2 } },
+      { label: { fr: 'Frapper chez le voisin', en: "Knock on the neighbor's" }, text: { fr: "Je suis allé{|e} me plaindre. Le voisin m'a servi un jambon pata negra et un verre de rioja. Je suis rentré{|e} à 21 h, sans ampoule, mais {heureux|heureuse}.", en: "I went to complain. The neighbor served me pata negra ham and a glass of Rioja. I got home at 9 p.m., no lightbulb, but happy." }, fx: { happy: 7, weight: 0.01 } },
+      { label: { fr: 'Travailler quand même', en: 'Work through it' }, text: { fr: "J'ai voulu être {productif|productive} pendant la sieste. J'ai envoyé 12 e-mails. Personne n'a répondu avant le lendemain 11 h. Leçon apprise.", en: "I tried being productive during siesta. I sent 12 emails. Nobody replied until 11 a.m. the next day. Lesson learned." }, fx: { stress: 4, discipline: 2 } },
     ],
   },
   {
@@ -901,7 +901,7 @@ export const worldEvents2: EventDef[] = [
         { w: 1, text: { fr: "J'ai oublié la crème solaire sur la zone nouvellement exposée. Coup de soleil au troisième degré pile entre les fesses. Je me suis assis{|e} sur une bouée pendant un mois.", en: "I forgot sunscreen on the newly exposed area. Third-degree sunburn right between the cheeks. I sat on an inflatable ring for a month." }, fx: { health: -6, happy: -4, disease: 'burns' }, mood: 'cry' },
       ] },
       { label: { fr: 'Caipirinha et crevettes', en: 'Caipirinha and shrimp' }, out: [
-        { w: 2, text: { fr: "Trois caipirinhas, douze crevettes. J'ai dormi sous le soleil, je me suis réveillé{|e} couleur homard, heureux{|se} comme un roi.", en: "Three caipirinhas, twelve shrimp. I fell asleep in the sun and woke up lobster-red and happy as a king." }, fx: { happy: 7, health: -2 } },
+        { w: 2, text: { fr: "Trois caipirinhas, douze crevettes. J'ai dormi sous le soleil, je me suis réveillé{|e} couleur homard, {heureux|heureuse} comme un roi.", en: "Three caipirinhas, twelve shrimp. I fell asleep in the sun and woke up lobster-red and happy as a king." }, fx: { happy: 7, health: -2 } },
         { w: 1, text: { fr: "Les crevettes avaient cuit au soleil depuis lundi. J'ai passé la nuit sur les toilettes, en priant Jésus du Corcovado.", en: "The shrimp had been sun-cooking since Monday. I spent the night on the toilet, praying to the Christ the Redeemer statue." }, fx: { disease: 'food_poisoning', health: -5 }, mood: 'sick' },
       ] },
     ],
@@ -1015,7 +1015,7 @@ export const worldEvents2: EventDef[] = [
       ],
     },
     choices: [
-      { label: { fr: 'Accepter chaque verre', en: 'Accept every glass' }, text: { fr: "J'ai bu sept verres et tout mangé. Mon taux de sucre a atteint la stratosphère. {a.first} m'a appelé{|e} « mon frère/ma sœur ». Je ne dors plus, mais je suis aimé{|e}.", en: "Seven glasses, every pastry. My blood sugar reached orbit. {a.first} now calls me family. I can't sleep, but I'm loved." }, fx: { happy: 7, weight: 0.02, rel: 15, keep: true, actorRole: 'friend' } },
+      { label: { fr: 'Accepter chaque verre', en: 'Accept every glass' }, text: { fr: "J'ai bu sept verres et tout mangé. Mon taux de sucre a atteint la stratosphère. {a.first} m'a appelé{|e} {« mon frère »|« ma sœur »}. Je ne dors plus, mais je suis aimé{|e}.", en: "Seven glasses, every pastry. My blood sugar reached orbit. {a.first} now calls me family. I can't sleep, but I'm loved." }, fx: { happy: 7, weight: 0.02, rel: 15, keep: true, actorRole: 'friend' } },
       { label: { fr: 'Verser soi-même', en: 'Pour it myself' }, out: [
         { w: 1, odds: { athletic: 1 }, text: { fr: "J'ai versé de haut comme un pro. Belle mousse. {a.first} a applaudi, m'a donné une théière en cadeau. J'ai un talent caché.", en: "I poured from up high like a pro. Perfect foam. {a.first} applauded and gave me a teapot. I have a hidden talent." }, fx: { happy: 6, rel: 10 } },
         { w: 1, text: { fr: "J'ai versé de haut. Partout sauf dans le verre. Le tapis, le chat et l'oncle ont été ébouillantés. Ils ont été très gentils. Trop gentils.", en: "I poured from up high. Everywhere except the glass. The rug, the cat and the uncle got scalded. They were very kind about it. Too kind." }, fx: { happy: -3, stress: 4 } },
@@ -1133,7 +1133,7 @@ export const worldEvents2: EventDef[] = [
     },
     choices: [
       { label: { fr: 'Prendre la vague', en: 'Catch the wave' }, out: [
-        { w: 2, odds: { athletic: 1 }, text: { fr: "J'ai pris la vague, tenu debout huit secondes et crié « COWABUNGA ». Personne ne dit ça ici. Mais j'étais trop heureux{|se} pour avoir honte.", en: "I caught the wave, stood for eight seconds and yelled “COWABUNGA.” Nobody says that here. I was too happy to care." }, fx: { happy: 9, athletic: 3 }, mood: 'proud' },
+        { w: 2, odds: { athletic: 1 }, text: { fr: "J'ai pris la vague, tenu debout huit secondes et crié « COWABUNGA ». Personne ne dit ça ici. Mais j'étais trop {heureux|heureuse} pour avoir honte.", en: "I caught the wave, stood for eight seconds and yelled “COWABUNGA.” Nobody says that here. I was too happy to care." }, fx: { happy: 9, athletic: 3 }, mood: 'proud' },
         { w: 1, text: { fr: "La vague m'a lessivé{|e}, la planche m'a frappé la tête, j'ai bu la moitié du Pacifique. Le maître-nageur m'a sorti{|e} en jurant comme un charretier.", en: "The wave washed me, the board smacked my head, I drank half the Pacific. The lifeguard dragged me out, swearing like a sailor." }, fx: { health: -5, happy: -2 } },
         { w: 1, rating: 2, text: { fr: "Le « dauphin » m'a croqué la jambe jusqu'au genou. J'ai regagné la plage en pagayant dans un nuage rouge. Les surfeurs ont dit « gnarly ». J'ai maintenant une jambe en bois et une histoire.", en: "The “dolphin” bit my leg off at the knee. I paddled back to shore through a red cloud. The surfers said “gnarly.” I now have a wooden leg and a story." }, fx: { health: -25, athletic: -10, fame: 5, visual: 'gore' }, mood: 'shock' },
       ] },
@@ -1223,7 +1223,7 @@ export const worldEvents2: EventDef[] = [
     },
     choices: [
       { label: { fr: 'Rembobiner au crayon', en: 'Rewind with a pencil' }, out: [
-        { w: 2, text: { fr: "J'ai rembobiné au crayon pendant 45 minutes, avec la précision d'un chirurgien. La cassette remarche. Je suis un{|e} dieu/déesse de la technologie.", en: "I rewound it with a pencil for 45 minutes with surgical precision. The tape works again. I'm a technology god." }, fx: { happy: 6, smarts: 1 }, mood: 'proud' },
+        { w: 2, text: { fr: "J'ai rembobiné au crayon pendant 45 minutes, avec la précision d'un chirurgien. La cassette remarche. Je suis un génie de la technologie.", en: "I rewound it with a pencil for 45 minutes with surgical precision. The tape works again. I'm a technology god." }, fx: { happy: 6, smarts: 1 }, mood: 'proud' },
         { w: 1, text: { fr: "La bande s'est déchirée. Ma compil est morte. J'ai organisé un enterrement dans le jardin. Mon frère a joué la marche funèbre au pipeau.", en: "The tape snapped. My mixtape is dead. I held a funeral in the backyard. My brother played the funeral march on a recorder." }, fx: { happy: -5 }, mood: 'cry' },
       ] },
       { label: { fr: 'Écouter en boucle', en: 'Play it on repeat' }, text: { fr: "J'ai écouté la même cassette 600 fois en marchant dans la rue comme dans un clip. Les piles ont fondu. Mes oreilles aussi.", en: "I played the same tape 600 times, strutting down the street like in a music video. The batteries melted. So did my ears." }, fx: { happy: 7 } },
@@ -1256,7 +1256,7 @@ export const worldEvents2: EventDef[] = [
     vars: { amount: [300, 1500] },
     text: {
       fr: [
-        "Le Minitel trône dans le salon. Écran beige, clavier qui crépite. Une pub à la télé vante le « 3615 ULLA ». Tes parents/ta femme/ton mari ne sont pas là ce soir.",
+        "Le Minitel trône dans le salon. Écran beige, clavier qui crépite. Une pub à la télé vante le « 3615 ULLA ». Personne n'est à la maison ce soir.",
         "La facture France Télécom vient d'arriver : {$amount} de Minitel. Ligne : « 3615 CŒURS SOLITAIRES ». Toute la famille est autour de la table.",
       ],
       en: [
@@ -1341,7 +1341,7 @@ export const worldEvents2: EventDef[] = [
       ],
     },
     choices: [
-      { label: { fr: 'Envoyer 15 wizz', en: 'Send 15 nudges' }, text: { fr: "J'ai envoyé 15 wizz d'affilée. La fenêtre de {a.first} a tellement tremblé que son écran cathodique est tombé du bureau. {a:Il|Elle} m'a bloqué{|e}.", en: "I sent 15 nudges in a row. {a.first}'s window shook so hard {a.his} CRT monitor fell off the desk. {a.He} blocked me." }, fx: { happy: -3, rel: -10 } },
+      { label: { fr: 'Envoyer 15 wizz', en: 'Send 15 nudges' }, text: { fr: "J'ai envoyé 15 wizz d'affilée. La fenêtre de {a.first} a tellement tremblé que son écran cathodique est tombé du bureau. {a:Il|Elle} m'a bloqué{|e}.", en: "I sent 15 nudges in a row. {a.first}'s window shook so hard {a.his} CRT monitor fell off the desk. {a:He|She} blocked me." }, fx: { happy: -3, rel: -10 } },
       { label: { fr: 'Changer de pseudo', en: 'Change my status' }, text: { fr: "J'ai mis en pseudo « Kan Tu Me Regarde Mon Kœur S'Arrête 💔 ». {a.first} a mis un smiley clin d'œil. J'ai analysé ce smiley pendant trois semaines.", en: "I set my status to “wHeN u LoOk At Me My HeArT sToPs 💔.” {a.first} sent a winky face. I analyzed that winky face for three weeks." }, fx: { happy: 5, rel: 5 } },
       { label: { fr: 'Apparaître hors ligne', en: 'Appear offline' }, text: { fr: "Je suis passé{|e} en « Apparaître hors ligne » pour l'espionner. Je l'ai regardé{|e} être en ligne pendant deux heures. Personne n'a rien dit. La pureté des années 2000.", en: "I set myself to “Appear Offline” to stalk. I watched {a.him} be online for two hours. Nobody said anything. Peak 2000s." }, fx: { happy: 1, stress: 2 } },
     ],
@@ -1363,7 +1363,7 @@ export const worldEvents2: EventDef[] = [
     },
     choices: [
       { label: { fr: 'Taper en T9', en: 'Type it in T9' }, out: [
-        { w: 2, text: { fr: "Le T9 a transformé « j'ai envie de toi » en « j'ai envie de soja ». {a.first} est arrivé{|a:} avec du tofu. On en a ri jusqu'au lit.", en: "T9 turned “I want you so bad” into “I want yoga bad.” {a.first} showed up with a yoga mat. We laughed all the way to bed." }, fx: { happy: 7, rel: 10 }, mood: 'love' },
+        { w: 2, text: { fr: "Le T9 a transformé « j'ai envie de toi » en « j'ai envie de soja ». {a.first} a débarqué avec du tofu. On en a ri jusqu'au lit.", en: "T9 turned “I want you so bad” into “I want yoga bad.” {a.first} showed up with a yoga mat. We laughed all the way to bed." }, fx: { happy: 7, rel: 10 }, mood: 'love' },
         { w: 1, text: { fr: "Je l'ai envoyé au mauvais contact. « Maman » était juste en dessous de {a.first}. Elle a répondu : « Je suis contente que tu sois épanoui{|e}. » Je veux mourir.", en: "I sent it to the wrong contact. “Mom” was right below {a.first}. She replied: “I'm glad you're fulfilled.” I want to die." }, fx: { happy: -8, stress: 8 }, mood: 'shock' },
       ] },
       { label: { fr: 'Envoyer un MMS', en: 'Send a pic' }, text: { fr: "J'ai envoyé une photo osée en 0,3 mégapixel. {a.first} a cru que c'était une pomme de terre. On a eu une longue discussion.", en: "I sent a risqué photo at 0.3 megapixels. {a.first} thought it was a potato. We had a long talk." }, fx: { happy: 2, rel: 3, money: -5 } },
@@ -1555,7 +1555,7 @@ export const worldEvents2: EventDef[] = [
     when: { era: [2040, 2100], age: [14, 80] },
     text: {
       fr: [
-        "Dans le métavers, tu es un{|e} demi-dieu{|esse} musclé{|e} propriétaire d'un château volant. Dans la réalité, tu n'as pas quitté ton fauteuil depuis 11 jours.",
+        "Dans le métavers, tu es {un demi-dieu musclé|une demi-déesse musclée} propriétaire d'un château volant. Dans la réalité, tu n'as pas quitté ton fauteuil depuis 11 jours.",
         "Ton casque VR t'informe : « Temps de connexion : 263 heures. Pensez à boire. » Une odeur étrange vient de ton corps physique.",
       ],
       en: [

@@ -7,7 +7,7 @@ export type { LifeSummary } from './life.ts';
 export { currentEvent, choose, queueEvent, eligible, eventDef, resolveOutcomes, applyEffect } from './events.ts';
 export { listActions, doAction } from './actions.ts';
 export type { ActionView } from './actions.ts';
-export { listJobs, applyJob, leaveJob, promote, taxOf, levelSalary, qualification } from './career.ts';
+export { listJobs, applyJob, leaveJob, promote, taxOf, levelSalary, qualification, hire, employerFor } from './career.ts';
 export type { JobOffer } from './career.ts';
 export { enrollUni, enrollGrad, dropOut, tuitionCost, tuitionOptions, stageLabel, gradeLetter } from './edu.ts';
 export type { TuitionPlan, TuitionOption } from './edu.ts';

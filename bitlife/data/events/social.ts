@@ -137,7 +137,7 @@ export const socialEvents: EventDef[] = [
     auto: true,
     cooldown: 3,
     actor: 'enemy',
-    when: { age: [16, 80] },
+    when: { age: [18, 80] },
     text: {
       fr: [
         "J'ai retrouvé un maquereau cru glissé dans ma boîte aux lettres, avec un mot : « Bises, {a.first} ». Le facteur a vomi sur mon paillasson. Ma vendetta continue.",
@@ -288,7 +288,7 @@ export const socialEvents: EventDef[] = [
       { label: { fr: 'Hurler et tout casser', en: 'Scream and smash' }, text: { fr: "J'ai hurlé, lancé une lampe, un cactus et une bouteille de lubrifiant (qui n'était pas à moi). Les voisins ont applaudi. {a.first} s'est enfui{a:|e} en slip par l'escalier de secours.", en: "I screamed and threw a lamp, a cactus and a bottle of lube (not mine). The neighbors applauded. {a.first} escaped down the fire escape in {a.his} underwear." }, fx: { rel: -50, happy: -6, stress: 10, actorRole: 'enemy' }, mood: 'angry' },
       { label: { fr: 'Brûler les draps', en: 'Burn the sheets' }, text: { fr: "J'ai traîné les draps dans le jardin et j'y ai mis le feu en hurlant des insultes en latin. Les pompiers sont venus. L'un d'eux m'a demandé{|e} mon numéro. Rebond.", en: "I dragged the sheets into the yard and set them on fire while screaming Latin insults. The firefighters came. One of them asked for my number. Rebound." }, fx: { rel: -40, happy: 4, karma: -2, actorRole: 'enemy', visual: 'fire' }, mood: 'angry' },
       { label: { fr: 'Me joindre à eux', en: 'Join them' }, text: { fr: "J'ai haussé les épaules, retiré mes chaussures et demandé s'il restait de la place. Il en restait. Personne n'en a jamais reparlé. Les draps, si.", en: "I shrugged, took off my shoes and asked if there was room. There was. Nobody ever spoke of it again. The sheets did." }, fx: { rel: 10, happy: 6, karma: -5, stress: -3 }, mood: 'love' },
-      { label: { fr: 'Refermer la porte', en: 'Close the door' }, text: { fr: "J'ai refermé la porte, je suis allé{|e} au bar d'en face et j'ai attendu qu'ils sortent pour leur faire signer une facture de pressing. {$amount}... non, 85 balles. Ils ont payé.", en: "I closed the door, went to the bar across the street and waited for them to come out so they'd sign a dry-cleaning invoice. 85 bucks. They paid." }, fx: { rel: -25, money: 85, smarts: 2, actorGone: true }, mood: 'neutral' },
+      { label: { fr: 'Refermer la porte', en: 'Close the door' }, text: { fr: "J'ai refermé la porte, je suis allé{|e} au bar d'en face et j'ai attendu qu'ils sortent pour leur faire signer une facture de pressing. 85 balles, draps compris. Ils ont payé.", en: "I closed the door, went to the bar across the street and waited for them to come out so they'd sign a dry-cleaning invoice. 85 bucks. They paid." }, fx: { rel: -25, money: 85, smarts: 2, actorGone: true }, mood: 'neutral' },
     ],
   },
   {
@@ -321,7 +321,7 @@ export const socialEvents: EventDef[] = [
           { w: 1, text: { fr: "{a.first} m'a regardé{|e} avec pitié et m'a offert… un livre de développement personnel dédicacé par son coach. J'en ai fait un cale-porte.", en: "{a.first} looked at me with pity and gave me… a self-help book signed by {a.his} life coach. It's a doorstop now." }, fx: { rel: -10, happy: -5 } },
         ],
       },
-      { label: { fr: 'Glisser dans le toboggan', en: 'Ride the slide' }, text: { fr: "J'ai glissé dans le toboggan de la chambre jusqu'à la piscine. Dix-sept fois. J'ai été le meilleur moment de la semaine de {a.first}, et {a.his} majordome m'a appelé{|e} « Monsieur/Madame Toboggan ».", en: "I rode the bedroom slide into the pool. Seventeen times. I was the highlight of {a.first}'s week, and {a.his} butler started calling me 'the Slide Guest'." }, fx: { rel: 10, happy: 12, athletic: 2 }, mood: 'party' },
+      { label: { fr: 'Glisser dans le toboggan', en: 'Ride the slide' }, text: { fr: "J'ai glissé dans le toboggan de la chambre jusqu'à la piscine. Dix-sept fois. J'ai été le meilleur moment de la semaine de {a.first}, et {a.his} majordome m'a appelé{|e} « {Monsieur|Madame} Toboggan ».", en: "I rode the bedroom slide into the pool. Seventeen times. I was the highlight of {a.first}'s week, and {a.his} butler started calling me 'the Slide Guest'." }, fx: { rel: 10, happy: 12, athletic: 2 }, mood: 'party' },
     ],
   },
   {
@@ -346,7 +346,7 @@ export const socialEvents: EventDef[] = [
     },
     choices: [
       {
-        label: { fr: 'Le/la kidnapper pour son bien', en: 'Kidnap them for their own good' },
+        label: { fr: '{a:Le|La} kidnapper pour son bien', en: 'Kidnap them for their own good' },
         out: [
           { w: 2, text: { fr: "J'ai enfourné {a.first} dans mon coffre avec un sandwich jambon-beurre. Trois jours de « déprogrammation » plus tard, {a:il|elle} a mangé le sandwich en pleurant. Je l'ai récupéré{a:|e}.", en: "I stuffed {a.first} into my trunk with a ham sandwich. Three days of 'deprogramming' later, {a.he} ate the sandwich in tears. I got {a.him} back." }, fx: { rel: 25, karma: 5, stress: 8 }, mood: 'proud' },
           { w: 1, text: { fr: "Pendant le kidnapping, {a.first} m'a mordu{|e} en hurlant « Patrice me protège ! ». Les flics ont trouvé ça moins drôle que moi.", en: "During the kidnapping, {a.first} bit me screaming 'Patrice protects me!'. The cops found it less funny than I did." }, fx: { rel: -20, health: -4, heat: 15, flag: 'so_friend_cult', schedule: { key: 'so_friend_cult_return', years: 3 } }, mood: 'shock' },
@@ -424,7 +424,7 @@ export const socialEvents: EventDef[] = [
     cooldown: 8,
     text: {
       fr: [
-        "{a.first} vient d'avoir un bébé et te tend un body où il est écrit « Veux-tu être mon parrain/ma marraine ? ». Le bébé te regarde comme un créancier.",
+        "{a.first} vient d'avoir un bébé et te tend un body où il est écrit « Veux-tu être {mon parrain|ma marraine} ? ». Le bébé te regarde comme un créancier.",
         "{a.first} te demande d'être le parrain ou la marraine de son enfant. « Et s'il nous arrive quelque chose, c'est toi qui l'élèves. » Tu n'arrives pas à élever une plante.",
       ],
       en: [
@@ -433,9 +433,9 @@ export const socialEvents: EventDef[] = [
       ],
     },
     choices: [
-      { label: { fr: 'Accepter, ému{|e}', en: 'Accept, moved' }, text: { fr: "J'ai dit oui en pleurant. Le bébé m'a vomi sur l'épaule pour sceller le pacte. Je suis officiellement parrain/marraine. Ça me terrifie.", en: "I said yes, crying. The baby threw up on my shoulder to seal the deal. I'm officially a godparent. It terrifies me." }, fx: { rel: 20, happy: 8, karma: 4, flag: 'so_godparent', schedule: { key: 'so_godchild_birthday', years: 6 } }, mood: 'love' },
+      { label: { fr: 'Accepter, ému{|e}', en: 'Accept, moved' }, text: { fr: "J'ai dit oui en pleurant. Le bébé m'a vomi sur l'épaule pour sceller le pacte. Je suis officiellement {parrain|marraine}. Ça me terrifie.", en: "I said yes, crying. The baby threw up on my shoulder to seal the deal. I'm officially a godparent. It terrifies me." }, fx: { rel: 20, happy: 8, karma: 4, flag: 'so_godparent', schedule: { key: 'so_godchild_birthday', years: 6 } }, mood: 'love' },
       { label: { fr: 'Négocier les conditions', en: 'Negotiate terms' }, text: { fr: "J'ai accepté à condition de ne jamais changer de couche et d'avoir le droit de lui apprendre des gros mots à 12 ans. Contrat signé sur une serviette en papier.", en: "I accepted on the condition that I never change a diaper and get to teach the kid swear words at 12. Contract signed on a napkin." }, fx: { rel: 8, happy: 5, flag: 'so_godparent', schedule: { key: 'so_godchild_birthday', years: 6 } } },
-      { label: { fr: 'Refuser poliment', en: 'Politely decline' }, text: { fr: "J'ai refusé. {a.first} a choisi son cousin Raphaël à la place, qui offre des chèques de 50 balles à chaque anniversaire. Je suis devenu{|e} « le tonton/la tata bizarre ».", en: "I declined. {a.first} picked {a.his} cousin Raphael instead, who gives $50 checks every birthday. I became 'the weird uncle/aunt'." }, fx: { rel: -12 } },
+      { label: { fr: 'Refuser poliment', en: 'Politely decline' }, text: { fr: "J'ai refusé. {a.first} a choisi son cousin Raphaël à la place, qui offre des chèques de 50 balles à chaque anniversaire. Je suis devenu{|e} « {le tonton bizarre|la tata bizarre} ».", en: "I declined. {a.first} picked {a.his} cousin Raphael instead, who gives $50 checks every birthday. I became '{the weird uncle|the weird aunt}'." }, fx: { rel: -12 } },
     ],
   },
   {
@@ -448,12 +448,12 @@ export const socialEvents: EventDef[] = [
     scene: { place: 'home', mood: 'happy', fx: 'confetti' },
     text: {
       fr: [
-        "Anniversaire de ton filleul/ta filleule, 6 ans. {a.first} te glisse : « Il/elle ne parle que de toi depuis une semaine. » L'enfant t'attend, mains tendues, regard de douanier.",
-        "Ton filleul/ta filleule fête ses 6 ans et a préparé une liste de cadeaux. En tête : « un vrai cheval ». {a.first} te fait un clin d'œil qui ne t'aide pas.",
+        "Anniversaire de Lucas, ton filleul, 6 ans. {a.first} te glisse : « Il ne parle que de toi depuis une semaine. » L'enfant t'attend, mains tendues, regard de douanier.",
+        "Lucas, ton filleul, fête ses 6 ans et a préparé une liste de cadeaux. En tête : « un vrai cheval ». {a.first} te fait un clin d'œil qui ne t'aide pas.",
       ],
       en: [
-        "Your godchild's 6th birthday. {a.first} whispers: 'The kid's talked about nothing but you all week.' The child is waiting, hands out, with the stare of a customs officer.",
-        "Your godchild turns 6 and wrote a gift list. At the top: 'a real horse'. {a.first} winks at you, which doesn't help.",
+        "Your godson Lucas's 6th birthday. {a.first} whispers: 'He's talked about nothing but you all week.' The child is waiting, hands out, with the stare of a customs officer.",
+        "Your godson Lucas turns 6 and wrote a gift list. At the top: 'a real horse'. {a.first} winks at you, which doesn't help.",
       ],
     },
     choices: [
@@ -478,7 +478,7 @@ export const socialEvents: EventDef[] = [
         "Le téléphone sonne à 7 h. {a.first} est décédé{a:|e} cette nuit. {a:Il|Elle} t'a laissé une lettre, une dette de 30 balles et la garde de son poisson rouge.",
       ],
       en: [
-        "{a.first} died. Heart attack, at {a.age}, in the middle of a padel match. {a.his} family asks you to say a few words at the funeral. You've never been good at public speaking.",
+        "{a.first} died. Heart attack, at {a.age}, in the middle of a padel match. {a:His|Her} family asks you to say a few words at the funeral. You've never been good at public speaking.",
         "The phone rings at 7 a.m. {a.first} passed away last night. {a:He|She} left you a letter, a $30 debt and custody of {a.his} goldfish.",
       ],
     },
@@ -486,7 +486,7 @@ export const socialEvents: EventDef[] = [
       {
         label: { fr: 'Faire un éloge funèbre', en: 'Give a eulogy' },
         out: [
-          { w: 2, odds: { smarts: 1 }, text: { fr: "Mon éloge a fait rire et pleurer toute l'église. J'ai raconté la fois où {a.first} avait vomi dans un taxi à Lisbonne. Sa mère m'a serré{|e} dans ses bras. Repose en paix, vieille branche.", en: "My eulogy made the whole church laugh and cry. I told the story of {a.first} puking in a Lisbon cab. {a.his} mom hugged me. Rest easy, old friend." }, fx: { happy: -10, karma: 5, actorDie: true, counter: 'so_funerals' }, mood: 'cry' },
+          { w: 2, odds: { smarts: 1 }, text: { fr: "Mon éloge a fait rire et pleurer toute l'église. J'ai raconté la fois où {a.first} avait vomi dans un taxi à Lisbonne. Sa mère m'a serré{|e} dans ses bras. Repose en paix, vieille branche.", en: "My eulogy made the whole church laugh and cry. I told the story of {a.first} puking in a Lisbon cab. {a:His|Her} mom hugged me. Rest easy, old friend." }, fx: { happy: -10, karma: 5, actorDie: true, counter: 'so_funerals' }, mood: 'cry' },
           { w: 1, text: { fr: "J'ai bafouillé, confondu le prénom de {a.first} avec celui de son ex et fini sur une blague sur les cercueils. Silence. Un oncle a toussé jusqu'au cimetière.", en: "I stammered, mixed up {a.first}'s name with {a.his} ex's and ended with a coffin joke. Silence. An uncle coughed all the way to the cemetery." }, fx: { happy: -14, stress: 8, actorDie: true, counter: 'so_funerals' }, mood: 'shock' },
         ],
       },
@@ -516,12 +516,12 @@ export const socialEvents: EventDef[] = [
     },
     choices: [
       { label: { fr: 'Crier « NON ! »', en: "Yell 'NO!'" }, text: { fr: "J'ai crié « NON ! » une demi-seconde trop tard. {a.first} a été répandu{a:|e} sur trois jardins, une haie et le pare-brise du voisin. On a retrouvé une chaussure sur le toit de l'église. RIP, abruti{a:|e} magnifique.", en: "I yelled 'NO!' half a second too late. {a.first} got spread over three yards, a hedge and the neighbor's windshield. A shoe was found on the church roof. RIP, you magnificent idiot." }, fx: { happy: -15, stress: 10, actorDie: true, visual: 'gore', counter: 'so_funerals' }, mood: 'shock' },
-      { label: { fr: 'Filmer', en: 'Film it' }, text: { fr: "J'ai filmé. La vidéo, avec les tripes de {a.first} qui retombent au ralenti sur les merguez, a fait 12 millions de vues. Sa famille a porté plainte. Les merguez, on les a mangées quand même.", en: "I filmed it. The video, with {a.first}'s guts raining down in slow motion on the sausages, got 12 million views. {a.his} family sued. We ate the sausages anyway." }, fx: { happy: -8, karma: -10, fame: 8, followers: 50000, actorDie: true, visual: 'gore', counter: 'so_funerals' }, mood: 'shock' },
+      { label: { fr: 'Filmer', en: 'Film it' }, text: { fr: "J'ai filmé. La vidéo, avec les tripes de {a.first} qui retombent au ralenti sur les merguez, a fait 12 millions de vues. Sa famille a porté plainte. Les merguez, on les a mangées quand même.", en: "I filmed it. The video, with {a.first}'s guts raining down in slow motion on the sausages, got 12 million views. {a:His|Her} family sued. We ate the sausages anyway." }, fx: { happy: -8, karma: -10, fame: 8, followers: 50000, actorDie: true, visual: 'gore', counter: 'so_funerals' }, mood: 'shock' },
       {
-        label: { fr: 'Plonger pour le/la sauver', en: 'Dive to save them' },
+        label: { fr: 'Plonger pour {a:le|la} sauver', en: 'Dive to save them' },
         out: [
           { w: 1, odds: { athletic: 1 }, text: { fr: "J'ai plaqué {a.first} au sol au dernier moment. On s'en tire avec un sourcil cramé chacun. {a:Il|Elle} m'a nommé{|e} dans son testament. Je suis héritier de sa collection de casquettes.", en: "I tackled {a.first} at the last second. We each walked away with one singed eyebrow. {a:He|She} put me in {a.his} will. I'm the heir to {a.his} cap collection." }, fx: { rel: 30, happy: 10, karma: 8, looks: -2 }, mood: 'proud' },
-          { w: 1, text: { fr: "J'ai plongé héroïquement. Il ne reste de {a.first} qu'un tongs fumante. Il ne reste de moi qu'un doigt en moins. On m'a donné une médaille du courage et une prothèse en plastique.", en: "I dove heroically. All that's left of {a.first} is one smoking flip-flop. All that's left of me is one fewer finger. I got a bravery medal and a plastic prosthetic." }, fx: { happy: -12, health: -10, disease: 'missing_finger', actorDie: true, visual: 'gore', counter: 'so_funerals' }, mood: 'cry' },
+          { w: 1, text: { fr: "J'ai plongé héroïquement. Il ne reste de {a.first} qu'une tong fumante. Il ne reste de moi qu'un doigt en moins. On m'a donné une médaille du courage et une prothèse en plastique.", en: "I dove heroically. All that's left of {a.first} is one smoking flip-flop. All that's left of me is one fewer finger. I got a bravery medal and a plastic prosthetic." }, fx: { happy: -12, health: -10, disease: 'missing_finger', actorDie: true, visual: 'gore', counter: 'so_funerals' }, mood: 'cry' },
         ],
       },
     ],
@@ -542,7 +542,7 @@ export const socialEvents: EventDef[] = [
         "{a.first} a besoin d'une greffe de rein et tu es le seul donneur compatible. {a:Il|Elle} t'a envoyé un PowerPoint de 18 slides intitulé « Pourquoi ton rein serait plus heureux chez moi ».",
       ],
       en: [
-        "{a.first} calls from the hospital: {a.his} kidneys gave out after 'a decade of Monster and kebabs'. You're a match. {a:He|She} asks for a kidney. Nicely. With a heart emoji.",
+        "{a.first} calls from the hospital: {a:His|Her} kidneys gave out after 'a decade of Monster and kebabs'. You're a match. {a:He|She} asks for a kidney. Nicely. With a heart emoji.",
         "{a.first} needs a kidney transplant and you're the only compatible donor. {a:He|She} sent you an 18-slide PowerPoint titled 'Why your kidney would be happier with me'.",
       ],
     },
@@ -613,7 +613,7 @@ export const socialEvents: EventDef[] = [
           { w: 1, text: { fr: "Concours de lancer de bocks sur le pont Charles. Un bock a ricoché sur un réverbère et m'a arraché la moitié de l'oreille. Elle a fini dans la Vltava. Un cygne l'a mangée.", en: "Beer-mug throwing contest on the Charles Bridge. A mug ricocheted off a lamppost and tore off half my ear. It fell in the river. A swan ate it." }, fx: { happy: -4, health: -12, looks: -6, money: -600, visual: 'gore' }, mood: 'shock' },
         ],
       },
-      { label: { fr: 'Jouer les baby-sitters', en: 'Be the babysitter' }, text: { fr: "J'ai été le/la seul{|e} sobre du voyage. J'ai tenu des cheveux pendant que les autres vomissaient dans des fontaines du XIVe siècle. Ils m'ont offert un aimant de frigo en remerciement.", en: "I was the only sober one on the trip. I held hair back while the others puked into 14th-century fountains. They gave me a fridge magnet as thanks." }, fx: { happy: -2, karma: 6, health: 2, money: -400 }, mood: 'sleepy' },
+      { label: { fr: 'Jouer les baby-sitters', en: 'Be the babysitter' }, text: { fr: "J'ai été {le seul|la seule} sobre du voyage. J'ai tenu des cheveux pendant que les autres vomissaient dans des fontaines du XIVe siècle. Ils m'ont offert un aimant de frigo en remerciement.", en: "I was the only sober one on the trip. I held hair back while the others puked into 14th-century fountains. They gave me a fridge magnet as thanks." }, fx: { happy: -2, karma: 6, health: 2, money: -400 }, mood: 'sleepy' },
       { label: { fr: 'Conduire le char', en: 'Drive the tank' }, text: { fr: "J'ai conduit le char d'assaut loué et écrasé une Smart garée en double file. Le moniteur a applaudi, puis facturé. Ça valait chaque centime.", en: "I drove the rented tank and crushed a double-parked Smart car. The instructor clapped, then billed me. Worth every cent." }, fx: { happy: 15, money: -2500, visual: 'explosion' }, mood: 'party' },
     ],
   },
@@ -729,7 +729,7 @@ export const socialEvents: EventDef[] = [
       {
         label: { fr: 'Tapis !', en: 'All-in!' },
         out: [
-          { w: 2, odds: { smarts: 1 }, text: { fr: "Tapis ! J'ai raflé {$amount}. J'ai fait une danse de la victoire sur la table et cassé une chaise. Je ne la rembourserai pas.", en: "All-in! I raked in {$amount}. I did a victory dance on the table and broke a chair. I'm not paying for it." }, fx: { money: 'amount', happy: 10, addiction: ['gambling', 4], counter: 'so_poker_wins' }, mood: 'party' },
+          { w: 2, odds: { smarts: 1 }, text: { fr: "Tapis ! J'ai raflé {$amount}. J'ai fait une danse de la victoire sur la table et cassé une chaise. Je ne la rembourserai pas.", en: "All-in! I raked in {$amount}. I did a victory dance on the table and broke a chair. I'm not paying for it." }, fx: { money: 'amount', happy: 10, addiction: ['gambling', 4], counter: 'so_poker_wins', flag: 'so_poker_pro' }, mood: 'party' },
           { w: 2, text: { fr: "Tapis… perdu. Max avait un brelan de 7. J'ai perdu {$amount} et la dignité qu'il me restait. J'ai dû rentrer à pied, en pleurant un peu dans mon écharpe.", en: "All-in… lost. Max had three 7s. I lost {$amount} and whatever dignity I had left. I walked home crying a little into my scarf." }, fx: { money: '-amount', happy: -8, addiction: ['gambling', 6] }, mood: 'cry' },
         ],
       },
@@ -802,7 +802,7 @@ export const socialEvents: EventDef[] = [
     rating: 1,
     actor: 'anyFriend',
     scene: { place: 'apartment', mood: 'shock', prop: 'phone' },
-    when: { age: [16, 65] },
+    when: { age: [18, 65] },
     weight: 7,
     cooldown: 5,
     text: {
@@ -843,7 +843,7 @@ export const socialEvents: EventDef[] = [
     choices: [
       { label: { fr: 'En rire avec eux', en: 'Laugh along' }, text: { fr: "J'ai répondu avec un sticker d'escargot qui fait un clin d'œil. Tout le monde a trouvé ça classe. Le surnom est resté, mais avec respect.", en: "I replied with a sticker of a winking snail. Everyone thought it was classy. The nickname stuck, but with respect." }, fx: { happy: 4, looks: 1 }, mood: 'happy' },
       { label: { fr: 'Contre-attaquer', en: 'Strike back' }, text: { fr: "J'ai posté une photo du coupable en train de se curer le nez au CDI. Guerre totale. On a tous été privés de téléphone par la CPE. La paix par l'épuisement.", en: "I posted a photo of the culprit picking his nose in the library. Total war. The vice principal confiscated everyone's phones. Peace through exhaustion." }, fx: { happy: 3, karma: -2, discipline: -2 }, mood: 'angry' },
-      { label: { fr: 'Pleurer aux toilettes', en: 'Cry in the bathroom' }, text: { fr: "J'ai passé la pause de midi enfermé{|e} dans les toilettes. Une fille de troisième m'a glissé un mouchoir sous la porte. On est amies maintenant. Enfin, je crois.", en: "I spent lunch break locked in a bathroom stall. An older kid slid a tissue under the door. I think we're friends now." }, fx: { happy: -6, stress: 4 }, mood: 'cry' },
+      { label: { fr: 'Pleurer aux toilettes', en: 'Cry in the bathroom' }, text: { fr: "J'ai passé la pause de midi enfermé{|e} dans les toilettes. Une fille de troisième m'a glissé un mouchoir sous la porte. On est potes maintenant. Enfin, je crois.", en: "I spent lunch break locked in a bathroom stall. An older kid slid a tissue under the door. I think we're friends now." }, fx: { happy: -6, stress: 4 }, mood: 'cry' },
     ],
   },
 
@@ -860,8 +860,8 @@ export const socialEvents: EventDef[] = [
     cooldown: 5,
     text: {
       fr: [
-        "Ton nouveau voisin, {a.first}, frappe à ta porte avec une tarte aux pommes encore chaude et un sourire un peu trop large. « Je me suis dit qu'on pourrait être amis ! »",
-        "{a.first}, ta voisine du dessus, te demande si tu peux lui prêter du sel. Puis du beurre. Puis de la farine. Puis elle te propose de manger le gâteau avec elle.",
+        "{a:Ton nouveau voisin|Ta nouvelle voisine}, {a.first}, frappe à ta porte avec une tarte aux pommes encore chaude et un sourire un peu trop large. « Je me suis dit qu'on pourrait être amis ! »",
+        "{a.first}, {a:ton voisin|ta voisine} du dessus, te demande si tu peux lui prêter du sel. Puis du beurre. Puis de la farine. Puis {a:il|elle} te propose de manger le gâteau avec elle.",
       ],
       en: [
         "Your new neighbor, {a.first}, knocks with a still-warm apple pie and a slightly too-wide smile. 'I thought we could be friends!'",
@@ -948,7 +948,7 @@ export const socialEvents: EventDef[] = [
     },
     choices: [
       { label: { fr: 'Confronter le clone', en: 'Confront the clone' }, text: { fr: "J'ai confronté {a.first}. {a:Il|Elle} m'a répondu exactement ce que j'aurais répondu, avec mon intonation. J'ai eu un vertige existentiel en pleine rue.", en: "I confronted {a.first}. {a:He|She} replied exactly what I would've said, in my exact tone. I had an existential crisis on the sidewalk." }, fx: { happy: -4, stress: 6 }, mood: 'shock' },
-      { label: { fr: 'Tout changer pour le/la piéger', en: 'Change everything to trap them' }, text: { fr: "J'ai adopté une moustache, un béret et une passion feinte pour le curling. Une semaine plus tard, {a.first} avait une moustache, un béret et un match de curling. Je suis piégé{|e} dans le béret.", en: "I adopted a mustache, a beret and a fake passion for curling. A week later, {a.first} had a mustache, a beret and a curling match. Now I'm stuck with the beret." }, fx: { happy: 3, looks: -3, smarts: 1 }, mood: 'neutral' },
+      { label: { fr: 'Tout changer pour {a:le|la} piéger', en: 'Change everything to trap them' }, text: { fr: "J'ai adopté une moustache, un béret et une passion feinte pour le curling. Une semaine plus tard, {a.first} avait une moustache, un béret et un match de curling. Je suis piégé{|e} dans le béret.", en: "I adopted a mustache, a beret and a fake passion for curling. A week later, {a.first} had a mustache, a beret and a curling match. Now I'm stuck with the beret." }, fx: { happy: 3, looks: -3, smarts: 1 }, mood: 'neutral' },
       { label: { fr: 'Devenir ami{|e}s', en: 'Become friends' }, text: { fr: "Si on ne peut pas battre son clone… On est devenus amis. On s'habille pareil le mardi. Les gens nous prennent pour des jumeaux et nous offrent des boissons.", en: "If you can't beat your clone… We became friends. We dress alike on Tuesdays. People think we're twins and buy us drinks." }, fx: { happy: 6, rel: 30, actorRole: 'friend', counter: 'so_friends_made' }, mood: 'happy' },
     ],
   },
@@ -964,7 +964,7 @@ export const socialEvents: EventDef[] = [
     cooldown: 4,
     text: {
       fr: [
-        "{a.first}, ton/ta collègue, t'attend tous les matins à la machine à café pour commenter la vie amoureuse de la compta. Aujourd'hui, {a:il|elle} te propose de déjeuner ensemble « en dehors du bureau, comme des vrais gens ».",
+        "{a.first}, {a.rel}, t'attend tous les matins à la machine à café pour commenter la vie amoureuse de la compta. Aujourd'hui, {a:il|elle} te propose de déjeuner ensemble « en dehors du bureau, comme des vrais gens ».",
         "{a.first} et toi êtes les deux seuls à trouver le DRH ridicule. Vous communiquez par regards en réunion. {a:Il|Elle} te propose un verre après le boulot.",
       ],
       en: [
@@ -973,7 +973,7 @@ export const socialEvents: EventDef[] = [
       ],
     },
     choices: [
-      { label: { fr: 'Accepter', en: 'Accept' }, text: { fr: "On a déjeuné ensemble et parlé de tout sauf du boulot. Enfin, surtout du boulot. Mais en disant du mal. {a.first} est officiellement mon/ma pote du bureau.", en: "We had lunch and talked about everything but work. Well, mostly work. But trash-talking it. {a.first} is officially my work bestie." }, fx: { happy: 7, rel: 20, stress: -4, actorRole: 'friend', counter: 'so_friends_made' }, mood: 'happy' },
+      { label: { fr: 'Accepter', en: 'Accept' }, text: { fr: "On a déjeuné ensemble et parlé de tout sauf du boulot. Enfin, surtout du boulot. Mais en disant du mal. {a.first} est officiellement {a:mon pote|ma pote} du bureau.", en: "We had lunch and talked about everything but work. Well, mostly work. But trash-talking it. {a.first} is officially my work bestie." }, fx: { happy: 7, rel: 20, stress: -4, actorRole: 'friend', counter: 'so_friends_made' }, mood: 'happy' },
       { label: { fr: 'Garder mes distances', en: 'Keep my distance' }, text: { fr: "J'ai décliné. « Pas d'amis au boulot », c'est ma règle. Je mange seul{|e} devant mon écran en regardant des vidéos de sauvetage de chatons. C'est très sain.", en: "I declined. 'No friends at work' is my rule. I eat alone at my desk watching kitten rescue videos. Very healthy." }, fx: { rel: -5, perf: 2 } },
       { label: { fr: 'Créer un club secret', en: 'Start a secret club' }, text: { fr: "On a fondé le Club des Anti-DRH. On se réunit dans la salle de reprographie. On a des badges. Le DRH ne se doute de rien. Je n'ai jamais autant aimé aller au travail.", en: "We founded the Anti-HR Club. We meet in the copy room. We have badges. HR suspects nothing. I've never enjoyed work this much." }, fx: { happy: 10, rel: 25, perf: -3, actorRole: 'friend', counter: 'so_friends_made' }, mood: 'party' },
     ],
@@ -990,11 +990,11 @@ export const socialEvents: EventDef[] = [
     cooldown: 6,
     text: {
       fr: [
-        "Afterwork qui dérape avec {a.first}, ton/ta collègue. 2 h du matin, un salon de tatouage ouvert 24 h/24, deux pintes de trop. {a:Il|Elle} propose que vous vous tatouiez le visage de l'autre. Sur la fesse.",
+        "Afterwork qui dérape avec {a.first}, {a.rel}. 2 h du matin, un salon de tatouage ouvert 24 h/24, deux pintes de trop. {a:Il|Elle} propose que vous vous tatouiez le visage de l'autre. Sur la fesse.",
         "Pot de départ d'un collègue. À la troisième tournée de shots, {a.first} te met au défi de faxer tes fesses au siège social. Le fax est juste là. Il fonctionne encore.",
       ],
       en: [
-        "Afterwork drinks with {a.first}, your coworker, go off the rails. 2 a.m., a 24-hour tattoo parlor, two pints too many. {a.he} suggests you each get the other's face tattooed. On your butt.",
+        "Afterwork drinks with {a.first}, your coworker, go off the rails. 2 a.m., a 24-hour tattoo parlor, two pints too many. {a:He|She} suggests you each get the other's face tattooed. On your butt.",
         "A colleague's farewell drinks. Third round of shots: {a.first} dares you to fax your butt to headquarters. The fax machine is right there. It still works.",
       ],
     },
@@ -1051,7 +1051,7 @@ export const socialEvents: EventDef[] = [
     text: {
       fr: [
         "{a.first} ne t'appelle que quand {a:il|elle} est en crise. 23 h, en larmes, pour la neuvième fois ce mois-ci. Mais quand tu as eu ton accident, {a:il|elle} a liké la photo du plâtre et c'est tout. Ce soir, c'est son anniversaire. Tu as fait des brownies.",
-        "{a.first} a encore « oublié » son portefeuille au resto, flirté avec ton/ta partenaire et raconté ton secret le plus honteux à des inconnus. Il te reste une boîte de laxatifs et un moule à gâteau.",
+        "{a.first} a encore « oublié » son portefeuille au resto, flirté avec ta moitié et raconté ton secret le plus honteux à des inconnus. Il te reste une boîte de laxatifs et un moule à gâteau.",
       ],
       en: [
         "{a.first} only calls you when {a.he}'s in crisis. 11 p.m., sobbing, ninth time this month. But when you had your accident, {a.he} liked the photo of your cast and that was it. Tonight is {a.his} birthday. You made brownies.",
@@ -1071,7 +1071,7 @@ export const socialEvents: EventDef[] = [
     rating: 1,
     actor: 'anyFriend',
     scene: { place: 'apartment', mood: 'neutral', prop: 'phone' },
-    when: { age: [16, 70] },
+    when: { age: [18, 70] },
     weight: 6,
     cooldown: 5,
     text: {
@@ -1102,11 +1102,11 @@ export const socialEvents: EventDef[] = [
     once: true,
     text: {
       fr: [
-        "{a.first} est devenu{a:|e} influenceur/influenceuse lifestyle. Sa vidéo la plus vue : « Ma meilleure amie fait ses courses comme une pauvre 😂 ». C'est toi, au rayon promo, en jogging. 3 millions de vues.",
+        "{a.first} est devenu{a:|e} {a:influenceur|influenceuse} lifestyle. Sa vidéo la plus vue : « Ma meilleure amie fait ses courses comme une pauvre 😂 ». C'est toi, au rayon promo, en jogging. 3 millions de vues.",
         "{a.first} te filme en permanence pour son contenu. Ton chagrin d'amour est devenu « POV : ton pote sous Xanax pleure dans un Burger King » avec un filtre mignon. Sponsorisé par une marque de déodorant.",
       ],
       en: [
-        "{a.first} became a lifestyle influencer. {a.his} most viewed video: 'My best friend grocery shops like a broke loser 😂'. It's you, in the clearance aisle, in sweatpants. 3 million views.",
+        "{a.first} became a lifestyle influencer. {a:His|Her} most viewed video: 'My best friend grocery shops like a broke loser 😂'. It's you, in the clearance aisle, in sweatpants. 3 million views.",
         "{a.first} films you constantly for content. Your heartbreak became 'POV: your friend sobbing in a Burger King' with a cute filter. Sponsored by a deodorant brand.",
       ],
     },
@@ -1130,7 +1130,7 @@ export const socialEvents: EventDef[] = [
     cooldown: 6,
     text: {
       fr: [
-        "{a.first}, ton voisin/ta voisine, s'est garé{a:|e} sur ta place de parking. Pour la douzième fois. Ce matin, {a:il|elle} a laissé un mot sur ton pare-brise : « Apprends à te garer, connard. » Sur TA place.",
+        "{a.first}, {a:ton voisin|ta voisine}, s'est garé{a:|e} sur ta place de parking. Pour la douzième fois. Ce matin, {a:il|elle} a laissé un mot sur ton pare-brise : « Apprends à te garer, connard. » Sur TA place.",
         "{a.first}, du deuxième étage, laisse son chien chier devant ta porte tous les matins à 7 h 12. Tu l'as filmé{a:|e}. {a:Il|Elle} t'a fait un doigt d'honneur à la caméra.",
       ],
       en: [
@@ -1151,7 +1151,7 @@ export const socialEvents: EventDef[] = [
     rating: 1,
     actor: 'enemy',
     scene: { place: 'office', mood: 'angry' },
-    when: { age: [16, 80] },
+    when: { age: [18, 80] },
     weight: 7,
     cooldown: 4,
     text: {
@@ -1262,7 +1262,7 @@ export const socialEvents: EventDef[] = [
       ],
     },
     choices: [
-      { label: { fr: 'Danser sur sa tombe', en: 'Dance on the grave' }, text: { fr: "J'ai attendu la fin de la cérémonie, puis j'ai dansé la Macarena sur sa tombe avec une enceinte Bluetooth. Sa tante m'a frappé{|e} avec un parapluie. Ça valait le coup.", en: "I waited for the ceremony to end, then danced the Macarena on the grave with a Bluetooth speaker. {a.his} aunt hit me with an umbrella. Worth it." }, fx: { happy: 10, karma: -10, actorDie: true }, mood: 'party' },
+      { label: { fr: 'Danser sur sa tombe', en: 'Dance on the grave' }, text: { fr: "J'ai attendu la fin de la cérémonie, puis j'ai dansé la Macarena sur sa tombe avec une enceinte Bluetooth. Sa tante m'a frappé{|e} avec un parapluie. Ça valait le coup.", en: "I waited for the ceremony to end, then danced the Macarena on the grave with a Bluetooth speaker. {a:His|Her} aunt hit me with an umbrella. Worth it." }, fx: { happy: 10, karma: -10, actorDie: true }, mood: 'party' },
       { label: { fr: 'Pisser sur la tombe', en: 'Piss on the grave' }, text: { fr: "Je suis revenu{|e} de nuit pour pisser sur sa tombe. Le gardien m'a pris{|e} en flagrant délit, la braguette ouverte, au clair de lune. J'ai payé l'amende avec le sourire.", en: "I came back at night to piss on the grave. The groundskeeper caught me in the act, fly open, in the moonlight. I paid the fine with a smile." }, fx: { happy: 8, karma: -12, money: -135, actorDie: true }, mood: 'proud' },
       { label: { fr: 'Pleurer sincèrement', en: 'Cry sincerely' }, text: { fr: "À ma grande surprise, j'ai pleuré. Sans {a.first}, ma vie n'a plus d'antagoniste. Je n'ai plus personne à détester. Je me sens vide. J'envisage d'adopter un nouvel ennemi.", en: "To my surprise, I cried. Without {a.first}, my life has no antagonist. No one left to hate. I feel empty. I'm considering adopting a new nemesis." }, fx: { happy: -6, karma: 6, actorDie: true }, mood: 'cry' },
     ],
@@ -1317,7 +1317,7 @@ export const socialEvents: EventDef[] = [
         "Mariage de {a.first}. Ta mère pleure depuis 9 h du matin, ton père a déjà tâché sa cravate et le traiteur a oublié les desserts. Tout le monde compte sur toi.",
       ],
       en: [
-        "{a.first} is getting married! You're the best man/maid of honor and have to give a speech. Two options: the touching story, or the time {a.he} peed in the freezer at age 8.",
+        "{a.first} is getting married! You're the {best man|maid of honor} and have to give a speech. Two options: the touching story, or the time {a.he} peed in the freezer at age 8.",
         "{a.first}'s wedding. Your mom has been crying since 9 a.m., your dad already stained his tie and the caterer forgot the desserts. Everyone's counting on you.",
       ],
     },
@@ -1340,7 +1340,7 @@ export const socialEvents: EventDef[] = [
     text: {
       fr: [
         "{a.first} a pris trois ans pour avoir braqué une station-service avec une banane dans un sac. Au parloir, {a:il|elle} te demande de lui faire passer « un petit truc » dans un gâteau.",
-        "Ton frère/ta sœur {a.first} est en taule. {a:Il|Elle} t'appelle en PCV tous les dimanches pour te raconter les embrouilles de la cantine. Ce dimanche, {a:il|elle} a besoin d'argent pour « se protéger ».",
+        "{a.rel} {a.first} est en taule. {a:Il|Elle} t'appelle en PCV tous les dimanches pour te raconter les embrouilles de la cantine. Ce dimanche, {a:il|elle} a besoin d'argent pour « se protéger ».",
       ],
       en: [
         "{a.first} got three years for robbing a gas station with a banana in a bag. In the visiting room, {a.he} asks you to sneak 'a little something' in a cake.",
@@ -1348,7 +1348,7 @@ export const socialEvents: EventDef[] = [
       ],
     },
     choices: [
-      { label: { fr: 'Rendre visite chaque mois', en: 'Visit every month' }, text: { fr: "Je suis allé{|e} voir {a.first} tous les mois. On joue aux cartes à travers une vitre. Son codétenu, Bébert, m'a appris à faire un tatouage avec un stylo. On est une famille, maintenant.", en: "I visited {a.first} every month. We play cards through a glass window. {a.his} cellmate, Bert, taught me to tattoo with a ballpoint pen. We're a family now." }, fx: { rel: 25, karma: 6, happy: -2 }, mood: 'sad' },
+      { label: { fr: 'Rendre visite chaque mois', en: 'Visit every month' }, text: { fr: "Je suis allé{|e} voir {a.first} tous les mois. On joue aux cartes à travers une vitre. Son codétenu, Bébert, m'a appris à faire un tatouage avec un stylo. On est une famille, maintenant.", en: "I visited {a.first} every month. We play cards through a glass window. {a:His|Her} cellmate, Bert, taught me to tattoo with a ballpoint pen. We're a family now." }, fx: { rel: 25, karma: 6, happy: -2 }, mood: 'sad' },
       {
         label: { fr: 'Le gâteau piégé', en: 'The trick cake' },
         out: [
@@ -1373,17 +1373,17 @@ export const socialEvents: EventDef[] = [
     text: {
       fr: [
         "{a.first} a gagné 22 millions au loto. Tu l'apprends par la télé régionale, en même temps que tout le monde. Depuis, {a:il|elle} ne répond plus au téléphone. Son numéro n'existe plus. Sa maison est à vendre.",
-        "Ton frère/ta sœur {a.first} a touché le jackpot et a disparu dans la nature. Dernière trace : une photo sur un yacht avec un flamant rose gonflable et la légende « nouvelle vie, nouvelle famille ».",
+        "{a.rel} {a.first} a touché le jackpot et a disparu dans la nature. Dernière trace : une photo sur un yacht avec un flamant rose gonflable et la légende « nouvelle vie, nouvelle famille ».",
       ],
       en: [
-        "{a.first} won 22 million in the lottery. You find out from the local news, along with everyone else. Since then, {a.he} hasn't picked up the phone. {a.his} number's disconnected. {a.his} house is for sale.",
+        "{a.first} won 22 million in the lottery. You find out from the local news, along with everyone else. Since then, {a.he} hasn't picked up the phone. {a:His|Her} number's disconnected. {a:His|Her} house is for sale.",
         "Your sibling {a.first} hit the jackpot and vanished. Last trace: a photo on a yacht with an inflatable flamingo and the caption 'new life, new family'.",
       ],
     },
     choices: [
-      { label: { fr: 'Le/la traquer', en: 'Track them down' }, text: { fr: "J'ai retrouvé {a.first} à Monaco grâce aux tags Instagram d'un flamant rose gonflable. {a:Il|Elle} m'a fait raccompagner par la sécurité. Avec un cookie. Un seul.", en: "I tracked {a.first} down in Monaco through an inflatable flamingo's Instagram tags. {a:He|She} had security escort me out. With a cookie. Just one." }, fx: { money: -800, rel: -15, happy: -5, flag: 'so_sib_rich', schedule: { key: 'so_sib_lottery_broke', years: 4 } }, mood: 'angry' },
+      { label: { fr: '{a:Le|La} traquer', en: 'Track them down' }, text: { fr: "J'ai retrouvé {a.first} à Monaco grâce aux tags Instagram d'un flamant rose gonflable. {a:Il|Elle} m'a fait raccompagner par la sécurité. Avec un cookie. Un seul.", en: "I tracked {a.first} down in Monaco through an inflatable flamingo's Instagram tags. {a:He|She} had security escort me out. With a cookie. Just one." }, fx: { money: -800, rel: -15, happy: -5, flag: 'so_sib_rich', schedule: { key: 'so_sib_lottery_broke', years: 4 } }, mood: 'angry' },
       { label: { fr: 'Être content{|e} pour {a.him}', en: 'Be happy for them' }, text: { fr: "J'ai décidé d'être content{|e} pour {a.first}. J'ai même envoyé une carte « Félicitations ». Elle m'est revenue. Adresse inconnue. Je suis content{|e} quand même. Un peu moins.", en: "I decided to be happy for {a.first}. I even sent a 'Congratulations' card. It came back. Address unknown. I'm still happy. Slightly less." }, fx: { karma: 6, happy: -2, flag: 'so_sib_rich', schedule: { key: 'so_sib_lottery_broke', years: 4 } } },
-      { label: { fr: 'Raconter tout à la presse', en: 'Tell the press everything' }, text: { fr: "J'ai donné une interview au journal local : « Mon frère/ma sœur millionnaire m'a abandonné{|e} ». Avec photos d'enfance. {a.first} m'a envoyé une mise en demeure. Avec du papier à en-tête doré.", en: "I gave an interview to the local paper: 'My millionaire sibling abandoned me'. With childhood photos. {a.first} sent me a cease and desist. On gold letterhead." }, fx: { fame: 3, rel: -30, happy: 3, flag: 'so_sib_rich', schedule: { key: 'so_sib_lottery_broke', years: 4 } }, mood: 'proud' },
+      { label: { fr: 'Raconter tout à la presse', en: 'Tell the press everything' }, text: { fr: "J'ai donné une interview au journal local : « {a:Mon frère millionnaire|Ma sœur millionnaire} m'a abandonné{|e} ». Avec photos d'enfance. {a.first} m'a envoyé une mise en demeure. Avec du papier à en-tête doré.", en: "I gave an interview to the local paper: 'My millionaire sibling abandoned me'. With childhood photos. {a.first} sent me a cease and desist. On gold letterhead." }, fx: { fame: 3, rel: -30, happy: 3, flag: 'so_sib_rich', schedule: { key: 'so_sib_lottery_broke', years: 4 } }, mood: 'proud' },
     ],
   },
   {
@@ -1407,7 +1407,7 @@ export const socialEvents: EventDef[] = [
     choices: [
       { label: { fr: 'Pardonner', en: 'Forgive' }, text: { fr: "J'ai pardonné à {a.first} et lui ai ouvert mon canapé. {a:Il|Elle} m'a offert sa dernière possession de valeur : une montre en or. Elle est fausse. Mais le geste est vrai.", en: "I forgave {a.first} and opened up my couch. {a:He|She} gave me {a.his} last valuable possession: a gold watch. It's fake. But the gesture is real." }, fx: { rel: 30, karma: 8, happy: 4, unflag: 'so_sib_rich' }, mood: 'cry' },
       { label: { fr: 'Claquer la porte', en: 'Slam the door' }, text: { fr: "J'ai claqué la porte en criant « NOUVELLE VIE, NOUVELLE FAMILLE ». Je me suis répété cette phrase sous la douche pendant quatre ans. Ça valait l'attente, putain.", en: "I slammed the door yelling 'NEW LIFE, NEW FAMILY'. I'd rehearsed that line in the shower for four years. Damn, worth the wait." }, fx: { happy: 10, karma: -4, rel: -30, unflag: 'so_sib_rich' }, mood: 'proud' },
-      { label: { fr: 'Le/la faire bosser pour moi', en: 'Make them work for me' }, text: { fr: "J'ai accepté d'héberger {a.first} à condition qu'{a:il|elle} fasse le ménage, la cuisine et m'appelle « Votre Altesse ». {a:Il|Elle} a dit oui. C'est la meilleure année de ma vie.", en: "I agreed to put {a.first} up on condition {a.he} does the cleaning, the cooking and calls me 'Your Highness'. {a:He|She} said yes. Best year of my life." }, fx: { happy: 12, rel: 5, karma: -2, unflag: 'so_sib_rich' }, mood: 'party' },
+      { label: { fr: '{a:Le|La} faire bosser pour moi', en: 'Make them work for me' }, text: { fr: "J'ai accepté d'héberger {a.first} à condition qu'{a:il|elle} fasse le ménage, la cuisine et m'appelle « Votre Altesse ». {a:Il|Elle} a dit oui. C'est la meilleure année de ma vie.", en: "I agreed to put {a.first} up on condition {a.he} does the cleaning, the cooking and calls me 'Your Highness'. {a:He|She} said yes. Best year of my life." }, fx: { happy: 12, rel: 5, karma: -2, unflag: 'so_sib_rich' }, mood: 'party' },
     ],
   },
   {
@@ -1439,7 +1439,7 @@ export const socialEvents: EventDef[] = [
         ],
       },
       { label: { fr: 'Refuser, trop risqué', en: 'Refuse, too risky' }, text: { fr: "J'ai refusé. {a.first} a tenté l'échange avec notre cousin, qui a 14 kilos et une moustache de plus. Ça n'a pas marché du tout.", en: "I said no. {a.first} tried the swap with our cousin, who has 30 pounds and a mustache on {a.him}. It didn't work at all." }, fx: { rel: -5, discipline: 2 } },
-      { label: { fr: 'Le/la dénoncer en avance', en: 'Snitch preemptively' }, text: { fr: "J'ai prévenu tout le monde du plan de {a.first}. {a:Il|Elle} a été attendu{a:|e} par un comité d'accueil hilare. Il/elle prépare sa vengeance. Je dors avec un œil ouvert.", en: "I warned everyone about {a.first}'s plan. {a:He|She} was met by a laughing welcome committee. Revenge is coming. I sleep with one eye open." }, fx: { rel: -15, happy: 3, karma: -2 } },
+      { label: { fr: '{a:Le|La} dénoncer en avance', en: 'Snitch preemptively' }, text: { fr: "J'ai prévenu tout le monde du plan de {a.first}. {a:Il|Elle} a été attendu{a:|e} par un comité d'accueil hilare. {a:Il|Elle} prépare sa vengeance. Je dors avec un œil ouvert.", en: "I warned everyone about {a.first}'s plan. {a:He|She} was met by a laughing welcome committee. Revenge is coming. I sleep with one eye open." }, fx: { rel: -15, happy: 3, karma: -2 } },
     ],
   },
   {
@@ -1474,33 +1474,6 @@ export const socialEvents: EventDef[] = [
       { label: { fr: 'Rester gentil{|le}', en: 'Be nice' }, text: { fr: "J'ai fait un discours gentil. Huées. Quelqu'un m'a lancé un cornichon. Dans cette famille, la gentillesse est une insulte.", en: "I gave a nice speech. Boos. Someone threw a pickle at me. In this family, kindness is an insult." }, fx: { happy: -4, karma: 3, rel: 5 } },
     ],
   },
-  {
-    id: 'so_sib_kid_backseat',
-    icon: '🚙',
-    cat: 'family',
-    rating: 0,
-    actor: 'sibling',
-    scene: { place: 'home', mood: 'angry', prop: 'car' },
-    when: { age: [5, 12] },
-    weight: 7,
-    cooldown: 3,
-    text: {
-      fr: [
-        "Huit heures de route pour les vacances. {a.first} a franchi la ligne invisible au milieu de la banquette arrière. Son petit doigt est sur TON territoire. Ton père menace de « faire demi-tour ».",
-        "{a.first} te touche le bras en disant « je te touche pas, je te touche pas ». Depuis 140 kilomètres.",
-      ],
-      en: [
-        "Eight-hour drive for the holidays. {a.first} crossed the invisible line in the middle of the back seat. {a.his} pinky is on YOUR territory. Your dad threatens to 'turn this car around'.",
-        "{a.first} keeps poking your arm saying 'I'm not touching you, I'm not touching you'. For the last 90 miles.",
-      ],
-    },
-    choices: [
-      { label: { fr: 'Hurler « PAPAAAA »', en: "Scream 'DAAAAD'" }, text: { fr: "J'ai hurlé. Papa a fait demi-tour pour de vrai, puis re-demi-tour. On est arrivés deux heures en retard. Personne ne me parle depuis la station-service.", en: "I screamed. Dad actually turned the car around, then turned it back. We arrived two hours late. Nobody's spoken to me since the gas station." }, fx: { rel: -5, happy: -3 } },
-      { label: { fr: 'Négocier un traité', en: 'Negotiate a treaty' }, text: { fr: "On a signé un traité de paix sur une serviette de l'aire d'autoroute : je garde la fenêtre, {a.first} garde le doudou. La paix a tenu 26 minutes. Un record.", en: "We signed a peace treaty on a rest-stop napkin: I keep the window, {a.first} keeps the stuffed animal. The peace lasted 26 minutes. A record." }, fx: { rel: 8, smarts: 2, happy: 3 }, mood: 'proud' },
-      { label: { fr: 'Faire semblant de dormir', en: 'Fake sleep' }, text: { fr: "J'ai fait semblant de dormir. {a.first} s'est endormi{a:|e} pour de vrai sur mon épaule et a bavé. Je n'ai pas bougé pendant trois heures. C'était presque mignon.", en: "I pretended to sleep. {a.first} actually fell asleep on my shoulder and drooled. I didn't move for three hours. It was almost cute." }, fx: { rel: 10, happy: 2 }, mood: 'sleepy' },
-    ],
-  },
-
   // ───────────────────────────── parties, anxiety, karaoke ─────────────────────────────
   {
     id: 'so_party_nobody',
@@ -1530,7 +1503,7 @@ export const socialEvents: EventDef[] = [
           { w: 1, text: { fr: "J'ai rejoint une conversation en hochant la tête. C'était un enterrement de vie de célibataire. Dans le mauvais appartement. Je suis reparti{|e} avec un diadème.", en: "I joined a conversation, nodding along. It was a bachelorette party. In the wrong apartment. I left wearing a tiara." }, fx: { happy: 2, stress: 3 }, mood: 'shock' },
         ],
       },
-      { label: { fr: 'Partir à la française', en: 'Irish goodbye' }, text: { fr: "Je suis parti{|e} sans dire au revoir au bout de quatorze minutes. Dans l'escalier, j'ai croisé l'ami qui m'avait invité{|e}. On s'est regardés. J'ai continué à descendre.", en: "I left without saying goodbye after fourteen minutes. On the stairs, I passed the friend who'd invited me. We looked at each other. I kept walking down." }, fx: { happy: 1, stress: -2 } },
+      { label: { fr: "Filer à l'anglaise", en: 'Irish goodbye' }, text: { fr: "Je suis parti{|e} sans dire au revoir au bout de quatorze minutes. Dans l'escalier, j'ai croisé l'ami qui m'avait invité{|e}. On s'est regardés. J'ai continué à descendre.", en: "I left without saying goodbye after fourteen minutes. On the stairs, I passed the friend who'd invited me. We looked at each other. I kept walking down." }, fx: { happy: 1, stress: -2 } },
     ],
   },
   {
@@ -1633,7 +1606,7 @@ export const socialEvents: EventDef[] = [
     id: 'so_reunion10',
     icon: '🎓',
     cat: 'social',
-    rating: 0,
+    rating: 1,
     scene: { place: 'school', mood: 'neutral' },
     when: { age: [27, 30] },
     weight: 6,
@@ -1650,8 +1623,8 @@ export const socialEvents: EventDef[] = [
     },
     choices: [
       { label: { fr: 'Mentir sur ma vie', en: 'Lie about my life' }, text: { fr: "J'ai prétendu être chirurgien{|ne} cardiaque et propriétaire d'un vignoble. Ça a impressionné tout le monde. Puis une ancienne camarade m'a demandé de regarder son grain de beauté. J'ai dit « c'est bénin ». J'espère.", en: "I claimed to be a heart surgeon who owns a vineyard. Everyone was impressed. Then an old classmate asked me to look at her mole. I said 'it's benign'. I hope." }, fx: { happy: 6, karma: -3, flag: 'so_reunion_lied' }, mood: 'proud' },
-      { label: { fr: 'Être honnête', en: 'Be honest' }, text: { fr: "J'ai été honnête sur ma vie, mes galères et mes petits succès. Tout le monde a été honnête après moi. On a fini par pleurer ensemble dans les gradins. Thérapie de groupe gratuite.", en: "I was honest about my life, my struggles and my small wins. Everyone got honest after me. We ended up crying together in the bleachers. Free group therapy." }, fx: { happy: 8, karma: 4, stress: -5 }, mood: 'happy' },
-      { label: { fr: 'Retrouver mon crush', en: 'Find my old crush' }, text: { fr: "J'ai retrouvé mon crush du lycée. Il/elle a perdu ses cheveux, gagné trois enfants et parle uniquement de son barbecue à gaz. Le fantasme est mort. Je me sens libre.", en: "I found my high school crush. They've lost their hair, gained three kids and talk exclusively about their gas grill. The fantasy is dead. I feel free." }, fx: { happy: 4, stress: -3 }, mood: 'neutral' },
+      { label: { fr: 'Être honnête', en: 'Be honest' }, text: { fr: "J'ai été honnête sur ma vie, mes galères et mes petits succès. Tout le monde a été honnête après moi. On a fini par pleurer ensemble dans les gradins, bourrés au punch tiède. Thérapie de groupe gratuite.", en: "I was honest about my life, my struggles and my small wins. Everyone got honest after me. We ended up crying together in the bleachers, wasted on lukewarm punch. Free group therapy." }, fx: { happy: 8, karma: 4, stress: -5 }, mood: 'happy' },
+      { label: { fr: 'Retrouver mon crush', en: 'Find my old crush' }, text: { fr: "J'ai retrouvé mon crush du lycée. Mon crush a perdu ses cheveux, gagné trois enfants et parle uniquement de son barbecue à gaz. Le fantasme est mort. Je me sens libre.", en: "I found my high school crush. They've lost their hair, gained three kids and talk exclusively about their gas grill. The fantasy is dead. I feel free." }, fx: { happy: 4, stress: -3 }, mood: 'neutral' },
     ],
   },
   {
@@ -1680,7 +1653,7 @@ export const socialEvents: EventDef[] = [
         if: { flag: 'so_reunion_lied' },
         out: [
           { w: 1, text: { fr: "Dix ans plus tard, je suis toujours « chirurgien{|ne} cardiaque ». Kévin s'est effondré, crise cardiaque en plein slow. Tout le monde m'a regardé{|e}. J'ai fait un massage cardiaque en chantant « Stayin' Alive ». Il a survécu. Je suis un héros. Et un imposteur.", en: "Ten years on, I'm still 'a heart surgeon'. Kevin collapsed, heart attack mid-slow dance. Everyone looked at me. I did CPR singing 'Stayin' Alive'. He survived. I'm a hero. And a fraud." }, fx: { happy: 10, karma: 5, fame: 2, unflag: 'so_reunion_lied' }, mood: 'proud' },
-          { w: 1, text: { fr: "Kévin a fait un malaise et tout le monde s'est tourné vers « le/la chirurgien{|ne} ». J'ai paniqué et tapé sur sa poitrine avec une chaussure. Une vraie infirmière l'a sauvé. Ma réputation est morte, Kévin non.", en: "Kevin collapsed and everyone turned to 'the surgeon'. I panicked and hit his chest with a shoe. A real nurse saved him. My reputation died; Kevin didn't." }, fx: { happy: -12, fame: -2, unflag: 'so_reunion_lied' }, mood: 'shock' },
+          { w: 1, text: { fr: "Kévin a fait un malaise et tout le monde s'est tourné vers « {le chirurgien|la chirurgienne} ». J'ai paniqué et tapé sur sa poitrine avec une chaussure. Une vraie infirmière l'a sauvé. Ma réputation est morte, Kévin non.", en: "Kevin collapsed and everyone turned to 'the surgeon'. I panicked and hit his chest with a shoe. A real nurse saved him. My reputation died; Kevin didn't." }, fx: { happy: -12, fame: -2, unflag: 'so_reunion_lied' }, mood: 'shock' },
         ],
       },
       { label: { fr: "Boire jusqu'à l'oubli", en: 'Drink until oblivion' }, text: { fr: "J'ai bu tout l'open bar. Je me suis réveillé{|e} dans le vestiaire des filles, en survêtement de sport de 2004, avec Kévin qui me tenait les cheveux pendant que je vomissais. On est potes maintenant.", en: "I drank the whole open bar. I woke up in the girls' locker room, in a 2004 gym tracksuit, with Kevin holding my hair while I puked. We're friends now." }, fx: { happy: 5, health: -6, addiction: ['alcohol', 6] }, mood: 'sick' },
@@ -1702,7 +1675,7 @@ export const socialEvents: EventDef[] = [
         "{a.first} t'a confié son gamin « juste deux heures ». Le petit monstre a peint le chat, avalé tes clés, et il te fixe en tenant un couteau à beurre. Il chuchote « encore ». Tu ne sais pas encore quoi.",
       ],
       en: [
-        "Dinner at {a.first}'s. {a.his} 5-year-old, Brayden, just bit your calf till it bled, licked your fork and pooped in your shoe. {a.first} smiles: 'He's expressing his feelings. We never say no in this house.'",
+        "Dinner at {a.first}'s. {a:His|Her} 5-year-old, Brayden, just bit your calf till it bled, licked your fork and pooped in your shoe. {a.first} smiles: 'He's expressing his feelings. We never say no in this house.'",
         "{a.first} left you {a.his} kid 'just for two hours'. The little monster painted the cat, swallowed your keys, and is staring at you holding a butter knife. He whispers 'again'. You don't know what yet.",
       ],
     },

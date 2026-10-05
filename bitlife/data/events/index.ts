@@ -13,8 +13,12 @@ import { loveEvents } from './love.ts';
 import { workEvents } from './work.ts';
 import { lifeEvents } from './life.ts';
 import { schoolEvents } from './school.ts';
+import { careerEvents } from './careers.ts';
+import { darkEvents } from './dark.ts';
+import { socialEvents } from './social.ts';
+import { worldEvents2 } from './world.ts';
 
 export const events: EventDef[] = [
   ...milestoneEvents, ...childhoodEvents, ...teenEvents, ...adultEvents, ...systemEvents, ...moneyEvents,
-  ...familyEvents, ...weirdEvents, ...healthEvents, ...crimeEvents, ...loveEvents, ...workEvents, ...lifeEvents, ...schoolEvents,
+  ...familyEvents, ...weirdEvents, ...healthEvents, ...crimeEvents, ...loveEvents, ...workEvents, ...lifeEvents, ...schoolEvents, ...careerEvents, ...darkEvents, ...socialEvents, ...worldEvents2,
 ];

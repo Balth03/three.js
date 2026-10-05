@@ -11,6 +11,7 @@ import { VerticalTiltShiftShader } from 'three/examples/jsm/shaders/VerticalTilt
 import type { Mood, Place } from '@bl/sim';
 import { Avatar, type AvatarSpec } from './avatar.ts';
 import { buildDiorama, type Diorama } from './dioramas.ts';
+import { Pet } from './pet.ts';
 import { ease, emojiTexture, G } from './kit.ts';
 
 export type Quality = 'low' | 'medium' | 'high';
@@ -22,6 +23,7 @@ export interface StageView {
   others: (AvatarSpec & { key: string })[];
   tombLines?: string[];
   dead?: boolean;
+  pets?: { key: string; species: string; seed: number }[];
 }
 
 // Age themes (sky top, sky bottom) — see DESIGN.md §3.1
@@ -71,6 +73,7 @@ export class Stage {
   private entering: { d: Diorama; t: number } | null = null;
   private cache = new Map<Place, Diorama>();
   private chars = new Map<string, Placed>();
+  private pets = new Map<string, Pet>();
   private player: Avatar | null = null;
   private snow: THREE.Points;
   private season = 0.9;
@@ -254,8 +257,32 @@ export class Stage {
         if (view.dead) p.avatar.root.position.y = 0.6;
       }
     });
+    // Pets follow the player
+    const pk = new Set((view.pets ?? []).map((p) => p.key));
+    for (const [k, p] of this.pets) if (!pk.has(k)) { p.dispose(); this.pets.delete(k); }
+    (view.pets ?? []).slice(0, 2).forEach((pv, i) => {
+      let p = this.pets.get(pv.key);
+      if (!p || p.species !== pv.species) { p?.dispose(); p = new Pet(pv.species, pv.seed); this.pets.set(pv.key, p); }
+      d.root.add(p.root);
+      const sp = d.spots[0];
+      p.root.position.set(sp.x + (i ? -0.9 : 0.9), 0, sp.z + 0.75);
+    });
     const ps = d.spots[0];
     this.targetGoal.set(ps.x * 0.5, 1.4, ps.z * 0.4 + 0.3);
+  }
+
+  /** Short staged moments for big life events. */
+  cinematic(kind: 'birth' | 'wedding' | 'graduation' | 'prison' | 'death' | 'baby' | 'promotion' | 'release' | 'jackpot') {
+    const fxMap: Record<string, string[]> = { birth: ['confetti', 'hearts'], wedding: ['hearts', 'confetti'], graduation: ['confetti'], prison: ['police'], death: ['ghost'], baby: ['hearts'], promotion: ['confetti', 'money'], release: ['confetti'], jackpot: ['money', 'confetti'] };
+    this.fx(fxMap[kind] ?? []);
+    if (kind === 'death' || kind === 'prison') { this.player?.setMood(kind === 'death' ? 'sleepy' : 'cry'); }
+    else this.player?.play('celebrate');
+    if (this.reducedMotion) return;
+    // camera swoop: zoom in then ease back out
+    this.distGoal = kind === 'death' ? 16 : 14;
+    this.yawGoal += kind === 'death' ? 0.6 : 0.35;
+    this.pitchGoal = kind === 'birth' ? 0.55 : 0.32;
+    setTimeout(() => { this.distGoal = this.focus ? 19 : 27; this.pitchGoal = 0.36; }, 2200);
   }
 
   setMood(m: Mood, all = false) {
@@ -416,6 +443,7 @@ export class Stage {
     this.camera.lookAt(tgt);
     // characters
     for (const p of this.chars.values()) p.avatar.update(dt, t);
+    for (const p of this.pets.values()) p.update(dt, t);
     this.updateFx(dt);
     if (this.shake > 0) {
       this.shake = Math.max(0, this.shake - dt);
