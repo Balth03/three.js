@@ -208,7 +208,7 @@ export function BeerPong({ onDone }: GameProps) {
       if (st.endT > 1.6) {
         st.ended = true;
         const acc = st.thrown ? Math.round((st.sunk / st.thrown) * 100) : 0;
-        const sc = st.sunk >= 10 ? 1 : Math.min(1, (st.sunk + st.bounceSinks * 0.5 + st.swishes * 0.2) / 7.5);
+        const sc = st.sunk >= 10 ? 1 : Math.min(1, (st.sunk + st.bounceSinks * 0.3 + st.swishes * 0.1) / 8.5);
         g.end(sc, [
           [tr('Gobelets', 'Cups'), `🍺 ${st.sunk} / 10`],
           [tr('Précision', 'Accuracy'), `${acc}%`],
