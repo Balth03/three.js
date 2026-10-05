@@ -414,6 +414,8 @@ function onDeath() {
   sfx.death();
   stage?.cinematic('death');
   const l = life.value;
+  // Trash mode: violent / absurd deaths go out with a splash.
+  if (l && l.rating === 2 && !/vieillesse|santé|sommeil|old age|poor health|sleep/i.test(l.death?.cause.fr ?? '')) setTimeout(() => stage?.fx(['gore']), 250);
   if (l?.mode === 'hardcore') deleteSlot(AUTOSAVE);
   if (l) {
     checkAch();
