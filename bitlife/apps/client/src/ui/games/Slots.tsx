@@ -92,7 +92,7 @@ function sprite(i: number): HTMLCanvasElement | null {
   } catch { return null; }
 }
 
-export function Slots({ onDone, l }: GameProps) {
+export function Slots({ onDone, l, variant }: GameProps) {
   const g = useGame({ onDone });
   const fmtRef = useRef<((v: number) => string) | null>(null);
   if (!fmtRef.current) fmtRef.current = moneyFmt(l);
@@ -131,6 +131,8 @@ export function Slots({ onDone, l }: GameProps) {
       const t = a === WILD ? b : a;
       if ((a === b || a === WILD || b === WILD) && t >= BELL) tease = { sym: t, row: L[2], line: li };
     });
+    // 'lucky' variant (story hook / testing): the first spin is a guaranteed 7·7·7 on the middle line
+    if (variant === 'lucky' && st.spinsDone === 1) st.reels.forEach((r, i) => { const j = r.strip.indexOf(SEVEN); if (j >= 0) stops[i] = mod(j - 1, r.strip.length); });
     const tz = tease as { sym: number; row: number; line: number } | null;
     if (tz && Math.random() < 0.5) {
       const c = sym(2, tz.row);
@@ -317,7 +319,7 @@ export function Slots({ onDone, l }: GameProps) {
     const leverW = narrow ? 44 * k : 90 * k;
     const cabH = h * 0.96;
     const cabW = Math.min(narrow ? w - leverW - 16 : w * 0.56, cabH * 0.95);
-    const showTable = !narrow && (w - cabW) / 2 - leverW > 170 * k;
+    const showTable = !narrow && (w - cabW) / 2 - leverW * 0.3 > 190 * k;
     const cx0 = narrow ? (w - leverW - cabW) / 2 + 4 : (w - cabW) / 2 + (showTable ? 0 : -leverW * 0.3);
     const cab = { x: cx0, y: h * 0.02, w: cabW, h: cabH };
     // cabinet body
@@ -331,7 +333,7 @@ export function Slots({ onDone, l }: GameProps) {
     ctx.save(); glow(ctx, PINK, 18); ctx.strokeStyle = `rgba(255,45,149,${0.7 + 0.3 * Math.sin(tAll * 3)})`; ctx.lineWidth = 2; roundRect(ctx, cab.x + 9 * k, cab.y + 9 * k, cab.w - 18 * k, cab.h - 18 * k, 20 * k); ctx.stroke(); ctx.restore();
 
     // marquee
-    const mq = { x: cab.x + 22 * k, y: cab.y + 18 * k, w: cab.w - 44 * k, h: cab.h * 0.15 };
+    const mq = { x: cab.x + 22 * k, y: cab.y + 18 * k, w: cab.w - 44 * k, h: cab.h * 0.135 };
     const mg = ctx.createLinearGradient(0, mq.y, 0, mq.y + mq.h);
     mg.addColorStop(0, '#12000e'); mg.addColorStop(1, '#2b0322');
     ctx.fillStyle = mg; roundRect(ctx, mq.x, mq.y, mq.w, mq.h, 14 * k); ctx.fill();
@@ -371,7 +373,7 @@ export function Slots({ onDone, l }: GameProps) {
     }
 
     // reel window
-    const win = { x: cab.x + 30 * k, y: mq.y + mq.h + 16 * k, w: cab.w - 60 * k, h: cab.h * 0.44 };
+    const win = { x: cab.x + 30 * k, y: mq.y + mq.h + 16 * k, w: cab.w - 60 * k, h: cab.h * 0.41 };
     // chrome bezel
     ctx.save(); ctx.fillStyle = chrome(ctx, win.y - 8 * k, win.y + win.h + 8 * k); roundRect(ctx, win.x - 8 * k, win.y - 8 * k, win.w + 16 * k, win.h + 16 * k, 16 * k); ctx.fill(); ctx.restore();
     ctx.fillStyle = '#0a0208'; roundRect(ctx, win.x, win.y, win.w, win.h, 10 * k); ctx.fill();
@@ -438,8 +440,9 @@ export function Slots({ onDone, l }: GameProps) {
     LINES.forEach((L, li) => {
       const lit = st.mode === 'pay' && st.wins.some((wv) => wv.line === li);
       const yl = cy + R * Math.sin((L[0] - 1) * 0.5), yr = cy + R * Math.sin((L[2] - 1) * 0.5);
-      const off = li >= 3 ? (li === 3 ? -9 : 9) * k : 0;
-      for (const [x, y] of [[win.x + lampW / 2, yl + off], [win.x + win.w - lampW / 2, yr + off]]) {
+      const offL = li === 1 || li === 2 ? (li === 1 ? -1 : 1) * cellH * 0.18 : li >= 3 ? (L[0] === 0 ? 1 : -1) * cellH * 0.18 : 0;
+      const offR = li === 1 || li === 2 ? (li === 1 ? -1 : 1) * cellH * 0.18 : li >= 3 ? (L[2] === 0 ? 1 : -1) * cellH * 0.18 : 0;
+      for (const [x, y] of [[win.x + lampW / 2, yl + offL], [win.x + win.w - lampW / 2, yr + offR]]) {
         ctx.save(); if (lit) glow(ctx, LINE_COL[li], 16);
         ctx.fillStyle = lit ? LINE_COL[li] : `${LINE_COL[li]}55`; ctx.beginPath(); ctx.arc(x, y, 8 * k, 0, 7); ctx.fill();
         ctx.fillStyle = lit ? '#000' : '#fff'; ctx.font = F(9, 900); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(String(li + 1), x, y + 0.5);
@@ -582,7 +585,7 @@ export function Slots({ onDone, l }: GameProps) {
 
     // paytable
     if (showTable) {
-      const px = 16 * k, pw = Math.min(210 * k, cab.x - leverW * 0.2 - 32 * k);
+      const pw = Math.min(210 * k, cab.x - 28 * k), px = Math.max(12 * k, cab.x - pw - 22 * k);
       const ph = Math.min(h * 0.86, 30 * k * (SYMS.length + 2) + 30 * k);
       const py = (h - ph) / 2;
       ctx.save(); ctx.fillStyle = 'rgba(15,3,14,.78)'; roundRect(ctx, px, py, pw, ph, 14 * k); ctx.fill();

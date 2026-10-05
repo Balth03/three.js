@@ -161,13 +161,13 @@ export const kids2Events: EventDef[] = [
         "{a.my} m'a raconté pour la [[douzième|quarantième|centième]] fois l'histoire de la fois où {a:il|elle} a croisé {w:celeb} {w:at_place}. Les détails changent à chaque fois.",
         "{a.my} m'a expliqué qu'à son époque on allait à l'école à pied, dans la neige, en montée, dans les deux sens. Je n'ai pas osé poser de questions sur la géographie.",
         "{a.my} m'a montré une vieille photo où {a.he} pose, tout{a:|e} jeune, devant {w:vehicle}. « J'étais {a:beau|belle}, hein ? » J'ai dit oui. C'était un mensonge charitable.",
-        "{a.first} a passé l'après-midi à me raconter sa vie. Je n'ai pas tout compris, mais j'ai retenu qu'il ne faut jamais faire confiance à {w:animal}.",
+        "{a.first} a passé l'après-midi à me raconter sa vie. Je n'ai pas tout compris, mais j'ai retenu que {w:animal}, c'est sournois, et qu'il ne faut jamais lui faire confiance.",
       ],
       en: [
         "{a.my} told me for the [[twelfth|fortieth|hundredth]] time about the day {a.he} bumped into {w:celeb} {w:at_place}. The details change every time.",
         "{a.my} explained that back in the day they walked to school, in the snow, uphill, both ways. I didn't dare ask about the geography.",
         "{a.my} showed me an old photo of {a.him}, very young, posing in front of {w:vehicle}. “Wasn't I gorgeous?” I said yes. It was a charitable lie.",
-        "{a.first} spent the afternoon telling me their life story. I didn't follow all of it, but I learned you should never trust {w:animal}.",
+        "{a.first} spent the afternoon telling me their life story. I didn't follow all of it, but I learned that {w:animal} is sneaky and must never be trusted.",
       ],
     },
     fx: { happy: 2, smarts: 2, rel: 5 },
@@ -444,7 +444,7 @@ export const kids2Events: EventDef[] = [
     text: {
       fr: [
         "Atelier bricolage : tu as fabriqué un collier en nouilles peintes pour {a.rel}. Il pèse [[300 grammes|un kilo|presque rien]] et il perd déjà des pâtes.",
-        "Pour la fête des parents, la maîtresse t'a fait coller des coquillettes sur un pot de yaourt. Le résultat ressemble vaguement à {w:animal}. C'est pour {a.rel}.",
+        "Pour la fête des parents, la maîtresse t'a fait coller des coquillettes sur un pot de yaourt. Le résultat évoque vaguement {w:animal}. C'est pour {a.rel}.",
         "Tu as passé deux heures sur un cadeau pour {a.rel} : un collier de macaronis, de la paillette partout et un peu de colle dans tes cheveux.",
         "Tu rentres de l'école avec un collier de nouilles encore humide de peinture. {a.rel} t'attend à la grille avec {w:object} dans les bras.",
       ],
@@ -459,14 +459,14 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Le lui offrir fièrement', en: 'Give it proudly' },
         out: [
-          { w: 3, text: { fr: ["{a.my} l'a porté toute la journée, même pour aller faire les courses. Une coquillette est tombée dans le chariot. C'est devenu une relique.", "{a.my} a versé une larme et l'a accroché au rétroviseur de la voiture. Il y est toujours. Il sent le pâté."], en: ["{a.my} wore it all day, even to the grocery store. A noodle fell into the cart. It became a holy relic.", "{a.my} shed a tear and hung it from the car mirror. It's still there. It smells like old soup."] }, fx: { happy: 6, rel: 10 } },
+          { w: 3, text: { fr: ["{a.my} l'a porté toute la journée, même pour aller faire les courses. Une coquillette est tombée dans le chariot, sur {w:food}. C'est devenu une relique.", "{a.my} a versé une larme et l'a accroché au rétroviseur de la voiture. Il y est toujours. Il dégage maintenant {w:smell}."], en: ["{a.my} wore it all day, even to the grocery store. A noodle fell into the cart, onto {w:food}. It became a holy relic.", "{a.my} shed a tear and hung it from the car mirror. It's still there. It now gives off {w:smell}."] }, fx: { happy: 6, rel: 10 } },
           { w: 1, text: { fr: ["{a.my} a dit « oh, merci… » avec la voix qu'on prend pour les cadeaux de Noël de tante Odile. J'ai tout compris.", "Le chien a mangé le collier pendant que {a.my} me faisait un câlin. Moment d'émotion, puis de panique."], en: ["{a.my} said “oh, thank you…” in the voice used for Aunt Odile's Christmas gifts. I got the message.", "The dog ate the necklace while {a.my} was hugging me. A moment of emotion, then panic."] }, fx: { happy: -2, rel: 5 } },
         ],
       },
       {
         label: { fr: 'Le manger sur le chemin', en: 'Eat it on the way home' },
         out: [
-          { w: 2, text: { fr: ["J'ai mangé le collier dans la voiture. Les pâtes crues à la gouache, ça croque. J'ai eu le ventre qui gargouille jusqu'au soir.", "J'ai grignoté le cadeau coquillette par coquillette. Arrivé{|e} à la maison, il restait la ficelle. J'ai offert la ficelle."], en: ["I ate the necklace in the car. Raw pasta with poster paint is crunchy. My stomach gurgled until bedtime.", "I nibbled the present noodle by noodle. By the time we got home only the string was left. I gave them the string."] }, fx: { happy: 3, health: -3, rel: -5 } },
+          { w: 2, text: { fr: ["J'ai mangé le collier dans la voiture. Les pâtes crues à la gouache, ça croque. Mon ventre a fait {w:sound} jusqu'au soir.", "J'ai grignoté le cadeau coquillette par coquillette. Arrivé{|e} à la maison, il restait la ficelle. J'ai offert la ficelle."], en: ["I ate the necklace in the car. Raw pasta with poster paint is crunchy. My stomach made {w:sound} until bedtime.", "I nibbled the present noodle by noodle. By the time we got home only the string was left. I gave them the string."] }, fx: { happy: 3, health: -3, rel: -5 } },
           { w: 1, text: { fr: ["J'ai mangé deux nouilles et j'ai eu la langue bleue pendant trois jours. À l'école, on m'a cru{|e} malade. J'ai profité de la situation.", "Une nouille s'est coincée dans ma gorge. {a.my} m'a tapé dans le dos, la nouille a volé à travers la voiture. Le reste du collier a été confisqué."], en: ["I ate two noodles and my tongue was blue for three days. At school they thought I was sick. I milked it.", "A noodle got stuck in my throat. {a.my} slapped my back and the noodle flew across the car. The rest of the necklace was confiscated."] }, fx: { happy: 1, health: -2 } },
         ],
       },
@@ -512,7 +512,7 @@ export const kids2Events: EventDef[] = [
         label: { fr: 'Fouiller toute la maison', en: 'Search the whole house' },
         out: [
           { w: 2, text: { fr: ["J'ai retrouvé Nounours dans le panier à linge, sous {w:object}. Il a fait un tour de machine à 60 degrés. Il est plus propre et plus petit.", "Nounours était dans le frigo, entre le beurre et {w:food}. Personne ne sait comment. Il a eu froid, mais il est vivant."], en: ["I found Teddy in the laundry basket, under {w:object}. He'd been through a hot wash. He's cleaner and smaller now.", "Teddy was in the fridge, between the butter and {w:food}. Nobody knows how. He was cold, but alive."] }, fx: { happy: 4, discipline: 2 } },
-          { w: 1, text: { fr: ["Introuvable. Mes parents ont acheté une peluche « presque pareille » à la station-service. La maîtresse a plissé les yeux mais n'a rien dit.", "On ne l'a jamais retrouvé. Je suis officiellement l'enfant qui a perdu Nounours. Les petits de maternelle me montrent du doigt."], en: ["Nowhere to be found. My parents bought an “almost identical” plushie at a gas station. The teacher squinted but said nothing.", "We never found him. I am officially the kid who lost Teddy. The little ones point at me."] }, fx: { happy: -5, karma: -1 } },
+          { w: 1, text: { fr: ["Introuvable. Mes parents ont acheté une peluche « presque pareille » {w:at_place}. La maîtresse a plissé les yeux mais n'a rien dit.", "On ne l'a jamais retrouvé. Je suis officiellement l'enfant qui a perdu Nounours. Les petits de maternelle me montrent du doigt."], en: ["Nowhere to be found. My parents bought an “almost identical” plushie {w:at_place}. The teacher squinted but said nothing.", "We never found him. I am officially the kid who lost Teddy. The little ones point at me."] }, fx: { happy: -5, karma: -1 } },
         ],
       },
       {
@@ -551,13 +551,13 @@ export const kids2Events: EventDef[] = [
         label: { fr: 'Lancer du sable', en: 'Throw sand' },
         out: [
           { w: 2, text: { fr: ["J'ai lancé une poignée de sable. {a.first} a riposté. On a fini avec du sable dans les oreilles, les narines et la culotte. Match nul, punition pour deux.", "J'ai visé les pieds, j'ai touché la figure. {a.first} a pleuré, la maîtresse m'a mis{|e} au coin à côté de la poubelle. J'ai du sable dans des endroits secrets."], en: ["I threw a handful of sand. {a.first} retaliated. We ended up with sand in our ears, nostrils and underpants. Draw, punishment for both.", "I aimed for the feet and hit the face. {a.first} cried, the teacher put me in the corner next to the trash can. I have sand in secret places."] }, fx: { happy: 2, discipline: -3, rel: -10 } },
-          { w: 1, text: { fr: ["Le vent a tourné. Tout le sable m'est revenu en pleine bouche. {a.first} a ri si fort qu'{a:il|elle} a fait pipi dans son pantalon. On est quittes.", "J'ai lancé du sable, {a.first} a lancé un seau entier. J'ai perdu la guerre mais j'ai gagné un surnom : « le bac à sable »."], en: ["The wind turned. All the sand came straight back into my mouth. {a.first} laughed so hard they peed their pants. We're even.", "I threw sand, {a.first} threw a whole bucket. I lost the war but won a nickname: “Sandbox”."] }, fx: { happy: -2, health: -2, rel: -5 } },
+          { w: 1, text: { fr: ["Le vent a tourné. Tout le sable m'est revenu en pleine bouche. {a.first} a ri si fort qu'{a:il|elle} a fait pipi dans son pantalon. On est quittes.", "J'ai lancé du sable, {a.first} a lancé un seau entier. J'ai perdu la guerre mais j'ai gagné un surnom : « {w:nickname} »."], en: ["The wind turned. All the sand came straight back into my mouth. {a.first} laughed so hard they peed their pants. We're even.", "I threw sand, {a.first} threw a whole bucket. I lost the war but won a nickname: “{w:nickname}”."] }, fx: { happy: -2, health: -2, rel: -5 } },
         ],
       },
       {
         label: { fr: 'Négocier un traité', en: 'Negotiate a treaty' },
         out: [
-          { w: 3, odds: { smarts: 1 }, text: { fr: ["On a signé un traité de paix avec un bâton dans le sable : le coin de la pelle rouge le matin pour {a.first}, l'après-midi pour moi. L'ONU serait fière.", "J'ai proposé de construire un château commun. Il est devenu le plus grand château de l'histoire de la maternelle. {a.first} est mon allié{a:|e} maintenant."], en: ["We signed a peace treaty with a stick in the sand: red-shovel corner in the morning for {a.first}, afternoons for me. The UN would be proud.", "I suggested building a joint castle. It became the biggest castle in preschool history. {a.first} is my ally now."] }, fx: { happy: 4, smarts: 2, rel: 15, actorRole: 'friend' } },
+          { w: 3, odds: { smarts: 1 }, text: { fr: ["On a signé un traité de paix avec un bâton dans le sable : le coin de la pelle rouge le matin pour {a.first}, l'après-midi pour moi. L'ONU serait fière.", "J'ai proposé de construire un château commun. Il est devenu le plus grand château de l'histoire de la maternelle, avec {w:object} en guise de donjon. {a.first} est mon allié{a:|e} maintenant."], en: ["We signed a peace treaty with a stick in the sand: red-shovel corner in the morning for {a.first}, afternoons for me. The UN would be proud.", "I suggested building a joint castle. It became the biggest castle in preschool history, with {w:object} as the keep. {a.first} is my ally now."] }, fx: { happy: 4, smarts: 2, rel: 15, actorRole: 'friend' } },
           { w: 1, text: { fr: ["{a.first} a fait semblant d'accepter, puis a tout piétiné pendant que j'allais aux toilettes. Je n'ai plus confiance en la diplomatie.", "La négociation a duré toute la récré. Quand on s'est mis d'accord, la cloche a sonné. Personne n'a construit quoi que ce soit."], en: ["{a.first} pretended to agree, then trampled everything while I went to the bathroom. I no longer believe in diplomacy.", "The negotiations lasted all recess. When we finally agreed, the bell rang. Nobody built anything."] }, fx: { happy: -3, rel: -5 } },
         ],
       },
@@ -595,8 +595,8 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Costume fait maison', en: 'Homemade costume' },
         out: [
-          { w: 2, text: { fr: ["{a.my} a passé la nuit à bricoler avec du carton et du scotch. Le résultat est indescriptible. Le jury du carnaval m'a donné un prix « spécial ».", "Mon costume en carton a pris l'eau sous la pluie. J'ai défilé en bouillie. Les photos circulent encore dans la famille."], en: ["{a.my} spent the night crafting with cardboard and tape. The result is indescribable. The carnival jury gave me a “special” prize.", "My cardboard costume got soaked in the rain. I paraded as pulp. The photos still circulate in the family."] }, fx: { happy: 5, rel: 10 } },
-          { w: 1, text: { fr: ["Personne n'a reconnu ce que j'étais. Un parent m'a demandé si j'étais une poubelle. J'étais un château fort.", "Le costume était si grand que je suis resté{|e} coincé{|e} dans la porte de la classe. Les pompiers… non, la gardienne m'a libéré{|e}."], en: ["Nobody could tell what I was. A parent asked if I was a trash can. I was a castle.", "The costume was so big I got stuck in the classroom doorway. The fire brigade… no, the janitor freed me."] }, fx: { happy: -2, rel: 5 } },
+          { w: 2, text: { fr: ["{a.my} a passé la nuit à bricoler avec du carton et du scotch. Le résultat évoque vaguement {w:vehicle}. Le jury du carnaval m'a donné un prix « spécial ».", "Mon costume en carton a pris l'eau sous la pluie. J'ai défilé en bouillie. Les photos circulent encore dans la famille."], en: ["{a.my} spent the night crafting with cardboard and tape. The result vaguely resembles {w:vehicle}. The carnival jury gave me a “special” prize.", "My cardboard costume got soaked in the rain. I paraded as pulp. The photos still circulate in the family."] }, fx: { happy: 5, rel: 10 } },
+          { w: 1, text: { fr: ["Personne n'a reconnu ce que j'étais. Un parent m'a demandé si j'étais {w:object}. J'étais un château fort.", "Le costume était si grand que je suis resté{|e} coincé{|e} dans la porte de la classe. Les pompiers… non, la gardienne m'a libéré{|e}."], en: ["Nobody could tell what I was. A parent asked if I was {w:object}. I was a castle.", "The costume was so big I got stuck in the classroom doorway. The fire brigade… no, the janitor freed me."] }, fx: { happy: -2, rel: 5 } },
         ],
       },
       {
@@ -609,7 +609,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Y aller sans costume', en: 'Go without a costume' },
         out: [
-          { w: 1, text: { fr: ["Je suis venu{|e} en habits normaux et j'ai dit que j'étais déguisé{|e} en « enfant normal ». La maîtresse a trouvé ça très conceptuel.", "J'étais le seul enfant sans déguisement. Une dame m'a donné un nez de clown par pitié. Je l'ai gardé toute la journée."], en: ["I came in regular clothes and said I was dressed as “a normal kid”. The teacher found it very conceptual.", "I was the only kid without a costume. A lady gave me a clown nose out of pity. I wore it all day."] }, fx: { happy: -1, smarts: 2 } },
+          { w: 1, text: { fr: ["Je suis venu{|e} en habits normaux et j'ai dit que j'étais déguisé{|e} en « enfant normal ». La maîtresse a trouvé ça très conceptuel.", "J'étais le seul enfant sans déguisement. Une dame m'a donné {w:object} par pitié, « comme accessoire ». J'ai fait toute la journée avec."], en: ["I came in regular clothes and said I was dressed as “a normal kid”. The teacher found it very conceptual.", "I was the only kid without a costume. A lady gave me {w:object} out of pity, “as a prop”. I carried it all day."] }, fx: { happy: -1, smarts: 2 } },
         ],
       },
     ],
@@ -684,7 +684,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Réviser sérieusement', en: 'Study seriously' },
         out: [
-          { w: 3, odds: { smarts: 1, discipline: 1 }, text: { fr: ["On a révisé jusqu'à 21 h. Le lendemain, j'ai récité la table de 7 sans une erreur. La maîtresse m'a donné un bon point. {a.my} a dormi comme une pierre.", "J'ai fini par comprendre. 7 × 8 = 56. Je l'ai répété toute la soirée, même sous la douche. Ma famille me déteste un peu."], en: ["We studied until 9 p.m. The next day I recited the 7s perfectly. The teacher gave me a gold star. {a.my} slept like a rock.", "I finally got it. 7 × 8 = 56. I repeated it all evening, even in the shower. My family hates me a little."] }, fx: { smarts: 4, grade: 5, discipline: 3, rel: 5 } },
+          { w: 3, odds: { smarts: 1, discipline: 1 }, text: { fr: ["On a révisé jusqu'à 21 h. Le lendemain, j'ai récité la table de 7 sans une erreur. La maîtresse m'a donné un bon point. {a.my} a dormi comme une pierre.", "J'ai fini par comprendre. 7 × 8 = 56. Je l'ai répété toute la soirée, même sous la douche et {w:at_place}. Ma famille me déteste un peu."], en: ["We studied until 9 p.m. The next day I recited the 7s perfectly. The teacher gave me a gold star. {a.my} slept like a rock.", "I finally got it. 7 × 8 = 56. I repeated it all evening, even in the shower and {w:at_place}. My family hates me a little."] }, fx: { smarts: 4, grade: 5, discipline: 3, rel: 5 } },
           { w: 1, text: { fr: ["On a révisé trois heures. Le lendemain, j'ai tout oublié en voyant la tête de la maîtresse. Mon cerveau a fait {w:sound}.", "J'ai révisé, mais la maîtresse a interrogé la table de 6. Personne ne m'avait prévenu{|e}. Trahison pédagogique."], en: ["We studied for three hours. The next day I forgot everything as soon as I saw the teacher's face. My brain made {w:sound}.", "I studied, but the teacher asked the 6s. Nobody warned me. Educational betrayal."] }, fx: { smarts: 2, grade: -2, happy: -3 } },
         ],
       },
@@ -736,13 +736,13 @@ export const kids2Events: EventDef[] = [
         label: { fr: 'Offrir ce qui traîne', en: "Give whatever's lying around" },
         out: [
           { w: 2, text: { fr: ["J'ai offert un taille-crayon à moitié mâchouillé et une gomme en forme de fraise. La maîtresse a dit « c'est l'intention qui compte » d'une voix vide.", "J'ai offert {w:object} trouvé au fond de mon cartable. La maîtresse l'a pris avec deux doigts. Elle a eu l'air sincèrement surprise."], en: ["I gave a half-chewed pencil sharpener and a strawberry eraser. The teacher said “it's the thought that counts” in a hollow voice.", "I gave {w:object} I found at the bottom of my bag. The teacher took it with two fingers. She seemed genuinely surprised."] }, fx: { happy: 1, smarts: 1 } },
-          { w: 1, text: { fr: ["J'ai offert une boîte avec une coccinelle dedans. Elle s'est envolée dans les cheveux de la maîtresse. Hurlements, puis rires. Elle s'en souviendra toute sa vie.", "J'ai offert mon goûter. La maîtresse a été émue, je crois. Ou elle avait faim. Elle l'a mangé tout de suite."], en: ["I gave a box with a ladybug inside. It flew into the teacher's hair. Screams, then laughter. She'll remember it forever.", "I gave her my snack. I think she was moved. Or hungry. She ate it immediately."] }, fx: { happy: 3, karma: 1 } },
+          { w: 1, text: { fr: ["J'ai offert une boîte avec une coccinelle dedans. Elle s'est envolée dans les cheveux de la maîtresse. Hurlements, puis rires. Elle s'en souviendra toute sa vie.", "J'ai offert mon goûter : {w:food}. La maîtresse a été émue, je crois. Ou elle avait faim. Elle l'a mangé tout de suite."], en: ["I gave a box with a ladybug inside. It flew into the teacher's hair. Screams, then laughter. She'll remember it forever.", "I gave her my snack: {w:food}. I think she was moved. Or hungry. She ate it immediately."] }, fx: { happy: 3, karma: 1 } },
         ],
       },
       {
         label: { fr: 'Faire un discours', en: 'Give a speech' },
         out: [
-          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai fait un discours de deux minutes sur le « courage de supporter la classe ». La maîtresse a pleuré. Un parent a filmé. Je suis viral{|e} dans le quartier.", "Mon discours a commencé par « Madame, vous êtes la meilleure maîtresse que j'ai eue », puis j'ai réalisé que c'était la seule. Ça a fait rire tout le monde."], en: ["I gave a two-minute speech about her “courage in putting up with us”. The teacher cried. A parent filmed it. I'm famous in the neighborhood.", "My speech started with “You're the best teacher I've ever had”, then I realized she was the only one. Everyone laughed."] }, fx: { happy: 5, smarts: 2, karma: 2 } },
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai fait un discours de deux minutes sur le « courage de supporter la classe ». La maîtresse a pleuré. Un parent a filmé et posté ça sur {w:app}. Je suis viral{|e} dans le quartier.", "Mon discours a commencé par « Madame, vous êtes la meilleure maîtresse que j'ai eue », puis j'ai réalisé que c'était la seule. Ça a fait rire tout le monde."], en: ["I gave a two-minute speech about her “courage in putting up with us”. The teacher cried. A parent filmed it and posted it on {w:app}. I'm famous in the neighborhood.", "My speech started with “You're the best teacher I've ever had”, then I realized she was the only one. Everyone laughed."] }, fx: { happy: 5, smarts: 2, karma: 2 } },
           { w: 1, text: { fr: ["J'ai eu un trou de mémoire au milieu du discours et j'ai fini par chanter {w:song}. Personne n'a compris le rapport. La maîtresse a applaudi par réflexe.", "J'ai bégayé, rougi, et dit « je t'aime, maman » à la maîtresse. Je change d'école, de ville et de nom."], en: ["I blanked mid-speech and ended up singing {w:song}. Nobody got the connection. The teacher clapped on reflex.", "I stammered, blushed and said “I love you, Mom” to the teacher. I'm changing schools, cities and names."] }, fx: { happy: -3, looks: -1 } },
         ],
       },
@@ -775,7 +775,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Rendre son travail tel quel', en: 'Hand in their version' },
         out: [
-          { w: 2, text: { fr: ["J'ai rendu le devoir fait par {a.my}. 4/20. « Hors sujet, méthode incorrecte. » {a.my} a passé le dîner à insulter le système éducatif.", "La maîtresse a écrit sur la copie : « Bon travail, félicite tes parents. » Tout le monde a compris. {a.my} a été très fier{a:|e}. Moi, moins."], en: ["I handed in the homework {a.my} did. 4/20. “Off-topic, wrong method.” {a.my} spent dinner cursing the education system.", "The teacher wrote on it: “Good work, congratulate your parents.” Everyone got it. {a.my} was very proud. I was less so."] }, fx: { grade: -3, happy: 2, rel: 5 } },
+          { w: 2, text: { fr: ["J'ai rendu le devoir fait par {a.my}. 4/20. « Hors sujet, méthode incorrecte. » {a.my} a passé le dîner à traiter le système éducatif de « {w:insult} ».", "La maîtresse a écrit sur la copie : « Bon travail, félicite tes parents. » Tout le monde a compris. {a.my} a été très fier{a:|e}. Moi, moins."], en: ["I handed in the homework {a.my} did. 4/20. “Off-topic, wrong method.” {a.my} spent dinner calling the education system “{w:insult}”.", "The teacher wrote on it: “Good work, congratulate your parents.” Everyone got it. {a.my} was very proud. I was less so."] }, fx: { grade: -3, happy: 2, rel: 5 } },
           { w: 1, text: { fr: ["La maquette de {a.my} a gagné le premier prix de l'école. Je ne sais pas comment elle fonctionne. Le jury m'a posé une question. J'ai dit « c'est secret ».", "Excellente note. {a.my} a parlé de « notre » 18/20 à tous ses collègues pendant une semaine. Je suis devenu{|e} un simple prête-nom."], en: ["{a.my}'s model won first prize at school. I have no idea how it works. The jury asked me a question. I said “it's a secret”.", "Great grade. {a.my} bragged about “our” A to coworkers for a week. I've become a front."] }, fx: { grade: 5, smarts: -1, karma: -2 } },
         ],
       },
@@ -821,7 +821,7 @@ export const kids2Events: EventDef[] = [
         label: { fr: 'Spéculer sur les desserts', en: 'Speculate on desserts' },
         out: [
           { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai racheté toutes les bananes à bas prix et je les ai revendues au goûter, quand tout le monde avait faim. Je suis le Wall Street de la cantine.", "J'ai monopolisé les compotes à boire. À 15 h, j'ai fixé mes prix. Le directeur parle de moi comme d'« un cas »."], en: ["I bought up every banana cheap and resold them at snack time, when everyone was starving. I'm the Wall Street of the canteen.", "I cornered the squeezy-applesauce market. At 3 p.m. I set my prices. The principal refers to me as “a case”."] }, fx: { happy: 5, smarts: 3, karma: -2 } },
-          { w: 1, text: { fr: ["Krach boursier : la dame de la cantine a découvert le trafic et confisqué mon stock. Je suis ruiné{|e} et j'ai mangé une banane tachée.", "J'ai stocké les desserts dans mon cartable. Le yaourt a explosé sur mon cahier de poésie. Le marché m'a puni{|e}."], en: ["Market crash: the canteen lady found the operation and seized my stock. I'm ruined and I ate a bruised banana.", "I stored the desserts in my schoolbag. A yogurt exploded on my poetry notebook. The market punished me."] }, fx: { happy: -4, discipline: -2 } },
+          { w: 1, text: { fr: ["Krach boursier : la dame de la cantine a découvert le trafic et confisqué mon stock. Je suis ruiné{|e} et j'ai mangé une banane tachée.", "J'ai stocké les desserts dans mon cartable. Le yaourt a explosé sur mon cahier de poésie et sur {w:object}. Le marché m'a puni{|e}."], en: ["Market crash: the canteen lady found the operation and seized my stock. I'm ruined and I ate a bruised banana.", "I stored the desserts in my schoolbag. A yogurt exploded on my poetry notebook and on {w:object}. The market punished me."] }, fx: { happy: -4, discipline: -2 } },
         ],
       },
       {
@@ -833,7 +833,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Dénoncer le trafic', en: 'Report the racket' },
         out: [
-          { w: 2, text: { fr: ["J'ai prévenu la dame de la cantine. Le trafic a été démantelé. Le lendemain, quelqu'un a mis de la purée dans ma trousse. Le milieu n'oublie pas.", "J'ai tout balancé. Le CM2 a été privé de dessert un mois. Moi, j'ai été privé{|e} d'amis pour à peu près la même durée."], en: ["I told the canteen lady. The ring was dismantled. The next day someone put mashed potatoes in my pencil case. The underworld never forgets.", "I spilled everything. The fifth-grader lost dessert privileges for a month. I lost friends for about the same time."] }, fx: { happy: -3, karma: 3, discipline: 2 } },
+          { w: 2, text: { fr: ["J'ai prévenu la dame de la cantine. Le trafic a été démantelé. Le lendemain, quelqu'un a glissé {w:food} dans ma trousse. Le milieu n'oublie pas.", "J'ai tout balancé. Le CM2 a été privé de dessert un mois. Moi, j'ai été privé{|e} d'amis pour à peu près la même durée."], en: ["I told the canteen lady. The ring was dismantled. The next day someone slipped {w:food} into my pencil case. The underworld never forgets.", "I spilled everything. The fifth-grader lost dessert privileges for a month. I lost friends for about the same time."] }, fx: { happy: -3, karma: 3, discipline: 2 } },
         ],
       },
     ],
@@ -863,7 +863,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Toucher quand même', en: 'Touch it anyway' },
         out: [
-          { w: 2, text: { fr: ["J'ai touché la statue. Une alarme a retenti. Un gardien a couru vers moi au ralenti. La classe entière a été évacuée. Je suis une légende.", "J'ai touché du bout du doigt. Rien ne s'est passé. Pas d'alarme, pas de malédiction. J'étais presque déçu{|e}."], en: ["I touched the statue. An alarm went off. A guard ran at me in slow motion. The whole class got evacuated. I'm a legend.", "I touched it with one fingertip. Nothing happened. No alarm, no curse. I was almost disappointed."] }, fx: { happy: 4, discipline: -3, grade: -1 } },
+          { w: 2, text: { fr: ["J'ai touché la statue. Une alarme a retenti. Un gardien a couru vers moi au ralenti. La classe entière a été évacuée {w:weather}. Je suis une légende.", "J'ai touché du bout du doigt. Rien ne s'est passé. Pas d'alarme, pas de malédiction. J'étais presque déçu{|e}."], en: ["I touched the statue. An alarm went off. A guard ran at me in slow motion. The whole class got evacuated {w:weather}. I'm a legend.", "I touched it with one fingertip. Nothing happened. No alarm, no curse. I was almost disappointed."] }, fx: { happy: 4, discipline: -3, grade: -1 } },
           { w: 1, text: { fr: ["J'ai touché, et le nez de la statue m'est resté dans la main. Non. Je rigole. Mais le gardien l'a cru une seconde et il a crié {w:exclaim}", "Un bout de l'œuvre d'art moderne s'est décollé. Personne n'a remarqué la différence. Même pas l'artiste, probablement."], en: ["I touched it and the statue's nose came off in my hand. No. Kidding. But the guard believed it for a second and yelled {w:exclaim}", "A piece of the modern artwork came loose. Nobody noticed the difference. Probably not even the artist."] }, fx: { happy: 5, karma: -2 } },
         ],
       },
@@ -876,7 +876,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Filer à la boutique', en: 'Sneak to the gift shop' },
         out: [
-          { w: 2, text: { fr: ["J'ai fui vers la boutique et dépensé tout mon argent de poche dans une gomme en forme de pharaon. On m'a cherché{|e} pendant vingt minutes.", "Je me suis caché{|e} dans la boutique. Les accompagnateurs m'ont retrouvé{|e} en train de lire un livre sur {w:animal}. Punition douce."], en: ["I fled to the shop and spent all my pocket money on a pharaoh-shaped eraser. They searched for me for twenty minutes.", "I hid in the gift shop. The chaperones found me reading a book about {w:animal}. Gentle punishment."] }, fx: { happy: 3, discipline: -2 } },
+          { w: 2, text: { fr: ["J'ai fui vers la boutique et dépensé tout mon argent de poche dans {w:object} à l'effigie d'un pharaon. On m'a cherché{|e} pendant vingt minutes.", "Je me suis caché{|e} dans la boutique. Les accompagnateurs m'ont retrouvé{|e} en train de lire un livre sur {w:animal}. Punition douce."], en: ["I fled to the shop and spent all my pocket money on {w:object} with a pharaoh on it. They searched for me for twenty minutes.", "I hid in the gift shop. The chaperones found me reading a book about {w:animal}. Gentle punishment."] }, fx: { happy: 3, discipline: -2 } },
         ],
       },
     ],
@@ -915,7 +915,7 @@ export const kids2Events: EventDef[] = [
         label: { fr: 'Prendre le fond du car', en: 'Take the back seats' },
         out: [
           { w: 2, text: { fr: ["On a pris les places du fond. Les grands ont protesté, puis respecté. J'ai chanté {w:song} à pleins poumons pendant tout le trajet. Gloire.", "On a squatté le fond du car. Chaque dos-d'âne nous a fait décoller de dix centimètres. Le meilleur manège du monde, et gratuit."], en: ["We took the back seats. The big kids protested, then showed respect. I sang {w:song} at the top of my lungs the whole way. Glory.", "We camped at the back of the bus. Every speed bump launched us four inches. Best ride in the world, and free."] }, fx: { happy: 5, discipline: -2 } },
-          { w: 1, text: { fr: ["Les grands nous ont expulsés en deux secondes. J'ai fini à côté de la maîtresse, qui m'a parlé de sa sciatique pendant une heure.", "Le chauffeur a stoppé le car sur la bande d'arrêt d'urgence pour nous renvoyer à l'avant. Humiliation publique, sous les klaxons."], en: ["The big kids kicked us out in two seconds. I ended up next to the teacher, who told me about her sciatica for an hour.", "The driver pulled onto the hard shoulder to send us to the front. Public humiliation, with honking."] }, fx: { happy: -3, discipline: 1 } },
+          { w: 1, text: { fr: ["Les grands nous ont expulsés en deux secondes. J'ai fini à côté de la maîtresse, qui m'a parlé pendant une heure de sa grande passion, {w:hobby}.", "Le chauffeur a stoppé le car sur la bande d'arrêt d'urgence pour nous renvoyer à l'avant. Humiliation publique, sous les klaxons."], en: ["The big kids kicked us out in two seconds. I ended up next to the teacher, who told me about her great passion, {w:hobby}, for an hour.", "The driver pulled onto the hard shoulder to send us to the front. Public humiliation, with honking."] }, fx: { happy: -3, discipline: 1 } },
         ],
       },
       {
@@ -952,7 +952,7 @@ export const kids2Events: EventDef[] = [
         label: { fr: 'Improviser à fond', en: 'Improvise wildly' },
         out: [
           { w: 2, text: { fr: ["J'ai improvisé un grand écart, une roulade et un salut militaire. Le public a hurlé. La maîtresse a eu un tic à l'œil.", "J'ai dansé n'importe comment avec une conviction totale. Les parents ont cru que c'était prévu. Un papa m'a demandé où je prenais des cours."], en: ["I improvised a split, a forward roll and a military salute. The crowd went wild. The teacher's eye twitched.", "I danced like a maniac with total conviction. The parents thought it was choreographed. A dad asked where I take lessons."] }, fx: { happy: 6, athletic: 2, looks: 1 } },
-          { w: 1, text: { fr: ["J'ai improvisé une glissade sur les genoux et j'ai fini dans le décor. Le soleil en carton est tombé sur la tête d'un camarade. C'est sur toutes les vidéos.", "Mon improvisation a entraîné toute la rangée. La chorégraphie a dégénéré en pogo. Le directeur a coupé la musique."], en: ["I improvised a knee slide and crashed into the set. The cardboard sun fell on a classmate's head. It's on every video.", "My improv dragged the whole row along. The routine turned into a mosh pit. The principal cut the music."] }, fx: { happy: 3, discipline: -2 } },
+          { w: 1, text: { fr: ["J'ai improvisé une glissade sur les genoux et j'ai fini dans le décor. Le soleil en carton est tombé sur la tête d'un camarade. C'est sur toutes les vidéos.", "Mon improvisation a entraîné toute la rangée. La chorégraphie a dégénéré en pogo. Le directeur a coupé la musique en criant {w:exclaim}"], en: ["I improvised a knee slide and crashed into the set. The cardboard sun fell on a classmate's head. It's on every video.", "My improv dragged the whole row along. The routine turned into a mosh pit. The principal cut the music, yelling {w:exclaim}"] }, fx: { happy: 3, discipline: -2 } },
         ],
       },
       {
@@ -1009,7 +1009,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Créer ton propre royaume', en: 'Start your own kingdom' },
         out: [
-          { w: 2, text: { fr: ["J'ai fondé le royaume du banc près des toilettes. Population : trois sujets et une fourmi. On a nos propres lois. Pas de rois. Sauf moi.", "J'ai proclamé l'indépendance du coin du préau. On a un drapeau : {w:object} accroché à un bâton. C'est un État fragile mais fier."], en: ["I founded the kingdom of the bench near the toilets. Population: three subjects and an ant. We have our own laws. No kings. Except me.", "I declared independence for the corner of the covered yard. We have a flag: {w:object} on a stick. A fragile but proud nation."] }, fx: { happy: 4, smarts: 2 } },
+          { w: 2, text: { fr: ["J'ai fondé le royaume du banc près des toilettes. Population : trois sujets et {w:animal}. On a nos propres lois. Pas de rois. Sauf moi.", "J'ai proclamé l'indépendance du coin du préau. On a un drapeau : {w:object} accroché à un bâton. C'est un État fragile mais fier."], en: ["I founded the kingdom of the bench near the toilets. Population: three subjects and {w:animal}. We have our own laws. No kings. Except me.", "I declared independence for the corner of the covered yard. We have a flag: {w:object} on a stick. A fragile but proud nation."] }, fx: { happy: 4, smarts: 2 } },
         ],
       },
     ],
@@ -1040,7 +1040,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Écrire un serment', en: 'Write an oath' },
         out: [
-          { w: 2, text: { fr: ["On a écrit un serment sur une feuille, signé avec du jus de mûre et enterré sous un arbre. Personne ne le retrouvera. Nous non plus.", "Notre serment fait onze pages et interdit les brocolis. {a.first} a pleuré en le lisant. C'est ça, l'amitié."], en: ["We wrote an oath on a sheet of paper, signed it in blackberry juice and buried it under a tree. Nobody will ever find it. Neither will we.", "Our oath is eleven pages long and bans broccoli. {a.first} cried reading it. That's friendship."] }, fx: { happy: 5, rel: 15 } },
+          { w: 2, text: { fr: ["On a écrit un serment sur une feuille, signé avec du jus de mûre et enterré sous un arbre, avec {w:object}. Personne ne le retrouvera. Nous non plus.", "Notre serment fait onze pages et interdit les brocolis. {a.first} a pleuré en le lisant. C'est ça, l'amitié."], en: ["We wrote an oath on a sheet of paper, signed it in blackberry juice and buried it under a tree, along with {w:object}. Nobody will ever find it. Neither will we.", "Our oath is eleven pages long and bans broccoli. {a.first} cried reading it. That's friendship."] }, fx: { happy: 5, rel: 15 } },
         ],
       },
       {
@@ -1091,7 +1091,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Mener l\'enquête', en: 'Investigate' },
         out: [
-          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai monté une enquête avec loupe et carnet. Conclusion : la maîtresse est juste une personne normale. La vérité est décevante.", "J'ai ouvert le placard à craies. Il y avait un sac de couchage. Et {w:object}. Je n'en ai parlé à personne. Certains secrets sont trop lourds."], en: ["I ran an investigation with a magnifying glass and a notebook. Conclusion: the teacher is just a normal person. The truth is disappointing.", "I opened the chalk cupboard. There was a sleeping bag. And {w:object}. I told no one. Some secrets are too heavy."] }, fx: { smarts: 3, happy: 2 } },
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai monté une enquête avec loupe et carnet. Conclusion : la maîtresse est juste une personne normale qui aime {w:hobby}. La vérité est décevante.", "J'ai ouvert le placard à craies. Il y avait un sac de couchage. Et {w:object}. Je n'en ai parlé à personne. Certains secrets sont trop lourds."], en: ["I ran an investigation with a magnifying glass and a notebook. Conclusion: the teacher is just a normal person who likes {w:hobby}. The truth is disappointing.", "I opened the chalk cupboard. There was a sleeping bag. And {w:object}. I told no one. Some secrets are too heavy."] }, fx: { smarts: 3, happy: 2 } },
         ],
       },
       {
@@ -1136,7 +1136,7 @@ export const kids2Events: EventDef[] = [
         label: { fr: 'Faire faire par un frangin', en: 'Get a sibling to do it' },
         if: { has: 'sibling' },
         out: [
-          { w: 2, text: { fr: ["J'ai payé un membre de ma fratrie avec mon dessert de toute la semaine. Son écriture ressemble à des pattes de mouche. Le maître n'a rien vu. Ou a fait semblant.", "J'ai sous-traité les lignes. On m'a fait payer en corvées de vaisselle pour un mois. L'économie familiale est brutale."], en: ["I paid my sibling with my dessert for the whole week. Their handwriting looks like spider legs. The teacher didn't notice. Or pretended.", "I outsourced the lines. Payment: a month of dish duty. The family economy is brutal."] }, fx: { happy: 2, karma: -2 } },
+          { w: 2, text: { fr: ["J'ai payé un membre de ma fratrie avec mon dessert de toute la semaine. Son écriture ressemble à des pattes de mouche. Le maître n'a rien vu. Ou a fait semblant.", "J'ai sous-traité les lignes. Prix : un mois de vaisselle et {w:object}. L'économie familiale est brutale."], en: ["I paid my sibling with my dessert for the whole week. Their handwriting looks like spider legs. The teacher didn't notice. Or pretended.", "I outsourced the lines. Payment: a month of dish duty and {w:object}. The family economy is brutal."] }, fx: { happy: 2, karma: -2 } },
         ],
       },
       {
@@ -1178,7 +1178,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Raconter la vérité', en: 'Tell the truth' },
         out: [
-          { w: 2, text: { fr: ["J'ai raconté ma vraie vie, avec la cantine et la boulangerie. Ma correspondante a trouvé ça « exotique ». Tout est relatif.", "J'ai décrit ma ville en détail. Mon correspondant veut venir la visiter. Il pense que c'est une capitale mondiale. Je n'ai pas eu le cœur de le contredire."], en: ["I described my real life, canteen and bakery included. My pen pal found it “exotic”. Everything is relative.", "I described my town in detail. My pen pal wants to visit. He thinks it's a world capital. I didn't have the heart to correct him."] }, fx: { happy: 3, smarts: 3, karma: 2, grade: 2 } },
+          { w: 2, text: { fr: ["J'ai raconté ma vraie vie, avec la cantine et la boulangerie. Ma correspondante, qui vit {w:far_place}, a trouvé ça « exotique ». Tout est relatif.", "J'ai décrit ma ville en détail. Mon correspondant veut venir la visiter. Il pense que c'est une capitale mondiale. Je n'ai pas eu le cœur de le contredire."], en: ["I described my real life, canteen and bakery included. My pen pal, who lives {w:far_place}, found it “exotic”. Everything is relative.", "I described my town in detail. My pen pal wants to visit. He thinks it's a world capital. I didn't have the heart to correct him."] }, fx: { happy: 3, smarts: 3, karma: 2, grade: 2 } },
         ],
       },
       {
@@ -1334,13 +1334,13 @@ export const kids2Events: EventDef[] = [
     text: {
       fr: [
         "Tout le monde complète l'album d'autocollants de la Coupe du monde. Il ne te manque que le gardien du Paraguay. {a.first} l'a en double.",
-        "{a.first} a la carte la plus rare de la cour, brillante et holographique. {a.he} te la propose contre {w:object} et une promesse.",
+        "{a.first} a la carte la plus rare de la cour, brillante et holographique. {a:Il|Elle} te la propose contre {w:object} et une promesse.",
         "La cour est devenue une bourse aux cartes à collectionner. {a.first} te propose un « crédit » : tu prends ses cartes maintenant, tu paies plus tard.",
         "Tu as dépensé tout ton argent de poche en pochettes d'autocollants. Résultat : [[17|23|41]] fois le même joueur. {a.first} t'observe avec un sourire de banquier.",
       ],
       en: [
         "Everyone's filling the World Cup sticker album. You're only missing Paraguay's goalkeeper. {a.first} has a spare.",
-        "{a.first} has the rarest card in the playground, shiny and holographic. {a.he} offers it to you for {w:object} and a promise.",
+        "{a.first} has the rarest card in the playground, shiny and holographic. {a:He|She} offers it to you for {w:object} and a promise.",
         "The playground has turned into a trading-card exchange. {a.first} offers you “credit”: take the cards now, pay later.",
         "You spent all your pocket money on sticker packs. Result: the same player [[17|23|41]] times. {a.first} watches you with a banker's smile.",
       ],
@@ -1378,13 +1378,13 @@ export const kids2Events: EventDef[] = [
     text: {
       fr: [
         "{a.first} t'attend à la sortie avec son carnet noir et deux CM2 baraqués. Ta dette d'autocollants est passée de dix à [[quarante|soixante|cent]] cartes.",
-        "Un an a passé. {a.first} n'a pas oublié. {a.he} t'explique calmement que les intérêts courent et que ton goûter appartient désormais à « l'organisation ».",
+        "Un an a passé. {a.first} n'a pas oublié. {a:Il|Elle} t'explique calmement que les intérêts courent et que ton goûter appartient désormais à « l'organisation ».",
         "{a.first} a mis ta tête sur une affiche dans les toilettes : « MAUVAIS PAYEUR ». En dessous, quelqu'un a dessiné {w:animal}.",
         "Tu reçois un mot plié en huit dans ta trousse : « Tu dois des cartes. On sait où tu habites. On a vu {w:animal} près de chez toi. »",
       ],
       en: [
         "{a.first} is waiting for you after school with the black notebook and two beefy fifth-graders. Your sticker debt has grown from ten to [[forty|sixty|a hundred]] cards.",
-        "A year has passed. {a.first} hasn't forgotten. {a.he} calmly explains that interest is accruing and your snack now belongs to “the organization”.",
+        "A year has passed. {a.first} hasn't forgotten. {a:He|She} calmly explains that interest is accruing and your snack now belongs to “the organization”.",
         "{a.first} put your face on a poster in the toilets: “BAD PAYER”. Below it, someone drew {w:animal}.",
         "You find a note folded eight times in your pencil case: “You owe cards. We know where you live. We saw {w:animal} near your house.”",
       ],
@@ -2045,7 +2045,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Faire chanter {a.rel}', en: 'Blackmail {a.rel}' },
         out: [
-          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai posé une tablette sur la table du petit-déjeuner, sans un mot. {a.my} a blêmi. Depuis, j'ai droit à {w:show} tous les soirs. On ne parle jamais du placard.", "J'ai négocié : mon silence contre une heure de jeux vidéo par jour et {w:gift}. {a.my} a signé. J'ai {age} ans et je suis déjà dans le crime organisé."], en: ["I placed a chocolate bar on the breakfast table without a word. {a.my} went pale. Since then I get {w:show} every night. We never mention the closet.", "I negotiated: my silence for an hour of video games a day and {w:gift}. {a.my} signed. I'm {age} and already in organized crime."] }, fx: { happy: 6, karma: -3, rel: -5 } },
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai posé une tablette sur la table du petit-déjeuner, sans un mot. {a.my} a blêmi. Depuis, je regarde {w:show} tous les soirs. On ne parle jamais du placard.", "J'ai négocié : mon silence contre une heure de jeux vidéo par jour et {w:gift}. {a.my} a signé. J'ai {age} ans et je suis déjà dans le crime organisé."], en: ["I placed a chocolate bar on the breakfast table without a word. {a.my} went pale. Since then I get {w:show} every night. We never mention the closet.", "I negotiated: my silence for an hour of video games a day and {w:gift}. {a.my} signed. I'm {age} and already in organized crime."] }, fx: { happy: 6, karma: -3, rel: -5 } },
           { w: 1, text: { fr: ["{a.my} a nié en bloc, avec du chocolat sur les dents. Puis m'a puni{|e} pour avoir « fouillé ». L'État a toujours raison.", "{a.my} a retourné la situation : « Et toi, qu'est-ce que tu faisais dans le placard ? » Je n'avais pas de réponse. J'ai perdu le procès."], en: ["{a.my} denied everything, with chocolate on their teeth. Then grounded me for “snooping”. The State is always right.", "{a.my} flipped it: “And what were YOU doing in the closet?” I had no answer. I lost the case."] }, fx: { happy: -3, rel: -5 } },
         ],
       },
@@ -2256,13 +2256,13 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Être courageux', en: 'Be brave' },
         out: [
-          { w: 2, text: { fr: ["Je n'ai pas pleuré. Pas une larme. J'ai eu une sucette, un autocollant « super patient » et l'admiration de {a.my}. Le vaccin, c'est rien. Le courage, c'est tout.", "J'ai serré les dents et regardé le poster de {w:animal} au mur pendant la piqûre. Fini en trois secondes. J'ai exigé {w:gift}. Je l'ai eu."], en: ["I didn't cry. Not one tear. I got a lollipop, a “super patient” sticker and {a.my}'s admiration. The shot is nothing. Courage is everything.", "I gritted my teeth and stared at the poster of {w:animal} on the wall during the shot. Done in three seconds. I demanded {w:gift}. I got it."] }, fx: { happy: 4, health: 3, discipline: 2, rel: 5 } },
+          { w: 2, text: { fr: ["Je n'ai pas pleuré. Pas une larme. J'ai eu une sucette, un autocollant « super patient » et l'admiration de {a.my}. Le vaccin, c'est rien. Le courage, c'est tout.", "J'ai serré les dents en fixant le poster au mur, où l'on voit {w:animal}, pendant la piqûre. Fini en trois secondes. J'ai exigé {w:gift}. Je l'ai eu."], en: ["I didn't cry. Not one tear. I got a lollipop, a “super patient” sticker and {a.my}'s admiration. The shot is nothing. Courage is everything.", "I gritted my teeth and stared at the poster of {w:animal} on the wall during the shot. Done in three seconds. I demanded {w:gift}. I got it."] }, fx: { happy: 4, health: 3, discipline: 2, rel: 5 } },
         ],
       },
       {
         label: { fr: 'S\'enfuir dans le couloir', en: 'Run down the hallway' },
         out: [
-          { w: 2, text: { fr: ["Je me suis enfui{|e} dans le couloir et caché{|e} dans le local à balais. Il a fallu deux infirmières, {a.my} et la promesse de {w:food} pour me déloger.", "J'ai couru jusqu'à l'ascenseur. Les portes se sont fermées. Je suis descendu{|e} au sous-sol, seul{|e}, puis remonté{|e} en pleurant. La piqûre m'a semblé douce après ça."], en: ["I fled down the hallway and hid in the broom closet. It took two nurses, {a.my} and the promise of {w:food} to dig me out.", "I ran to the elevator. The doors closed. I went down to the basement alone, then came back up crying. The shot felt gentle after that."] }, fx: { happy: -2, health: 2, rel: -5 } },
+          { w: 2, text: { fr: ["Je me suis enfui{|e} dans le couloir et caché{|e} dans le local à balais. Il a fallu deux infirmières, {a.my} et une promesse ({w:food} au retour) pour me déloger.", "J'ai couru jusqu'à l'ascenseur. Les portes se sont fermées. Je suis descendu{|e} au sous-sol, seul{|e}, puis remonté{|e} en pleurant. La piqûre m'a semblé douce après ça."], en: ["I fled down the hallway and hid in the broom closet. It took two nurses, {a.my} and a promise ({w:food} on the way home) to dig me out.", "I ran to the elevator. The doors closed. I went down to the basement alone, then came back up crying. The shot felt gentle after that."] }, fx: { happy: -2, health: 2, rel: -5 } },
         ],
       },
       {
@@ -2285,7 +2285,7 @@ export const kids2Events: EventDef[] = [
         "Chez le dentiste. Il regarde dans ta bouche, fait « hmm » et appelle son assistante. Ce n'est jamais bon signe quand ils appellent l'assistante.",
         "Le dentiste a trouvé [[une|deux|quatre]] caries. Il te demande combien de bonbons tu manges par jour. Tu as le droit de mentir, non ?",
         "La fraise du dentiste fait {w:sound}. Il te dit « tu ne vas rien sentir ». C'est exactement ce qu'on dit avant qu'on sente quelque chose.",
-        "Le dentiste veut te poser un appareil dentaire. Tu vas ressembler à {w:celeb} dans ses pires années. Ou à un robot.",
+        "Le dentiste veut te poser un appareil dentaire. Tu vas avoir la tête qu'avait {w:celeb} dans ses pires années. Ou à un robot.",
       ],
       en: [
         "At the dentist's. He looks in your mouth, says “hmm” and calls his assistant. It's never a good sign when they call the assistant.",
@@ -2373,13 +2373,13 @@ export const kids2Events: EventDef[] = [
       fr: [
         "Par curiosité scientifique, tu t'es enfoncé un petit pois dans la narine. Il ne ressort plus. {a.rel} ne le sait pas encore.",
         "Tu as glissé une perle de collier dans ton nez, « pour voir ». Elle est montée. Très haut. Tu la sens près du cerveau.",
-        "Tu as mis un bout de {w:food} dans ton oreille pour tester si on entend mieux. On entend moins bien. Et ça ne ressort pas.",
+        "Tu as mis un morceau de ton goûter ({w:food}) dans ton oreille pour tester si on entend mieux. On entend moins bien. Et ça ne ressort pas.",
         "Une bille de la taille d'un pois est coincée dans ta narine gauche. Tu respires comme {w:animal} qui aurait un rhume. {a.rel} te regarde bizarrement.",
       ],
       en: [
         "Out of scientific curiosity, you pushed a pea up your nostril. It won't come out. {a.rel} doesn't know yet.",
         "You slid a necklace bead into your nose, “to see”. It went up. Way up. You can feel it near your brain.",
-        "You put a bit of {w:food} in your ear to test if you'd hear better. You hear worse. And it won't come out.",
+        "You put a bit of your snack ({w:food}) in your ear to test if you'd hear better. You hear worse. And it won't come out.",
         "A pea-sized marble is stuck in your left nostril. You're breathing like {w:animal} with a cold. {a.rel} is looking at you funny.",
       ],
     },
@@ -2394,7 +2394,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Prévenir {a.rel}', en: 'Tell {a.rel}' },
         out: [
-          { w: 2, text: { fr: ["Aux urgences, le médecin a retiré le pois avec une pince en dix secondes. Il l'a mis dans un petit pot pour que je le garde. Il est sur mon étagère, à côté de {w:object}.", "{a.my} a soupiré, pris une pince à épiler et une lampe. Opération réussie sur la table de la cuisine. J'ai eu droit à une conférence sur les trous du corps humain."], en: ["At the ER, the doctor pulled the pea out with tweezers in ten seconds. He put it in a little jar for me to keep. It's on my shelf, next to {w:object}.", "{a.my} sighed, grabbed tweezers and a flashlight. Successful surgery on the kitchen table. I got a lecture about the holes in the human body."] }, fx: { happy: 2, smarts: 2, rel: 5 } },
+          { w: 2, text: { fr: ["Aux urgences, le médecin a retiré le pois avec une pince en dix secondes. Il l'a mis dans un petit pot pour que je le garde. Il est sur mon étagère, entre deux billes et {w:object}.", "{a.my} a soupiré, pris une pince à épiler et une lampe. Opération réussie sur la table de la cuisine. J'ai eu droit à une conférence sur les trous du corps humain."], en: ["At the ER, the doctor pulled the pea out with tweezers in ten seconds. He put it in a little jar for me to keep. It's on my shelf, between two marbles and {w:object}.", "{a.my} sighed, grabbed tweezers and a flashlight. Successful surgery on the kitchen table. I got a lecture about the holes in the human body."] }, fx: { happy: 2, smarts: 2, rel: 5 } },
         ],
       },
     ],
@@ -2468,7 +2468,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Fabriquer des preuves', en: 'Fabricate evidence' },
         out: [
-          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai signé moi-même des autographes de {w:celeb} au feutre doré. J'en ai vendu huit. Personne n'a remarqué que les « k » étaient à l'envers.", "J'ai imprimé une photo de {w:celeb} et collé ma tête à côté. Le montage était grossier, mais l'enthousiasme de la classe a fait le reste."], en: ["I signed {w:celeb} autographs myself in gold marker. I sold eight. Nobody noticed the backwards letters.", "I printed a photo of {w:celeb} and glued my face next to it. The edit was crude, but the class's enthusiasm did the rest."] }, fx: { happy: 5, karma: -3, smarts: 2 } },
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai signé moi-même des autographes au feutre doré : « {w:celeb} », en lettres penchées. J'en ai vendu huit. Personne n'a remarqué que les « k » étaient à l'envers.", "J'ai imprimé une photo où l'on voit {w:celeb} et collé ma tête à côté. Le montage était grossier, mais l'enthousiasme de la classe a fait le reste."], en: ["I signed autographs myself in gold marker: “{w:celeb}”, in slanted letters. I sold eight. Nobody noticed the backwards letters.", "I printed a photo of {w:celeb} and glued my face next to it. The edit was crude, but the class's enthusiasm did the rest."] }, fx: { happy: 5, karma: -3, smarts: 2 } },
           { w: 1, text: { fr: ["Un camarade a vérifié sur la tablette de sa sœur. Mon mensonge s'est effondré en trente secondes. On m'appelle « {w:nickname} le menteur » maintenant.", "Ma mère est venue me chercher à la sortie de l'école, en survêtement, avec {w:object}. Tout le monde a vu la vérité. Le rêve est mort."], en: ["A classmate checked on his sister's tablet. My lie collapsed in thirty seconds. They call me “{w:nickname} the liar” now.", "My mom picked me up from school, in sweatpants, holding {w:object}. Everyone saw the truth. The dream is dead."] }, fx: { happy: -5, karma: -1 } },
         ],
       },
@@ -2486,4 +2486,1030 @@ export const kids2Events: EventDef[] = [
       },
     ],
   },
+
+  // ═════════════════════════════ PETS, TOYS & SCHEMES ═════════════════════════════
+  {
+    id: 'k2_pet_escape',
+    icon: '🐾',
+    cat: 'family',
+    cooldown: 3,
+    actor: 'pet',
+    when: { age: [4, 12], has: 'pet' },
+    scene: { place: 'park', mood: 'shock' },
+    text: {
+      fr: [
+        "Tu as laissé la porte ouverte. {a.first}, {a.rel}, a disparu. Dernière direction connue : le bout de la rue. Ou {w:at_place}, selon les témoins.",
+        "{a.first} s'est échappé{a:|e} pendant que tu jouais dans le jardin. Les voisins disent avoir vu {a.first} poursuivre {w:animal} dans le parc.",
+        "Ça fait deux heures que {a.first} n'est pas rentré{a:|e}. Tu as déjà dessiné un avis de recherche. Sur le dessin, {a.first} ressemble à une pomme de terre.",
+        "{a.first} a creusé un trou sous la clôture. Il ne reste qu'une odeur, {w:smell}, et un tunnel vers la liberté.",
+      ],
+      en: [
+        "You left the door open. {a.first}, your {a.species}, is gone. Last seen heading for the end of the street. Or {w:at_place}, according to witnesses.",
+        "{a.first} escaped while you were playing in the yard. The neighbors say they saw your {a.species} chasing {w:animal} in the park.",
+        "{a.first} hasn't been home for two hours. You've already drawn a missing poster. Your {a.species} looks like a potato in the drawing.",
+        "{a.first} dug a hole under the fence. All that's left is a smell, {w:smell}, and a tunnel to freedom.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Fouiller le quartier', en: 'Search the neighborhood' },
+        out: [
+          { w: 3, text: { fr: ["J'ai fouillé chaque buisson en criant « {a.first} ! ». Je l'ai retrouvé{a:|e} chez la voisine, en train de manger {w:food} sur son canapé. Traître, mais vivant.", "J'ai cherché pendant trois heures, {w:weather}. {a.first} m'attendait sur le paillasson à mon retour, l'air de dire « t'étais où ? »."], en: ["I searched every bush yelling “{a.first}!”. I found them at the neighbor's, eating {w:food} on her couch. A traitor, but alive.", "I searched for three hours, {w:weather}. {a.first} was waiting on the doormat when I got back, as if to say “where were you?”."] }, fx: { happy: 5, athletic: 2, rel: 15 } },
+          { w: 1, text: { fr: ["{a.first} est rentré{a:|e} tout{a:|e} seul{a:|e} le lendemain, sale, fier{a:|e}, avec {w:object} dans la gueule. On ne saura jamais ce qui s'est passé.", "Les pompiers ont retrouvé {a.first} sur le toit de l'école. Personne ne sait comment {a.he} est monté{a:|e}. {a.first} est désormais une légende du quartier."], en: ["{a.first} came home alone the next day, filthy and proud, carrying {w:object}. We'll never know what happened.", "The fire department found {a.first} on the school roof. Nobody knows how {a.he} got up there. My {a.species} is a neighborhood legend."] }, fx: { happy: 3, rel: 5 } },
+        ],
+      },
+      {
+        label: { fr: 'Faire une affiche', en: 'Make a poster' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai collé quarante affiches dans le quartier avec une récompense à la clé : {w:object}. Un monsieur a ramené {a.first} une heure plus tard. Il voulait vraiment la récompense.", "Mon affiche a fait le tour du quartier. Les gens ont ramené [[trois|cinq|huit]] animaux différents, dont {w:animal}. Aucun n'était {a.first}, qui dormait dans le garage."], en: ["I put up forty posters with a reward of {w:object}. A man brought {a.first} back an hour later. He really wanted the reward.", "My poster went round the neighborhood. People brought back [[three|five|eight]] different animals, including {w:animal}. None were {a.first}, who was asleep in the garage."] }, fx: { happy: 4, smarts: 2, rel: 10 } },
+        ],
+      },
+      {
+        label: { fr: 'Ne rien dire aux parents', en: "Don't tell your parents" },
+        out: [
+          { w: 1, text: { fr: ["J'ai fait comme si de rien n'était. Au dîner, mon père a demandé où était {a.first}. J'ai dit « dans ma chambre ». {a.first} a gratté à la porte d'entrée à ce moment-là. Sauvé{|e} par le timing.", "Je n'ai rien dit et j'ai passé la nuit à culpabiliser. Au matin, {a.first} dormait au pied de mon lit, comme si de rien n'était. Le meilleur réveil de ma vie."], en: ["I acted like nothing happened. At dinner, Dad asked where {a.first} was. I said “in my room”. {a.first} scratched at the front door right then. Saved by timing.", "I said nothing and spent the night feeling guilty. In the morning {a.first} was asleep at the foot of my bed as if nothing had happened. Best wake-up ever."] }, fx: { happy: 2, karma: -1, rel: 5 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_pet_costume',
+    icon: '🎀',
+    cat: 'family',
+    cooldown: 3,
+    actor: 'pet',
+    when: { age: [3, 10], has: 'pet' },
+    scene: { place: 'home', mood: 'happy' },
+    text: {
+      fr: [
+        "Tu as décidé de déguiser {a.first}, {a.rel}, en {w:weird_job}. Tu as un tutu, des lunettes de soleil et un chapeau. {a.first} n'a rien signé.",
+        "Tu veux faire de {a.first} une star. Il y a une séance photo prévue dans ton salon, avec {w:object} comme accessoire.",
+        "C'est le mariage de tes doudous et {a.first} sera {a:le témoin|la témoin}. Il faut lui mettre un nœud papillon. {a.first} te fixe sans ciller.",
+        "Tu as habillé {a.first} avec le vieux pull de ton père. On dirait {w:celeb}, en plus poilu. Tu veux montrer ça à toute la famille.",
+      ],
+      en: [
+        "You've decided to dress up {a.first}, your {a.species}, as {w:weird_job}. You have a tutu, sunglasses and a hat. {a.first} never agreed to this.",
+        "You want to make {a.first} a star. There's a photo shoot scheduled in your living room, with {w:object} as a prop.",
+        "It's your stuffed animals' wedding and {a.first} is the best man. They need a bow tie. {a.first} stares at you without blinking.",
+        "You dressed {a.first} in your dad's old sweater. Your {a.species} looks like {w:celeb}. You want to show the whole family.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Séance photo complète', en: 'Full photo shoot' },
+        out: [
+          { w: 2, text: { fr: ["Séance photo réussie : {a.first} en tutu, l'air résigné. Ma mère a posté la photo sur {w:app}. Elle a eu plus de « j'aime » que toutes les photos de famille réunies.", "J'ai pris [[cinquante|cent|trois cents]] photos de {a.first} déguisé{a:|e}. Il y en a une bonne. Elle est encadrée dans le salon, à côté du portrait des grands-parents."], en: ["Successful photo shoot: {a.first} in a tutu, looking resigned. Mom posted it on {w:app}. It got more likes than every family photo combined.", "I took [[fifty|a hundred|three hundred]] photos of {a.first} in costume. One is good. It's framed in the living room, next to the grandparents' portrait."] }, fx: { happy: 6, rel: 5 } },
+          { w: 1, text: { fr: ["{a.first} s'est enfui{a:|e} avec le tutu et l'a déchiqueté dans le jardin. Il en reste des lambeaux roses dans la haie. C'était un message.", "{a.first} a mordillé le chapeau, puis mon doigt. Pas méchamment. Juste pour clarifier sa position sur la mode."], en: ["{a.first} ran off with the tutu and shredded it in the yard. There are pink scraps in the hedge. It was a message.", "{a.first} nibbled the hat, then my finger. Not meanly. Just to clarify their stance on fashion."] }, fx: { happy: -1, rel: -5 } },
+        ],
+      },
+      {
+        label: { fr: 'Le laisser tranquille', en: 'Leave them alone' },
+        out: [
+          { w: 1, text: { fr: ["J'ai rangé le déguisement. {a.first} est venu{a:|e} se coucher sur mes genoux. Je crois qu'{a.he} m'a dit merci. Ou {a.he} avait juste froid.", "J'ai laissé {a.first} tranquille et je me suis déguisé{|e} à sa place, en {w:animal}. On s'est regardés longuement. Je crois qu'{a.he} a eu pitié de moi."], en: ["I put the costume away. {a.first} came and curled up on my lap. I think {a.he} said thank you. Or was just cold.", "I left {a.first} alone and dressed up myself instead, as {w:animal}. We looked at each other for a long time. I think {a.he} pitied me."] }, fx: { happy: 2, karma: 2, rel: 10 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_pet_rock',
+    icon: '🪨',
+    cat: 'weird',
+    once: true,
+    when: { age: [4, 9] },
+    scene: { place: 'park', mood: 'love' },
+    text: {
+      fr: [
+        "Tes parents refusent catégoriquement d'avoir un animal. Dans le parc, tu trouves un caillou. Il a une tête sympathique. Il s'appelle déjà [[Roger|Bernadette|Caillou]].",
+        "Tu as trouvé le caillou parfait : lisse, gris, avec une tache qui évoque {w:animal}. Tu sens qu'il a besoin de toi.",
+        "Faute de chien, tu adoptes un caillou. Tu lui as peint des yeux, fabriqué un panier avec une boîte à chaussures et acheté {w:object} comme jouet.",
+        "Ton caillou de compagnie a besoin d'un nom, d'un lit et d'une promenade quotidienne. Tes parents te regardent avec une inquiétude grandissante.",
+      ],
+      en: [
+        "Your parents flatly refuse to get a pet. In the park you find a rock. It has a friendly face. Its name is already [[Roger|Bernadette|Rocky]].",
+        "You found the perfect rock: smooth, gray, with a spot shaped like {w:animal}. You feel it needs you.",
+        "No dog, so you adopt a rock. You painted eyes on it, made a bed out of a shoebox and got it {w:object} as a toy.",
+        "Your pet rock needs a name, a bed and a daily walk. Your parents watch with growing concern.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'L\'adopter officiellement', en: 'Adopt it officially' },
+        out: [
+          { w: 3, text: { fr: ["J'ai rempli un certificat d'adoption au feutre. Mon caillou dort sur ma table de nuit. Je le promène en laisse le dimanche. Les voisins ne disent plus bonjour.", "J'ai adopté le caillou. Il ne mange rien, ne fait pas de bruit et ne mord pas. C'est le meilleur animal du monde. Mes parents sont soulagés et un peu inquiets."], en: ["I filled out an adoption certificate in marker. My rock sleeps on my nightstand. I walk it on a leash on Sundays. The neighbors stopped saying hello.", "I adopted the rock. It doesn't eat, doesn't make noise and doesn't bite. Best pet in the world. My parents are relieved and a little worried."] }, fx: { happy: 6, flag: 'k2_pet_rock', schedule: { key: 'k2_pet_rock_crisis', years: 2 } } },
+        ],
+      },
+      {
+        label: { fr: 'L\'utiliser comme argument', en: 'Use it as leverage' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai promené le caillou en laisse devant mes parents pendant deux semaines. Ils ont craqué : « D'accord, on prendra un poisson. » La stratégie paie.", "J'ai expliqué à mes parents que si je n'avais pas d'animal, je finirais par adopter {w:animal} sauvage. Ils ont accepté un hamster. Négociation réussie."], en: ["I walked the rock on a leash in front of my parents for two weeks. They cracked: “Fine, we'll get a fish.” The strategy paid off.", "I explained that without a pet I'd end up adopting {w:animal} from the wild. They agreed to a hamster. Successful negotiation."] }, fx: { happy: 5, smarts: 2, newNpc: { role: 'pet', species: 'hamster' } } },
+          { w: 1, text: { fr: ["Mes parents ont compris la manœuvre et m'ont offert un deuxième caillou. « Comme ça il ne sera pas seul. » Ils sont plus forts que moi.", "Mes parents ont trouvé ça adorable et ont dit : « Tu vois, pas besoin de vrai animal ! » Mon plan s'est retourné contre moi."], en: ["My parents saw through it and gave me a second rock. “So it won't be lonely.” They're better at this than me.", "My parents found it adorable and said, “See, you don't need a real pet!” My plan backfired."] }, fx: { happy: -2, smarts: 1 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_pet_rock_crisis',
+    icon: '🪦',
+    cat: 'weird',
+    chainOnly: true,
+    when: { age: [6, 12], flag: 'k2_pet_rock' },
+    scene: { place: 'home', mood: 'cry' },
+    text: {
+      fr: [
+        "Drame : ton caillou de compagnie a disparu. Ton père a refait l'allée du jardin ce week-end avec du gravier. Tu as une terrible intuition.",
+        "Ton caillou a été jeté par erreur pendant le grand ménage de printemps, avec {w:object}. Tu es inconsolable.",
+        "Ton petit cousin a lancé ton caillou de compagnie dans la rivière, « pour voir s'il nage ». Il ne nage pas.",
+        "Ça fait deux ans que tu as ton caillou. Tu as grandi. Lui, non. Tu te demandes s'il est temps de le rendre à la nature, {w:at_place} par exemple.",
+      ],
+      en: [
+        "Tragedy: your pet rock is missing. Your dad redid the garden path with gravel this weekend. You have a terrible hunch.",
+        "Your rock was thrown out by mistake during spring cleaning, along with {w:object}. You're inconsolable.",
+        "Your little cousin threw your pet rock in the river “to see if it swims”. It doesn't.",
+        "You've had your rock for two years. You've grown. It hasn't. You wonder if it's time to release it back into the wild, {w:at_place} for example.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Organiser des funérailles', en: 'Hold a funeral' },
+        out: [
+          { w: 2, text: { fr: ["J'ai organisé une cérémonie dans le jardin. Mes parents sont venus, en noir. Mon père a lu un poème. Il avait l'air vraiment désolé, et un peu coupable.", "Funérailles émouvantes : un caillou de remplacement a été enterré à la place, avec {w:object}. J'ai fait un discours. Le chat du voisin a assisté à toute la cérémonie."], en: ["I held a ceremony in the yard. My parents came, wearing black. Dad read a poem. He seemed truly sorry, and a little guilty.", "Moving funeral: a substitute rock was buried in its place, along with {w:object}. I gave a eulogy. The neighbor's cat attended the whole thing."] }, fx: { happy: -2, karma: 2, unflag: 'k2_pet_rock' } },
+        ],
+      },
+      {
+        label: { fr: 'Fouiller le gravier', en: 'Search the gravel' },
+        out: [
+          { w: 1, odds: { smarts: 1 }, text: { fr: ["J'ai trié huit cents cailloux un par un. Je l'ai retrouvé, grâce à ses yeux peints. Mon père m'a aidé{|e} toute la journée, en silence. On n'en parle jamais.", "J'ai trouvé un caillou qui lui ressemblait vaguement. Je l'ai appelé pareil. Je sais que ce n'est pas lui. Il le sait aussi. On fait semblant."], en: ["I sorted eight hundred stones one by one. I found it thanks to its painted eyes. Dad helped me all day, silently. We never talk about it.", "I found a stone that sort of looked like it. I gave it the same name. I know it isn't him. He knows too. We pretend."] }, fx: { happy: 3, discipline: 3, unflag: 'k2_pet_rock' } },
+        ],
+      },
+      {
+        label: { fr: 'Passer à autre chose', en: 'Move on' },
+        out: [
+          { w: 1, text: { fr: ["J'ai haussé les épaules. C'était un caillou. J'ai grandi. Puis j'ai pleuré dans ma chambre en écoutant {w:song}. On ne grandit pas si vite.", "J'ai déposé un dernier caillou {w:at_place}, en souvenir. Je ne suis plus un enfant. Enfin, un peu moins."], en: ["I shrugged. It was a rock. I've grown up. Then I cried in my room listening to {w:song}. You don't grow up that fast.", "I left one last stone {w:at_place}, as a memorial. I'm not a kid anymore. Well, a bit less."] }, fx: { happy: -1, smarts: 2, unflag: 'k2_pet_rock' } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_toy_ad',
+    icon: '🧸',
+    cat: 'hobby',
+    cooldown: 3,
+    actor: 'parent',
+    when: { age: [4, 10], has: 'parent' },
+    scene: { place: 'home', mood: 'love', prop: 'tv' },
+    text: {
+      fr: [
+        "Une pub à la télé montre le jouet ultime : un robot qui crache de la fumée, parle trois langues et transforme {w:object} en {w:food}. Tu dois l'avoir.",
+        "Le catalogue de jouets est arrivé. Tu as entouré [[47|112|208]] articles au feutre. {a.rel} feuillette le catalogue en pâlissant.",
+        "Tout le monde à l'école a le nouveau jouet à la mode. Sauf toi. Tu es la dernière personne sur Terre à ne pas l'avoir, et {a.rel} s'en fiche.",
+        "Au supermarché, tu tombes nez à nez avec le jouet de tes rêves, en tête de gondole, coincé entre les biscuits et {w:object}. {a.rel} pousse le chariot plus vite.",
+      ],
+      en: [
+        "A TV ad shows the ultimate toy: a robot that blows smoke, speaks three languages and turns {w:object} into {w:food}. You must have it.",
+        "The toy catalog arrived. You circled [[47|112|208]] items in marker. {a.rel} flips through it, turning pale.",
+        "Everyone at school has the trendy new toy. Except you. You're the last person on Earth without one, and {a.rel} doesn't care.",
+        "At the supermarket you come face to face with your dream toy, on an end-cap display, wedged between the cookies and {w:object}. {a.rel} pushes the cart faster.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Pleurer en public', en: 'Cry in public' },
+        rating: 1,
+        out: [
+          { w: 2, text: { fr: ["J'ai fait une crise au rayon jouets, allongé{|e} par terre. Une dame a dit « de mon temps, on aurait pris une claque ». {a.my} m'a traîné{|e} jusqu'à la caisse sans le jouet. Défaite.", "J'ai pleuré si fort que {a.my} a acheté le jouet pour avoir la paix. Il était cassé au bout de deux jours. Mais j'ai gagné la bataille."], en: ["I threw a tantrum in the toy aisle, flat on the floor. A lady said “in my day you'd get a slap”. {a.my} dragged me to the checkout without the toy. Defeat.", "I cried so hard {a.my} bought the toy for some peace. It broke after two days. But I won the battle."] }, fx: { happy: 2, discipline: -3, rel: -10 } },
+        ],
+      },
+      {
+        label: { fr: 'Écrire une lettre argumentée', en: 'Write a persuasive letter' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai écrit une lettre de trois pages avec des arguments : « ça développe l'intelligence », « tous les autres l'ont », « je vais mourir sinon ». {a.my} a cédé pour mon anniversaire.", "J'ai fait un exposé avec des dessins pour expliquer pourquoi j'avais besoin du jouet. {a.my} a été tellement impressionné{a:|e} qu'{a.he} a dit oui. Puis non. Puis « on verra »."], en: ["I wrote a three-page letter with arguments: “it develops intelligence”, “everyone else has it”, “I'll die otherwise”. {a.my} caved for my birthday.", "I gave a presentation with drawings explaining why I needed the toy. {a.my} was so impressed {a.he} said yes. Then no. Then “we'll see”."] }, fx: { happy: 4, smarts: 3 } },
+        ],
+      },
+      {
+        label: { fr: 'Fabriquer le tien', en: 'Build your own' },
+        out: [
+          { w: 1, text: { fr: ["J'ai fabriqué mon propre robot avec du carton, {w:object} et un rouleau de papier toilette. Il ne parle aucune langue. Je l'aime plus que tout.", "J'ai construit une copie du jouet avec des boîtes de céréales. À l'école, on s'est moqués de moi, puis tout le monde a voulu le même. J'ai lancé une mode."], en: ["I built my own robot out of cardboard, {w:object} and a toilet-paper roll. It speaks no languages. I love it more than anything.", "I built a copy of the toy out of cereal boxes. At school they laughed, then everyone wanted one. I started a trend."] }, fx: { happy: 4, smarts: 3, karma: 1 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_first_console',
+    icon: '🎮',
+    cat: 'hobby',
+    once: true,
+    actor: 'parent',
+    when: { age: [6, 12], has: 'parent' },
+    scene: { place: 'home', mood: 'happy', prop: 'tv' },
+    text: {
+      fr: [
+        "Tu as reçu ta première console de jeux ! {a.rel} a fixé une règle : une heure par jour. Il est 23 h et tu en es à ta septième heure.",
+        "Tu es bloqué{|e} au niveau 8 de ton jeu vidéo depuis trois jours. Le boss final, c'est {w:animal} en armure. {a.rel} veut que tu viennes manger.",
+        "{a.rel} a voulu essayer ta console. Ça fait deux heures qu'{a.he} joue, et {a.he} ne veut plus te la rendre.",
+        "Un copain t'a parlé d'un code secret pour avoir des vies infinies. Il faut appuyer sur [[douze|vingt|quarante]] boutons dans le bon ordre, {w:weather}.",
+      ],
+      en: [
+        "You got your first video game console! {a.rel} set a rule: one hour a day. It's 11 p.m. and you're on hour seven.",
+        "You've been stuck on level 8 for three days. The final boss looks like {w:animal} in armor. {a.rel} wants you to come eat.",
+        "{a.rel} wanted to try your console. They've been playing for two hours and won't give it back.",
+        "A friend told you about a secret code for infinite lives. You have to press [[twelve|twenty|forty]] buttons in the right order, {w:weather}.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Jouer toute la nuit', en: 'Play all night' },
+        out: [
+          { w: 2, text: { fr: ["J'ai joué jusqu'à 3 h du matin sous la couette, le son coupé. J'ai battu le boss. J'ai dormi pendant le contrôle de maths. Aucun regret, juste un 4/20.", "J'ai fini le jeu en une nuit. Le lendemain, j'avais les yeux explosés et je me suis brossé les dents avec {w:object}. La maîtresse m'a demandé si tout allait bien à la maison."], en: ["I played until 3 a.m. under the covers, sound off. I beat the boss. I slept through the math test. No regrets, just a D.", "I finished the game in one night. The next day my eyes were fried and I brushed my teeth with {w:object}. The teacher asked if everything was okay at home."] }, fx: { happy: 6, health: -3, grade: -3 } },
+          { w: 1, text: { fr: ["{a.my} m'a surpris{|e} à 2 h du matin. La console a été confisquée et cachée. Je l'ai retrouvée dans le congélateur, derrière {w:food}. La guerre continue.", "Mon père est entré dans la chambre, a vu l'écran, s'est assis… et a joué avec moi jusqu'à l'aube. Ma mère nous a trouvés endormis sur la manette."], en: ["{a.my} caught me at 2 a.m. The console was confiscated and hidden. I found it in the freezer behind {w:food}. The war goes on.", "My dad came in, saw the screen, sat down… and played with me until dawn. Mom found us both asleep on the controller."] }, fx: { happy: 2, discipline: -2 } },
+        ],
+      },
+      {
+        label: { fr: 'Respecter la règle', en: 'Follow the rule' },
+        out: [
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["J'ai respecté l'heure par jour. Il m'a fallu six mois pour finir le jeu. J'ai savouré chaque minute. {a.my} m'a offert un deuxième jeu pour me récompenser.", "J'ai joué une heure, puis j'ai éteint. {a.my} m'a regardé{|e} comme si j'étais possédé{|e}. J'ai profité de l'effet pour demander {w:gift}."], en: ["I stuck to an hour a day. It took me six months to finish the game. I savored every minute. {a.my} bought me a second game as a reward.", "I played for an hour, then turned it off. {a.my} looked at me like I was possessed. I used the moment to ask for {w:gift}."] }, fx: { happy: 3, discipline: 4, rel: 10 } },
+        ],
+      },
+      {
+        label: { fr: 'Jouer avec {a.rel}', en: 'Play with {a.rel}' },
+        out: [
+          { w: 2, text: { fr: ["J'ai appris à jouer à {a.my}. {a:Il|Elle} est nul{a:|le}. Vraiment nul{a:|le}. {a:Il|Elle} crie {w:exclaim} à chaque fois qu'{a.he} perd. C'est le meilleur moment de la semaine.", "On a fait une partie en duo. {a.my} a gagné, puis a fait une danse de la victoire dans le salon. J'ai découvert qu'on peut avoir honte de ses parents dès {age} ans."], en: ["I taught {a.my} to play. They're terrible. Truly terrible. They yell {w:exclaim} every time they lose. Best part of the week.", "We played co-op. {a.my} won, then did a victory dance in the living room. I discovered you can be embarrassed by your parents at {age}."] }, fx: { happy: 5, rel: 15 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_kid_business',
+    icon: '💰',
+    cat: 'money',
+    once: true,
+    when: { age: [6, 11] },
+    scene: { place: 'park', mood: 'proud', fx: 'money' },
+    text: {
+      fr: [
+        "Tu as décidé de devenir riche. Ton idée : vendre des cailloux peints devant la maison. Tu as [[vingt|cinquante|cent]] cailloux et une pancarte « ART ».",
+        "Tu lances ton entreprise : lavage de vélos à domicile. Tu as un seau, une éponge et un slogan inspiré par {w:celeb}.",
+        "Ton nouveau business : vendre tes dessins aux voisins. Ton chef-d'œuvre représente {w:animal} sur {w:vehicle}. Prix : négociable.",
+        "Tu as ouvert un « musée » dans ton garage. Les pièces exposées : {w:object}, {w:object} et une dent de lait. L'entrée coûte 50 centimes.",
+      ],
+      en: [
+        "You've decided to get rich. Your idea: sell painted rocks in front of the house. You have [[twenty|fifty|a hundred]] rocks and a sign that says “ART”.",
+        "You're launching a business: door-to-door bike washing. You have a bucket, a sponge and a slogan inspired by {w:celeb}.",
+        "Your new business: selling your drawings to the neighbors. Your masterpiece depicts {w:animal} riding {w:vehicle}. Price: negotiable.",
+        "You've opened a “museum” in your garage. On display: {w:object}, {w:object} and a baby tooth. Admission is 50 cents.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Faire du porte-à-porte', en: 'Go door to door' },
+        out: [
+          { w: 2, odds: { smarts: 1, looks: 1 }, text: { fr: ["J'ai sonné à toutes les portes de la rue. Les grands-mères ont tout acheté, par pitié ou par amour. J'ai gagné {$amount}. Je suis le Jeff Bezos du quartier.", "J'ai vendu mes œuvres à huit voisins. L'un d'eux a mis mon dessin (on y voit {w:animal}) dans son salon. Je suis exposé{|e}. J'ai empoché {$amount}."], en: ["I rang every doorbell on the street. The grandmas bought everything, out of pity or love. I made {$amount}. I'm the Jeff Bezos of the block.", "I sold my work to eight neighbors. One put my drawing of {w:animal} in his living room. I'm exhibited. I pocketed {$amount}."] }, fx: { happy: 6, smarts: 2, money: 'amount', flag: 'k2_kid_ceo' } },
+          { w: 1, text: { fr: ["Personne n'a ouvert, sauf un monsieur en peignoir qui m'a dit « non merci » avec une grande fatigue. J'ai vendu un caillou à ma mère. Chiffre d'affaires : 20 centimes.", "Un chien m'a coursé{|e} sur trois maisons. J'ai perdu mon stock dans la fuite. Le business est un monde cruel."], en: ["Nobody answered except a man in a bathrobe who said “no thanks” with deep fatigue. I sold one rock to my mom. Revenue: 20 cents.", "A dog chased me for three houses. I lost my stock in the escape. Business is a cruel world."] }, fx: { happy: -3, athletic: 1 } },
+        ],
+      },
+      {
+        label: { fr: 'Engager tes copains', en: 'Hire your friends' },
+        out: [
+          { w: 2, text: { fr: ["J'ai embauché trois copains payés en bonbons. Ils ont fait tout le travail. J'ai gardé l'argent. J'ai {age} ans et j'ai compris le capitalisme. Bénéfice : {$amount}.", "Mon équipe a fait grève au bout d'une heure pour réclamer {w:food}. J'ai cédé. On a quand même gagné {$amount}. Mes salariés m'adorent."], en: ["I hired three friends, paid in candy. They did all the work. I kept the money. I'm {age} and I understand capitalism. Profit: {$amount}.", "My team went on strike after an hour, demanding {w:food}. I gave in. We still made {$amount}. My employees love me."] }, fx: { happy: 5, karma: -1, money: 'amount', flag: 'k2_kid_ceo' } },
+        ],
+      },
+      {
+        label: { fr: 'Tout donner à une asso', en: 'Give it all to charity' },
+        out: [
+          { w: 1, text: { fr: ["J'ai annoncé que les bénéfices iraient aux animaux abandonnés. Les voisins ont triplé leurs dons. J'ai donné l'argent au refuge. La dame a pleuré. Moi aussi.", "J'ai vendu mes dessins « pour les pandas ». J'ai récolté une belle somme et je l'ai vraiment donnée. Je me suis senti{|e} plus riche qu'avec l'argent."], en: ["I announced the profits would go to abandoned animals. The neighbors tripled their donations. I gave the money to the shelter. The lady cried. So did I.", "I sold my drawings “for the pandas”. I raised a nice sum and actually donated it. I felt richer than if I'd kept it."] }, fx: { happy: 4, karma: 6 } },
+        ],
+      },
+    ],
+    vars: { amount: [5, 40] },
+  },
+  {
+    id: 'k2_kid_business_rival',
+    icon: '📉',
+    cat: 'money',
+    rating: 1,
+    once: true,
+    weight: 6,
+    actor: { create: { role: 'acquaintance', age: [-1, 1], gender: 'any' } },
+    when: { age: [7, 12], flag: 'k2_kid_ceo' },
+    scene: { place: 'park', mood: 'angry' },
+    text: {
+      fr: [
+        "Catastrophe : {a.first}, {a:le gamin|la gamine} d'en face, a ouvert un business concurrent juste devant chez toi. {a:Il|Elle} casse les prix et offre {w:food} avec chaque achat.",
+        "{a.first} a copié ton idée de business, mot pour mot, et a même volé ta pancarte. Pire : son stand a plus de clients.",
+        "Une guerre commerciale éclate dans ta rue. {a.first} distribue des prospectus qui disent que tes produits « sentent {w:smell} ».",
+        "{a.first} vient de te proposer une fusion de vos entreprises. En échange, {a:il|elle} veut 70 % des bénéfices et {w:object}.",
+      ],
+      en: [
+        "Disaster: {a.first}, the kid across the street, opened a rival business right in front of your house. They're slashing prices and giving away {w:food} with every purchase.",
+        "{a.first} copied your business idea word for word and even stole your sign. Worse: their stand has more customers.",
+        "A trade war breaks out on your street. {a.first} is handing out flyers saying your products smell like {w:smell}.",
+        "{a.first} just proposed merging your businesses. In exchange, they want 70% of the profits and {w:object}.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Guerre des prix', en: 'Price war' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai baissé mes prix, puis offert {w:gift} à chaque client. {a.first} a fait faillite en deux jours. Je suis impitoyable. Je suis aussi ruiné{|e}.", "Guerre des prix acharnée. À la fin, on vendait tous les deux à zéro centime. Les clients étaient ravis. Nous, moins."], en: ["I cut my prices, then gave every customer {w:gift}. {a.first} went bankrupt in two days. I'm ruthless. I'm also broke.", "Fierce price war. By the end we were both selling for zero cents. The customers were thrilled. We were less so."] }, fx: { happy: 2, smarts: 2, rel: -15 } },
+        ],
+      },
+      {
+        label: { fr: 'Saboter le stand', en: 'Sabotage their stand' },
+        out: [
+          { w: 2, text: { fr: ["J'ai lâché le chien du voisin près du stand de {a.first}. Chaos total. J'ai été démasqué{|e} en dix minutes, parce que j'étais le seul enfant à rire. Punition maximale.", "J'ai mis du sel dans la limonade de {a.first}. Un client a recraché sur son t-shirt. Sa mère est venue sonner chez moi. Ma carrière d'espion{|ne} industriel{|le} est terminée."], en: ["I let the neighbor's dog loose near {a.first}'s stand. Total chaos. I was caught within ten minutes because I was the only kid laughing. Maximum punishment.", "I put salt in {a.first}'s lemonade. A customer spat it all over his shirt. His mom rang my doorbell. My career in industrial espionage is over."] }, fx: { happy: 1, karma: -4, discipline: -2, rel: -10 } },
+        ],
+      },
+      {
+        label: { fr: 'Accepter la fusion', en: 'Accept the merger' },
+        out: [
+          { w: 2, text: { fr: ["On a fusionné. {a.first} gère le marketing, moi la production. On a gagné le triple. On est devenus amis. Les adultes appellent ça une « synergie ».", "On a fusionné, mais {a.first} a gardé l'argent et m'a laissé{|e} la dette de bonbons. J'ai appris ce qu'est un mauvais associé avant de savoir faire une division."], en: ["We merged. {a.first} handles marketing, I handle production. We tripled our income. We became friends. Grown-ups call it “synergy”.", "We merged, but {a.first} kept the money and left me with the candy debt. I learned what a bad partner is before I could do long division."] }, fx: { happy: 4, smarts: 2, rel: 20, keep: true } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_prank_salt',
+    icon: '🧂',
+    cat: 'family',
+    rating: 1,
+    cooldown: 3,
+    actor: 'parent',
+    when: { age: [6, 12], has: 'parent' },
+    scene: { place: 'home', mood: 'happy' },
+    text: {
+      fr: [
+        "C'est le 1er avril. Tu as échangé le sucre et le sel. {a.rel} se prépare un café en sifflotant. Ton cœur bat très fort.",
+        "Tu as acheté un coussin péteur. {a.rel} va s'asseoir sur le canapé dans dix secondes. Le coussin est en place.",
+        "Tu as collé un post-it « {w:insult} » sous la souris de l'ordinateur de {a.rel}. {a:Il|Elle} arrive pour travailler.",
+        "Tu as caché {w:object} dans la chaussure de {a.rel}. {a:Il|Elle} est en retard pour le travail et enfile ses chaussures à toute vitesse.",
+      ],
+      en: [
+        "It's April Fools' Day. You swapped the sugar and salt. {a.rel} is making coffee and whistling. Your heart is pounding.",
+        "You bought a whoopee cushion. {a.rel} will sit on the couch in ten seconds. The cushion is in position.",
+        "You taped a post-it saying “{w:insult}” under {a.rel}'s computer mouse. {a:He|She} is coming to work.",
+        "You hid {w:object} in {a.rel}'s shoe. They're late for work and pulling on their shoes at top speed.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Rester pour voir', en: 'Stay and watch' },
+        out: [
+          { w: 2, text: { fr: ["{a.my} a recraché son café sur la nappe en criant {w:exclaim} J'ai ri si fort que je suis tombé{|e} de ma chaise. {a:Il|Elle} a fini par rire aussi. Après avoir crié.", "Le coussin a fait {w:sound}. {a.my} a sursauté, puis a regardé le chien avec suspicion. J'ai éclaté de rire. Démasqué{|e}, mais {glorieux|glorieuse}."], en: ["{a.my} spat coffee all over the tablecloth yelling {w:exclaim} I laughed so hard I fell off my chair. They ended up laughing too. After yelling.", "The cushion made {w:sound}. {a.my} jumped, then glared suspiciously at the dog. I burst out laughing. Busted, but glorious."] }, fx: { happy: 6, rel: -5 } },
+          { w: 1, text: { fr: ["{a.my} n'a pas ri. Pas du tout. Il paraît que c'était « un très mauvais jour ». J'ai été privé{|e} de dessert. La comédie est un métier à risque.", "{a.my} a gardé son calme, puis s'est vengé{a:|e} le lendemain : du piment dans mon yaourt. La guerre des farces est déclarée."], en: ["{a.my} didn't laugh. At all. Apparently it was “a very bad day”. No dessert for me. Comedy is a dangerous profession.", "{a.my} stayed calm, then got revenge the next day: chili in my yogurt. The prank war is on."] }, fx: { happy: -3, rel: -5 } },
+        ],
+      },
+      {
+        label: { fr: 'Annuler la farce', en: 'Call off the prank' },
+        out: [
+          { w: 1, text: { fr: ["Pris{|e} de remords, j'ai tout remis en place à la dernière seconde. {a.my} ne saura jamais. Moi, je saurai que j'ai été un{|e} bon{|ne} enfant. Pendant cinq minutes.", "J'ai retiré le piège juste à temps. Puis {a.my} s'est assis{a:|e} sur la télécommande. C'était drôle quand même. Le destin fait les farces à ma place."], en: ["Overcome by remorse, I put everything back at the last second. {a.my} will never know. I'll know I was a good kid. For five minutes.", "I removed the trap just in time. Then {a.my} sat on the remote. Still funny. Fate pranks for me."] }, fx: { happy: 1, karma: 2 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_prank_call',
+    icon: '☎️',
+    cat: 'friends',
+    rating: 1,
+    cooldown: 4,
+    actor: 'anyFriend',
+    when: { age: [7, 12], has: 'anyFriend' },
+    scene: { place: 'home', mood: 'happy', prop: 'phone' },
+    text: {
+      fr: [
+        "{a.first} et toi êtes seuls avec le téléphone fixe. {a.first} propose d'appeler des numéros au hasard pour demander : « Allô, vous avez du thon ? »",
+        "{a.first} a trouvé le numéro de la boulangerie. Le plan : commander [[cinquante|deux cents|mille]] croissants au nom du maître.",
+        "Soirée canular téléphonique avec {a.first}. Tu prends une grosse voix pour te faire passer pour {w:weird_job}. Tu as le combiné en main.",
+        "{a.first} veut appeler la radio locale en direct pour dédicacer {w:song} « pour {w:animal} et tous ses amis ». Tu as le numéro.",
+      ],
+      en: [
+        "You and {a.first} are alone with the landline. {a.first} suggests calling random numbers to ask, “Is your refrigerator running?”",
+        "{a.first} found the bakery's number. The plan: order [[fifty|two hundred|a thousand]] croissants in the teacher's name.",
+        "Prank call night with {a.first}. You put on a deep voice to pass as {w:weird_job}. You've got the receiver.",
+        "{a.first} wants to call the local radio live to dedicate {w:song} “for {w:animal} and all its friends”. You have the number.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Appeler', en: 'Make the call' },
+        out: [
+          { w: 2, text: { fr: ["J'ai appelé un numéro au hasard. Un monsieur a répondu « oui, j'ai du thon ». Pris de court, on a raccroché en hurlant de rire. On en parle encore.", "J'ai tenu le rôle pendant cinq minutes, {w:weird_job} à la grosse voix. La dame au bout du fil m'a cru{|e}. Elle m'a même demandé conseil. Je lui ai répondu n'importe quoi."], en: ["I called a random number. A man answered “yes, it's running”. Caught off guard, we hung up screaming with laughter. We still talk about it.", "I played {w:weird_job} for five minutes, deep voice and all. The lady on the line believed me. She even asked for advice. I told her nonsense."] }, fx: { happy: 6, rel: 10, karma: -1 } },
+          { w: 1, text: { fr: ["Le numéro affiché a permis au monsieur de rappeler. Ma mère a décroché. Elle a écouté, longuement. Puis elle m'a regardé{|e}. J'ai vu ma vie défiler.", "Je suis tombé{|e} sur le répondeur de mon propre maître. J'ai paniqué et laissé un message avec ma vraie voix : « … pardon. » Il m'a reconnu{|e} lundi matin."], en: ["Caller ID let the man call back. My mom picked up. She listened for a long time. Then looked at me. My life flashed before my eyes.", "I got my own teacher's voicemail. I panicked and left a message in my real voice: “… sorry.” He recognized me on Monday morning."] }, fx: { happy: -4, discipline: 2 } },
+        ],
+      },
+      {
+        label: { fr: 'Appeler mamie à la place', en: 'Call grandma instead' },
+        out: [
+          { w: 1, text: { fr: ["On a appelé mamie avec une voix déguisée. Elle a tout de suite su que c'était moi, a joué le jeu pendant dix minutes, puis m'a demandé si je mangeais assez. Mamie gagne toujours.", "On a fait une blague à mamie. Elle a répondu par une blague bien pire, qui impliquait {w:animal} et le facteur. On n'était pas prêts."], en: ["We called grandma in a fake voice. She knew it was me instantly, played along for ten minutes, then asked if I was eating enough. Grandma always wins.", "We pranked grandma. She replied with a much worse joke involving {w:animal} and the mailman. We weren't ready."] }, fx: { happy: 4, karma: 1 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_lost_theme_park',
+    icon: '🎡',
+    cat: 'family',
+    once: true,
+    when: { age: [4, 9] },
+    scene: { place: 'park', mood: 'cry' },
+    text: {
+      fr: [
+        "Parc d'attractions. Tu t'es arrêté{|e} pour regarder une mascotte géante déguisée en {w:animal}. Quand tu te retournes, ta famille a disparu.",
+        "Tu as lâché la main de ton père pour aller voir les auto-tamponneuses. Il y a des milliers de gens. Aucun n'est ton père. Ça sent {w:smell}.",
+        "Tu es perdu{|e} à la fête foraine, entre le stand de barbe à papa et un lot géant ({w:object}). La musique est très forte. Tu as envie de pleurer.",
+        "Tu viens de réaliser que la jambe à laquelle tu t'accroches depuis cinq minutes n'est pas celle de ta mère. Le monsieur te regarde, surpris.",
+      ],
+      en: [
+        "Theme park. You stopped to watch a giant mascot dressed as {w:animal}. When you turn around, your family is gone.",
+        "You let go of your dad's hand to look at the bumper cars. There are thousands of people. None of them is your dad. It smells like {w:smell}.",
+        "You're lost at the fair, between the cotton-candy stand and a giant prize ({w:object}). The music is very loud. You want to cry.",
+        "You've just realized the leg you've been clinging to for five minutes isn't your mom's. The man looks down at you, surprised.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Aller voir un agent', en: 'Find a staff member' },
+        out: [
+          { w: 3, text: { fr: ["Un agent m'a emmené{|e} au point de rencontre et a annoncé au micro : « {Le petit|La petite} {first} attend ses parents. » Mes parents sont arrivés en courant, rouges de honte. J'ai eu une glace.", "La sécurité a fait une annonce dans tout le parc. Mes parents sont venus me chercher. J'avais déjà mangé deux gaufres offertes par le personnel. J'ai presque regretté qu'ils me trouvent."], en: ["A staff member took me to the meeting point and announced over the loudspeaker: “Little {first} is waiting for their parents.” My parents came running, red with shame. I got an ice cream.", "Security made an announcement across the whole park. My parents came to get me. Staff had already given me two waffles. I almost wished they hadn't found me."] }, fx: { happy: 3, smarts: 2 } },
+        ],
+      },
+      {
+        label: { fr: 'Les chercher seul', en: 'Search on your own' },
+        out: [
+          { w: 2, text: { fr: ["J'ai cherché partout. J'ai fini par monter seul{|e} dans le grand huit, « pour voir d'en haut ». Je les ai vus. Ils m'ont vu{|e}. Leurs visages valaient le détour.", "J'ai erré pendant une heure, j'ai gagné {w:object} à la pêche aux canards avec une pièce trouvée par terre, puis j'ai retrouvé mes parents à la buvette. Ils ne s'étaient pas aperçus de mon absence."], en: ["I searched everywhere. I ended up riding the roller coaster alone, “to see from above”. I saw them. They saw me. Their faces were worth it.", "I wandered for an hour, won {w:object} at the duck pond with a coin I found on the ground, then found my parents at the snack bar. They hadn't noticed I was gone."] }, fx: { happy: 2, athletic: 1, discipline: -1 } },
+          { w: 1, text: { fr: ["J'ai pleuré au milieu de l'allée jusqu'à ce qu'une famille {w:far_place} en vacances me prenne en charge. J'ai failli être adopté{|e}. Mes parents sont arrivés juste à temps.", "J'ai suivi une poussette qui ressemblait à la nôtre. Ce n'était pas la nôtre. J'ai fini dans le labyrinthe de miroirs, à pleurer devant cinquante versions de moi-même."], en: ["I cried in the middle of the walkway until a family vacationing from {w:far_place} took me under their wing. I nearly got adopted. My parents arrived just in time.", "I followed a stroller that looked like ours. It wasn't ours. I ended up in the hall of mirrors, crying at fifty versions of myself."] }, fx: { happy: -4 } },
+        ],
+      },
+    ],
+  },
+
+  // ═════════════════════════════ SPORTS, PARTIES & ADVENTURES ═════════════════════════════
+  {
+    id: 'k2_bike_ramp',
+    icon: '🚲',
+    cat: 'hobby',
+    rating: 1,
+    cooldown: 3,
+    actor: { role: 'anyFriend', create: { role: 'friend', age: [-1, 1], gender: 'any' } },
+    when: { age: [7, 12] },
+    scene: { place: 'park', mood: 'shock' },
+    text: {
+      fr: [
+        "{a.first} a construit un tremplin avec une planche et deux parpaings. Il faut sauter à vélo par-dessus {w:object}. Tout le quartier regarde.",
+        "Défi du jour : descendre la grande côte à vélo sans freiner. {a.first} l'a fait hier. {a:Il|Elle} a encore une croûte sur le menton pour le prouver.",
+        "Tu viens d'apprendre à faire du vélo sans les mains. {a.first} te met au défi de le faire devant la boulangerie, {w:weather}.",
+        "Concours de dérapage sur le parking du supermarché avec {a.first}. Le gagnant remporte {w:gift}. Le perdant, probablement une écorchure.",
+      ],
+      en: [
+        "{a.first} built a ramp out of a plank and two cinder blocks. You have to jump your bike over {w:object}. The whole neighborhood is watching.",
+        "Today's dare: ride down the big hill without braking. {a.first} did it yesterday. They still have a scab on their chin to prove it.",
+        "You just learned to ride no-handed. {a.first} dares you to do it in front of the bakery, {w:weather}.",
+        "Skid contest in the supermarket parking lot with {a.first}. The winner gets {w:gift}. The loser probably gets a scrape.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Foncer sans réfléchir', en: 'Go for it, no thinking' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai pris mon élan, décollé, et atterri sur les deux roues. Il y a eu un silence, puis des cris de joie. {a.first} m'a appelé{|e} « {w:nickname} ». C'est un titre de noblesse.", "Saut parfait. Ou presque : j'ai atterri, puis j'ai fait trois mètres sur une roue en hurlant {w:exclaim} Le quartier en parle encore."], en: ["I built up speed, took off, and landed on both wheels. Silence, then cheers. {a.first} called me “{w:nickname}”. It's a noble title.", "Perfect jump. Almost: I landed, then rode ten feet on one wheel screaming {w:exclaim} The neighborhood still talks about it."] }, fx: { happy: 7, athletic: 3, rel: 10 } },
+          { w: 1, text: { fr: ["Le vélo a décollé. Moi aussi, mais pas dans la même direction. Genoux en sang, coudes râpés, guidon tordu. J'ai ramené le vélo à pied en boitant, comme un vétéran.", "J'ai raté la planche et atterri dans la haie de la voisine. Elle est sortie avec {w:object} à la main, furieuse. J'ai perdu une sandale dans la fuite."], en: ["The bike took off. So did I, in a different direction. Bloody knees, scraped elbows, bent handlebars. I walked the bike home limping, like a veteran.", "I missed the plank and landed in the neighbor's hedge. She came out holding {w:object}, furious. I lost a sandal in the escape."] }, fx: { happy: -2, health: -4, athletic: 1 } },
+        ],
+      },
+      {
+        label: { fr: 'Mettre un casque d\'abord', en: 'Put on a helmet first' },
+        out: [
+          { w: 2, text: { fr: ["J'ai mis le casque, les genouillères et les coudières. {a.first} s'est moqué{a:|e} de moi. Puis {a:il|elle} est tombé{a:|e}, et moi non. Qui rit maintenant ?", "Avec mon casque, j'avais l'air d'un champignon. Mais j'ai sauté, je suis tombé{|e}, et je n'ai rien eu. Le champignon a gagné."], en: ["I put on the helmet, knee pads and elbow pads. {a.first} laughed at me. Then they fell, and I didn't. Who's laughing now?", "In my helmet I looked like a mushroom. But I jumped, I fell, and I was fine. The mushroom won."] }, fx: { happy: 3, athletic: 2, discipline: 2 } },
+        ],
+      },
+      {
+        label: { fr: 'Refuser le défi', en: 'Turn down the dare' },
+        out: [
+          { w: 1, text: { fr: ["J'ai refusé. On m'a traité{|e} de poule mouillée. Le soir, {a.first} est rentré{a:|e} avec un bras dans le plâtre. Je suis une poule mouillée en parfaite santé.", "J'ai dit non et je suis allé{|e} m'acheter {w:food} à la boulangerie. Le défi a dégénéré sans moi. J'ai regardé de loin en mangeant. Le meilleur spectacle."], en: ["I said no. They called me chicken. That evening {a.first} came home with an arm in a cast. I'm a chicken in perfect health.", "I said no and went to buy {w:food} at the bakery. The dare went sideways without me. I watched from afar while eating. Best show in town."] }, fx: { happy: 1, health: 1, discipline: 1 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_diving_board',
+    icon: '🏊',
+    cat: 'hobby',
+    once: true,
+    when: { age: [6, 12] },
+    scene: { place: 'beach', mood: 'shock' },
+    text: {
+      fr: [
+        "Piscine municipale. Le plongeoir de trois mètres te nargue. Tes copains ont tous sauté. Tu es en haut, les orteils au bord, et l'eau te paraît à des kilomètres.",
+        "Test de natation pour avoir le droit d'aller dans le grand bain : sauter du plongeoir et nager jusqu'au bord. Le maître-nageur siffle. Ça sent {w:smell}.",
+        "En haut du plongeoir, tu as une vue sur toute la piscine, sur le snack et sur {w:animal} qui traîne sur la pelouse. Derrière toi, une file d'enfants s'impatiente.",
+        "Ton grand cousin dit que sauter du grand plongeoir, c'est « comme voler ». Tu es en haut depuis [[cinq|douze|vingt]] minutes. Tu ne voles pas.",
+      ],
+      en: [
+        "Public pool. The ten-foot diving board is taunting you. Your friends have all jumped. You're at the top, toes on the edge, and the water looks miles away.",
+        "Swim test to be allowed in the deep end: jump off the board and swim to the side. The lifeguard blows the whistle. It smells like {w:smell}.",
+        "From the top of the diving board you can see the whole pool, the snack bar and {w:animal} wandering on the lawn. Behind you, a line of kids is getting impatient.",
+        "Your big cousin says jumping off the high board is “like flying”. You've been up here for [[five|twelve|twenty]] minutes. You are not flying.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Sauter les yeux fermés', en: 'Jump with eyes closed' },
+        out: [
+          { w: 2, text: { fr: ["J'ai fermé les yeux et sauté. Trois secondes de chute, une éternité. J'ai remonté à la surface en criant de joie. J'ai refait le saut [[douze|vingt|trente]] fois de suite.", "J'ai sauté en criant {w:exclaim} Le maître-nageur m'a applaudi{|e}. J'ai eu mon diplôme du grand bain. Je l'ai accroché au-dessus de mon lit."], en: ["I closed my eyes and jumped. Three seconds of falling, an eternity. I surfaced shouting with joy. I jumped [[twelve|twenty|thirty]] more times in a row.", "I jumped yelling {w:exclaim} The lifeguard clapped. I got my deep-end certificate. I hung it above my bed."] }, fx: { happy: 7, athletic: 3 } },
+          { w: 1, text: { fr: ["J'ai sauté, mais à plat ventre. Le bruit a résonné dans toute la piscine, comme {w:sound}. J'ai le ventre rouge comme une tomate. Mais j'ai sauté.", "J'ai sauté et mon maillot, lui, est resté à la surface un peu plus longtemps que moi. J'ai nagé jusqu'au bord en le tenant d'une main. Légende du bassin."], en: ["I jumped, but belly-first. The slap echoed through the whole pool, like {w:sound}. My belly is red as a tomato. But I jumped.", "I jumped and my swimsuit stayed at the surface a bit longer than I did. I swam to the edge holding it with one hand. Pool legend."] }, fx: { happy: 2, athletic: 2, looks: -1, health: -1 } },
+        ],
+      },
+      {
+        label: { fr: 'Redescendre par l\'échelle', en: 'Climb back down the ladder' },
+        out: [
+          { w: 2, text: { fr: ["Je suis redescendu{|e} par l'échelle, sous les regards de la file d'attente. Un petit de cinq ans a sauté juste après moi en riant. J'ai mangé {w:food} pour me consoler.", "J'ai fait demi-tour. Le maître-nageur m'a dit « la prochaine fois ». J'ai répondu « jamais ». On verra qui a raison."], en: ["I climbed back down the ladder as the line watched. A five-year-old jumped right after me, laughing. I ate {w:food} to cheer myself up.", "I turned back. The lifeguard said “next time”. I said “never”. We'll see who's right."] }, fx: { happy: -3, discipline: 1 } },
+        ],
+      },
+      {
+        label: { fr: 'Faire une bombe', en: 'Do a cannonball' },
+        out: [
+          { w: 1, text: { fr: ["J'ai fait la plus grosse bombe de l'histoire de la piscine. Une dame qui bronzait au bord a été trempée de la tête aux pieds. Le maître-nageur m'a exclu{|e} vingt minutes. Ça valait le coup.", "Ma bombe a éclaboussé le maître-nageur sur sa chaise. Il a soupiré, s'est essuyé, puis m'a montré son pouce levé. Respect mutuel."], en: ["I did the biggest cannonball in the history of the pool. A lady sunbathing at the edge got soaked head to toe. The lifeguard benched me for twenty minutes. Worth it.", "My cannonball soaked the lifeguard on his chair. He sighed, wiped himself off, then gave me a thumbs-up. Mutual respect."] }, fx: { happy: 6, athletic: 2, discipline: -2 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_sports_club',
+    icon: '🥋',
+    cat: 'hobby',
+    once: true,
+    actor: 'parent',
+    when: { age: [5, 10], has: 'parent' },
+    scene: { place: 'stadium', mood: 'neutral' },
+    text: {
+      fr: [
+        "{a.rel} veut t'inscrire à une activité extrascolaire « pour que tu te dépenses ». Au forum des associations, il y a le judo, le foot, la danse et {w:hobby}.",
+        "C'est la rentrée. {a.rel} a une brochure à la main et l'air déterminé. Tu vas faire un sport, que tu le veuilles ou non.",
+        "{a.rel} a lu que les enfants qui font du sport réussissent mieux. Ce soir, tu choisis ton club. Ton seul sport actuel, c'est le zapping devant {w:show}.",
+        "Ton meilleur copain fait du judo, ta cousine de la gymnastique, et {a.rel} rêve en secret de te voir jouer au tennis comme {w:celeb}.",
+      ],
+      en: [
+        "{a.rel} wants to sign you up for an after-school activity “to burn off energy”. At the clubs fair there's judo, soccer, dance and {w:hobby}.",
+        "It's back-to-school time. {a.rel} is holding a brochure and looks determined. You're doing a sport, like it or not.",
+        "{a.rel} read that kids who play sports do better in school. Tonight you pick a club. Your only current sport is channel-surfing past {w:show}.",
+        "Your best friend does judo, your cousin does gymnastics, and {a.rel} secretly dreams of you playing tennis like {w:celeb}.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Le judo', en: 'Judo' },
+        out: [
+          { w: 2, text: { fr: ["Je me suis inscrit{|e} au judo. Mon kimono est trois tailles trop grand, « pour que tu grandisses dedans ». J'ai fait ma première chute contrôlée. Puis plusieurs non contrôlées.", "Premier cours de judo : j'ai fait tomber un garçon deux fois plus grand que moi. Le professeur a dit « bien ». J'ai entendu « champion{|ne} olympique »."], en: ["I signed up for judo. My gi is three sizes too big, “so you'll grow into it”. I did my first controlled fall. Then several uncontrolled ones.", "First judo class: I threw a boy twice my size. The instructor said “good”. I heard “Olympic champion”."] }, fx: { happy: 4, athletic: 4, discipline: 3, flag: 'k2_club_judo' } },
+        ],
+      },
+      {
+        label: { fr: 'Le foot', en: 'Soccer' },
+        out: [
+          { w: 2, text: { fr: ["Je me suis inscrit{|e} au foot. Premier match : on a perdu 14 à 0. J'ai touché le ballon une fois, avec la tête, sans le faire exprès. L'entraîneur m'a félicité{|e} pour « l'engagement ».", "Au foot, on m'a mis{|e} gardien. J'ai arrêté un penalty avec le visage. Saignement de nez, applaudissements, glace offerte par le club. Meilleur jour de ma vie."], en: ["I joined soccer. First match: we lost 14–0. I touched the ball once, with my head, by accident. The coach praised my “commitment”.", "In soccer they made me goalie. I stopped a penalty with my face. Nosebleed, applause, free ice cream from the club. Best day of my life."] }, fx: { happy: 4, athletic: 4 } },
+        ],
+      },
+      {
+        label: { fr: 'Rester sur le canapé', en: 'Stay on the couch' },
+        out: [
+          { w: 1, text: { fr: ["J'ai refusé tous les sports. {a.my} m'a inscrit{|e} quand même à la natation synchronisée. Je fais maintenant des figures en pince à linge sur le nez. Je n'ai rien choisi.", "J'ai négocié : pas de sport, mais des échecs. {a.my} a accepté. J'ai battu le prof au troisième cours. Il a dit que j'avais « un esprit de stratège ». Ou de tricheur."], en: ["I refused every sport. {a.my} signed me up for synchronized swimming anyway. I now do routines with a nose clip. I chose nothing.", "I negotiated: no sport, but chess. {a.my} agreed. I beat the teacher in the third lesson. He said I have “a strategist's mind”. Or a cheater's."] }, fx: { happy: 1, smarts: 3, athletic: 1 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_judo_belt',
+    icon: '🥋',
+    cat: 'hobby',
+    cooldown: 2,
+    when: { age: [6, 12], flag: 'k2_club_judo' },
+    scene: { place: 'stadium', mood: 'proud' },
+    text: {
+      fr: [
+        "Passage de ceinture au judo ! Tu es [[ceinture blanche|ceinture jaune|ceinture orange]] et tu vises la suivante. Ton adversaire a l'air d'avoir mangé {w:food} au petit-déjeuner.",
+        "Compétition de judo départementale. Tes parents sont dans les gradins avec une pancarte faite maison. Ton adversaire est déjà en train de crier.",
+        "Au judo, le professeur t'oppose au plus fort du club, surnommé « {w:nickname} ». Il n'a jamais perdu. Il a {age} ans, comme toi, mais deux fois ta taille.",
+        "Ta ceinture de judo s'est défaite en plein combat. Ton pantalon de kimono glisse. L'arbitre ne voit rien. Ton adversaire charge.",
+      ],
+      en: [
+        "Judo belt exam! You're a [[white belt|yellow belt|orange belt]] going for the next one. Your opponent looks like they ate {w:food} for breakfast.",
+        "Regional judo competition. Your parents are in the stands with a homemade sign. Your opponent is already yelling.",
+        "At judo, the instructor pairs you against the club's strongest kid, nicknamed “{w:nickname}”. Undefeated. Same age as you, twice your size.",
+        "Your judo belt came undone mid-match. Your gi pants are slipping. The referee doesn't notice. Your opponent charges.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Attaquer de front', en: 'Attack head-on' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai attaqué de toutes mes forces. Ippon ! L'adversaire est tombé comme {w:object} qu'on lâche. J'ai eu ma ceinture. Je dors avec.", "J'ai foncé et fait la seule prise que je connais. Elle a marché. Mes parents ont crié si fort qu'on les a priés de se calmer."], en: ["I attacked with everything I had. Ippon! My opponent went down like {w:object} falling off a shelf. I got my belt. I sleep in it.", "I charged and did the only throw I know. It worked. My parents screamed so loud they were asked to calm down."] }, fx: { happy: 7, athletic: 4, discipline: 2 } },
+          { w: 1, text: { fr: ["J'ai attaqué et je me suis retrouvé{|e} à plat dos en une seconde, en regardant les néons du gymnase. Défaite éclair. J'ai salué dignement, puis pleuré dans les vestiaires.", "J'ai attaqué, mon pantalon est tombé. Toute la salle a vu mon slip à motifs de dinosaures. J'ai perdu le combat et un peu de ma dignité."], en: ["I attacked and found myself flat on my back in one second, staring at the gym lights. Lightning defeat. I bowed with dignity, then cried in the locker room.", "I attacked, my pants fell down. The whole gym saw my dinosaur underwear. I lost the match and some dignity."] }, fx: { happy: -3, athletic: 2 } },
+        ],
+      },
+      {
+        label: { fr: 'Esquiver et attendre', en: 'Dodge and wait' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai esquivé pendant trois minutes. L'adversaire s'est épuisé et a fini par trébucher tout seul. Victoire par fatigue. Le professeur hésite entre me féliciter et me gronder.", "J'ai tourné autour de mon adversaire comme {w:animal} méfiant. Il s'est énervé et a pris une pénalité. J'ai gagné aux points. C'est moche, mais c'est une victoire."], en: ["I dodged for three minutes. My opponent wore himself out and tripped on his own. Victory by exhaustion. The instructor can't decide whether to praise or scold me.", "I circled my opponent like {w:animal} on the lookout. He got frustrated and took a penalty. I won on points. Ugly, but a win."] }, fx: { happy: 4, smarts: 2, athletic: 2 } },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 'k2_football_parent',
+    icon: '⚽',
+    cat: 'family',
+    rating: 1,
+    cooldown: 3,
+    actor: 'parent',
+    when: { age: [6, 12], has: 'parent' },
+    scene: { place: 'stadium', mood: 'angry' },
+    text: {
+      fr: [
+        "Match de foot des moins de dix ans. {a.rel} est au bord du terrain et hurle sur l'arbitre, qui a quatorze ans et une moustache naissante. Tout le monde te regarde.",
+        "Ton match du samedi. {a.rel} a apporté une corne de brume et crie des consignes tactiques contradictoires. L'entraîneur fait des gestes pour qu'{a.he} se calme.",
+        "Tournoi de foot. {a.rel} vient de traiter l'arbitre de « {w:insult} » devant tous les parents. Tu es en train de tirer un corner.",
+        "{a.rel} filme tout ton match en commentant comme à la télé. Il pleut, {w:weather}. Tu n'as pas touché le ballon depuis vingt minutes.",
+      ],
+      en: [
+        "Under-10 soccer match. {a.rel} is on the sideline yelling at the referee, who is fourteen and has a budding mustache. Everyone is looking at you.",
+        "Your Saturday match. {a.rel} brought an air horn and is shouting contradictory tactical instructions. The coach is gesturing for them to calm down.",
+        "Soccer tournament. {a.rel} just called the referee “{w:insult}” in front of all the parents. You're taking a corner kick.",
+        "{a.rel} is filming your whole match with TV-style commentary. It's raining, {w:weather}. You haven't touched the ball in twenty minutes.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Marquer pour lui faire plaisir', en: 'Score to make them happy' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai marqué un but. Je crois. Le ballon a rebondi sur mon genou, puis sur le gardien. {a.my} a couru sur le terrain en hurlant. On a pris un carton jaune. Pour {a.my}.", "J'ai marqué ! {a.my} a fondu en larmes, enlacé l'arbitre qu'{a:il|elle} insultait deux minutes avant et payé {w:food} à toute l'équipe."], en: ["I scored a goal. I think. The ball bounced off my knee, then the goalie. {a.my} ran onto the pitch screaming. We got a yellow card. {a.my} did.", "I scored! {a.my} burst into tears, hugged the referee they'd been insulting two minutes earlier and bought the whole team {w:food}."] }, fx: { happy: 7, athletic: 3, rel: 10 } },
+          { w: 1, text: { fr: ["J'ai tiré de toutes mes forces. Le ballon a atterri dans le thermos de {a.my}. Café partout. {a:Il|Elle} s'est enfin tu{a:|e}. Mission accomplie, d'une certaine façon.", "J'ai raté le but de dix mètres. {a.my} a crié {w:exclaim} si fort que l'équipe adverse a applaudi. J'ai demandé à changer de famille."], en: ["I kicked with all my might. The ball landed in {a.my}'s thermos. Coffee everywhere. They finally shut up. Mission accomplished, in a way.", "I missed the goal by thirty feet. {a.my} yelled {w:exclaim} so loudly the other team applauded. I asked to change families."] }, fx: { happy: -2, athletic: 2, rel: -5 } },
+        ],
+      },
+      {
+        label: { fr: 'Demander à {a.rel} de partir', en: 'Ask {a.rel} to leave' },
+        out: [
+          { w: 1, text: { fr: ["Je suis allé{|e} voir {a.my} à la mi-temps et je lui ai demandé d'attendre dans la voiture. Il y a eu un silence. Puis {a:il|elle} y est allé{a:|e}. J'ai joué le meilleur match de ma vie.", "J'ai demandé poliment à {a.my} de se taire. Vexé{a:|e}, {a:il|elle} est resté{a:|e} muet{a:|te} tout le match en tenant une pancarte « JE NE DIS RIEN ». C'était pire."], en: ["At halftime I went to {a.my} and asked them to wait in the car. Silence. Then they went. I played the best match of my life.", "I politely asked {a.my} to be quiet. Offended, they stayed silent the whole match holding a sign that said “I'M NOT SAYING ANYTHING”. That was worse."] }, fx: { happy: 3, discipline: 2, rel: -10 } },
+        ],
+      },
+      {
+        label: { fr: 'Faire semblant de ne pas {a.him} connaître', en: "Pretend you don't know them" },
+        out: [
+          { w: 1, text: { fr: ["J'ai dit à mes coéquipiers que je ne connaissais pas cette personne. {a.my} a crié mon prénom en entier, avec mon surnom de bébé. Mes coéquipiers savent tout.", "J'ai changé de côté du terrain pour être loin de {a.my}. {a:Il|Elle} m'a suivi{|e} le long de la ligne de touche, comme {w:animal} qui suit un sandwich."], en: ["I told my teammates I didn't know that person. {a.my} shouted my full name, plus my baby nickname. My teammates know everything now.", "I switched sides of the pitch to get away from {a.my}. They followed me along the sideline, like {w:animal} following a sandwich."] }, fx: { happy: -2, looks: -1 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_sleepover',
+    icon: '🛌',
+    cat: 'friends',
+    rating: 1,
+    cooldown: 3,
+    actor: { role: 'anyFriend', create: { role: 'friend', age: [-1, 1], gender: 'same' } },
+    when: { age: [6, 12] },
+    scene: { place: 'home', mood: 'happy', prop: 'bed' },
+    text: {
+      fr: [
+        "Première soirée pyjama chez {a.first} ! Ses parents sont « cools » : ils ont dit qu'on pouvait veiller jusqu'à 22 h. Il est 1 h du matin et vous mangez {w:food} sous une tente en draps.",
+        "Soirée pyjama chez {a.first}. Il est 2 h du matin. Tout le monde dort, sauf toi. La maison fait {w:sound}. Ta maison te manque soudainement.",
+        "Chez {a.first}, on raconte des histoires qui font peur à la lampe de poche. Dans la dernière, {w:animal} hante les toilettes. Tu as très envie de faire pipi.",
+        "Soirée pyjama chez {a.first} : film d'horreur interdit, {w:food} à volonté et un concours pour savoir qui tiendra éveillé le plus longtemps.",
+      ],
+      en: [
+        "First sleepover at {a.first}'s! Their parents are “cool”: they said you could stay up until 10. It's 1 a.m. and you're eating {w:food} in a bedsheet tent.",
+        "Sleepover at {a.first}'s. It's 2 a.m. Everyone's asleep except you. The house is making {w:sound}. You suddenly miss home.",
+        "At {a.first}'s, everyone's telling scary stories by flashlight. In the last one, {w:animal} haunts the toilet. You really need to pee.",
+        "Sleepover at {a.first}'s: forbidden horror movie, all-you-can-eat {w:food} and a contest to see who stays awake longest.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Tenir jusqu\'à l\'aube', en: 'Stay up till dawn' },
+        out: [
+          { w: 2, text: { fr: ["On a tenu jusqu'à 5 h du matin en racontant des blagues sur les pets. J'ai dormi tout le dimanche. Mes parents m'ont récupéré{|e} dans un état de zombie heureux.", "On a fait un concours de pets dans les sacs de couchage. {a.first} a gagné haut la main avec {w:sound}. Sa mère est venue voir si tout allait bien. On a fait semblant de dormir."], en: ["We stayed up till 5 a.m. telling fart jokes. I slept all Sunday. My parents picked up a happy zombie.", "We had a farting contest in our sleeping bags. {a.first} won hands down with {w:sound}. Their mom came to check on us. We pretended to be asleep."] }, fx: { happy: 7, health: -2, rel: 15 } },
+          { w: 1, text: { fr: ["Je me suis endormi{|e} {le premier|la première}, à 21 h 30. On m'a dessiné une moustache au feutre. Elle est restée trois jours. Même à la photo de classe.", "J'ai été {le dernier|la dernière} éveillé{|e}. Seul{|e} dans le noir, j'ai entendu {w:sound}. J'ai réveillé toute la maison. C'était le frigo."], en: ["I fell asleep first, at 9:30 p.m. They drew a mustache on me in marker. It lasted three days. Including class photo day.", "I was the last one awake. Alone in the dark, I heard {w:sound}. I woke the whole house. It was the fridge."] }, fx: { happy: -1, looks: -1, rel: 5 } },
+        ],
+      },
+      {
+        label: { fr: 'Appeler les parents', en: 'Call your parents' },
+        out: [
+          { w: 2, text: { fr: ["J'ai appelé mes parents à minuit en chuchotant. Mon père est venu me chercher en pyjama, avec {w:object} sur le siège passager. On n'en a jamais reparlé. Je l'aime.", "J'ai appelé ma mère. Elle a parlé avec moi au téléphone jusqu'à ce que je m'endorme. Le lendemain, j'ai dit à {a.first} que j'avais dormi « comme un bébé ». Techniquement vrai."], en: ["I called my parents at midnight, whispering. Dad came to get me in his pajamas, with {w:object} on the passenger seat. We never spoke of it again. I love him.", "I called my mom. She stayed on the phone until I fell asleep. Next day I told {a.first} I'd slept “like a baby”. Technically true."] }, fx: { happy: 1, rel: -5 } },
+        ],
+      },
+      {
+        label: { fr: 'Faire une farce à {a.first}', en: 'Prank {a.first}' },
+        out: [
+          { w: 1, text: { fr: ["J'ai mis la main de {a.first} dans un bol d'eau tiède pendant qu'{a:il|elle} dormait. Il ne s'est rien passé. Internet m'a menti. J'ai fini {w:food} à la place.", "J'ai caché {w:object} dans le sac de couchage de {a.first}. {a:Il|Elle} a hurlé, puis ri, puis m'a coursé{|e} dans toute la maison. Ses parents sont descendus. Ils étaient moins cools."], en: ["I put {a.first}'s hand in a bowl of warm water while they slept. Nothing happened. The internet lied. I finished {w:food} instead.", "I hid {w:object} in {a.first}'s sleeping bag. They screamed, then laughed, then chased me through the whole house. Their parents came down. They were less cool."] }, fx: { happy: 5, rel: 5, discipline: -2 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_birthday_invite',
+    icon: '🎂',
+    cat: 'friends',
+    cooldown: 3,
+    when: { age: [5, 11] },
+    scene: { place: 'party', mood: 'party', prop: 'cake' },
+    text: {
+      fr: [
+        "Pour ton anniversaire, tes parents t'autorisent à inviter « cinq copains maximum ». Tu as déjà distribué [[douze|dix-huit|vingt-cinq]] invitations.",
+        "Tout le monde est invité à l'anniversaire de la star de la classe, sauf toi. Tu as vu les cartons passer. Le thème : {w:movie}.",
+        "Ton anniversaire approche. Tu veux une fête à thème : {w:show}. Tes parents ont dit « on verra », ce qui veut dire « non ».",
+        "Tu es invité{|e} à un anniversaire au bowling. Il faut apporter un cadeau. Tes parents te tendent {w:gift} emballé dans du papier journal.",
+      ],
+      en: [
+        "For your birthday, your parents let you invite “five friends max”. You've already handed out [[twelve|eighteen|twenty-five]] invitations.",
+        "Everyone's invited to the class star's birthday party, except you. You saw the invites go round. The theme: {w:movie}.",
+        "Your birthday's coming up. You want a party themed on {w:show}. Your parents said “we'll see”, which means “no”.",
+        "You're invited to a bowling birthday party. You have to bring a gift. Your parents hand you {w:gift} wrapped in newspaper.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Faire la fête en grand', en: 'Go big' },
+        out: [
+          { w: 2, text: { fr: ["Vingt enfants sont venus. Mes parents ont acheté {w:food} en catastrophe. On a cassé une lampe, perdu un enfant pendant dix minutes et mangé tout le gâteau. Fête légendaire.", "La fête a été un triomphe. Un magicien a fait disparaître {w:object}. Il ne l'a jamais fait réapparaître. Ma mère le cherche encore."], en: ["Twenty kids came. My parents panic-bought {w:food}. We broke a lamp, lost a kid for ten minutes and ate the whole cake. Legendary party.", "The party was a triumph. A magician made {w:object} disappear. He never made it reappear. Mom is still looking for it."] }, fx: { happy: 8, karma: 1 } },
+          { w: 1, text: { fr: ["Sur vingt invitations, deux enfants sont venus. On a mangé le gâteau pour trente à trois. J'ai eu mal au ventre jusqu'au lendemain, mais j'ai deux vrais amis.", "Il a plu, le clown s'est trompé d'adresse et le gâteau est tombé face contre terre. On a mangé {w:food} devant la télé. C'était quand même bien."], en: ["Out of twenty invitations, two kids came. The three of us ate a cake for thirty. Stomachache till the next day, but I have two real friends.", "It rained, the clown went to the wrong address and the cake landed face-down. We ate {w:food} in front of the TV. It was still nice."] }, fx: { happy: 1, health: -1 } },
+        ],
+      },
+      {
+        label: { fr: 'Organiser ta contre-fête', en: 'Throw a counter-party' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["Le jour de la fête où je n'étais pas invité{|e}, j'ai organisé une « fête des oubliés » dans le parc. Huit enfants sont venus. On a mangé des chips et juré fidélité éternelle.", "J'ai monté une fête rivale le même jour, avec {w:animal} en guest-star (le chien du voisin, déguisé). La moitié des invités de l'autre fête sont venus chez moi."], en: ["On the day of the party I wasn't invited to, I threw a “forgotten kids party” in the park. Eight kids came. We ate chips and swore eternal loyalty.", "I set up a rival party on the same day, with {w:animal} as special guest (the neighbor's dog in costume). Half the other party's guests came to mine."] }, fx: { happy: 6, smarts: 2, karma: 1 } },
+        ],
+      },
+      {
+        label: { fr: 'Rester discret', en: 'Keep it low-key' },
+        out: [
+          { w: 1, text: { fr: ["J'ai fêté mon anniversaire en famille, avec mamie et un gâteau au yaourt. On a joué aux cartes. Mamie a triché. C'était parfait.", "J'ai offert mon cadeau emballé dans du journal. L'enfant a déchiré le papier et lu à voix haute la rubrique nécrologique. Tout le monde a ri. Moi aussi, un peu."], en: ["I celebrated with family, grandma and a yogurt cake. We played cards. Grandma cheated. It was perfect.", "I gave my present wrapped in newspaper. The kid tore it open and read the obituaries out loud. Everyone laughed. Me too, a little."] }, fx: { happy: 3 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_birthday_regift',
+    icon: '🎁',
+    cat: 'friends',
+    rating: 1,
+    once: true,
+    actor: { role: 'classmate', create: { role: 'classmate', age: [-1, 1], gender: 'any' } },
+    when: { age: [6, 12] },
+    scene: { place: 'party', mood: 'shock', prop: 'cake' },
+    text: {
+      fr: [
+        "Tu vas à l'anniversaire de {a.first}. Tes parents ont oublié le cadeau. Ta mère attrape en panique {w:gift} dans le placard des cadeaux de tante Huguette.",
+        "Cadeau d'anniversaire pour {a.first} : tu as emballé {w:object} trouvé dans ta chambre. Il y a encore ton prénom écrit dessus au marqueur.",
+        "{a.first} ouvre ton cadeau devant tout le monde. C'est {w:gift}. {a:Il|Elle} s'arrête net : « Mais… c'est moi qui te l'ai offert l'année dernière. »",
+        "Ta mère a recyclé un cadeau reçu pour l'offrir à {a.first}. Il y a encore la carte : « Joyeux anniversaire, ma chérie ! Tata Monique. »",
+      ],
+      en: [
+        "You're going to {a.first}'s birthday. Your parents forgot the gift. Your mom panics and grabs {w:gift} from the closet of Aunt Edna's gifts.",
+        "Birthday present for {a.first}: you wrapped {w:object} you found in your room. Your name is still written on it in marker.",
+        "{a.first} opens your present in front of everyone. It's {w:gift}. They freeze: “Wait… I gave you this last year.”",
+        "Your mom regifted something to give to {a.first}. The card is still inside: “Happy birthday, sweetie! Love, Aunt Monica.”",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Nier avec aplomb', en: 'Deny with confidence' },
+        out: [
+          { w: 2, text: { fr: ["J'ai juré que c'était une coïncidence et que ce cadeau était « très populaire cette année ». Personne n'y a cru, mais personne n'a osé me contredire. Le mensonge par intimidation.", "J'ai dit que c'était un « cadeau rétro, c'est la mode ». Un parent a hoché la tête, impressionné. J'ai peut-être inventé une tendance."], en: ["I swore it was a coincidence and that the gift was “very popular this year”. Nobody believed it, but nobody dared contradict me. Lying by intimidation.", "I said it was a “vintage gift, it's trendy”. One parent nodded, impressed. I may have invented a trend."] }, fx: { happy: 3, karma: -3 } },
+          { w: 1, text: { fr: ["{a.first} a lu la carte à voix haute devant tout le monde. « Tata Monique » a été répété toute l'année à mon passage. Ma mère n'est plus invitée aux réunions de parents.", "Le cadeau contenait encore le ticket de caisse au nom de ma tante, daté de l'an dernier. Les preuves étaient accablantes."], en: ["{a.first} read the card aloud to everyone. “Aunt Monica” was chanted whenever I walked by for the rest of the year. My mom isn't invited to parent meetings anymore.", "The gift still had the receipt in my aunt's name, dated years ago. The evidence was overwhelming."] }, fx: { happy: -5, looks: -1, rel: -10 } },
+        ],
+      },
+      {
+        label: { fr: 'En rire', en: 'Laugh it off' },
+        out: [
+          { w: 2, text: { fr: ["J'ai éclaté de rire et avoué. {a.first} aussi. On a fait le serment de s'offrir le même cadeau chaque année, pour toujours. C'est devenu une tradition.", "J'ai dit : « Ce cadeau a voyagé, il a une histoire. » Tout le monde a ri. {a.first} m'a donné une double part de gâteau pour l'audace."], en: ["I burst out laughing and confessed. So did {a.first}. We swore to give each other the same gift every year, forever. It became a tradition.", "I said, “This gift has traveled, it has a story.” Everyone laughed. {a.first} gave me a double slice of cake for my nerve."] }, fx: { happy: 5, karma: 1, rel: 15, actorRole: 'friend' } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_imaginary_lawyer',
+    icon: '👻',
+    cat: 'weird',
+    once: true,
+    actor: 'parent',
+    when: { age: [3, 7], has: 'parent' },
+    scene: { place: 'home', mood: 'neutral', fx: 'ghost' },
+    text: {
+      fr: [
+        "Ton ami imaginaire s'appelle [[Jean-Mi|Princesse Brocoli|Monsieur Plinte]]. Il exige désormais une place à table, une assiette et qu'on lui serve {w:food}. {a.rel} hésite.",
+        "Ton ami imaginaire a cassé le vase. Pas toi. Lui. Tu l'as vu. {a.rel} a du mal à mettre un ami imaginaire au coin.",
+        "Ton ami imaginaire a annoncé qu'il était {w:weird_job} et qu'il partait bientôt en voyage {w:far_place}. Tu dois l'annoncer à {a.rel}.",
+        "{a.rel} s'est assis{a:|e} sur ton ami imaginaire, qui était sur le canapé. Ton ami imaginaire est très en colère. Toi aussi.",
+      ],
+      en: [
+        "Your imaginary friend is called [[Jimmy|Princess Broccoli|Mr. Baseboard]]. He now demands a seat at the table, a plate and to be served {w:food}. {a.rel} hesitates.",
+        "Your imaginary friend broke the vase. Not you. Him. You saw it. {a.rel} is struggling to put an imaginary friend in time-out.",
+        "Your imaginary friend announced he's {w:weird_job} and leaving soon on a trip {w:far_place}. You have to tell {a.rel}.",
+        "{a.rel} sat on your imaginary friend, who was on the couch. Your imaginary friend is very angry. So are you.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Exiger réparation', en: 'Demand reparations' },
+        out: [
+          { w: 2, text: { fr: ["J'ai exigé des excuses officielles pour mon ami imaginaire. {a.my} s'est excusé{a:|e} solennellement auprès du canapé vide. Ma grand-mère est entrée à ce moment-là. Elle a des questions.", "Mon ami imaginaire a obtenu une assiette à table. {a.my} lui sert {w:food} tous les soirs. Je mange sa part. Tout le monde est content."], en: ["I demanded an official apology for my imaginary friend. {a.my} solemnly apologized to the empty couch. Grandma walked in at that moment. She has questions.", "My imaginary friend got a plate at the table. {a.my} serves him {w:food} every night. I eat his share. Everyone's happy."] }, fx: { happy: 5, smarts: 1, rel: 5, flag: 'k2_imag_friend', schedule: { key: 'k2_imaginary_goodbye', years: 2 } } },
+        ],
+      },
+      {
+        label: { fr: 'Lui faire porter le chapeau', en: 'Make him take the blame' },
+        rating: 1,
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["Désormais, tout est de la faute de mon ami imaginaire : les miettes, les dessins sur le mur, le pet pendant le dîner. {a.my} commence à le détester. C'est le crime parfait.", "Mon ami imaginaire a été puni à ma place. Il est au coin depuis deux heures. Moi, je regarde {w:show}. La justice a ses failles."], en: ["Now everything's my imaginary friend's fault: the crumbs, the drawings on the wall, the fart at dinner. {a.my} is starting to hate him. The perfect crime.", "My imaginary friend got punished instead of me. He's been in time-out for two hours. I'm watching {w:show}. Justice has its flaws."] }, fx: { happy: 4, karma: -2, flag: 'k2_imag_friend', schedule: { key: 'k2_imaginary_goodbye', years: 2 } } },
+          { w: 1, text: { fr: ["{a.my} a joué le jeu : « D'accord, ton ami est privé de dessert. Et comme vous êtes inséparables… » J'ai perdu sur un point de procédure.", "{a.my} a déclaré que mon ami imaginaire devait ranger la chambre. Comme il est imaginaire, c'est moi qui ai rangé. Le système est truqué."], en: ["{a.my} played along: “Fine, your friend gets no dessert. And since you're inseparable…” I lost on a technicality.", "{a.my} declared that my imaginary friend had to clean the room. Since he's imaginary, I did it. The system is rigged."] }, fx: { happy: -2, discipline: 2 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_imaginary_goodbye',
+    icon: '👋',
+    cat: 'weird',
+    chainOnly: true,
+    when: { age: [5, 10], flag: 'k2_imag_friend' },
+    scene: { place: 'home', mood: 'sad', fx: 'ghost' },
+    text: {
+      fr: [
+        "Ce matin, tu as cherché ton ami imaginaire partout. Il n'est plus là. Sur ton bureau, tu trouves un mot que tu ne te souviens pas avoir écrit : « Je pars {w:far_place}. Grandis bien. »",
+        "Ton ami imaginaire t'annonce qu'il a trouvé un nouvel enfant, plus jeune, qui a « plus besoin de lui ». Il fait ses valises invisibles.",
+        "Tu te rends compte que tu n'as pas parlé à ton ami imaginaire depuis des semaines. Il t'attend sur le canapé, l'air vexé, avec {w:object}.",
+        "Tes parents ont gardé la place de ton ami imaginaire à table par habitude. Tu viens de leur dire qu'il est parti. Ils ont l'air presque tristes.",
+      ],
+      en: [
+        "This morning you looked everywhere for your imaginary friend. He's gone. On your desk there's a note you don't remember writing: “I'm off to live {w:far_place}. Grow up well.”",
+        "Your imaginary friend announces he's found a new, younger kid who “needs him more”. He's packing his invisible bags.",
+        "You realize you haven't talked to your imaginary friend in weeks. He's waiting on the couch, looking offended, holding {w:object}.",
+        "Your parents kept your imaginary friend's seat at the table out of habit. You just told them he left. They look almost sad.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Organiser une fête d\'adieu', en: 'Throw a farewell party' },
+        out: [
+          { w: 2, text: { fr: ["On a fait une fête d'adieu avec un gâteau et des ballons. Mes parents ont trinqué avec le vide. Mon père a fait un discours étonnamment émouvant. Ma mère a pleuré.", "J'ai offert {w:gift} à mon ami imaginaire pour son départ. Le cadeau est resté sur le canapé une semaine, puis a disparu. Mon père dit qu'il n'y est pour rien."], en: ["We threw a farewell party with cake and balloons. My parents toasted thin air. Dad gave a surprisingly moving speech. Mom cried.", "I gave my imaginary friend {w:gift} as a goodbye present. It sat on the couch for a week, then vanished. My dad says he had nothing to do with it."] }, fx: { happy: 3, smarts: 2, unflag: 'k2_imag_friend' } },
+        ],
+      },
+      {
+        label: { fr: 'Le supplier de rester', en: 'Beg him to stay' },
+        out: [
+          { w: 1, text: { fr: ["J'ai supplié. Il est resté encore un mois, puis il est parti sans prévenir, comme tous les amis imaginaires. Je l'ai dessiné pour ne pas oublier son visage.", "Il a accepté de rester « à temps partiel », le week-end seulement. On a un accord de garde. Mes parents trouvent ça très mature."], en: ["I begged. He stayed one more month, then left without warning, like all imaginary friends do. I drew him so I wouldn't forget his face.", "He agreed to stay “part time”, weekends only. We have a custody arrangement. My parents find it very mature."] }, fx: { happy: -1, smarts: 1, unflag: 'k2_imag_friend' } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_youtube_dream',
+    icon: '📹',
+    cat: 'hobby',
+    cooldown: 4,
+    when: { age: [7, 12], era: [2010, 2100] },
+    scene: { place: 'home', mood: 'proud', prop: 'camera' },
+    text: {
+      fr: [
+        "Tu as décidé de devenir {YouTubeur|YouTubeuse} célèbre comme {w:celeb}. Ta première vidéo : un test de bonbons. Tu as la tablette de ta mère et zéro abonné.",
+        "Ta chaîne vidéo compte [[deux|trois|sept]] abonnés, dont ta grand-mère et un compte bizarre. Tu prépares une vidéo spéciale pour percer.",
+        "Tu filmes ton premier « unboxing » avec {w:object}. Le son est raté, l'image floue, et le chien traverse le cadre toutes les dix secondes.",
+        "Tu veux lancer un défi viral sur {w:app}. Ton idée : manger un citron entier sans grimacer. Tes parents ne savent pas que tu as un compte.",
+      ],
+      en: [
+        "You've decided to become a famous YouTuber like {w:celeb}. First video: a candy taste test. You have your mom's tablet and zero subscribers.",
+        "Your video channel has [[two|three|seven]] subscribers, including your grandma and a weird account. You're preparing a special video to break through.",
+        "You're filming your first “unboxing” with {w:object}. The sound is bad, the picture's blurry and the dog walks through the frame every ten seconds.",
+        "You want to launch a viral challenge on {w:app}. Your idea: eat a whole lemon without making a face. Your parents don't know you have an account.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Publier la vidéo', en: 'Post the video' },
+        out: [
+          { w: 2, text: { fr: ["Ma vidéo a fait 14 vues. Douze sont de moi, une de mamie, et une d'un inconnu {w:far_place} qui a commenté « ok ». Je suis international{|e}.", "J'ai publié. Mamie a partagé la vidéo dans tous ses groupes. J'ai maintenant quarante abonnés de plus de 70 ans qui commentent « BRAVO MON GRAND ». C'est un public."], en: ["My video got 14 views. Twelve are mine, one is grandma's, and one is from a stranger {w:far_place} who commented “ok”. I'm international.", "I posted it. Grandma shared it in all her groups. I now have forty subscribers over 70 who comment “WELL DONE SWEETIE”. It's an audience."] }, fx: { happy: 4, smarts: 1, followers: 40 } },
+          { w: 1, text: { fr: ["La vidéo a marché ! Enfin, surtout le passage où le chien vole {w:food} sur la table. Il a plus de fans que moi. J'ai créé une star et ce n'est pas moi.", "Mes parents ont découvert la vidéo. On y voit le salon en désordre, mon père en slip à l'arrière-plan et la chanson {w:song}. Chaîne supprimée."], en: ["The video worked! Well, mostly the part where the dog steals {w:food} off the table. It has more fans than me. I created a star and it isn't me.", "My parents found the video. It shows the messy living room, my dad in his underwear in the background and the song {w:song}. Channel deleted."] }, fx: { happy: -1, followers: 15 } },
+        ],
+      },
+      {
+        label: { fr: 'Abandonner la gloire', en: 'Give up on fame' },
+        out: [
+          { w: 1, text: { fr: ["J'ai regardé ma vidéo et j'ai eu honte de ma voix. J'ai tout effacé. J'ai décidé de devenir {w:weird_job} à la place. Plus discret.", "J'ai renoncé à la célébrité pour me concentrer sur l'essentiel : les dessins animés et {w:food}. Ma carrière peut attendre."], en: ["I watched my video and was ashamed of my voice. I deleted everything. I decided to become {w:weird_job} instead. More discreet.", "I gave up fame to focus on what matters: cartoons and {w:food}. My career can wait."] }, fx: { happy: 1, smarts: 1 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_fair_goldfish',
+    icon: '🎣',
+    cat: 'family',
+    once: true,
+    actor: 'parent',
+    when: { age: [4, 10], has: 'parent' },
+    scene: { place: 'park', mood: 'happy' },
+    text: {
+      fr: [
+        "Fête foraine ! Au stand de la pêche aux canards, le lot principal est un poisson rouge dans un sac plastique. {a.rel} prie pour que tu rates.",
+        "Tu as un ticket pour le stand de tir. Le gros lot est un poisson rouge, entre {w:object} et une peluche géante. {a.rel} te regarde avec méfiance.",
+        "À la fête foraine, un forain moustachu te propose de gagner un poisson rouge en lançant trois anneaux. {a.rel} dit « on n'a pas d'aquarium ».",
+        "Tu as gagné à la loterie de la kermesse. Tu peux choisir entre {w:gift} et un poisson rouge vivant. {a.rel} te fait de grands signes de la tête.",
+      ],
+      en: [
+        "Fun fair! At the hook-a-duck stall, the top prize is a goldfish in a plastic bag. {a.rel} prays you'll miss.",
+        "You have a ticket for the shooting gallery. The top prize is a goldfish, between {w:object} and a giant plushie. {a.rel} eyes you warily.",
+        "At the fair, a mustached carny offers you a goldfish if you land three rings. {a.rel} says “we don't have a tank”.",
+        "You won the school fair raffle. You can choose between {w:gift} and a live goldfish. {a.rel} is shaking their head at you frantically.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Gagner le poisson', en: 'Win the fish' },
+        out: [
+          { w: 2, text: { fr: ["J'ai gagné le poisson ! Je l'ai appelé [[Nemo|Gérard|Steak]]. On a dû acheter un aquarium en urgence. {a.my} a soupiré pendant tout le trajet, le sac sur les genoux.", "Victoire ! Le poisson a voyagé dans son sac jusqu'à la maison, puis dans le saladier, puis dans {w:object}, en attendant mieux. Il a l'air serein. Moi, je suis aux anges."], en: ["I won the fish! I named him [[Nemo|Gerald|Steak]]. We had to buy an emergency tank. {a.my} sighed the whole way home, bag on their lap.", "Victory! The fish rode home in his bag, then in the salad bowl, then in {w:object} until we found better. He seems calm. I'm over the moon."] }, fx: { happy: 7, rel: -5, newNpc: { role: 'pet', species: 'fish' } } },
+          { w: 1, text: { fr: ["J'ai raté les trois anneaux. Le forain m'a donné un lot de consolation : {w:object}. {a.my} a eu l'air immensément soulagé{a:|e}.", "J'ai gagné, mais j'ai choisi la peluche géante au dernier moment. Elle est plus grande que moi. Elle a pris la place du chat sur le canapé. Le chat ne me parle plus."], en: ["I missed all three rings. The carny gave me a consolation prize: {w:object}. {a.my} looked enormously relieved.", "I won, but picked the giant plushie at the last second. It's bigger than me. It took the cat's spot on the couch. The cat isn't speaking to me."] }, fx: { happy: 2, rel: 5 } },
+        ],
+      },
+      {
+        label: { fr: 'Prendre la barbe à papa', en: 'Get cotton candy instead' },
+        out: [
+          { w: 1, text: { fr: ["J'ai renoncé au poisson pour une barbe à papa géante. J'en avais dans les cheveux, les oreilles et les sourcils. {a.my} m'a remercié{|e} d'avoir épargné une vie.", "J'ai pris la barbe à papa. Elle a fondu sur mon t-shirt dans la voiture. Je suis rentré{|e} plus collant{|e} qu'un pot de miel. Mais content{|e}."], en: ["I gave up the fish for a giant cotton candy. I had it in my hair, ears and eyebrows. {a.my} thanked me for sparing a life.", "I got the cotton candy. It melted on my shirt in the car. I came home stickier than a honey jar. But happy."] }, fx: { happy: 4, rel: 10 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_doorbell_ditch',
+    icon: '🔔',
+    cat: 'friends',
+    rating: 1,
+    cooldown: 3,
+    actor: { role: 'anyFriend', create: { role: 'friend', age: [-1, 1], gender: 'any' } },
+    when: { age: [7, 12] },
+    scene: { place: 'park', mood: 'happy' },
+    text: {
+      fr: [
+        "{a.first} propose une partie de « sonnette-fuite » dans la rue : sonner chez les gens et partir en courant. Le premier sur la liste est le voisin grincheux qui a {w:animal}.",
+        "Il est 18 h, il fait presque nuit. {a.first} a repéré une maison avec une sonnette qui fait {w:sound}. C'est trop tentant.",
+        "{a.first} te défie de sonner chez la directrice de l'école, qui habite trois rues plus loin. Le gage si tu refuses : manger {w:food}.",
+        "Sonnette-fuite avec {a.first} : il reste une dernière maison, celle avec un nain de jardin qui te fixe et des volets qui grincent.",
+      ],
+      en: [
+        "{a.first} suggests a game of ding-dong ditch on your street: ring doorbells and run. First on the list is the grumpy neighbor who owns {w:animal}.",
+        "It's 6 p.m. and almost dark. {a.first} has spotted a house with a doorbell that sounds like {w:sound}. Too tempting.",
+        "{a.first} dares you to ring the principal's doorbell; she lives three streets away. The forfeit if you refuse: eat {w:food}.",
+        "Ding-dong ditch with {a.first}: one last house, the one with a garden gnome staring at you and creaky shutters.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Sonner et courir', en: 'Ring and run' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai sonné et couru comme jamais. On s'est cachés derrière une poubelle, morts de rire. Le voisin est sorti en pyjama, a crié {w:exclaim} et est rentré. Adrénaline pure.", "On a fait toute la rue. Personne ne nous a attrapés. On a fini sur un banc, essoufflés, à partager {w:food}. C'est ça, la liberté."], en: ["I rang and ran like never before. We hid behind a trash can, dying of laughter. The neighbor came out in pajamas, yelled {w:exclaim} and went back in. Pure adrenaline.", "We did the whole street. Nobody caught us. We ended up on a bench, out of breath, sharing {w:food}. That's freedom."] }, fx: { happy: 6, athletic: 2, karma: -2, rel: 10 } },
+          { w: 1, text: { fr: ["La porte s'est ouverte avant même que j'aie lâché la sonnette. C'était la directrice. Elle a dit mon prénom. Juste mon prénom. J'ai senti mon âme quitter mon corps.", "En fuyant, je me suis pris{|e} les pieds dans un tuyau d'arrosage et étalé{|e} dans les géraniums. Le voisin m'a ramené{|e} chez moi par l'oreille. Mes parents l'ont remercié."], en: ["The door opened before I'd even let go of the bell. It was the principal. She said my name. Just my name. I felt my soul leave my body.", "Running away, I tripped over a garden hose and sprawled into the geraniums. The neighbor marched me home by the ear. My parents thanked him."] }, fx: { happy: -4, discipline: 2, health: -1 } },
+        ],
+      },
+      {
+        label: { fr: 'Laisser un mot gentil', en: 'Leave a nice note' },
+        out: [
+          { w: 1, text: { fr: ["J'ai proposé une variante : sonner et laisser un dessin sur le paillasson. Le voisin grincheux a souri pour la première fois depuis 1987. {a.first} trouve que j'ai ramolli.", "On a sonné et laissé un mot : « Bonne soirée ! » La dame nous a rattrapés et nous a offert des biscuits. Le crime ne paie pas, la gentillesse si."], en: ["I suggested a variant: ring and leave a drawing on the doormat. The grumpy neighbor smiled for the first time since 1987. {a.first} thinks I've gone soft.", "We rang and left a note: “Have a nice evening!” The lady caught up with us and gave us cookies. Crime doesn't pay, kindness does."] }, fx: { happy: 4, karma: 4, rel: 5 } },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'k2_spy_kit',
+    icon: '🔭',
+    cat: 'weird',
+    rating: 1,
+    cooldown: 4,
+    when: { age: [6, 12] },
+    scene: { place: 'home', mood: 'neutral' },
+    text: {
+      fr: [
+        "Tu as reçu une panoplie d'espion : jumelles, carnet secret et fausse moustache. Ta première cible : les voisins d'en face, qui ont l'air de cacher {w:object}.",
+        "Avec tes nouvelles jumelles, tu surveilles la rue depuis ta fenêtre. Le voisin du dessus fait quelque chose de très suspect avec {w:animal}.",
+        "Tu as installé un micro-espion (un talkie-walkie scotché sous la table) pendant le dîner de tes parents avec des amis. Tu écoutes depuis ta chambre.",
+        "Ton carnet d'espion est rempli de notes sur le facteur : il passe tous les jours à la même heure et sourit trop. Tu es sûr{|e} qu'il est {w:weird_job}.",
+      ],
+      en: [
+        "You got a spy kit: binoculars, a secret notebook and a fake mustache. Your first target: the neighbors across the street, who seem to be hiding {w:object}.",
+        "With your new binoculars, you watch the street from your window. The upstairs neighbor is doing something very suspicious with {w:animal}.",
+        "You planted a bug (a walkie-talkie taped under the table) during your parents' dinner with friends. You're listening from your room.",
+        "Your spy notebook is full of notes about the mailman: he comes by at the same time every day and smiles too much. You're sure he's {w:weird_job}.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Poursuivre l\'enquête', en: 'Keep investigating' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["Après une semaine de filature, j'ai découvert la vérité : le voisin chante {w:song} sous la douche, fenêtre ouverte, tous les matins. Je ne peux plus le regarder dans les yeux.", "Mon rapport d'espion fait vingt pages. Conclusion : le voisin parle à ses plantes et leur donne des prénoms. Je l'ai remis à mes parents. Ils ont trouvé ça « inquiétant ». Pour moi."], en: ["After a week of surveillance I uncovered the truth: the neighbor sings {w:song} in the shower, window open, every morning. I can't look him in the eye anymore.", "My spy report is twenty pages long. Conclusion: the neighbor talks to his plants and names them. I handed it to my parents. They found it “worrying”. About me."] }, fx: { happy: 4, smarts: 3 } },
+          { w: 1, text: { fr: ["Le talkie-walkie a grésillé en plein dîner. Tout le monde a entendu ma voix dire « ici Aigle Noir, la cible mange {w:food} ». Mon père a confisqué ma panoplie. Mission compromise.", "Le voisin m'a repéré{|e} avec mes jumelles. Il m'a fait coucou. Puis il est venu sonner pour parler à mes parents. Un espion ne doit jamais être vu. J'ai échoué."], en: ["The walkie-talkie crackled in the middle of dinner. Everyone heard my voice say “Black Eagle here, target is eating {w:food}”. Dad confiscated my kit. Mission compromised.", "The neighbor spotted me with my binoculars. He waved. Then he came over to talk to my parents. A spy must never be seen. I failed."] }, fx: { happy: -3, discipline: 1 } },
+        ],
+      },
+      {
+        label: { fr: 'Espionner tes parents', en: 'Spy on your parents' },
+        out: [
+          { w: 1, text: { fr: ["J'ai espionné mes parents pendant une soirée entière. Ils ont regardé {w:show}, mangé des chips et se sont endormis à 21 h 30. La vie des adultes est un désert. Je ne veux pas grandir.", "J'ai découvert en espionnant que mes parents cachent les cadeaux de Noël {w:at_place}. Je n'ai rien dit. Je suis un agent double."], en: ["I spied on my parents for a whole evening. They watched {w:show}, ate chips and fell asleep at 9:30 p.m. Adult life is a wasteland. I don't want to grow up.", "Spying, I discovered my parents hide the Christmas presents {w:at_place}. I said nothing. I'm a double agent."] }, fx: { happy: 2, smarts: 2 } },
+        ],
+      },
+    ],
+  },
+
 ];
