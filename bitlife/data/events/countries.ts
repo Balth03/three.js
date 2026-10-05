@@ -3668,7 +3668,7 @@ export const countryEvents: EventDef[] = [
     cooldown: 2,
     text: {
       fr: [
-        "C'est ton anniversaire ! Il y a 300 brigadeiros (des boules de chocolat sucrées à mourir), un gâteau en forme de {w:animal}, toute ta famille, tous les voisins et des gens que personne ne connaît. Ils chantent « Parabéns pra você » en tapant dans les mains.",
+        "C'est ton anniversaire ! Il y a 300 brigadeiros (des boules de chocolat sucrées à mourir), un gâteau qui représente {w:animal}, toute ta famille, tous les voisins et des gens que personne ne connaît. Ils chantent « Parabéns pra você » en tapant dans les mains.",
         "Fête d'anniversaire brésilienne : après la chanson, tout le monde crie « Com quem será ? » (avec qui va-t-il se marier ?) et propose des noms d'enfants de ta classe. Ta tante vient de crier le nom de ton pire ennemi.",
         "Le buffet de ton anniversaire contient des coxinhas, des brigadeiros, des beijinhos, du gâteau et {w:food}. Ta mère a cuisiné pendant trois jours. Tu as mangé onze brigadeiros avant l'arrivée des invités.",
         "Tradition : la première part de gâteau doit être offerte à la personne la plus importante pour toi. Ta mère, ta grand-mère, ton père et ton meilleur ami sont tous là, et ils attendent, en souriant beaucoup trop.",
@@ -3920,6 +3920,361 @@ export const countryEvents: EventDef[] = [
         out: [
           { w: 1, text: { fr: ["J'ai allumé une fusée pour fêter le but. Elle est partie à l'horizontale, a traversé la rue, est entrée par la fenêtre du voisin et a explosé dans sa cuisine. Il l'a très bien pris : « C'était pour le Brésil. »", "J'ai lancé une fusée. Elle a fait un looping, est revenue sur moi et m'a explosé entre les jambes. J'ai sauté si haut que j'ai touché un fil électrique. Ma rue m'appelle « Fogos »."], en: ["I lit a rocket to celebrate the goal. It flew sideways across the street, through the neighbor's window and exploded in his kitchen. He took it very well: “It was for Brazil.”", "I launched a rocket. It looped, came back and exploded between my legs. I jumped so high I touched a power line. My street calls me “Fogos.”"] }, fx: { health: -6, happy: 6, visual: 'explosion' }, mood: 'shock' },
         ],
+      },
+    ],
+  },
+  // ═════════════════════════════ MEXIQUE ═════════════════════════════
+  {
+    id: 'cy_mx_muertos',
+    icon: '💀',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'home', mood: 'happy', prop: 'altar', fx: 'ghost' },
+    when: { country: ['mx'], age: [6, 90] },
+    weight: 7,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Día de Muertos. Ta famille prépare l'autel pour les ancêtres : fleurs de cempasúchil orange, bougies, pan de muerto, photos, et les choses préférées de chaque défunt. Pour ton arrière-grand-oncle Chucho, il faut une bière, un cigare et {w:object}.",
+        "La famille t'a confié une mission : décorer les crânes en sucre avec les prénoms de tout le monde, vivants et morts. Tu as écrit le tien par erreur. Ta tante trouve ça « très bon signe » ou « très mauvais », elle hésite.",
+        "Nuit au cimetière de {city} avec toute la famille. Il y a de la musique, des bougies, des tamales, des mariachis qui jouent pour les morts, et ta grand-mère qui raconte à la tombe de ton grand-père tous les potins du quartier.",
+        "Tu dois préparer l'offrande pour ta grand-tante Lupita, qui adorait {w:hobby} et {w:food}. La tradition dit que les morts viennent goûter l'esprit des offrandes. Le lendemain matin, l'assiette est vide. Le chien a l'air innocent.",
+      ],
+      en: [
+        "Día de Muertos. Your family is preparing the altar for the ancestors: orange marigolds, candles, pan de muerto, photos, and each departed one's favorite things. For great-great-uncle Chucho, you need a beer, a cigar and {w:object}.",
+        "The family gave you a mission: decorate the sugar skulls with everyone's names, living and dead. You wrote your own by mistake. Your aunt thinks it's “a very good sign” or “a very bad one,” she can't decide.",
+        "A night at the {city} cemetery with the whole family. There's music, candles, tamales, mariachis playing for the dead, and your grandma telling grandpa's grave all the neighborhood gossip.",
+        "You have to prepare the offering for great-aunt Lupita, who loved {w:hobby} and {w:food}. Tradition says the dead come to taste the spirit of the offerings. Next morning, the plate is empty. The dog looks innocent.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: "Faire le plus bel autel", en: 'Build the best altar' },
+        out: [
+          { w: 2, text: { fr: ["J'ai fait un autel magnifique, avec un chemin de pétales pour guider les âmes. Ma grand-mère a pleuré en disant que l'oncle Chucho serait « fier et probablement un peu ivre ». La nuit, j'ai cru entendre un rire.", "Mon autel a gagné le concours du quartier. J'ai mis la photo de l'oncle Chucho avec des lunettes de soleil, comme il aimait. Les voisins ont dit qu'il avait l'air « plus vivant que jamais »."], en: ["I built a gorgeous altar, with a petal path to guide the souls. Grandma cried, saying Uncle Chucho would be “proud and probably a bit drunk.” That night I thought I heard laughter.", "My altar won the neighborhood contest. I put Uncle Chucho's photo with sunglasses, the way he liked. The neighbors said he looked “more alive than ever.”"] }, fx: { happy: 8, karma: 3 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Goûter le pan de muerto', en: 'Taste the pan de muerto' },
+        out: [
+          { w: 2, text: { fr: ["J'ai mangé un morceau du pan de muerto de l'autel. Ma grand-mère m'a vu{|e}. Elle a dit que l'oncle Chucho viendrait me chatouiller les pieds la nuit. Il fait froid à mes pieds depuis. Je dors en chaussettes.", "J'ai mangé le pain de l'offrande. Délicieux. J'ai accusé le chien. Le chien a été puni. Le chien me regarde depuis avec la rancune d'un ancêtre."], en: ["I ate a piece of the altar's pan de muerto. Grandma saw. She said Uncle Chucho would tickle my feet at night. My feet have been cold ever since. I sleep in socks.", "I ate the offering bread. Delicious. I blamed the dog. The dog got punished. The dog has looked at me ever since with ancestral resentment."] }, fx: { happy: 4, karma: -2, weight: 0.01 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Me maquiller en Catrina', en: 'Paint my face as a skull' },
+        text: { fr: ["Je me suis maquillé{|e} en squelette élégant, avec des fleurs dans les cheveux. J'ai défilé dans la rue. Un touriste m'a demandé de poser pour une photo. Il m'a donné 50 pesos. Le business des morts est rentable.", "Maquillage de squelette réussi. J'ai fait peur à mon petit cousin, qui a hurlé, puis rigolé, puis exigé le même maquillage. On a fini à quinze squelettes dans la cuisine."], en: ["I painted my face as an elegant skeleton, with flowers in my hair. I paraded in the street. A tourist asked me to pose for a photo. He gave me 50 pesos. The business of the dead pays.", "Skull makeup on point. I scared my little cousin, who screamed, then laughed, then demanded the same makeup. We ended up with fifteen skeletons in the kitchen."] },
+        fx: { happy: 7, looks: 2 },
+      },
+    ],
+  },
+  {
+    id: 'cy_mx_pinata',
+    icon: '🪅',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'party', mood: 'party', prop: 'pinata', fx: 'confetti' },
+    when: { country: ['mx'], age: [5, 12] },
+    weight: 8,
+    cooldown: 2,
+    text: {
+      fr: [
+        "Fête d'anniversaire ! La piñata en forme d'étoile à sept pointes est suspendue à une corde. Ton oncle tient l'autre bout et la fait monter et descendre pour te piéger. Tu as les yeux bandés et un bâton. Tout le monde chante « Dale, dale, dale ».",
+        "C'est ton tour de taper la piñata, qui représente {w:celeb}. On t'a fait tourner dix fois sur toi-même. Tu ne sais plus où est le haut. Les enfants crient « à gauche ! », « à droite ! », « derrière toi ! ».",
+        "La piñata est remplie de bonbons, de fruits, de jouets et, selon la rumeur, d'un billet de 100 pesos. Quinze enfants sont prêts à se jeter dessus. Ta cousine Fernanda a déjà retiré ses boucles d'oreilles.",
+        "Ton père a fabriqué une piñata géante en papier mâché, en forme d'âne. Elle est si solide que personne n'arrive à la casser. Trois adultes ont essayé. Le bâton s'est cassé avant elle. Quelqu'un propose d'utiliser {w:object}.",
+      ],
+      en: [
+        "Birthday party! The seven-pointed star piñata hangs from a rope. Your uncle holds the other end, yanking it up and down to trick you. You're blindfolded with a stick. Everyone sings “Dale, dale, dale.”",
+        "Your turn to hit the piñata, shaped like {w:celeb}. They spun you around ten times. You no longer know which way is up. Kids yell “left!”, “right!”, “behind you!”",
+        "The piñata is stuffed with candy, fruit, toys and, rumor has it, a 100-peso bill. Fifteen kids are ready to pounce. Your cousin Fernanda has already taken off her earrings.",
+        "Your dad made a giant papier-mâché donkey piñata. It's so sturdy nobody can break it. Three adults have tried. The stick broke first. Someone suggests using {w:object}.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Taper de toutes mes forces', en: 'Swing with all my might' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai frappé si fort que la piñata a explosé en pluie de bonbons. Je me suis jeté{|e} dessus avec les autres. J'ai récupéré 43 bonbons, une mandarine et le billet de 100 pesos. Je suis riche.", "Coup parfait, du premier coup. Les bonbons ont plu sur tout le monde. Mon oncle a crié « {campeón|campeona} ! ». J'ai partagé avec les petits. Enfin, avec certains petits."], en: ["I hit it so hard the piñata exploded into a candy shower. I dove in with everyone. I got 43 candies, a mandarin and the 100-peso bill. I'm rich.", "Perfect hit, first try. Candy rained on everyone. My uncle yelled “champ!” I shared with the little ones. Well, some of them."] }, fx: { happy: 10, athletic: 2 }, mood: 'party' },
+          { w: 1, text: { fr: ["J'ai raté la piñata et touché mon oncle dans le ventre. Il s'est plié en deux en riant et en pleurant. Il a lâché la corde. La piñata m'est tombée sur la tête. Elle a éclaté. J'ai gagné, techniquement."], en: ["I missed the piñata and hit my uncle in the stomach. He doubled over laughing and crying. He dropped the rope. The piñata fell on my head. It burst. I won, technically."] }, fx: { happy: 6, health: -1 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Attendre et plonger', en: 'Wait and dive' },
+        out: [
+          { w: 2, text: { fr: ["J'ai laissé les autres taper et j'ai plongé au bon moment. J'ai récupéré deux poignées de bonbons en glissant comme un footballeur. Fernanda m'a griffé{|e} le bras. La guerre des bonbons est sans pitié.", "Je me suis jeté{|e} dans la mêlée. J'ai pris un genou dans l'œil et un coude dans le nez. Mais j'ai sauvé un sachet de chips au piment et une sucette. Ça valait le coup."], en: ["I let the others swing and dove at the right moment. I got two fistfuls of candy sliding like a footballer. Fernanda scratched my arm. The candy war is merciless.", "I threw myself into the scrum. Knee to the eye, elbow to the nose. But I saved a bag of chili chips and a lollipop. Worth it."] }, fx: { happy: 7, health: -1 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Aider les petits', en: 'Help the little ones' },
+        text: { fr: ["J'ai aidé mon petit cousin de 4 ans à taper. Il a cassé la piñata. Il était si fier qu'il a pleuré. Ma grand-mère m'a donné un double dessert « parce que tu as un grand cœur ».", "J'ai laissé ma part aux petits. Ils m'ont tous fait un câlin collant de bonbons. J'avais du caramel dans les cheveux jusqu'à Noël."], en: ["I helped my 4-year-old cousin swing. He broke the piñata. He was so proud he cried. Grandma gave me double dessert “because you have a big heart.”", "I left my share to the little ones. They all gave me candy-sticky hugs. I had caramel in my hair until Christmas."] },
+        fx: { happy: 5, karma: 5 },
+      },
+    ],
+  },
+  {
+    id: 'cy_mx_mariachi',
+    icon: '🎺',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'home', mood: 'love', prop: 'guitar' },
+    when: { country: ['mx'], age: [18, 80] },
+    actor: 'mother',
+    vars: { amount: [150, 600] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "C'est l'anniversaire de ta mère. La tradition : la réveiller à 5 h du matin avec des mariachis qui chantent « Las Mañanitas » sous sa fenêtre. Un groupe de huit musiciens en costume brodé coûte {$amount}. Les voisins dorment.",
+        "Tu as engagé des mariachis pour {a.first}. Ils sont arrivés à 4 h 50, un peu ivres, avec trompettes, violons et un guitarrón de la taille d'un frigo. Le chanteur te demande s'il peut d'abord finir {w:drink}.",
+        "Fête des mères à {city}. Toute la rue s'est réveillée en musique : chaque fils et chaque fille a engagé un groupe. Il y a quatre mariachis qui jouent quatre chansons différentes en même temps. C'est le chaos. C'est magnifique.",
+        "Tu veux faire une sérénade à ta mère. Les mariachis professionnels coûtent {$amount}. Ton cousin, lui, propose de jouer gratuitement avec sa guitare, son ukulélé et {w:object}. Il a bu trois tequilas.",
+      ],
+      en: [
+        "It's your mother's birthday. Tradition: wake her at 5 a.m. with mariachis singing “Las Mañanitas” under her window. An eight-piece band in embroidered suits costs {$amount}. The neighbors are asleep.",
+        "You hired mariachis for {a.first}. They arrived at 4:50 a.m., a little tipsy, with trumpets, violins and a fridge-sized guitarrón. The singer asks if he can finish {w:drink} first.",
+        "Mother's Day in {city}. The whole street woke to music: every son and daughter hired a band. Four mariachi groups are playing four different songs at once. It's chaos. It's beautiful.",
+        "You want to serenade your mother. Pro mariachis cost {$amount}. Your cousin offers to play for free with his guitar, his ukulele and {w:object}. He's had three tequilas.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Les vrais mariachis', en: 'The real mariachis' },
+        out: [
+          { w: 2, text: { fr: ["Les mariachis ont joué sous la fenêtre. {a.my} est sortie sur le balcon en peignoir, en larmes. Elle a chanté avec eux. Les voisins se sont réveillés, ont râlé, puis ont chanté aussi. On a fini à 8 h avec des tamales.", "Huit mariachis, une trompette qui faisait trembler les vitres. {a.my} a pleuré, m'a serré{|e} dans ses bras et a dit que j'étais son enfant préféré. Devant mes frères et sœurs. Victoire totale."], en: ["The mariachis played under the window. {a.my} came onto the balcony in her robe, in tears. She sang along. The neighbors woke up, grumbled, then sang too. We ended at 8 a.m. with tamales.", "Eight mariachis, a trumpet that rattled the windows. {a.my} cried, hugged me and said I was her favorite child. In front of my siblings. Total victory."] }, fx: { money: '-amount', happy: 9, rel: 15 }, mood: 'love' },
+        ],
+      },
+      {
+        label: { fr: 'Le cousin bourré', en: 'The drunk cousin' },
+        out: [
+          { w: 2, text: { fr: ["Mon cousin a joué « Las Mañanitas » façon {w:song}, en se trompant de paroles. Il est tombé dans les rosiers au deuxième couplet. {a.my} a ri si fort qu'elle s'est étouffée. Meilleur anniversaire de sa vie.", "Mon cousin a joué faux, chanté faux, et vomi dans le pot de fleurs à la fin. {a.my} a dit que c'était « l'intention qui compte ». Elle a jeté le pot."], en: ["My cousin played “Las Mañanitas” to the tune of {w:song}, botching the lyrics. He fell into the rosebushes in the second verse. {a.my} laughed so hard she choked. Best birthday of her life.", "My cousin played off-key, sang off-key and puked in the flowerpot at the end. {a.my} said “it's the thought that counts.” She threw out the pot."] }, fx: { happy: 7, rel: 6 }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Chanter moi-même', en: 'Sing it myself' },
+        out: [
+          { w: 1, odds: { looks: 1 }, text: { fr: ["J'ai chanté seul{|e} sous la fenêtre, a cappella, à 5 h du matin. Ma voix a craqué trois fois. {a.my} est sortie, m'a embrassé{|e} sur le front et a dit « tu chantes comme ton père ». Je crois que c'est un compliment.", "J'ai chanté. Un voisin m'a jeté une pantoufle. {a.my} lui a jeté l'autre pantoufle en retour. On a fini en bataille de chaussons. C'était sa fête idéale."], en: ["I sang alone under the window, a cappella, at 5 a.m. My voice cracked three times. {a.my} came out, kissed my forehead and said, “You sing like your father.” I think it's a compliment.", "I sang. A neighbor threw a slipper at me. {a.my} threw the other slipper back. It turned into a slipper war. Her ideal birthday."] }, fx: { happy: 6, rel: 10 }, mood: 'love' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cy_mx_lucha',
+    icon: '🤼',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'stadium', mood: 'proud', prop: 'mask' },
+    when: { country: ['mx'], age: [16, 45] },
+    weight: 6,
+    once: true,
+    text: {
+      fr: [
+        "Soirée lucha libre à l'arène de {city}. Un des catcheurs s'est blessé et l'organisateur cherche un remplaçant dans le public. Il te désigne. Il te tend un masque doré et te demande ton nom de scène.",
+        "Tu t'entraînes en secret dans une salle de lucha libre depuis six mois. Le coach, un ancien champion masqué de 60 ans, dit que tu es prêt{|e} pour ton premier combat. Ton adversaire s'appelle « El Destructor de Abuelas ».",
+        "Ton oncle était un luchador célèbre dans les années 80 : « El Pulpo Místico ». Il te transmet son masque, sa cape et sa prise secrète. Il a les larmes aux yeux. Il a aussi des genoux en plastique.",
+        "Un recruteur de lucha libre t'a vu{|e} porter {w:object} à bout de bras au marché. Il te propose un combat ce samedi. Le prix : 2 000 pesos et la gloire. Il te demande quel animal tu veux sur ton masque.",
+      ],
+      en: [
+        "Lucha libre night at the {city} arena. A wrestler got injured and the promoter is looking for a replacement in the crowd. He points at you. He hands you a golden mask and asks for your ring name.",
+        "You've been training secretly at a lucha libre gym for six months. The coach, a 60-year-old masked ex-champion, says you're ready for your first bout. Your opponent is “El Destructor de Abuelas.”",
+        "Your uncle was a famous luchador in the '80s: “El Pulpo Místico.” He passes down his mask, his cape and his secret hold. He has tears in his eyes. He also has plastic knees.",
+        "A lucha libre scout saw you carrying {w:object} at arm's length at the market. He offers you a bout this Saturday. The prize: 2,000 pesos and glory. He asks what animal you want on your mask.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Saut depuis la 3e corde', en: 'Top-rope dive' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["Je suis monté{|e} sur la troisième corde, j'ai crié mon nom de scène, « El Tlacuache Furioso », et j'ai plongé. J'ai atterri sur mon adversaire. Il ne s'est pas relevé. Moi non plus, mais j'ai gagné.", "Saut parfait. La foule a hurlé. Une mamie au premier rang a lancé son sac à main sur le ring. J'ai gagné par tombé. On m'attend pour la revanche. Ils veulent mon masque."], en: ["I climbed the top rope, screamed my ring name, “El Tlacuache Furioso,” and dove. I landed on my opponent. He didn't get up. Neither did I, but I won.", "Perfect dive. The crowd roared. A granny in the front row threw her handbag into the ring. I won by pinfall. They want a rematch. They want my mask."] }, fx: { happy: 10, athletic: 3, fame: 3, money: 120, flag: 'cy_mx_luchador', schedule: { key: 'cy_mx_lucha_2', years: 1 } }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai sauté. J'ai raté mon adversaire, le ring et la barrière. J'ai atterri dans le seau de pop-corn d'un enfant. L'enfant a adoré. Moi, moins. J'ai perdu, mais j'ai un fan."], en: ["I dove. Missed my opponent, the ring and the barrier. I landed in a kid's popcorn bucket. The kid loved it. I didn't. I lost, but I have a fan."] }, fx: { health: -8, happy: 3, fame: 1, flag: 'cy_mx_luchador', schedule: { key: 'cy_mx_lucha_2', years: 1 } }, mood: 'sick' },
+        ],
+      },
+      {
+        label: { fr: 'Jouer le méchant', en: 'Play the villain' },
+        out: [
+          { w: 2, text: { fr: ["J'ai joué le rudo, le méchant. J'ai insulté la foule, triché, tiré les cheveux. Le public m'a lancé des gobelets de bière. J'ai adoré chaque seconde. On m'a surnommé{|e} « El Cucaracha ».", "J'ai triché en cachant {w:object} dans mon slip. L'arbitre l'a vu, a fait semblant de rien. La foule m'a hué{|e} comme jamais. Le promoteur m'a payé double. Le mal paie."], en: ["I played the rudo, the villain. I insulted the crowd, cheated, pulled hair. The audience threw beer cups at me. I loved every second. They nicknamed me “El Cucaracha.”", "I cheated by hiding {w:object} in my trunks. The ref saw and pretended not to. The crowd booed like never before. The promoter paid me double. Evil pays."] }, fx: { happy: 9, fame: 2, karma: -2, money: 150, flag: 'cy_mx_luchador', schedule: { key: 'cy_mx_lucha_2', years: 1 } }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Refuser poliment', en: 'Politely decline' },
+        text: { fr: ["J'ai refusé. Un homme de 70 ans dans le public a pris ma place, a enfilé le masque et a gagné en deux minutes. Il s'appelle maintenant « El Abuelo Infernal ». Je lui ai acheté une bière.", "J'ai décliné. Mon oncle, ancien luchador, ne m'a plus adressé la parole pendant un mois. Il a remis le masque à mon cousin. Mon cousin est maintenant célèbre. Moi, non."], en: ["I declined. A 70-year-old man in the crowd took my place, put on the mask and won in two minutes. He's now called “El Abuelo Infernal.” I bought him a beer.", "I declined. My uncle, the ex-luchador, didn't speak to me for a month. He gave the mask to my cousin. My cousin is now famous. I'm not."] },
+        fx: { happy: -2 },
+      },
+    ],
+  },
+  {
+    id: 'cy_mx_lucha_2',
+    icon: '🎭',
+    cat: 'country',
+    rating: 2,
+    chainOnly: true,
+    scene: { place: 'stadium', mood: 'angry', prop: 'mask', fx: 'gore' },
+    when: { country: ['mx'], age: [17, 50], flag: 'cy_mx_luchador' },
+    text: {
+      fr: [
+        "La revanche ! Combat « máscara contra máscara » : le perdant devra retirer son masque devant toute l'arène et révéler son identité. Ton adversaire, « El Hijo del Tsunami », a juré de t'humilier. 15 000 personnes hurlent ton nom de scène.",
+        "Un an après ton premier combat, tu es une petite star locale de la lucha. Ce soir, combat de l'année : masque contre masque. Ta mère est au premier rang avec une pancarte. Elle ne sait pas que c'est toi sous le masque.",
+        "Ton ennemi juré, « El Diablo Contable », un comptable le jour et monstre la nuit, t'a défié{|e} pour ton masque. Il a tatoué ton nom de scène sur son ventre, barré. Il est très, très motivé.",
+        "Arène de {city}, guichets fermés. Combat en cage, masque contre masque. Ton adversaire est arrivé sur le ring sur {w:vehicle} sous les feux d'artifice. Tu es arrivé{|e} à pied, avec un sandwich.",
+      ],
+      en: [
+        "The rematch! A “máscara contra máscara” match: the loser must unmask in front of the whole arena and reveal their identity. Your opponent, “El Hijo del Tsunami,” swore to humiliate you. 15,000 people scream your ring name.",
+        "A year after your first bout, you're a minor local lucha star. Tonight, match of the year: mask versus mask. Your mother is in the front row with a sign. She doesn't know it's you under the mask.",
+        "Your sworn enemy, “El Diablo Contable,” an accountant by day and monster by night, has challenged you for your mask. He tattooed your ring name on his belly, crossed out. He's very, very motivated.",
+        "The {city} arena, sold out. Cage match, mask versus mask. Your opponent entered the ring on {w:vehicle} amid fireworks. You walked in, holding a sandwich.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Tout donner', en: 'Go all out' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["Combat épique. Je lui ai arraché son masque avec les dents. Sous le masque : mon dentiste. Il a pleuré. La foule a scandé mon nom. Ma mère a applaudi sans savoir que c'était moi. Puis elle a reconnu mes genoux.", "J'ai gagné par soumission avec la prise secrète de mon oncle, « la pieuvre mystique ». Mon adversaire a retiré son masque en sanglotant. C'était le maire. Il a démissionné le lendemain."], en: ["Epic match. I tore off his mask with my teeth. Under it: my dentist. He cried. The crowd chanted my name. My mother applauded without knowing it was me. Then she recognized my knees.", "I won by submission with my uncle's secret hold, “the mystic octopus.” My opponent unmasked, sobbing. It was the mayor. He resigned the next day."] }, fx: { happy: 12, fame: 5, athletic: 3, money: 600, unflag: 'cy_mx_luchador' }, mood: 'proud' },
+          { w: 1, text: { fr: ["Il m'a mis un coup de chaise pliante si fort que mes dents ont volé jusqu'au deuxième rang. Un enfant en a attrapé une comme souvenir. J'ai perdu. J'ai retiré mon masque. Tout le quartier sait maintenant que c'était moi. Ma mère a crié « {first} ?! » depuis le premier rang."], en: ["He hit me with a folding chair so hard my teeth flew to the second row. A kid caught one as a souvenir. I lost. I unmasked. The whole neighborhood now knows it was me. My mother screamed “{first}?!” from the front row."] }, fx: { health: -15, looks: -4, fame: 3, happy: -6, visual: 'gore', unflag: 'cy_mx_luchador' }, mood: 'sick' },
+        ],
+      },
+      {
+        label: { fr: 'Tricher salement', en: 'Cheat dirty' },
+        out: [
+          { w: 2, text: { fr: ["J'ai jeté du piment en poudre dans les yeux de mon adversaire. Il a hurlé, pleuré, couru dans les cordes. J'ai gagné. L'arène m'a hué{|e} pendant dix minutes. C'était le plus beau son de ma vie.", "J'ai mordu son oreille. Un bout est resté dans ma bouche. Je l'ai craché dans la foule comme une rock star. Disqualifié{|e}, mais légende. On vend des t-shirts avec l'oreille."], en: ["I threw chili powder in my opponent's eyes. He screamed, cried, ran into the ropes. I won. The arena booed me for ten minutes. The most beautiful sound of my life.", "I bit his ear. A piece stayed in my mouth. I spat it into the crowd like a rock star. Disqualified, but legendary. They sell t-shirts with the ear."] }, fx: { happy: 9, karma: -6, fame: 4, visual: 'gore', unflag: 'cy_mx_luchador' }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Me démasquer moi-même', en: 'Unmask myself' },
+        text: { fr: ["Avant le combat, j'ai retiré mon masque de moi-même, devant 15 000 personnes, et annoncé ma retraite. Ma mère, au premier rang, s'est évanouie. Puis elle s'est relevée pour dire à tout le monde « c'est mon enfant ! ».", "Je me suis démasqué{|e} et j'ai demandé mon amour en mariage sur le ring. Il ou elle a dit oui. Mon adversaire a pleuré et nous a offert le combat. La lucha, c'est de l'amour."], en: ["Before the bout, I unmasked myself in front of 15,000 people and announced my retirement. My mother, front row, fainted. Then got up to tell everyone, “That's my child!”", "I unmasked and proposed to my sweetheart in the ring. They said yes. My opponent cried and gifted us the win. Lucha is love."] },
+        fx: { happy: 8, fame: 3, unflag: 'cy_mx_luchador' },
+      },
+    ],
+  },
+  {
+    id: 'cy_mx_quince',
+    icon: '👗',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'party', mood: 'party', prop: 'ballgown' },
+    when: { country: ['mx'], age: [16, 60] },
+    weight: 6,
+    cooldown: 5,
+    text: {
+      fr: [
+        "Les quinceañera de ta cousine Ximena : 400 invités, une robe de princesse de 15 kilos, un DJ, des mariachis, une limousine rose et une valse chorégraphiée avec des « chambelanes ». Tu en fais partie. Les répétitions ont duré six mois.",
+        "Fête des quinze ans de ta nièce dans une salle des fêtes de {city}. Le budget dépasse celui d'un mariage. Il y a une fontaine de chocolat, un gâteau de six étages et un sosie engagé pour faire une surprise (il est censé ressembler à {w:celeb}).",
+        "Tu es le parrain ou la marraine « del pastel » aux quinceañera de ta cousine : tu as payé le gâteau. Il a six étages, une statue en sucre de la cousine et il penche déjà dangereusement vers la piste de danse.",
+        "La valse des quinceañera commence. Tu dois faire tourner ta cousine trois fois et la soulever à la fin. Elle porte une robe de 15 kilos. Tu as bu deux tequilas et mangé {w:food}. Toute la famille filme.",
+      ],
+      en: [
+        "Your cousin Ximena's quinceañera: 400 guests, a 33-pound princess gown, a DJ, mariachis, a pink limo and a choreographed waltz with “chambelanes.” You're one of them. Rehearsals took six months.",
+        "Your niece's fifteenth birthday party at a {city} banquet hall. The budget exceeds a wedding's. There's a chocolate fountain, a six-tier cake and a lookalike hired as a surprise (supposedly of {w:celeb}).",
+        "You're the “cake sponsor” at your cousin's quinceañera: you paid for the cake. It's six tiers, has a sugar statue of your cousin and is already leaning dangerously toward the dance floor.",
+        "The quinceañera waltz begins. You must spin your cousin three times and lift her at the end. She's wearing a 33-pound gown. You've had two tequilas and {w:food}. The whole family is filming.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Valse parfaite', en: 'Perfect waltz' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["Trois tours, un portée, zéro chute. La salle a applaudi debout. Ma tante a pleuré dans son mascara. La vidéo a fait 80 000 vues sur {w:app}. Je suis demandé{|e} pour sept autres quinceañeras.", "La valse s'est déroulée comme en répétition. À la fin, j'ai soulevé ma cousine et la robe. La robe pesait plus que la cousine. Mon dos a craqué, mais personne ne l'a entendu à cause de l'orchestre."], en: ["Three spins, a lift, zero falls. The hall gave a standing ovation. My aunt cried into her mascara. The video got 80,000 views on {w:app}. I've been booked for seven more quinceañeras.", "The waltz went exactly like rehearsal. At the end I lifted my cousin and the dress. The dress weighed more than her. My back cracked, but nobody heard over the band."] }, fx: { happy: 9, fame: 1, health: -1 }, mood: 'proud' },
+          { w: 1, text: { fr: ["Au troisième tour, mon pied s'est pris dans la robe. On est tombés tous les deux, et la robe a continué de tourner seule, comme une toupie. La cousine a ri. Sa mère, non. Elle m'a déshérité{|e} de la famille élargie."], en: ["On the third spin my foot caught in the dress. We both fell, and the dress kept spinning alone like a top. My cousin laughed. Her mother didn't. I've been cut from the extended family."] }, fx: { happy: -3, health: -2, stress: 5 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Sauver le gâteau', en: 'Save the cake' },
+        out: [
+          { w: 1, odds: { athletic: 1 }, text: { fr: ["Le gâteau a basculé. J'ai plongé et je l'ai rattrapé à deux mains, en équilibre, comme un serveur de cirque. La statue en sucre de la cousine a perdu la tête, mais le reste a survécu. Héros de la soirée.", "J'ai rattrapé le gâteau, mais le gâteau m'a rattrapé{|e} aussi. J'ai fini couvert{|e} de six étages de crème. Les enfants m'ont léché les bras. C'était étrange et réconfortant."], en: ["The cake tipped. I dove and caught it with both hands, balanced like a circus waiter. My cousin's sugar statue lost its head, but the rest survived. Hero of the night.", "I caught the cake, but the cake caught me too. I ended up covered in six tiers of frosting. The kids licked my arms. Strange and comforting."] }, fx: { happy: 7, karma: 3 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Ouvrir le bal à la tequila', en: 'Hit the tequila bar' },
+        text: { fr: ["J'ai passé la soirée au bar avec les oncles. À minuit, on a fait une chorégraphie improvisée sur {w:song}. L'oncle Beto a fait le grand écart et ne s'est jamais relevé. Il va bien. Il dort encore.", "Tequila, mezcal, tequila. J'ai dansé avec toutes les tantes, une par une. La tante Rosa m'a mis un billet dans la poche « pour tes études ». J'ai 34 ans."], en: ["I spent the night at the bar with the uncles. At midnight we did an improvised dance routine to {w:song}. Uncle Beto did the splits and never got up. He's fine. Still asleep.", "Tequila, mezcal, tequila. I danced with every aunt, one by one. Aunt Rosa slipped money in my pocket “for your studies.” I'm 34."] },
+        fx: { happy: 8, addiction: ['alcohol', 4] },
+      },
+    ],
+  },
+  {
+    id: 'cy_mx_tacos',
+    icon: '🌮',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'park', mood: 'sick', prop: 'taco', fx: 'poop' },
+    when: { country: ['mx'], age: [18, 80] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "2 h du matin, stand de tacos al pastor à {city}. Le taquero découpe la viande de la broche et fait sauter un morceau d'ananas dans la tortilla sans regarder. Sur le comptoir, quatre sauces : verte, rouge, orange et une noire dans un pot marqué « NO ».",
+        "Le taquero te tend la sauce maison. « Muy picante, eh. » Tu dis que tu supportes bien. Il sourit, d'un sourire de bourreau. Derrière lui, un panneau : « Nous ne sommes pas responsables de ce qui arrive après. »",
+        "Concours de tacos au piment habanero au marché de {city}. Le record : 38 tacos. Le dernier champion a été vu courant vers les toilettes en pleurant et en parlant à {w:animal}.",
+        "Ton ami mexicain t'emmène dans son stand préféré, « le meilleur du pays ». Il n'y a ni chaise, ni nom, ni hygiène visible. Il y a une file de 40 personnes, un chien qui dort sur les sacs de tortillas et une odeur de paradis.",
+      ],
+      en: [
+        "2 a.m., al pastor taco stand in {city}. The taquero slices meat off the spit and flicks a chunk of pineapple into the tortilla without looking. On the counter, four salsas: green, red, orange and a black one in a jar labeled “NO.”",
+        "The taquero hands you the house salsa. “Muy picante, eh.” You say you can handle it. He smiles, an executioner's smile. Behind him, a sign: “We are not responsible for what happens afterwards.”",
+        "Habanero taco contest at the {city} market. The record: 38 tacos. The last champion was seen running to the bathroom crying and talking to {w:animal}.",
+        "Your Mexican friend takes you to his favorite stand, “the best in the country.” No chairs, no name, no visible hygiene. There's a 40-person line, a dog asleep on the tortilla bags and a heavenly smell.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'La sauce « NO »', en: 'The “NO” salsa' },
+        out: [
+          { w: 2, text: { fr: ["J'ai pris la sauce noire. Mes oreilles ont sifflé. J'ai vu des couleurs qui n'existent pas. Mes larmes étaient épicées. Le lendemain, j'ai découvert que le feu entre aussi par la sortie. Mes toilettes ont fondu.", "Une goutte de sauce « NO ». Ma bouche a pris feu, mes yeux ont coulé, mon nez aussi. J'ai bu un litre de lait directement au pis d'une vache imaginaire. Le taquero a filmé pour sa collection."], en: ["I took the black salsa. My ears whistled. I saw colors that don't exist. My tears were spicy. The next day I learned fire also exits the way it came. My toilet melted.", "One drop of “NO” salsa. My mouth caught fire, eyes streamed, nose too. I chugged a quart of milk straight from an imaginary cow. The taquero filmed it for his collection."] }, fx: { happy: 4, health: -6, visual: 'poop' }, mood: 'sick' },
+          { w: 1, odds: { health: 1 }, text: { fr: ["J'ai mangé la sauce noire sans broncher. Le taquero a posé son couteau, m'a regardé{|e} en silence, puis m'a serré la main. Il m'a donné une carte de fidélité à vie. Je suis le premier humain à finir la sauce."], en: ["I ate the black salsa without flinching. The taquero set down his knife, stared at me silently, then shook my hand. He gave me a lifetime loyalty card. I'm the first human to finish the salsa."] }, fx: { happy: 10, fame: 1 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Battre le record', en: 'Beat the record' },
+        out: [
+          { w: 1, odds: { health: 1 }, text: { fr: ["39 tacos au habanero. Nouveau record. Ma photo est au mur du marché. Pendant trois jours, j'ai transpiré de la sauce, et ma sueur a fait pleurer mon chat.", "J'ai battu le record. Puis j'ai battu le record du temps passé aux toilettes. 4 h 12. Le personnel du marché m'a apporté un sandwich et une couverture."], en: ["39 habanero tacos. New record. My photo is on the market wall. For three days I sweated salsa, and my sweat made my cat cry.", "I beat the record. Then the record for time spent on the toilet. 4 hours 12. Market staff brought me a sandwich and a blanket."] }, fx: { happy: 9, fame: 2, health: -5, weight: 0.02 }, mood: 'proud' },
+          { w: 2, text: { fr: ["Au taco 14, j'ai craché du feu, au sens propre, sur le juge. Au taco 15, j'ai couru aux toilettes. J'ai mis tout le marché en quarantaine olfactive. On m'appelle « El Volcán ».", "J'ai abandonné au taco 9 en pleurant. Ma bouche était insensible, mais mon intestin, lui, sentait tout. J'ai passé la nuit à négocier avec mes entrailles."], en: ["At taco 14 I literally breathed fire on the judge. At taco 15 I sprinted to the bathroom. I put the whole market under olfactory quarantine. They call me “El Volcán.”", "I gave up at taco 9, crying. My mouth was numb, but my gut felt everything. I spent the night negotiating with my intestines."] }, fx: { health: -8, happy: -2, disease: 'gastro', visual: 'poop' }, mood: 'sick' },
+        ],
+      },
+      {
+        label: { fr: 'Commander sans sauce', en: 'Order without salsa' },
+        text: { fr: ["J'ai commandé sans sauce. Le taquero m'a regardé{|e} avec une tristesse infinie. Il m'a servi quand même, mais avec une demi-tortilla et un regard de pitié. Le chien s'est réveillé pour voir le spectacle.", "Sans sauce, merci. Mon ami a fait semblant de ne pas me connaître. Le taco était délicieux. Mais quelque chose manquait. Mon honneur, probablement."], en: ["I ordered without salsa. The taquero looked at me with infinite sadness. He served me anyway, but with half a tortilla and a pitying look. The dog woke up to watch.", "No salsa, thanks. My friend pretended not to know me. The taco was delicious. But something was missing. My honor, probably."] },
+        fx: { happy: 3, weight: 0.01 },
+      },
+    ],
+  },
+  {
+    id: 'cy_mx_mezcal',
+    icon: '🐛',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'party', mood: 'party', prop: 'mezcal' },
+    when: { country: ['mx'], age: [18, 70] },
+    weight: 6,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Distillerie de mezcal près d'Oaxaca. Le maître mezcalero, 80 ans, te fait goûter sept mezcals différents « pour comprendre la terre ». Au fond de la dernière bouteille, il y a un ver. Il te dit que c'est un honneur de le manger.",
+        "Dégustation de tequila à Jalisco. Tu es à ton neuvième verre « de dégustation ». Le guide t'explique la différence entre blanco, reposado et añejo. Tu n'entends plus rien. Tu viens d'appeler {w:celeb} « mon frère ».",
+        "Soirée mezcal avec des amis à {city}. On sert le mezcal avec des quartiers d'orange et du sel de ver de terre grillé. Ton ami te dit que c'est délicieux. Tu as déjà bu {w:drink} et quatre mezcals.",
+        "Ton oncle a ramené une bouteille de mezcal artisanal sans étiquette, « faite par un ami dans la montagne ». Il y a un scorpion dedans. Il dit que ça soigne tout. Même {w:disaster}.",
+      ],
+      en: [
+        "Mezcal distillery near Oaxaca. The 80-year-old master mezcalero has you taste seven different mezcals “to understand the land.” At the bottom of the last bottle there's a worm. He says it's an honor to eat it.",
+        "Tequila tasting in Jalisco. You're on your ninth “tasting” glass. The guide explains the difference between blanco, reposado and añejo. You can't hear anything anymore. You just called {w:celeb} “my brother.”",
+        "Mezcal night with friends in {city}. It's served with orange wedges and toasted worm salt. Your friend says it's delicious. You've already had {w:drink} and four mezcals.",
+        "Your uncle brought back an unlabeled bottle of artisanal mezcal, “made by a friend in the mountains.” There's a scorpion in it. He says it cures everything. Including {w:disaster}.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Manger le ver', en: 'Eat the worm' },
+        out: [
+          { w: 2, text: { fr: ["J'ai mangé le ver. Il était mou, puis croquant, puis mou à nouveau. Le maître mezcalero a hoché la tête. Une heure plus tard, je parlais à un cactus. Le cactus avait des choses intéressantes à dire.", "J'ai avalé le ver d'un coup. J'ai senti une chaleur monter de mes pieds jusqu'à mon âme. J'ai dansé seul{|e} sous les étoiles pendant deux heures, puis j'ai vomi sur un agave centenaire. Il s'en remettra."], en: ["I ate the worm. It was soft, then crunchy, then soft again. The master mezcalero nodded. An hour later I was talking to a cactus. The cactus had interesting things to say.", "I swallowed the worm in one go. I felt warmth rise from my feet to my soul. I danced alone under the stars for two hours, then puked on a century-old agave. It'll recover."] }, fx: { happy: 9, health: -5, addiction: ['alcohol', 6], visual: 'poop' }, mood: 'party' },
+          { w: 1, text: { fr: ["Le ver est resté coincé dans ma gorge. J'ai toussé. Il est ressorti par le nez, entier, et a atterri dans le verre du maître mezcalero. Il l'a bu. « Rien ne se perd. »"], en: ["The worm got stuck in my throat. I coughed. It came out through my nose, whole, and landed in the master mezcalero's glass. He drank it. “Nothing goes to waste.”"] }, fx: { health: -3, happy: 4 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Boire le scorpion', en: 'Drink the scorpion one' },
+        out: [
+          { w: 2, text: { fr: ["J'ai bu le mezcal au scorpion. J'ai eu la langue engourdie, puis tout le visage, puis j'ai vu ma grand-mère décédée qui me disait « arrête de boire ». Je me suis réveillé{|e} dans un hamac, avec un sombrero et un âne.", "Mezcal au scorpion. Le lendemain, j'avais une gueule de bois si violente que mes cheveux me faisaient mal. Mais j'ai été guéri{|e} de mon rhume, de ma timidité et d'une partie de ma mémoire."], en: ["I drank the scorpion mezcal. My tongue went numb, then my whole face, then I saw my late grandma telling me to “stop drinking.” I woke up in a hammock with a sombrero and a donkey.", "Scorpion mezcal. The next day I had a hangover so bad my hair hurt. But I was cured of my cold, my shyness and part of my memory."] }, fx: { happy: 6, health: -7, addiction: ['alcohol', 7] }, mood: 'sleepy' },
+          { w: 1, rating: 2, text: { fr: ["Le scorpion n'était pas tout à fait mort. Il m'a piqué la langue en sortant de la bouteille. Ma langue a gonflé comme un ballon. J'ai parlé comme Donald Duck pendant une semaine. Mon oncle a gardé le scorpion, « pour la prochaine fois »."], en: ["The scorpion wasn't quite dead. It stung my tongue on its way out of the bottle. My tongue swelled like a balloon. I talked like a cartoon duck for a week. My uncle kept the scorpion “for next time.”"] }, fx: { health: -10, happy: 2, looks: -2 }, mood: 'sick' },
+        ],
+      },
+      {
+        label: { fr: 'Siroter poliment', en: 'Sip politely' },
+        text: { fr: ["J'ai siroté chaque mezcal lentement, comme le maître l'a dit : « On l'embrasse, on ne le boit pas. » J'ai compris la terre, le feu et l'agave. Et j'étais quand même bourré{|e}.", "J'ai bu à petites gorgées. Le guide m'a félicité{|e} pour ma « maturité ». Puis il m'a servi un dixième verre. La maturité a des limites."], en: ["I sipped each mezcal slowly, as the master said: “You kiss it, you don't drink it.” I understood the earth, the fire and the agave. And I still got hammered.", "I took small sips. The guide praised my “maturity.” Then poured me a tenth glass. Maturity has limits."] },
+        fx: { happy: 5, smarts: 1, addiction: ['alcohol', 2] },
       },
     ],
   },
