@@ -273,7 +273,26 @@ export class Stage {
   }
 
   /** Short staged moments for big life events. */
+  /** Called whenever a cinematic plays (the game takes a souvenir photo). */
+  onCinematic?: (kind: string) => void;
+
+  /** Small JPEG of the current view (for the photo album). */
+  snapshot(width = 360): string {
+    this.frame(1 / 60);
+    const src = this.renderer.domElement;
+    const c = document.createElement('canvas');
+    c.width = width; c.height = Math.round(width * src.height / Math.max(1, src.width));
+    const g = c.getContext('2d');
+    if (!g) return '';
+    // crop around the diorama (the right-hand feed panel covers the rest of the frame)
+    const sx = src.width * 0.07, sw = src.width * 0.55, sy = src.height * 0.1, sh = src.height * 0.78;
+    c.height = Math.round(width * sh / sw);
+    g.drawImage(src, sx, sy, sw, sh, 0, 0, c.width, c.height);
+    return c.toDataURL('image/jpeg', 0.72);
+  }
+
   cinematic(kind: 'birth' | 'wedding' | 'graduation' | 'prison' | 'death' | 'baby' | 'promotion' | 'release' | 'jackpot') {
+    this.onCinematic?.(kind);
     const fxMap: Record<string, string[]> = { birth: ['confetti', 'hearts'], wedding: ['hearts', 'confetti'], graduation: ['confetti'], prison: ['police'], death: ['ghost'], baby: ['hearts'], promotion: ['confetti', 'money'], release: ['confetti'], jackpot: ['money', 'confetti'] };
     this.fx(fxMap[kind] ?? []);
     if (kind === 'wedding') sfx.bells();

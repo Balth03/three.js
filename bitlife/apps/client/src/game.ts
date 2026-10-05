@@ -15,11 +15,23 @@ import type { PeerSummary } from '@bl/shared';
 import { duo } from './state.ts';
 import * as net from './net.ts';
 import { saveLife, deleteSlot, AUTOSAVE } from './save.ts';
+import { addPhoto } from './album.ts';
 import { sfx, setMusicAge } from './audio.ts';
 import { t } from './i18n.ts';
 
 let stage: Stage | null = null;
-export function setStage(s: Stage) { stage = s; }
+export function setStage(s: Stage) { stage = s; s.onCinematic = (k) => takePhoto(k); }
+
+/** Souvenir photo of the diorama, a moment after a cinematic / dramatic effect starts. */
+export function takePhoto(kind: string, caption?: { fr: string; en: string }, delay = 1500) {
+  const l = life.value;
+  if (!l || !stage || screen.value !== 'game') return;
+  const id = l.id, age = l.age, year = l.year;
+  setTimeout(() => {
+    if (life.value?.id !== id || !stage) return;
+    try { const img = stage.snapshot(); if (img.length > 1000) addPhoto(id, { age, year, kind, img, caption }); } catch { /* ignore */ }
+  }, delay);
+}
 export function getStage() { return stage; }
 
 // ───────────────────────────── stage sync ─────────────────────────────
@@ -207,7 +219,13 @@ function checkPrisonEntry(l: Life) {
 }
 function afterResolution(res: Resolution, showCard: boolean) {
   const l = life.value!;
-  if (res.visual?.length) stage?.fx(res.visual);
+  if (res.visual?.length) {
+    stage?.fx(res.visual);
+    if (res.visual.some((v) => v === 'gore' || v === 'explosion' || v === 'police' || v === 'fire' || v === 'money')) {
+      const cut = (s: string) => (s.length > 90 ? s.slice(0, 88) + '…' : s);
+      takePhoto(`fx${l.age}`, { fr: cut(res.text.fr), en: cut(res.text.en) }, 700);
+    }
+  }
   const m = l.counters.marriages ?? 0;
   if (m > lastMarriages) setTimeout(() => stage?.cinematic('wedding'), 300);
   lastMarriages = m;

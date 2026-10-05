@@ -13,6 +13,7 @@ import { Achievements, Graveyard, FamilyTree, GodPanel } from './Meta.tsx';
 import { Minigame } from './Minigames.tsx';
 import { DuoLobby } from './Duo.tsx';
 import { GhostPanel } from './Ghost.tsx';
+import { Album } from './Album.tsx';
 import { bindings, applyBindings, setCapturing } from './App.tsx';
 
 const close = () => { sfx.close(); modal.value = null; };
@@ -297,6 +298,7 @@ function Menu() {
         <Btn cls="big" onClick={() => { modal.value = { kind: 'saves' }; }}>💾 {t('saves')}</Btn>
         <Btn cls="big" onClick={() => { modal.value = { kind: 'settings' }; }}>⚙️ {t('settings')}</Btn>
         <Btn cls="big" onClick={() => { modal.value = { kind: 'achievements' }; }}>🏆 {lang.value === 'fr' ? 'Succès' : 'Achievements'}</Btn>
+        <Btn cls="big" onClick={() => { modal.value = { kind: 'album' }; sfx.open(); }}>📸 {lang.value === 'fr' ? 'Album souvenirs' : 'Photo album'}</Btn>
         <Btn cls="big" onClick={() => { modal.value = null; tabloid.value = true; sfx.open(); }}>📰 {lang.value === 'fr' ? 'Le Torchon (la une)' : 'The Daily Rag'}</Btn>
         <Btn cls="big" onClick={() => { modal.value = { kind: 'tree' }; }}>🌳 {lang.value === 'fr' ? 'Arbre généalogique' : 'Family tree'}</Btn>
         {life.value?.mode === 'god' && <Btn cls="big" onClick={() => { modal.value = { kind: 'god' }; }}>⚡ {lang.value === 'fr' ? 'Mode Dieu' : 'God mode'}</Btn>}
@@ -319,6 +321,7 @@ export function Modals() {
     case 'dating': return l ? <Dating l={l} /> : null;
     case 'duo': return <DuoLobby />;
     case 'ghost': return l ? <GhostPanel l={l} /> : null;
+    case 'album': return l ? <Album l={l} /> : null;
     case 'npc': return l ? <NpcSheet l={l} id={m.id} /> : null;
     case 'profile': return l ? <Profile l={l} /> : null;
     case 'saves': return <Saves />;

@@ -154,6 +154,7 @@ export function Death() {
           <Btn cls="primary" onClick={() => { sfx.open(); showDeath.value = false; screen.value = 'create'; }}>✨ {t('new_life')}</Btn>
           {!l.flags.ascended && <Btn onClick={() => { becomeGhost(); }}>👻 {lang.value === 'fr' ? (l.flags.ghost !== undefined ? 'Continuer à hanter' : 'Hanter les vivants') : (l.flags.ghost !== undefined ? 'Keep haunting' : 'Haunt the living')}</Btn>}
           <Btn cls="primary" onClick={() => { sfx.good(); reincarnateNow(); }}>♻️ {lang.value === 'fr' ? 'Réincarnation' : 'Reincarnate'} <small>(karma {Math.round(l.attrs.karma)})</small></Btn>
+          <Btn onClick={() => { sfx.open(); modal.value = { kind: 'album' }; }}>📸 Album</Btn>
           <Btn onClick={() => { sfx.open(); tabloid.value = true; }}>📰 {lang.value === 'fr' ? 'Nécrologie' : 'Obituary'}</Btn>
           <Btn onClick={() => { showDeath.value = false; retro.value = true; }}>🎞️ {lang.value === 'fr' ? 'Rétrospective' : 'Retrospective'}</Btn>
           <Btn onClick={() => { showDeath.value = false; }}>📜 {t('view_life')}</Btn>
