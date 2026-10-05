@@ -52,6 +52,7 @@ export function Cooking2({ onDone }: GameProps) {
     served: 0, failed: 0, burns: 0, perfect: 0, mistakes: 0, tips: 0, anger: 0.2, yell: 0, line: LINES.start[0] as L, lineT: 0, lineCd: 0, idle: 0,
     chopAnim: 0, parts: [] as Part[], hits: [] as Hit[], ended: false, started: false, plateBump: 0, lay: { w: 0, h: 0 }, bg: null as HTMLCanvasElement | null, bgKey: '', shakeChef: 0,
   });
+  if (import.meta.env.DEV) (window as unknown as Record<string, unknown>).__cook = s.current;
   const lg = () => (lang.value === 'fr' ? 0 : 1);
   const toPct = (x: number, y: number): [number, number] => {
     const r = cref.current?.getBoundingClientRect();
@@ -60,7 +61,7 @@ export function Cooking2({ onDone }: GameProps) {
   };
   const say = (k: string, force = false, n = 0) => {
     const st = s.current;
-    if (!force && st.lineCd > 0) return;
+    if (!force && st.lineCd > 0 && (k === 'idle' || st.lineCd > 1.0)) return;
     const a = LINES[k]; if (!a) return;
     const l = a[Math.floor(Math.random() * a.length)];
     st.line = [l[0].replace('{n}', String(n)), l[1].replace('{n}', String(n))]; st.lineT = 0; st.lineCd = 1.6;
@@ -503,7 +504,7 @@ function drawTicket(ctx: CanvasRenderingContext2D, tk: Ticket, x: number, y: num
   const lines = wrap(ctx, tk.d.n[lg], w - fs * 2.6 - 16).slice(0, 2);
   lines.forEach((ln, i) => ctx.fillText(ln, 12 + fs * 2.4, 9 + fs * 1.15 + i * fs * 1.15));
   // steps
-  const sy = h * 0.55, n = tk.d.steps.length, sz = Math.min((w - 16) / n - 4, h * 0.2);
+  const n = tk.d.steps.length, sz = Math.min((w - 16) / n - 4, h * 0.27), sy = h - 26 - sz;
   tk.d.steps.forEach((st, i) => {
     const sx = 8 + i * (sz + 4);
     const done = i < tk.step, cur = i === tk.step;
@@ -514,7 +515,7 @@ function drawTicket(ctx: CanvasRenderingContext2D, tk: Ticket, x: number, y: num
     const lab = st.k === 'ing' ? ING[st.i].e : st.k === 'chop' ? '🔪' : st.k === 'fry' ? '🍳' : '🛎️';
     ctx.font = `${sz * 0.55}px serif`; ctx.globalAlpha = done ? 0.55 : 1; ctx.fillText(lab, sx + sz / 2, sy + sz * 0.42); ctx.globalAlpha = 1;
     const key = st.k === 'ing' ? String(st.i + 1) : st.k === 'chop' ? `C×${st.n}` : st.k === 'fry' ? 'F' : '␣';
-    ctx.fillStyle = '#2b1606'; ctx.font = `900 ${Math.max(8, sz * 0.24)}px Fredoka Variable, sans-serif`; ctx.fillText(done ? '✓' : key, sx + sz / 2, sy + sz * 0.84);
+    ctx.fillStyle = '#2b1606'; ctx.font = `900 ${Math.max(10, sz * 0.3)}px Fredoka Variable, sans-serif`; ctx.fillText(done ? '✓' : key, sx + sz / 2, sy + sz * 0.86);
   });
   // patience bar
   const by = h - 18;

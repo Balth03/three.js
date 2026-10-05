@@ -83,6 +83,7 @@ export function Blackjack2({ onDone, l }: GameProps) {
     quip: Q.bet[0] as L, quipT: 0, banner: null as null | { text: string; sub: string; col: string; t: number; bj?: boolean }, btns: [] as Btn[], mx: -1, my: -1,
     dShown: 0, ended: false, table: null as HTMLCanvasElement | null, tableKey: '', results: [] as number[], dealerBounce: 0, lay: { w: 0, h: 0, T: 0, cw: 0, ch: 0 },
   });
+  if (import.meta.env.DEV) (window as unknown as Record<string, unknown>).__bj = s.current;
   const pct = (x: number, y: number): [number, number] => {
     const r = cref.current?.getBoundingClientRect();
     if (!r) return [50, 50];

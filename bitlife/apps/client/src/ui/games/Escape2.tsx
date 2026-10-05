@@ -75,6 +75,7 @@ export function Escape2({ onDone }: GameProps) {
     t: 0, walk: 0, siren: 0, ended: false, end: null as null | { win: boolean; t: number; why: string }, dist: 0, spotted: 0, hidden: false, lockMsg: 0, ptr: null as null | { x: number; y: number },
     dark: null as HTMLCanvasElement | null, stat: null as HTMLCanvasElement | null, statKey: '', lay: { ox: 0, oy: 0, ts: 1 }, steps: [] as { x: number; y: number; t: number }[], rings: [] as { x: number; y: number; t: number; c: string }[],
   });
+  if (import.meta.env.DEV) (window as unknown as Record<string, unknown>).__esc = s.current;
   useKeys((e) => s.current.keys.add(e.code), (e) => s.current.keys.delete(e.code));
   const toPct = (x: number, y: number): [number, number] => {
     const L = s.current.lay; const r = cref.current?.getBoundingClientRect();
