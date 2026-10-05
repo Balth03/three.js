@@ -39,7 +39,7 @@ export function yearlyHealth(life: Life, content: Content, rng: Rng, report: Yea
   else if (a < 75) dh = -1.3;
   else dh = -2.1;
   // The body heals: injuries from events fade over a few years (less so with age).
-  if (a >= 25) { const target = a < 60 ? 70 : a < 75 ? 54 : 40; if (s.health < target) dh += (target - s.health) * (a < 60 ? 0.07 : 0.035); }
+  if (a >= 25) { const target = a < 60 ? 72 : a < 75 ? 56 : 40; if (s.health < target) dh += (target - s.health) * (a < 60 ? 0.1 : 0.04); }
   dh += (at.athletic - 50) / 60 - (at.stress - 40) / 60 - Math.max(0, Math.abs(life.app.weight - 0.42) - 0.18) * 6;
   dh += rng.range(-2.5, 2.5);
   // Looks

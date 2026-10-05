@@ -108,7 +108,7 @@ export function App() {
       )}
       {photoMode.value && <div class="photo-hint glass">{t('photo_hint')}</div>}
       <Modals />
-      {toast.value && <div class="toast glass" key={toast.value.id}>{toast.value.text}</div>}
+      {toast.value && <div class="toast glass" role="status" aria-live="polite" key={toast.value.id}>{toast.value.text}</div>}
       <AchievementToast />
       {tabloid.value && life.value && <Tabloid l={life.value} onClose={() => { tabloid.value = false; }} />}
       <Mugshot />

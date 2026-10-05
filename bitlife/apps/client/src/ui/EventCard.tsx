@@ -21,13 +21,13 @@ export function EventCard() {
   const c = country(content, l.country);
   return (
     <div class="card-back">
-      <div class={`event-card glass ${res ? 'result' : ''} tone-${tone}`} key={res ? `r${l.log.length}` : `e${p!.key}${l.queue.length}`}>
+      <div class={`event-card glass ${res ? 'result' : ''} tone-${tone} ${res?.visual?.includes('gore') ? 'gory' : ''} ${res?.visual?.includes('poop') ? 'poopy' : ''}`} key={res ? `r${l.log.length}` : `e${p!.key}${l.queue.length}`}>
         <div class="ev-badge">
           {actor ? <Portrait l={l} npc={actor} size={92} mood={res?.mood} cls="ev-portrait" /> : <span class="ev-emoji">{icon}</span>}
           {actor && <span class="ev-mini">{icon}</span>}
         </div>
         {actor && <div class="ev-actor">{actor.first} {actor.last} · <small>{npcLabel(actor, l)}</small></div>}
-        <p class="ev-text">{res ? res.text[lg] : p!.text[lg]}</p>
+        <p class="ev-text" aria-live="polite">{res ? res.text[lg] : p!.text[lg]}</p>
         {res && <Deltas deltas={res.deltas} l={l} />}
         {!res && !!p?.choices.length && <VoteHint />}
         <div class="ev-choices">

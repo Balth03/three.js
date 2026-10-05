@@ -7,7 +7,7 @@ import {
 import type { Stage, StageView } from './three/stage.ts';
 import type { AvatarSpec } from './three/avatar.ts';
 import { life, rev, result, modal, screen, tab, bump, showToast, ageBusy, showDeath, settings, lang, profile, achToast, mugshot, type MinigameKind } from './state.ts';
-import { reincarnate, startGhost, ghostYear, haunt, ascend, isGhost, type GhostKind } from '@bl/sim';
+import { toLocal, reincarnate, startGhost, ghostYear, haunt, ascend, isGhost, type GhostKind } from '@bl/sim';
 import { commitCrime, trial, escape, parole, appeal, gamble, workMinigame, summarize, heirLife, netWorth, formatMoney, country as countryOf, type Loc } from '@bl/sim';
 import { mergeAchievements, bury } from './profile.ts';
 import { listJobs, datingCandidates, assetOffers, buyAsset, sellAsset, renovate, toggleRent, moveInto, takeLoan, repayLoans, buyStock, sellStock, startBusiness, investBusiness, sellBusiness, type AssetDef, type Financing } from '@bl/sim';
@@ -598,7 +598,19 @@ export function syncPeerNpc(s: PeerSummary | null) {
   const n = l.npcs.find((x) => x.playerId === 'peer');
   if (!n) return;
   n.birthYear = l.year - s.age; n.app = s.app as Npc['app']; n.looks = s.looks; n.smarts = s.smarts; n.health = s.health; n.first = s.first; n.last = s.last;
-  if (!s.alive && n.alive) { n.alive = false; n.deathYear = l.year; addLog({ fr: `${s.first} est mort${s.gender === 'f' ? 'e' : ''}. Notre histoire continue dans mes souvenirs.`, en: `${s.first} died. Our story lives on in my memories.` }, '🕊️', 'bad'); }
+  if (!s.alive && n.alive) {
+    n.alive = false; n.deathYear = l.year;
+    addLog({ fr: `${s.first} est mort${s.gender === 'f' ? 'e' : ''}. Notre histoire continue dans mes souvenirs.`, en: `${s.first} died. Our story lives on in my memories.` }, '🕊️', 'bad');
+    if (n.role === 'spouse' && s.worth > 0) {
+      // Cross-life inheritance: the surviving spouse gets half of the partner's fortune.
+      const c = countryOf(content, l.country);
+      const amt = Math.round(toLocal(s.worth * 0.5, c));
+      l.money += amt;
+      addLog({ fr: `Héritage : ${formatMoney(amt, c, 'fr')}. Je pleure, mais avec un sourire en coin.`, en: `Inheritance: ${formatMoney(amt, c, 'en')}. I'm crying, with a little smirk.` }, '💰', 'good');
+      stage?.fx(['money', 'ghost']);
+    }
+    l.stats.happy = Math.max(0, l.stats.happy - (n.role === 'spouse' ? 25 : 10));
+  }
 }
 
 export function lifeHash(l: Life) { return `${l.age}|${Math.round(l.money)}|${l.rng.join(',')}|${l.log.length}|${l.npcs.length}`; }

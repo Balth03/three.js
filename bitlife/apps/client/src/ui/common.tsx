@@ -92,7 +92,7 @@ export function Btn({ children, onClick, cls = '', disabled, title, hotkey }: { 
 export function Sheet({ title, icon, children, onClose, cls = '' }: { title: string; icon?: string; children: ComponentChildren; onClose: () => void; cls?: string }) {
   return (
     <div class="modal-back" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
-      <div class={`sheet glass pop-in ${cls}`}>
+      <div class={`sheet glass pop-in ${cls}`} role="dialog" aria-modal="true" aria-label={title}>
         <div class="sheet-head">
           <h2>{icon && <span class="sheet-icon">{icon}</span>}{title}</h2>
           <button class="x" onClick={onClose} aria-label={t('close')}>✕</button>

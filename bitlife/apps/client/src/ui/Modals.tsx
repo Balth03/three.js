@@ -121,6 +121,11 @@ function Dating({ l }: { l: Life }) {
     if (right) { sfx.love(); date(n.id); } else { sfx.close(); setGone([...gone, n.id]); }
     setDrag(null);
   };
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => { if (e.code === 'ArrowLeft') swipe(false); else if (e.code === 'ArrowRight') swipe(true); };
+    window.addEventListener('keydown', h);
+    return () => window.removeEventListener('keydown', h);
+  });
   return (
     <Sheet title={t('dating_title')} icon="💘" onClose={close} cls="swipe-sheet">
       {n ? (

@@ -210,6 +210,9 @@ export const achievements: AchievementDef[] = [
   A('reincarnated5', '🪷', 'Bouddha en devenir', 'Buddha in training', 'Se réincarner 5 fois.', 'Get reincarnated 5 times.', (l) => (l.counters.reincarnations ?? 0) >= 5, true),
   A('ghost', '👻', 'Revenant', 'Revenant', 'Hanter les vivants.', 'Haunt the living.', (l) => l.flags.ghost !== undefined),
   A('ghost_full', '🏚️', 'Fantôme à plein temps', 'Full-time ghost', 'Hanter pendant 10 ans.', 'Haunt for 10 years.', (l) => Number(l.flags.ghost ?? 0) >= 10, true),
+  A('daily', '📅', 'Vie du jour', 'Daily life', 'Finir une vie du jour.', 'Finish a daily life.', (l, w) => w === 'death' && typeof l.flags.daily === 'string'),
+  A('pr_tunnel', '🥄', 'À la petite cuillère', 'Spoon tunnel', 'Creuser un tunnel avec une cuillère.', 'Dig a tunnel with a spoon.', (l) => (l.counters.pr_tunnel ?? 0) >= 2),
+  A('duo_heir', '💰', 'Veuf/veuve héritier', 'Heir by marriage', 'Hériter de l\'autre joueur.', 'Inherit from the other player.', (l) => l.npcs.some((n) => n.playerId === 'peer' && n.role === 'spouse' && !n.alive)),
   // ── Duo
   A('duo_meet', '💞', 'Âmes sœurs', 'Soulmates', 'Rencontrer l\'autre joueur dans sa vie.', 'Meet the other player in your life.', (l) => l.npcs.some((n) => n.playerId === 'peer')),
   A('duo_wed', '💒', 'Mariés pour de vrai', 'Married for real', 'Épouser l\'autre joueur.', 'Marry the other player.', (l) => l.npcs.some((n) => n.playerId === 'peer' && n.role === 'spouse')),
