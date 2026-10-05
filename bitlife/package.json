@@ -1,0 +1,20 @@
+{
+  "name": "bitlife-online",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": ["apps/*", "packages/*", "data"],
+  "scripts": {
+    "dev": "npm run dev -w @bl/client",
+    "build": "npm run build -w @bl/client",
+    "preview": "npm run preview -w @bl/client",
+    "typecheck": "tsc -p packages/sim --noEmit && tsc -p data --noEmit && tsc -p apps/client --noEmit",
+    "test": "vitest run",
+    "validate": "node --experimental-strip-types --no-warnings tools/validate-data.ts",
+    "sim": "node --experimental-strip-types --no-warnings tools/mass-sim.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.0"
+  }
+}
