@@ -8,7 +8,7 @@ import { setStage, syncStage, getStage } from './game.ts';
 import * as ctl from './game.ts';
 import { App } from './ui/App.tsx';
 import { applyDomSettings } from './ui/Modals.tsx';
-import { settings, life, screen, rev } from './state.ts';
+import { settings, life, screen, rev, showDeath, modal } from './state.ts';
 import { setVolumes } from './audio.ts';
 import * as sim from '@bl/sim';
 import { content } from '@bl/data';
@@ -31,4 +31,4 @@ syncStage();
 if (!params.has('shot')) stage.start();
 
 // Debug / test handle
-(window as unknown as Record<string, unknown>).game = { stage: getStage(), life, screen, rev, sim, content, ctl, paused: params.has('shot') };
+(window as unknown as Record<string, unknown>).game = { stage: getStage(), life, screen, rev, sim, content, ctl, showDeath, modal, paused: params.has('shot') };
