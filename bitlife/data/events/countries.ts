@@ -2199,7 +2199,7 @@ export const countryEvents: EventDef[] = [
       fr: [
         "C'est la semaine du Clásico. À l'école, la cour est coupée en deux : les blancs d'un côté, les blaugrana de l'autre. Ton meilleur ami vient de passer dans l'autre camp. Tout le monde attend que tu choisisses.",
         "Ton grand-père supporte le Real, ton père supporte le Barça, et ta mère supporte « n'importe qui pourvu que ça se termine ». Le repas de dimanche coïncide avec le match. Il y a {w:food} sur la table et de la tension dans l'air.",
-        "Tournoi de foot de {school}. Tu joues avec un maillot trop grand de {w:celeb}, floqué par erreur. Le gardien adverse mesure 1,80 m à 11 ans et a déjà de la moustache.",
+        "Tournoi de foot de {school}. Tu joues avec un maillot trop grand, floqué « {w:celeb} » par erreur. Le gardien adverse mesure 1,80 m à 11 ans et a déjà de la moustache.",
         "Ton oncle t'a offert un ballon dédicacé par une star. Ta cousine prétend que la signature est fausse et ressemble à {w:animal} qui aurait marché sur la feuille. La famille est divisée.",
       ],
       en: [
@@ -2495,6 +2495,366 @@ export const countryEvents: EventDef[] = [
         label: { fr: 'Faire le mort', en: 'Play dead' },
         out: [
           { w: 1, text: { fr: ["Je me suis roulé{|e} en boule par terre. Six taureaux et 2 000 coureurs m'ont enjambé{|e}. Quelqu'un m'a marché sur la tête. Un taureau m'a reniflé{|e}, a soufflé et a continué. J'ai rampé jusqu'à un bar.", "J'ai fait le mort. Un taureau a fait caca à côté de moi, en me regardant dans les yeux. C'était un message. Je l'ai reçu."], en: ["I curled into a ball on the ground. Six bulls and 2,000 runners stepped over me. Someone stepped on my head. A bull sniffed me, snorted and moved on. I crawled to a bar.", "I played dead. A bull pooped next to me, looking me in the eye. It was a message. I received it."] }, fx: { health: -4, stress: 6, visual: 'poop' }, mood: 'sick' },
+        ],
+      },
+    ],
+  },
+  // ═════════════════════════════ ITALIE ═════════════════════════════
+  {
+    id: 'cy_it_nonna',
+    icon: '👵',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'home', mood: 'love', prop: 'pasta' },
+    when: { country: ['it'], age: [6, 90] },
+    actor: 'grandparent',
+    weight: 9,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Déjeuner du dimanche chez {a.rel}. Antipasti, pâtes, viande, légumes, fromage, dessert, café, digestif. Tu en es au deuxième plat et tu as déjà défait ta ceinture. {a.rel} te regarde : « Mais tu es tout maigre ! Mange ! »",
+        "{a.rel} a passé la nuit à faire des pâtes fraîches à la main, sur une planche en bois qui a connu trois guerres. Il y en a pour 40 personnes. Vous êtes cinq. Il y a aussi {w:food}, « au cas où ».",
+        "Tu as dit à {a.rel} que tu avais déjà mangé avant de venir. Erreur fatale. {a.rel} lève les yeux au ciel, pose une assiette de lasagnes de la taille d'une valise devant toi et s'assoit en face, les bras croisés.",
+        "{a.rel} t'apprend la recette secrète du ragù familial. Règle 1 : il cuit huit heures. Règle 2 : on ne dit jamais la recette à personne. Règle 3 : si tu mets de la crème, tu es déshérité{|e}. Tu ris. {a.rel} ne rit pas.",
+      ],
+      en: [
+        "Sunday lunch at {a.rel}'s. Antipasti, pasta, meat, vegetables, cheese, dessert, coffee, digestif. You're on course two and already loosened your belt. {a.rel} looks at you: “You're skin and bones! Eat!”",
+        "{a.rel} spent the night making fresh pasta by hand on a wooden board that's survived three wars. There's enough for 40. There are five of you. There's also {w:food}, “just in case.”",
+        "You told {a.rel} you'd already eaten. Fatal mistake. A suitcase-sized tray of lasagna appears in front of you, and {a.rel} sits across the table, arms folded, waiting.",
+        "{a.rel} is teaching you the secret family ragù. Rule 1: it cooks eight hours. Rule 2: never tell anyone the recipe. Rule 3: add cream and you're disinherited. You laugh. {a.rel} doesn't.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Tout manger', en: 'Eat it all' },
+        out: [
+          { w: 2, odds: { health: 1 }, text: { fr: ["J'ai tout mangé, jusqu'au dernier tortellino. {a.my} a pleuré de joie et m'a donné quatre tupperwares pour la semaine. Je ne peux plus marcher. Je roule comme une boulette de viande.", "Huit plats. J'ai survécu. {a.my} m'a pincé la joue en disant « voilà, maintenant tu as bonne mine ». J'ai fait une sieste de trois heures sur le canapé en velours."], en: ["I ate everything, down to the last tortellino. {a.my} wept with joy and gave me four tupperwares for the week. I can't walk. I roll like a meatball.", "Eight courses. I survived. {a.my} pinched my cheek saying, “There, now you look healthy.” I napped three hours on the velvet couch."] }, fx: { happy: 8, rel: 10, weight: 0.03 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Dire « basta »', en: 'Say “basta”' },
+        out: [
+          { w: 2, text: { fr: ["J'ai dit « basta, je n'ai plus faim ». {a.my} a posé la main sur son cœur comme si je l'avais {a:poignardé|poignardée}. Puis {a:il|elle} m'a resservi{|e} en disant « juste un peu ». Un peu, c'était une assiette entière.", "J'ai refusé une troisième assiette. {a.my} a appelé toute la famille pour signaler que j'étais « malade ». Ma tante a proposé un médecin."], en: ["I said, “Basta, I'm full.” {a.my} put a hand on the heart as if I'd stabbed them. Then served me more, saying “just a little.” A little was a full plate.", "I refused a third plate. {a.my} called the whole family to report that I was “sick.” My aunt suggested a doctor."] }, fx: { happy: -2, rel: -4 }, mood: 'sad' },
+        ],
+      },
+      {
+        label: { fr: 'Apprendre la recette', en: 'Learn the recipe' },
+        text: { fr: ["J'ai tout noté en cachette sur mon téléphone. {a.my} m'a vu{|e}, a confisqué le téléphone et l'a mis dans la sauce. « La recette, c'est dans les mains, pas dans les machines. » Le téléphone a mijoté huit heures.", "J'ai appris le ragù. Huit heures à remuer. Mon bras droit est maintenant deux fois plus gros que le gauche. Mais {a.my} m'a dit « brav{o|a} », et j'ai pleuré dans la sauce."], en: ["I secretly took notes on my phone. {a.my} saw, confiscated it and dropped it in the sauce. “The recipe is in the hands, not in machines.” The phone simmered for eight hours.", "I learned the ragù. Eight hours of stirring. My right arm is now twice as big as my left. But {a.my} said “bravo,” and I cried into the sauce."] },
+        fx: { smarts: 2, rel: 8, happy: 4 },
+      },
+    ],
+  },
+  {
+    id: 'cy_it_gestes',
+    icon: '🤌',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'park', mood: 'shock', prop: 'hands' },
+    when: { country: ['it'], age: [8, 80] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Tu as un bras dans le plâtre. Problème : à {city}, on ne peut pas parler sans les mains. Tu essaies d'expliquer ton week-end à tes amis avec une seule main. Tu as l'air de parler à moitié.",
+        "Un cousin t'apprend les gestes essentiels : les doigts joints vers le haut (« mais qu'est-ce que tu veux ? »), la main sous le menton (« je m'en fiche »), et un troisième qu'il refuse de traduire devant les enfants.",
+        "Tu viens de faire le geste des doigts joints à un carabinier qui te demandait tes papiers. Tu croyais dire « attendez une seconde ». Il a l'air de comprendre autre chose. Il tient {w:object} d'une main et son carnet de l'autre.",
+        "Dispute entre deux voisins dans la rue. Aucun mot n'est prononcé. Que des gestes. C'est le débat le plus violent que tu aies jamais vu. Un des deux vient de mimer {w:animal}.",
+      ],
+      en: [
+        "You have an arm in a cast. Problem: in {city}, you can't talk without your hands. You try to describe your weekend to friends with one hand. You sound like you're only half talking.",
+        "A cousin teaches you the essential gestures: fingertips pinched together pointing up (“what do you want?”), hand flicked under the chin (“don't care”), and a third one he refuses to translate in front of the kids.",
+        "You just made the pinched-fingers gesture at a police officer asking for your papers. You thought it meant “one second.” He seems to understand something else. He's holding {w:object} in one hand and his notebook in the other.",
+        "Two neighbors arguing in the street. Not a single word spoken. Only gestures. It's the most violent debate you've ever seen. One of them just mimed {w:animal}.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Gesticuler à fond', en: 'Gesture wildly' },
+        out: [
+          { w: 2, text: { fr: ["J'ai gesticulé avec tant de passion que j'ai renversé trois verres et assommé un serveur. Mes amis ont applaudi : « Ah, enfin, tu parles italien ! »", "J'ai improvisé avec les pieds, la tête et les sourcils. J'ai raconté une histoire entière sans un mot. Une touriste m'a donné 2 €, pensant que j'étais un mime."], en: ["I gestured so passionately I knocked over three glasses and clocked a waiter. My friends applauded: “Finally, you're speaking Italian!”", "I improvised with feet, head and eyebrows. Told an entire story without a word. A tourist gave me 2 euros, thinking I was a mime."] }, fx: { happy: 7 }, mood: 'party' },
+          { w: 1, text: { fr: ["J'ai fait le mauvais geste à la mauvaise personne. La boulangère m'a refusé mon pain pendant un mois. Je ne sais toujours pas ce que j'ai dit. Je crois que j'ai insulté sa mère."], en: ["I made the wrong gesture at the wrong person. The baker refused me bread for a month. I still don't know what I said. I think I insulted her mother."] }, fx: { happy: -3, karma: -1 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: "S'excuser avec les mains", en: 'Apologize with hands' },
+        out: [
+          { w: 2, odds: { looks: 1 }, text: { fr: ["J'ai joint les mains en prière en secouant la tête, l'air désolé. Le carabinier a souri, fait un petit geste de la main (« va, va ») et m'a laissé{|e} partir. J'ai appris un nouveau mot.", "J'ai fait un geste d'excuse universel. Le carabinier a répondu par un geste que je ne connaissais pas. On a eu une conversation entière comme ça. On est amis maintenant."], en: ["I pressed my palms together and shook my head, apologetic. The officer smiled, flicked his hand (“go, go”) and let me leave. I learned a new word.", "I made a universal apology gesture. The officer replied with one I didn't know. We had a whole conversation like that. We're friends now."] }, fx: { happy: 5, smarts: 2 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Rester immobile', en: 'Stay perfectly still' },
+        text: { fr: ["J'ai parlé les mains dans les poches. Les gens m'ont demandé si j'allais bien, si j'étais triste, si quelqu'un était mort. J'ai l'air d'un robot allemand.", "J'ai gardé les bras le long du corps. Ma nonna a cru que j'avais une attaque et a appelé une ambulance. J'ai dû gesticuler pour la rassurer."], en: ["I talked with my hands in my pockets. People asked if I was okay, if I was sad, if someone had died. I look like a German robot.", "I kept my arms at my sides. My nonna thought I was having a stroke and called an ambulance. I had to gesture to reassure her."] },
+        fx: { stress: 3, happy: -1 },
+      },
+    ],
+  },
+  {
+    id: 'cy_it_pasta',
+    icon: '🍝',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'party', mood: 'angry', prop: 'spaghetti' },
+    when: { country: ['it'], age: [16, 80] },
+    weight: 8,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Dîner chez des amis italiens à {city}. Tu proposes d'aider en cuisine. Tu prends le paquet de spaghettis et, d'un geste naturel, tu les casses en deux au-dessus de la casserole. Le bruit résonne. Tout le monde se fige.",
+        "Au restaurant, tu commandes une carbonara et tu demandes, innocemment, « avec un peu de crème ? ». Le serveur pose son carnet. Le chef sort de la cuisine. Un vieux monsieur au bar fait un geste que tu ne comprends pas.",
+        "Tu as mis du ketchup sur tes pâtes. En public. Dans une trattoria familiale. La nonna derrière le comptoir vient de laisser tomber {w:object}. Un enfant pleure. Un chien aboie au loin.",
+        "Ton coloc italien t'a surpris{|e} en train de rincer tes pâtes à l'eau froide après cuisson. Il tient {w:food} dans une main et son téléphone dans l'autre : il hésite entre te frapper et appeler sa mère.",
+      ],
+      en: [
+        "Dinner with Italian friends in {city}. You offer to help in the kitchen. You grab the spaghetti and, casually, snap it in half over the pot. The sound echoes. Everyone freezes.",
+        "At the restaurant, you order carbonara and ask, innocently, “with a little cream?” The waiter lowers his notepad. The chef comes out of the kitchen. An old man at the bar makes a gesture you don't understand.",
+        "You put ketchup on your pasta. In public. In a family trattoria. The nonna behind the counter just dropped {w:object}. A child is crying. A dog barks in the distance.",
+        "Your Italian roommate caught you rinsing your pasta under cold water after cooking. He's holding {w:food} in one hand and his phone in the other: torn between hitting you and calling his mother.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: "M'excuser à genoux", en: 'Beg forgiveness' },
+        out: [
+          { w: 2, text: { fr: ["Je me suis mis{|e} à genoux devant la casserole et j'ai demandé pardon aux spaghettis. Le chef a hoché la tête, satisfait. Il m'a appris la vraie recette. Je ne casserai plus jamais rien.", "Je me suis excusé{|e} en italien approximatif. Le chef a soupiré « ma che cazzo… » et m'a servi une vraie carbonara. C'était tellement bon que j'ai compris mes péchés."], en: ["I knelt before the pot and apologized to the spaghetti. The chef nodded, satisfied. He taught me the real recipe. I will never break anything again.", "I apologized in broken Italian. The chef sighed “ma che cazzo…” and served me a real carbonara. It was so good I understood my sins."] }, fx: { happy: 5, smarts: 2 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Défendre mon choix', en: 'Defend my choice' },
+        out: [
+          { w: 2, text: { fr: ["J'ai dit que la crème, c'est bon, et que « chacun fait ce qu'il veut ». Le chef m'a chassé{|e} avec une louche. On m'a interdit l'entrée de trois restaurants du quartier. Ma photo est affichée.", "J'ai défendu le ketchup. Mon coloc a appelé sa mère, qui m'a insulté{|e} pendant six minutes en napolitain. Je n'ai rien compris, mais j'ai senti chaque mot jusque dans mes os."], en: ["I said cream is tasty and “everyone does what they want.” The chef chased me out with a ladle. I'm banned from three restaurants in the neighborhood. My photo is posted.", "I defended ketchup. My roommate called his mom, who cursed me out for six minutes in Neapolitan. I understood nothing, but felt every word in my bones."] }, fx: { happy: -3, karma: -2, stress: 4 }, mood: 'angry' },
+          { w: 1, text: { fr: ["J'ai tenu bon. Le chef a goûté ma version avec crème, en grimaçant. Puis il a repris une bouchée. Puis une troisième. Il m'a fait jurer de ne jamais le dire à personne."], en: ["I stood firm. The chef tasted my cream version, grimacing. Then took another bite. Then a third. He made me swear never to tell anyone."] }, fx: { happy: 8, fame: 1 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Accuser quelqu\'un', en: 'Blame someone else' },
+        text: { fr: ["J'ai dit que c'était une recette « de ma grand-mère française ». Silence. Puis un serveur a murmuré « ah, c'est pour ça ». Ils m'ont pardonné{|e} par pitié pour mon héritage.", "J'ai accusé le chien. Le chien n'était pas là. Personne n'a été dupe, mais on a apprécié l'effort, et on m'a donné du tiramisu."], en: ["I said it was “my French grandmother's recipe.” Silence. Then a waiter muttered, “Ah, that explains it.” They forgave me out of pity for my heritage.", "I blamed the dog. The dog wasn't there. Nobody was fooled, but they appreciated the effort and gave me tiramisu."] },
+        fx: { happy: 3, karma: -1 },
+      },
+    ],
+  },
+  {
+    id: 'cy_it_vespa',
+    icon: '🛵',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'park', mood: 'shock', prop: 'scooter' },
+    when: { country: ['it'], age: [16, 65] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Rome, heure de pointe. Tu es sur une Vespa au milieu d'une place où sept rues se rejoignent sans feu rouge. Les voitures roulent en bloc, les piétons traversent les yeux fermés, et un camion klaxonne sans raison, juste par habitude.",
+        "Ton cousin te prend sur sa Vespa. À trois. Avec un frigo sur le porte-bagages. Et {w:animal} dans le panier. Il conduit d'une main et gesticule de l'autre en racontant sa rupture.",
+        "Tu as loué une Vespa pour faire « comme dans les films ». Il fait 38 °C, il y a {w:vehicle} qui roule à contresens, et un chauffeur de bus t'insulte copieusement en remontant ta file.",
+        "Un vieux monsieur en costume te double sur une Vespa des années 60, cigarette au bec, journal sous le bras, sans casque, à 70 km/h dans une ruelle de {city} large comme un couloir.",
+      ],
+      en: [
+        "Rome, rush hour. You're on a Vespa in a square where seven streets merge with no traffic light. Cars move as a pack, pedestrians cross with their eyes shut, and a truck honks for no reason, out of habit.",
+        "Your cousin gives you a ride on his Vespa. Three of you. With a fridge on the rack. And {w:animal} in the basket. He drives one-handed, gesturing with the other while describing his breakup.",
+        "You rented a Vespa to live “like in the movies.” It's 100°F, {w:vehicle} is going the wrong way, and a bus driver curses you out lavishly while cutting into your lane.",
+        "An old man in a suit overtakes you on a '60s Vespa, cigarette in his mouth, newspaper under his arm, no helmet, 45 mph down a {city} alley the width of a hallway.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Foncer comme un local', en: 'Ride like a local' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai foncé dans la mêlée en klaxonnant et en criant « Mannaggia! ». Les voitures se sont écartées comme la mer Rouge. J'ai traversé la place en neuf secondes. Je suis devenu{|e} Romain{|e}.", "J'ai roulé sur le trottoir, entre deux tables de restaurant et sous un échafaudage. Personne n'a protesté. Un serveur m'a même salué{|e}. C'est la règle : il n'y a pas de règle."], en: ["I charged into the scrum honking and yelling “Mannaggia!” Cars parted like the Red Sea. Crossed the square in nine seconds. I have become Roman.", "I rode on the sidewalk, between two restaurant tables and under scaffolding. Nobody protested. A waiter even waved. That's the rule: there are no rules."] }, fx: { happy: 9, stress: -2 }, mood: 'party' },
+          { w: 1, text: { fr: ["J'ai heurté une Fiat 500, qui a heurté une autre Fiat 500, qui a heurté une Vespa. Personne n'est descendu. Tout le monde a juste gesticulé et repris sa route. J'ai un rétroviseur en moins et une ecchymose en forme d'Italie."], en: ["I hit a Fiat 500, which hit another Fiat 500, which hit a Vespa. Nobody got out. Everyone just gestured and drove on. I'm missing a mirror and have an Italy-shaped bruise."] }, fx: { health: -5, money: -150 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Rouler prudemment', en: 'Ride cautiously' },
+        out: [
+          { w: 2, text: { fr: ["J'ai roulé à 20 km/h en respectant tout. On m'a klaxonné{|e} 140 fois, doublé{|e} par la gauche, la droite et une fois par-dessus. Un enfant à vélo m'a fait un doigt d'honneur. J'ai rendu la Vespa.", "Prudence absolue. Une mamie à pied m'a dépassé{|e} avec ses courses. Elle s'est retournée et m'a dit « coraggio ». J'ai eu honte jusqu'à l'hôtel."], en: ["I rode 12 mph, obeying everything. I got honked at 140 times and overtaken left, right and once from above. A kid on a bike flipped me off. I returned the Vespa.", "Absolute caution. A granny on foot passed me with her groceries. She turned and said “coraggio.” I was ashamed all the way to the hotel."] }, fx: { stress: 6, happy: -2 }, mood: 'sad' },
+        ],
+      },
+      {
+        label: { fr: 'Monter à trois', en: 'Ride three-up' },
+        out: [
+          { w: 1, text: { fr: ["À trois sur la Vespa avec le frigo. À un dos-d'âne, le frigo est parti, puis mon cousin, puis moi. Seul l'animal dans le panier est resté. On a tous fini à la terrasse d'un café à rire, couverts de bleus.", "On a fait toute la côte à trois avec le frigo, en chantant. La police nous a arrêtés. Le policier a regardé le frigo, a haussé les épaules et nous a demandé s'il restait de la bière dedans."], en: ["Three on the Vespa with the fridge. At a speed bump, the fridge flew off, then my cousin, then me. Only the animal in the basket stayed. We ended up at a café terrace laughing, covered in bruises.", "We rode the whole coast three-up with the fridge, singing. The police stopped us. The officer looked at the fridge, shrugged and asked if there was any beer left in it."] }, fx: { happy: 8, health: -3 }, mood: 'party' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cy_it_mamma',
+    icon: '👩‍👦',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'home', mood: 'neutral', prop: 'laundry' },
+    when: { country: ['it'], age: [26, 50], movedOut: false },
+    actor: 'mother',
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Tu as {age} ans et tu vis toujours chez ta mère, comme la moitié de tes amis. Elle repasse tes caleçons, te prépare ton déjeuner et t'appelle quatorze fois par jour quand tu es au travail. Aujourd'hui, elle veut rencontrer ton ou ta partenaire.",
+        "{a.first}, ta mère, est entrée dans ta chambre sans frapper à 7 h pour ouvrir les volets. Tu as {age} ans. Elle tient {w:food} à la main, « pour le petit-déjeuner, sinon tu vas tomber ».",
+        "Tu annonces à ta mère que tu envisages de déménager. Elle s'assoit. Elle se relève. Elle se rassoit. Elle dit « Mais qui va te nourrir ? » Puis elle pleure en mettant des pâtes à cuire, pour se calmer.",
+        "Ta mère a lavé ton jean préféré à 90 °C, repassé ton t-shirt de groupe et rangé ta chambre « un peu ». Ton tiroir secret est maintenant étiqueté. Elle a trouvé {w:object}. Elle n'a rien dit. Pour l'instant.",
+      ],
+      en: [
+        "You're {age} and still live with your mother, like half your friends. She irons your underwear, packs your lunch and calls fourteen times a day while you're at work. Today she wants to meet your partner.",
+        "{a.first}, your mother, walked into your room without knocking at 7 a.m. to open the shutters. You're {age}. She's holding {w:food}, “for breakfast, or you'll collapse.”",
+        "You tell your mother you're thinking of moving out. She sits down. She stands up. She sits again. She says, “But who will feed you?” Then she cries while putting pasta on to boil, to calm herself.",
+        "Your mother washed your favorite jeans at 90°C, ironed your band t-shirt and tidied your room “a little.” Your secret drawer is now labeled. She found {w:object}. She said nothing. For now.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Déménager enfin', en: 'Finally move out' },
+        out: [
+          { w: 2, text: { fr: ["J'ai déménagé à 800 mètres. {a.my} vient tous les jours avec des tupperwares, fait mon lit et repart en soupirant. Rien n'a changé, sauf le loyer.", "J'ai pris un appartement. Le premier soir, j'ai mangé des céréales au dîner, seul{|e}, libre. J'ai appelé {a.my} pour lui dire que tout allait bien. Elle était devant ma porte avec des lasagnes."], en: ["I moved 800 yards away. {a.my} comes daily with tupperwares, makes my bed and leaves sighing. Nothing's changed except the rent.", "I got an apartment. First night, I ate cereal for dinner, alone, free. I called {a.my} to say all was well. She was outside my door with lasagna."] }, fx: { happy: 6, rel: -3, discipline: 3, moveOut: true }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Rester, c\'est confortable', en: 'Stay, it’s comfy' },
+        out: [
+          { w: 2, text: { fr: ["Je suis resté{|e}. Mes caleçons sont repassés, mon assiette est pleine et mon compte en banque se porte à merveille. Ma vie amoureuse, elle, est en soins palliatifs.", "J'ai dit à {a.my} que je restais encore « un an ou deux ». Elle a fait un tiramisu de célébration. J'en ai mangé la moitié, en pyjama, à 34 ans. Je suis heureux{|se}."], en: ["I stayed. My underwear is ironed, my plate is full and my bank account is thriving. My love life is in palliative care.", "I told {a.my} I'd stay “another year or two.” She made a celebration tiramisu. I ate half of it, in pajamas, at 34. I'm happy."] }, fx: { happy: 4, rel: 8, money: 500, discipline: -2 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Lui présenter mon amour', en: 'Introduce my partner' },
+        out: [
+          { w: 1, text: { fr: ["J'ai présenté mon ou ma partenaire. {a.my} l'a examiné{|e} de haut en bas pendant trois minutes, a posé onze questions sur sa famille, puis a dit « il faut manger, tu es tout maigre ». C'est un oui.", "{a.my} a fait un repas de neuf plats pour impressionner. Mon ou ma partenaire a refusé le cinquième. {a.my} a pris ça comme une déclaration de guerre. On se voit à Noël, dans des pièces séparées."], en: ["I introduced my partner. {a.my} looked them up and down for three minutes, asked eleven questions about their family, then said, “You need to eat, you're too thin.” That's a yes.", "{a.my} made a nine-course meal to impress. My partner refused the fifth. {a.my} took it as a declaration of war. We see each other at Christmas, in separate rooms."] }, fx: { happy: 3, stress: 6, rel: 2 }, mood: 'neutral' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cy_it_calcio',
+    icon: '⚽',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'stadium', mood: 'angry', prop: 'scarf', fx: 'gore' },
+    when: { country: ['it'], age: [18, 70] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Derby de {city}. Tu t'es trompé{|e} de tribune : tu es dans le virage des ultras adverses, avec l'écharpe de ton équipe autour du cou. Quatre mille personnes torse nu chantent une chanson sur la mère de ton gardien.",
+        "Ton équipe vient de perdre à la 94e minute sur un penalty « inventé ». Le bar où tu regardes le match est en train de devenir un champ de bataille. Ton oncle a jeté {w:object} sur l'écran. Le patron pleure.",
+        "Match à la télé, dimanche. Toute la famille est devant l'écran. Ton grand-père a 91 ans et un pacemaker. L'arbitre vient de refuser un but. Ton grand-père se lève. Il crie « {w:insult} » à la télé. Son visage passe au violet.",
+        "Au stade, l'arbitre est un homme seul face à 60 000 personnes qui hurlent son nom, celui de sa mère et une hypothèse sur ses relations avec {w:animal}. Tu as un sandwich et une voix puissante.",
+      ],
+      en: [
+        "Derby day in {city}. You picked the wrong stand: you're in the rival ultras' end, wearing your team's scarf. Four thousand shirtless people are singing a song about your goalkeeper's mother.",
+        "Your team just lost in the 94th minute on a “made-up” penalty. The bar where you're watching is turning into a battlefield. Your uncle threw {w:object} at the screen. The owner is crying.",
+        "Sunday match on TV. The whole family is in front of the screen. Grandpa is 91 with a pacemaker. The ref just disallowed a goal. Grandpa stands up. He yells “{w:insult}” at the TV. His face turns purple.",
+        "At the stadium, the ref is one man facing 60,000 people screaming his name, his mother's name and a hypothesis about his relationship with {w:animal}. You have a sandwich and a powerful voice.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Cacher mon écharpe', en: 'Hide my scarf' },
+        out: [
+          { w: 2, text: { fr: ["J'ai mangé mon écharpe. Littéralement. Fil par fil, en souriant aux ultras. Ils m'ont regardé{|e} avec respect et m'ont offert une bière. J'ai chié de la laine pendant trois jours.", "J'ai retourné mon écharpe et chanté leurs chansons plus fort qu'eux. À la mi-temps, j'étais nommé{|e} « capo » du virage. Je ne peux plus jamais rentrer chez moi."], en: ["I ate my scarf. Literally. Thread by thread, smiling at the ultras. They looked at me with respect and bought me a beer. I pooped wool for three days.", "I turned my scarf inside out and sang their songs louder than them. By halftime I'd been named “capo” of the end. I can never go home again."] }, fx: { happy: 6, health: -3, visual: 'poop' }, mood: 'shock' },
+          { w: 1, text: { fr: ["Un ultra a vu un bout de mon écharpe. Trois secondes plus tard, j'avais un fumigène dans le pantalon et un œil au beurre noir. On m'a évacué{|e} en fumant, comme un bâton d'encens humain."], en: ["An ultra spotted a corner of my scarf. Three seconds later I had a flare in my pants and a black eye. I was evacuated smoking, like a human incense stick."] }, fx: { health: -10, looks: -3, visual: 'gore' }, mood: 'sick' },
+        ],
+      },
+      {
+        label: { fr: "Insulter l'arbitre", en: 'Abuse the ref' },
+        out: [
+          { w: 2, text: { fr: ["J'ai hurlé pendant 90 minutes des insultes si créatives que les ultras prenaient des notes. Ma préférée : « Arbitre, ta mère cuisine avec du beurre ! » L'Italie entière a frissonné.", "J'ai traité l'arbitre de « {w:insult} » si fort que les caméras m'ont filmé{|e}. Je suis passé{|e} au journal du soir. Ma nonna a dit qu'elle était fière."], en: ["I screamed insults for 90 minutes so creative the ultras took notes. My favorite: “Ref, your mother cooks with butter!” All of Italy shuddered.", "I called the ref “{w:insult}” so loudly the cameras caught me. I was on the evening news. My nonna said she was proud."] }, fx: { happy: 9, stress: -6, karma: -3 }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Calmer grand-père', en: 'Calm Grandpa down' },
+        out: [
+          { w: 1, text: { fr: ["J'ai changé de chaîne au moment du penalty. Grand-père s'est calmé devant une émission de cuisine. Il a juste murmuré « crème dans la carbonara… barbares » et s'est endormi.", "J'ai éteint la télé. Grand-père a sorti un vieux transistor de sa poche et a continué à hurler dessus. Il a 91 ans et l'énergie d'un ultra de 20 ans. Il nous enterrera tous."], en: ["I changed the channel at the penalty. Grandpa calmed down in front of a cooking show. He just muttered “cream in carbonara… barbarians” and fell asleep.", "I turned off the TV. Grandpa pulled an old transistor radio from his pocket and kept yelling at it. He's 91 with the energy of a 20-year-old ultra. He'll bury us all."] }, fx: { karma: 3, happy: 3 }, mood: 'happy' },
+          { w: 1, rating: 2, text: { fr: ["Trop tard. Au but refusé, le pacemaker de grand-père a fait « bip » puis « biiiiiip ». Il est mort le poing levé, en criant « vendu ! ». Aux funérailles, on a joué l'hymne du club. L'arbitre a envoyé des fleurs."], en: ["Too late. At the disallowed goal, Grandpa's pacemaker went “beep,” then “beeeeeep.” He died fist raised, shouting “sellout!” At the funeral they played the club anthem. The ref sent flowers."] }, fx: { happy: -8, stress: 6 }, mood: 'cry' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cy_it_vesuvio',
+    icon: '🌋',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'home', mood: 'shock', prop: 'volcano', fx: 'fire' },
+    when: { country: ['it'], age: [20, 90] },
+    weight: 4,
+    cooldown: 10,
+    text: {
+      fr: [
+        "Tu vis au pied du Vésuve, dans une maison héritée de ton arrière-grand-père. Ce matin, la terre tremble légèrement, le café a des vaguelettes, et une fumée inhabituelle sort du sommet. Tes voisins jouent aux cartes, imperturbables.",
+        "Alerte : le volcan gronde. Les autorités recommandent « une évacuation volontaire ». Ton voisin, 84 ans, refuse de partir sans sa machine à pâtes, son chat et {w:object}. Ta mère refuse de partir sans avoir fini la sauce.",
+        "Visite de Pompéi avec un guide très enthousiaste. Il te montre un moulage de citoyen figé dans la cendre il y a 2000 ans, en train de manger. Il te dit : « Le volcan est toujours actif, d'ailleurs. » Le sol vibre.",
+        "Une odeur de soufre flotte sur {city}. Les sismographes s'affolent. À la télé, un volcanologue dit « pas de panique » en transpirant beaucoup. Tu as une pizza dans le four et elle sera prête dans huit minutes.",
+      ],
+      en: [
+        "You live at the foot of Vesuvius, in a house inherited from your great-grandfather. This morning the ground trembles slightly, your coffee ripples, and unusual smoke rises from the summit. Your neighbors keep playing cards, unbothered.",
+        "Alert: the volcano is rumbling. Authorities recommend “voluntary evacuation.” Your 84-year-old neighbor refuses to leave without his pasta machine, his cat and {w:object}. Your mother refuses to leave before the sauce is done.",
+        "Pompeii tour with a very enthusiastic guide. He shows you the cast of a citizen frozen in ash 2,000 years ago, mid-meal. He says, “The volcano is still active, by the way.” The ground shakes.",
+        "A smell of sulfur hangs over {city}. Seismographs go wild. On TV a volcanologist says “no panic” while sweating heavily. You have a pizza in the oven and it'll be ready in eight minutes.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Évacuer tout de suite', en: 'Evacuate now' },
+        out: [
+          { w: 2, text: { fr: ["J'ai évacué avec ma famille, le chat du voisin, la machine à pâtes et la sauce dans une casserole sur mes genoux. C'était une fausse alerte. On a pique-niqué sur l'autoroute. Meilleure journée de l'année.", "On est parti{|e}s en trombe. Bouchon de 40 km. On a fini par manger la sauce directement dans la casserole, sur la bande d'arrêt d'urgence, avec des inconnus. Le volcan s'est calmé. Pas nous."], en: ["I evacuated with my family, the neighbor's cat, the pasta machine and the sauce in a pot on my lap. False alarm. We picnicked on the highway. Best day of the year.", "We bolted. A 25-mile traffic jam. We ended up eating the sauce straight from the pot on the hard shoulder with strangers. The volcano calmed down. We didn't."] }, fx: { happy: 4, stress: 6 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Finir la pizza', en: 'Finish the pizza' },
+        out: [
+          { w: 2, text: { fr: ["J'ai attendu la pizza. Huit minutes. Le volcan a craché un petit nuage puis s'est rendormi. J'ai mangé ma pizza sur la terrasse en regardant la fumée. Ça valait le risque.", "J'ai fini la pizza. La terre a tremblé au moment de la couper : les parts étaient parfaitement égales. Le Vésuve est un bon pizzaiolo."], en: ["I waited for the pizza. Eight minutes. The volcano coughed a little cloud and went back to sleep. I ate my pizza on the terrace watching the smoke. Worth the risk.", "I finished the pizza. The earth shook just as I sliced it: the pieces came out perfectly equal. Vesuvius is a good pizzaiolo."] }, fx: { happy: 7 }, mood: 'happy' },
+          { w: 1, text: { fr: ["Une pluie de cendres a recouvert la ville pendant que je mangeais. Je suis resté{|e} assis{|e}, figé{|e}, la part à la main. Des touristes m'ont pris{|e} pour une statue et m'ont photographié{|e}. Je suis sur 300 cartes postales."], en: ["An ash fall blanketed the town while I ate. I sat frozen, slice in hand. Tourists mistook me for a statue and photographed me. I'm on 300 postcards."] }, fx: { health: -6, fame: 2, disease: 'asthma' }, mood: 'shock' },
+          { w: 1, rating: 2, text: { fr: ["Le Vésuve s'est réveillé pour de bon. Dans 2000 ans, un guide montrera mon moulage aux touristes : figé dans la cendre, la bouche ouverte au-dessus d'une part de pizza margherita. « Il est mort en faisant ce qu'il aimait. »"], en: ["Vesuvius woke up for real. In 2,000 years, a guide will show tourists my cast: frozen in ash, mouth open over a slice of margherita. “They died doing what they loved.”"] }, fx: { die: { fr: 'figé{|e} dans la cendre du Vésuve, une part de pizza à la main', en: 'frozen in Vesuvius ash, holding a slice of pizza' }, visual: 'fire' }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Jouer aux cartes', en: 'Play cards with the neighbors' },
+        text: { fr: ["J'ai rejoint les voisins pour une partie de scopa. Ils m'ont expliqué que le volcan fait ça « tous les mardis ». J'ai perdu 40 € et ma peur. On a fini à la grappa.", "J'ai joué aux cartes pendant que la terre tremblait. Un voisin a triché grâce à une secousse qui a retourné ses cartes. Personne n'a protesté : c'était la volonté du volcan."], en: ["I joined the neighbors for scopa. They explained the volcano does this “every Tuesday.” I lost 40 euros and my fear. We ended on grappa.", "I played cards while the ground shook. One neighbor cheated thanks to a tremor that flipped his cards. Nobody protested: it was the volcano's will."] },
+        fx: { happy: 5, money: -40, stress: -4 },
+      },
+    ],
+  },
+  {
+    id: 'cy_it_cappuccino',
+    icon: '☕',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'office', mood: 'angry', prop: 'espresso' },
+    when: { country: ['it'], age: [18, 80] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Il est 15 h dans un bar de {city}. Tu demandes un cappuccino. Le barista, un homme de 70 ans à moustache, arrête de bouger. « Un cappuccino ? À cette heure ? Après le déjeuner ? » Le bar entier se tourne vers toi.",
+        "Tu commandes un « latte » au comptoir. Le barista te sert un grand verre de lait froid. Rien d'autre. Il te regarde droit dans les yeux. Un vieux monsieur boit son espresso en deux secondes, debout, et sort sans un mot.",
+        "Au bar du coin, tu demandes un café « à emporter, grand format, avec sirop de caramel ». Le barista éclate d'un rire nerveux, puis appelle sa femme pour qu'elle vienne voir ça. Quelqu'un fait tomber {w:food}.",
+        "Tu t'es assis{|e} en terrasse pour boire ton espresso. Le serveur te facture trois fois le prix du comptoir. Au comptoir, des Italiens debout boivent le leur en 4 secondes chrono, comme un shot. Ils te regardent t'installer comme on regarde {w:animal}.",
+      ],
+      en: [
+        "It's 3 p.m. at a bar in {city}. You ask for a cappuccino. The barista, a 70-year-old with a moustache, stops moving. “A cappuccino? At this hour? After lunch?” The whole bar turns to you.",
+        "You order a “latte” at the counter. The barista serves you a tall glass of cold milk. Nothing else. He stares you in the eye. An old man downs his espresso in two seconds, standing, and leaves without a word.",
+        "At the corner bar, you ask for a coffee “to go, large, with caramel syrup.” The barista laughs nervously, then calls his wife to come and see this. Someone drops {w:food}.",
+        "You sat down on the terrace to drink your espresso. The waiter charges three times the counter price. At the counter, standing Italians down theirs in 4 seconds flat, like a shot. They watch you settle in like you're {w:animal}.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Insister', en: 'Insist' },
+        out: [
+          { w: 2, text: { fr: ["J'ai insisté. Le barista m'a fait le cappuccino en marmonnant des insultes en dialecte. Il a dessiné un pénis dans la mousse. Je l'ai bu quand même. C'était le meilleur cappuccino de ma vie.", "J'ai insisté pour mon café à emporter. Il me l'a servi dans un pot de yaourt, avec une paille, en criant « Ecco, americano! ». Le bar a applaudi. J'ai eu mon café et une leçon."], en: ["I insisted. The barista made the cappuccino while muttering curses in dialect. He drew a penis in the foam. I drank it anyway. Best cappuccino of my life.", "I insisted on my to-go coffee. He served it in a yogurt pot, with a straw, shouting “Ecco, americano!” The bar applauded. I got my coffee and a lesson."] }, fx: { happy: 3, stress: 4 }, mood: 'angry' },
+          { w: 1, text: { fr: ["Le barista a pris mon cappuccino et l'a versé dans l'évier en me fixant. Puis il m'a servi un espresso, sans un mot. J'ai compris. J'ai bu. J'ai payé. Je suis parti{|e} en marchant à reculons."], en: ["The barista took my cappuccino and poured it into the sink, staring at me. Then served me an espresso, without a word. I understood. I drank. I paid. I walked out backwards."] }, fx: { happy: -2, smarts: 2 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Boire debout, cul sec', en: 'Shoot it standing' },
+        out: [
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["J'ai commandé « un caffè » et je l'ai bu d'un trait, debout, en lisant le journal sportif du bar. Le barista a hoché la tête. J'ai payé 1,20 €. J'ai été accepté{|e} dans la tribu.", "Espresso au comptoir, trois secondes. Je me suis brûlé la langue, l'œsophage et une partie de l'âme. Mais un vieux monsieur m'a tapé sur l'épaule : « Bravo. »"], en: ["I ordered “un caffè” and downed it in one, standing, reading the bar's sports paper. The barista nodded. I paid €1.20. I've been accepted into the tribe.", "Espresso at the counter, three seconds. Burned my tongue, esophagus and part of my soul. But an old man patted my shoulder: “Bravo.”"] }, fx: { happy: 6, health: -1 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Commander une pizza ananas', en: 'Order pineapple pizza' },
+        rating: 2,
+        out: [
+          { w: 1, text: { fr: ["Pour aggraver mon cas, j'ai commandé une pizza à l'ananas au bar d'à côté. Le pizzaiolo a jeté son tablier par terre et hurlé « {w:swear} ». Il a fermé boutique pour la journée « par deuil ».", "J'ai demandé une pizza hawaïenne. Le pizzaiolo m'a regardé{|e}, a pris un ananas entier et l'a écrasé à mains nues devant moi, en silence. Le jus a giclé sur ma chemise. J'ai compris le message."], en: ["To make things worse, I ordered pineapple pizza next door. The pizzaiolo threw his apron on the floor and screamed “{w:swear}” He closed for the day “in mourning.”", "I asked for a Hawaiian pizza. The pizzaiolo looked at me, took a whole pineapple and crushed it barehanded in front of me, silently. The juice squirted on my shirt. Message received."] }, fx: { happy: 4, karma: -3, stress: 5 }, mood: 'shock' },
         ],
       },
     ],

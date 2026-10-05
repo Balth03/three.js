@@ -80,14 +80,8 @@ export const babyEvents: EventDef[] = [
     rating: 1,
     when: { age: [3, 7] },
     text: {
-      fr: [
-        "Mon poisson rouge s'est mis à nager sur le dos. On m'a dit qu'il « partait en vacances à la mer » et on a tiré la chasse. J'attends toujours sa carte postale.",
-        "Mon poisson rouge Bubulle est mort. Le lendemain, Bubulle était vivant, orange vif et vingt grammes plus gros. Je ne suis pas dupe.",
-      ],
-      en: [
-        "My goldfish started swimming upside down. I was told he was “going on vacation to the sea” and the toilet got flushed. Still waiting on that postcard.",
-        "My goldfish Bubbles died. The next day, Bubbles was alive, bright orange and an ounce heavier. I'm not an idiot.",
-      ],
+      fr: ["Mon poisson rouge s'est mis à nager sur le dos. On m'a dit qu'il « partait en vacances à la mer » et on a tiré la chasse. J'attends toujours sa carte postale.", "Mon poisson rouge Bubulle est mort. Le lendemain, Bubulle était vivant, orange vif et vingt grammes plus gros. Je ne suis pas dupe.", "Mon poisson rouge est mort. On l'a enterré dans le jardin avec {w:object} et une chanson. Le chat l'a déterré le soir même. Je suis traumatisé{|e}.", "D'après Papa, mon poisson rouge « vit maintenant {w:far_place} ». C'est loin, pour un poisson. Je lui envoie des dessins.", "J'ai voulu faire plaisir à mon poisson : je lui ai donné {w:food}. Depuis, il flotte un peu bizarrement. Maman a acheté « le même » à l'animalerie."],
+      en: ["My goldfish started swimming upside down. I was told he was “going on vacation to the sea” and the toilet got flushed. Still waiting on that postcard.", "My goldfish Bubbles died. The next day, Bubbles was alive, bright orange and an ounce heavier. I'm not an idiot.", "My goldfish died. We buried him in the yard with {w:object} and a song. The cat dug him up that same night. I am traumatized.", "According to Dad, my goldfish 'lives {w:far_place} now'. That's far, for a fish. I send him drawings.", "I wanted to treat my fish, so I gave him {w:food}. He's been floating a bit funny since. Mom bought 'the same one' at the pet store."],
     },
     fx: { happy: -2, smarts: 2 },
   },
@@ -140,14 +134,8 @@ export const babyEvents: EventDef[] = [
     rating: 1,
     when: { age: [2, 6] },
     text: {
-      fr: [
-        "Mamie m'a emmené{|e} à la crèche en insultant tous les automobilistes. J'ai appris que les gens en Audi sont « tous des trous du cul ».",
-        "En voiture, Papi a traité un cycliste de « fils de moule ». Je l'ai répété en boucle jusqu'à Noël. Personne ne sait ce que ça veut dire, même pas Papi.",
-      ],
-      en: [
-        "Grandma drove me to daycare cursing out every driver on the road. I learned that people who drive Audis are “all assholes.”",
-        "In the car, Grandpa called a cyclist a “son of a clam.” I repeated it nonstop until Christmas. Nobody knows what it means, not even Grandpa.",
-      ],
+      fr: ["Mamie m'a emmené{|e} à la crèche en insultant tous les automobilistes. J'ai appris que les gens en Audi sont « tous des trous du cul ».", "En voiture, Papi a traité un cycliste de « fils de moule ». Je l'ai répété en boucle jusqu'à Noël. Personne ne sait ce que ça veut dire, même pas Papi.", "Papi conduit {w:vehicle} comme un pilote de rallye. Il a traité un camion de « {w:nickname} de mes deux ». Je l'ai répété à la maîtresse. Papi est convoqué.", "Mamie m'a appris un geste très spécial pour les gens qui klaxonnent. Je l'ai fait au curé, en criant « {w:exclaim} ». Mamie dit que j'ai un don.", "Dans les bouchons, Mamie a chanté {w:song} en tapant sur le volant et en insultant tout le monde entre les couplets. J'ai trouvé ça [[très beau|magnifique|émouvant]]."],
+      en: ["Grandma drove me to daycare cursing out every driver on the road. I learned that people who drive Audis are “all assholes.”", "In the car, Grandpa called a cyclist a “son of a clam.” I repeated it nonstop until Christmas. Nobody knows what it means, not even Grandpa.", "Grandpa drives {w:vehicle} like a rally driver. He called a truck a 'damn {w:nickname}'. I repeated it to my teacher. Grandpa's been summoned.", "Grandma taught me a very special hand gesture for people who honk. I did it to the priest, shouting '{w:exclaim}'. Grandma says I'm gifted.", "In traffic, Grandma sang {w:song}, drumming on the wheel and cursing everybody between verses. I thought it was [[beautiful|magnificent|moving]]."],
     },
     fx: { happy: 3, smarts: 1 },
   },

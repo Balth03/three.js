@@ -622,8 +622,8 @@ export const darkEvents: EventDef[] = [
     weight: 4,
     cooldown: 10,
     text: {
-      fr: ["J'ai visité le cimetière pour choisir mon emplacement. J'ai pris celui à côté du distributeur de boissons. Pour l'éternité, je veux du passage.", "J'ai fait la liste des gens qui viendront à mon enterrement. Puis la liste de ceux qui viendront juste pour vérifier. La deuxième est plus longue."],
-      en: ["I visited the cemetery to pick my plot. I took the one next to the vending machine. For eternity, I want foot traffic.", "I made a list of people who'll come to my funeral. Then a list of those who'll come just to make sure. The second one is longer."],
+      fr: ["J'ai visité le cimetière pour choisir mon emplacement. J'ai pris celui à côté du distributeur de boissons. Pour l'éternité, je veux du passage.", "J'ai fait la liste des gens qui viendront à mon enterrement. Puis la liste de ceux qui viendront juste pour vérifier. La deuxième est plus longue.", "J'ai rédigé ma propre nécrologie. Cause de la mort : « {w:disaster} ». Dernières volontés : qu'on passe {w:song} et que personne ne pleure. Sauf mon ex.", "J'ai demandé à être enterré{|e} avec {w:object}. Le notaire a noté sans poser de questions. Il en a vu d'autres.", "Aux pompes funèbres, le vendeur m'a laissé{|e} essayer un cercueil « juste pour voir ». C'était confortable. J'ai fait une sieste. On m'a réveillé{|e} {w:time}, sous les cris d'une famille en deuil."],
+      en: ["I visited the cemetery to pick my plot. I took the one next to the vending machine. For eternity, I want foot traffic.", "I made a list of people who'll come to my funeral. Then a list of those who'll come just to make sure. The second one is longer.", "I wrote my own obituary. Cause of death: '{w:disaster}'. Last wishes: play {w:song} and nobody cries. Except my ex.", "I asked to be buried with {w:object}. The notary wrote it down without asking questions. He's seen worse.", "At the funeral home, the salesman let me try a coffin 'just to see'. It was comfy. I took a nap. I was woken {w:time} by the screams of a grieving family."],
     },
     fx: { stress: -2, happy: 1 },
   },

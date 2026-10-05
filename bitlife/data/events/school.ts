@@ -15,14 +15,8 @@ export const schoolEvents: EventDef[] = [
     once: true,
     when: { school: 'preschool' },
     text: {
-      fr: [
-        "J'ai peint « maman » à la gouache. Ma mère a demandé pourquoi elle avait six jambes. Ce sont des bras. Elle a beaucoup de travail.",
-        "J'ai fait de la peinture avec les doigts. J'en ai mis sur la feuille, sur le mur, sur Lucas et un peu dans ma bouche. Le vert a un goût de vert.",
-      ],
-      en: [
-        "I finger-painted “Mommy.” Mom asked why she had six legs. They're arms. She has a lot of work to do.",
-        "Finger painting day. Some went on the paper, some on the wall, some on Lucas and some in my mouth. Green tastes like green.",
-      ],
+      fr: ["J'ai peint « maman » à la gouache. Ma mère a demandé pourquoi elle avait six jambes. Ce sont des bras. Elle a beaucoup de travail.", "J'ai fait de la peinture avec les doigts. J'en ai mis sur la feuille, sur le mur, sur Lucas et un peu dans ma bouche. Le vert a un goût de vert.", "J'ai dessiné {w:animal} pour la fête des mères. La maîtresse a cru que c'était un nuage. Maman a cru que c'était elle.", "J'ai fait un collage avec des pâtes, de la colle et {w:object}. La maîtresse l'a accroché au mur, [[loin des autres|près de la sortie|à l'envers]].", "En arts plastiques, j'ai sculpté {w:food} en pâte à modeler. Lucas a croqué dedans. On a eu chacun une note : moi 18, lui une punition."],
+      en: ["I finger-painted “Mommy.” Mom asked why she had six legs. They're arms. She has a lot of work to do.", "Finger painting day. Some went on the paper, some on the wall, some on Lucas and some in my mouth. Green tastes like green.", "I drew {w:animal} for Mother's Day. The teacher thought it was a cloud. Mom thought it was her.", "I made a collage with pasta, glue and {w:object}. The teacher hung it on the wall, [[far away from the others|near the exit|upside down]].", "In art class, I sculpted {w:food} out of play-dough. Lucas bit into it. We both got marks: me an A, him a time-out."],
     },
     fx: { happy: 3 },
   },
@@ -631,33 +625,27 @@ export const schoolEvents: EventDef[] = [
     when: { school: ['primary', 'middle'] },
     cooldown: 4,
     text: {
-      fr: [
-        "Le maître ramasse les devoirs. Le tien n'existe pas. Il n'a jamais existé. Tu as dix secondes pour inventer une excuse.",
-        "« Ton devoir de géographie, s'il te plaît. » Tu fouilles ton cartable avec la conviction de quelqu'un qui sait qu'il n'y a rien dedans.",
-      ],
-      en: [
-        "The teacher is collecting homework. Yours doesn't exist. It never existed. You have ten seconds to come up with an excuse.",
-        "“Your geography homework, please.” You rummage through your backpack with the conviction of someone who knows it's empty.",
-      ],
+      fr: ["Le maître ramasse les devoirs. Le tien n'existe pas. Il n'a jamais existé. Tu as dix secondes pour inventer une excuse.", "« Ton devoir de géographie, s'il te plaît. » Tu fouilles ton cartable avec la conviction de quelqu'un qui sait qu'il n'y a rien dedans.", "Vérification des devoirs. Le tien est resté sur la table de la cuisine. Enfin, tu crois. En vrai, tu ne l'as jamais commencé. La maîtresse te fixe comme {w:animal} qui a repéré une proie.", "Le prof ramasse les exposés sur {w:hobby}. Le tien tient sur un post-it. Il manque [[trois|huit|vingt]] pages.", "« Les devoirs sur la table. » Toute la classe sort une copie. Toi, tu sors {w:object}. Le silence est total."],
+      en: ["The teacher is collecting homework. Yours doesn't exist. It never existed. You have ten seconds to come up with an excuse.", "“Your geography homework, please.” You rummage through your backpack with the conviction of someone who knows it's empty.", "Homework check. Yours is on the kitchen table. Well, you think. Actually, you never started it. The teacher stares at you like {w:animal} spotting prey.", "The teacher is collecting the reports on {w:hobby}. Yours fits on a Post-it. It's missing [[three|eight|twenty]] pages.", "'Homework on your desks.' The whole class pulls out a sheet. You pull out {w:object}. Total silence."],
     },
     choices: [
       {
         label: { fr: 'Le chien l\'a mangé', en: 'The dog ate it' },
         out: [
-          { w: 1, text: { fr: "« Le chien l'a mangé. » Le maître : « Tu n'as pas de chien. » Moi : « Il l'a mangé aussi. » Zéro, mais avec les félicitations du jury.", en: "“The dog ate it.” Teacher: “You don't have a dog.” Me: “He ate that too.” Zero, but with honors." }, fx: { grade: -4, happy: 2 } },
-          { w: 1, text: { fr: "J'ai dit que le chien l'avait mangé et j'ai sorti la feuille déchiquetée, que j'avais mâchée moi-même dans le bus. Crédible. Délai accordé. Goût de papier.", en: "I said the dog ate it and produced the shredded sheet, which I'd chewed myself on the bus. Credible. Extension granted. Paper aftertaste." }, fx: { grade: 1, smarts: 1, karma: -2 }, mood: 'proud' },
+          { w: 1, text: { fr: ["« Le chien l'a mangé. » Le maître : « Tu n'as pas de chien. » Moi : « Il l'a mangé aussi. » Zéro, mais avec les félicitations du jury.", "« Il a été mangé par {w:animal}. » Le maître a demandé une photo de l'animal. J'ai fait un dessin. Zéro, mais il a gardé le dessin."], en: ["“The dog ate it.” Teacher: “You don't have a dog.” Me: “He ate that too.” Zero, but with honors.", "'It got eaten by {w:animal}.' The teacher asked for a photo of the animal. I made a drawing. Zero, but he kept the drawing."] }, fx: { grade: -4, happy: 2 } },
+          { w: 1, text: { fr: ["J'ai dit que le chien l'avait mangé et j'ai sorti la feuille déchiquetée, que j'avais mâchée moi-même dans le bus. Crédible. Délai accordé. Goût de papier.", "J'ai juré que le chien l'avait mangé. Le soir, le maître a croisé ma mère à la boulangerie. Elle lui a dit qu'on n'avait pas de chien. Double zéro."], en: ["I said the dog ate it and produced the shredded sheet, which I'd chewed myself on the bus. Credible. Extension granted. Paper aftertaste.", "I swore the dog ate it. That evening, the teacher ran into my mom at the bakery. She told him we don't have a dog. Double zero."] }, fx: { grade: 1, smarts: 1, karma: -2 }, mood: 'proud' },
         ],
       },
       {
         label: { fr: 'Avouer', en: 'Confess' },
-        text: { fr: "« Je ne l'ai pas fait, j'ai regardé des vidéos de chats qui tombent. » Le maître a apprécié l'honnêteté. Puis m'a collé quand même.", en: "“I didn't do it, I watched videos of cats falling off things.” The teacher appreciated the honesty. Then gave me detention anyway." },
+        text: { fr: ["« Je ne l'ai pas fait, j'ai regardé des vidéos de chats qui tombent. » Le maître a apprécié l'honnêteté. Puis m'a collé quand même.", "J'ai avoué que j'avais passé la soirée à {w:activity}. Le maître a ri, puis s'est repris. Punition quand même, mais avec le sourire."], en: ["“I didn't do it, I watched videos of cats falling off things.” The teacher appreciated the honesty. Then gave me detention anyway.", "I admitted I'd spent the evening {w:activity}. The teacher laughed, then caught himself. Detention anyway, but with a smile."] },
         fx: { grade: -2, karma: 3, discipline: 2 },
       },
       {
         label: { fr: 'Le faire en vitesse', en: 'Do it right now' },
         out: [
-          { w: 1, odds: { smarts: 1 }, text: { fr: "J'ai rédigé le devoir en quatre minutes sous la table. Note : 14. Mon cerveau est meilleur sous la menace.", en: "I wrote the whole thing in four minutes under the desk. Grade: B. My brain works better under threat." }, fx: { grade: 3, smarts: 2 }, mood: 'proud' },
-          { w: 1, text: { fr: "J'ai bâclé le devoir en trois minutes. J'ai écrit que la capitale de l'Australie était « Kangourou ». Le maître l'a affiché en salle des profs.", en: "I rushed it in three minutes. I wrote that the capital of Australia was “Kangaroo.” The teacher pinned it up in the staff room." }, fx: { grade: -3 } },
+          { w: 1, odds: { smarts: 1 }, text: { fr: ["J'ai rédigé le devoir en quatre minutes sous la table. Note : 14. Mon cerveau est meilleur sous la menace.", "J'ai recopié le devoir de mon voisin en changeant les mots. Il a eu 12, moi 15. Il ne me parle plus."], en: ["I wrote the whole thing in four minutes under the desk. Grade: B. My brain works better under threat.", "I copied my neighbor's homework, changing the words. He got a C, I got a B+. He doesn't talk to me anymore."] }, fx: { grade: 3, smarts: 2 }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai bâclé le devoir en trois minutes. J'ai écrit que la capitale de l'Australie était « Kangourou ». Le maître l'a affiché en salle des profs.", "J'ai bâclé le devoir. Question : « Citez un fleuve français. » Ma réponse : « {w:food} ». Le maître a écrit « pourquoi ? » en rouge."], en: ["I rushed it in three minutes. I wrote that the capital of Australia was “Kangaroo.” The teacher pinned it up in the staff room.", "I rushed it. Question: 'Name a French river.' My answer: '{w:food}'. The teacher wrote 'why?' in red."] }, fx: { grade: -3 } },
         ],
       },
     ],

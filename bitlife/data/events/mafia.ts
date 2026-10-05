@@ -377,24 +377,18 @@ export const mafiaEvents: EventDef[] = [
     cooldown: 12,
     weight: 4,
     text: {
-      fr: [
-        "Ta vieille voiture pétarade devant une trattoria. Instantanément, onze hommes en costume plongent sous les tables, dont un qui se cache derrière un gressin.",
-        "Ton pot d'échappement fait « BANG » sur le parking d'un restaurant italien. Le patron sort, les mains en l'air, en criant : « J'ai payé ! J'ai payé ce mois-ci ! »",
-      ],
-      en: [
-        "Your old car backfires outside a trattoria. Instantly eleven men in suits dive under the tables, one of them hiding behind a breadstick.",
-        "Your exhaust goes BANG in an Italian restaurant parking lot. The owner runs out, hands up, yelling: “I paid! I paid this month!”",
-      ],
+      fr: ["Ta vieille voiture pétarade devant une trattoria. Instantanément, onze hommes en costume plongent sous les tables, dont un qui se cache derrière un gressin.", "Ton pot d'échappement fait « BANG » sur le parking d'un restaurant italien. Le patron sort, les mains en l'air, en criant : « J'ai payé ! J'ai payé ce mois-ci ! »", "Ta voiture pétarade devant un club privé. Trois messieurs en costume te pointent du doigt. Un quatrième sort {w:object} de sa poche. C'est peut-être un briquet.", "BANG ! Ton pot d'échappement explose devant une pizzeria. Le pizzaïolo lâche {w:food} et plonge derrière le four. Un client sort son chapelet.", "Ta voiture fait {w:sound} devant un bar où des messieurs jouent aux cartes. Toutes les cartes tombent. Toutes les têtes se tournent. Plus personne ne respire."],
+      en: ["Your old car backfires outside a trattoria. Instantly eleven men in suits dive under the tables, one of them hiding behind a breadstick.", "Your exhaust goes BANG in an Italian restaurant parking lot. The owner runs out, hands up, yelling: “I paid! I paid this month!”", "Your car backfires outside a private club. Three men in suits point at you. A fourth pulls {w:object} out of his pocket. Might be a lighter.", "BANG! Your exhaust explodes outside a pizzeria. The pizza chef drops {w:food} and dives behind the oven. A customer pulls out a rosary.", "Your car makes {w:sound} outside a bar where some gentlemen are playing cards. Every card drops. Every head turns. Nobody breathes."],
     },
     choices: [
       {
         label: { fr: "S'excuser", en: 'Apologize' },
-        text: { fr: "Je me suis excusé{|e} platement. Les messieurs se sont relevés, ont épousseté leurs costumes et m'ont offert un limoncello. Pour les nerfs. Les leurs.", en: "I apologized profusely. The gentlemen got up, dusted off their suits and bought me a limoncello. For the nerves. Theirs." },
+        text: { fr: ["Je me suis excusé{|e} platement. Les messieurs se sont relevés, ont épousseté leurs costumes et m'ont offert un limoncello. Pour les nerfs. Les leurs.", "Je me suis excusé{|e} en bégayant. Un monsieur m'a tapoté la joue : « Fais réviser ta voiture, petit{|e}. Pour ta santé. » J'ai pris rendez-vous au garage le jour même."], en: ["I apologized profusely. The gentlemen got up, dusted off their suits and bought me a limoncello. For the nerves. Theirs.", "I stammered an apology. A gentleman patted my cheek: 'Get your car serviced, kid. For your health.' I booked the garage that same day."] },
         fx: { happy: 4, karma: 1 },
       },
       {
         label: { fr: 'Recommencer', en: 'Do it again' },
-        text: { fr: "J'ai fait pétarader une deuxième fois. Personne n'a ri. Un monsieur a noté ma plaque dans un petit carnet en cuir. J'ai vendu la voiture le lendemain.", en: "I backfired it again. Nobody laughed. A gentleman wrote down my plate in a little leather notebook. I sold the car the next day." },
+        text: { fr: ["J'ai fait pétarader une deuxième fois. Personne n'a ri. Un monsieur a noté ma plaque dans un petit carnet en cuir. J'ai vendu la voiture le lendemain.", "J'ai refait pétarader pour rigoler. Le lendemain, j'ai trouvé {w:object} sur mon capot. Aucun mot. J'ai compris le message, sans savoir lequel."], en: ["I backfired it again. Nobody laughed. A gentleman wrote down my plate in a little leather notebook. I sold the car the next day.", "I backfired again for laughs. The next day, I found {w:object} on my hood. No note. I got the message, without knowing what it was."] },
         fx: { stress: 8, happy: 2 },
         mood: 'shock',
       },

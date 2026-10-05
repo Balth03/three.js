@@ -33,14 +33,8 @@ export const teenEvents: EventDef[] = [
     once: true,
     when: { age: [12, 14] },
     text: {
-      fr: [
-        "La puberté a frappé. {Ma voix a déraillé en plein exposé, quelque part entre le baryton et la mouette.|J'ai grandi de huit centimètres en un été. Plus aucun pantalon ne m'arrive aux chevilles.}",
-        "J'ai grandi d'un coup : bras trop longs, pieds trop grands, et je me cogne à tous les meubles. La puberté, ce chef-d'œuvre.",
-      ],
-      en: [
-        "Puberty struck. {My voice cracked mid-presentation, somewhere between baritone and seagull.|I grew three inches in one summer. None of my pants reach my ankles anymore.}",
-        "I grew all at once: arms too long, feet too big, and I bump into every piece of furniture. Puberty, what a masterpiece.",
-      ],
+      fr: ["La puberté a frappé. {Ma voix a déraillé en plein exposé, quelque part entre le baryton et la mouette.|J'ai grandi de huit centimètres en un été. Plus aucun pantalon ne m'arrive aux chevilles.}", "J'ai grandi d'un coup : bras trop longs, pieds trop grands, et je me cogne à tous les meubles. La puberté, ce chef-d'œuvre.", "Ma voix mue. Au téléphone, on m'a appelé{|e} « Madame », puis « Monsieur », puis on m'a demandé si j'étais {w:animal}.", "J'ai grandi si vite que mes chaussures neuves sont trop petites avant d'être payées. Ma mère m'appelle {w:nickname}. Je déteste.", "Ce matin, dans le miroir, un inconnu fait uniquement de bras et de jambes me regardait. C'était moi. J'ai poussé {w:sound}."],
+      en: ["Puberty struck. {My voice cracked mid-presentation, somewhere between baritone and seagull.|I grew three inches in one summer. None of my pants reach my ankles anymore.}", "I grew all at once: arms too long, feet too big, and I bump into every piece of furniture. Puberty, what a masterpiece.", "My voice is breaking. On the phone, I got called 'ma'am', then 'sir', then asked if I was {w:animal}.", "I'm growing so fast my new shoes are too small before they're paid off. Mom calls me {w:nickname}. I hate it.", "This morning, in the mirror, a stranger made entirely of arms and legs was staring at me. It was me. I let out {w:sound}."],
     },
     fx: { happy: -1, looks: 2 },
   },

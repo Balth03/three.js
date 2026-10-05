@@ -16,14 +16,8 @@ export const teen2Events: EventDef[] = [
     weight: 8,
     when: { age: [13, 16] },
     text: {
-      fr: [
-        "Mes parents ont installé un contrôle parental sur mon téléphone. Je l'ai désactivé en quatre minutes grâce à un tuto. Mon père cherche toujours comment changer sa sonnerie.",
-        "Mon temps d'écran de la semaine : 61 heures. Le téléphone m'a envoyé une notification pour s'inquiéter. Même lui me juge.",
-      ],
-      en: [
-        "My parents installed parental controls on my phone. I disabled them in four minutes thanks to a tutorial. My dad is still trying to change his ringtone.",
-        "My screen time this week: 61 hours. My phone sent me a notification to check if I was okay. Even the phone is judging me.",
-      ],
+      fr: ["Mes parents ont installé un contrôle parental sur mon téléphone. Je l'ai désactivé en quatre minutes grâce à un tuto. Mon père cherche toujours comment changer sa sonnerie.", "Mon temps d'écran de la semaine : 61 heures. Le téléphone m'a envoyé une notification pour s'inquiéter. Même lui me juge.", "Mon temps d'écran : [[9|11|14]] heures par jour, dont quatre à regarder des vidéos où {w:animal} fait des bêtises. Je ne regrette rien.", "Mes parents m'ont confisqué mon téléphone pour une semaine. J'ai redécouvert {w:hobby}. J'ai tenu deux heures.", "Ma mère a coupé le wifi pendant le dîner. J'ai dû parler à ma famille. Mon père m'a montré {w:object}, un souvenir de 1998. J'ai rebranché la box en cachette."],
+      en: ["My parents installed parental controls on my phone. I disabled them in four minutes thanks to a tutorial. My dad is still trying to change his ringtone.", "My screen time this week: 61 hours. My phone sent me a notification to check if I was okay. Even the phone is judging me.", "My screen time: [[9|11|14]] hours a day, four of them watching videos of {w:animal} being silly. No regrets.", "My parents confiscated my phone for a week. I rediscovered {w:hobby}. I lasted two hours.", "My mom cut the wifi during dinner. I had to talk to my family. My dad showed me {w:object}, a souvenir from 1998. I secretly plugged the router back in."],
     },
     fx: { happy: 2, smarts: 1 },
   },
@@ -35,14 +29,8 @@ export const teen2Events: EventDef[] = [
     once: true,
     when: { age: [13, 15] },
     text: {
-      fr: [
-        "J'ai découvert le déodorant. J'ai vidé une bombe entière avant le cours de sport. Le gymnase a été évacué pour suspicion de fuite de gaz.",
-        "Ma mère a posé un déodorant sur mon lit, sans un mot. Le message était clair. Le message était humiliant.",
-      ],
-      en: [
-        "I discovered deodorant. I emptied an entire can before gym class. The gym was evacuated for a suspected gas leak.",
-        "My mom left a stick of deodorant on my bed without a word. The message was clear. The message was humiliating.",
-      ],
+      fr: ["J'ai découvert le déodorant. J'ai vidé une bombe entière avant le cours de sport. Le gymnase a été évacué pour suspicion de fuite de gaz.", "Ma mère a posé un déodorant sur mon lit, sans un mot. Le message était clair. Le message était humiliant.", "Mon déodorant promet une « fraîcheur alpine ». En vrai, dès 10 h, je dégage {w:smell}.", "En cours de sport, toute la classe a remarqué {w:smell}. Tout le monde m'a regardé{|e}. C'était {w:animal} caché dans les vestiaires. Personne ne me croit.", "J'ai mis tellement de parfum pour la fête de l'école que {w:animal} m'a suivi{|e} jusqu'à la maison. Je l'ai pris comme un compliment."],
+      en: ["I discovered deodorant. I emptied an entire can before gym class. The gym was evacuated for a suspected gas leak.", "My mom left a stick of deodorant on my bed without a word. The message was clear. The message was humiliating.", "My deodorant promises 'alpine freshness'. In reality, by 10 a.m., I give off {w:smell}.", "In gym class, everyone noticed {w:smell}. Everyone looked at me. It was {w:animal} hiding in the locker room. Nobody believes me.", "I wore so much body spray to the school party that {w:animal} followed me home. I took it as a compliment."],
     },
     fx: { looks: 1, happy: -1 },
   },
@@ -74,14 +62,8 @@ export const teen2Events: EventDef[] = [
     actor: 'sibling',
     when: { age: [13, 17], has: 'sibling' },
     text: {
-      fr: [
-        "{a.first} a squatté la salle de bain pendant 55 minutes. J'ai chronométré. J'ai tout noté. Le dossier est prêt pour le tribunal familial.",
-        "{a.first} a mangé le yaourt sur lequel j'avais écrit mon prénom au marqueur. La guerre froide a repris. Le frigo est désormais zone démilitarisée.",
-      ],
-      en: [
-        "{a.first} hogged the bathroom for 55 minutes. I timed it. I wrote it all down. The case file is ready for family court.",
-        "{a.first} ate the yogurt I had labeled with my name in Sharpie. The Cold War is back on. The fridge is now a demilitarized zone.",
-      ],
+      fr: ["{a.first} a squatté la salle de bain pendant 55 minutes. J'ai chronométré. J'ai tout noté. Le dossier est prêt pour le tribunal familial.", "{a.first} a mangé le yaourt sur lequel j'avais écrit mon prénom au marqueur. La guerre froide a repris. Le frigo est désormais zone démilitarisée.", "{a.first} a utilisé ma brosse à dents pour nettoyer {w:object}. Je l'ai appris après. Le conflit est désormais nucléaire.", "{a.first} a chanté {w:song} sous la douche pendant [[quarante|cinquante|soixante-dix]] minutes. Plus une goutte d'eau chaude. J'ai pris une douche froide en jurant vengeance.", "J'ai collé un post-it sur la porte de la salle de bains : « Occupé par {w:nickname} ». {a.first} a riposté en cachant {w:object} dans mon lit. L'escalade continue."],
+      en: ["{a.first} hogged the bathroom for 55 minutes. I timed it. I wrote it all down. The case file is ready for family court.", "{a.first} ate the yogurt I had labeled with my name in Sharpie. The Cold War is back on. The fridge is now a demilitarized zone.", "{a.first} used my toothbrush to clean {w:object}. I found out afterwards. The conflict has gone nuclear.", "{a.first} sang {w:song} in the shower for [[forty|fifty|seventy]] minutes. Not a drop of hot water left. I took a cold shower, swearing revenge.", "I stuck a Post-it on the bathroom door: 'Occupied by {w:nickname}'. {a.first} retaliated by hiding {w:object} in my bed. The escalation continues."],
     },
     fx: { happy: -2, rel: -3 },
   },
