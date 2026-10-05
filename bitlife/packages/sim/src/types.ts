@@ -249,7 +249,8 @@ export interface NewNpcSpec {
 
 export type ActorSpec = RoleSel | { role?: RoleSel; create?: NewNpcSpec; minRel?: number; maxRel?: number; living?: boolean };
 
-export type UiTarget = 'parole' | 'appeal' | 'bank' | 'jobs' | 'university' | 'grad' | 'dating' | 'relations' | 'activities' | 'shop' | 'realestate' | 'cars' | 'stocks' | 'business' | 'crime' | 'minigame:surgery' | 'minigame:trial' | 'minigame:heist' | 'minigame:escape' | 'minigame:cooking' | 'minigame:blackjack' | 'minigame:date' | 'minigame:match' | 'minigame:interrogation' | 'minigame:case';
+export type UiTarget = 'parole' | 'appeal' | 'bank' | 'jobs' | 'university' | 'grad' | 'dating' | 'relations' | 'activities' | 'shop' | 'realestate' | 'cars' | 'stocks' | 'business' | 'crime' | 'minigame:surgery' | 'minigame:trial' | 'minigame:heist' | 'minigame:escape' | 'minigame:cooking' | 'minigame:blackjack' | 'minigame:date' | 'minigame:match' | 'minigame:interrogation' | 'minigame:case'
+  | 'minigame:karaoke' | 'minigame:concert' | 'minigame:dj' | 'minigame:hack' | 'minigame:lockpick' | 'minigame:fight' | 'minigame:beerpong' | 'minigame:trading' | 'minigame:slots' | 'minigame:penalty' | 'minigame:getaway';
 
 export interface Effect {
   happy?: number; health?: number; smarts?: number; looks?: number;
@@ -479,7 +480,7 @@ export interface CrimeDef {
   heat: number;             // chance of being caught after a success
   caught: number;           // chance of being caught after a failure
   sentence: [number, number];
-  minigame?: 'heist' | 'getaway';
+  minigame?: 'heist' | 'getaway' | 'lockpick' | 'hack' | 'fight';
   text: { ok: LocText; fail: LocText; caught: LocText };
   fx?: Effect;
   needs?: Cond;

@@ -19,6 +19,7 @@ import { actions3 } from './actions3.ts';
 import { actions4 } from './actions4.ts';
 import { actions5 } from './actions5.ts';
 import { actions6 } from './actions6.ts';
+import { actions7 } from './actions7.ts';
 import { relActions3 } from './relactions3.ts';
 import { achievements, worldEvents, scenarios, challenges } from './meta.ts';
 import { words } from './words/index.ts';
@@ -26,7 +27,7 @@ import { anecdotes } from './anecdotes.ts';
 
 export const content: Content = {
   countries: [...countries, ...countries2], names: { ...names, ...names2 }, careers: [...careers, ...careers2], majors, grads, traits, talents,
-  diseases: [...diseases, ...diseases2], events, actions: [...actions, ...actions2, ...actions3, ...actions4, ...actions5, ...actions6], relActions: [...relActions, ...relActions2, ...relActions3], balance,
+  diseases: [...diseases, ...diseases2], events, actions: [...actions, ...actions2, ...actions3, ...actions4, ...actions5, ...actions6, ...actions7], relActions: [...relActions, ...relActions2, ...relActions3], balance,
   crimes, assets, stocks, sectors, achievements, worldEvents, scenarios, challenges, words, anecdotes,
 };
 export default content;

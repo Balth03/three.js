@@ -26,3 +26,4 @@ export type { AssetOffer, Financing } from './money.ts';
 export { checkAchievements, ADDICTIONS } from './world.ts';
 export { heirLife, heirs, ancestorOf, mergeFatigue, reincarnate, type Reincarnation } from './lineage.ts';
 export { startGhost, haunt, ghostYear, ascend, isGhost, ghostYears, hauntable, ghostActionsLeft, GHOST_ACTIONS, GHOST_YEARS, type GhostKind, type GhostAction } from './ghost.ts';
+export { arcadeResult, arcadeStake, type ArcadeKind } from './minigames.ts';

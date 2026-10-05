@@ -14,6 +14,8 @@ export interface Profile {
   challengesDone: Record<string, number>;
   /** Daily life: best score per date (YYYY-MM-DD). */
   daily?: Record<string, number>;
+  /** Cross-life variety: how often each event was seen in recent lives. */
+  fatigue?: Record<string, number>;
 }
 
 const KEY = 'bl:profile';

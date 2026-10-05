@@ -5,6 +5,16 @@ import { content } from '@bl/data';
 import { lang, type MinigameKind, rev } from '../state.ts';
 import { Btn } from './common.tsx';
 import { sfx } from '../audio.ts';
+import { CarChase } from './games/CarChase.tsx';
+import { Rhythm } from './games/Rhythm.tsx';
+import { Hack } from './games/Hack.tsx';
+import { Lockpick } from './games/Lockpick.tsx';
+import { Fight } from './games/Fight.tsx';
+import { BeerPong } from './games/BeerPong.tsx';
+import { Trading } from './games/Trading.tsx';
+import { Slots } from './games/Slots.tsx';
+import { Penalty } from './games/Penalty.tsx';
+import { Surgery2 } from './games/Surgery2.tsx';
 
 const T = (fr: string, en: string) => (lang.value === 'fr' ? fr : en);
 type Done = (score: number, extra?: number) => void;
@@ -356,6 +366,19 @@ function Cooking({ onDone }: { onDone: Done }) {
 
 export function Minigame({ game, title, onDone, l }: { game: MinigameKind; title: string; onDone: Done; l: Life }) {
   void rev.value;
+  // Full-screen arena games
+  switch (game) {
+    case 'getaway': return <CarChase onDone={onDone} l={l} />;
+    case 'karaoke': case 'concert': case 'dj': return <Rhythm onDone={onDone} l={l} variant={game} />;
+    case 'hack': return <Hack onDone={onDone} l={l} />;
+    case 'lockpick': case 'heist': return <Lockpick onDone={onDone} l={l} variant={game} />;
+    case 'fight': return <Fight onDone={onDone} l={l} />;
+    case 'beerpong': return <BeerPong onDone={onDone} l={l} />;
+    case 'trading': return <Trading onDone={onDone} l={l} />;
+    case 'slots': return <Slots onDone={onDone} l={l} />;
+    case 'penalty': case 'match': return <Penalty onDone={onDone} l={l} />;
+    case 'surgery': return <Surgery2 onDone={onDone} l={l} />;
+  }
   let body;
   switch (game) {
     case 'heist': body = <TimingGame kind="heist" onDone={onDone} />; break;

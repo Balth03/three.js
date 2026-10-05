@@ -7,7 +7,7 @@ import {
 import type { Stage, StageView } from './three/stage.ts';
 import type { AvatarSpec } from './three/avatar.ts';
 import { life, rev, result, modal, screen, tab, bump, showToast, ageBusy, showDeath, settings, lang, profile, achToast, mugshot, type MinigameKind } from './state.ts';
-import { toLocal, reincarnate, startGhost, ghostYear, haunt, ascend, isGhost, type GhostKind } from '@bl/sim';
+import { arcadeResult, type ArcadeKind, mergeFatigue, toLocal, reincarnate, startGhost, ghostYear, haunt, ascend, isGhost, type GhostKind } from '@bl/sim';
 import { commitCrime, trial, escape, parole, appeal, gamble, workMinigame, summarize, heirLife, netWorth, formatMoney, country as countryOf, type Loc } from '@bl/sim';
 import { mergeAchievements, bury } from './profile.ts';
 import { listJobs, datingCandidates, assetOffers, buyAsset, sellAsset, renovate, toggleRent, moveInto, takeLoan, repayLoans, buyStock, sellStock, startBusiness, investBusiness, sellBusiness, type AssetDef, type Financing } from '@bl/sim';
@@ -89,7 +89,7 @@ function autosave() { const l = life.value; if (l) saveLife(l); }
 // ───────────────────────────── lifecycle ─────────────────────────────
 
 export function startLife(opts: NewLifeOptions) {
-  const l = createLife(content, { rating: settings.value.rating, ...opts });
+  const l = createLife(content, { rating: settings.value.rating, fatigue: profile.value.fatigue, ...opts });
   life.value = l;
   result.value = null;
   modal.value = null;
@@ -259,6 +259,9 @@ const MG_TITLES: Record<string, Loc<string>> = {
   trial: { fr: 'Ta plaidoirie', en: 'Your defense' }, blackjack: { fr: 'Blackjack', en: 'Blackjack' }, surgery: { fr: 'Au bloc opératoire', en: 'In the OR' },
   cooking: { fr: 'Coup de feu en cuisine', en: 'Dinner rush' }, match: { fr: 'Le grand match', en: 'The big match' }, interrogation: { fr: 'Interrogatoire', en: 'Interrogation' },
   case: { fr: 'Plaidoirie', en: 'Closing argument' }, date: { fr: 'Le rencard', en: 'The date' },
+  karaoke: { fr: 'Karaoké', en: 'Karaoke' }, concert: { fr: 'Le concert', en: 'The gig' }, dj: { fr: 'DJ set', en: 'DJ set' }, hack: { fr: 'Piratage', en: 'Hacking' },
+  lockpick: { fr: 'Crochetage', en: 'Lockpicking' }, fight: { fr: 'La baston', en: 'The fight' }, beerpong: { fr: 'Beer pong', en: 'Beer pong' }, trading: { fr: 'Day trading', en: 'Day trading' },
+  slots: { fr: 'Machine à sous', en: 'Slot machine' }, penalty: { fr: 'Tirs au but', en: 'Penalty shootout' },
 };
 
 export function openMinigame(game: MinigameKind, onDone: (score: number, extra?: number) => void) {
@@ -290,6 +293,11 @@ function openUi(target: string) {
     openMinigame('trial', (s) => dispatch({ k: 'trial', score: s }));
     return;
   }
+  const arcade: Record<string, [MinigameKind, ArcadeKind]> = {
+    'minigame:karaoke': ['karaoke', 'karaoke'], 'minigame:concert': ['concert', 'concert'], 'minigame:dj': ['dj', 'dj'], 'minigame:beerpong': ['beerpong', 'beerpong'],
+    'minigame:fight': ['fight', 'fight'], 'minigame:hack': ['hack', 'hack'], 'minigame:slots': ['slots', 'slots'], 'minigame:trading': ['trading', 'trading'], 'minigame:getaway': ['getaway', 'race'],
+  };
+  if (arcade[target]) { const [mg, kind] = arcade[target]; openMinigame(mg, (s, extra) => dispatch({ k: 'arcade', kind, score: s, extra: extra ?? 0 })); return; }
   if (target === 'minigame:blackjack') {
     openMinigame('blackjack', (_s, net) => dispatch({ k: 'gamble', net: net ?? 0 }));
     return;
@@ -421,6 +429,7 @@ function onDeath() {
     checkAch();
     const s = summarize(l, content);
     const c = countryOf(content, l.country);
+    profile.value.fatigue = mergeFatigue(profile.value.fatigue, l.seenCount);
     if (typeof l.flags.daily === 'string') { const d = (profile.value.daily ??= {}); d[l.flags.daily] = Math.max(d[l.flags.daily] ?? 0, s.score); }
     bury(profile.value, { id: l.id, first: l.first, last: l.last, gender: l.gender, born: l.birthYear, died: l.year, age: l.age, cause: l.death?.cause ?? { fr: '', en: '' }, netWorth: formatMoney(netWorth(l, content), c, lang.value), score: s.score, country: l.country, generation: l.generation, app: l.app, titles: s.titles, mode: l.mode });
     profile.value = { ...profile.value };
@@ -496,7 +505,7 @@ export type Op =
   | { k: 'stockBuy'; id: string; amount: number } | { k: 'stockSell'; id: string } | { k: 'bizStart'; sector: string; name: string }
   | { k: 'bizInvest'; kind: 'hire' | 'marketing' | 'expand' } | { k: 'bizSell' } | { k: 'trial'; score: number } | { k: 'escape'; score: number }
   | { k: 'parole' } | { k: 'appeal' } | { k: 'gamble'; net: number } | { k: 'work'; target: string; score: number } | { k: 'heir'; child: number }
-  | { k: 'god'; stat: string; value: number } | { k: 'giftIn'; amount: number; from: string } | { k: 'linkPeer'; role: string; s: PeerSummary };
+  | { k: 'arcade'; kind: ArcadeKind; score: number; extra: number } | { k: 'god'; stat: string; value: number } | { k: 'giftIn'; amount: number; from: string } | { k: 'linkPeer'; role: string; s: PeerSummary };
 
 /** True while playing a shared ("vie commune") life online. */
 export function sharedOnline() { return duo.value.connected && duo.value.mode === 'shared'; }
@@ -557,6 +566,7 @@ export function applyOp(op: Op, mine: boolean) {
     }
     case 'work': { const w = WORK(op.target); if (w) handleRes(workMinigame(l, content, op.score, op.score >= 0.7 ? w.ok : op.score >= 0.4 ? w.mid : w.ko, w.icon)); break; }
     case 'heir': continueAsHeirLocal(op.child); break;
+    case 'arcade': handleRes(arcadeResult(l, content, op.kind, op.score, op.extra)); break;
     case 'god': {
       if (op.stat in l.stats) l.stats[op.stat as 'happy'] = Math.max(0, Math.min(100, op.value));
       else if (op.stat in l.attrs) l.attrs[op.stat as 'karma'] = Math.max(0, Math.min(100, op.value));

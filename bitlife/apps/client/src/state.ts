@@ -5,7 +5,8 @@ import { loadProfile } from './profile.ts';
 import type { DuoMode, PeerSummary, SocialKind } from '@bl/shared';
 
 export type Screen = 'title' | 'create' | 'game';
-export type MinigameKind = 'heist' | 'getaway' | 'escape' | 'trial' | 'blackjack' | 'surgery' | 'cooking' | 'match' | 'interrogation' | 'case' | 'date';
+export type MinigameKind = 'heist' | 'getaway' | 'escape' | 'trial' | 'blackjack' | 'surgery' | 'cooking' | 'match' | 'interrogation' | 'case' | 'date'
+  | 'karaoke' | 'concert' | 'dj' | 'hack' | 'lockpick' | 'fight' | 'beerpong' | 'trading' | 'slots' | 'penalty';
 export type Modal = null | { kind: 'jobs' } | { kind: 'university' } | { kind: 'grad' } | { kind: 'dating' } | { kind: 'npc'; id: number } | { kind: 'saves' } | { kind: 'settings' } | { kind: 'menu' } | { kind: 'profile' }
   | { kind: 'crime' } | { kind: 'realestate' } | { kind: 'cars' } | { kind: 'shop' } | { kind: 'stocks' } | { kind: 'bank' } | { kind: 'business' }
   | { kind: 'achievements' } | { kind: 'graveyard' } | { kind: 'tree' } | { kind: 'god' } | { kind: 'duo' } | { kind: 'ghost' } | { kind: 'album' } | { kind: 'custom' }

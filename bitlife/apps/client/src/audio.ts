@@ -68,6 +68,16 @@ function noise(dur: number, vol = 0.15, freq = 1200, when = 0) {
   s.start(t0);
 }
 
+/** Low-level synth for minigames (rhythm game backing track). `when` is relative to now, in seconds. */
+export const synth = {
+  now: () => ac()?.currentTime ?? 0,
+  tone: (freq: number, dur: number, type: OscillatorType, vol: number, when = 0, slide = 0) => tone(freq, dur, type, vol, when, slide),
+  noise: (dur: number, vol: number, freq: number, when = 0) => noise(dur, vol, freq, when),
+  kick: (when = 0) => { tone(150, 0.22, 'sine', 0.5, when, 0.25); },
+  snare: (when = 0) => { noise(0.14, 0.22, 1800, when); tone(220, 0.08, 'triangle', 0.08, when, 0.6); },
+  hat: (when = 0) => noise(0.04, 0.06, 7000, when),
+};
+
 export const sfx = {
   click: () => tone(880, 0.06, 'triangle', 0.12, 0, 1.4),
   hover: () => tone(1320, 0.03, 'sine', 0.04),
@@ -93,6 +103,16 @@ export const sfx = {
   cash: () => { noise(0.06, 0.08, 4000); [1568, 2093, 2637].forEach((f, i) => tone(f, 0.12, 'square', 0.05, 0.05 + i * 0.05)); },
   bells: () => { [1047, 1319, 1568, 1319, 1047, 1568].forEach((f, i) => tone(f, 0.9, 'sine', 0.08, i * 0.22)); },
   gavel: () => { noise(0.05, 0.3, 900); tone(160, 0.12, 'square', 0.12); noise(0.05, 0.3, 900, 0.25); tone(160, 0.12, 'square', 0.12, 0.25); },
+  // ── minigame juice
+  hit: (perfect = false) => { tone(perfect ? 1320 : 990, 0.07, 'square', 0.07); if (perfect) tone(1760, 0.09, 'triangle', 0.06, 0.03); },
+  miss: () => { tone(160, 0.18, 'sawtooth', 0.08, 0, 0.5); noise(0.1, 0.08, 400); },
+  combo: (n: number) => { [0, 4, 7, 12].forEach((s, i) => tone(523 * Math.pow(2, (s + Math.min(12, n / 10)) / 12), 0.12, 'square', 0.06, i * 0.05)); },
+  beep: (go = false) => tone(go ? 1046 : 523, go ? 0.35 : 0.14, 'square', 0.09),
+  fanfare: (s: number) => { const seq = s >= 0.8 ? [523, 659, 784, 1046, 1318] : s >= 0.45 ? [523, 659, 784] : [392, 330, 262]; seq.forEach((f, i) => tone(f, 0.25, s >= 0.45 ? 'triangle' : 'sawtooth', 0.1, i * 0.11)); },
+  whoosh: () => noise(0.25, 0.12, 900),
+  punch: () => { noise(0.08, 0.35, 250); tone(90, 0.12, 'sine', 0.3, 0, 0.5); },
+  click2: () => tone(2400, 0.03, 'square', 0.05),
+  engine: (rpm: number) => tone(60 + rpm * 120, 0.08, 'sawtooth', 0.025),
   /** Plays the sound matching a 3D visual effect. */
   forVisual: (v: string) => {
     const m: Record<string, () => void> = { police: () => sfx.siren(), gore: () => { sfx.splat(); sfx.scream(); }, explosion: () => sfx.boom(), poop: () => sfx.fart(), ghost: () => sfx.ghost(), fire: () => sfx.fire(), money: () => sfx.cash(), confetti: () => sfx.good(), hearts: () => sfx.love() };
