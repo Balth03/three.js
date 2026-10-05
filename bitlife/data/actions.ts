@@ -12,8 +12,21 @@ const doctorFx: Effect = {
     }
     for (const c of life.conditions.slice()) {
       const d = content.diseases.find((x) => x.id === c.id);
-      if (d && rand() < d.curable) cure(life, content, c.id);
-      else if (d) addLine(life, { fr: `Le traitement n'a rien donné (${d.name.fr.toLowerCase()}). Le médecin a haussé les épaules et encaissé le chèque.`, en: `The treatment for ${d.name.en.toLowerCase()} didn't work.` }, '💊', 'bad');
+      if (!d) continue;
+      if (rand() < d.curable) { cure(life, content, c.id); continue; }
+      // Incurable things (a missing finger…) aren't "treated" again and again.
+      if (d.curable <= 0 && life.used[`dr:${d.id}`] !== undefined) continue;
+      life.used[`dr:${d.id}`] = 1;
+      const fr = d.name.fr.toLowerCase(), en = d.name.en.toLowerCase();
+      const KO: [string, string][] = [
+        [`Le traitement n'a rien donné (${fr}). Le médecin a haussé les épaules et encaissé le chèque.`, `The treatment for ${en} didn't work. The doctor shrugged and cashed the cheque.`],
+        [`${d.curable <= 0 ? 'Rien à faire' : 'Pas d\'amélioration'} pour : ${fr}. On m'a prescrit « de la patience » et trois sirops inutiles.`, `${d.curable <= 0 ? 'Nothing to be done' : 'No improvement'} for ${en}. Prescribed "patience" and three useless syrups.`],
+        [`Le médecin a regardé mon dossier (${fr}), a dit « ah oui quand même » et m'a renvoyé chez moi.`, `The doctor looked at my file (${en}), said "oh wow, OK" and sent me home.`],
+        [`Traitement raté (${fr}). Le spécialiste est en vacances jusqu'en 2031.`, `Treatment failed (${en}). The specialist is on holiday until 2031.`],
+        [`On a tout essayé (${fr}) : cachets, piqûres, prière. Rien.`, `We tried everything against ${en}: pills, shots, prayer. Nothing.`],
+      ];
+      const [kfr, ken] = KO[Math.floor(rand() * KO.length)];
+      addLine(life, { fr: kfr, en: ken }, '💊', 'bad');
     }
     life.stats.health = Math.min(100, life.stats.health + 4);
   },
