@@ -124,7 +124,7 @@ const D = {
   high_contrast: { fr: 'Contraste élevé', en: 'High contrast' },
   main_menu: { fr: 'Menu principal', en: 'Main menu' },
   resume: { fr: 'Reprendre', en: 'Resume' },
-  controls: { fr: 'Espace : vivre une année · 1–4 : choix · Tab : onglets · Échap : menu · F : plein écran · M : muet · P : mode photo', en: 'Space: age up · 1–4: choices · Tab: tabs · Esc: menu · F: fullscreen · M: mute · P: photo mode' },
+  controls: { fr: 'Espace : vivre une année · 1–7 : choix · ←→ : swipe · Tab : onglets · Échap : menu · F : plein écran · M : muet · P : mode photo', en: 'Space: age up · 1–7: choices · ←→: swipe · Tab: tabs · Esc: menu · F: fullscreen · M: mute · P: photo mode' },
   risky: { fr: 'Risqué', en: 'Risky' },
   finish_event: { fr: "Réponds d'abord à l'événement !", en: 'Answer the event first!' },
   interactions: { fr: 'Interactions', en: 'Interactions' },
