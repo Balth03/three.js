@@ -891,9 +891,9 @@ export function Fight({ onDone, l, variant }: GameProps) {
     if (f.glow > 0.02 && !FLAT) {
       const gr = ctx.createRadialGradient(0, 0, f.r * 0.5, 0, 0, f.r * 2.4); gr.addColorStop(0, `rgba(255,220,90,${f.glow})`); gr.addColorStop(0.35, `rgba(255,90,30,${0.8 * f.glow})`); gr.addColorStop(0.7, `rgba(255,20,40,${0.35 * f.glow})`); gr.addColorStop(1, 'rgba(255,0,0,0)');
       ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(0, 0, f.r * 2.4, 0, Math.PI * 2); ctx.fill();
-      ctx.save(); ctx.strokeStyle = `rgba(255,240,150,${f.glow})`; ctx.lineWidth = 4; glow(ctx, '#ff7a1a', 20);
+      if (f.r < 80) { ctx.save(); ctx.strokeStyle = `rgba(255,240,150,${f.glow})`; ctx.lineWidth = 4; glow(ctx, '#ff7a1a', 20);
       for (let i = 0; i < 8; i++) { const a = (i / 8) * Math.PI * 2 + st0().wallT * 6; ctx.beginPath(); ctx.moveTo(Math.cos(a) * f.r * 1.3, Math.sin(a) * f.r * 1.3); ctx.lineTo(Math.cos(a) * f.r * (1.6 + f.glow * 0.5), Math.sin(a) * f.r * (1.6 + f.glow * 0.5)); ctx.stroke(); }
-      ctx.restore();
+      ctx.restore(); }
     }
     const r = f.r;
     if (L.gloves) {
