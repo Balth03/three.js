@@ -7,6 +7,7 @@ import { duo, life, rev, lang, screen, ageBusy, result, modal, emoteFx, showToas
 import * as net from './net.ts';
 import { applyOp, linkPeerNpc, syncPeerNpc, lifeHash, loadExisting, startLife, getStage, type Op } from './game.ts';
 import { saveLife } from './save.ts';
+import { loadCustom, mergeCustom, type CustomEvent } from './custom.ts';
 import { sfx } from './audio.ts';
 
 const set = (p: Partial<DuoState>) => { duo.value = { ...duo.value, ...p }; };
@@ -27,6 +28,9 @@ export function leaveRoom() {
 }
 
 export function setMode(m: DuoMode) { net.sendMode(m); }
+
+/** Sends my home-made events to the partner (they merge them into theirs). */
+export function shareCustom() { const list = loadCustom(); if (list.length) net.sendSocial('events', { list }); }
 
 // ───────────────────────────── summary ─────────────────────────────
 
@@ -80,6 +84,7 @@ function onMsg(m: ServerMsg) {
     case 'peer': {
       const was = d.peerOnline;
       set({ peer: m.s, peerOnline: m.online });
+      if (m.online && !was) shareCustom();
       if (m.online && !was && d.connected) showToast(`💞 ${m.s?.name || L('Ton/ta partenaire', 'Your partner')} ${L('est là', 'is here')} !`);
       if (m.s && life.value && duo.value.mode !== 'shared') { syncPeerNpc(m.s); bump(); }
       break;
@@ -94,7 +99,7 @@ function onMsg(m: ServerMsg) {
       emoteFx.value = { e: m.e, mine: m.from === d.you, id: Date.now() + Math.random() };
       if (m.from !== d.you) sfx.love();
       break;
-    case 'social': onSocial(m.kind, m.data ?? {}); break;
+    case 'social': if (m.kind === 'events') { mergeCustom((m.data?.list ?? []) as CustomEvent[]); break; } onSocial(m.kind, m.data ?? {}); break;
     case 'op': {
       applyOp(m.op as Op, m.from === d.you || (m.from === 'room' && d.host));
       if ((m.op as Op).k === 'choose') set({ myVote: undefined, peerVoted: false });

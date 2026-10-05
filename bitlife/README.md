@@ -11,6 +11,7 @@ Voir [`DESIGN.md`](DESIGN.md) pour la vision, la direction artistique, l'archite
 - **Mode fantôme** : après la mort, hante tes proches pendant 10 ans (BOUH, possession, cauchemars sanglants, numéros du loto…).
 - **Réincarnation** selon le karma (un saint renaît riche dans un pays riche, une ordure… pas).
 - **Album souvenirs** : photos du diorama prises automatiquement aux grands moments (et aux moments gore).
+- **Événements maison** : écrivez vos propres événements (blagues privées, belle-famille, collègues…) depuis le menu ✍️ ; ils apparaissent dans vos vies et sont partagés automatiquement avec le partenaire en mode à deux.
 - **Rencontres façon appli** (swipe gauche/droite, bios douteuses), **photo d'identité judiciaire** à l'arrestation, **Vie du jour** (même départ pour tout le monde chaque jour, pour comparer vos scores).
 - Modes Classique / Zen / Chaos / Hardcore / Dieu, années de naissance de 1950 à 2060 avec événements d'époque.
 

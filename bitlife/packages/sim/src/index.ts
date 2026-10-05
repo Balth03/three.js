@@ -4,7 +4,7 @@ export { clamp, living, npcById, matchesRole, rolesOf, L, career, addLine, rngOf
 export { renderLoc, renderString, formatMoney, formatNumber, toLocal, wageLocal, toBase, country, roleLabel, roleMine, roleTitle, careerTitle, npcAge, capitalize } from './text.ts';
 export { createLife, ageUp, summarize, zodiac, SAVE_VERSION, statPoint } from './life.ts';
 export type { LifeSummary } from './life.ts';
-export { currentEvent, choose, queueEvent, eligible, eventDef, resolveOutcomes, applyEffect } from './events.ts';
+export { currentEvent, choose, queueEvent, eligible, eventDef, invalidateContent, resolveOutcomes, applyEffect } from './events.ts';
 export { listActions, doAction } from './actions.ts';
 export type { ActionView } from './actions.ts';
 export { listJobs, applyJob, leaveJob, promote, taxOf, levelSalary, qualification, hire, employerFor } from './career.ts';

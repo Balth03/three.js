@@ -25,6 +25,9 @@ export function eventDef(content: Content, id: string): EventDef | undefined {
   return m.get(id);
 }
 
+/** Call after mutating `content.events` at runtime (custom events). */
+export function invalidateContent(content: Content) { eventIndex.delete(content); }
+
 // ───────────────────────────── actors ─────────────────────────────
 
 function actorCandidates(life: Life, spec: ActorSpec): Npc[] {

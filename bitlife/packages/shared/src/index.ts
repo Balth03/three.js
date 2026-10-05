@@ -46,7 +46,7 @@ export type ClientMsg =
   | { t: 'mode'; mode: DuoMode };
 
 export type SocialKind = 'meet' | 'meet_ok' | 'meet_no' | 'date' | 'date_ok' | 'date_no' | 'propose' | 'propose_ok' | 'propose_no' | 'gift' | 'baby' | 'baby_ok' | 'baby_no'
-  | 'breakup' | 'duel' | 'duel_ok' | 'duel_no' | 'duel_score' | 'slap' | 'poison' | 'heir';
+  | 'breakup' | 'duel' | 'duel_ok' | 'duel_no' | 'duel_score' | 'slap' | 'poison' | 'heir' | 'events';
 
 export type ServerMsg =
   | { t: 'room'; code: string; you: string; mode: DuoMode; host: boolean; players: { id: string; name: string; online: boolean }[] }

@@ -1,6 +1,8 @@
 import * as stateMod from './state.ts';
 import * as duoMod from './duo.ts';
 import { duo } from './state.ts';
+import { install as installCustom } from './custom.ts';
+installCustom();
 import { render } from 'preact';
 import '@fontsource-variable/fredoka';
 import '@fontsource-variable/nunito';

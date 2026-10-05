@@ -32,6 +32,7 @@ export function Title() {
           <Btn onClick={() => { unlockAudio(); modal.value = { kind: 'saves' }; }}>💾 {t('saves')}</Btn>
           <Btn onClick={() => { unlockAudio(); modal.value = { kind: 'achievements' }; }}>🏆</Btn>
           <Btn onClick={() => { unlockAudio(); modal.value = { kind: 'graveyard' }; }}>🪦</Btn>
+          <Btn onClick={() => { unlockAudio(); modal.value = { kind: 'custom' }; }} title={lang.value === 'fr' ? 'Événements maison' : 'Home-made events'}>✍️</Btn>
           <Btn onClick={() => { unlockAudio(); modal.value = { kind: 'settings' }; }}>⚙️</Btn>
         </div>
       </div>
