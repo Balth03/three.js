@@ -240,7 +240,7 @@ export function Penalty({ onDone, l }: GameProps) {
 
   const canvas = useCanvas((ctx, w, h, dtRaw) => {
     const st = s.current;
-    st.W = w; st.H = h;
+    st.W = w; st.H = h; (window as unknown as Record<string, unknown>).__pen = st;
     const v = view(w, h);
     const playing = g.phase === 'play';
     if (!st.inited && playing) { st.inited = true; startShot(st); }

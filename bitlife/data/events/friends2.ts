@@ -724,7 +724,7 @@ export const friends2Events: EventDef[] = [
     text: {
       fr: [
         "Enterrement de vie de célibataire de {a.first} {w:far_place}. Budget : {$amount}. Programme : karting, strip-club, et « une surprise » qui implique {w:animal} et un costume en latex.",
-        "EVG/EVJF de {a.first}. Il est 4 h, tu es menotté{|e} à un lampadaire, quelqu'un t'a rasé un sourcil, et {a.first} a disparu avec quelqu'un déguisé en {w:celeb}.",
+        "{a:EVG|EVJF} de {a.first}. Il est 4 h, tu es menotté{|e} à un lampadaire, quelqu'un t'a rasé un sourcil, et {a.first} a disparu avec quelqu'un déguisé en {w:celeb}.",
         "Pour l'enterrement de vie de jeune {a:garçon|fille} de {a.first}, le groupe a loué un bateau. Personne ne sait piloter. Il y a {w:drink} à volonté et un strip-teaseur déguisé en pompier.",
         "Lendemain d'EVG à Amsterdam. Tu te réveilles dans une baignoire de glaçons, avec un tatouage frais où est écrit « {a.first} 4 EVER ». {a.first} est introuvable.",
       ],
@@ -795,13 +795,13 @@ export const friends2Events: EventDef[] = [
     cooldown: 5,
     text: {
       fr: [
-        "Il est {w:time}, et {a.first} t'appelle en larmes, ivre mort{a:|e}, {w:at_place}. « Viens me chercher, j'ai perdu mon pantalon et ma dignité. »",
+        "{w:time}, {a.first} t'appelle en larmes, ivre mort{a:|e}, {w:at_place}. « Viens me chercher, j'ai perdu mon pantalon et ma dignité. »",
         "Ton téléphone sonne à 4 h 12. {a.first}, voix pâteuse : « Je suis dans une poubelle. Pas à côté. Dedans. » En fond : {w:sound}.",
         "SMS de {a.first} : « jsui pa bourrer » suivi de 14 photos floues {w:at_place} et d'une vidéo où l'on voit {w:animal}. Puis : « vien stp ».",
         "{a.first} t'appelle depuis la soirée la plus glauque de sa vie. {a:Il|Elle} a vomi sur {w:object} du propriétaire et quelqu'un menace de lui casser {w:bodypart}.",
       ],
       en: [
-        "It's {w:time}, and {a.first} calls you crying, blackout drunk, {w:at_place}. 'Come get me, I lost my pants and my dignity.'",
+        "{w:time}, {a.first} calls you crying, blackout drunk, {w:at_place}. 'Come get me, I lost my pants and my dignity.'",
         "Your phone rings at 4:12 a.m. {a.first}, slurring: 'I'm in a dumpster. Not next to it. In it.' In the background: {w:sound}.",
         "Text from {a.first}: 'im nott drunkk' followed by 14 blurry photos {w:at_place} and a video featuring {w:animal}. Then: 'cum get me pls'.",
         "{a.first} is calling from the sketchiest party of {a:his|her} life. {a:He|She} puked on {w:object} belonging to the owner and someone is threatening to break {a:his|her} {w:bodypart}.",

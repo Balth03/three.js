@@ -442,7 +442,7 @@ export function Blackjack2({ onDone, l }: GameProps) {
       ctx.fillStyle = '#ffd166'; glow(ctx, '#ffd166', 12); ctx.fillText(tr('CHOISIS TA MISE', 'PLACE YOUR BET'), cx, h * 0.53 - r - h * 0.05); ctx.shadowBlur = 0;
     }
     // side buttons (bottom right)
-    const bw = Math.min(170, w * 0.2), bh = Math.max(34, Math.min(46, h * 0.07)), bx = w - bw - 16;
+    const bw = Math.min(200, Math.max(150, w * 0.2)), bh = Math.max(34, Math.min(46, h * 0.07)), bx = w - bw - 16;
     const defs: { id: string; label: string; key: string; col: string; on: boolean }[] = [];
     if (playing && st.ph === 'player') {
       defs.push({ id: 'hit', label: tr('CARTE', 'HIT'), key: 'H', col: '#06d6a0', on: true });
@@ -465,8 +465,12 @@ export function Blackjack2({ onDone, l }: GameProps) {
       if (hv2) glow(ctx, d.col, 22);
       ctx.fillStyle = gg; roundRect(ctx, bx, y + lift, bw, bh, bh / 2); ctx.fill(); ctx.shadowBlur = 0;
       ctx.fillStyle = 'rgba(255,255,255,.25)'; roundRect(ctx, bx + 6, y + lift + 3, bw - 12, bh * 0.4, bh * 0.2); ctx.fill();
-      ctx.fillStyle = '#12051f'; ctx.font = `800 ${Math.max(13, bh * 0.38)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText(d.label, bx + bw / 2 + 10, y + lift + bh / 2 + 1);
+      let lfs = Math.max(13, bh * 0.38);
+      ctx.font = `800 ${lfs}px Fredoka Variable, sans-serif`;
+      const avail = bw - bh * 0.6 - 26;
+      const lw = ctx.measureText(d.label).width; if (lw > avail) { lfs *= avail / lw; ctx.font = `800 ${lfs}px Fredoka Variable, sans-serif`; }
+      ctx.fillStyle = '#12051f'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(d.label, bx + 8 + bh * 0.6 + (bw - 8 - bh * 0.6) / 2, y + lift + bh / 2 + 1);
       ctx.fillStyle = 'rgba(0,0,0,.3)'; roundRect(ctx, bx + 8, y + lift + bh * 0.2, bh * 0.6, bh * 0.6, 6); ctx.fill();
       ctx.fillStyle = '#fff'; ctx.font = `800 ${Math.max(11, bh * 0.3)}px Fredoka Variable, sans-serif`; ctx.fillText(d.key, bx + 8 + bh * 0.3, y + lift + bh / 2 + 1);
       ctx.restore();
@@ -487,7 +491,7 @@ export function Blackjack2({ onDone, l }: GameProps) {
       for (let i = 0; i < HANDS; i++) {
         const r = st.results[i]; const x = px + pw - 18 - (HANDS - 1 - i) * 20, y = py + 18;
         ctx.beginPath(); ctx.arc(x, y, 7, 0, Math.PI * 2);
-        ctx.fillStyle = r === undefined ? (i === st.hand ? `rgba(255,209,102,${0.5 + 0.5 * Math.sin(t * 6)})` : 'rgba(255,255,255,.18)') : r > 0 ? '#06d6a0' : r < 0 ? '#ff4d6d' : '#b8c0ff';
+        ctx.fillStyle = r === undefined ? (i === st.hand ? `rgba(255,209,102,${0.6 + 0.4 * Math.sin(t * 6)})` : 'rgba(255,255,255,.18)') : r > 0 ? '#06d6a0' : r < 0 ? '#ff4d6d' : '#b8c0ff';
         ctx.fill();
       }
       ctx.restore();
@@ -496,9 +500,13 @@ export function Blackjack2({ onDone, l }: GameProps) {
     // result banner
     if (st.banner) {
       const b = st.banner; const k = Math.min(1, b.t / 0.35);
-      const sc = k < 1 ? 0.4 + 0.75 * easeOutBack(k) : 1 + Math.sin(b.t * 4) * 0.02;
-      const y = h * 0.415;
-      ctx.save(); ctx.translate(cx, y); ctx.scale(sc, sc);
+      const pop = k < 1 ? 0.4 + 0.75 * easeOutBack(k) : 1 + Math.sin(b.t * 4) * 0.02;
+      // after a beat, the banner shrinks to the side so the cards stay readable
+      const m = Math.max(0, Math.min(1, (b.t - 1.3) / 0.35)), me = m * m * (3 - 2 * m);
+      const sc = pop * (1 - 0.45 * me);
+      const bxp = cx + (cx - rx * 0.62 - cx) * me;
+      const y = h * 0.415 + me * h * 0.03;
+      ctx.save(); ctx.translate(bxp, y); ctx.scale(sc, sc);
       if (b.bj) {
         ctx.save(); ctx.rotate(b.t * 0.6); ctx.globalAlpha = 0.25;
         for (let i = 0; i < 16; i++) { ctx.rotate(Math.PI / 8); ctx.fillStyle = i % 2 ? '#ffd166' : '#ff5bd1'; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(w * 0.5, -24); ctx.lineTo(w * 0.5, 24); ctx.fill(); }

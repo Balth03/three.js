@@ -323,13 +323,13 @@ export const kids2Events: EventDef[] = [
     text: {
       fr: [
         "Au camping, les sanitaires sont à 400 mètres de la tente. J'ai traversé tout le terrain à 3 h du matin avec une lampe frontale et {w:smell} pour seul guide.",
-        "Dans les douches du camping, un monsieur chantait {w:song} en entier, avec les gestes. J'ai attendu mon tour avec un grand respect.",
+        "Dans la file d'attente des douches du camping, un monsieur en peignoir chantait {w:song} en entier, avec les gestes. J'ai attendu mon tour avec un grand respect.",
         "Au camping, un Néerlandais de mon âge m'a appris un gros mot dans sa langue. Je ne sais pas ce qu'il veut dire, mais je l'ai crié pendant toute la semaine.",
         "J'ai fait la queue pour les WC du camping derrière {w:animal}. Je ne sais toujours pas comment il est entré, ni s'il attendait vraiment son tour.",
       ],
       en: [
         "At the campsite the bathrooms are 400 meters from the tent. I crossed the whole site at 3 a.m. with a headlamp and {w:smell} as my only guide.",
-        "In the campsite showers, a man sang {w:song} start to finish, with choreography. I waited my turn with deep respect.",
+        "In the campsite shower queue, a man in a bathrobe sang {w:song} start to finish, with choreography. I waited my turn with deep respect.",
         "At the campsite a Dutch kid my age taught me a swear word in his language. I don't know what it means, but I yelled it all week.",
         "I queued for the campsite toilets behind {w:animal}. I still don't know how it got in, or whether it was really waiting its turn.",
       ],
@@ -550,7 +550,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Lancer du sable', en: 'Throw sand' },
         out: [
-          { w: 2, text: { fr: ["J'ai lancé une poignée de sable. {a.first} a riposté. On a fini avec du sable dans les oreilles, les narines et la culotte. Match nul, punition pour deux.", "J'ai visé les pieds, j'ai touché la figure. {a.first} a pleuré, la maîtresse m'a mis{|e} au coin à côté de la poubelle. J'ai du sable dans des endroits secrets."], en: ["I threw a handful of sand. {a.first} retaliated. We ended up with sand in our ears, nostrils and underpants. Draw, punishment for both.", "I aimed for the feet and hit the face. {a.first} cried, the teacher put me in the corner next to the trash can. I have sand in secret places."] }, fx: { happy: 2, discipline: -3, rel: -10 } },
+          { w: 2, text: { fr: ["J'ai lancé une poignée de sable. {a.first} a riposté. On a fini avec du sable dans les oreilles, les narines et les chaussettes. Match nul, punition pour deux.", "J'ai visé les pieds, j'ai touché la figure. {a.first} a pleuré, la maîtresse m'a mis{|e} au coin à côté de la poubelle. J'ai du sable jusque dans mon goûter."], en: ["I threw a handful of sand. {a.first} retaliated. We ended up with sand in our ears, nostrils and socks. Draw, punishment for both.", "I aimed for the feet and hit the face. {a.first} cried, the teacher put me in the corner next to the trash can. I have sand in my snack."] }, fx: { happy: 2, discipline: -3, rel: -10 } },
           { w: 1, text: { fr: ["Le vent a tourné. Tout le sable m'est revenu en pleine bouche. {a.first} a ri si fort qu'{a:il|elle} a fait pipi dans son pantalon. On est quittes.", "J'ai lancé du sable, {a.first} a lancé un seau entier. J'ai perdu la guerre mais j'ai gagné un surnom : « {w:nickname} »."], en: ["The wind turned. All the sand came straight back into my mouth. {a.first} laughed so hard they peed their pants. We're even.", "I threw sand, {a.first} threw a whole bucket. I lost the war but won a nickname: “{w:nickname}”."] }, fx: { happy: -2, health: -2, rel: -5 } },
         ],
       },
@@ -1814,13 +1814,13 @@ export const kids2Events: EventDef[] = [
     text: {
       fr: [
         "Mini-disco du camping, 21 h. L'animateur lance {w:song} et monte le son. Tous les enfants se ruent sur la piste. Tes parents filment.",
-        "Soirée dansante au camping. Un monsieur torse nu danse la Macarena avec {w:object}. Tu as très envie de le rejoindre.",
+        "Soirée dansante au camping. Un monsieur en chemise hawaïenne danse la Macarena avec {w:object}. Tu as très envie de le rejoindre.",
         "Ce soir, c'est l'élection de la mascotte du camping. Il faut danser sur scène devant tout le monde. Le prix : {w:gift}.",
         "Au camping, la mini-disco est le seul événement de la semaine. Tu connais toutes les chorégraphies. C'est ton moment.",
       ],
       en: [
         "Campsite mini-disco, 9 p.m. The entertainer puts on {w:song} and cranks it up. All the kids rush the dance floor. Your parents are filming.",
-        "Dance night at the campsite. A shirtless man is doing the Macarena with {w:object}. You really want to join him.",
+        "Dance night at the campsite. A man in a Hawaiian shirt is doing the Macarena with {w:object}. You really want to join him.",
         "Tonight is the campsite mascot election. You have to dance on stage in front of everyone. The prize: {w:gift}.",
         "At the campsite, the mini-disco is the only event of the week. You know every routine. This is your moment.",
       ],
@@ -2243,13 +2243,13 @@ export const kids2Events: EventDef[] = [
         "Visite chez le médecin. Il a un marteau pour taper sur ton genou, un bâton pour regarder ta gorge et une piqûre qui t'attend sur un plateau.",
         "Rappel de vaccin aujourd'hui. Dans la salle d'attente, un enfant hurle derrière la porte. {a.rel} te promet {w:gift} si tu es {courageux|courageuse}.",
         "Le médecin te demande de tirer la langue et de dire « Aaaah ». Tu as mangé {w:food} juste avant. Il va le voir.",
-        "Chez le pédiatre, tu dois te mettre en slip devant {a.rel} et une dame qui prend des notes. On te pèse comme {w:animal} à la foire.",
+        "Chez le pédiatre, on te mesure, on regarde dans tes oreilles avec une lampe, puis on te pèse comme {w:animal} à la foire. {a.rel} prend des notes.",
       ],
       en: [
         "Doctor's appointment. He has a hammer for your knee, a stick for your throat and a shot waiting for you on a tray.",
         "Vaccine booster today. In the waiting room, a kid is screaming behind the door. {a.rel} promises you {w:gift} if you're brave.",
         "The doctor asks you to stick out your tongue and say “Aaaah”. You ate {w:food} right before. He's going to see it.",
-        "At the pediatrician's you have to strip to your underwear in front of {a.rel} and a lady taking notes. They weigh you like {w:animal} at a county fair.",
+        "At the pediatrician's they measure you, shine a light in your ears, then weigh you like {w:animal} at a county fair. {a.rel} takes notes.",
       ],
     },
     choices: [
@@ -3014,7 +3014,7 @@ export const kids2Events: EventDef[] = [
         label: { fr: 'Sauter les yeux fermés', en: 'Jump with eyes closed' },
         out: [
           { w: 2, text: { fr: ["J'ai fermé les yeux et sauté. Trois secondes de chute, une éternité. J'ai remonté à la surface en criant de joie. J'ai refait le saut [[douze|vingt|trente]] fois de suite.", "J'ai sauté en criant {w:exclaim} Le maître-nageur m'a applaudi{|e}. J'ai eu mon diplôme du grand bain. Je l'ai accroché au-dessus de mon lit."], en: ["I closed my eyes and jumped. Three seconds of falling, an eternity. I surfaced shouting with joy. I jumped [[twelve|twenty|thirty]] more times in a row.", "I jumped yelling {w:exclaim} The lifeguard clapped. I got my deep-end certificate. I hung it above my bed."] }, fx: { happy: 7, athletic: 3 } },
-          { w: 1, text: { fr: ["J'ai sauté, mais à plat ventre. Le bruit a résonné dans toute la piscine, comme {w:sound}. J'ai le ventre rouge comme une tomate. Mais j'ai sauté.", "J'ai sauté et mon maillot, lui, est resté à la surface un peu plus longtemps que moi. J'ai nagé jusqu'au bord en le tenant d'une main. Légende du bassin."], en: ["I jumped, but belly-first. The slap echoed through the whole pool, like {w:sound}. My belly is red as a tomato. But I jumped.", "I jumped and my swimsuit stayed at the surface a bit longer than I did. I swam to the edge holding it with one hand. Pool legend."] }, fx: { happy: 2, athletic: 2, looks: -1, health: -1 } },
+          { w: 1, text: { fr: ["J'ai sauté, mais à plat ventre. Le bruit a résonné dans toute la piscine, comme {w:sound}. J'ai le ventre rouge comme une tomate. Mais j'ai sauté.", "J'ai sauté en me bouchant le nez et j'ai perdu mes lunettes de piscine au fond. Le maître-nageur a plongé les chercher et a remonté {w:object} au passage. Légende du bassin."], en: ["I jumped, but belly-first. The slap echoed through the whole pool, like {w:sound}. My belly is red as a tomato. But I jumped.", "I jumped holding my nose and lost my goggles at the bottom. The lifeguard dove to get them and brought up {w:object} along the way. Pool legend."] }, fx: { happy: 2, athletic: 2, looks: -1, health: -1 } },
         ],
       },
       {
@@ -3086,13 +3086,13 @@ export const kids2Events: EventDef[] = [
         "Passage de ceinture au judo ! Tu es [[ceinture blanche|ceinture jaune|ceinture orange]] et tu vises la suivante. Ton adversaire a l'air d'avoir mangé {w:food} au petit-déjeuner.",
         "Compétition de judo départementale. Tes parents sont dans les gradins avec une pancarte faite maison. Ton adversaire est déjà en train de crier.",
         "Au judo, le professeur t'oppose au plus fort du club, surnommé « {w:nickname} ». Il n'a jamais perdu. Il a {age} ans, comme toi, mais deux fois ta taille.",
-        "Ta ceinture de judo s'est défaite en plein combat. Ton pantalon de kimono glisse. L'arbitre ne voit rien. Ton adversaire charge.",
+        "Ta ceinture de judo s'est défaite en plein combat. Ton kimono s'ouvre comme une cape. L'arbitre ne voit rien. Ton adversaire charge.",
       ],
       en: [
         "Judo belt exam! You're a [[white belt|yellow belt|orange belt]] going for the next one. Your opponent looks like they ate {w:food} for breakfast.",
         "Regional judo competition. Your parents are in the stands with a homemade sign. Your opponent is already yelling.",
         "At judo, the instructor pairs you against the club's strongest kid, nicknamed “{w:nickname}”. Undefeated. Same age as you, twice your size.",
-        "Your judo belt came undone mid-match. Your gi pants are slipping. The referee doesn't notice. Your opponent charges.",
+        "Your judo belt came undone mid-match. Your gi is flapping open like a cape. The referee doesn't notice. Your opponent charges.",
       ],
     },
     choices: [
@@ -3100,7 +3100,7 @@ export const kids2Events: EventDef[] = [
         label: { fr: 'Attaquer de front', en: 'Attack head-on' },
         out: [
           { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai attaqué de toutes mes forces. Ippon ! L'adversaire est tombé comme {w:object} qu'on lâche. J'ai eu ma ceinture. Je dors avec.", "J'ai foncé et fait la seule prise que je connais. Elle a marché. Mes parents ont hurlé « {w:exclaim} » si fort qu'on les a priés de se calmer."], en: ["I attacked with everything I had. Ippon! My opponent went down like {w:object} falling off a shelf. I got my belt. I sleep in it.", "I charged and did the only throw I know. It worked. My parents yelled “{w:exclaim}” so loud they were asked to calm down."] }, fx: { happy: 7, athletic: 4, discipline: 2 } },
-          { w: 1, text: { fr: ["J'ai attaqué et je me suis retrouvé{|e} à plat dos en une seconde, en regardant les néons du gymnase. Défaite éclair. J'ai salué dignement, puis pleuré dans les vestiaires.", "J'ai attaqué, mon pantalon est tombé. Toute la salle a vu mon slip à motifs de dinosaures. J'ai perdu le combat et un peu de ma dignité."], en: ["I attacked and found myself flat on my back in one second, staring at the gym lights. Lightning defeat. I bowed with dignity, then cried in the locker room.", "I attacked, my pants fell down. The whole gym saw my dinosaur underwear. I lost the match and some dignity."] }, fx: { happy: -3, athletic: 2 } },
+          { w: 1, text: { fr: ["J'ai attaqué et je me suis retrouvé{|e} à plat dos en une seconde, en regardant les néons du gymnase. Défaite éclair. J'ai salué dignement, puis pleuré dans les vestiaires.", "J'ai attaqué, ma ceinture s'est envolée et a atterri sur la tête de l'arbitre. Toute la salle a ri. J'ai perdu le combat et un peu de ma dignité."], en: ["I attacked and found myself flat on my back in one second, staring at the gym lights. Lightning defeat. I bowed with dignity, then cried in the locker room.", "I attacked, my belt flew off and landed on the referee's head. The whole gym laughed. I lost the match and some dignity."] }, fx: { happy: -3, athletic: 2 } },
         ],
       },
       {
@@ -3385,7 +3385,7 @@ export const kids2Events: EventDef[] = [
         label: { fr: 'Publier la vidéo', en: 'Post the video' },
         out: [
           { w: 2, text: { fr: ["Ma vidéo a fait 14 vues. Douze sont de moi, une de mamie, et une d'un inconnu {w:far_place} qui a commenté « ok ». Je suis international{|e}.", "J'ai publié. Mamie a partagé la vidéo dans tous ses groupes. J'ai maintenant quarante abonnés de plus de 70 ans qui commentent « BRAVO MON GRAND ». C'est un public."], en: ["My video got 14 views. Twelve are mine, one is grandma's, and one is from a stranger {w:far_place} who commented “ok”. I'm international.", "I posted it. Grandma shared it in all her groups. I now have forty subscribers over 70 who comment “WELL DONE SWEETIE”. It's an audience."] }, fx: { happy: 4, smarts: 1, followers: 40 } },
-          { w: 1, text: { fr: ["La vidéo a marché ! Enfin, surtout le passage où le chien vole {w:food} sur la table. Il a plus de fans que moi. J'ai créé une star et ce n'est pas moi.", "Mes parents ont découvert la vidéo. On y voit le salon en désordre, mon père en slip à l'arrière-plan et la chanson {w:song}. Chaîne supprimée."], en: ["The video worked! Well, mostly the part where the dog steals {w:food} off the table. It has more fans than me. I created a star and it isn't me.", "My parents found the video. It shows the messy living room, my dad in his underwear in the background and the song {w:song}. Channel deleted."] }, fx: { happy: -1, followers: 15 } },
+          { w: 1, text: { fr: ["La vidéo a marché ! Enfin, surtout le passage où le chien vole {w:food} sur la table. Il a plus de fans que moi. J'ai créé une star et ce n'est pas moi.", "Mes parents ont découvert la vidéo. On y voit le salon en désordre, mon père en peignoir à l'arrière-plan et la chanson {w:song}. Chaîne supprimée."], en: ["The video worked! Well, mostly the part where the dog steals {w:food} off the table. It has more fans than me. I created a star and it isn't me.", "My parents found the video. It shows the messy living room, my dad in his bathrobe in the background and the song {w:song}. Channel deleted."] }, fx: { happy: -1, followers: 15 } },
         ],
       },
       {
@@ -3499,7 +3499,7 @@ export const kids2Events: EventDef[] = [
       {
         label: { fr: 'Poursuivre l\'enquête', en: 'Keep investigating' },
         out: [
-          { w: 2, odds: { smarts: 1 }, text: { fr: ["Après une semaine de filature, j'ai découvert la vérité : le voisin chante {w:song} sous la douche, fenêtre ouverte, tous les matins. Je ne peux plus le regarder dans les yeux.", "Mon rapport d'espion fait vingt pages. Conclusion : le voisin parle à ses plantes et leur donne des prénoms. Je l'ai remis à mes parents. Ils ont trouvé ça « inquiétant ». Pour moi."], en: ["After a week of surveillance I uncovered the truth: the neighbor sings {w:song} in the shower, window open, every morning. I can't look him in the eye anymore.", "My spy report is twenty pages long. Conclusion: the neighbor talks to his plants and names them. I handed it to my parents. They found it “worrying”. About me."] }, fx: { happy: 4, smarts: 3 } },
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["Après une semaine de filature, j'ai découvert la vérité : le voisin chante {w:song} à ses tomates tous les matins, en peignoir. Je ne peux plus le regarder dans les yeux.", "Mon rapport d'espion fait vingt pages. Conclusion : le voisin parle à ses plantes et leur donne des prénoms. Je l'ai remis à mes parents. Ils ont trouvé ça « inquiétant ». Pour moi."], en: ["After a week of surveillance I uncovered the truth: the neighbor sings {w:song} to his tomatoes every morning, in his bathrobe. I can't look him in the eye anymore.", "My spy report is twenty pages long. Conclusion: the neighbor talks to his plants and names them. I handed it to my parents. They found it “worrying”. About me."] }, fx: { happy: 4, smarts: 3 } },
           { w: 1, text: { fr: ["Le talkie-walkie a grésillé en plein dîner. Tout le monde a entendu ma voix dire « ici Aigle Noir, la cible mange {w:food} ». Mon père a confisqué ma panoplie. Mission compromise.", "Le voisin m'a repéré{|e} avec mes jumelles. Il m'a fait coucou. Puis il est venu sonner pour parler à mes parents. Un espion ne doit jamais être vu. J'ai échoué."], en: ["The walkie-talkie crackled in the middle of dinner. Everyone heard my voice say “Black Eagle here, target is eating {w:food}”. Dad confiscated my kit. Mission compromised.", "The neighbor spotted me with my binoculars. He waved. Then he came over to talk to my parents. A spy must never be seen. I failed."] }, fx: { happy: -3, discipline: 1 } },
         ],
       },

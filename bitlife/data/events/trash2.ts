@@ -18,13 +18,13 @@ export const trash2Events: EventDef[] = [
     cooldown: 12,
     text: {
       fr: [
-        "Barbecue chez ton beau-frère. Il a installé un trampoline géant à côté de la clôture électrique, d'une girouette pointue et {w:object}. Il te tend {w:drink} : « Allez, un salto, t'es pas une {w:insult} ! »",
+        "Barbecue chez ton beau-frère. Il a installé un trampoline géant à côté de la clôture électrique, d'une girouette pointue et {w:object}. Il te tend {w:drink} : « Allez, un salto, {w:insult} ! »",
         "Trois verres dans le nez, tu te retrouves debout sur un trampoline de jardin. Les ressorts grincent comme {w:sound}. En contrebas : une haie de rosiers, un barbecue allumé et le chien qui attend.",
         "Le trampoline du voisin est en solde sur Leboncoin, « légèrement rouillé, aucun mort à déplorer (pour l'instant) ». Tu le testes {w:weather} devant toute la rue.",
         "Anniversaire d'un pote de trente-cinq ans qui a loué un trampoline gonflable « pour adultes ». Il y a déjà une dent sur la toile. Tout le monde scande ton nom.",
       ],
       en: [
-        "BBQ at your brother-in-law's. He set up a giant trampoline next to the electric fence, a pointy weathervane and {w:object}. He hands you {w:drink}: 'Come on, do a flip, don't be a {w:insult}!'",
+        "BBQ at your brother-in-law's. He set up a giant trampoline next to the electric fence, a pointy weathervane and {w:object}. He hands you {w:drink}: 'Come on, do a flip, {w:insult}!'",
         "Three drinks deep, you find yourself standing on a backyard trampoline. The springs squeak like {w:sound}. Below: a rosebush hedge, a lit grill and the dog, waiting.",
         "The neighbour's trampoline is on sale online, 'slightly rusty, no deaths so far'. You test it {w:weather} in front of the whole street.",
         "A buddy's 35th birthday, and he rented an inflatable 'adult' trampoline. There's already a tooth stuck in the mesh. Everyone's chanting your name.",
@@ -163,7 +163,7 @@ export const trash2Events: EventDef[] = [
           { w: 2, text: { fr: ["Descente parfaite. Mon maillot, lui, n'a pas suivi. Je suis arrivé{|e} tout nu{|e} devant un club de retraités en aquagym. Ils m'ont noté{|e} 6 sur 10.", "J'ai fait la descente en hurlant. À l'arrivée, mon maillot était remonté si haut qu'on a dû appeler un spéliologue pour le récupérer."], en: ["Perfect descent. My swimsuit didn't make it. I arrived stark naked in front of a seniors' aqua aerobics class. They gave me a 6 out of 10.", "I screamed all the way down. At the bottom, my swimsuit had gone up so far they had to call a caver to retrieve it."] }, fx: { happy: 4, looks: -2, stress: 4 }, mood: 'shock' },
         ],
       },
-      { label: { fr: 'Pousser le gosse devant', en: 'Let the rude guy go first' }, text: { fr: ["J'ai laissé passer le gros lourd qui doublait tout le monde. On l'a entendu crier dans le tube pendant vingt secondes. Il est ressorti en deux parties, mais toujours aussi insupportable.", "J'ai fait passer devant le mec qui m'avait lancé « {w:insult} ». La vis l'a épilé intégralement. Il est sorti lisse comme un dauphin, et furieux."], en: ["I let the jerk who was cutting the line go first. We heard him scream in the tube for twenty seconds. He came out in two pieces, but just as annoying.", "I let the guy who called me a {w:insult} go first. The screw waxed him completely. He came out smooth as a dolphin, and furious."] }, fx: { happy: 8, karma: -3, visual: 'gore' }, mood: 'happy' },
+      { label: { fr: 'Pousser le gosse devant', en: 'Let the rude guy go first' }, text: { fr: ["J'ai laissé passer le gros lourd qui doublait tout le monde. On l'a entendu crier dans le tube pendant vingt secondes. Il est ressorti en deux parties, mais toujours aussi insupportable.", "J'ai fait passer devant le mec qui m'avait lancé « {w:insult} ». La vis l'a épilé intégralement. Il est sorti lisse comme un dauphin, et furieux."], en: ["I let the jerk who was cutting the line go first. We heard him scream in the tube for twenty seconds. He came out in two pieces, but just as annoying.", "I let the guy who yelled '{w:insult}' at me go first. The screw waxed him completely. He came out smooth as a dolphin, and furious."] }, fx: { happy: 8, karma: -3, visual: 'gore' }, mood: 'happy' },
       { label: { fr: 'Redescendre par l\'escalier', en: 'Walk back down' }, text: { fr: ["J'ai redescendu les 200 marches sous les huées. Un enfant de six ans m'a traité{|e} de poule mouillée. Je lui ai répondu qu'au moins j'avais encore mon scalp.", "Je suis redescendu{|e} à pied. Je me suis tordu la cheville sur la dernière marche glissante. L'univers voulait sa part."], en: ["I walked back down the 200 steps to boos. A six-year-old called me a chicken. I replied that at least I still had my scalp.", "I walked down. I twisted my ankle on the last slippery step. The universe wanted its cut."] }, fx: { happy: -3, health: -2 } },
     ],
   },
@@ -304,7 +304,7 @@ export const trash2Events: EventDef[] = [
         "Strike décisif pour gagner {w:gift}. Mais ton pouce est encastré dans la boule et la piste vient d'être cirée comme une patinoire.",
       ],
       en: [
-        "Company bowling night. Your finger's stuck in a 15-pound kids' ball. It's your turn, everyone's chanting your name, and your finger is turning purple like rotten {w:food}.",
+        "Company bowling night. Your finger's stuck in a 15-pound kids' ball. It's your turn, everyone's chanting your name, and your finger is turning purple like {w:food} left out for a week.",
         "At the bowling alley, you slip your fingers into the ball and hear a 'squelch'. Something soft at the bottom. The rental shoes smell like {w:smell}. You have to throw.",
         "Bowling night with your ex and their new fling. You grab the heaviest ball to impress everyone. Your finger stays jammed inside as you swing.",
         "The decisive strike to win {w:gift}. But your thumb is lodged in the ball and the lane was just waxed like an ice rink.",
@@ -466,7 +466,7 @@ export const trash2Events: EventDef[] = [
       {
         label: { fr: 'Ouvrir le couvercle', en: 'Open the lid' },
         out: [
-          { w: 2, text: { fr: ["J'ai ouvert. Geyser de haricots bouillants. Le plafond, les murs, le chat : tout est devenu chili. Mes invités ont mangé à la cuillère directement sur le lustre.", "Le couvercle a décollé comme une soucoupe volante, traversé le plafond et atterri chez la voisine du dessus, en plein dans son {w:food}. Elle n'a toujours pas compris."], en: ["I opened it. Geyser of boiling beans. Ceiling, walls, cat: all chili now. My guests ate straight off the chandelier with spoons.", "The lid took off like a flying saucer, went through the ceiling and landed upstairs, right in my neighbour's {w:food}. She still doesn't get it."] }, fx: { health: -8, disease: 'burns', money: -500, visual: 'explosion' }, mood: 'shock' },
+          { w: 2, text: { fr: ["J'ai ouvert. Geyser de haricots bouillants. Le plafond, les murs, le chat : tout est devenu chili. Mes invités ont mangé à la cuillère directement sur le lustre.", "Le couvercle a décollé comme une soucoupe volante, traversé le plafond et atterri chez la voisine du dessus, en plein dans {w:food} qu'elle mangeait. Elle n'a toujours pas compris."], en: ["I opened it. Geyser of boiling beans. Ceiling, walls, cat: all chili now. My guests ate straight off the chandelier with spoons.", "The lid took off like a flying saucer, went through the ceiling and landed upstairs, right into {w:food} my neighbour was eating. She still doesn't get it."] }, fx: { health: -8, disease: 'burns', money: -500, visual: 'explosion' }, mood: 'shock' },
           { w: 1, text: { fr: ["Le couvercle m'a scalpé{|e} au passage et s'est planté dans le mur comme un frisbee ninja. J'ai une raie au milieu permanente. Les haricots étaient délicieux.", "La vapeur m'a cuit le visage à point. Mes joues sont rose jambon. Un invité m'a demandé si j'avais fait un soin du visage. J'ai dit oui, à 120 degrés."], en: ["The lid scalped me on the way out and stuck in the wall like a ninja frisbee. I now have a permanent middle part. The beans were delicious.", "The steam cooked my face medium-rare. My cheeks are ham pink. A guest asked if I'd had a facial. I said yes, at 250 degrees."] }, fx: { health: -12, looks: -6, disease: 'burns', visual: 'fire' }, mood: 'cry' },
         ],
       },
@@ -606,15 +606,15 @@ export const trash2Events: EventDef[] = [
     text: {
       fr: [
         "À la plage, un banquier en Rolex fait des cercles en jet-ski au milieu des baigneurs en hurlant « JE PAIE VOS SALAIRES ». Il se rapproche de la bouée où une mouette fait la sieste. Et de toi.",
-        "Un trader bronzé façon cuir de sac à main slalome en jet-ski entre les enfants. Sa casquette dit « BOSS ». Sa femme filme. Il vient d'éclabousser ta serviette et ton {w:food}.",
+        "Un trader bronzé façon cuir de sac à main slalome en jet-ski entre les enfants. Sa casquette dit « BOSS ». Sa femme filme. Il vient d'éclabousser ta serviette et {w:food} que tu mangeais.",
         "Un héritier de 25 ans fait des figures en jet-ski dans la zone de baignade, champagne à la main. Un banc de méduses géantes dérive vers lui. Tu as un ballon de plage dans les mains.",
-        "Un promoteur immobilier en jet-ski crie au maître-nageur qu'il va « racheter la plage ». Juste derrière lui, sous l'eau, tu aperçois un aileron. Ou un très gros {w:animal}.",
+        "Un promoteur immobilier en jet-ski crie au maître-nageur qu'il va « racheter la plage ». Juste derrière lui, sous l'eau, tu aperçois un aileron. Ou {w:animal}, en très très gros.",
       ],
       en: [
         "At the beach, a banker in a Rolex is circling on a jet ski through the swimmers yelling 'I PAY YOUR SALARIES'. He's getting close to the buoy where a seagull is napping. And to you.",
-        "A trader tanned like a leather handbag is slaloming between kids on a jet ski. His cap says 'BOSS'. His wife films. He just splashed your towel and your {w:food}.",
+        "A trader tanned like a leather handbag is slaloming between kids on a jet ski. His cap says 'BOSS'. His wife films. He just splashed your towel and {w:food} you were eating.",
         "A 25-year-old heir is doing jet ski tricks in the swimming zone, champagne in hand. A swarm of giant jellyfish drifts toward him. You're holding a beach ball.",
-        "A real estate developer on a jet ski shouts at the lifeguard that he'll 'buy the beach'. Right behind him, underwater, you see a fin. Or a very large {w:animal}.",
+        "A real estate developer on a jet ski shouts at the lifeguard that he'll 'buy the beach'. Right behind him, underwater, you see a fin. Or {w:animal}, but very, very big.",
       ],
     },
     choices: [
@@ -1020,13 +1020,13 @@ export const trash2Events: EventDef[] = [
       fr: [
         "Fast-food du centre-ville. Tu croques dans ton burger « Triple Bacon Monstre » et tu sens quelque chose de dur. Tu ouvres le pain : c'est un doigt. Avec une alliance. Et du vernis rose.",
         "Au restaurant chic, ton tartare contient un ongle. Puis un deuxième. Puis un tatouage « MAMAN ». Le serveur te demande si « tout se passe bien ».",
-        "Tu trouves une dent dans ton {w:food}. Le cuisinier a un trou dans le sourire. Il te fait coucou depuis la cuisine.",
+        "Tu trouves une dent dans {w:food} que tu viens de commander. Le cuisinier a un trou dans le sourire. Il te fait coucou depuis la cuisine.",
         "Ta pizza livrée par {w:app} contient un pansement usagé, un cheveu de 40 cm et {w:gross}. Le livreur attend son pourboire en souriant.",
       ],
       en: [
         "Downtown fast food. You bite into your 'Triple Bacon Monster' burger and feel something hard. You open the bun: it's a finger. With a wedding ring. And pink nail polish.",
         "At a fancy restaurant, your steak tartare contains a fingernail. Then a second one. Then a tattoo that says 'MOM'. The waiter asks if 'everything is to your liking'.",
-        "You find a tooth in your {w:food}. The cook has a gap in his smile. He waves at you from the kitchen.",
+        "You find a tooth in {w:food} you just ordered. The cook has a gap in his smile. He waves at you from the kitchen.",
         "Your pizza delivered via {w:app} contains a used band-aid, a 16-inch hair and {w:gross}. The delivery guy waits for his tip, smiling.",
       ],
     },
@@ -1284,7 +1284,7 @@ export const trash2Events: EventDef[] = [
         "Un brancard t'emmène vers la morgue alors que tu es bien vivant{|e}, juste paralysé{|e} par la péridurale. Les deux brancardiers parlent de leur match de foot. Tu ne peux pas bouger, juste cligner.",
       ],
       en: [
-        "You pass out after one {w:drink} too many and fall into a sleep so deep the exhausted intern on call declares you dead. You feel a tag being tied to your toe. It's cold. Very cold.",
+        "You pass out after one drink too many, the last one being {w:drink}, and fall into a sleep so deep the exhausted intern on call declares you dead. You feel a tag being tied to your toe. It's cold. Very cold.",
         "You come to identify a distant cousin's body at the morgue. The attendant, with the same haircut as {w:celeb}, opens the wrong drawer and finds... an empty drawer with your name on it.",
         "After a botched anaesthesia, you open your eyes in the dark, naked, in a metal drawer. A voice outside says: 'The {first} {last} one, we burn at 2 p.m.'",
         "A gurney is wheeling you to the morgue while you're very much alive, just paralysed by the epidural. The two orderlies are talking about their football game. You can't move, only blink.",
@@ -1312,7 +1312,7 @@ export const trash2Events: EventDef[] = [
       ],
       en: [
         "Despite everything, the paperwork officially declares you dead. Your drawer slides toward the crematorium oven. A tag says '2 p.m.'. It's 1:58. The technician puts on his headphones and plays {w:song}.",
-        "The administration refuses to 'resurrect' you without Form 666-B. Meanwhile, your file goes to cremation. The conveyor starts. You can already smell {w:smell}.",
+        "The administration refuses to 'resurrect' you without Form 666-B. Meanwhile, your file goes to cremation. The conveyor starts. You can already smell it: {w:smell}.",
         "The funeral director swears he'll 'sort it out'. Then he pushes you toward the oven by mistake, because you're wearing the same pyjamas as the deceased next door.",
         "Your family already sold your car, split your stuff and rented your room on Airbnb. And the very punctual crematorium has started the procedure. The oven purrs.",
       ],
@@ -1417,13 +1417,13 @@ export const trash2Events: EventDef[] = [
       fr: [
         "Enterrement de ton ancien chef, Jean-Michel, l'homme qui t'a fait pleurer dans les toilettes pendant cinq ans. Sa veuve te demande de dire « quelques mots gentils ». Tu montes au pupitre.",
         "On te demande de faire l'éloge funèbre de ton oncle Gérard, qui a gâché tous les Noëls de ton enfance avec ses blagues racistes et son haleine qui dégageait {w:smell}. Le micro est allumé. Tout le monde attend.",
-        "Funérailles de ton ex-beau-père, un {w:insult} de première catégorie. Personne n'a voulu parler. Le prêtre te regarde avec des yeux suppliants. Tu as bu {w:drink} pour te donner du courage.",
+        "Funérailles de ton ex-beau-père, que tout le monde surnommait « {w:insult} » dans son dos. Personne n'a voulu parler. Le prêtre te regarde avec des yeux suppliants. Tu as bu {w:drink} pour te donner du courage.",
         "Le défunt, ton ancien proprio, t'a volé ta caution, ton chat et ta dignité. La famille veut que tu prennes la parole « car tu l'as bien connu ». Oh oui, tu l'as bien connu.",
       ],
       en: [
         "Funeral of your former boss Jean-Michel, the man who made you cry in the bathroom for five years. His widow asks you to say 'a few kind words'. You step up to the lectern.",
         "You're asked to give the eulogy for your uncle Gérard, who ruined every Christmas of your childhood with his bigoted jokes and {w:smell}. The mic is on. Everyone's waiting.",
-        "Funeral of your ex-father-in-law, a top-tier {w:insult}. Nobody wanted to speak. The priest looks at you with pleading eyes. You had {w:drink} for courage.",
+        "Funeral of your ex-father-in-law, whom everyone called '{w:insult}' behind his back. Nobody wanted to speak. The priest looks at you with pleading eyes. You had {w:drink} for courage.",
         "The deceased, your former landlord, stole your deposit, your cat and your dignity. The family wants you to speak 'since you knew him well'. Oh, you knew him well.",
       ],
     },
@@ -1643,7 +1643,7 @@ export const trash2Events: EventDef[] = [
         { w: 2, text: { fr: ["J'ai raconté l'histoire du camping, celle du chien et celle de la pharmacie à 3 h du matin. La grand-mère s'est évanouie. Le père de la mariée a ri jusqu'à la crise d'asthme. {a.first} m'a pardonné{|e}… vers 4 h, bourré{a:|e}.", "J'ai lu la liste des ex, par ordre chronologique, avec les notes sur 10. Trois d'entre eux étaient dans la salle. L'un a levé son verre. Le marié a demandé le divorce avant le dessert."], en: ["I told the camping story, the dog story and the 3 a.m. pharmacy story. Grandma fainted. The bride's father laughed until he had an asthma attack. {a.first} forgave me... around 4 a.m., wasted.", "I read the list of exes in chronological order, with ratings out of 10. Three of them were in the room. One raised a glass. The spouse filed for divorce before dessert."] }, fx: { happy: 12, rel: -15, fame: 1 }, mood: 'party' },
         { w: 1, text: { fr: ["J'ai tout balancé, y compris le DJ. Le marié et le DJ se sont battus sur la piste. La pièce montée a volé. Une chaise a traversé la verrière. {a.first} m'a serré dans ses bras : « Merci. Tu m'as sauvé{a:|e}. »", "J'ai révélé l'histoire du DJ. Bagarre générale, vin rouge sur les robes blanches, oncle Bernard en slip sur une table. Le meilleur mariage de ma vie. Le mariage a duré 6 heures."], en: ["I spilled everything, including the DJ. The spouse and the DJ fought on the dance floor. The cake flew. A chair went through the glass roof. {a.first} hugged me: 'Thank you. You saved me.'", "I revealed the DJ story. Brawl, red wine on white dresses, Uncle Bernard in his underwear on a table. Best wedding of my life. The marriage lasted 6 hours."] }, fx: { happy: 10, rel: 15, karma: 4 }, mood: 'shock' },
       ] },
-      { label: { fr: 'Discours ultra mielleux', en: 'Super sappy speech' }, text: { fr: ["J'ai fait un discours si mielleux que des gens ont eu des caries. J'ai comparé leur amour à « {w:food} chaud un soir d'hiver ». Tout le monde a pleuré. Je ne sais toujours pas ce que ça voulait dire.", "J'ai lu un poème que j'ai écrit sur une serviette en papier : « Votre amour est comme {w:animal}, sauvage et un peu sale. » Standing ovation. Je ne me souviens de rien."], en: ["I gave a speech so sappy people got cavities. I compared their love to 'warm {w:food} on a winter night'. Everyone cried. I still don't know what that meant.", "I read a poem I wrote on a napkin: 'Your love is like {w:animal}, wild and a bit dirty.' Standing ovation. I remember nothing."] }, fx: { happy: 6, rel: 10 }, mood: 'love' },
+      { label: { fr: 'Discours ultra mielleux', en: 'Super sappy speech' }, text: { fr: ["J'ai fait un discours si mielleux que des gens ont eu des caries. J'ai comparé leur amour à « {w:food} chaud un soir d'hiver ». Tout le monde a pleuré. Je ne sais toujours pas ce que ça voulait dire.", "J'ai lu un poème que j'ai écrit sur une serviette en papier : « Votre amour est comme {w:animal}, sauvage et un peu sale. » Standing ovation. Je ne me souviens de rien."], en: ["I gave a speech so sappy people got cavities. I compared their love to '{w:food}, warm, on a winter night'. Everyone cried. I still don't know what that meant.", "I read a poem I wrote on a napkin: 'Your love is like {w:animal}, wild and a bit dirty.' Standing ovation. I remember nothing."] }, fx: { happy: 6, rel: 10 }, mood: 'love' },
       { label: { fr: 'Vomir sur le micro', en: 'Puke on the mic' }, text: { fr: ["J'ai ouvert la bouche pour parler, et c'est le champagne qui a parlé. En jet. Sur le micro, sur la nappe, sur la mariée. Le son amplifié du vomi a résonné dans tout le château. Personne n'oubliera.", "J'ai dit « Mesdames, messieurs… » puis j'ai vomi dans le seau à champagne. Le DJ a lancé {w:song} pour couvrir le bruit. Ça a mis l'ambiance, étrangement."], en: ["I opened my mouth to speak, and the champagne spoke. In a jet. On the mic, the tablecloth, the bride. The amplified sound of vomit echoed through the whole castle. Nobody will forget.", "I said 'Ladies and gentlemen...' then threw up in the champagne bucket. The DJ played {w:song} to cover the noise. It somehow got the party going."] }, fx: { happy: -4, rel: -8, health: -2, visual: 'poop' }, mood: 'sick' },
     ],
   },
@@ -1663,13 +1663,13 @@ export const trash2Events: EventDef[] = [
       fr: [
         "Réveillon en famille. Après le troisième verre, {a.rel} lance : « Alors, toujours rien de mieux dans ta vie ? » Ton oncle ajoute que tu as « pris du poids ». Tu as {w:drink} dans la main et rien à perdre.",
         "Repas de Noël. Ton cousin parfait annonce sa promotion, sa grossesse et son marathon. {a.rel} te regarde : « Et toi ? » Tu as un couteau à dinde dans la main.",
-        "Dîner de famille. Ta tante te demande pour la 14e fois quand tu vas « te caser », ton oncle explique {w:conspiracy}, et {a.rel} critique ton {w:object}. Ton verre est vide. Ta patience aussi.",
+        "Dîner de famille. Ta tante te demande pour la 14e fois quand tu vas « te caser », ton oncle explique {w:conspiracy}, et {a.rel} critique ton cadeau ({w:object}). Ton verre est vide. Ta patience aussi.",
         "Au moment de la bûche, {a.rel} révèle devant tout le monde ton dossier médical, ta rupture et ton découvert bancaire, « parce qu'on est en famille ». Le silence est épais comme la mayonnaise.",
       ],
       en: [
         "Christmas Eve with family. After the third glass, {a.rel} asks: 'So, still nothing better going on in your life?' Your uncle adds that you've 'put on weight'. You're holding {w:drink} and have nothing to lose.",
         "Christmas dinner. Your perfect cousin announces their promotion, pregnancy and marathon. {a.rel} looks at you: 'And you?' You're holding the turkey knife.",
-        "Family dinner. Your aunt asks for the 14th time when you'll 'settle down', your uncle explains {w:conspiracy}, and {a.rel} criticises your {w:object}. Your glass is empty. So is your patience.",
+        "Family dinner. Your aunt asks for the 14th time when you'll 'settle down', your uncle explains {w:conspiracy}, and {a.rel} criticises your gift ({w:object}). Your glass is empty. So is your patience.",
         "At dessert, {a.rel} reveals your medical records, your breakup and your overdraft to everyone, 'because we're family'. The silence is thick as mayonnaise.",
       ],
     },
@@ -1835,13 +1835,13 @@ export const trash2Events: EventDef[] = [
     text: {
       fr: [
         "Tu entres dans un sex-shop pour acheter un cadeau rigolo d'enterrement de vie de jeune fille. Au rayon « cuir et menottes », tu tombes nez à nez avec {a.first}, ton {a:patron|patronne}, un fouet à la main.",
-        "En caisse du sex-shop, la personne devant toi achète une combinaison en latex, du lubrifiant parfum {w:food} et une cagoule. Elle se retourne. C'est {a.first}. Ton {a:patron|patronne}.",
+        "En caisse du sex-shop, la personne devant toi achète une combinaison en latex, du lubrifiant, une cagoule et {w:object}. Elle se retourne. C'est {a.first}. Ton {a:patron|patronne}.",
         "{a.first}, ton {a:patron|patronne} si austère, sort du sex-shop « Plaisirs d'Antan » avec un sac énorme au moment où tu passes devant. Vos regards se croisent. Le sac fait {w:sound}.",
         "Tu travailles au sex-shop le week-end, en secret. Ce samedi, {a.first}, ton {a:patron|patronne} du lundi au vendredi, entre et te demande conseil sur « quelque chose de puissant ».",
       ],
       en: [
         "You walk into a sex shop to buy a funny bachelorette gift. In the 'leather and handcuffs' aisle, you come face to face with {a.first}, your boss, holding a whip.",
-        "At the sex shop checkout, the person ahead of you is buying a latex suit, {w:food}-flavoured lube and a gimp mask. They turn around. It's {a.first}. Your boss.",
+        "At the sex shop checkout, the person ahead of you is buying a latex suit, lube, a gimp mask and {w:object}. They turn around. It's {a.first}. Your boss.",
         "{a.first}, your oh-so-stern boss, walks out of the 'Old-Timey Pleasures' sex shop with an enormous bag just as you pass by. Your eyes meet. The bag makes {w:sound}.",
         "You secretly work at a sex shop on weekends. This Saturday, {a.first}, your Monday-to-Friday boss, walks in and asks your advice on 'something powerful'.",
       ],
@@ -2044,7 +2044,7 @@ export const trash2Events: EventDef[] = [
         "Gérald a inscrit ton adresse et ton numéro sur un site de rencontres très spécialisé, passion déclarée : {w:hobby}. Tu reçois 80 messages par jour. Il a aussi peint ta boîte aux lettres en rose fluo.",
       ],
       en: [
-        "The war with Gérald has escalated. This morning, your car is covered in 500 sticky notes spelling 'LOSER'. Your mailbox is full of expired {w:food}. Time to strike back.",
+        "The war with Gérald has escalated. This morning, your car is covered in 500 sticky notes spelling 'LOSER'. Your mailbox is stuffed with {w:food}, long expired. Time to strike back.",
         "Gérald released a skunk in your yard. Your house smells like {w:smell} times a thousand. Neighbours cross the street. He whistles on his balcony with binoculars.",
         "Gérald plugged a speaker against your wall that plays {w:song} on loop from 3 to 6 a.m. You haven't slept in nine days. Your eyes are making noises.",
         "Gérald signed up your address and number on a very niche dating site, listed passion: {w:hobby}. You get 80 messages a day. He also painted your mailbox neon pink.",
@@ -2118,7 +2118,7 @@ export const trash2Events: EventDef[] = [
         "Your sworn nemesis {a.first} just trashed you online again. A website offers: 'Have someone followed by a mariachi band 24/7 for a week.' Slots available.",
         "{a.first} stole your idea, your parking spot and your ex. You're holding {w:object}, a credit card, and a twisted idea involving trumpets.",
         "You just inherited a bit of money. {a.first} just spread the rumour {w:conspiracy}, and that you started it. Time to invest in revenge.",
-        "A revenge agency offers three packages: 'Permanent Mariachis', 'Daily parcel: decomposing {w:food}' and 'Live cricket rain'. {a.first} has no idea what's coming.",
+        "A revenge agency offers three packages: 'Permanent Mariachis', 'Daily parcel: {w:food}, decomposing' and 'Live cricket rain'. {a.first} has no idea what's coming.",
       ],
     },
     choices: [
@@ -2126,7 +2126,7 @@ export const trash2Events: EventDef[] = [
         { w: 2, text: { fr: ["Pendant sept jours, onze mariachis ont suivi {a.first} partout : au bureau, aux toilettes, à son rendez-vous galant, à l'enterrement de sa tante. Ils jouaient {w:song} à chaque fois qu'{a:il|elle} ouvrait la bouche. {a:Il|Elle} a craqué au jour 4.", "Les mariachis ont joué sous sa fenêtre à 4 h du matin, dans sa salle d'attente chez le proctologue et pendant son entretien d'embauche. {a.first} parle maintenant espagnol et pleure dès qu'{a:il|elle} entend une trompette."], en: ["For seven days, eleven mariachis followed {a.first} everywhere: to work, to the bathroom, on their date, to their aunt's funeral. They played {w:song} every time they opened their mouth. They cracked on day 4.", "The mariachis played under their window at 4 a.m., in their proctologist's waiting room and during their job interview. {a.first} now speaks Spanish and cries whenever they hear a trumpet."] }, fx: { happy: 16, money: -3000, karma: -4, rel: -15 }, mood: 'happy' },
         { w: 1, text: { fr: ["{a.first} a adoré les mariachis. {a:Il|Elle} a dansé avec eux, les a embauchés pour son mariage et est devenu{a:|e} une star locale. J'ai payé 3 000 balles pour {a:le|la} rendre heureux{a:|se}. {w:swear}", "Les mariachis se sont trompés d'adresse et m'ont suivi{|e}, moi, pendant une semaine. J'ai été viré{|e}, largué{|e} et expulsé{|e} de ma salle de sport. Je sais jouer de la trompette, maintenant."], en: ["{a.first} loved the mariachis. They danced with them, hired them for their wedding and became a local star. I paid 3,000 bucks to make them happy. {w:swear}", "The mariachis got the wrong address and followed me for a week. I got fired, dumped and kicked out of my gym. I can play the trumpet now."] }, fx: { happy: -8, money: -3000 }, mood: 'angry' },
       ] },
-      { label: { fr: 'Formule criquets', en: 'Cricket package' }, text: { fr: ["J'ai fait livrer 40 000 criquets vivants chez {a.first}, dans une boîte marquée « Fragile – cadeau ». {a:Il|Elle} l'a ouverte dans son salon. Il a fallu trois semaines et un exorciste. Sa maison chante encore la nuit.", "Les criquets ont envahi sa voiture, son lit et son {w:object}. {a.first} a dû déménager. Les criquets ont suivi. Je crois qu'ils l'aiment."], en: ["I had 40,000 live crickets delivered to {a.first}'s place, in a box marked 'Fragile – gift'. They opened it in the living room. It took three weeks and an exorcist. Their house still chirps at night.", "The crickets invaded their car, their bed and their {w:object}. {a.first} had to move. The crickets followed. I think they love them."] }, fx: { happy: 12, money: -500, karma: -4, rel: -10 }, mood: 'happy' },
+      { label: { fr: 'Formule criquets', en: 'Cricket package' }, text: { fr: ["J'ai fait livrer 40 000 criquets vivants chez {a.first}, dans une boîte marquée « Fragile – cadeau ». {a:Il|Elle} l'a ouverte dans son salon. Il a fallu trois semaines et un exorciste. Sa maison chante encore la nuit.", "Les criquets ont envahi sa voiture, son lit, et même {w:object} qu'{a:il|elle} gardait sur sa table de nuit. {a.first} a dû déménager. Les criquets ont suivi. Je crois qu'ils l'aiment."], en: ["I had 40,000 live crickets delivered to {a.first}'s place, in a box marked 'Fragile – gift'. They opened it in the living room. It took three weeks and an exorcist. Their house still chirps at night.", "The crickets invaded their car, their bed, even {w:object} on their nightstand. {a.first} had to move. The crickets followed. I think they love them."] }, fx: { happy: 12, money: -500, karma: -4, rel: -10 }, mood: 'happy' },
       { label: { fr: 'Pardonner, en public', en: 'Forgive publicly' }, text: { fr: ["J'ai publié un long message de pardon, larmoyant, très digne. Tout le monde a trouvé {a.first} odieux{a:|se} en comparaison. {a:Il|Elle} a perdu ses amis, son travail et son chat. Le pardon est la meilleure arme.", "J'ai pardonné à {a.first} publiquement en lui offrant {w:gift}. {a:Il|Elle} n'a jamais su si c'était sincère ou une menace. {a:Il|Elle} n'en dort plus. Parfait."], en: ["I posted a long, tearful, very dignified forgiveness message. Everyone found {a.first} awful by comparison. They lost their friends, job and cat. Forgiveness is the best weapon.", "I publicly forgave {a.first} and gave them {w:gift}. They never knew if it was sincere or a threat. They can't sleep anymore. Perfect."] }, fx: { karma: 4, happy: 8, rel: 5 }, mood: 'proud' },
     ],
   },
@@ -2266,7 +2266,7 @@ export const trash2Events: EventDef[] = [
         { w: 1, text: { fr: ["Ma manœuvre a été si violente qu'il m'a arrêté{|e} pour « agression sur agent ». Avec le donut encore dans la bouche. Le juge a vu la vidéo et a ri si fort qu'il a dû suspendre l'audience.", "Le donut est sorti, et il m'a immédiatement verbalisé{|e} pour « contact physique non sollicité ». Je l'aurais laissé crever. La prochaine fois, je le laisse crever."], en: ["My manoeuvre was so violent he arrested me for 'assaulting an officer'. With the donut still in his mouth. The judge watched the video and laughed so hard he had to adjourn.", "The donut came out, and he immediately fined me for 'unsolicited physical contact'. I should've let him die. Next time, I'm letting him die."] }, fx: { heat: 10, money: -135, happy: -4 }, mood: 'angry' },
       ] },
       { label: { fr: 'Filmer et commenter', en: 'Film and commentate' }, text: { fr: ["J'ai filmé en commentant comme un match de foot : « Il tente l'expulsion… OH, ÉCHEC ! » Un passant a fini par le sauver. La vidéo a fait 5 millions de vues. Il me cherche partout. Il ne me trouvera pas.", "J'ai filmé en mangeant {w:food}. Ses collègues sont arrivés, l'ont regardé, puis m'ont demandé de partager la vidéo sur le groupe du commissariat. Il a survécu, mais pas sa réputation."], en: ["I filmed it with football-style commentary: 'He's going for the expulsion... OH, MISSED!' A passerby eventually saved him. The video got 5 million views. He's looking for me everywhere. He won't find me.", "I filmed it while eating {w:food}. His colleagues showed up, watched, then asked me to share the video in the precinct group chat. He survived, his reputation didn't."] }, fx: { followers: 30000, happy: 8, karma: -3, heat: 6 }, mood: 'happy' },
-      { label: { fr: 'Reprendre mon objet', en: 'Take my stuff back' }, text: { fr: ["Pendant qu'il s'étouffait, j'ai récupéré mon {w:object}, et mon amende, et son carnet de PV, que j'ai jeté dans une bouche d'égout. Puis j'ai appelé les secours. Je ne suis pas un monstre.", "J'ai repris mes affaires dans sa voiture, et un donut. Puis j'ai tapé dans son dos, une fois, fort. Le beignet est sorti. Il ne m'a jamais revu{|e}. Le donut était délicieux."], en: ["While he choked, I took back my {w:object}, and my ticket, and his ticket book, which I tossed down a storm drain. Then I called an ambulance. I'm not a monster.", "I took my stuff back from his car, plus a donut. Then I slapped his back, once, hard. The doughnut came out. He never saw me again. The donut was delicious."] }, fx: { happy: 10, karma: 1, heat: 3 } },
+      { label: { fr: 'Reprendre mon objet', en: 'Take my stuff back' }, text: { fr: ["Pendant qu'il s'étouffait, j'ai récupéré l'objet confisqué ({w:object}), et mon amende, et son carnet de PV, que j'ai jeté dans une bouche d'égout. Puis j'ai appelé les secours. Je ne suis pas un monstre.", "J'ai repris mes affaires dans sa voiture, et un donut. Puis j'ai tapé dans son dos, une fois, fort. Le beignet est sorti. Il ne m'a jamais revu{|e}. Le donut était délicieux."], en: ["While he choked, I took back the confiscated item ({w:object}), and my ticket, and his ticket book, which I tossed down a storm drain. Then I called an ambulance. I'm not a monster.", "I took my stuff back from his car, plus a donut. Then I slapped his back, once, hard. The doughnut came out. He never saw me again. The donut was delicious."] }, fx: { happy: 10, karma: 1, heat: 3 } },
     ],
   },
 
@@ -2463,7 +2463,7 @@ export const trash2Events: EventDef[] = [
         "{a.first}'s bachelor/bachelorette party. Programme: dressed as {w:animal}, drunk go-karting, a stripper and a night {w:far_place}. You're the organiser. Anything goes, except returning the future spouse damaged.",
         "You're organising {a.first}'s bachelor/bachelorette party. It's 11 p.m., {a.first} is dressed as a giant pacifier, blind drunk, and just suggested 'ending the night somewhere we'll never speak of'.",
         "{a.first}'s bachelor/bachelorette night. The group's already been kicked out of three bars. Someone suggests shaving off one of {a.first}'s eyebrows and tying them to a lamppost in their underwear.",
-        "{a.first} gets married in a week. Tonight is the party. Unlimited {w:drink}, a rented pink limo, and a stripper who just arrived. They say hi to you. It's your ex.",
+        "{a.first} gets married in a week. Tonight is the party. {w:drink} on tap, a rented pink limo, and a stripper who just arrived. They say hi to you. It's your ex.",
       ],
     },
     choices: [
@@ -2888,13 +2888,13 @@ export const trash2Events: EventDef[] = [
         "Au zoo, devant l'enclos des chimpanzés. Le mâle dominant te fixe dans les yeux. Il fouille derrière lui. Il en sort quelque chose de brun et de tiède. Il prend son élan.",
         "Un babouin du zoo a volé ton téléphone, déverrouillé, et s'enfuit en haut de son arbre. Il ouvre ta galerie photo. Il a l'air très intéressé. Puis il commence à appeler tes contacts.",
         "Tu fais un selfie devant l'enclos des orangs-outans en faisant des grimaces. Le plus gros vient de lâcher {w:sound} et prépare clairement une riposte. Il en a plein les mains.",
-        "Au zoo, un singe capucin s'est échappé et s'est installé sur ta tête. Il te tire les cheveux, mange ton {w:food} et se gratte les fesses sur ton front. Les gens prennent des photos.",
+        "Au zoo, un singe capucin s'est échappé et s'est installé sur ta tête. Il te tire les cheveux, mange {w:food} que tu tenais et se gratte les fesses sur ton front. Les gens prennent des photos.",
       ],
       en: [
         "At the zoo, in front of the chimp enclosure. The alpha male stares you in the eye. He reaches behind himself. He pulls out something brown and warm. He winds up.",
         "A zoo baboon stole your phone, unlocked, and ran up its tree. It opens your photo gallery. It looks very interested. Then it starts calling your contacts.",
         "You're taking a selfie in front of the orangutan enclosure, making faces. The biggest one just let out {w:sound} and is clearly preparing a counterattack. Its hands are full.",
-        "At the zoo, an escaped capuchin monkey has settled on your head. It's pulling your hair, eating your {w:food} and scratching its butt on your forehead. People are taking pictures.",
+        "At the zoo, an escaped capuchin monkey has settled on your head. It's pulling your hair, eating {w:food} you were holding and scratching its butt on your forehead. People are taking pictures.",
       ],
     },
     choices: [
@@ -3105,7 +3105,7 @@ export const trash2Events: EventDef[] = [
         { w: 2, text: { fr: ["J'ai coupé comme un ninja. Les carottes, le céleri et le bout de mon index ont fini dans la soupe. Le chef a goûté : « Il manque du sel. » Il n'a pas remarqué le doigt. Moi si.", "J'ai découpé à la vitesse de la lumière. Un geyser de sang a jailli de mon pouce et a peint la toque du chef en rouge. Il a dit : « Enfin, de la passion ! » J'ai eu la meilleure note."], en: ["I chopped like a ninja. The carrots, the celery and the tip of my index finger ended up in the soup. The chef tasted it: 'Needs salt.' He didn't notice the finger. I did.", "I chopped at light speed. A geyser of blood shot from my thumb and painted the chef's hat red. He said: 'Finally, some passion!' I got the top grade."] }, fx: { health: -10, disease: 'missing_finger', happy: -2, visual: 'gore' }, mood: 'cry' },
         { w: 1, odds: { smarts: 1 }, text: { fr: ["Découpe parfaite, ultra-rapide. Le chef a pleuré. Il m'a proposé un poste dans son restaurant. J'ai refusé : je ne travaille pas pour quelqu'un qui hurle. Puis j'ai accepté pour l'argent.", "J'ai fait une julienne si fine qu'on voyait à travers. Le chef m'a embrassé{|e} sur la bouche, par émotion. Personne n'était à l'aise. Mais j'ai gagné {w:gift}."], en: ["Perfect, ultra-fast chopping. The chef cried. He offered me a job at his restaurant. I refused: I don't work for screamers. Then I accepted for the money.", "I made a julienne so thin you could see through it. The chef kissed me on the mouth out of emotion. Nobody was comfortable. But I won {w:gift}."] }, fx: { happy: 10, smarts: 2 }, mood: 'proud' },
       ] },
-      { label: { fr: 'Laisser le chef montrer', en: 'Let the chef demo' }, text: { fr: ["J'ai laissé le chef faire sa démonstration de colère. Au troisième coup, il s'est tranché le bout du pouce. Le pouce a volé dans la casserole, dans {w:food} qui mijotait. Il l'a repêché, l'a regardé, et a continué la recette avec. Un vrai pro.", "Le chef a pris le couteau en hurlant. Il a coupé l'oignon, la planche, et son tablier en deux. Il s'est arrêté, a regardé son tablier par terre, puis nous. On a tous applaudi. Il a pleuré de gratitude."], en: ["I let the chef do his angry demo. On the third chop he sliced off the tip of his thumb. The thumb flew into the pot, right into the simmering {w:food}. He fished it out, looked at it, and continued the recipe with it. A true pro.", "The chef grabbed the knife, screaming. He cut the onion, the board and his apron in half. He stopped, looked at his apron on the floor, then at us. We all applauded. He cried with gratitude."] }, fx: { happy: 10, karma: -1, visual: 'gore' }, mood: 'happy' },
+      { label: { fr: 'Laisser le chef montrer', en: 'Let the chef demo' }, text: { fr: ["J'ai laissé le chef faire sa démonstration de colère. Au troisième coup, il s'est tranché le bout du pouce. Le pouce a volé dans la casserole, dans {w:food} qui mijotait. Il l'a repêché, l'a regardé, et a continué la recette avec. Un vrai pro.", "Le chef a pris le couteau en hurlant. Il a coupé l'oignon, la planche, et son tablier en deux. Il s'est arrêté, a regardé son tablier par terre, puis nous. On a tous applaudi. Il a pleuré de gratitude."], en: ["I let the chef do his angry demo. On the third chop he sliced off the tip of his thumb. The thumb flew into the pot, right into {w:food}, simmering away. He fished it out, looked at it, and continued the recipe with it. A true pro.", "The chef grabbed the knife, screaming. He cut the onion, the board and his apron in half. He stopped, looked at his apron on the floor, then at us. We all applauded. He cried with gratitude."] }, fx: { happy: 10, karma: -1, visual: 'gore' }, mood: 'happy' },
     ],
   },
 ];

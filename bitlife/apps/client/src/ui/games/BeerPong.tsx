@@ -460,7 +460,10 @@ export function BeerPong({ onDone }: GameProps) {
       if (vis > 0) {
         const pts = simulatePreview(st, aim.yaw, aim.pow);
         ctx.save();
-        pts.forEach((p, i) => { const k = i / pts.length; ctx.globalAlpha = vis * (0.9 - k * 0.6); glow(ctx, st.fire ? '#ff8a00' : '#22d3ee', 10); ctx.fillStyle = st.fire ? '#ffd166' : '#a5f3fc'; ctx.beginPath(); ctx.arc(p.x, p.y, Math.max(1.5, p.k * 0.012), 0, Math.PI * 2); ctx.fill(); });
+        const col = st.fire ? '#ffd166' : '#a5f3fc';
+        glow(ctx, st.fire ? '#ff8a00' : '#22d3ee', 14); ctx.strokeStyle = col; ctx.lineCap = 'round'; ctx.lineWidth = 3; ctx.setLineDash([10, 9]); ctx.lineDashOffset = -t * 60;
+        ctx.globalAlpha = vis * 0.85; ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y))); ctx.stroke(); ctx.setLineDash([]);
+        pts.forEach((p, i) => { if (i % 4) return; const k = i / pts.length; ctx.globalAlpha = vis * (1 - k * 0.5); ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(p.x, p.y, clamp(p.k * 0.006, 2, 5), 0, Math.PI * 2); ctx.fill(); });
         const last = pts[pts.length - 1];
         if (last) { ctx.globalAlpha = vis; ctx.strokeStyle = '#a5f3fc'; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(last.x, last.y, last.k * 0.05, last.k * 0.016, 0, 0, Math.PI * 2); ctx.stroke(); }
         ctx.restore();
@@ -511,7 +514,7 @@ export function BeerPong({ onDone }: GameProps) {
 
   function drawOpp(ctx: CanvasRenderingContext2D, st: BS, w: number, h: number, t: number) {
     const far = proj(0, 0, TABLE_L + 0.25);
-    const S = Math.min(far.k / 640, (far.y - h * 0.02) / 470);
+    const S = Math.min(far.k / 560, (far.y - h * 0.02) / 470);
     const mood = st.oppMood, mt = st.oppT;
     const bob = Math.sin(t * 2.2) * 4 + (mood === 'laugh' ? Math.abs(Math.sin(t * 16)) * 8 : 0);
     ctx.save(); ctx.translate(w / 2 + Math.sin(t * 0.7) * 20, far.y + 10); ctx.scale(S, S);
