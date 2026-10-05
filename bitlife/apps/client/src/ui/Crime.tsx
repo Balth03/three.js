@@ -44,6 +44,7 @@ export function CrimeSheet({ l }: { l: Life }) {
 }
 
 export function PrisonPanel({ l }: { l: Life }) {
+  void rev.value;
   const p = l.prison;
   if (!p) return null;
   const lg = lang.value;

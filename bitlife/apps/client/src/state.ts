@@ -2,12 +2,13 @@ import { signal } from '@preact/signals';
 import type { Lang, Life, Resolution, Tab } from '@bl/sim';
 import { loadSettings, type Settings } from './save.ts';
 import { loadProfile } from './profile.ts';
+import type { DuoMode, PeerSummary, SocialKind } from '@bl/shared';
 
 export type Screen = 'title' | 'create' | 'game';
 export type MinigameKind = 'heist' | 'getaway' | 'escape' | 'trial' | 'blackjack' | 'surgery' | 'cooking' | 'match' | 'interrogation' | 'case' | 'date';
 export type Modal = null | { kind: 'jobs' } | { kind: 'university' } | { kind: 'grad' } | { kind: 'dating' } | { kind: 'npc'; id: number } | { kind: 'saves' } | { kind: 'settings' } | { kind: 'menu' } | { kind: 'profile' }
   | { kind: 'crime' } | { kind: 'realestate' } | { kind: 'cars' } | { kind: 'shop' } | { kind: 'stocks' } | { kind: 'bank' } | { kind: 'business' }
-  | { kind: 'achievements' } | { kind: 'graveyard' } | { kind: 'tree' } | { kind: 'god' }
+  | { kind: 'achievements' } | { kind: 'graveyard' } | { kind: 'tree' } | { kind: 'god' } | { kind: 'duo' }
   | { kind: 'minigame'; game: MinigameKind; title: string; onDone: (score: number, extra?: number) => void };
 
 const s0 = loadSettings();
@@ -29,6 +30,30 @@ export const retro = signal(false);
 export const achToast = signal<{ id: string; n: number } | null>(null);
 
 export function bump() { rev.value++; }
+
+// ── Two-player state
+export interface ChatLine { from: string; name: string; text: string; at: number }
+export interface DuoState {
+  status: 'off' | 'connecting' | 'room';
+  connected: boolean;
+  code: string;
+  you: string;
+  host: boolean;
+  mode: DuoMode;
+  players: { id: string; name: string; online: boolean }[];
+  peer: PeerSummary | null;
+  peerOnline: boolean;
+  chat: ChatLine[];
+  unread: number;
+  myVote?: number;
+  peerVoted?: boolean;
+  /** Incoming social request awaiting my answer. */
+  ask?: { kind: SocialKind; data?: Record<string, unknown> };
+  duel?: { stake: number; mine?: number; theirs?: number };
+  error?: string;
+}
+export const duo = signal<DuoState>({ status: 'off', connected: false, code: '', you: '', host: false, mode: 'parallel', players: [], peer: null, peerOnline: false, chat: [], unread: 0 });
+export const emoteFx = signal<{ e: string; mine: boolean; id: number } | null>(null);
 
 let toastId = 0;
 export function showToast(text: string) {

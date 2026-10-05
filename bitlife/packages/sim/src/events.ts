@@ -192,6 +192,8 @@ export function pickOutcome(life: Life, outs0: Outcome[], rng: Rng): Outcome {
   return rng.weighted(outs, (o) => {
     let w = o.w ?? 1;
     if (o.odds) for (const k in o.odds) w *= Math.max(0.05, 1 + o.odds[k as AnyStat]! * (statValue(life, k as AnyStat) - 50) / 50);
+    // Plot armour: with 1000+ events, rare deaths add up. Chaos mode keeps them all.
+    if (o.fx?.die && !o.fx.fn) w *= life.mode === 'chaos' ? 1 : life.mode === 'zen' ? 0.03 : life.age < 40 ? 0.15 : 0.3;
     return w;
   }) ?? outs[0];
 }

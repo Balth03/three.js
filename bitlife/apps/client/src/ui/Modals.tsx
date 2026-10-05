@@ -11,6 +11,7 @@ import { AssetShop, Stocks, Bank, BusinessSheet } from './Money.tsx';
 import { CrimeSheet } from './Crime.tsx';
 import { Achievements, Graveyard, FamilyTree, GodPanel } from './Meta.tsx';
 import { Minigame } from './Minigames.tsx';
+import { DuoLobby } from './Duo.tsx';
 
 const close = () => { sfx.close(); modal.value = null; };
 
@@ -39,6 +40,7 @@ function Jobs({ l }: { l: Life }) {
 }
 
 function University({ l, grad }: { l: Life; grad: boolean }) {
+  void rev.value;
   const lg = lang.value;
   const [sel, setSel] = useState<string | null>(null);
   const items = grad
@@ -84,6 +86,7 @@ function University({ l, grad }: { l: Life; grad: boolean }) {
 }
 
 function Dating({ l }: { l: Life }) {
+  void rev.value;
   const people = useMemo(() => datingCandidates(l, content), [l.age]);
   const lg = lang.value;
   return (
@@ -105,6 +108,7 @@ function Dating({ l }: { l: Life }) {
 }
 
 function NpcSheet({ l, id }: { l: Life; id: number }) {
+  void rev.value;
   const n = l.npcs.find((x) => x.id === id);
   const lg = lang.value;
   if (!n) return null;
@@ -140,6 +144,7 @@ function NpcSheet({ l, id }: { l: Life; id: number }) {
 }
 
 function Profile({ l }: { l: Life }) {
+  void rev.value;
   const lg = lang.value;
   const talent = content.talents.find((x) => x.id === l.talent);
   return (
@@ -265,6 +270,7 @@ export function Modals() {
     case 'university': return l ? <University l={l} grad={false} /> : null;
     case 'grad': return l ? <University l={l} grad /> : null;
     case 'dating': return l ? <Dating l={l} /> : null;
+    case 'duo': return <DuoLobby />;
     case 'npc': return l ? <NpcSheet l={l} id={m.id} /> : null;
     case 'profile': return l ? <Profile l={l} /> : null;
     case 'saves': return <Saves />;

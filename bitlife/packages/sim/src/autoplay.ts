@@ -10,7 +10,7 @@ import { listCrimes, commitCrime, trial, escape, parole } from './crime.ts';
 import { assetOffers, buyAsset, buyStock, sellStock, startBusiness, canAfford } from './money.ts';
 import type { Resolution } from './types.ts';
 
-export interface AutoplayOpts extends NewLifeOptions { maxAge?: number; ambition?: number; crime?: number; spend?: number }
+export interface AutoplayOpts extends NewLifeOptions { maxAge?: number; ambition?: number; crime?: number; spend?: number; vice?: number }
 
 export function autoplay(content: Content, seed: number, o: AutoplayOpts = {}): Life {
   const life = createLife(content, { birthYear: 2000, ...o, seed });
@@ -63,7 +63,13 @@ export function autoplay(content: Content, seed: number, o: AutoplayOpts = {}): 
       if (pick.chance(0.1)) for (const id of Object.keys(life.portfolio)) sellStock(life, content, id);
       if (!life.business && pick.chance(0.05)) startBusiness(life, content, pick.pick(content.sectors).id, '');
     }
-    const acts = listActions(life, content).filter((a) => a.ok && !a.def.open && !a.def.event && a.def.id !== 'dropout' && a.def.id !== 'quit');
+    // Like a human player: vices only now and then, rehab / doctor when things go wrong.
+    const all = listActions(life, content).filter((a) => a.ok && !a.def.open && !a.def.event && a.def.id !== 'dropout' && a.def.id !== 'quit');
+    const vice = o.vice ?? 0.15;
+    const acts = all.filter((a) => a.def.group !== 'vices' || a.def.id === 'rehab' || pick.chance(vice));
+    const care = (id: string) => { const a = all.find((x) => x.def.id === id); if (a) { handleOpen(doAction(life, content, id)); drain(); } };
+    if (Object.values(life.addictions).some((v) => v > 35)) care('rehab');
+    if (life.stats.health < 45 || life.conditions.length) care('doctor');
     for (let i = 0; i < 3 && acts.length; i++) { doAction(life, content, pick.pick(acts).def.id); drain(); }
     if (life.age >= 18 && !life.edu.enrolled && life.edu.degrees.includes('high') && !life.edu.degrees.some((d) => d.startsWith('uni:')) && life.age < 24 && pick.chance(ambition)) {
       const m = pick.pick(content.majors);

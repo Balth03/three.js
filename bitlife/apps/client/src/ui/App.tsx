@@ -7,6 +7,7 @@ import { Modals } from './Modals.tsx';
 import { Title, Create, Death } from './Screens.tsx';
 import { ChallengeChip, AchievementToast } from './Meta.tsx';
 import { Retro } from './Retro.tsx';
+import { DuoDock, DuoAsk, EmoteBurst } from './Duo.tsx';
 import { retro } from '../state.ts';
 import { t } from '../i18n.ts';
 import { sfx, toggleMute, unlockAudio } from '../audio.ts';
@@ -90,6 +91,7 @@ export function App() {
           <EventCard />
           <Death />
           <ChallengeChip />
+          <DuoDock />
           <button class="menu-btn glass" onClick={() => { sfx.open(); modal.value = { kind: 'menu' }; }} title="Échap">☰</button>
         </>
       )}
@@ -97,6 +99,8 @@ export function App() {
       <Modals />
       {toast.value && <div class="toast glass" key={toast.value.id}>{toast.value.text}</div>}
       <AchievementToast />
+      <DuoAsk />
+      <EmoteBurst />
     </div>
   );
 }

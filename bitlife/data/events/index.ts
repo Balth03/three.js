@@ -17,8 +17,17 @@ import { careerEvents } from './careers.ts';
 import { darkEvents } from './dark.ts';
 import { socialEvents } from './social.ts';
 import { worldEvents2 } from './world.ts';
+import { youngEvents } from './young.ts';
+import { money2Events } from './money2.ts';
+import { babyEvents } from './baby.ts';
+import { health2Events } from './health2.ts';
+import { oldEvents } from './old.ts';
+import { mafiaEvents } from './mafia.ts';
+import { chaosEvents } from './chaos.ts';
+import { love2Events } from './love2.ts';
+import { jobs2Events } from './jobs2.ts';
 
 export const events: EventDef[] = [
   ...milestoneEvents, ...childhoodEvents, ...teenEvents, ...adultEvents, ...systemEvents, ...moneyEvents,
-  ...familyEvents, ...weirdEvents, ...healthEvents, ...crimeEvents, ...loveEvents, ...workEvents, ...lifeEvents, ...schoolEvents, ...careerEvents, ...darkEvents, ...socialEvents, ...worldEvents2,
+  ...familyEvents, ...weirdEvents, ...healthEvents, ...crimeEvents, ...loveEvents, ...workEvents, ...lifeEvents, ...schoolEvents, ...careerEvents, ...darkEvents, ...socialEvents, ...worldEvents2, ...youngEvents, ...money2Events, ...babyEvents, ...health2Events, ...oldEvents, ...mafiaEvents, ...chaosEvents, ...love2Events, ...jobs2Events,
 ];

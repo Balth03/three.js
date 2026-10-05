@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'preact/hooks';
 import { summarize, careerTitle, renderString, type Gender, type Orientation, type GameMode, type Life } from '@bl/sim';
 import { content } from '@bl/data';
-import { screen, life, modal, lang, showDeath, rev, retro } from '../state.ts';
+import { screen, life, modal, lang, showDeath, rev, retro, duo } from '../state.ts';
 import { startLife, previewLife, loadExisting, continueAsHeir } from '../game.ts';
 import { loadLife, slotInfo, AUTOSAVE } from '../save.ts';
 import { t } from '../i18n.ts';
@@ -26,6 +26,7 @@ export function Title() {
         )}
         <Btn cls={`big ${auto?.alive ? '' : 'primary'}`} onClick={() => { unlockAudio(); sfx.open(); screen.value = 'create'; }}>✨ {t('new_life')}</Btn>
         <Btn cls="big" onClick={() => { unlockAudio(); startLife({ birthYear: 2026 }); }}>🎲 {t('random_life')}</Btn>
+        <Btn cls="big duo-btn" onClick={() => { unlockAudio(); sfx.open(); modal.value = { kind: 'duo' }; }}>💞 {lang.value === 'fr' ? 'Jouer à deux' : 'Play together'}{duo.value.status === 'room' ? ` · ${duo.value.code}` : ''}</Btn>
         <div class="row-btns">
           <Btn onClick={() => { unlockAudio(); modal.value = { kind: 'saves' }; }}>💾 {t('saves')}</Btn>
           <Btn onClick={() => { unlockAudio(); modal.value = { kind: 'achievements' }; }}>🏆</Btn>

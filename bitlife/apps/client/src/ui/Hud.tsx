@@ -11,6 +11,7 @@ import { netWorth, portfolioValue, debt } from '@bl/sim';
 import { sfx } from '../audio.ts';
 
 export function TopBar({ l }: { l: Life }) {
+  void rev.value;
   const c = content.countries.find((x) => x.id === l.country)!;
   const occupation = l.prison ? `🔒 ${lang.value === 'fr' ? 'Détenu' + (l.gender === 'f' ? 'e' : '') : 'Inmate'}` : l.job
     ? careerTitle(content, l.job.careerId, l.job.level, l.gender, lang.value)
@@ -60,6 +61,7 @@ export function Feed({ l }: { l: Life }) {
 }
 
 export function Stats({ l }: { l: Life }) {
+  void rev.value;
   return (
     <div class="stats">
       <StatRow k="happy" value={l.stats.happy} />
@@ -79,6 +81,7 @@ const TABS: { id: Tab; icon: string; key: Parameters<typeof t>[0] }[] = [
 export const TAB_ORDER = TABS.map((x) => x.id);
 
 export function Dock({ l }: { l: Life }) {
+  void rev.value;
   const blocked = !!result.value || l.queue.length > 0;
   const toggle = (id: Tab) => {
     if (blocked) { showToast(t('finish_event')); return; }
@@ -125,6 +128,7 @@ function ActionGrid({ views }: { views: ActionView[] }) {
 }
 
 function CareerPanel({ l }: { l: Life }) {
+  void rev.value;
   const lg = lang.value;
   const e = l.edu;
   const school = listActions(l, content, 'school');
@@ -196,6 +200,7 @@ const GROUPS: { key: Parameters<typeof t>[0]; roles: Role[] }[] = [
 ];
 
 function RelationsPanel({ l }: { l: Life }) {
+  void rev.value;
   const love = listActions(l, content, 'relations');
   return (
     <div>
@@ -215,6 +220,7 @@ function RelationsPanel({ l }: { l: Life }) {
 }
 
 function RelRow({ n, l }: { n: Npc; l: Life }) {
+  void rev.value;
   return (
     <button class={`rel-row ${n.alive ? '' : 'dead'}`} onClick={() => { sfx.open(); modal.value = { kind: 'npc', id: n.id }; }} onMouseEnter={() => sfx.hover()}>
       <Portrait l={l} npc={n} size={48} />
@@ -228,6 +234,7 @@ function RelRow({ n, l }: { n: Npc; l: Life }) {
 }
 
 function AssetsPanel({ l }: { l: Life }) {
+  void rev.value;
   const acts = listActions(l, content, 'assets');
   return (
     <div>
@@ -248,6 +255,7 @@ function AssetsPanel({ l }: { l: Life }) {
 }
 
 function ActivitiesPanel({ l }: { l: Life }) {
+  void rev.value;
   const all = listActions(l, content, 'activities');
   const lg = lang.value;
   const groups = [
@@ -278,6 +286,7 @@ function ActivitiesPanel({ l }: { l: Life }) {
 }
 
 export function TabPanel({ l }: { l: Life }) {
+  void rev.value;
   const tb = tab.value;
   if (!tb) return null;
   const meta = TABS.find((x) => x.id === tb)!;

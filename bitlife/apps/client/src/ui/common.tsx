@@ -2,7 +2,7 @@ import type { ComponentChildren } from 'preact';
 import { useMemo } from 'preact/hooks';
 import { formatMoney, country, type Delta, type Life, type Npc, type Mood, roleTitle, npcAge } from '@bl/sim';
 import { content } from '@bl/data';
-import { lang } from '../state.ts';
+import { lang, rev } from '../state.ts';
 import { portrait } from '../three/stage.ts';
 import { npcSpec, specOf } from '../game.ts';
 import { t, type Key } from '../i18n.ts';
@@ -46,6 +46,7 @@ export function StatRow({ k, value }: { k: string; value: number }) {
 }
 
 export function Deltas({ deltas, l }: { deltas: Delta[]; l: Life }) {
+  void rev.value;
   if (!deltas.length) return null;
   return (
     <div class="deltas">
@@ -64,6 +65,7 @@ export function Deltas({ deltas, l }: { deltas: Delta[]; l: Life }) {
 }
 
 export function Portrait({ l, npc, mood, size = 56, cls = '' }: { l: Life; npc?: Npc; mood?: Mood; size?: number; cls?: string }) {
+  void rev.value;
   const spec = npc ? npcSpec(npc, l.year) : specOf(l);
   const key = `${JSON.stringify(spec)}|${mood}`;
   const url = useMemo(() => {

@@ -9,6 +9,10 @@ import type { AvatarSpec } from './three/avatar.ts';
 import { life, rev, result, modal, screen, tab, bump, showToast, ageBusy, showDeath, settings, lang, profile, achToast, type MinigameKind } from './state.ts';
 import { commitCrime, trial, escape, parole, appeal, gamble, workMinigame, summarize, heirLife, netWorth, formatMoney, country as countryOf, type Loc } from '@bl/sim';
 import { mergeAchievements, bury } from './profile.ts';
+import { listJobs, datingCandidates, assetOffers, buyAsset, sellAsset, renovate, toggleRent, moveInto, takeLoan, repayLoans, buyStock, sellStock, startBusiness, investBusiness, sellBusiness, type AssetDef, type Financing } from '@bl/sim';
+import type { PeerSummary } from '@bl/shared';
+import { duo } from './state.ts';
+import * as net from './net.ts';
 import { saveLife, deleteSlot, AUTOSAVE } from './save.ts';
 import { sfx, setMusicAge } from './audio.ts';
 import { t } from './i18n.ts';
@@ -109,7 +113,7 @@ export function previewLife(opts: NewLifeOptions): Life {
 
 // ───────────────────────────── year loop ─────────────────────────────
 
-export function doAgeUp() {
+function doAgeUpLocal() {
   const l = life.value;
   if (!l || !l.alive || ageBusy.value) return;
   if (l.queue.length || result.value) { showToast(t('finish_event')); return; }
@@ -151,7 +155,7 @@ function presentEvent() {
   bump();
 }
 
-export function pickChoice(i: number) {
+function pickChoiceLocal(i: number, disagree = false) {
   const l = life.value;
   if (!l || !l.queue.length || result.value) return;
   const p = l.queue[0];
@@ -159,6 +163,12 @@ export function pickChoice(i: number) {
   sfx.click();
   const res = choose(l, content, i);
   if (!res) return;
+  if (disagree) {
+    const t = { fr: 'Désaccord de couple sur ce choix : on a fini par tirer à pile ou face, et on boude depuis.', en: 'Couple disagreement on that choice: we ended up flipping a coin, and we\'ve been sulking since.' };
+    addLog(t, '💢', 'bad');
+    l.stats.happy = Math.max(0, l.stats.happy - 3);
+    res.text = { fr: `${res.text.fr} (${t.fr})`, en: `${res.text.en} (${t.en})` };
+  }
   if (!p.choices.length) {
     // informational card acknowledged → go straight to the next one
     afterResolution(res, false);
@@ -211,7 +221,7 @@ export function continueAfterResult(res = result.value) {
   stage?.setFocus(false);
   placeOverride = null;
   syncStage();
-  if (res?.open) openUi(res.open);
+  if (res?.open && (!sharedOnline() || resMine)) openUi(res.open);
   autosave();
   bump();
 }
@@ -229,42 +239,37 @@ export function openMinigame(game: MinigameKind, onDone: (score: number, extra?:
   sfx.open();
 }
 
+const WORK_TABLE: Record<string, { game: MinigameKind; icon: string; ok: Loc<string>; mid: Loc<string>; ko: Loc<string> }> = {
+  'minigame:surgery': { game: 'surgery', icon: '🩺', ok: { fr: 'Opération réussie : le patient a survécu et m\'a même remercié.', en: 'Surgery successful: the patient survived and even thanked me.' }, mid: { fr: 'Opération moyenne : j\'ai oublié une compresse à l\'intérieur. Personne ne saura.', en: 'Mediocre surgery: I left a sponge inside. Nobody will know.' }, ko: { fr: 'Opération ratée. Le sang a giclé jusqu\'au plafond et l\'interne s\'est évanoui.', en: 'Botched surgery. Blood hit the ceiling and the intern fainted.' } },
+  'minigame:cooking': { game: 'cooking', icon: '👨‍🍳', ok: { fr: 'Service parfait : un critique a pleuré dans sa soupe.', en: 'Perfect service: a critic cried into his soup.' }, mid: { fr: 'Service correct. Une table a renvoyé son steak « trop cru ».', en: 'Decent service. One table sent back a steak "too raw".' }, ko: { fr: 'Catastrophe en cuisine : feu, cris et un doigt dans le velouté.', en: 'Kitchen disaster: fire, screaming and a finger in the soup.' } },
+  'minigame:match': { game: 'match', icon: '🏟️', ok: { fr: 'J\'ai été l\'homme du match ! Le stade scandait mon nom.', en: 'Player of the match! The stadium chanted my name.' }, mid: { fr: 'Match moyen. J\'ai couru beaucoup, servi à peu.', en: 'Average match. Ran a lot, achieved little.' }, ko: { fr: 'Match catastrophique : but contre mon camp et carton rouge.', en: 'Disastrous match: own goal and a red card.' } },
+  'minigame:interrogation': { game: 'interrogation', icon: '🕵️', ok: { fr: 'Le suspect a craqué et tout avoué. Je suis un génie de l\'interrogatoire.', en: 'The suspect cracked and confessed. I am an interrogation genius.' }, mid: { fr: 'Aveux partiels. Il a juste admis avoir volé un yaourt.', en: 'Partial confession. He only admitted to stealing a yogurt.' }, ko: { fr: 'Le suspect m\'a fait craquer, moi. J\'ai pleuré devant le miroir sans tain.', en: 'The suspect broke ME. I cried in front of the one-way mirror.' } },
+  'minigame:case': { game: 'case', icon: '⚖️', ok: { fr: 'Affaire gagnée ! Mon client, un ordure notoire, est libre. Champagne.', en: 'Case won! My client, a notorious scumbag, walks free. Champagne.' }, mid: { fr: 'Verdict mitigé. Mon client a pris du sursis.', en: 'Mixed verdict. My client got a suspended sentence.' }, ko: { fr: 'Affaire perdue. Mon client m\'a craché dessus en partant.', en: 'Case lost. My client spat on me on the way out.' } },
+};
+
+const WORK = (target: string) => WORK_TABLE[target];
+
 function openUi(target: string) {
   const l = life.value;
   if (!l) return;
-  const simple = ['jobs', 'university', 'grad', 'dating', 'crime', 'realestate', 'cars', 'shop', 'stocks', 'bank', 'business'] as const;
+  if (target === 'dating') { dispatch({ k: 'dating' }); return; }
+  const simple = ['jobs', 'university', 'grad', 'crime', 'realestate', 'cars', 'shop', 'stocks', 'bank', 'business'] as const;
   if ((simple as readonly string[]).includes(target)) { modal.value = { kind: target } as typeof modal.value; sfx.open(); return; }
-  if (target === 'parole') { handleRes(parole(l, content)); return; }
-  if (target === 'appeal') { handleRes(appeal(l, content)); return; }
-  if (target === 'minigame:escape') { openMinigame('escape', (s) => handleRes(escape(l, content, s))); return; }
+  if (target === 'parole') { dispatch({ k: 'parole' }); return; }
+  if (target === 'appeal') { dispatch({ k: 'appeal' }); return; }
+  if (target === 'minigame:escape') { openMinigame('escape', (s) => dispatch({ k: 'escape', score: s })); return; }
   if (target === 'minigame:trial') {
-    openMinigame('trial', (s) => {
-      const v = trial(l, content, 'minigame', s);
-      const r: Resolution = { text: v, icon: '⚖️', tone: l.prison ? 'bad' : 'good', deltas: [], mood: l.prison ? 'cry' : 'proud' };
-      addLog(v, '⚖️', r.tone);
-      handleRes(r);
-    });
+    openMinigame('trial', (s) => dispatch({ k: 'trial', score: s }));
     return;
   }
   if (target === 'minigame:blackjack') {
-    openMinigame('blackjack', (_s, net) => {
-      const c = countryOf(content, l.country);
-      const v = net ?? 0;
-      const txt = v >= 0 ? { fr: `Blackjack : j'ai gagné ${formatMoney(v, c, 'fr')} !`, en: `Blackjack: I won ${formatMoney(v, c, 'en')}!` } : { fr: `Blackjack : j'ai perdu ${formatMoney(-v, c, 'fr')}. La banque gagne toujours.`, en: `Blackjack: I lost ${formatMoney(-v, c, 'en')}. The house always wins.` };
-      handleRes(gamble(l, content, v, txt, '🃏'));
-    });
+    openMinigame('blackjack', (_s, net) => dispatch({ k: 'gamble', net: net ?? 0 }));
     return;
   }
-  const work: Record<string, { game: MinigameKind; icon: string; ok: Loc<string>; mid: Loc<string>; ko: Loc<string> }> = {
-    'minigame:surgery': { game: 'surgery', icon: '🩺', ok: { fr: 'Opération réussie : le patient a survécu et m\'a même remercié.', en: 'Surgery successful: the patient survived and even thanked me.' }, mid: { fr: 'Opération moyenne : j\'ai oublié une compresse à l\'intérieur. Personne ne saura.', en: 'Mediocre surgery: I left a sponge inside. Nobody will know.' }, ko: { fr: 'Opération ratée. Le sang a giclé jusqu\'au plafond et l\'interne s\'est évanoui.', en: 'Botched surgery. Blood hit the ceiling and the intern fainted.' } },
-    'minigame:cooking': { game: 'cooking', icon: '👨‍🍳', ok: { fr: 'Service parfait : un critique a pleuré dans sa soupe.', en: 'Perfect service: a critic cried into his soup.' }, mid: { fr: 'Service correct. Une table a renvoyé son steak « trop cru ».', en: 'Decent service. One table sent back a steak "too raw".' }, ko: { fr: 'Catastrophe en cuisine : feu, cris et un doigt dans le velouté.', en: 'Kitchen disaster: fire, screaming and a finger in the soup.' } },
-    'minigame:match': { game: 'match', icon: '🏟️', ok: { fr: 'J\'ai été l\'homme du match ! Le stade scandait mon nom.', en: 'Player of the match! The stadium chanted my name.' }, mid: { fr: 'Match moyen. J\'ai couru beaucoup, servi à peu.', en: 'Average match. Ran a lot, achieved little.' }, ko: { fr: 'Match catastrophique : but contre mon camp et carton rouge.', en: 'Disastrous match: own goal and a red card.' } },
-    'minigame:interrogation': { game: 'interrogation', icon: '🕵️', ok: { fr: 'Le suspect a craqué et tout avoué. Je suis un génie de l\'interrogatoire.', en: 'The suspect cracked and confessed. I am an interrogation genius.' }, mid: { fr: 'Aveux partiels. Il a juste admis avoir volé un yaourt.', en: 'Partial confession. He only admitted to stealing a yogurt.' }, ko: { fr: 'Le suspect m\'a fait craquer, moi. J\'ai pleuré devant le miroir sans tain.', en: 'The suspect broke ME. I cried in front of the one-way mirror.' } },
-    'minigame:case': { game: 'case', icon: '⚖️', ok: { fr: 'Affaire gagnée ! Mon client, un ordure notoire, est libre. Champagne.', en: 'Case won! My client, a notorious scumbag, walks free. Champagne.' }, mid: { fr: 'Verdict mitigé. Mon client a pris du sursis.', en: 'Mixed verdict. My client got a suspended sentence.' }, ko: { fr: 'Affaire perdue. Mon client m\'a craché dessus en partant.', en: 'Case lost. My client spat on me on the way out.' } },
-  };
-  const w = work[target];
-  if (w) { openMinigame(w.game, (s) => handleRes(workMinigame(l, content, s, s >= 0.7 ? w.ok : s >= 0.4 ? w.mid : w.ko, w.icon))); return; }
+  const w = WORK_TABLE[target];
+  if (w) { openMinigame(w.game, (s) => dispatch({ k: 'work', target, score: s })); return; }
 }
+
 
 function addLog(t: Loc<string>, icon: string, tone: 'good' | 'bad' | 'neutral') {
   const l = life.value!;
@@ -287,14 +292,15 @@ export function doCrime(id: string) {
   if (!def) return;
   sfx.click();
   if (def.minigame) {
-    openMinigame(def.minigame, (score) => handleRes(commitCrime(l, content, id, (score - 0.5) * 0.4)));
+    openMinigame(def.minigame, (score) => dispatch({ k: 'crime', id, bonus: (score - 0.5) * 0.4 }));
     return;
   }
   modal.value = null;
-  handleRes(commitCrime(l, content, id));
+  dispatch({ k: 'crime', id, bonus: 0 });
 }
 
-export function continueAsHeir(childId: number) {
+export function continueAsHeir(childId: number) { dispatch({ k: 'heir', child: childId }); }
+function continueAsHeirLocal(childId: number) {
   const l = life.value;
   if (!l) return;
   const n = heirLife(l, content, childId);
@@ -331,19 +337,19 @@ function handle(res: Resolution | null, keepModal = false) {
   if (!res) return;
   const l = life.value!;
   if (l.queue.length && !res.text.fr) { if (!keepModal) { modal.value = null; tab.value = null; } presentEvent(); return; }
-  if (res.open) { tab.value = null; openUi(res.open); bump(); return; }
+  if (res.open) { tab.value = null; if (opMine) openUi(res.open); bump(); return; }
   if (!keepModal) tab.value = null;
   afterResolution(res, true);
 }
 
-export function runAction(id: string) {
+function runActionLocal(id: string) {
   const l = life.value;
   if (!l || result.value) return;
   sfx.click();
   handle(doAction(l, content, id));
 }
 
-export function runRelAction(npcId: number, actionId: string) {
+function runRelActionLocal(npcId: number, actionId: string) {
   const l = life.value;
   if (!l || result.value) return;
   sfx.click();
@@ -351,7 +357,7 @@ export function runRelAction(npcId: number, actionId: string) {
   handle(doRelAction(l, content, npcId, actionId));
 }
 
-export function apply(offer: JobOffer) {
+function applyLocal(offer: JobOffer) {
   const l = life.value;
   if (!l) return;
   sfx.click();
@@ -360,7 +366,7 @@ export function apply(offer: JobOffer) {
   afterResolution(res, true);
 }
 
-export function enroll(major: string, plan: TuitionPlan, grad = false) {
+function enrollLocal(major: string, plan: TuitionPlan, grad = false) {
   const l = life.value;
   if (!l) return;
   sfx.click();
@@ -369,7 +375,7 @@ export function enroll(major: string, plan: TuitionPlan, grad = false) {
   afterResolution(res, true);
 }
 
-export function date(npcId: number) {
+function dateLocal(npcId: number) {
   const l = life.value;
   if (!l) return;
   sfx.click();
@@ -379,5 +385,141 @@ export function date(npcId: number) {
 }
 
 export function npcOf(id: number) { const l = life.value; return l ? npcById(l, id) : undefined; }
+
+
+
+// ───────────────────────────── operations (local or shared over the network) ─────────────────────────────
+
+export type Op =
+  | { k: 'ageUp'; age?: number } | { k: 'choose'; i: number; disagree?: boolean; sig?: string } | { k: 'action'; id: string } | { k: 'rel'; npc: number; id: string }
+  | { k: 'crime'; id: string; bonus: number } | { k: 'apply'; career: string } | { k: 'enroll'; major: string; plan: TuitionPlan; grad: boolean }
+  | { k: 'dating' } | { k: 'date'; npc: number } | { k: 'buy'; kind: AssetDef['kind']; key: string; fin: Financing } | { k: 'sell'; uid: number }
+  | { k: 'reno'; uid: number } | { k: 'rent'; uid: number } | { k: 'movein'; uid: number } | { k: 'loan'; amount: number } | { k: 'repay' }
+  | { k: 'stockBuy'; id: string; amount: number } | { k: 'stockSell'; id: string } | { k: 'bizStart'; sector: string; name: string }
+  | { k: 'bizInvest'; kind: 'hire' | 'marketing' | 'expand' } | { k: 'bizSell' } | { k: 'trial'; score: number } | { k: 'escape'; score: number }
+  | { k: 'parole' } | { k: 'appeal' } | { k: 'gamble'; net: number } | { k: 'work'; target: string; score: number } | { k: 'heir'; child: number }
+  | { k: 'god'; stat: string; value: number } | { k: 'giftIn'; amount: number; from: string } | { k: 'linkPeer'; role: string; s: PeerSummary };
+
+/** True while playing a shared ("vie commune") life online. */
+export function sharedOnline() { return duo.value.connected && duo.value.mode === 'shared'; }
+
+export function dispatch(op: Op) {
+  if (sharedOnline()) { net.sendOp(op); return; }
+  applyOp(op, true);
+}
+
+let opMine = true;
+let resMine = true;
+/** Applies an operation to the local life. `mine` = originated from this player (UI modals open only for them). */
+export function applyOp(op: Op, mine: boolean) {
+  const l = life.value;
+  if (!l) return;
+  opMine = mine;
+  if (op.k !== 'choose') resMine = mine;
+  switch (op.k) {
+    case 'ageUp': if (op.age === undefined || op.age === l.age) doAgeUpLocal(); break;
+    case 'choose': if (!op.sig || op.sig === choiceSig(l)) { resMine = mine; pickChoiceLocal(op.i, op.disagree); } break;
+    case 'action': runActionLocal(op.id); break;
+    case 'rel': runRelActionLocal(op.npc, op.id); break;
+    case 'crime': modal.value = mine ? null : modal.value; handleRes(commitCrime(l, content, op.id, op.bonus)); break;
+    case 'apply': { const o = listJobs(l, content).find((x) => x.careerId === op.career); if (o) applyLocal(o); break; }
+    case 'enroll': enrollLocal(op.major, op.plan, op.grad); break;
+    case 'dating': datingCandidates(l, content); if (mine) { modal.value = { kind: 'dating' }; sfx.open(); } bump(); break;
+    case 'date': dateLocal(op.npc); break;
+    case 'buy': { const o = assetOffers(l, content, op.kind).find((x) => x.key === op.key); if (o) handleRes(buyAsset(l, content, o, op.fin)); break; }
+    case 'sell': handleRes(sellAsset(l, content, op.uid)); break;
+    case 'reno': handleRes(renovate(l, content, op.uid)); break;
+    case 'rent': toggleRent(l, content, op.uid); refresh(); break;
+    case 'movein': moveInto(l, content, op.uid); refresh(); break;
+    case 'loan': handleRes(takeLoan(l, content, op.amount)); break;
+    case 'repay': handleRes(repayLoans(l)); break;
+    case 'stockBuy': handleRes(buyStock(l, content, op.id, op.amount)); break;
+    case 'stockSell': handleRes(sellStock(l, content, op.id)); break;
+    case 'bizStart': handleRes(startBusiness(l, content, op.sector, op.name)); break;
+    case 'bizInvest': handleRes(investBusiness(l, content, op.kind)); break;
+    case 'bizSell': handleRes(sellBusiness(l, content)); break;
+    case 'trial': {
+      const v = trial(l, content, 'minigame', op.score);
+      const r: Resolution = { text: v, icon: '⚖️', tone: l.prison ? 'bad' : 'good', deltas: [], mood: l.prison ? 'cry' : 'proud' };
+      addLog(v, '⚖️', r.tone);
+      handleRes(r);
+      break;
+    }
+    case 'escape': handleRes(escape(l, content, op.score)); break;
+    case 'parole': handleRes(parole(l, content)); break;
+    case 'appeal': handleRes(appeal(l, content)); break;
+    case 'gamble': {
+      const c = countryOf(content, l.country);
+      const v = op.net;
+      if (!v) break;
+      const txt = v >= 0 ? { fr: `Blackjack : j'ai gagné ${formatMoney(v, c, 'fr')} !`, en: `Blackjack: I won ${formatMoney(v, c, 'en')}!` } : { fr: `Blackjack : j'ai perdu ${formatMoney(-v, c, 'fr')}. La banque gagne toujours.`, en: `Blackjack: I lost ${formatMoney(-v, c, 'en')}. The house always wins.` };
+      handleRes(gamble(l, content, v, txt, '🃏'));
+      break;
+    }
+    case 'work': { const w = WORK(op.target); if (w) handleRes(workMinigame(l, content, op.score, op.score >= 0.7 ? w.ok : op.score >= 0.4 ? w.mid : w.ko, w.icon)); break; }
+    case 'heir': continueAsHeirLocal(op.child); break;
+    case 'god': {
+      if (op.stat in l.stats) l.stats[op.stat as 'happy'] = Math.max(0, Math.min(100, op.value));
+      else if (op.stat in l.attrs) l.attrs[op.stat as 'karma'] = Math.max(0, Math.min(100, op.value));
+      else if (op.stat === 'money') l.money += op.value;
+      else if (op.stat === 'cure') { l.conditions = []; l.addictions = {}; l.stats.health = 100; }
+      else if (op.stat === 'freedom') { if (l.prison) l.prison.served = l.prison.years; l.heat = 0; }
+      else if (op.stat === 'immune') l.flags.godImmune = l.flags.godImmune ? 0 : 1;
+      bump();
+      break;
+    }
+    case 'giftIn': {
+      l.money += op.amount;
+      const c = countryOf(content, l.country);
+      addLog({ fr: `${op.from} m'a offert ${formatMoney(op.amount, c, 'fr')} ! 🎁`, en: `${op.from} gave me ${formatMoney(op.amount, c, 'en')}! 🎁` }, '🎁', 'good');
+      sfx.coin(); stage?.fx(['money']); bump(); autosave();
+      break;
+    }
+    case 'linkPeer': linkPeerNpc(op.s, op.role); break;
+  }
+  opMine = true;
+}
+
+/** Creates / updates the NPC that represents the other player in my life. */
+export function linkPeerNpc(s: PeerSummary, role: string) {
+  const l = life.value;
+  if (!l) return;
+  let n = l.npcs.find((x) => x.playerId === s.lifeId || x.playerId === 'peer');
+  if (!n) {
+    n = { id: l.nextId++, first: s.first, last: s.last, gender: s.gender, birthYear: l.year - s.age, alive: s.alive, role: role as Npc['role'], rel: 70, looks: s.looks, smarts: s.smarts, health: s.health, money: 0, traits: [], app: s.app as Npc['app'], met: l.year, flags: { player: 1 }, playerId: 'peer' };
+    l.npcs.push(n);
+  } else n.role = role as Npc['role'];
+  if (role === 'spouse') l.counters.marriages = (l.counters.marriages ?? 0) + 1;
+  refresh(n.id);
+  autosave();
+}
+
+/** Keeps the partner's NPC in sync with their real life (age, looks, alive). */
+export function syncPeerNpc(s: PeerSummary | null) {
+  const l = life.value;
+  if (!l || !s) return;
+  const n = l.npcs.find((x) => x.playerId === 'peer');
+  if (!n) return;
+  n.birthYear = l.year - s.age; n.app = s.app as Npc['app']; n.looks = s.looks; n.smarts = s.smarts; n.health = s.health; n.first = s.first; n.last = s.last;
+  if (!s.alive && n.alive) { n.alive = false; n.deathYear = l.year; addLog({ fr: `${s.first} est mort${s.gender === 'f' ? 'e' : ''}. Notre histoire continue dans mes souvenirs.`, en: `${s.first} died. Our story lives on in my memories.` }, '🕊️', 'bad'); }
+}
+
+export function lifeHash(l: Life) { return `${l.age}|${Math.round(l.money)}|${l.rng.join(',')}|${l.log.length}|${l.npcs.length}`; }
+
+export const doAgeUp = () => dispatch({ k: 'ageUp', age: life.value?.age });
+export function choiceSig(l: Life) { const p = l.queue[0]; return p ? `${p.key}:${l.age}:${l.queue.length}:${l.log.length}:${l.log[l.log.length - 1]?.lines.length ?? 0}` : ''; }
+export function pickChoice(i: number) {
+  const l = life.value;
+  if (!l || !l.queue.length || result.value) return;
+  if (sharedOnline() && l.queue[0].choices.length) { net.sendVote(choiceSig(l), i); duo.value = { ...duo.value, myVote: i }; sfx.click(); return; }
+  dispatch({ k: 'choose', i, sig: choiceSig(l) });
+}
+export const runAction = (id: string) => { if (result.value) return; dispatch({ k: 'action', id }); };
+export const runRelAction = (npc: number, id: string) => { if (result.value) return; dispatch({ k: 'rel', npc, id }); };
+export const apply = (offer: JobOffer) => dispatch({ k: 'apply', career: offer.careerId });
+export const enroll = (major: string, plan: TuitionPlan, grad = false) => dispatch({ k: 'enroll', major, plan, grad });
+export const date = (npc: number) => dispatch({ k: 'date', npc });
+export const openDating = () => dispatch({ k: 'dating' });
+export function isMine() { return opMine; }
 
 export { content, rev };

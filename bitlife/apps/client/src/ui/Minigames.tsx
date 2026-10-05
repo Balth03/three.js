@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { country, formatMoney, type Life } from '@bl/sim';
 import { content } from '@bl/data';
-import { lang, type MinigameKind } from '../state.ts';
+import { lang, type MinigameKind, rev } from '../state.ts';
 import { Btn } from './common.tsx';
 import { sfx } from '../audio.ts';
 
@@ -208,6 +208,7 @@ const ARG: Record<'trial' | 'case' | 'interrogation' | 'date', { intro: Opt; rou
 };
 
 function ArgueGame({ onDone, kind, l }: { onDone: Done; kind: keyof typeof ARG; l: Life }) {
+  void rev.value;
   const cfg = ARG[kind];
   const [round, setRound] = useState(0);
   const [meter, setMeter] = useState(40);
@@ -252,6 +253,7 @@ function cardVal(cards: number[]) {
 function cardLabel(c: number) { const r = c % 13; return `${['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'][r]}${SUITS[Math.floor(c / 13) % 4]}`; }
 
 function Blackjack({ onDone, l }: { onDone: Done; l: Life }) {
+  void rev.value;
   const c = country(content, l.country);
   const cash = Math.max(0, l.money);
   const bets = [0.05, 0.15, 0.4].map((f) => Math.max(Math.round(10 * c.price * c.currency.rate), Math.round(cash * f)));
@@ -353,6 +355,7 @@ function Cooking({ onDone }: { onDone: Done }) {
 }
 
 export function Minigame({ game, title, onDone, l }: { game: MinigameKind; title: string; onDone: Done; l: Life }) {
+  void rev.value;
   let body;
   switch (game) {
     case 'heist': body = <TimingGame kind="heist" onDone={onDone} />; break;

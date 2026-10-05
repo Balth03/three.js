@@ -1,3 +1,5 @@
+import * as duoMod from './duo.ts';
+import { duo } from './state.ts';
 import { render } from 'preact';
 import '@fontsource-variable/fredoka';
 import '@fontsource-variable/nunito';
@@ -31,4 +33,4 @@ syncStage();
 if (!params.has('shot')) stage.start();
 
 // Debug / test handle
-(window as unknown as Record<string, unknown>).game = { stage: getStage(), life, screen, rev, sim, content, ctl, showDeath, modal, paused: params.has('shot') };
+(window as unknown as Record<string, unknown>).game = { stage: getStage(), life, screen, rev, sim, content, ctl, showDeath, modal, paused: params.has('shot'), duo: duoMod, duoState: duo };

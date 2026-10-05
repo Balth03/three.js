@@ -4,6 +4,7 @@ import { modal, lang, profile, achToast, rev, bump, life } from '../state.ts';
 import { Sheet, Btn, Bar, STAT_META } from './common.tsx';
 import { portrait } from '../three/stage.ts';
 import { sfx } from '../audio.ts';
+import { dispatch } from '../game.ts';
 
 function safePortrait(gender: 'm' | 'f', age: number, app: Life['app']) { try { return portrait({ gender, age, app }, 'sleepy', 96); } catch { return ''; } }
 
@@ -63,6 +64,7 @@ export function Graveyard() {
 }
 
 export function FamilyTree({ l }: { l: Life }) {
+  void rev.value;
   const lg = lang.value;
   const ancestors = l.ancestors;
   const kids = l.npcs.filter((n) => n.role === 'child');
@@ -104,7 +106,7 @@ export function FamilyTree({ l }: { l: Life }) {
 
 export function GodPanel({ l }: { l: Life }) {
   void rev.value;
-  const set = (k: 'happy' | 'health' | 'smarts' | 'looks', v: number) => { l.stats[k] = clamp(v); bump(); };
+  const set = (k: string, v: number) => dispatch({ k: 'god', stat: k, value: clamp(v) });
   const c = content.countries.find((x) => x.id === l.country)!;
   return (
     <Sheet title={T('Mode Dieu', 'God mode')} icon="⚡" onClose={close}>
@@ -112,13 +114,13 @@ export function GodPanel({ l }: { l: Life }) {
         <div class="setting" key={k}><span>{STAT_META[k].icon} {T({ happy: 'Bonheur', health: 'Santé', smarts: 'Intelligence', looks: 'Apparence' }[k], k)}</span><input type="range" min="0" max="100" value={l.stats[k]} onInput={(e) => set(k, +(e.target as HTMLInputElement).value)} /></div>
       ))}
       {(['karma', 'fame', 'athletic', 'discipline'] as const).map((k) => (
-        <div class="setting" key={k}><span>{STAT_META[k].icon} {k}</span><input type="range" min="0" max="100" value={l.attrs[k]} onInput={(e) => { l.attrs[k] = +(e.target as HTMLInputElement).value; bump(); }} /></div>
+        <div class="setting" key={k}><span>{STAT_META[k].icon} {k}</span><input type="range" min="0" max="100" value={l.attrs[k]} onInput={(e) => set(k, +(e.target as HTMLInputElement).value)} /></div>
       ))}
       <div class="row-btns">
-        <Btn onClick={() => { l.money += Math.round(1e6 * c.price * c.currency.rate); bump(); sfx.coin(); }}>💰 +1M</Btn>
-        <Btn onClick={() => { l.conditions = []; l.addictions = {}; l.stats.health = 100; bump(); sfx.good(); }}>💊 {T('Guérir tout', 'Cure all')}</Btn>
-        <Btn onClick={() => { if (l.prison) { l.prison.served = l.prison.years; } l.heat = 0; bump(); }}>🔓 {T('Effacer la prison', 'Clear prison')}</Btn>
-        <Btn onClick={() => { l.flags.godImmune = l.flags.godImmune ? 0 : 1; bump(); }}>🛡️ {T('Immunité judiciaire', 'Legal immunity')} {l.flags.godImmune ? '✓' : ''}</Btn>
+        <Btn onClick={() => { dispatch({ k: 'god', stat: 'money', value: Math.round(1e6 * c.price * c.currency.rate) }); sfx.coin(); }}>💰 +1M</Btn>
+        <Btn onClick={() => { dispatch({ k: 'god', stat: 'cure', value: 0 }); sfx.good(); }}>💊 {T('Guérir tout', 'Cure all')}</Btn>
+        <Btn onClick={() => { dispatch({ k: 'god', stat: 'freedom', value: 0 }); }}>🔓 {T('Effacer la prison', 'Clear prison')}</Btn>
+        <Btn onClick={() => { dispatch({ k: 'god', stat: 'immune', value: 0 }); }}>🛡️ {T('Immunité judiciaire', 'Legal immunity')} {l.flags.godImmune ? '✓' : ''}</Btn>
       </div>
     </Sheet>
   );

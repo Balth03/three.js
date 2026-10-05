@@ -1,5 +1,6 @@
-import { life, rev, result, lang, settings } from '../state.ts';
+import { life, rev, result, lang, settings, duo } from '../state.ts';
 import { pickChoice, continueAfterResult } from '../game.ts';
+import { VoteHint } from './Duo.tsx';
 import { npcById, country, formatMoney } from '@bl/sim';
 import { content } from '@bl/data';
 import { t } from '../i18n.ts';
@@ -28,12 +29,13 @@ export function EventCard() {
         {actor && <div class="ev-actor">{actor.first} {actor.last} · <small>{npcLabel(actor, l)}</small></div>}
         <p class="ev-text">{res ? res.text[lg] : p!.text[lg]}</p>
         {res && <Deltas deltas={res.deltas} l={l} />}
+        {!res && !!p?.choices.length && <VoteHint />}
         <div class="ev-choices">
           {res ? (
             <button class="btn primary big" onClick={() => { sfx.click(); continueAfterResult(); }} autoFocus><kbd>␣</kbd>{t('next')}</button>
           ) : p!.choices.length ? (
             p!.choices.map((ch, i) => (
-              <button key={i} class="btn choice" onClick={() => pickChoice(i)} onMouseEnter={() => sfx.hover()}>
+              <button key={i} class={`btn choice ${duo.value.myVote === i ? 'voted' : ''}`} onClick={() => pickChoice(i)} onMouseEnter={() => sfx.hover()}>
                 <kbd>{i + 1}</kbd>
                 <span class="ch-label">{ch.label[lg]}</span>
                 {settings.value.previews && (
