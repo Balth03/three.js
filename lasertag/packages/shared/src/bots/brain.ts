@@ -10,6 +10,7 @@ type Goal = 'roam' | 'hold' | 'search' | 'recharge' | 'retreat';
 const PERCEPTION_INTERVAL = 0.1;
 const FOV_COS = Math.cos(58 * DEG);
 const MEMORY = 4;
+const HIST = 40;
 
 /**
  * A bot is a controller that turns perception into InputCmds — it never touches the simulation directly,
@@ -31,9 +32,18 @@ export class BotBrain {
   private lastSeen: Vec3 = { x: 0, y: 0, z: 0 };
   private lastSeenTime = -99;
   private reaction = 0;
-  private errYaw = 0;
-  private errPitch = 0;
   private aimHead = false;
+  private onTarget = 0;
+  private graceLeft = 0;
+  private graceSide = 1;
+  private ph1 = 0;
+  private ph2 = 0;
+  private histT = new Float64Array(HIST);
+  private histP = new Float32Array(HIST * 3);
+  private histHead = 0;
+  private histN = 0;
+  private _aim: Vec3 = { x: 0, y: 0, z: 0 };
+  private _aim2: Vec3 = { x: 0, y: 0, z: 0 };
 
   // aim state (smoothed view)
   private yaw = 0;
@@ -111,21 +121,31 @@ export class BotBrain {
     let wantYaw = this.yaw, wantPitch = 0;
     if (engaging && tgt) {
       this.reaction -= dt;
-      const aimY = tgt.pos.y + (this.aimHead ? (tgt.crouched ? 1.08 : 1.66) : (tgt.crouched ? 0.6 : 1.15));
+      this.onTarget += dt;
+      this.recordTarget(tgt);
+      // humans see with a delay: aim where the target WAS `lag` seconds ago, so strafing beats bad bots
+      const p = this.laggedTarget(this.sim.time - this.diff.lag, this._aim);
+      // ...but skilled players extrapolate the motion they saw (direction changes still fool them)
+      const lagged = this.laggedTarget(this.sim.time - this.diff.lag - 0.08, this._aim2);
+      const k = (this.diff.predict * this.diff.lag) / 0.08;
+      p.x += (p.x - lagged.x) * k; p.z += (p.z - lagged.z) * k;
+      const aimY = p.y + (this.aimHead ? (tgt.crouched ? 1.08 : 1.66) : (tgt.crouched ? 0.62 : 1.15));
       this.sim.eyePos(a, this.eye);
-      const dx = tgt.pos.x - this.eye.x, dz = tgt.pos.z - this.eye.z, dy = aimY - this.eye.y;
+      const dx = p.x - this.eye.x, dz = p.z - this.eye.z, dy = aimY - this.eye.y;
       const trueYaw = yawToward(dx, dz);
       const truePitch = Math.atan2(dy, Math.hypot(dx, dz));
-      // error converges ("flick then track"), with persistent human tremor
-      const k = Math.exp(-this.diff.trackRate * dt);
-      this.errYaw *= k; this.errPitch *= k;
-      const tremor = this.diff.aimError * 0.07 * DEG;
-      // target strafing adds tracking error proportional to its angular velocity
-      const lat = Math.abs(tgt.vel.x * Math.cos(trueYaw) - tgt.vel.z * Math.sin(trueYaw)) / Math.max(4, Math.hypot(dx, dz));
-      this.errYaw += (this.rng.gauss() * tremor) + this.rng.gauss() * lat * dt * 0.6;
-      wantYaw = trueYaw + this.errYaw;
-      wantPitch = truePitch + this.errPitch;
+      // aim error "walks in": wide on acquisition, settles toward a floor, wanders smoothly (never a laser lock)
+      const D = this.diff;
+      const mag = (D.aimFloor + (D.aimError - D.aimFloor) * Math.exp(-this.onTarget / D.settleTime)) * DEG;
+      const t = this.sim.time;
+      const wy = Math.sin(t * 2.3 + this.ph1) * 0.6 + Math.sin(t * 5.1 + this.ph2) * 0.4;
+      const wp = Math.sin(t * 1.9 + this.ph2) * 0.6 + Math.sin(t * 4.3 + this.ph1) * 0.4;
+      // grace shots: the first shots at a new target miss on purpose (a warning, not a death sentence)
+      const grace = this.graceLeft > 0 ? 2.6 * DEG * this.graceSide : 0;
+      wantYaw = trueYaw + wy * mag + grace;
+      wantPitch = truePitch + wp * mag * 0.55;
     } else {
+      this.onTarget = 0;
       wantPitch = -0.04;
       const look = this.lookTarget();
       if (look) wantYaw = yawToward(look.x - a.pos.x, look.z - a.pos.z);
@@ -167,7 +187,6 @@ export class BotBrain {
       if (!sim.hasLineOfSight(this.eye.x, this.eye.y, this.eye.z, b.pos.x, by, b.pos.z)) continue;
       // prefer current target, close, weak, facing away
       let score = d + (b.vest / 100) * 6 - (b.id === this.target ? 8 : 0);
-      if (b.isBot === false) score -= 0.5; // tiny bias so humans get attention, never more
       if (score < bestScore) { bestScore = score; best = b.id; }
     }
     if (best >= 0) {
@@ -204,51 +223,87 @@ export class BotBrain {
 
   private acquire(b: Agent) {
     const d = Math.hypot(b.pos.x - this.a.pos.x, b.pos.z - this.a.pos.z);
-    // surprise: targets behind us / far away take longer to react to
-    this.reaction = this.diff.reaction * (0.75 + this.rng.next() * 0.6) + (d > 25 ? 0.08 : 0);
-    const e = this.diff.aimError * DEG;
-    this.errYaw = this.rng.gauss() * e;
-    this.errPitch = this.rng.gauss() * e * 0.5;
+    // surprise: far targets and targets that just appeared take longer to react to
+    this.reaction = this.diff.reaction * (0.8 + this.rng.next() * 0.6) + (d > 22 ? 0.1 : 0);
+    this.onTarget = 0;
     this.aimHead = this.rng.next() < this.diff.headChance;
-    this.burstT = 0.3 + this.rng.next() * 0.6;
+    this.burstT = this.diff.burstOn * (0.6 + this.rng.next() * 0.8);
+    this.graceLeft = this.diff.graceShots;
+    this.graceSide = this.rng.next() < 0.5 ? -1 : 1;
+    this.ph1 = this.rng.next() * 100; this.ph2 = this.rng.next() * 100;
+    this.histN = 0;
   }
 
+  private recordTarget(t: Agent) {
+    const i = this.histHead = (this.histHead + 1) % HIST;
+    this.histT[i] = this.sim.time;
+    this.histP[i * 3] = t.pos.x; this.histP[i * 3 + 1] = t.pos.y; this.histP[i * 3 + 2] = t.pos.z;
+    this.histN = Math.min(HIST, this.histN + 1);
+  }
+  /** Target position at time `when`, interpolated from what we have seen. */
+  private laggedTarget(when: number, out: Vec3): Vec3 {
+    let k = this.histHead;
+    for (let n = 0; n < this.histN - 1; n++) {
+      const prev = (k - 1 + HIST) % HIST;
+      if (this.histT[prev] <= when) {
+        const t0 = this.histT[prev], t1 = this.histT[k];
+        const f = t1 > t0 ? Math.max(0, Math.min(1, (when - t0) / (t1 - t0))) : 1;
+        out.x = this.histP[prev * 3] + (this.histP[k * 3] - this.histP[prev * 3]) * f;
+        out.y = this.histP[prev * 3 + 1] + (this.histP[k * 3 + 1] - this.histP[prev * 3 + 1]) * f;
+        out.z = this.histP[prev * 3 + 2] + (this.histP[k * 3 + 2] - this.histP[prev * 3 + 2]) * f;
+        return out;
+      }
+      k = prev;
+    }
+    out.x = this.histP[k * 3]; out.y = this.histP[k * 3 + 1]; out.z = this.histP[k * 3 + 2];
+    return out;
+  }
+
+  private lastWantYaw = 0;
   private turnToward(wantYaw: number, wantPitch: number, dt: number, engaging: boolean) {
     const maxTurn = this.diff.turnSpeed * DEG * (engaging ? 1 : 0.55);
+    const gain = engaging ? this.diff.trackGain : 6;
+    // feed-forward the target's angular velocity (smooth pursuit) + proportional correction (saccade)
+    const ff = engaging ? wrapAngle(wantYaw - this.lastWantYaw) / Math.max(dt, 1e-3) : 0;
+    this.lastWantYaw = wantYaw;
     const dy = wrapAngle(wantYaw - this.yaw);
-    // critically damped-ish approach with a speed cap: humans decelerate near the target
-    const desiredVel = Math.max(-maxTurn, Math.min(maxTurn, dy * (engaging ? 14 : 6)));
-    this.yawVel += (desiredVel - this.yawVel) * Math.min(1, dt * 20);
+    const desiredVel = Math.max(-maxTurn, Math.min(maxTurn, dy * gain + ff * Math.min(1, gain / 20)));
+    this.yawVel += (desiredVel - this.yawVel) * Math.min(1, dt * (engaging ? gain * 2 : 20));
     this.yaw = wrapAngle(this.yaw + this.yawVel * dt);
     const dp = wantPitch - this.pitch;
-    this.pitch += Math.max(-maxTurn * dt, Math.min(maxTurn * dt, dp * Math.min(1, dt * (engaging ? 14 : 5))));
+    this.pitch += Math.max(-maxTurn * dt, Math.min(maxTurn * dt, dp * Math.min(1, dt * (engaging ? gain : 5))));
   }
 
   // ---------------------------------------------------------------- combat
   private combat(tgt: Agent, dt: number) {
-    const a = this.a, cmd = this.cmd;
+    const a = this.a, cmd = this.cmd, D = this.diff;
     const w = WEAPONS[a.weaponId];
     if (this.reaction > 0) return;
     this.sim.eyePos(a, this.eye);
     const dx = tgt.pos.x - this.eye.x, dz = tgt.pos.z - this.eye.z;
     const d = Math.hypot(dx, dz);
+    if (d > D.maxRange) return; // too far in the haze: reposition instead of plinking
+    // attack tokens: only a few bots may shoot the same human at once
+    if (!tgt.isBot && !this.sim.attackToken(a.id, tgt.id, D.tokens)) return;
     const aimYaw = yawToward(dx, dz);
     const off = Math.abs(wrapAngle(aimYaw - this.yaw)) / DEG;
-    const threshold = Math.max(this.diff.fireThresholdDeg, Math.atan2(0.32, d) / DEG);
-    // overheat management: good bots stop before the lock, recruits spray into it
-    const careful = this.diff.trackRate > 4;
-    if (this.pauseT > 0) { this.pauseT -= dt; }
-    else if (off < threshold && a.overheated <= 0 && a.venting <= 0) {
-      if (!careful || a.heat < w.heatMax * 0.86) {
-        cmd.buttons |= Btn.Fire;
-        this.burstT -= dt;
-        if (careful && this.burstT <= 0 && d > 14) { this.pauseT = 0.18 + this.rng.next() * 0.2; this.burstT = 0.5 + this.rng.next() * 0.7; }
-      } else if (a.heat >= w.heatMax * 0.86 && this.rng.next() < dt * 3) {
-        cmd.buttons |= Btn.Vent;
-      }
+    if (off > 12) return; // still turning toward the target
+    // bursts with pauses (the pause also lets the spread recover)
+    if (this.pauseT > 0) { this.pauseT -= dt; return; }
+    if (a.overheated > 0 || a.venting > 0) return;
+    if (a.heat >= w.heatMax * 0.85) {
+      if (D.burstOff < 0.5 || this.rng.next() < dt * 2) cmd.buttons |= Btn.Vent;
+      return;
+    }
+    cmd.buttons |= Btn.Fire;
+    if (a.fireCooldown <= 0 && this.graceLeft > 0) this.graceLeft--;
+    this.burstT -= dt;
+    if (this.burstT <= 0) {
+      this.pauseT = D.burstOff * (0.6 + this.rng.next() * 0.8);
+      this.burstT = D.burstOn * (0.6 + this.rng.next() * 0.8);
     }
     // marksmen aim down sights at range
-    if (d > 16 && (this.a.personality === 'marksman' || this.a.personality === 'camper')) cmd.buttons |= Btn.Aim;
+    if (d > 16 && (a.personality === 'marksman' || a.personality === 'camper')) cmd.buttons |= Btn.Aim;
     if (this.crouchFire) cmd.buttons |= Btn.Crouch;
   }
 

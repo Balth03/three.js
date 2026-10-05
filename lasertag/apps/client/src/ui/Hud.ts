@@ -72,6 +72,8 @@ export class Hud {
   private lastScores = '';
   private zoneHitTimers = new Map<string, number>();
   private _v = new THREE.Vector3();
+  private dmgLayer = h('div', 'dmgnums');
+  private dmgNums: { el: HTMLElement; p: THREE.Vector3; t: number; drift: number }[] = [];
 
   constructor(parent: HTMLElement) {
     const r = this.root;
@@ -97,7 +99,7 @@ export class Hud {
       this.dmgdirs.append(el);
       this.dmgPool.push({ el, angle: 0, t: 0 });
     }
-    r.append(this.vHit, this.vLow, this.invFrame, this.markers, this.scorebar, this.crosshair, this.hitmarkerEl, this.dmgdirs,
+    r.append(this.dmgLayer, this.vHit, this.vLow, this.invFrame, this.markers, this.scorebar, this.crosshair, this.hitmarkerEl, this.dmgdirs,
       this.killfeedEl, this.center, this.toastLayer, this.vest, this.energy, this.zonehint, this.shutdownEl, this.scoreboardEl);
     parent.append(r, this.debugEl);
   }
@@ -213,13 +215,45 @@ export class Hud {
     }
     for (let k = mi; k < this.markerPool.length; k++) this.markerPool[k].style.display = 'none';
 
+    // floating damage numbers
+    for (const n of this.dmgNums) {
+      if (n.t <= 0) continue;
+      n.t -= dt;
+      if (n.t <= 0) { n.el.style.display = 'none'; continue; }
+      const p = this._v.copy(n.p);
+      p.y += (0.9 - n.t) * 0.6;
+      p.project(camera);
+      if (p.z > 1) { n.el.style.display = 'none'; continue; }
+      n.el.style.display = '';
+      n.el.style.transform = `translate(calc(${((p.x + 1) / 2) * 100}vw - 50% + ${n.drift * (0.9 - n.t) * 40}px), calc(${((1 - p.y) / 2) * 100}vh - 50%))`;
+      n.el.style.opacity = String(Math.min(1, n.t * 3));
+    }
     if (this.centerTimer > 0) { this.centerTimer -= dt; if (this.centerTimer <= 0) this.center.innerHTML = ''; }
     if (this.hitTimer > 0) { this.hitTimer -= dt; if (this.hitTimer <= 0) this.vHit.classList.remove('on'); }
     if (this.scoreboardOn) { this.sbTimer -= dt; if (this.sbTimer <= 0) { this.renderScoreboard(sim, me); this.sbTimer = 0.4; } }
   }
 
   // ------------------------------------------------------------------ events
+  /** World-space damage number (kind: hit, head, back, kill). */
+  damageNumber(p: THREE.Vector3, text: string, kind: 'hit' | 'head' | 'back' | 'kill') {
+    let n = this.dmgNums.find((x) => x.t <= 0);
+    if (!n) {
+      if (this.dmgNums.length >= 20) n = this.dmgNums[0];
+      else { n = { el: h('div', 'dmgnum'), p: new THREE.Vector3(), t: 0, drift: 0 }; this.dmgLayer.append(n.el); this.dmgNums.push(n); }
+    }
+    // fan out consecutive numbers so a burst reads as a burst, not a smear
+    const live = this.dmgNums.filter((x) => x.t > 0.45).length;
+    n.p.copy(p);
+    n.p.y += (live % 4) * 0.16;
+    n.t = kind === 'kill' ? 1.1 : 0.9;
+    n.drift = (Math.random() < 0.5 ? -1 : 1) * (0.8 + Math.random() * 1.4);
+    n.el.className = `dmgnum ${kind}`;
+    n.el.textContent = text;
+    n.el.style.animation = 'none'; void n.el.offsetWidth; n.el.style.animation = '';
+  }
+
   hitmarker(kind: 'hit' | 'head' | 'kill') {
+    this.crosshair.classList.remove('kick'); void this.crosshair.offsetWidth; this.crosshair.classList.add('kick');
     const el = this.hitmarkerEl;
     el.classList.remove('show', 'kill', 'head');
     void el.offsetWidth;

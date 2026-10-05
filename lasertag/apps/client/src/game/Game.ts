@@ -69,6 +69,7 @@ export class Game {
   private trauma = 0;
   private landDip = 0;
   private fovK = 0;
+  private fovPunch = 0;
   private roll = 0;
   private bobT = 0;
   private stepDist = new Map<number, number>();
@@ -80,6 +81,11 @@ export class Game {
   private briefT = 0;
   private lastCount = -1;
   private hintEl: HTMLElement | null = null;
+  /** hit-stop: simulation time scale (1 = normal) and how long the freeze lasts (real seconds) */
+  private hitstop = 0;
+  private comboTarget = -1;
+  private combo = 0;
+  private comboT = 0;
   /** look-dev: stop the simulation clock */
   frozen = false;
   private fixedCam: { p: THREE.Vector3; t: THREE.Vector3 } | null = null;
@@ -365,7 +371,10 @@ export class Game {
     // fixed-step simulation
     const t0 = performance.now();
     if (running) {
-      this.acc += dt;
+      // hit-stop (Ultrakill-style): the world nearly freezes for a beat when you switch someone off
+      let scale = 1;
+      if (this.hitstop > 0) { this.hitstop -= dt; scale = this.hitstop > 0.03 ? 0.08 : 0.5; }
+      this.acc += dt * scale;
       let steps = 0;
       while (this.acc >= sim.dt && steps < 6) {
         if (this.me) this.fillCmd();
@@ -528,8 +537,12 @@ export class Game {
 
   private setFov(dt: number, ads: boolean, fast: boolean) {
     const base = verticalFov(this.settings.fov);
-    const want = ads ? base * WEAPONS.photon7.adsFovMul : base + (fast ? 4 : 0);
-    this.fovK += (want - this.fovK) * Math.min(1, dt * 12);
+    const sp = this.me ? Math.hypot(this.me.vel.x, this.me.vel.z) : 0;
+    // speed widens the view (sense of speed); each shot gives a tiny inward punch
+    const speedFov = Math.min(9, Math.max(0, sp - 7) * 1.4);
+    this.fovPunch = Math.max(0, this.fovPunch - dt * 14);
+    const want = (ads ? base * WEAPONS.photon7.adsFovMul : base + (fast ? 2 : 0) + speedFov) - this.fovPunch * 0.8;
+    this.fovK += (want - this.fovK) * Math.min(1, dt * 16);
     if (Math.abs(this.camera.fov - this.fovK) > 0.01) {
       this.camera.fov = this.fovK;
       this.camera.updateProjectionMatrix();
@@ -594,7 +607,9 @@ export class Game {
         }
         if (isMe(a.id)) {
           this.vm.onShot();
-          this.punchVel += WEAPONS[a.weaponId].recoil.pitchKickDeg * DEG * 18;
+          this.punchVel += WEAPONS[a.weaponId].recoil.pitchKickDeg * DEG * 22;
+          this.trauma = Math.min(0.35, this.trauma + 0.05);
+          this.fovPunch = 1;
           this.combatHeat = Math.min(1, this.combatHeat + 0.04);
           this.sfx?.shot(null, a.team, true);
           this.input.rumble(0.15, 0.3, 40);
@@ -609,12 +624,16 @@ export class Game {
         this.views.get(e.target)?.onHit(e.zone);
         this.localView?.agent.id === e.target && this.localView.onHit(e.zone);
         if (isMe(e.shooter) && e.damage > 0) {
+          if (this.comboTarget === e.target && this.comboT > 0) this.combo++; else { this.combo = 0; this.comboTarget = e.target; }
+          this.comboT = 1.2;
           if (target.vest > 0) {
             this.hud.hitmarker(e.zone === 'head' ? 'head' : 'hit');
-            this.sfx?.hitConfirm(e.zone, false);
+            this.sfx?.hitConfirm(e.zone, false, this.combo);
+            if (e.zone === 'head') this.hitstop = Math.max(this.hitstop, 0.035);
           }
-          if (e.zone === 'head') this.hud.toast('TIR AU CASQUE', true);
-          if (e.zone === 'back') this.hud.points('DOS +30');
+          const tp = this.views.get(e.target)?.root.position ?? target.pos;
+          this._v.set(tp.x, tp.y + (e.zone === 'head' ? 1.85 : 1.35), tp.z);
+          this.hud.damageNumber(this._v, e.zone === 'head' ? `${e.damage} ◎` : e.zone === 'back' ? `${e.damage} DOS` : String(e.damage), e.zone === 'head' ? 'head' : e.zone === 'back' ? 'back' : 'hit');
           this.combatHeat = Math.min(1, this.combatHeat + 0.08);
         }
         if (isMe(e.target)) {
@@ -641,6 +660,11 @@ export class Game {
         if (isMe(k.id)) {
           this.hud.hitmarker('kill');
           this.sfx?.hitConfirm(e.zone, true);
+          if (!this.settings.reducedFlashes) this.hitstop = 0.11;
+          this.trauma = Math.min(1, this.trauma + 0.25);
+          this.combo = 0; this.comboTarget = -1;
+          this._v.set(v.pos.x, v.pos.y + 2.0, v.pos.z);
+          this.hud.damageNumber(this._v, 'ÉTEINT', 'kill');
           this.hud.toast(`${v.name.toUpperCase()} ÉTEINT${e.zone === 'head' ? ' · CASQUE' : ''}`, true);
           this.hud.points('+100');
           this.combatHeat = Math.min(1, this.combatHeat + 0.25);
@@ -743,6 +767,9 @@ export class Game {
     const c = this.camera;
     const f = c.getWorldDirection(this._v2);
     this.audio.setListener(c.position.x, c.position.y, c.position.z, f.x, f.y, f.z);
+    this.comboT = Math.max(0, this.comboT - dt);
+    if (this.mode === 'match' && this.me && !this.paused) this.sfx?.setWind(this.me.state === AgentState.Active ? Math.hypot(this.me.vel.x, this.me.vel.z) : 0);
+    else this.sfx?.setWind(0);
     if (this.mode === 'match' && this.sim && this.me) {
       const m = this.sim.mode;
       this.combatHeat = Math.max(0, this.combatHeat - dt * 0.06);

@@ -206,6 +206,8 @@ export class Simulation {
   /** Current total spread cone (degrees) for an agent, as used by the next shot. */
   spreadDeg(a: Agent): number {
     const s = WEAPONS[a.weaponId].spread;
+    // a deliberate first shot (feet planted, trigger rested) is laser-perfect
+    if (s.firstShotPerfect && a.grounded && this.time - a.lastShotTime > 0.32 && Math.hypot(a.vel.x, a.vel.z) < 2.2) return 0;
     const speed = Math.min(1, Math.hypot(a.vel.x, a.vel.z) / GAME.movement.runSpeed);
     let deg = s.baseDeg + s.moveDeg * speed * speed + (a.grounded ? 0 : s.airDeg);
     if (a.crouched && a.sliding <= 0) deg *= s.crouchMul;
@@ -254,7 +256,7 @@ export class Simulation {
     let zone: DamageZone | null = null;
     for (const b of this.agents) {
       if (b === a || b.state !== AgentState.Active || b.team === a.team) continue;
-      const h = rayVsPose(o, d, computePose(b, this.pose), t, this.rayHit);
+      const h = rayVsPose(o, d, computePose(b, this.pose), t, this.rayHit, a.isBot ? w.hitboxBonus.bot : w.hitboxBonus.human);
       if (h) { t = h.t; target = b; zone = h.zone; }
     }
     const to = { x: o.x + d.x * t, y: o.y + d.y * t, z: o.z + d.z * t };
@@ -362,6 +364,15 @@ export class Simulation {
     this.brains.get(a.id)?.onSpawn();
   }
 
+  /** Move an agent instantly (teleporters, tests). Keeps the physics capsule in sync. */
+  teleport(a: Agent, x: number, y: number, z: number, yaw = a.yaw) {
+    a.pos.x = a.prevPos.x = x; a.pos.y = a.prevPos.y = y; a.pos.z = a.prevPos.z = z;
+    a.vel.x = a.vel.y = a.vel.z = 0;
+    a.yaw = yaw;
+    placeCollider(a, this.colliders[a.id]);
+    this.world.step();
+  }
+
   // ------------------------------------------------------------------ zones
   zoneContains(z: MapZone, p: Vec3): boolean {
     if (z.type === 'station') return Math.hypot(p.x - z.center[0], p.z - z.center[2]) < GAME.energy.stationRadius && Math.abs(p.y - z.center[1]) < 2;
@@ -391,6 +402,19 @@ export class Simulation {
       a.energy = Math.min(E.passiveRegenCap, a.energy + E.passiveRegenRate * dt);
     }
     if (this.time - a.lastHitTime > V.regenDelay) a.vest = Math.min(V.maxCharge, a.vest + V.regenRate * dt);
+  }
+
+  private tokens = new Map<number, Map<number, number>>();
+  /**
+   * Attack tokens (Doom 2016 style): at most `max` bots may shoot a given human at the same time.
+   * A token is held while the bot keeps asking for it and expires 0.6 s after its last request.
+   */
+  attackToken(bot: number, target: number, max: number): boolean {
+    let m = this.tokens.get(target);
+    if (!m) { m = new Map(); this.tokens.set(target, m); }
+    for (const [b, t] of m) if (this.time - t > 0.6 || this.agents[b].state !== AgentState.Active) m.delete(b);
+    if (m.has(bot) || m.size < max) { m.set(bot, this.time); return true; }
+    return false;
   }
 
   /** Line of sight between two points against the static arena. */

@@ -66,6 +66,22 @@ describe('movement', () => {
   });
 });
 
+describe('movement tech', () => {
+  it('slide boosts speed and chained jumps keep it (no friction on a perfect hop)', async () => {
+    const { sim, a } = await duel();
+    place(a, -16, -10.4, -Math.PI / 2); // clear lane along the gallery wall, facing +x
+    const yaw = -Math.PI / 2;
+    for (let i = 0; i < 40; i++) { sim.setInput(a.id, cmd({ moveY: 1, yaw, buttons: Btn.Sprint })); sim.step(); }
+    const sprint = Math.hypot(a.vel.x, a.vel.z);
+    sim.setInput(a.id, cmd({ moveY: 1, yaw, buttons: Btn.Sprint | Btn.Crouch })); sim.step();
+    expect(a.sliding).toBeGreaterThan(0);
+    expect(Math.hypot(a.vel.x, a.vel.z)).toBeGreaterThan(sprint + 2);
+    // slide-jump then bunny hop with jump held: speed should stay above sprint speed
+    for (let i = 0; i < 70; i++) { sim.setInput(a.id, cmd({ moveY: 1, yaw, buttons: Btn.Jump | (i % 2 ? 0 : Btn.Jump) })); sim.step(); }
+    expect(Math.hypot(a.vel.x, a.vel.z)).toBeGreaterThan(GAME.movement.sprintSpeed * 0.95);
+  });
+});
+
 describe('weapon & vest', () => {
   it('fires at the data rate and spends energy', async () => {
     const { sim, a } = await duel();

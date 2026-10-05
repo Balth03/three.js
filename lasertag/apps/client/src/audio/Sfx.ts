@@ -66,7 +66,12 @@ export class Sfx {
     this.osc('square', 1300 * p, 90 * p, t, 0.1, 0.16, d);
     this.osc('sine', 5200 * p, 900 * p, t, 0.05, 0.12, d);
     this.noise(t, 0.05, 0.25, d, 'bandpass', 4000, 1.5);
-    if (local) this.osc('sine', 120, 50, t, 0.09, 0.35, d); // weight in the hands
+    if (local) {
+      // weight in the hands: sub thump + a short crackle tail
+      this.osc('sine', 150, 42, t, 0.11, 0.5, d);
+      this.osc('triangle', 700 * p, 220 * p, t, 0.06, 0.12, d);
+      this.noise(t + 0.01, 0.09, 0.08, d, 'highpass', 5000, 0.8, 9000);
+    }
   }
 
   impact(pos: Pos, occluded = false) {
@@ -76,22 +81,26 @@ export class Sfx {
     this.osc('sine', 1800 * this.rnd(0.1), 600, t, 0.06, 0.08, d);
   }
 
-  hitConfirm(zone: string, deactivated: boolean) {
+  /** `combo` = consecutive hits on the same target: each one climbs a semitone (a ladder you hear converge). */
+  hitConfirm(zone: string, deactivated: boolean, combo = 0) {
     const t = this.ctx.currentTime;
-    const d = this.out(null, false, 0.6);
+    const d = this.out(null, false, 0.7);
     if (deactivated) {
-      for (const [k, f] of [880, 1318, 1760].entries()) this.osc('triangle', f, f, t + k * 0.045, 0.32, 0.18, d);
-      this.osc('sine', 220, 55, t, 0.4, 0.4, d);
+      // the "lights out" chord + a deep sub drop and a glassy shimmer
+      for (const [k, f] of [659, 988, 1318, 1976].entries()) this.osc('triangle', f, f * 1.01, t + k * 0.035, 0.45, 0.16, d);
+      this.osc('sine', 180, 38, t, 0.5, 0.6, d, 0.004);
+      this.osc('square', 90, 45, t, 0.18, 0.12, d);
+      this.noise(t, 0.35, 0.18, d, 'highpass', 6000, 0.7, 12000);
       return;
     }
-    if (zone === 'head') {
-      this.osc('sine', 2400, 2400, t, 0.08, 0.22, d);
-      this.osc('sine', 3600, 3600, t + 0.04, 0.12, 0.2, d);
-    } else {
-      const f = zone === 'back' ? 1500 : zone === 'blaster' ? 900 : 1900;
-      this.osc('sine', f, f * 1.02, t, 0.06, 0.2, d);
-      this.osc('square', f * 2, f * 2, t, 0.025, 0.05, d);
-    }
+    const semis = Math.min(combo, 7);
+    const f = (zone === 'head' ? 2600 : zone === 'back' ? 1650 : zone === 'blaster' ? 1000 : 1900) * Math.pow(2, semis / 12);
+    this.osc('sine', f, f * 1.02, t, 0.07, 0.24, d);
+    this.osc('square', f * 2, f * 2, t, 0.02, 0.05, d);
+    // body: a short low "thwack" so a hit has weight, not just a beep
+    this.osc('sine', 260, 90, t, 0.07, 0.25, d);
+    this.noise(t, 0.04, 0.16, d, 'bandpass', 2400, 2);
+    if (zone === 'head') { this.osc('sine', f * 1.5, f * 1.5, t + 0.05, 0.14, 0.18, d); this.osc('triangle', f * 2, f * 2, t + 0.09, 0.16, 0.08, d); }
   }
 
   hurt(fromPos: Pos | null) {
@@ -186,6 +195,23 @@ export class Sfx {
     const t = this.ctx.currentTime;
     const d = this.out(null, false, 0.25);
     this.osc('sine', 600, 1200, t, 0.18, 0.06, d, 0.04);
+  }
+
+  private wind: { g: GainNode; f: BiquadFilterNode } | null = null;
+  /** Continuous air rush that rises with speed (sprint, slide, bunny hops). */
+  setWind(speed: number) {
+    const ctx = this.ctx;
+    if (!this.wind) {
+      const n = ctx.createBufferSource(); n.buffer = this.a.noise; n.loop = true;
+      const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 0.6; f.frequency.value = 400;
+      const g = ctx.createGain(); g.gain.value = 0;
+      n.connect(f).connect(g).connect(this.a.sfx); n.start();
+      this.wind = { g, f };
+    }
+    const k = Math.max(0, Math.min(1, (speed - 8) / 6));
+    const t = ctx.currentTime;
+    this.wind.g.gain.setTargetAtTime(k * k * 0.16, t, 0.12);
+    this.wind.f.frequency.setTargetAtTime(400 + k * 1400, t, 0.12);
   }
 
   ui(kind: 'hover' | 'click' | 'back' | 'tick' | 'go') {

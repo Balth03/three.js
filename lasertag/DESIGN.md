@@ -64,6 +64,8 @@ Contrôleur capsule kinématique (Rapier KCC), pas fixe **60 Hz** partagé clien
 - **Glisse** : Ctrl en sprint → impulsion +3 m/s, friction faible 0.8 s, capsule basse.
 - Marches auto 0.45 m, pentes ≤ 46°, snap au sol 0.3 m. Coyote time 0.1 s, buffer de saut 0.12 s.
 
+> Révisé après le premier retour de test (voir D11–D17) : course 7.6, sprint 10.2, air-control QuakeWorld (vitesse projetée plafonnée à 0.85 m/s, accél. 12), bunny-hop (pas de friction le tick du saut, auto-hop en maintenant Espace), glissade dès 5.5 m/s (aussi à l'atterrissage si accroupi), slide-jump, accélération en pente, gravité ×1.3 en descente, vitesse max 15 m/s.
+
 ### 4.2 Tir (`data/weapons/*.json`)
 Blaster de base « **Photon-7** » : auto, 7.5 tirs/s, portée 90 m, énergie 100 (2 / tir), chaleur +7 / tir, surchauffe à 100 → verrou 1.3 s ; `R` = purge manuelle (0.7 s). Clic droit = visée (FOV ×0.75, dispersion ×0.35, déplacement ×0.6).
 Dispersion : base 0.35°, +mouvement, +air, +tir continu (bloom de dispersion récupéré en 0.25 s). Recul visuel caméra (pitch) récupéré automatiquement — la visée reste précise.
@@ -167,3 +169,10 @@ Cible 60 FPS stables PC milieu de gamme (GTX 1060/RX 580/iGPU récent en Low), 1
 - **D8** — Mort subite TDM limitée à 60 s pour garder des parties courtes.
 - **D9** — Mouvement : saut simple + glisse pour le soldat de base ; double saut / dash réservés aux classes (étape 2) pour donner du sens aux classes.
 - **D10** — Énergie à régénération passive plafonnée à 30 % : jamais bloqué, mais la base/les bornes restent un vrai enjeu.
+- **D11** — *Retour joueur : « mouvement et tir pas assez satisfaisants, bots trop forts ».* Recherche : « Juice it or lose it » (Jonasson & Purho), hitstop d'Ultrakill (gel 0,1–0,25 s), physique QuakeWorld (air-strafe, bunny-hop), bot de Counter-Strike (GDC : crédible > fort), *grace shots* de BioShock, jetons d'attaque de Doom (2016).
+- **D12** — Bug corrigé : le tick où la capsule changeait de taille (accroupi/glissade), le KCC renvoyait un déplacement nul et la vitesse était remise à 0 → la glissade tuait l'élan. La vitesse n'est plus corrigée que sur collisions réelles.
+- **D13** — Tir « précis comme un laser » : dispersion de base 0,12°, 1er tir parfait à l'arrêt (≥ 0,32 s sans tirer), bloom max 0,9°. Hitboxes +4,5 cm pour les tirs humains (générosité côté tireur, standard des arena shooters ; même règle pour tous les humains en ligne).
+- **D14** — Juice : hit-stop 0,11 s à l'extinction (0,035 s sur casque, désactivable via « réduire les flashs »), chiffres de dégâts en 3D, son de touche qui monte d'un demi-ton à chaque touche consécutive, FOV qui s'élargit avec la vitesse, souffle d'air au-delà de 8 m/s, recul de l'arme plus marqué.
+- **D15** — Visée des bots : ils visent la position *perçue avec retard* (90–260 ms) avec une anticipation partielle, une erreur qui se resserre en 0,5–1,4 s, une rotation à gain fini, des rafales avec pauses et une portée max. Bouger bien est donc une vraie défense. Mesures (`tools/sim/bot-aim.ts`, cible à 14 m) : temps pour t'éteindre immobile/en esquive — Recrue 9 s/15 s+, Pro 5,7/9,3 s, Élite 3/5,6 s, Légende 1,9/2 s.
+- **D16** — Jetons d'attaque : au plus 1/2/3/4 bots (Recrue→Légende) peuvent tirer sur un même humain en même temps. Premiers tirs volontairement ratés (3/2/1/0).
+- **D17** — Auto-hop en maintenant Espace (accessibilité ; le timing parfait n'est plus requis pour garder l'élan).

@@ -86,18 +86,19 @@ export function rayVCapsule(ox: number, oy: number, oz: number, dx: number, dy: 
 export interface RayHit { t: number; zone: DamageZone }
 
 /** Nearest vest sensor hit along the ray, or null. */
-export function rayVsPose(o: Vec3, d: Vec3, p: HitboxPose, maxT: number, out: RayHit): RayHit | null {
+/** `bonus` inflates every sensor (metres): shooter-favouring generosity, like hitscan in most arena shooters. */
+export function rayVsPose(o: Vec3, d: Vec3, p: HitboxPose, maxT: number, out: RayHit, bonus = 0): RayHit | null {
   let t = maxT;
   let zone: DamageZone | null = null;
-  let tt = raySphere(o.x, o.y, o.z, d.x, d.y, d.z, p.head, p.headR);
+  let tt = raySphere(o.x, o.y, o.z, d.x, d.y, d.z, p.head, p.headR + bonus * 0.5);
   if (tt < t) { t = tt; zone = 'head'; }
-  tt = raySphere(o.x, o.y, o.z, d.x, d.y, d.z, p.blaster, p.blasterR);
+  tt = raySphere(o.x, o.y, o.z, d.x, d.y, d.z, p.blaster, p.blasterR + bonus * 0.5);
   if (tt < t) { t = tt; zone = 'blaster'; }
-  tt = raySphere(o.x, o.y, o.z, d.x, d.y, d.z, p.shoulderL, p.shoulderRad);
+  tt = raySphere(o.x, o.y, o.z, d.x, d.y, d.z, p.shoulderL, p.shoulderRad + bonus);
   if (tt < t) { t = tt; zone = 'shoulder'; }
-  tt = raySphere(o.x, o.y, o.z, d.x, d.y, d.z, p.shoulderR, p.shoulderRad);
+  tt = raySphere(o.x, o.y, o.z, d.x, d.y, d.z, p.shoulderR, p.shoulderRad + bonus);
   if (tt < t) { t = tt; zone = 'shoulder'; }
-  tt = rayVCapsule(o.x, o.y, o.z, d.x, d.y, d.z, p.tx, p.tyBottom, p.tyTop, p.tz, p.tr);
+  tt = rayVCapsule(o.x, o.y, o.z, d.x, d.y, d.z, p.tx, p.tyBottom - bonus, p.tyTop, p.tz, p.tr + bonus);
   if (tt < t) {
     t = tt;
     // front plate vs back plate: which side of the torso did the ray enter?

@@ -101,6 +101,7 @@ export class Viewmodel {
   // animation state
   private kick = 0;
   private kickVel = 0;
+  private kickYaw = 0;
   private swayX = 0;
   private swayY = 0;
   private bobT = 0;
@@ -167,7 +168,8 @@ export class Viewmodel {
   }
 
   onShot() {
-    this.kickVel += 9;
+    this.kickVel += 13;
+    this.kickYaw = (Math.random() - 0.5) * 0.03;
     this.shotGlow = 1;
   }
   onLand(speed: number) { this.landK = Math.min(1, speed / 12); }
@@ -239,7 +241,7 @@ export class Viewmodel {
     p.z += this.kick * 0.045;
     this.gun.rotation.set(
       this.kick * 0.09 - this.sprintK * 0.35 + this.swayY * 2 + this.ventK * 0.2,
-      this.sprintK * 0.7 + this.swayX * 2 + (1 - this.adsK) * 0.04,
+      this.sprintK * 0.7 + this.swayX * 2 + (1 - this.adsK) * 0.04 + this.kickYaw * this.kick * 20,
       this.sprintK * 0.25 + this.ventK * 0.9 + Math.sin(time * 70) * 0.01 * (a.jammed > 0 ? 1 : 0),
     );
 

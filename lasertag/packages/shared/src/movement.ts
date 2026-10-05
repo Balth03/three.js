@@ -73,20 +73,25 @@ export function stepMovement(a: Agent, cmd: InputCmd, dt: number, ctx: MoveConte
 
   // ---- timers
   a.coyote = a.grounded ? M.coyoteTime : Math.max(0, a.coyote - dt);
-  a.jumpBuffer = pressed & Btn.Jump ? M.jumpBuffer : Math.max(0, a.jumpBuffer - dt);
+  // holding jump re-jumps on landing (auto-hop): chains keep their momentum without frame-perfect timing
+  const landedHolding = (btn & Btn.Jump) !== 0 && a.grounded && a.landImpact > 0;
+  a.jumpBuffer = (pressed & Btn.Jump) || landedHolding ? M.jumpBuffer : Math.max(0, a.jumpBuffer - dt);
   a.slideCooldown = Math.max(0, a.slideCooldown - dt);
 
   const hSpeed = Math.hypot(a.vel.x, a.vel.z);
   const wantCrouch = (btn & Btn.Crouch) !== 0;
 
-  // ---- slide start: crouch while sprinting fast on the ground
-  if ((pressed & Btn.Crouch) && a.grounded && hSpeed >= M.slideMinSpeed && a.slideCooldown <= 0) {
+  // ---- slide: crouch while moving fast on the ground, or land with crouch held (slide-landing)
+  const justLanded = a.grounded && a.airTime === 0 && a.landImpact > 0;
+  const slideTrigger = (pressed & Btn.Crouch) || (justLanded && wantCrouch);
+  if (slideTrigger && a.grounded && hSpeed >= M.slideMinSpeed && a.slideCooldown <= 0) {
     a.sliding = M.slideDuration;
     a.slideCooldown = M.slideDuration + M.slideCooldown;
     const boost = Math.min(M.slideMaxSpeed, hSpeed + M.slideBoost) / hSpeed;
     a.vel.x *= boost; a.vel.z *= boost;
     ctx.events.push({ type: 'slide', agent: a.id });
   }
+  a.landImpact = 0;
   if (a.sliding > 0) {
     a.sliding -= dt;
     if (!wantCrouch || hSpeed < M.crouchSpeed) a.sliding = 0;
@@ -94,7 +99,9 @@ export function stepMovement(a: Agent, cmd: InputCmd, dt: number, ctx: MoveConte
 
   // ---- crouch state with headroom check
   const targetCrouch = wantCrouch || a.sliding > 0;
+  let shapeChanged = false;
   if (targetCrouch !== a.crouched) {
+    shapeChanged = true;
     if (targetCrouch) {
       a.crouched = true;
       collider.setHalfHeight(CROUCH_HALF);
@@ -121,8 +128,11 @@ export function stepMovement(a: Agent, cmd: InputCmd, dt: number, ctx: MoveConte
   if (wl > 1e-6) { wx /= wl; wz /= wl; }
   const wishSpeed = maxSpeed * Math.min(1, wl);
 
+  // jumping this tick skips ground friction: chained jumps keep their speed (bunny hop)
+  const willJump = a.jumpBuffer > 0 && a.coyote > 0;
+
   // ---- friction
-  if (a.grounded) {
+  if (a.grounded && !willJump) {
     const speed = Math.hypot(a.vel.x, a.vel.z);
     if (speed > 1e-4) {
       const fr = a.sliding > 0 ? M.slideFriction : M.friction;
@@ -132,24 +142,41 @@ export function stepMovement(a: Agent, cmd: InputCmd, dt: number, ctx: MoveConte
     }
   }
 
-  // ---- acceleration (slides only steer a little)
+  // ---- acceleration
   if (wishSpeed > 0) {
-    const accel = a.grounded ? (a.sliding > 0 ? M.airAccel * 0.5 : M.groundAccel) : M.airAccel;
     const cur = a.vel.x * wx + a.vel.z * wz;
-    const add = wishSpeed - cur;
-    if (add > 0) {
-      const as = Math.min(accel * dt * wishSpeed, add);
-      a.vel.x += wx * as; a.vel.z += wz * as;
+    if (a.grounded && a.sliding <= 0) {
+      const add = wishSpeed - cur;
+      if (add > 0) {
+        const as = Math.min(M.groundAccel * dt * wishSpeed, add);
+        a.vel.x += wx * as; a.vel.z += wz * as;
+      }
+    } else {
+      // QuakeWorld air control: the projected speed is capped, not the total speed. Strafing while
+      // turning the mouse curves the trajectory (and gains a little speed); slides steer the same way.
+      const add = M.airSpeedCap - cur;
+      if (add > 0) {
+        const as = Math.min(M.airAccel * dt * wishSpeed, add);
+        a.vel.x += wx * as; a.vel.z += wz * as;
+      }
     }
   }
+  const hs = Math.hypot(a.vel.x, a.vel.z);
+  if (hs > M.maxHorizontalSpeed) { a.vel.x *= M.maxHorizontalSpeed / hs; a.vel.z *= M.maxHorizontalSpeed / hs; }
 
   // ---- gravity & jump
-  a.vel.y -= M.gravity * dt;
+  a.vel.y -= M.gravity * (a.vel.y < 0 ? M.fallGravityMul : 1) * dt;
   if (a.grounded && a.vel.y < -1) a.vel.y = -1;
   if (a.jumpBuffer > 0 && a.coyote > 0) {
     if (!a.crouched || canStand(world, a, collider)) {
-      if (a.crouched) { a.crouched = false; collider.setHalfHeight(STAND_HALF); placeCollider(a, collider); }
+      if (a.crouched) { a.crouched = false; collider.setHalfHeight(STAND_HALF); placeCollider(a, collider); shapeChanged = true; }
       a.vel.y = M.jumpVelocity;
+      if (a.sliding > 0) {
+        // slide-jump: carry the slide momentum forward
+        const sp = Math.hypot(a.vel.x, a.vel.z) || 1;
+        const k = Math.min(M.slideMaxSpeed, sp + M.slideJumpBoost) / sp;
+        a.vel.x *= k; a.vel.z *= k;
+      }
       a.jumpBuffer = 0; a.coyote = 0; a.grounded = false; a.sliding = 0;
       ctx.events.push({ type: 'jump', agent: a.id });
     }
@@ -164,10 +191,18 @@ export function stepMovement(a: Agent, cmd: InputCmd, dt: number, ctx: MoveConte
   a.pos.x += mv.x; a.pos.y += mv.y; a.pos.z += mv.z;
   placeCollider(a, collider);
 
+  // downhill slides keep accelerating
+  if (a.sliding > 0 && a.grounded && mv.y < -0.004) {
+    const sp = Math.hypot(a.vel.x, a.vel.z) || 1;
+    const k = Math.min(M.slideMaxSpeed, sp + M.slopeSlideAccel * dt) / sp;
+    a.vel.x *= k; a.vel.z *= k;
+    a.sliding = Math.max(a.sliding, 0.25);
+  }
   // velocity correction from collisions
   if (_desired.y > 0 && mv.y < _desired.y * 0.5) a.vel.y = 0; // ceiling
+  // only bleed velocity into real obstacles (not on the tick the capsule changed shape: stale query data)
   const dl = Math.hypot(_desired.x, _desired.z), ml2 = Math.hypot(mv.x, mv.z);
-  if (dl > 1e-5 && ml2 < dl - 1e-4) {
+  if (!shapeChanged && kcc.numComputedCollisions() > 0 && dl > 1e-5 && ml2 < dl - 1e-4) {
     a.vel.x = mv.x / dt; a.vel.z = mv.z / dt;
   }
   if (a.grounded) {
