@@ -13,6 +13,8 @@ export type AttrKey = 'karma' | 'fame' | 'athletic' | 'discipline' | 'stress' | 
 export type AnyStat = StatKey | AttrKey;
 export type Tone = 'good' | 'bad' | 'neutral';
 export type GameMode = 'classic' | 'zen' | 'hardcore' | 'chaos' | 'god';
+/** Content rating: 0 = family friendly, 1 = adult, 2 = trash (crude humour, cartoon gore). */
+export type Rating = 0 | 1 | 2;
 
 export type EduStage = 'none' | 'preschool' | 'primary' | 'middle' | 'high' | 'uni' | 'grad';
 export type Role =
@@ -22,11 +24,13 @@ export type Role =
 /** Role selectors used by content: a concrete role or a group. */
 export type RoleSel = Role | 'parent' | 'family' | 'lover' | 'anyFriend' | 'anyone';
 
-export type Place = 'home' | 'school' | 'office' | 'hospital' | 'park' | 'cemetery' | 'uni' | 'party' | 'apartment';
+export type Place = 'home' | 'school' | 'office' | 'hospital' | 'park' | 'cemetery' | 'uni' | 'party' | 'apartment'
+  | 'prison' | 'court' | 'villa' | 'mansion' | 'casino' | 'beach' | 'stadium' | 'studio' | 'castle';
 export type Mood = 'happy' | 'sad' | 'shock' | 'angry' | 'love' | 'sleepy' | 'proud' | 'sick' | 'neutral' | 'party' | 'cry';
-export type Tab = 'career' | 'assets' | 'relations' | 'activities' | 'school';
+export type Tab = 'career' | 'assets' | 'relations' | 'activities' | 'school' | 'crime' | 'prison';
 
-export interface SceneHint { place?: Place; mood?: Mood; prop?: string }
+export interface SceneHint { place?: Place; mood?: Mood; prop?: string; fx?: VisualFx }
+export type VisualFx = 'gore' | 'money' | 'police' | 'fire' | 'confetti' | 'hearts' | 'poop' | 'explosion' | 'ghost';
 
 // ───────────────────────────── appearance / people ─────────────────────────────
 
@@ -64,6 +68,8 @@ export interface Npc {
   met: number;          // year met
   flags: Record<string, number | string | boolean>;
   temp?: boolean;       // created by an event, dropped unless kept
+  /** Two-player mode: this NPC is the other player's character. */
+  playerId?: string;
   interacted?: Record<string, number>; // rel action id -> times this year
 }
 
@@ -113,6 +119,13 @@ export interface Pending {
 
 export interface Condition { id: string; since: number; severity: number }
 
+export interface PrisonState { years: number; served: number; crime: string; respect: number; gang?: string; escapes: number; facility: string }
+export interface CrimeRecord { crime: string; year: number; years: number }
+export interface Asset { uid: number; def: string; name: string; value: number; loan: number; bought: number; condition: number; rented: boolean }
+export interface Loan { amount: number; rate: number; years: number; kind: 'personal' | 'mortgage' | 'student' }
+export interface Business { name: string; sector: string; value: number; revenue: number; employees: number; years: number; reputation: number }
+export interface AncestorRecord { first: string; last: string; gender: Gender; born: number; died: number; cause: Loc<string>; netWorth: number; job?: string; app: Appearance; generation: number }
+
 export interface StatPoint { age: number; happy: number; health: number; smarts: number; looks: number; money: number }
 
 export interface Life {
@@ -159,6 +172,25 @@ export interface Life {
   death?: { age: number; year: number; cause: Loc<string> };
   /** Scene the 3D stage should show by default. */
   place: Place;
+  rating: Rating;
+  prison?: PrisonState;
+  record: CrimeRecord[];
+  heat: number;             // police attention 0..100
+  assets: Asset[];
+  portfolio: Record<string, number>;   // stock id -> shares
+  market: Record<string, number>;      // stock id -> price (base units)
+  loans: Loan[];
+  business?: Business;
+  followers: number;
+  addictions: Record<string, number>;  // id -> level 0..100
+  counters: Record<string, number>;    // achievement/challenge counters
+  achievements: string[];
+  generation: number;
+  ancestors: AncestorRecord[];
+  scenario?: string;
+  challenge?: string;
+  /** Visual cues for the client for the last resolution (not gameplay). */
+  lastFx?: VisualFx[];
 }
 
 // ───────────────────────────── content definitions ─────────────────────────────
@@ -186,6 +218,17 @@ export interface Cond {
   orientation?: Orientation[];
   mode?: GameMode[];
   chance?: number;          // extra random gate 0..1
+  prison?: boolean;
+  /** Minimum content rating required. */
+  rating?: Rating;
+  era?: [number, number];   // calendar years
+  asset?: string;           // owns an asset of this kind (or def id)
+  noAsset?: string;
+  followers?: [number, number];
+  addiction?: string;
+  business?: boolean;
+  record?: boolean;
+  counter?: Record<string, [number, number]>;
   test?: (life: Life) => boolean;
 }
 
@@ -200,7 +243,7 @@ export interface NewNpcSpec {
 
 export type ActorSpec = RoleSel | { role?: RoleSel; create?: NewNpcSpec; minRel?: number; maxRel?: number; living?: boolean };
 
-export type UiTarget = 'jobs' | 'university' | 'grad' | 'dating' | 'relations' | 'activities' | 'shop';
+export type UiTarget = 'parole' | 'appeal' | 'bank' | 'jobs' | 'university' | 'grad' | 'dating' | 'relations' | 'activities' | 'shop' | 'realestate' | 'cars' | 'stocks' | 'business' | 'crime' | 'minigame:surgery' | 'minigame:trial' | 'minigame:heist' | 'minigame:escape' | 'minigame:cooking' | 'minigame:blackjack' | 'minigame:date' | 'minigame:match' | 'minigame:interrogation';
 
 export interface Effect {
   happy?: number; health?: number; smarts?: number; looks?: number;
@@ -238,7 +281,21 @@ export interface Effect {
   schedule?: { key: string; years: number };
   open?: UiTarget;
   log?: LocText;
-  fn?: (ctx: EffectCtx) => void;
+  /** Arrest for a crime (queues the trial). */
+  arrest?: string;
+  /** Direct jail time in years (no trial). */
+  jail?: number;
+  release?: boolean;
+  heat?: number;
+  followers?: number;
+  addiction?: [string, number];
+  counter?: string | string[];
+  asset?: string;           // gain an asset (def id)
+  loseAsset?: string | true; // lose an asset of this kind (or any)
+  achievement?: string;
+  visual?: VisualFx;
+  /** Escape hatch; may return a text that replaces the outcome text. */
+  fn?: (ctx: EffectCtx) => void | Loc<string>;
 }
 
 export interface EffectCtx {
@@ -251,6 +308,8 @@ export interface EffectCtx {
 
 export interface Outcome {
   w?: number;
+  /** Only possible at this content rating or above. */
+  rating?: Rating;
   odds?: Partial<Record<AnyStat, number>>;
   text: LocText;
   fx?: Effect;
@@ -261,6 +320,7 @@ export interface Outcome {
 
 export interface Choice {
   label: LocText;
+  rating?: Rating;
   if?: Cond;
   out?: Outcome[];
   text?: LocText;
@@ -282,7 +342,9 @@ export interface EventDef {
   /** Feed line only (no card). */
   auto?: boolean;
   chainOnly?: boolean;
+  /** @deprecated use rating: 1 */
   mature?: boolean;
+  rating?: Rating;
   actor?: ActorSpec;
   vars?: Record<string, [number, number]>;
   text: LocText;
@@ -331,6 +393,9 @@ export interface CareerDef {
   salary: [number, number]; // base units per year, entry → top level
   place: Place;
   outfit: string;           // css colour of the work outfit
+  rating?: Rating;
+  /** Special careers are not on the job board (reached via events/actions). */
+  special?: boolean;
 }
 
 export interface MajorDef { id: string; name: Loc; years: number; smarts: number; icon: string }
@@ -342,6 +407,7 @@ export interface DiseaseDef { id: string; icon: string; name: Loc; health: numbe
 
 export interface ActionDef {
   id: string;
+  rating?: Rating;
   tab: Tab;
   group: string;
   icon: string;
@@ -354,10 +420,13 @@ export interface ActionDef {
   event?: string;           // show this event as a card
   open?: UiTarget;
   scene?: SceneHint;
+  /** Where the action is available: free (default), prison, or anywhere. */
+  where?: 'free' | 'prison' | 'any';
 }
 
 export interface RelActionDef {
   id: string;
+  rating?: Rating;
   icon: string;
   label: LocText;
   roles?: RoleSel[];
@@ -370,6 +439,8 @@ export interface RelActionDef {
   cost?: number;
   out: Outcome[];
   scene?: SceneHint;
+  /** Usable from prison (phone / visiting room). */
+  prisonOk?: boolean;
 }
 
 export interface Balance {
@@ -385,7 +456,61 @@ export interface Balance {
   pension: number;          // fraction of last salary
 }
 
+export interface CrimeDef {
+  id: string;
+  icon: string;
+  label: Loc;
+  desc?: Loc;
+  minAge: number;
+  tier: number;             // 1 petty … 5 legendary
+  rating?: Rating;
+  violent?: boolean;
+  success: number;          // base success chance
+  odds?: Partial<Record<AnyStat, number>>;
+  loot?: [number, number];  // base units
+  karma: number;
+  fame?: number;
+  heat: number;             // chance of being caught after a success
+  caught: number;           // chance of being caught after a failure
+  sentence: [number, number];
+  minigame?: 'heist' | 'getaway';
+  text: { ok: LocText; fail: LocText; caught: LocText };
+  fx?: Effect;
+  needs?: Cond;
+}
+
+export interface AssetDef {
+  id: string;
+  kind: 'house' | 'car' | 'boat' | 'aircraft' | 'luxury';
+  icon: string;
+  name: Loc;
+  price: number;            // base units
+  upkeep: number;           // yearly fraction of value
+  growth: number;           // yearly value change (fraction, may be negative)
+  happy: number;
+  looks?: number;
+  fame?: number;
+  minAge?: number;
+  home?: Place;             // diorama when living here
+  rating?: Rating;
+}
+
+export interface StockDef { id: string; name: string; icon: string; kind: 'stock' | 'crypto'; price: number; vol: number; drift: number }
+export interface SectorDef { id: string; icon: string; name: Loc; cost: number; margin: number; risk: number }
+export interface AchievementDef { id: string; icon: string; name: Loc; desc: Loc; secret?: boolean; test: (life: Life, when: 'year' | 'death') => boolean }
+export interface WorldEventDef { id: string; icon: string; year?: number; range?: [number, number]; chance?: number; countries?: string[]; text: LocText; fx?: Effect; market?: number; cooldown?: number }
+export interface ScenarioDef { id: string; icon: string; name: Loc; desc: Loc; opts: NewLifeOptions; setup?: (life: Life, content: Content) => void }
+export interface ChallengeDef { id: string; icon: string; name: Loc; desc: Loc; test: (life: Life) => boolean }
+
 export interface Content {
+  crimes: CrimeDef[];
+  assets: AssetDef[];
+  stocks: StockDef[];
+  sectors: SectorDef[];
+  achievements: AchievementDef[];
+  worldEvents: WorldEventDef[];
+  scenarios: ScenarioDef[];
+  challenges: ChallengeDef[];
   countries: CountryDef[];
   names: Record<string, NamePool>;
   careers: CareerDef[];
@@ -414,6 +539,7 @@ export interface Resolution {
   open?: UiTarget;
   died?: boolean;
   actorId?: number;
+  visual?: VisualFx[];
 }
 
 export interface YearReport {
@@ -437,6 +563,13 @@ export interface NewLifeOptions {
   birthYear?: number;
   mode?: GameMode;
   family?: boolean;
+  rating?: Rating;
+  scenario?: string;
+  challenge?: string;
+  money?: number;           // starting money (base units)
+  generation?: number;
+  ancestors?: AncestorRecord[];
+  inherit?: { money: number; assets: Asset[] };
   wealth?: Life['wealth'];
   app?: Partial<Appearance>;
 }

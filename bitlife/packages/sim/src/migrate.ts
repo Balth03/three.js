@@ -4,8 +4,8 @@ import { SAVE_VERSION } from './life.ts';
 
 type Raw = Record<string, unknown> & { v?: number };
 const STEPS: Record<number, (s: Raw) => Raw> = {
-  // 1 → 2: example for future use
-  // 1: (s) => ({ ...s, v: 2, newField: defaultValue }),
+  // 1 → 2: crime, assets, market, dynasty fields
+  1: (s) => ({ ...s, v: 2, rating: s.family ? 0 : 1, record: [], heat: 0, assets: [], portfolio: {}, market: {}, loans: [], followers: 0, addictions: {}, counters: {}, achievements: [], generation: 1, ancestors: [] }),
 };
 
 export function migrate(raw: unknown): Life {

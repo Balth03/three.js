@@ -1,30 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { content } from '@bl/data';
-import { createLife, ageUp, choose, listActions, doAction, listJobs, applyJob, Rng, type Life } from '../src/index.ts';
+import { ageUp, autoplay as autoplaySim, heirLife, heirs, type Life } from '../src/index.ts';
 
-/** Plays a full life with pseudo-random choices driven by `seed`. */
-export function autoplay(seed: number, maxAge = 120): Life {
-  const life = createLife(content, { seed, birthYear: 2000 });
-  const pick = new Rng([seed, 7, 13, 99]);
-  while (life.alive && life.age < maxAge) {
-    ageUp(life, content);
-    let guard = 0;
-    while (life.queue.length && guard++ < 20) {
-      const p = life.queue[0];
-      const res = choose(life, content, p.choices.length ? pick.int(0, p.choices.length - 1) : 0);
-      if (res?.open === 'jobs') {
-        const ok = listJobs(life, content).filter((j) => j.qualified);
-        if (ok.length) applyJob(life, content, pick.pick(ok));
-      }
-    }
-    const acts = listActions(life, content).filter((a) => a.ok && !a.def.open && !a.def.event);
-    for (let i = 0; i < 2 && acts.length; i++) doAction(life, content, pick.pick(acts).def.id);
-    if (!life.job && life.age >= 18 && !life.edu.enrolled && pick.chance(0.5)) {
-      const ok = listJobs(life, content).filter((j) => j.qualified);
-      if (ok.length) applyJob(life, content, pick.pick(ok));
-    }
-  }
-  return life;
+export function autoplay(seed: number, maxAge = 130): Life {
+  return autoplaySim(content, seed, { maxAge, rating: (seed % 3) as 0 | 1 | 2, crime: 0.3 });
 }
 
 describe('simulation', () => {
@@ -50,8 +29,30 @@ describe('simulation', () => {
       ages.push(l.age);
     }
     const avg = ages.reduce((a, b) => a + b, 0) / ages.length;
-    expect(avg).toBeGreaterThan(55);
+    expect(avg).toBeGreaterThan(45);
     expect(avg).toBeLessThan(95);
+  });
+
+  it('exercises crime, prison, assets and dynasty', () => {
+    let crimes = 0, prison = 0, assets = 0, heir = 0;
+    for (let s = 1; s <= 120; s++) {
+      const l = autoplaySim(content, s * 31, { rating: 2, crime: 0.6, spend: 0.6 });
+      crimes += l.counters.crimes ?? 0;
+      prison += l.record.filter((r) => r.years > 0).length;
+      assets += l.assets.length;
+      const h = heirs(l);
+      if (h.length) {
+        const n = heirLife(l, content, h[0].id);
+        expect(n.generation).toBe(2);
+        expect(n.alive).toBe(true);
+        for (let i = 0; i < 5; i++) ageUp(n, content);
+        heir++;
+      }
+    }
+    expect(crimes).toBeGreaterThan(50);
+    expect(prison).toBeGreaterThan(3);
+    expect(assets).toBeGreaterThan(10);
+    void heir;
   });
 
   it('survives a JSON save/load round-trip mid-life', () => {

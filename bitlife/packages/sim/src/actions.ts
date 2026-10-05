@@ -10,7 +10,8 @@ export interface ActionView { def: ActionDef; ok: boolean; reason?: Loc<string>;
 export function listActions(life: Life, content: Content, tab?: Tab): ActionView[] {
   const c = country(content, life.country);
   return content.actions
-    .filter((a) => (!tab || a.tab === tab) && checkCond(life, content, a.when))
+    .filter((a) => (!tab || a.tab === tab) && (a.rating ?? 0) <= life.rating && checkCond(life, content, a.when))
+    .filter((a) => { const w = a.where ?? (a.tab === 'prison' ? 'prison' : 'free'); return w === 'any' || (w === 'prison') === !!life.prison; })
     .map((a) => {
       const used = life.used[a.id] ?? 0;
       let reason: Loc<string> | undefined;

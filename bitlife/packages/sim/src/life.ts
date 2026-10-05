@@ -10,8 +10,11 @@ import { yearlyHealth, mortality } from './health.ts';
 import { yearlyRelations } from './relations.ts';
 import { pickEvents, queueEvent, runAuto, runPriority, runScheduled } from './events.ts';
 import { snapshot, diff } from './snapshot.ts';
+import { yearlyPrison } from './crime.ts';
+import { yearlyMoney2, initMarket, netWorth, homeAsset } from './money.ts';
+import { yearlyWorld, yearlyAddictions, checkAchievements } from './world.ts';
 
-export const SAVE_VERSION = 1;
+export const SAVE_VERSION = 2;
 
 const ZODIAC: [number, number, Loc<string>][] = [
   [1, 20, L('Capricorne', 'Capricorn')], [2, 19, L('Verseau', 'Aquarius')], [3, 20, L('Poissons', 'Pisces')],
@@ -29,7 +32,9 @@ export function zodiac(month: number, day: number): Loc<string> {
 const MONTHS_FR = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-export function createLife(content: Content, o: NewLifeOptions = {}): Life {
+export function createLife(content: Content, o0: NewLifeOptions = {}): Life {
+  const scen = o0.scenario ? content.scenarios.find((x) => x.id === o0.scenario) : undefined;
+  const o: NewLifeOptions = scen ? { ...scen.opts, ...o0 } : o0;
   const seed = (o.seed ?? Math.floor(Math.random() * 2 ** 31)) >>> 0;
   const rngState = seedState(seed);
   const rng = new Rng(rngState);
@@ -45,7 +50,7 @@ export function createLife(content: Content, o: NewLifeOptions = {}): Life {
     seed,
     rng: rngState,
     mode: o.mode ?? 'classic',
-    family: o.family ?? true,
+    family: (o.rating ?? (o.family === false ? 2 : 1)) === 0,
     first: o.first ?? randomName(rng, content, countryId, gender),
     last,
     gender,
@@ -81,7 +86,23 @@ export function createLife(content: Content, o: NewLifeOptions = {}): Life {
     history: [],
     alive: true,
     place: 'home',
+    rating: o.rating ?? (o.family ? 0 : 1),
+    record: [],
+    heat: 0,
+    assets: [],
+    portfolio: {},
+    market: {},
+    loans: [],
+    followers: 0,
+    addictions: {},
+    counters: {},
+    achievements: [],
+    generation: o.generation ?? 1,
+    ancestors: o.ancestors ?? [],
+    scenario: o.scenario,
+    challenge: o.challenge,
   };
+  initMarket(life, content);
   // ── Family
   const momAge = rng.int(19, 40);
   const mom = makeNpc(life, content, rng, { role: 'mother', gender: 'f', age: momAge, last: rng.chance(0.6) ? last : undefined, rel: rng.int(65, 95), wealth });
@@ -115,7 +136,9 @@ export function createLife(content: Content, o: NewLifeOptions = {}): Life {
     }
   }
   if (wealth === 'rich') for (const p of [mom, dad]) if (p) p.money = Math.round(p.money * 1.5);
+  if (o.money) life.money += Math.round(toLocal(o.money, c));
   writeIntro(life, content);
+  if (scen?.setup) scen.setup(life, content);
   life.history.push(statPoint(life));
   return life;
 }
@@ -170,11 +193,18 @@ export function ageUp(life: Life, content: Content): YearReport {
   const logStart = { log: life.log.length };
   // Systems
   yearlyRelations(life, content, rng, report);
-  yearlyEdu(life, content, rng, report);
-  yearlyJob(life, content, rng, report);
-  yearlyMoney(life, content);
+  const wasInPrison = !!life.prison;
+  yearlyPrison(life, content, rng, report);
+  if (!wasInPrison) {
+    yearlyEdu(life, content, rng, report);
+    yearlyJob(life, content, rng, report);
+    yearlyMoney(life, content);
+  }
+  const shock = yearlyWorld(life, content, rng);
+  yearlyMoney2(life, content, rng, report, shock);
   yearlyHealth(life, content, rng, report);
-  if (mortality(life, content, rng)) {
+  yearlyAddictions(life, content, rng, report);
+  if (!life.alive || mortality(life, content, rng)) {
     report.died = true;
   } else {
     // Events
@@ -193,6 +223,8 @@ export function ageUp(life: Life, content: Content): YearReport {
     runAuto(life, content, rng, life.age < 3 ? 1 : rng.int(0, 2));
   }
   if (!life.alive) report.died = true;
+  const fresh = checkAchievements(life, content, life.alive ? 'year' : 'death');
+  if (fresh.length) report.milestones.push(...fresh.map((a) => `achievement:${a}`));
   // Ensure a log entry exists for this age even when nothing happened
   const y = life.log[life.log.length - 1];
   if (!y || y.age !== life.age) life.log.push({ age: life.age, year: life.year, lines: [] });
@@ -201,10 +233,12 @@ export function ageUp(life: Life, content: Content): YearReport {
   report.queued = life.queue.length;
   report.deltas = diff(life, before);
   life.history.push(statPoint(life));
-  if (!life.job && !life.edu.enrolled && life.place !== 'cemetery') life.place = life.movedOut ? 'apartment' : 'home';
+  const home = homeAsset(life, content);
+  if (!life.job && !life.edu.enrolled && life.place !== 'cemetery') life.place = home ? (home.def.home ?? 'home') : life.movedOut ? 'apartment' : 'home';
   if (life.edu.enrolled) life.place = life.edu.stage === 'uni' || life.edu.stage === 'grad' ? 'uni' : 'school';
   else if (life.job) life.place = content.careers.find((c) => c.id === life.job!.careerId)?.place ?? 'office';
   if (life.age < 3) life.place = 'home';
+  if (life.prison) life.place = 'prison';
   if (!life.alive) life.place = 'cemetery';
   return report;
 }
@@ -215,7 +249,8 @@ function yearlyMoney(life: Life, content: Content) {
   if (life.age >= 18) {
     // Fixed costs + lifestyle that grows with income (people spend what they earn)
     const income = life.job ? life.job.salary : Number(life.flags.pension ?? 0);
-    const fixed = toLocal(life.movedOut ? b.livingCost * (income > 0 ? 1 : 0.55) : (life.job ? b.livingCostHome : 0), c);
+    const owns = life.flags.home !== undefined;
+    const fixed = toLocal(life.movedOut ? b.livingCost * (income > 0 ? 1 : 0.55) * (owns ? 0.45 : 1) : (life.job ? b.livingCostHome : 0), c);
     const lifestyle = income * (life.movedOut ? 0.38 : 0.12);
     life.money -= Math.round(fixed + lifestyle);
   }
@@ -253,7 +288,7 @@ export function summarize(life: Life, content: Content): LifeSummary {
   const married = life.npcs.some((n) => n.role === 'spouse');
   const friends = life.npcs.filter((n) => n.alive && (n.role === 'friend' || n.role === 'bestfriend')).length;
   const c = country(content, life.country);
-  const wealthBase = life.money / (c.price * c.currency.rate);
+  const wealthBase = netWorth(life, content) / (c.price * c.currency.rate);
   const s = life.stats;
   const score = Math.round(life.age * 0.6 + s.happy * 0.25 + s.smarts * 0.1 + Math.min(30, Math.log10(Math.max(1, wealthBase)) * 5) + children * 3 + (married ? 5 : 0) + life.edu.degrees.length * 3 + life.attrs.karma * 0.1);
   const titles: Loc<string>[] = [];
@@ -267,5 +302,5 @@ export function summarize(life: Life, content: Content): LifeSummary {
   if (s.happy >= 85) titles.push(L('Heureux{|se} comme tout', 'Happy camper'));
   if (life.age < 30) titles.push(L('Parti{|e} trop tôt', 'Gone too soon'));
   if (!titles.length) titles.push(L('Une vie bien remplie', 'A life well lived'));
-  return { age: life.age, cause: life.death?.cause ?? L('—', '—'), netWorth: life.money - life.edu.loan, degrees: life.edu.degrees, jobs: all.length, topJob, children, married, friends, score, titles };
+  return { age: life.age, cause: life.death?.cause ?? L('—', '—'), netWorth: netWorth(life, content), degrees: life.edu.degrees, jobs: all.length, topJob, children, married, friends, score, titles };
 }

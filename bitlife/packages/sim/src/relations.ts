@@ -115,7 +115,7 @@ export function relActionsFor(life: Life, content: Content, npcId: number): RelA
   const c = country(content, life.country);
   return content.relActions
     .filter((a) => (!a.roles || matchesRole(n, a.roles)) && (!a.notRoles || !matchesRole(n, a.notRoles)) && (!a.targetIf || a.targetIf(n, life)))
-    .filter((a) => checkCond(life, content, a.when))
+    .filter((a) => checkCond(life, content, a.when) && (a.rating ?? 0) <= life.rating && (!life.prison || a.prisonOk))
     .map((a) => {
       let reason: Loc<string> | undefined;
       if (a.minAge !== undefined && life.age < a.minAge) reason = L(`Dès ${a.minAge} ans.`, `From age ${a.minAge}.`);

@@ -6,8 +6,11 @@ import { choose } from './events.ts';
 import { listActions, doAction } from './actions.ts';
 import { listJobs, applyJob } from './career.ts';
 import { enrollUni, tuitionCost, tuitionOptions } from './edu.ts';
+import { listCrimes, commitCrime, trial, escape, parole } from './crime.ts';
+import { assetOffers, buyAsset, buyStock, sellStock, startBusiness, canAfford } from './money.ts';
+import type { Resolution } from './types.ts';
 
-export interface AutoplayOpts extends NewLifeOptions { maxAge?: number; ambition?: number }
+export interface AutoplayOpts extends NewLifeOptions { maxAge?: number; ambition?: number; crime?: number; spend?: number }
 
 export function autoplay(content: Content, seed: number, o: AutoplayOpts = {}): Life {
   const life = createLife(content, { birthYear: 2000, ...o, seed });
@@ -19,16 +22,49 @@ export function autoplay(content: Content, seed: number, o: AutoplayOpts = {}): 
     ok.sort((a, b) => b.salary - a.salary);
     if (ok.length) applyJob(life, content, ok[Math.min(ok.length - 1, pick.int(0, 2))]);
   };
-  while (life.alive && life.age < maxAge) {
-    ageUp(life, content);
+  const crimeRate = o.crime ?? 0.15;
+  const spend = o.spend ?? 0.3;
+  const handleOpen = (res: Resolution | null | undefined) => {
+    if (!res?.open) return;
+    if (res.open === 'jobs') findJob();
+    else if (res.open === 'minigame:trial') trial(life, content, 'minigame', pick.next());
+    else if (res.open === 'minigame:escape') escape(life, content, pick.next());
+    else if (res.open === 'parole') parole(life, content);
+  };
+  const drain = () => {
     let guard = 0;
     while (life.queue.length && guard++ < 20) {
       const p = life.queue[0];
-      const res = choose(life, content, p.choices.length ? pick.int(0, p.choices.length - 1) : 0);
-      if (res?.open === 'jobs') findJob();
+      handleOpen(choose(life, content, p.choices.length ? pick.int(0, p.choices.length - 1) : 0));
+    }
+    if (life.flags.arrested !== undefined && !life.queue.length) trial(life, content, 'public');
+  };
+  while (life.alive && life.age < maxAge) {
+    ageUp(life, content);
+    drain();
+    if (!life.alive) break;
+    // crime
+    if (pick.chance(crimeRate) && !life.prison) {
+      const cs = listCrimes(life, content).filter((c) => c.ok);
+      if (cs.length) { commitCrime(life, content, pick.pick(cs).def.id); drain(); }
+    }
+    // prison actions
+    if (life.prison) {
+      const acts = listActions(life, content).filter((a) => a.ok);
+      for (let i = 0; i < 2 && acts.length; i++) { const a = pick.pick(acts); handleOpen(doAction(life, content, a.def.id)); drain(); }
+      continue;
+    }
+    // spending & investing
+    if (life.age >= 20 && pick.chance(spend)) {
+      const kind = pick.pick(['house', 'car', 'luxury'] as const);
+      const offers = assetOffers(life, content, kind).filter((x) => !canAfford(life, content, x, 'cash') || !canAfford(life, content, x, 'mortgage'));
+      if (offers.length) { const x = offers[offers.length - 1]; buyAsset(life, content, x, canAfford(life, content, x, 'cash') ? 'mortgage' : 'cash'); }
+      if (life.money > 0 && pick.chance(0.4)) buyStock(life, content, pick.pick(content.stocks).id, Math.round(life.money * 0.2));
+      if (pick.chance(0.1)) for (const id of Object.keys(life.portfolio)) sellStock(life, content, id);
+      if (!life.business && pick.chance(0.05)) startBusiness(life, content, pick.pick(content.sectors).id, '');
     }
     const acts = listActions(life, content).filter((a) => a.ok && !a.def.open && !a.def.event && a.def.id !== 'dropout' && a.def.id !== 'quit');
-    for (let i = 0; i < 3 && acts.length; i++) doAction(life, content, pick.pick(acts).def.id);
+    for (let i = 0; i < 3 && acts.length; i++) { doAction(life, content, pick.pick(acts).def.id); drain(); }
     if (life.age >= 18 && !life.edu.enrolled && life.edu.degrees.includes('high') && !life.edu.degrees.some((d) => d.startsWith('uni:')) && life.age < 24 && pick.chance(ambition)) {
       const m = pick.pick(content.majors);
       const cost = tuitionCost(life, content);

@@ -101,8 +101,8 @@ export const relActions: RelActionDef[] = [
   {
     id: 'marry', icon: '💒', label: { fr: 'Organiser le mariage', en: 'Plan the wedding' }, roles: ['fiance'], limit: 1, cost: 8000,
     out: [
-      { w: 4, text: { fr: 'J\'ai épousé {a.first} ! Une cérémonie magnifique, l\'oncle Gérard a fini sur la table. 💒', en: 'I married {a.first}! A beautiful ceremony, Uncle Gerald ended up dancing on a table. 💒' }, fx: { actorRole: 'spouse', rel: 15, happy: 18, fn: ({ life, actor }) => { if (actor) actor.last = actor.last; life.movedOut = true; } }, mood: 'love' },
-      { w: 1, text: { fr: 'Mariage célébré avec {a.first}… sous une pluie torrentielle. Mais on s\'est dit oui ! 💒', en: 'Married {a.first}… in a torrential downpour. But we said yes! 💒' }, fx: { actorRole: 'spouse', rel: 12, happy: 12, fn: ({ life }) => { life.movedOut = true; } }, mood: 'love' },
+      { w: 4, text: { fr: 'J\'ai épousé {a.first} ! Une cérémonie magnifique, l\'oncle Gérard a fini sur la table. 💒', en: 'I married {a.first}! A beautiful ceremony, Uncle Gerald ended up dancing on a table. 💒' }, fx: { actorRole: 'spouse', rel: 15, happy: 18, counter: 'marriages', fn: ({ life, actor }) => { if (actor) actor.last = actor.last; life.movedOut = true; } }, mood: 'love' },
+      { w: 1, text: { fr: 'Mariage célébré avec {a.first}… sous une pluie torrentielle. Mais on s\'est dit oui ! 💒', en: 'Married {a.first}… in a torrential downpour. But we said yes! 💒' }, fx: { actorRole: 'spouse', rel: 12, happy: 12, counter: 'marriages', fn: ({ life }) => { life.movedOut = true; } }, mood: 'love' },
     ],
   },
   {

@@ -60,6 +60,16 @@ export function checkCond(life: Life, content: Content, c: Cond | undefined, rng
   if (c.wealth && !c.wealth.includes(life.wealth)) return false;
   if (c.orientation && !c.orientation.includes(life.orientation)) return false;
   if (c.mode && !c.mode.includes(life.mode)) return false;
+  if (c.prison !== undefined && !!life.prison !== c.prison) return false;
+  if (c.rating !== undefined && life.rating < c.rating) return false;
+  if (c.era && (life.year < c.era[0] || life.year > c.era[1])) return false;
+  if (c.asset && !life.assets.some((a) => a.def === c.asset || content.assets.find((d) => d.id === a.def)?.kind === c.asset)) return false;
+  if (c.noAsset && life.assets.some((a) => a.def === c.noAsset || content.assets.find((d) => d.id === a.def)?.kind === c.noAsset)) return false;
+  if (c.followers && (life.followers < c.followers[0] || life.followers > c.followers[1])) return false;
+  if (c.addiction && (life.addictions[c.addiction] ?? 0) < 25) return false;
+  if (c.business !== undefined && !!life.business !== c.business) return false;
+  if (c.record !== undefined && (life.record.length > 0) !== c.record) return false;
+  if (c.counter) for (const k in c.counter) { const v = life.counters[k] ?? 0; if (v < c.counter[k][0] || v > c.counter[k][1]) return false; }
   if (c.test && !c.test(life)) return false;
   if (c.chance !== undefined && rng && !rng.chance(c.chance)) return false;
   return true;

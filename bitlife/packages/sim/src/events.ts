@@ -9,6 +9,8 @@ import { snapshot, diff } from './snapshot.ts';
 import { leaveJob, promote } from './career.ts';
 import { dropOut } from './edu.ts';
 import { contract, cure, kill } from './health.ts';
+import { arrest, imprison, release } from './crime.ts';
+import { giveAsset, loseAsset } from './money.ts';
 
 const STAT_KEYS: StatKey[] = ['happy', 'health', 'smarts', 'looks'];
 const ATTR_KEYS: AttrKey[] = ['karma', 'fame', 'athletic', 'discipline', 'stress', 'fertility'];
@@ -56,7 +58,8 @@ function canBindActor(life: Life, spec: ActorSpec | undefined): boolean {
 
 export function eligible(life: Life, content: Content, e: EventDef, ignoreChain = false): boolean {
   if (e.chainOnly && !ignoreChain) return false;
-  if (e.mature && life.family) return false;
+  if ((e.rating ?? (e.mature ? 1 : 0)) > life.rating) return false;
+  if (life.prison && e.when?.prison !== true) return false;
   const seen = life.seen[e.id];
   if (seen !== undefined) {
     if (e.once) return false;
@@ -71,7 +74,8 @@ export function pickEvents(life: Life, content: Content, rng: Rng, count: number
   const out: EventDef[] = [];
   const cats = new Set<string>();
   for (let i = 0; i < count && pool.length; i++) {
-    const e = rng.weighted(pool, (x) => (x.weight ?? 10) * (cats.has(x.cat) ? 0.25 : 1));
+    const chaos = life.mode === 'chaos';
+    const e = rng.weighted(pool, (x) => (x.weight ?? 10) * (cats.has(x.cat) ? 0.25 : 1) * (chaos && (x.cat === 'weird' || x.cat === 'chaos') ? 6 : 1) * ((x.rating ?? 0) > 0 && life.rating === 2 ? 1.4 : 1));
     if (!e) break;
     if (e.when?.chance !== undefined && !rng.chance(e.when.chance)) { pool.splice(pool.indexOf(e), 1); i--; continue; }
     out.push(e);
@@ -107,6 +111,7 @@ export function queueEvent(life: Life, content: Content, id: string, rng: Rng, a
   const choices: PendingChoice[] = [];
   (e.choices ?? []).forEach((c, idx) => {
     if (c.if && !checkCond(life, content, c.if)) return;
+    if ((c.rating ?? 0) > life.rating) return;
     const outs = choiceOutcomes(c);
     choices.push({ label: renderLoc(c.label, ctx, rand), idx, risky: outs.length > 1, preview: outs.length === 1 ? previewOf(outs[0].fx, life, content) : {} });
   });
@@ -150,6 +155,7 @@ export function choose(life: Life, content: Content, choiceIndex: number): Resol
   const rng = rngOf(life);
   const actor = npcById(life, p.actorId);
   const before = snapshot(life);
+  life.lastFx = e?.scene?.fx ? [e.scene.fx] : [];
   if (!e) return null;
   let res: Resolution;
   if (!p.choices.length) {
@@ -161,8 +167,9 @@ export function choose(life: Life, content: Content, choiceIndex: number): Resol
     const c = e.choices![pc.idx];
     const out = pickOutcome(life, choiceOutcomes(c), rng);
     const ctx = { life, content, actor, vars: p.vars };
-    const text = renderLoc(out.text, ctx, () => rng.next());
-    applyEffect(life, content, out.fx ?? {}, actor, p.vars, rng);
+    let text = renderLoc(out.text, ctx, () => rng.next());
+    const over = applyEffect(life, content, out.fx ?? {}, actor, p.vars, rng);
+    if (over) text = text.fr ? { fr: `${text.fr} ${over.fr}`, en: `${text.en} ${over.en}` } : over;
     const tone = out.tone ?? toneOf(out.fx);
     if (text.fr) addLine(life, text, out.icon ?? e.icon, tone);
     res = { text, icon: out.icon ?? e.icon, tone, deltas: [], mood: out.mood ?? c.mood ?? moodOf(tone), actorId: actor?.id, open: out.fx?.open };
@@ -170,13 +177,16 @@ export function choose(life: Life, content: Content, choiceIndex: number): Resol
   res.deltas = diff(life, before);
   res.died = !life.alive;
   res.scene = e.scene;
+  res.visual = life.lastFx?.length ? life.lastFx : undefined;
   cleanupTemp(life);
   return res;
 }
 
 function moodOf(t: Tone): Mood { return t === 'good' ? 'happy' : t === 'bad' ? 'sad' : 'neutral'; }
 
-export function pickOutcome(life: Life, outs: Outcome[], rng: Rng): Outcome {
+export function pickOutcome(life: Life, outs0: Outcome[], rng: Rng): Outcome {
+  const outs = outs0.filter((o) => (o.rating ?? 0) <= life.rating);
+  if (!outs.length) return outs0[0];
   if (outs.length === 1) return outs[0];
   return rng.weighted(outs, (o) => {
     let w = o.w ?? 1;
@@ -189,12 +199,14 @@ export function pickOutcome(life: Life, outs: Outcome[], rng: Rng): Outcome {
 export function resolveOutcomes(life: Life, content: Content, outs: Outcome[], actor: Npc | undefined, icon: string, vars: Record<string, number | string> = emptyVars): Resolution {
   const rng = rngOf(life);
   const before = snapshot(life);
+  life.lastFx = [];
   const out = pickOutcome(life, outs, rng);
-  const text = renderLoc(out.text, { life, content, actor, vars }, () => rng.next());
-  applyEffect(life, content, out.fx ?? {}, actor, vars, rng);
+  let text = renderLoc(out.text, { life, content, actor, vars }, () => rng.next());
+  const over = applyEffect(life, content, out.fx ?? {}, actor, vars, rng);
+  if (over) text = text.fr ? { fr: `${text.fr} ${over.fr}`, en: `${text.en} ${over.en}` } : over;
   const tone = out.tone ?? toneOf(out.fx);
   if (text.fr) addLine(life, text, out.icon ?? icon, tone);
-  const res: Resolution = { text, icon: out.icon ?? icon, tone, deltas: diff(life, before), mood: out.mood ?? moodOf(tone), actorId: actor?.id, open: out.fx?.open, died: !life.alive };
+  const res: Resolution = { text, icon: out.icon ?? icon, tone, deltas: diff(life, before), mood: out.mood ?? moodOf(tone), actorId: actor?.id, open: out.fx?.open, died: !life.alive, visual: life.lastFx?.length ? life.lastFx : undefined };
   cleanupTemp(life);
   return res;
 }
@@ -209,8 +221,9 @@ export function cleanupTemp(life: Life) {
 
 function arr<T>(v: T | T[] | undefined): T[] { return v === undefined ? [] : Array.isArray(v) ? v : [v]; }
 
-export function applyEffect(life: Life, content: Content, fx: Effect, actor: Npc | undefined, vars: Record<string, number | string>, rng: Rng) {
-  if (!life.alive) return;
+export function applyEffect(life: Life, content: Content, fx: Effect, actor: Npc | undefined, vars: Record<string, number | string>, rng: Rng): Loc<string> | undefined {
+  if (!life.alive) return undefined;
+  let over: Loc<string> | undefined;
   for (const k of STAT_KEYS) if (fx[k]) life.stats[k] = clamp(life.stats[k] + fx[k]!);
   for (const k of ATTR_KEYS) if (fx[k]) life.attrs[k] = clamp(life.attrs[k] + fx[k]!);
   const c = country(content, life.country);
@@ -225,7 +238,7 @@ export function applyEffect(life: Life, content: Content, fx: Effect, actor: Npc
     life.money += Math.round(toLocal(base, c));
   }
   if (fx.moneyPct) life.money = Math.round(life.money * (1 + fx.moneyPct));
-  if (fx.weight) life.app.weight = clamp(life.app.weight + fx.weight, 0.05, 0.95);
+  if (fx.weight) life.app.weight = clamp(life.app.weight + fx.weight, 0.15, 0.95);
   if (fx.grade) life.edu.grade = clamp(life.edu.grade + fx.grade);
   if (fx.perf && life.job) life.job.perf = clamp(life.job.perf + fx.perf);
   for (const f of arr(fx.flag)) life.flags[f] = life.age;
@@ -253,11 +266,23 @@ export function applyEffect(life: Life, content: Content, fx: Effect, actor: Npc
     dropOut(life, content);
   }
   if (fx.moveOut) { life.movedOut = true; life.place = 'apartment'; }
+  if (fx.heat) life.heat = clamp(life.heat + fx.heat);
+  if (fx.followers) life.followers = Math.max(0, Math.round(life.followers + fx.followers));
+  if (fx.addiction) life.addictions[fx.addiction[0]] = clamp((life.addictions[fx.addiction[0]] ?? 0) + fx.addiction[1]);
+  for (const k of arr(fx.counter)) life.counters[k] = (life.counters[k] ?? 0) + 1;
+  if (fx.asset) giveAsset(life, content, fx.asset, rng);
+  if (fx.loseAsset) loseAsset(life, content, fx.loseAsset, rng);
+  if (fx.achievement && !life.achievements.includes(fx.achievement)) life.achievements.push(fx.achievement);
+  if (fx.visual) life.lastFx = [...(life.lastFx ?? []), fx.visual];
+  if (fx.jail) imprison(life, content, 'misc', fx.jail, rng);
+  if (fx.release) release(life, content);
+  if (fx.arrest) arrest(life, content, fx.arrest, rng);
   if (fx.log) addLine(life, renderLoc(fx.log, { life, content, actor, vars }, () => rng.next()));
-  if (fx.fn) fx.fn({ life, content, actor, vars, rand: () => rng.next() });
+  if (fx.fn) { const r = fx.fn({ life, content, actor, vars, rand: () => rng.next() }); if (r) over = r; }
   if (fx.schedule) life.scheduled.push({ key: fx.schedule.key, age: life.age + fx.schedule.years, actorId: actor?.id });
   if (fx.chain) queueEvent(life, content, fx.chain, rng, actor?.id, true);
   if (fx.die) kill(life, content, renderLoc(fx.die as LocText, { life, content, actor, vars }, () => rng.next()) as Loc<string>);
+  return over;
 }
 
 export function runScheduled(life: Life, content: Content, rng: Rng) {

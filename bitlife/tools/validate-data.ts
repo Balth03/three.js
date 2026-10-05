@@ -1,6 +1,18 @@
 // Content validation: `npm run validate`
-import { content } from '../data/index.ts';
-import type { LocText } from '../packages/sim/src/index.ts';
+import { content as base } from '../data/index.ts';
+import type { LocText, EventDef, Content } from '../packages/sim/src/index.ts';
+import { pathToFileURL } from 'node:url';
+import { resolve } from 'node:path';
+
+// Optional: validate an extra events module not yet registered: `npm run validate -- data/events/foo.ts`
+let content: Content = base;
+if (process.argv[2]) {
+  const mod = await import(pathToFileURL(resolve(process.argv[2])).href) as Record<string, unknown>;
+  const extra = Object.values(mod).filter(Array.isArray).flat() as EventDef[];
+  const known = new Set(base.events.map((e) => e.id));
+  content = { ...base, events: [...base.events, ...extra.filter((e) => !known.has(e.id))] };
+  console.log(`+ ${extra.length} events from ${process.argv[2]}`);
+}
 
 const errors: string[] = [];
 const warn: string[] = [];

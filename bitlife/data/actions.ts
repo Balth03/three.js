@@ -112,8 +112,8 @@ export const actions: ActionDef[] = [
     out: [
       { w: 2000, text: { fr: ['Perdu. Évidemment.', 'Pas un seul bon numéro. Le ticket est parti à la poubelle.', 'Perdu. Mais l\'espace d\'un instant, j\'ai rêvé d\'un yacht.'], en: ['Lost. Obviously.', 'Not one matching number. The ticket went in the bin.', 'Lost. But for a moment, I dreamt of a yacht.'] }, fx: { happy: -1 } },
       { w: 150, text: { fr: 'J\'ai gagné un petit lot au grattage !', en: 'I won a small prize!' }, fx: { money: 50, happy: 4 } },
-      { w: 8, text: { fr: 'JACKPOT moyen : j\'ai gagné une jolie somme à la loterie !', en: 'Mid-size JACKPOT: I won a nice sum in the lottery!' }, fx: { money: 25000, happy: 15 } },
-      { w: 0.3, text: { fr: '🎉 J\'AI GAGNÉ LE GROS LOT. JE SUIS MILLIONNAIRE. 🎉', en: '🎉 I WON THE JACKPOT. I\'M A MILLIONAIRE. 🎉' }, fx: { money: 5000000, happy: 40, fame: 10 } },
+      { w: 8, text: { fr: 'JACKPOT moyen : j\'ai gagné une jolie somme à la loterie !', en: 'Mid-size JACKPOT: I won a nice sum in the lottery!' }, fx: { money: 25000, happy: 15, visual: 'money' } },
+      { w: 0.3, text: { fr: '🎉 J\'AI GAGNÉ LE GROS LOT. JE SUIS MILLIONNAIRE. 🎉', en: '🎉 I WON THE JACKPOT. I\'M A MILLIONAIRE. 🎉' }, fx: { money: 5000000, happy: 40, fame: 10, counter: 'jackpot', visual: 'money' } },
     ],
   },
   {

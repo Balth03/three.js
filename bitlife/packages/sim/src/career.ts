@@ -26,6 +26,7 @@ export function employerFor(life: Life, content: Content, def: CareerDef, rng: R
 }
 
 export function qualification(life: Life, content: Content, def: CareerDef): Loc<string> | undefined {
+  if (life.prison) return L('Tu es en prison.', "You're in prison.");
   if (life.age < def.minAge) return L(`Il faut avoir ${def.minAge} ans.`, `You must be ${def.minAge}.`);
   if (!def.partTime) {
     if (life.age < 18) return L('Réservé aux adultes.', 'Adults only.');
@@ -56,7 +57,7 @@ export function qualification(life: Life, content: Content, def: CareerDef): Loc
 export function listJobs(life: Life, content: Content): JobOffer[] {
   let k = 0;
   const r = () => hash01(life.seed * 31 + life.age * 1009 + k++ * 7919);
-  const pool = content.careers.filter((c) => (c.partTime ? life.age >= 14 : life.age >= 17));
+  const pool = content.careers.filter((c) => !c.special && (c.rating ?? 0) <= life.rating && (c.partTime ? life.age >= 14 : life.age >= 17));
   const offers: JobOffer[] = [];
   for (const def of pool) {
     const show = def.partTime ? life.age < 23 || r() < 0.5 : r() < 0.62;
