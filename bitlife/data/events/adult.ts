@@ -169,23 +169,35 @@ export const adultEvents: EventDef[] = [
     weight: 10,
     cooldown: 3,
     text: {
-      fr: ["{a.first}, {a.rel}, mange du hareng fumé au bureau, siffle en tapant et répond « hmm hmm » à tout. Aujourd'hui, {a.he} t'a piqué ton mug.", "{a.first} vient de présenter ton idée en réunion. Comme si c'était la sienne. Avec tes slides."],
-      en: ["{a.first}, your coworker, eats smoked herring at {a:his|her} desk, whistles while typing and answers 'mm-hmm' to everything. Today, {a.he} stole your mug.", '{a.first} just pitched your idea in the meeting. As if it were {a:his|hers}. With your slides.'],
+      fr: [
+        "{a.first}, {a.rel}, mange du hareng fumé au bureau, siffle en tapant et répond « hmm hmm » à tout. Aujourd'hui, {a.he} t'a piqué ton mug.",
+        "{a.first} vient de présenter ton idée en réunion. Comme si c'était la sienne. Avec tes slides.",
+        "{a.first}, {a.rel}, réchauffe {w:food} au micro-ondes commun tous les jours à midi pile. Tout l'étage dégage {w:smell}. Aujourd'hui, {a.he} a laissé un mot : « Bon appétit à tous ».",
+        "{a.first} passe ses journées au téléphone à parler de {w:show} en haut-parleur. Hier, {a.he} a mis ton nom sur le planning des week-ends. « Petite erreur. »",
+        "{a.first}, {a.rel}, a garé {w:vehicle} sur ta place de parking. Encore. Et {a.he} vient de répondre « {w:excuse} » quand tu lui as demandé pourquoi. [[Avec un clin d'œil.|Sans lever les yeux.|En mangeant ton yaourt.]]",
+      ],
+      en: [
+        "{a.first}, your coworker, eats smoked herring at {a:his|her} desk, whistles while typing and answers 'mm-hmm' to everything. Today, {a.he} stole your mug.",
+        "{a.first} just pitched your idea in the meeting. As if it were {a:his|hers}. With your slides.",
+        "{a.first}, your coworker, microwaves {w:food} in the shared kitchen every day at noon sharp. The entire floor gives off {w:smell}. Today, {a.he} left a note: 'Enjoy your lunch, everyone.'",
+        "{a.first} spends all day on speakerphone talking about {w:show}. Yesterday, {a.he} put your name on the weekend rota. 'Little mistake.'",
+        "{a.first}, your coworker, parked {w:vehicle} in your spot. Again. And {a.he} just answered '{w:excuse}' when you asked why. [[With a wink.|Without looking up.|While eating your yogurt.]]",
+      ],
     },
     choices: [
       {
         label: { fr: 'Mettre les choses au clair', en: 'Set things straight' },
         out: [
-          { w: 2, text: { fr: "J'ai mis les choses au clair avec {a.first}. {a:Il|Elle} s'est excusé{a:|e}, la bouche pleine de hareng.", en: 'I set things straight with {a.first}. {a:He|She} apologized, mouth full of herring.' }, fx: { rel: -5, happy: 4, stress: -3, perf: 3 } },
-          { w: 1, text: { fr: "J'ai haussé le ton. C'est moi qui ai été convoqué{|e} par les RH. La vie est injuste.", en: 'I raised my voice. I was the one summoned by HR. Life is unfair.' }, fx: { rel: -10, happy: -6, perf: -10 }, mood: 'angry' },
+          { w: 2, text: { fr: ["J'ai mis les choses au clair avec {a.first}. {a:Il|Elle} s'est excusé{a:|e}, la bouche pleine de hareng.", "J'ai parlé franchement à {a.first}. {a:Il|Elle} n'avait aucune idée de ce que je subissais. On a trouvé un compromis : {a:il|elle} ne touche plus mon mug, je ne touche plus à son ego."], en: ["I set things straight with {a.first}. {a:He|She} apologized, mouth full of herring.", "I spoke frankly with {a.first}. {a:He|She} had no idea what I was going through. We found a compromise: {a:he|she} stops touching my mug, I stop bruising {a:his|her} ego."] }, fx: { rel: -5, happy: 4, stress: -3, perf: 3 } },
+          { w: 1, text: { fr: ["J'ai haussé le ton. C'est moi qui ai été convoqué{|e} par les RH. La vie est injuste.", "J'ai voulu clarifier les choses. {a.first} s'est mis{a:|e} à pleurer devant tout l'open space. Maintenant, c'est moi le méchant de l'histoire. Tout le monde m'évite à la machine à café."], en: ["I raised my voice. I was the one summoned by HR. Life is unfair.", "I tried to clear the air. {a.first} burst into tears in front of the whole open space. Now I'm the villain. Everyone avoids me at the coffee machine."] }, fx: { rel: -10, happy: -6, perf: -10 }, mood: 'angry' },
         ],
       },
-      { label: { fr: 'Vengeance mesquine', en: 'Petty revenge' }, text: { fr: "J'ai passé l'ordinateur de {a.first} en finnois. Ça fait trois jours. {a:Il|Elle} n'ose rien dire.", en: "I switched {a.first}'s computer to Finnish. It's been three days. {a:He|She} doesn't dare say anything." }, fx: { happy: 8, karma: -3, rel: -8 } },
+      { label: { fr: 'Vengeance mesquine', en: 'Petty revenge' }, text: { fr: ["J'ai passé l'ordinateur de {a.first} en finnois. Ça fait trois jours. {a:Il|Elle} n'ose rien dire.", "J'ai caché {w:object} dans le tiroir de {a.first}, et j'en rajoute un peu chaque semaine. {a:Il|Elle} commence à douter de sa santé mentale. Moi, je dors très bien."], en: ["I switched {a.first}'s computer to Finnish. It's been three days. {a:He|She} doesn't dare say anything.", "I hid {w:object} in {a.first}'s drawer, and I add a little more every week. {a:He|She} is starting to question {a:his|her} sanity. I sleep great."] }, fx: { happy: 8, karma: -3, rel: -8 } },
       {
         label: { fr: "Tenter l'amitié", en: 'Try friendship' },
         out: [
-          { w: 1, text: { fr: "J'ai invité {a.first} à déjeuner. On s'est découvert une passion commune pour les documentaires sur les phoques. Inséparables.", en: 'I took {a.first} to lunch. We discovered a shared passion for seal documentaries. Inseparable.' }, fx: { rel: 15, happy: 5 } },
-          { w: 1, text: { fr: "J'ai tenté l'amitié. {a.first} m'a parlé de ses cryptomonnaies pendant deux heures. Je n'ai plus de joie.", en: 'I tried friendship. {a.first} talked to me about crypto for two hours. I have no joy left.' }, fx: { rel: 3, happy: -3 } },
+          { w: 1, text: { fr: ["J'ai invité {a.first} à déjeuner. On s'est découvert une passion commune pour les documentaires sur les phoques. Inséparables.", "J'ai tenté l'amitié avec {a.first}. On s'est découvert une passion commune : {w:hobby}. On fait désormais des week-ends ensemble. Je ne l'ai pas vu venir."], en: ["I took {a.first} to lunch. We discovered a shared passion for seal documentaries. Inseparable.", "I tried being friends with {a.first}. Turns out we share a passion: {w:hobby}. We spend weekends together now. Didn't see that coming."] }, fx: { rel: 15, happy: 5 } },
+          { w: 1, text: { fr: ["J'ai tenté l'amitié. {a.first} m'a parlé de ses cryptomonnaies pendant deux heures. Je n'ai plus de joie.", "J'ai invité {a.first} à boire un verre. {a:Il|Elle} m'a expliqué {w:conspiracy}, avec des schémas sur une serviette en papier. J'ai payé l'addition pour pouvoir partir plus vite."], en: ["I tried friendship. {a.first} talked to me about crypto for two hours. I have no joy left.", "I invited {a.first} for a drink. {a:He|She} explained {w:conspiracy}, with diagrams on a napkin. I paid the bill just to leave faster."] }, fx: { rel: 3, happy: -3 } },
         ],
       },
     ],
@@ -201,26 +213,38 @@ export const adultEvents: EventDef[] = [
     weight: 10,
     cooldown: 3,
     text: {
-      fr: ["{a.first}, {a.rel}, est de bonne humeur aujourd'hui : {a.he} a fredonné dans l'ascenseur. C'est le moment ou jamais de parler argent.", "Ça fait des mois que tu fais le travail de trois personnes chez {employer}. {a.first}, {a.rel}, vient de passer devant ton bureau en sifflotant. C'est l'occasion."],
-      en: ["{a.first}, your boss, is in a good mood today: {a.he} hummed in the elevator. It's now or never to talk money.", "You've been doing the work of three people at {employer} for months. {a.first}, your boss, just walked past your desk whistling. Here's your chance."],
+      fr: [
+        "{a.first}, {a.rel}, est de bonne humeur aujourd'hui : {a.he} a fredonné dans l'ascenseur. C'est le moment ou jamais de parler argent.",
+        "Ça fait des mois que tu fais le travail de trois personnes chez {employer}. {a.first}, {a.rel}, vient de passer devant ton bureau en sifflotant. C'est l'occasion.",
+        "{a.first}, {a.rel}, revient de vacances {w:far_place}, bronzé{a:|e} et détendu{a:|e}. {a:Il|Elle} a même apporté {w:food} pour toute l'équipe. Si tu dois demander quelque chose, c'est aujourd'hui.",
+        "{a.first} a gagné hier au loto du bureau et chante {w:song} dans le couloir. Tu as préparé ton argumentaire depuis [[trois semaines|six mois|deux ans]]. Le moment est venu.",
+        "{a.first}, {a.rel}, t'a souri ce matin. Un vrai sourire, avec des dents. Puis {a.he} t'a offert {w:food}, sans raison apparente. Peu importe : c'est le moment de foncer.",
+      ],
+      en: [
+        "{a.first}, your boss, is in a good mood today: {a.he} hummed in the elevator. It's now or never to talk money.",
+        "You've been doing the work of three people at {employer} for months. {a.first}, your boss, just walked past your desk whistling. Here's your chance.",
+        "{a.first}, your boss, just got back from vacation {w:far_place}, tanned and relaxed. {a:He|She} even brought {w:food} for the whole team. If you're going to ask for something, it's today.",
+        "{a.first} won the office lottery yesterday and is singing {w:song} in the hallway. You've been preparing your pitch for [[three weeks|six months|two years]]. The time has come.",
+        "{a.first}, your boss, smiled at you this morning. A real smile, with teeth. Then {a.he} offered you {w:food}, for no apparent reason. Whatever: time to go for it.",
+      ],
     },
     choices: [
       {
         label: { fr: 'Demander une augmentation', en: 'Ask for a raise' },
         out: [
-          { w: 2, odds: { discipline: 1 }, text: { fr: "J'ai défendu mon cas avec un PowerPoint de 14 slides. {a.first} a craqué à la slide 9 : prime de {$amount} !", en: 'I made my case with a 14-slide PowerPoint. {a.first} caved at slide 9: a {$amount} bonus!' }, fx: { money: 'amount', happy: 8, rel: 3 }, mood: 'proud' },
-          { w: 2, text: { fr: "{a.first} m'a répondu que « ce n'était pas le moment ». Apparemment, ce n'est jamais le moment depuis 2009.", en: "{a.first} told me 'now's not the time'. Apparently it hasn't been the time since 2009." }, fx: { happy: -6, stress: 4 } },
-          { w: 1, text: { fr: "J'ai négocié si bien que {a.first} m'a proposé une promotion. Je n'ai toujours pas compris comment.", en: "I negotiated so well that {a.first} offered me a promotion. I still don't understand how." }, fx: { promote: true, happy: 12, rel: 5 }, mood: 'proud' },
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["J'ai défendu mon cas avec un PowerPoint de 14 slides. {a.first} a craqué à la slide 9 : prime de {$amount} !", "J'ai demandé une augmentation en regardant {a.first} droit dans les yeux, sans cligner. {a:Il|Elle} a cligné en premier. Prime de {$amount}. La domination, ça paie."], en: ["I made my case with a 14-slide PowerPoint. {a.first} caved at slide 9: a {$amount} bonus!", "I asked for a raise looking {a.first} dead in the eye, without blinking. {a:He|She} blinked first. A {$amount} bonus. Dominance pays."] }, fx: { money: 'amount', happy: 8, rel: 3 }, mood: 'proud' },
+          { w: 2, text: { fr: ["{a.first} m'a répondu que « ce n'était pas le moment ». Apparemment, ce n'est jamais le moment depuis 2009.", "{a.first} m'a écouté{|e} avec attention, puis m'a offert {w:gift} à la place d'une augmentation. « C'est symbolique. » Mon loyer, lui, n'est pas symbolique."], en: ["{a.first} told me 'now's not the time'. Apparently it hasn't been the time since 2009.", "{a.first} listened carefully, then gave me {w:gift} instead of a raise. 'It's symbolic.' My rent is not symbolic."] }, fx: { happy: -6, stress: 4 } },
+          { w: 1, text: { fr: ["J'ai négocié si bien que {a.first} m'a proposé une promotion. Je n'ai toujours pas compris comment.", "J'ai tellement bien argumenté que {a.first} m'a donné une promotion pour que j'arrête de parler. Je retiens la technique."], en: ["I negotiated so well that {a.first} offered me a promotion. I still don't understand how.", "I argued so well that {a.first} gave me a promotion just to make me stop talking. I'm keeping that technique."] }, fx: { promote: true, happy: 12, rel: 5 }, mood: 'proud' },
         ],
       },
       {
         label: { fr: 'Proposer un gros projet', en: 'Pitch a big project' },
         out: [
-          { w: 1, text: { fr: "J'ai pitché mon projet. {a.first} a adoré et me l'a confié. Ainsi que tous mes week-ends.", en: 'I pitched my project. {a.first} loved it and handed it to me. Along with all my weekends.' }, fx: { perf: 10, stress: 8, rel: 8 } },
-          { w: 1, text: { fr: "Mon projet a été jugé « trop ambitieux ». Traduction : trop de travail pour {a.first}.", en: "My project was deemed 'too ambitious'. Translation: too much work for {a.first}." }, fx: { perf: -3, happy: -3 } },
+          { w: 1, text: { fr: ["J'ai pitché mon projet. {a.first} a adoré et me l'a confié. Ainsi que tous mes week-ends.", "Mon projet a été validé en [[cinq|dix|deux]] minutes. Je suis maintenant chef de projet, sans augmentation, avec une équipe composée d'un stagiaire et d'une plante verte."], en: ["I pitched my project. {a.first} loved it and handed it to me. Along with all my weekends.", "My project was approved in [[five|ten|two]] minutes. I'm now project lead, with no raise, and a team made up of one intern and a houseplant."] }, fx: { perf: 10, stress: 8, rel: 8 } },
+          { w: 1, text: { fr: ["Mon projet a été jugé « trop ambitieux ». Traduction : trop de travail pour {a.first}.", "{a.first} a rejeté mon projet. Trois semaines plus tard, {a:il|elle} l'a présenté à la direction comme sa propre idée. Je l'ai appris par l'intranet."], en: ["My project was deemed 'too ambitious'. Translation: too much work for {a.first}.", "{a.first} rejected my project. Three weeks later, {a:he|she} presented it to upper management as {a:his|her} own idea. I found out from the intranet."] }, fx: { perf: -3, happy: -3 } },
         ],
       },
-      { label: { fr: 'Faire profil bas', en: 'Keep my head down' }, text: { fr: "Je n'ai rien dit. J'ai continué à bosser en silence, comme un ficus très productif.", en: 'I said nothing. I kept working in silence, like a very productive ficus.' }, fx: { perf: 4, happy: -2 } },
+      { label: { fr: 'Faire profil bas', en: 'Keep my head down' }, text: { fr: ["Je n'ai rien dit. J'ai continué à bosser en silence, comme un ficus très productif.", "J'ai fait profil bas. Si bas que {a.first} a oublié mon prénom. {a:Il|Elle} m'appelle « {w:nickname} ». Je n'ai pas osé corriger."], en: ["I said nothing. I kept working in silence, like a very productive ficus.", "I kept my head down. So far down that {a.first} forgot my name. Now calls me '{w:nickname}'. I didn't dare correct it."] }, fx: { perf: 4, happy: -2 } },
     ],
   },
   {
@@ -330,26 +354,38 @@ export const adultEvents: EventDef[] = [
     weight: 10,
     cooldown: 3,
     text: {
-      fr: ["Ça matche sur l'appli ! {a.first}, {a.age} ans, « aime les voyages, les tacos et les gens qui ne posent pas avec un poisson ». Tu tentes ta chance ?", "{a.first} ({a.age} ans) t'écrit à 1 h du matin : « Tu préfères affronter un canard de la taille d'un cheval ou cent chevaux de la taille d'un canard ? » C'est prometteur."],
-      en: ["It's a match! {a.first}, {a.age}, 'loves travel, tacos and people who don't pose with a fish.' Shoot your shot?", "{a.first} ({a.age}) messages you at 1 a.m.: 'Would you rather fight one horse-sized duck or a hundred duck-sized horses?' Promising."],
+      fr: [
+        "Ça matche sur l'appli ! {a.first}, {a.age} ans, « aime les voyages, les tacos et les gens qui ne posent pas avec un poisson ». Tu tentes ta chance ?",
+        "{a.first} ({a.age} ans) t'écrit à 1 h du matin : « Tu préfères affronter un canard de la taille d'un cheval ou cent chevaux de la taille d'un canard ? » C'est prometteur.",
+        "Nouveau match sur {w:app} : {a.first}, {a.age} ans. Sur sa photo de profil, {a:il|elle} pose avec {w:animal}. Bio : « Passionné{a:|e} par {w:hobby}. Pas de prise de tête. » Tu tentes ?",
+        "{a.first}, {a.age} ans, vient de liker [[toutes|douze de|trois de]] tes photos d'un coup, dont une de toi en train de manger {w:food}. Premier message : « {w:compliment} ». C'est direct.",
+        "Match avec {a.first} ({a.age} ans). Son profil dit : « Je cherche quelqu'un pour aller {w:to_place} et partager {w:food} ». C'est étrangement précis. Mais pourquoi pas ?",
+      ],
+      en: [
+        "It's a match! {a.first}, {a.age}, 'loves travel, tacos and people who don't pose with a fish.' Shoot your shot?",
+        "{a.first} ({a.age}) messages you at 1 a.m.: 'Would you rather fight one horse-sized duck or a hundred duck-sized horses?' Promising.",
+        "New match on {w:app}: {a.first}, {a.age}. In {a:his|her} profile pic, {a:he|she} is posing with {w:animal}. Bio: 'Into {w:hobby}. No drama.' Shoot your shot?",
+        "{a.first}, {a.age}, just liked [[all|twelve of|three of]] your photos at once, including one of you eating {w:food}. First message: '{w:compliment}'. Bold.",
+        "Match with {a.first} ({a.age}). The profile says: 'Looking for someone to go {w:to_place} with and share {w:food}.' Oddly specific. But why not?",
+      ],
     },
     choices: [
       {
         label: { fr: 'Proposer un rendez-vous', en: 'Ask for a date' },
         out: [
-          { w: 2, text: { fr: "Premier rendez-vous avec {a.first} : on a parlé quatre heures et fermé le restaurant. Je crois que c'est le début de quelque chose.", en: "First date with {a.first}: we talked for four hours and closed the restaurant. I think it's the start of something." }, fx: { happy: 12, rel: 15, actorRole: 'partner' }, mood: 'love' },
-          { w: 1, text: { fr: "{a.first} ressemblait vaguement à ses photos. De très loin. Dans le brouillard. On a passé une soirée sympa, en amis.", en: '{a.first} vaguely resembled the photos. From very far away. In fog. We had a nice evening, as friends.' }, fx: { happy: 2 } },
-          { w: 1, text: { fr: "{a.first} m'a posé un lapin. J'ai mangé deux desserts seul{|e}, avec dignité.", en: '{a.first} stood me up. I ate two desserts alone, with dignity.' }, fx: { happy: -6 }, mood: 'sad' },
+          { w: 2, text: { fr: ["Premier rendez-vous avec {a.first} : on a parlé quatre heures et fermé le restaurant. Je crois que c'est le début de quelque chose.", "Rendez-vous {w:at_place} avec {a.first}. On a ri tellement fort qu'on s'est fait sortir. On a continué la soirée sur un banc jusqu'à [[minuit|2 h|l'aube]]. Il se passe quelque chose."], en: ["First date with {a.first}: we talked for four hours and closed the restaurant. I think it's the start of something.", "Date {w:at_place} with {a.first}. We laughed so hard we got kicked out. We kept going on a bench until [[midnight|2 a.m.|dawn]]. Something is happening."] }, fx: { happy: 12, rel: 15, actorRole: 'partner' }, mood: 'love' },
+          { w: 1, text: { fr: ["{a.first} ressemblait vaguement à ses photos. De très loin. Dans le brouillard. On a passé une soirée sympa, en amis.", "Le rendez-vous avec {a.first} était agréable, mais {a:il|elle} a parlé de {w:show} pendant deux heures. On est toujours amis. Enfin, contacts."], en: ["{a.first} vaguely resembled the photos. From very far away. In fog. We had a nice evening, as friends.", "The date with {a.first} was nice, but {a:he|she} talked about {w:show} for two hours. We stayed friends. Well, contacts."] }, fx: { happy: 2 } },
+          { w: 1, text: { fr: ["{a.first} m'a posé un lapin. J'ai mangé deux desserts seul{|e}, avec dignité.", "J'ai attendu {a.first} pendant une heure. Rien. Le serveur m'a offert {w:drink} par pitié. C'est le seul qui s'est intéressé à moi ce soir-là."], en: ["{a.first} stood me up. I ate two desserts alone, with dignity.", "I waited an hour for {a.first}. Nothing. The waiter gave me {w:drink} out of pity. He was the only one interested in me that night."] }, fx: { happy: -6 }, mood: 'sad' },
         ],
       },
       {
         label: { fr: 'Répondre par un mème', en: 'Reply with a meme' },
         out: [
-          { w: 1, text: { fr: "J'ai répondu par un mème de chat. {a.first} a répondu par un mème de chat. C'est ça, l'amour moderne.", en: "I replied with a cat meme. {a.first} replied with a cat meme. That's modern love." }, fx: { happy: 8, rel: 10, actorRole: 'partner' }, mood: 'love' },
-          { w: 1, text: { fr: "J'ai envoyé un mème. {a.first} ne l'a pas compris. Fin de l'histoire.", en: "I sent a meme. {a.first} didn't get it. The end." }, fx: { happy: -2 } },
+          { w: 1, text: { fr: ["J'ai répondu par un mème de chat. {a.first} a répondu par un mème de chat. C'est ça, l'amour moderne.", "J'ai envoyé un mème. {a.first} a répondu avec un meilleur mème. On s'est envoyé [[cent|deux cents|cinq cents]] mèmes en une nuit. Je crois que je suis amoureu{x|se}."], en: ["I replied with a cat meme. {a.first} replied with a cat meme. That's modern love.", "I sent a meme. {a.first} replied with a better meme. We traded [[a hundred|two hundred|five hundred]] memes in one night. I think I'm in love."] }, fx: { happy: 8, rel: 10, actorRole: 'partner' }, mood: 'love' },
+          { w: 1, text: { fr: ["J'ai envoyé un mème. {a.first} ne l'a pas compris. Fin de l'histoire.", "J'ai envoyé un mème. {a.first} a répondu « ? ». J'ai expliqué le mème. {a:Il|Elle} a répondu « ah ». C'était fini avant d'avoir commencé."], en: ["I sent a meme. {a.first} didn't get it. The end.", "I sent a meme. {a.first} replied '?'. I explained the meme. {a:He|She} replied 'oh'. It was over before it began."] }, fx: { happy: -2 } },
         ],
       },
-      { label: { fr: "Supprimer l'appli", en: 'Delete the app' }, text: { fr: "J'ai supprimé l'appli et je suis allé{|e} me coucher. Mon lit ne m'a jamais déçu{|e}.", en: 'I deleted the app and went to bed. My bed has never let me down.' }, fx: { happy: 2, stress: -2 } },
+      { label: { fr: "Supprimer l'appli", en: 'Delete the app' }, text: { fr: ["J'ai supprimé l'appli et je suis allé{|e} me coucher. Mon lit ne m'a jamais déçu{|e}.", "J'ai supprimé l'appli et commandé {w:food}. Le livreur m'a souri. C'est suffisant pour ce soir."], en: ["I deleted the app and went to bed. My bed has never let me down.", "I deleted the app and ordered {w:food}. The delivery guy smiled at me. That's enough for tonight."] }, fx: { happy: 2, stress: -2 } },
     ],
   },
   {
@@ -484,25 +520,37 @@ export const adultEvents: EventDef[] = [
     weight: 8,
     cooldown: 6,
     text: {
-      fr: ["Tu trouves un portefeuille sur un banc. Dedans : {$amount}, une carte d'identité et la photo d'un monsieur qui pose fièrement avec une citrouille géante.", "Un portefeuille traîne sur le trottoir. Il contient {$amount} et une carte de fidélité de crêperie presque complète."],
-      en: ['You find a wallet on a bench. Inside: {$amount}, an ID card and a photo of a man proudly posing with a giant pumpkin.', 'A wallet lies on the sidewalk. It holds {$amount} and an almost-full crêpe shop loyalty card.'],
+      fr: [
+        "Tu trouves un portefeuille sur un banc. Dedans : {$amount}, une carte d'identité et la photo d'un monsieur qui pose fièrement avec une citrouille géante.",
+        "Un portefeuille traîne sur le trottoir. Il contient {$amount} et une carte de fidélité de crêperie presque complète.",
+        "Tu ramasses un portefeuille {w:at_place}. Dedans : {$amount}, une photo où {w:animal} porte un bonnet de Père Noël et un ticket pour l'enregistrement de {w:show}. Son propriétaire est quelqu'un de spécial.",
+        "Un portefeuille en cuir abandonné sur {w:object}, dans le bus. Dedans : {$amount}, un ticket de pressing et un mot : « Si vous le trouvez, sachez que [[je vous vois|je vous fais confiance|maman vous regarde]]. »",
+        "Tu trouves un portefeuille {w:weather}, à moitié trempé. Il contient {$amount}, une carte d'identité et une liste de courses qui commence par {w:food}. Le propriétaire habite à deux rues.",
+      ],
+      en: [
+        "You find a wallet on a bench. Inside: {$amount}, an ID card and a photo of a man proudly posing with a giant pumpkin.",
+        "A wallet lies on the sidewalk. It holds {$amount} and an almost-full crêpe shop loyalty card.",
+        "You pick up a wallet {w:at_place}. Inside: {$amount}, a photo of {w:animal} wearing a Santa hat and a ticket to a taping of {w:show}. Its owner is someone special.",
+        "A leather wallet left on {w:object} on the bus. Inside: {$amount}, a dry-cleaning ticket and a note: 'If you find this, know that [[I'm watching you|I trust you|Mom is watching]].'",
+        "You find a wallet {w:weather}, half soaked. It contains {$amount}, an ID card and a shopping list that starts with {w:food}. The owner lives two streets away.",
+      ],
     },
     choices: [
       {
         label: { fr: 'Le rendre', en: 'Return it' },
         out: [
-          { w: 3, text: { fr: "J'ai rendu le portefeuille à son propriétaire. Il m'a serré{|e} dans ses bras si fort que j'ai entendu craquer quelque chose.", en: 'I returned the wallet to its owner. He hugged me so hard I heard something crack.' }, fx: { karma: 8, happy: 5 } },
-          { w: 1, text: { fr: "J'ai rendu le portefeuille. En récompense, le propriétaire m'a offert un ticket de métro. C'est l'intention qui compte.", en: 'I returned the wallet. As a reward, the owner gave me a subway ticket. It\'s the thought that counts.' }, fx: { karma: 8, money: 3, happy: 3 } },
+          { w: 3, text: { fr: ["J'ai rendu le portefeuille à son propriétaire. Il m'a serré{|e} dans ses bras si fort que j'ai entendu craquer quelque chose.", "J'ai rendu le portefeuille. Le propriétaire a pleuré, m'a invité{|e} à dîner et m'a montré [[deux cents|quatre cents|mille]] photos de sa citrouille géante. J'ai tout regardé. Le karma, ça se mérite."], en: ["I returned the wallet to its owner. He hugged me so hard I heard something crack.", "I returned the wallet. The owner cried, invited me to dinner and showed me [[two hundred|four hundred|a thousand]] photos of his giant pumpkin. I looked at every one. Karma must be earned."] }, fx: { karma: 8, happy: 5 } },
+          { w: 1, text: { fr: ["J'ai rendu le portefeuille. En récompense, le propriétaire m'a offert un ticket de métro. C'est l'intention qui compte.", "J'ai rendu le portefeuille. Le propriétaire a recompté les billets devant moi, deux fois, puis m'a remercié{|e} avec {w:gift}. Je ne sais pas si je dois être vexé{|e}."], en: ["I returned the wallet. As a reward, the owner gave me a subway ticket. It's the thought that counts.", "I returned the wallet. The owner counted the bills in front of me, twice, then thanked me with {w:gift}. I don't know whether to be offended."] }, fx: { karma: 8, money: 3, happy: 3 } },
         ],
       },
       {
         label: { fr: "Garder l'argent", en: 'Keep the cash' },
         out: [
-          { w: 3, text: { fr: "J'ai gardé les billets et glissé le portefeuille vide dans une boîte aux lettres. Mon âme vaut donc {$amount}.", en: 'I kept the bills and dropped the empty wallet in a mailbox. So my soul is worth {$amount}.' }, fx: { money: 'amount', karma: -10 } },
-          { w: 1, text: { fr: "J'ai empoché l'argent. Une caméra de surveillance a tout filmé. J'ai dû tout rendre et m'expliquer au commissariat.", en: 'I pocketed the money. A security camera caught everything. I had to give it all back and explain myself at the police station.' }, fx: { karma: -8, happy: -8, stress: 8 }, mood: 'shock' },
+          { w: 3, text: { fr: ["J'ai gardé les billets et glissé le portefeuille vide dans une boîte aux lettres. Mon âme vaut donc {$amount}.", "J'ai gardé l'argent et je me suis offert {w:food} avec. C'était délicieux. Le goût de la culpabilité, avec un peu de sauce."], en: ["I kept the bills and dropped the empty wallet in a mailbox. So my soul is worth {$amount}.", "I kept the money and treated myself to {w:food}. It was delicious. The taste of guilt, with a little sauce."] }, fx: { money: 'amount', karma: -10 } },
+          { w: 1, text: { fr: ["J'ai empoché l'argent. Une caméra de surveillance a tout filmé. J'ai dû tout rendre et m'expliquer au commissariat.", "J'ai pris l'argent. Le propriétaire est apparu au coin de la rue au même moment. Je lui ai tendu le portefeuille avec un grand sourire. Il a tout compris. Moi aussi."], en: ["I pocketed the money. A security camera caught everything. I had to give it all back and explain myself at the police station.", "I took the money. The owner rounded the corner at that exact moment. I handed him the wallet with a big smile. He understood everything. So did I."] }, fx: { karma: -8, happy: -8, stress: 8 }, mood: 'shock' },
         ],
       },
-      { label: { fr: 'Le déposer à la police', en: 'Drop it at the police' }, text: { fr: "J'ai déposé le portefeuille au commissariat. Le policier a soupiré comme si je lui apportais du travail. Ce qui était le cas.", en: 'I dropped the wallet at the police station. The officer sighed as if I had brought him work. Which I had.' }, fx: { karma: 5 } },
+      { label: { fr: 'Le déposer à la police', en: 'Drop it at the police' }, text: { fr: ["J'ai déposé le portefeuille au commissariat. Le policier a soupiré comme si je lui apportais du travail. Ce qui était le cas.", "Je l'ai déposé au commissariat. On m'a fait remplir [[trois|cinq|sept]] formulaires. Je suis ressorti{|e} plus de deux heures plus tard, avec l'impression d'avoir été entendu{|e} comme suspect."], en: ["I dropped the wallet at the police station. The officer sighed as if I had brought him work. Which I had.", "I dropped it off at the police station. They made me fill out [[three|five|seven]] forms. I left over two hours later, feeling like I'd been questioned as a suspect."] }, fx: { karma: 5 } },
     ],
   },
   {
@@ -515,19 +563,31 @@ export const adultEvents: EventDef[] = [
     weight: 8,
     cooldown: 5,
     text: {
-      fr: ["Un certain « agent Microsoft » t'appelle : ton ordinateur est infecté, mais il peut le sauver pour {$amount} en cartes cadeaux. Il a l'air très pressé.", "Un SMS t'annonce que ton colis est bloqué. Pour le libérer, il suffit de régler {$amount} de « frais de douane » et de donner le nom de ton premier animal."],
-      en: ["Some 'Microsoft agent' calls you: your computer is infected, but he can save it for {$amount} in gift cards. He sounds very rushed.", "A text says your package is stuck. To release it, just pay {$amount} in 'customs fees' and share the name of your first pet."],
+      fr: [
+        "Un certain « agent Microsoft » t'appelle : ton ordinateur est infecté, mais il peut le sauver pour {$amount} en cartes cadeaux. Il a l'air très pressé.",
+        "Un SMS t'annonce que ton colis est bloqué. Pour le libérer, il suffit de régler {$amount} de « frais de douane » et de donner le nom de ton premier animal.",
+        "Un mail de « {w:celeb} » en personne : la star serait bloquée {w:far_place} et aurait besoin de {$amount} pour rentrer. Elle promet de te rembourser le triple. Il y a [[douze|vingt|trente-deux]] fautes d'orthographe.",
+        "Ton téléphone sonne {w:time}. Une voix robotique t'annonce que ton compte {w:app} va être supprimé, sauf si tu verses {$amount} immédiatement. En fond, on entend {w:sound}.",
+        "Un SMS de ta « banque » : une transaction suspecte de {$amount} pour {w:object}. Pour l'annuler, il faut cliquer sur un lien très, très long et donner ton code secret. C'est urgent, apparemment.",
+      ],
+      en: [
+        "Some 'Microsoft agent' calls you: your computer is infected, but he can save it for {$amount} in gift cards. He sounds very rushed.",
+        "A text says your package is stuck. To release it, just pay {$amount} in 'customs fees' and share the name of your first pet.",
+        "An email from '{w:celeb}' personally: they're stuck {w:far_place} and need {$amount} to get home. They promise to pay you back triple. There are [[twelve|twenty|thirty-two]] spelling mistakes.",
+        "Your phone rings {w:time}. A robotic voice says your {w:app} account will be deleted unless you send {$amount} immediately. In the background, you can hear {w:sound}.",
+        "A text from your 'bank': a suspicious {$amount} transaction for {w:object}. To cancel it, click a very, very long link and give your PIN. Urgently, apparently.",
+      ],
     },
     choices: [
       {
         label: { fr: 'Suivre les instructions', en: 'Do as they say' },
         out: [
-          { w: 2, text: { fr: "J'ai tout fait comme on me l'a dit. Mon compte a perdu {$amount}. Mon ordinateur, lui, va très bien, merci.", en: 'I did exactly as told. My account lost {$amount}. My computer is doing great, thanks.' }, fx: { money: '-amount', happy: -10, smarts: -2 }, mood: 'cry' },
-          { w: 1, text: { fr: "J'allais payer quand ma banque a bloqué l'opération. Ma conseillère m'a appelé{|e} pour me sermonner gentiment.", en: 'I was about to pay when my bank blocked the transaction. My banker called to gently scold me.' }, fx: { happy: -3, smarts: 1 } },
+          { w: 2, text: { fr: ["J'ai tout fait comme on me l'a dit. Mon compte a perdu {$amount}. Mon ordinateur, lui, va très bien, merci.", "J'ai obéi. {$amount} envolés en trois clics. Le lendemain, j'ai reçu un SMS : « Merci pour votre confiance ». Au moins, ils sont polis."], en: ["I did exactly as told. My account lost {$amount}. My computer is doing great, thanks.", "I complied. {$amount} gone in three clicks. The next day I got a text: 'Thank you for your trust.' At least they're polite."] }, fx: { money: '-amount', happy: -10, smarts: -2 }, mood: 'cry' },
+          { w: 1, text: { fr: ["J'allais payer quand ma banque a bloqué l'opération. Ma conseillère m'a appelé{|e} pour me sermonner gentiment.", "J'étais en train de taper mon code quand mon téléphone s'est éteint, batterie à plat. Sauvé{|e} par ma négligence. Je ne recharge plus jamais rien."], en: ["I was about to pay when my bank blocked the transaction. My banker called to gently scold me.", "I was typing my PIN when my phone died, battery flat. Saved by my own negligence. I'm never charging anything again."] }, fx: { happy: -3, smarts: 1 } },
         ],
       },
-      { label: { fr: 'Le faire tourner en bourrique', en: 'Waste their time' }, text: { fr: "J'ai joué l'innocent{|e} très lent{|e} pendant 45 minutes. L'arnaqueur a fini par m'insulter et raccrocher. Victoire.", en: 'I played a very slow innocent for 45 minutes. The scammer ended up swearing at me and hanging up. Victory.' }, fx: { happy: 8, karma: 2, smarts: 1 } },
-      { label: { fr: 'Raccrocher net', en: 'Hang up' }, text: { fr: "J'ai coupé sans un mot. L'instinct de survie numérique, ça ne s'apprend pas.", en: "I cut them off without a word. Digital survival instinct can't be taught." }, fx: { smarts: 2 } },
+      { label: { fr: 'Le faire tourner en bourrique', en: 'Waste their time' }, text: { fr: ["J'ai joué l'innocent{|e} très lent{|e} pendant 45 minutes. L'arnaqueur a fini par m'insulter et raccrocher. Victoire.", "Je l'ai fait patienter en lui demandant d'épeler chaque mot, puis je lui ai expliqué {w:hobby} en détail pendant une heure. Il a raccroché en pleurant. Je dédie cette victoire à tous les retraités."], en: ["I played a very slow innocent for 45 minutes. The scammer ended up swearing at me and hanging up. Victory.", "I kept him waiting by asking him to spell every word, then explained {w:hobby} to him in detail for an hour. He hung up crying. I dedicate this victory to retirees everywhere."] }, fx: { happy: 8, karma: 2, smarts: 1 } },
+      { label: { fr: 'Raccrocher net', en: 'Hang up' }, text: { fr: ["J'ai coupé sans un mot. L'instinct de survie numérique, ça ne s'apprend pas.", "J'ai raccroché, bloqué le numéro et signalé l'arnaque. Je me suis senti{|e} comme un agent secret. Pendant [[dix secondes|une minute|toute la soirée]]."], en: ["I cut them off without a word. Digital survival instinct can't be taught.", "I hung up, blocked the number and reported the scam. I felt like a secret agent. For [[ten seconds|a minute|the whole evening]]."] }, fx: { smarts: 2 } },
     ],
   },
   {
@@ -576,13 +636,25 @@ export const adultEvents: EventDef[] = [
     weight: 8,
     cooldown: 6,
     text: {
-      fr: ["{a.first} t'appelle, gêné{a:|e} : {a.he} a besoin de {$amount} pour « un truc urgent ». Tu n'oses pas demander quel truc.", "{a.first} a un plan infaillible : un food-truck de raclette végane. Il ne lui manque que {$amount}. Les tiens."],
-      en: ["{a.first} calls you, embarrassed: {a.he} needs {$amount} for 'something urgent'. You don't dare ask what.", '{a.first} has a foolproof plan: a vegan raclette food truck. All {a.he} needs is {$amount}. Yours.'],
+      fr: [
+        "{a.first} t'appelle, gêné{a:|e} : {a.he} a besoin de {$amount} pour « un truc urgent ». Tu n'oses pas demander quel truc.",
+        "{a.first} a un plan infaillible : un food-truck de raclette végane. Il ne lui manque que {$amount}. Les tiens.",
+        "{a.first} débarque chez toi avec {w:food} et des yeux de chien battu. {a:Il|Elle} a besoin de {$amount} pour se lancer comme {w:weird_job}. « C'est l'avenir. »",
+        "{a.first} t'écrit {w:time} : « Tu dors ? J'ai besoin de {$amount}. Je t'explique pas, mais c'est pour {w:animal}. » Trois points de suspension suivent. Puis un cœur.",
+        "{a.first} est coincé{a:|e} {w:far_place} et te demande {$amount} pour rentrer. {a:Il|Elle} jure que c'est la dernière fois. C'est la [[deuxième|troisième|cinquième]] dernière fois.",
+      ],
+      en: [
+        "{a.first} calls you, embarrassed: {a.he} needs {$amount} for 'something urgent'. You don't dare ask what.",
+        "{a.first} has a foolproof plan: a vegan raclette food truck. All {a.he} needs is {$amount}. Yours.",
+        "{a.first} shows up at your place with {w:food} and puppy-dog eyes. {a:He|She} needs {$amount} to start out as {w:weird_job}. 'It's the future.'",
+        "{a.first} texts you {w:time}: 'You up? I need {$amount}. Can't explain, but it's for {w:animal}.' Three dots follow. Then a heart.",
+        "{a.first} is stuck {w:far_place} and asks you for {$amount} to get home. {a:He|She} swears it's the last time. It's the [[second|third|fifth]] last time.",
+      ],
     },
     choices: [
-      { label: { fr: "Prêter l'argent", en: 'Lend the money' }, text: { fr: "J'ai prêté {$amount} à {a.first}. {a:Il|Elle} m'a juré de me rembourser « très vite ». On verra bien.", en: "I lent {a.first} {$amount}. {a:He|She} swore to pay me back 'real soon'. We'll see." }, fx: { money: '-amount', rel: 10, karma: 3, flag: 'ad_lent_money', schedule: { key: 'ad_lend_payback', years: 2 } } },
-      { label: { fr: 'Refuser poliment', en: 'Politely decline' }, text: { fr: "J'ai refusé. {a.first} a dit qu'{a:il|elle} comprenait, avec la voix de quelqu'un qui ne comprend pas du tout.", en: "I said no. {a.first} said {a.he} understood, in the voice of someone who absolutely did not." }, fx: { rel: -10 } },
-      { label: { fr: 'Offrir sans retour', en: 'Make it a gift' }, text: { fr: "J'ai donné {$amount} à {a.first} en lui interdisant de me rembourser. Je me suis senti{|e} comme un milliardaire de série télé.", en: 'I gave {a.first} {$amount} and forbade any repayment. I felt like a TV-show billionaire.' }, fx: { money: '-amount', rel: 20, karma: 8, happy: 4 }, mood: 'proud' },
+      { label: { fr: "Prêter l'argent", en: 'Lend the money' }, text: { fr: ["J'ai prêté {$amount} à {a.first}. {a:Il|Elle} m'a juré de me rembourser « très vite ». On verra bien.", "J'ai prêté {$amount}. {a.first} m'a serré{|e} dans ses bras et promis de me rembourser « dès que ça décolle ». J'ai noté la date sur le calendrier. Juste au cas où."], en: ["I lent {a.first} {$amount}. {a:He|She} swore to pay me back 'real soon'. We'll see.", "I lent {$amount}. {a.first} hugged me and promised to pay me back 'as soon as things take off'. I wrote the date on the calendar. Just in case."] }, fx: { money: '-amount', rel: 10, karma: 3, flag: 'ad_lent_money', schedule: { key: 'ad_lend_payback', years: 2 } } },
+      { label: { fr: 'Refuser poliment', en: 'Politely decline' }, text: { fr: ["J'ai refusé. {a.first} a dit qu'{a:il|elle} comprenait, avec la voix de quelqu'un qui ne comprend pas du tout.", "J'ai dit non, gentiment. {a.first} a répondu « pas de souci », puis a changé sa photo de profil pour une photo de {a:lui|elle} seul{a:|e} sous la pluie. Message reçu."], en: ["I said no. {a.first} said {a.he} understood, in the voice of someone who absolutely did not.", "I said no, nicely. {a.first} replied 'no worries', then changed {a:his|her} profile pic to a photo of {a:himself|herself} alone in the rain. Message received."] }, fx: { rel: -10 } },
+      { label: { fr: 'Offrir sans retour', en: 'Make it a gift' }, text: { fr: ["J'ai donné {$amount} à {a.first} en lui interdisant de me rembourser. Je me suis senti{|e} comme un milliardaire de série télé.", "J'ai offert {$amount} à {a.first}, sans condition. {a:Il|Elle} a pleuré, puis m'a offert {w:gift} en retour. On est quittes, d'une certaine manière."], en: ["I gave {a.first} {$amount} and forbade any repayment. I felt like a TV-show billionaire.", "I gave {a.first} {$amount}, no strings attached. {a:He|She} cried, then gave me {w:gift} in return. We're even, in a way."] }, fx: { money: '-amount', rel: 20, karma: 8, happy: 4 }, mood: 'proud' },
     ],
   },
   {
@@ -678,20 +750,32 @@ export const adultEvents: EventDef[] = [
     weight: 8,
     cooldown: 5,
     text: {
-      fr: ["Une vieille dame se bat avec une valise énorme en haut des escaliers du métro. Ton train part dans deux minutes, et la valise semble contenir un piano.", "Une mamie te fait signe : sa valise est coincée dans le tourniquet du métro et la file derrière elle commence à gronder. Ton train part dans deux minutes."],
-      en: ['An old lady is wrestling a huge suitcase at the top of the subway stairs. Your train leaves in two minutes, and the suitcase seems to contain a piano.', 'A granny waves at you: her suitcase is stuck in the subway turnstile and the line behind her is starting to grumble. Your train leaves in two minutes.'],
+      fr: [
+        "Une vieille dame se bat avec une valise énorme en haut des escaliers du métro. Ton train part dans deux minutes, et la valise semble contenir un piano.",
+        "Une mamie te fait signe : sa valise est coincée dans le tourniquet du métro et la file derrière elle commence à gronder. Ton train part dans deux minutes.",
+        "Une vieille dame, {w:weather}, tente de monter une valise aussi grosse que {w:vehicle} dans l'escalier du métro. Elle te regarde avec des yeux de chiot. Ton train part dans deux minutes.",
+        "Une mamie en manteau léopard est bloquée en bas de l'escalier avec une valise d'où dépasse {w:object}. Elle soupire très fort dans ta direction. Ton train arrive dans [[deux|trois|une]] minute(s).",
+        "Une vieille dame lutte avec une valise qui dégage {w:smell} et fait {w:sound} quand on la bouge. Elle te demande de l'aide avec un grand sourire. Ton train part dans deux minutes.",
+      ],
+      en: [
+        "An old lady is wrestling a huge suitcase at the top of the subway stairs. Your train leaves in two minutes, and the suitcase seems to contain a piano.",
+        "A granny waves at you: her suitcase is stuck in the subway turnstile and the line behind her is starting to grumble. Your train leaves in two minutes.",
+        "An old lady, {w:weather}, is trying to drag a suitcase as big as {w:vehicle} up the subway stairs. She gives you puppy eyes. Your train leaves in two minutes.",
+        "A granny in a leopard coat is stuck at the bottom of the stairs with a suitcase that has {w:object} sticking out of it. She sighs very loudly in your direction. Your train arrives in [[two|three|one]] minute(s).",
+        "An old lady is struggling with a suitcase that gives off {w:smell} and makes {w:sound} when moved. She asks for help with a big smile. Your train leaves in two minutes.",
+      ],
     },
     choices: [
       {
         label: { fr: 'Porter la valise', en: 'Carry the suitcase' },
         out: [
-          { w: 3, text: { fr: "J'ai aidé la vieille dame. Elle m'a donné un bonbon à la violette datant sans doute de 1987 et m'a appelé{|e} « mon petit ange ».", en: "I helped the old lady. She gave me a violet candy probably dating from 1987 and called me 'my little angel'." }, fx: { karma: 8, happy: 5 } },
-          { w: 1, text: { fr: "J'ai aidé la mamie et raté mon train. Elle m'a glissé de quoi prendre un taxi. Le karma paie cash.", en: 'I helped the granny and missed my train. She slipped me cab money. Karma pays in cash.' }, fx: { karma: 8, money: 40, happy: 4 } },
-          { w: 1, text: { fr: "J'ai soulevé la valise. Mon dos a émis un bruit que je n'avais jamais entendu de ma vie.", en: 'I lifted the suitcase. My back made a sound I had never heard in my life.' }, fx: { karma: 6, disease: 'back_pain' }, mood: 'sick' },
+          { w: 3, text: { fr: ["J'ai aidé la vieille dame. Elle m'a donné un bonbon à la violette datant sans doute de 1987 et m'a appelé{|e} « mon petit ange ».", "J'ai porté la valise. La dame m'a raconté toute sa vie en trente marches, puis m'a offert {w:food} sorti de son sac à main. Encore tiède. Je n'ai pas posé de questions."], en: ["I helped the old lady. She gave me a violet candy probably dating from 1987 and called me 'my little angel'.", "I carried the suitcase. The lady told me her entire life story in thirty steps, then gave me {w:food} straight out of her handbag. Still warm. I didn't ask."] }, fx: { karma: 8, happy: 5 } },
+          { w: 1, text: { fr: ["J'ai aidé la mamie et raté mon train. Elle m'a glissé de quoi prendre un taxi. Le karma paie cash.", "J'ai aidé et raté mon train. La mamie m'a ramené{|e} chez moi dans sa voiture de sport, en conduisant comme une pilote de rallye. Meilleur trajet de ma vie."], en: ["I helped the granny and missed my train. She slipped me cab money. Karma pays in cash.", "I helped and missed my train. The granny drove me home in her sports car, driving like a rally racer. Best commute of my life."] }, fx: { karma: 8, money: 40, happy: 4 } },
+          { w: 1, text: { fr: ["J'ai soulevé la valise. Mon dos a émis un bruit que je n'avais jamais entendu de ma vie.", "J'ai soulevé la valise et je me suis bloqué {w:bodypart}. La vieille dame a porté la valise ET moi jusqu'en haut. Je n'en parlerai jamais à personne."], en: ["I lifted the suitcase. My back made a sound I had never heard in my life.", "I lifted the suitcase and pulled something in my {w:bodypart}. The old lady carried the suitcase AND me to the top. I will never tell anyone."] }, fx: { karma: 6, disease: 'back_pain' }, mood: 'sick' },
         ],
       },
-      { label: { fr: 'Courir vers mon train', en: 'Run for my train' }, text: { fr: "J'ai couru vers mon train en évitant son regard. Je l'ai eu. Ma conscience, elle, l'a raté.", en: 'I ran for my train, avoiding her eyes. I caught it. My conscience missed it.' }, fx: { karma: -5, happy: -2 } },
-      { label: { fr: 'Déléguer à un costaud', en: 'Delegate to a big guy' }, text: { fr: "J'ai pointé un grand costaud du doigt : « Vous, aidez madame. » Il a obéi. J'ai un talent caché pour le management.", en: "I pointed at a big guy: 'You, help the lady.' He obeyed. I have a hidden talent for management." }, fx: { karma: 2, discipline: 2 } },
+      { label: { fr: 'Courir vers mon train', en: 'Run for my train' }, text: { fr: ["J'ai couru vers mon train en évitant son regard. Je l'ai eu. Ma conscience, elle, l'a raté.", "J'ai filé vers mon train. Les portes se sont fermées sur mon sac. J'ai voyagé [[trois|six|dix]] stations collé{|e} à la porte. Le karma est rapide."], en: ["I ran for my train, avoiding her eyes. I caught it. My conscience missed it.", "I bolted for my train. The doors closed on my bag. I rode [[three|six|ten]] stops pinned to the door. Karma is fast."] }, fx: { karma: -5, happy: -2 } },
+      { label: { fr: 'Déléguer à un costaud', en: 'Delegate to a big guy' }, text: { fr: ["J'ai pointé un grand costaud du doigt : « Vous, aidez madame. » Il a obéi. J'ai un talent caché pour le management.", "J'ai réquisitionné deux ados et un touriste pour porter la valise en équipe. J'ai dirigé les opérations sans rien soulever. La mamie m'a remercié{|e}, moi. Je suis né{|e} pour être chef."], en: ["I pointed at a big guy: 'You, help the lady.' He obeyed. I have a hidden talent for management.", "I drafted two teenagers and a tourist to carry the suitcase as a team. I directed operations without lifting a thing. The granny thanked me. I was born to be a boss."] }, fx: { karma: 2, discipline: 2 } },
     ],
   },
   {
@@ -792,8 +876,20 @@ export const adultEvents: EventDef[] = [
     weight: 4,
     cooldown: 10,
     text: {
-      fr: ["Un pigeon a fondu en piqué sur mon sandwich et me l'a arraché des mains. Je l'ai poursuivi sur trois rues. Il a gagné.", "Au parc, un pigeon m'a volé mon jambon-beurre, puis m'a fixé{|e} en le mangeant. J'ai perdu mon déjeuner et ma dignité."],
-      en: ['A pigeon dive-bombed my sandwich and tore it out of my hands. I chased it for three blocks. It won.', 'At the park, a pigeon stole my ham sandwich, then stared at me while eating it. I lost my lunch and my dignity.'],
+      fr: [
+        "Un pigeon a fondu en piqué sur mon sandwich et me l'a arraché des mains. Je l'ai poursuivi sur trois rues. Il a gagné.",
+        "Au parc, un pigeon m'a volé mon jambon-beurre, puis m'a fixé{|e} en le mangeant. J'ai perdu mon déjeuner et ma dignité.",
+        "{w:animal} m'a volé {w:food} en terrasse, sous les yeux de [[douze|vingt|trente]] témoins. Personne n'a bougé. La serveuse m'a quand même fait payer.",
+        "Un pigeon m'a fait caca dessus {w:at_place}, pile avant un entretien d'embauche. J'ai justifié la tache {w:excuse}. On ne m'a pas rappelé{|e}.",
+        "Un pigeon est entré dans mon appart par la fenêtre, s'est posé sur {w:object} et refuse de partir. Ça fait [[trois jours|une semaine|un mois]]. Je crois qu'il paie sa part du loyer en roucoulements.",
+      ],
+      en: [
+        "A pigeon dive-bombed my sandwich and tore it out of my hands. I chased it for three blocks. It won.",
+        "At the park, a pigeon stole my ham sandwich, then stared at me while eating it. I lost my lunch and my dignity.",
+        "{w:animal} stole {w:food} from my café table, in front of [[twelve|twenty|thirty]] witnesses. Nobody moved. The waitress still made me pay.",
+        "A pigeon pooped on me {w:at_place}, right before a job interview. I justified the stain {w:excuse}. They never called back.",
+        "A pigeon flew into my apartment through the window, perched on {w:object} and refuses to leave. It's been [[three days|a week|a month]]. I think he pays his share of the rent in coos.",
+      ],
     },
     fx: { happy: -3 },
   },
@@ -807,8 +903,20 @@ export const adultEvents: EventDef[] = [
     weight: 1,
     once: true,
     text: {
-      fr: ["Des lumières étranges ont plané au-dessus de chez moi cette nuit. Un petit être vert m'a demandé son chemin, puis il est reparti. Personne ne me croit.", "J'ai été brièvement enlevé{|e} par des extraterrestres. Ils m'ont examiné{|e}, ont eu l'air déçus, puis m'ont reposé{|e} sur mon paillasson."],
-      en: ['Strange lights hovered over my place last night. A little green being asked me for directions, then left. Nobody believes me.', 'I was briefly abducted by aliens. They examined me, looked disappointed, then dropped me back on my doormat.'],
+      fr: [
+        "Des lumières étranges ont plané au-dessus de chez moi cette nuit. Un petit être vert m'a demandé son chemin, puis il est reparti. Personne ne me croit.",
+        "J'ai été brièvement enlevé{|e} par des extraterrestres. Ils m'ont examiné{|e}, ont eu l'air déçus, puis m'ont reposé{|e} sur mon paillasson.",
+        "Une soucoupe volante s'est posée {w:at_place}, {w:time}. Un extraterrestre en est sorti, a acheté {w:food} et est reparti. Il a payé en monnaie exacte. Plus poli que la plupart des clients.",
+        "Des extraterrestres m'ont enlevé{|e} pour me poser une seule question : comment fonctionne {w:object}. Je n'en avais aucune idée. Ils m'ont relâché{|e} [[déçus|furieux|en pleurant]].",
+        "J'ai vu un ovni au-dessus du jardin, {w:weather}. Il a émis {w:sound}, a clignoté trois fois et a enlevé {w:animal} du voisin. Le voisin ne s'en est pas encore aperçu.",
+      ],
+      en: [
+        "Strange lights hovered over my place last night. A little green being asked me for directions, then left. Nobody believes me.",
+        "I was briefly abducted by aliens. They examined me, looked disappointed, then dropped me back on my doormat.",
+        "A flying saucer landed {w:at_place}, {w:time}. An alien got out, bought {w:food} and left. Paid with exact change. More polite than most customers.",
+        "Aliens abducted me to ask a single question: how does {w:object} work. I had no idea. They released me, [[disappointed|furious|in tears]].",
+        "I saw a UFO over the yard, {w:weather}. It made {w:sound}, blinked three times and abducted the neighbor's pet, {w:animal}. The neighbor hasn't noticed yet.",
+      ],
     },
     fx: { stress: 5, happy: 2 },
   },
@@ -822,8 +930,20 @@ export const adultEvents: EventDef[] = [
     weight: 8,
     cooldown: 3,
     text: {
-      fr: ["J'ai enchaîné les heures sup tout le mois. Mon chef m'a remercié{|e} par mail. Pas une prime : un mail.", "Encore une soirée au bureau chez {employer}. Le gardien et moi, on s'appelle par nos prénoms maintenant."],
-      en: ['I racked up overtime all month. My boss thanked me by email. Not a bonus: an email.', 'Another late night at the office at {employer}. The night guard and I are on a first-name basis now.'],
+      fr: [
+        "J'ai enchaîné les heures sup tout le mois. Mon chef m'a remercié{|e} par mail. Pas une prime : un mail.",
+        "Encore une soirée au bureau chez {employer}. Le gardien et moi, on s'appelle par nos prénoms maintenant.",
+        "Troisième week-end de suite au boulot. J'ai dîné {w:food} devant mon écran, {w:time}. Mon plus long échange humain de la semaine, c'était avec la machine à café.",
+        "Heures sup en série chez {employer}. Pour me remercier, la direction a organisé un « moment convivial » : [[un gobelet de jus d'orange|deux chips par personne|un quiz sur la sécurité incendie]], plus {w:drink} pour tout l'étage. J'en pleure encore.",
+        "J'ai tellement fait d'heures sup que j'ai oublié à quoi ressemble mon appart. J'ai dormi au bureau, sur {w:object}, et le ménage m'a réveillé{|e} en hurlant « {w:exclaim} »",
+      ],
+      en: [
+        "I racked up overtime all month. My boss thanked me by email. Not a bonus: an email.",
+        "Another late night at the office at {employer}. The night guard and I are on a first-name basis now.",
+        "Third weekend in a row at work. I had {w:food} for dinner at my desk, {w:time}. My longest human interaction this week was with the coffee machine.",
+        "Endless overtime at {employer}. To thank us, management organized a 'team moment': [[a paper cup of orange juice|two chips per person|a fire-safety quiz]], plus {w:drink} for the whole floor. I still cry about it.",
+        "I did so much overtime I forgot what my apartment looks like. I slept at the office, on {w:object}, and the cleaning crew woke me up yelling '{w:exclaim}'",
+      ],
     },
     fx: { perf: 5, stress: 5, happy: -2 },
   },
@@ -838,8 +958,20 @@ export const adultEvents: EventDef[] = [
     weight: 3,
     once: true,
     text: {
-      fr: ["Une grand-tante dont j'ignorais l'existence m'a légué {$amount} et un service à thé en forme de chats. J'ai pleuré par politesse. Et un peu pour le service à thé.", "Le notaire m'a appelé{|e} : tante Josette, croisée une fois en 1998, m'a laissé {$amount}. Le testament précise : « Pour {le petit|la petite} qui ne m'a pas mordue »."],
-      en: ["A great-aunt I didn't know existed left me {$amount} and a cat-shaped tea set. I cried out of politeness. And a little for the tea set.", "The notary called: Aunt Josette, whom I met once in 1998, left me {$amount}. The will says: 'For the little one who didn't bite me.'"],
+      fr: [
+        "Une grand-tante dont j'ignorais l'existence m'a légué {$amount} et un service à thé en forme de chats. J'ai pleuré par politesse. Et un peu pour le service à thé.",
+        "Le notaire m'a appelé{|e} : tante Josette, croisée une fois en 1998, m'a laissé {$amount}. Le testament précise : « Pour {le petit|la petite} qui ne m'a pas mordue ».",
+        "Un lointain cousin installé {w:far_place} m'a légué {$amount} et {w:object}. Le notaire m'a remis les deux avec le même air grave. Je garde l'argent. L'autre truc, je ne sais pas encore.",
+        "Héritage surprise : {$amount} de la part d'un grand-oncle passionné par {w:hobby}. Le testament exige que je « perpétue sa passion ». J'ai acheté le livre pour débutants. Je ne l'ai pas ouvert.",
+        "Ma grand-tante m'a légué {$amount} et {w:animal}, à condition que je m'en occupe « avec amour ». L'animal me déteste. L'argent, lui, m'aime [[beaucoup|passionnément|à la folie]].",
+      ],
+      en: [
+        "A great-aunt I didn't know existed left me {$amount} and a cat-shaped tea set. I cried out of politeness. And a little for the tea set.",
+        "The notary called: Aunt Josette, whom I met once in 1998, left me {$amount}. The will says: 'For the little one who didn't bite me.'",
+        "A distant cousin living {w:far_place} left me {$amount} and {w:object}. The notary handed me both with the same solemn face. I'm keeping the money. The other thing, I'm not sure yet.",
+        "Surprise inheritance: {$amount} from a great-uncle obsessed with {w:hobby}. The will requires me to 'carry on his passion'. I bought the beginner's book. I haven't opened it.",
+        "My great-aunt left me {$amount} and {w:animal}, on condition that I care for it 'with love'. The animal hates me. The money, however, loves me [[a lot|passionately|madly]].",
+      ],
     },
     fx: { money: 'amount', happy: 6 },
   },
@@ -854,8 +986,20 @@ export const adultEvents: EventDef[] = [
     weight: 6,
     cooldown: 6,
     text: {
-      fr: ["Le fisc m'a écrit une lettre pleine de mots compliqués et d'un seul chiffre très clair : {$amount} à payer. J'ai payé en pleurant.", "Redressement fiscal surprise : je dois {$amount} à cause d'une case cochée il y a trois ans. Je ne coche plus jamais rien."],
-      en: ['The tax office sent me a letter full of complicated words and one very clear number: {$amount} owed. I paid it in tears.', "Surprise tax adjustment: I owe {$amount} because of a box I ticked three years ago. I'm never ticking anything again."],
+      fr: [
+        "Le fisc m'a écrit une lettre pleine de mots compliqués et d'un seul chiffre très clair : {$amount} à payer. J'ai payé en pleurant.",
+        "Redressement fiscal surprise : je dois {$amount} à cause d'une case cochée il y a trois ans. Je ne coche plus jamais rien.",
+        "Les impôts me réclament {$amount} : j'aurais « oublié de déclarer » {w:object}. Je ne sais même pas de quoi ils parlent. J'ai payé quand même, par peur.",
+        "J'ai reçu un avis d'imposition {w:time}. Montant : {$amount}. J'ai essayé d'appeler le centre des impôts : [[deux heures|quatre heures|une journée]] d'attente avec {w:song} en boucle. J'ai payé pour que la musique s'arrête.",
+        "Le fisc a découvert mes revenus secrets : je suis aussi {w:weird_job} le week-end. Je dois {$amount}. J'ai envisagé de fuir {w:far_place}, puis j'ai regardé le prix des billets. J'ai payé.",
+      ],
+      en: [
+        "The tax office sent me a letter full of complicated words and one very clear number: {$amount} owed. I paid it in tears.",
+        "Surprise tax adjustment: I owe {$amount} because of a box I ticked three years ago. I'm never ticking anything again.",
+        "The tax office wants {$amount}: I apparently 'forgot to declare' {w:object}. I don't even know what they're talking about. I paid anyway, out of fear.",
+        "I got a tax bill {w:time}. Amount: {$amount}. I tried calling the tax office: [[two hours|four hours|a full day]] on hold with {w:song} on loop. I paid just to make the music stop.",
+        "The taxman discovered my secret side income: I also work as {w:weird_job} on weekends. I owe {$amount}. I considered fleeing to live {w:far_place}, then I checked ticket prices. I paid.",
+      ],
     },
     fx: { money: '-amount', happy: -5, stress: 4 },
   },
@@ -886,8 +1030,20 @@ export const adultEvents: EventDef[] = [
     weight: 6,
     once: true,
     text: {
-      fr: ["{a.first} m'a demandé si je pourrais « garder quelqu'un » certains mercredis, dans un futur pas si lointain. J'ai compris. J'ai acheté des Lego en cachette.", "{a.first} est passé{a:|e} avec un sourire bizarre et m'a demandé si j'aimais toujours « les tout petits ». Je crois que je vais devenir grand-{père|mère}."],
-      en: ["{a.first} asked if I could 'babysit someone' on some Wednesdays in the not-so-distant future. I got the hint. I secretly bought Legos.", "{a.first} came by with a strange smile and asked if I still liked 'little ones'. I think I'm going to be a grandparent."],
+      fr: [
+        "{a.first} m'a demandé si je pourrais « garder quelqu'un » certains mercredis, dans un futur pas si lointain. J'ai compris. J'ai acheté des Lego en cachette.",
+        "{a.first} est passé{a:|e} avec un sourire bizarre et m'a demandé si j'aimais toujours « les tout petits ». Je crois que je vais devenir grand-{père|mère}.",
+        "{a.first} m'a offert {w:gift} avec une carte : « Pour le futur meilleur grand-{père|mère} du monde ». J'ai mis [[trois secondes|dix secondes|une heure]] à comprendre. Puis j'ai pleuré dans mon café.",
+        "{a.first} m'a demandé si mon vieux berceau était toujours au grenier, derrière {w:object}. Très innocemment. Trop innocemment. J'ai déjà commencé à tricoter.",
+        "Au repas du dimanche, {a.first} a refusé {w:drink} et a souri mystérieusement. Puis a demandé si je connaissais une bonne comptine. Je vais être grand-{père|mère}. {w:exclaim}",
+      ],
+      en: [
+        "{a.first} asked if I could 'babysit someone' on some Wednesdays in the not-so-distant future. I got the hint. I secretly bought Legos.",
+        "{a.first} came by with a strange smile and asked if I still liked 'little ones'. I think I'm going to be a grandparent.",
+        "{a.first} gave me {w:gift} with a card: 'For the world's future best grandparent.' It took me [[three seconds|ten seconds|an hour]] to understand. Then I cried into my coffee.",
+        "{a.first} asked if my old crib was still in the attic, behind {w:object}. Very innocently. Too innocently. I've already started knitting.",
+        "At Sunday lunch, {a.first} turned down {w:drink} and smiled mysteriously. Then asked if I knew any good nursery rhymes. I'm going to be a grandparent. {w:exclaim}",
+      ],
     },
     fx: { happy: 6, rel: 5 },
   },

@@ -760,7 +760,7 @@ export function Penalty({ onDone, l }: GameProps) {
     <Arena g={g} title={tr('Tirs au but', 'Penalty shootout')} icon="⚽" theme="neon"
       howTo={tr('5 tirs face à Gégé « Le Mur ». Vise avec la souris, maintiens clic / Espace et relâche dans la zone VERTE. Il penche souvent du côté où il va plonger… souvent. Puis 2 arrêts à faire toi-même : plonge quand le cercle se ferme.', '5 shots against Gégé "The Wall". Aim with the mouse, hold click / Space and release in the GREEN zone. He often leans the way he\'ll dive… often. Then make 2 saves yourself: dive as the ring closes.')}
       keys={[tr('Souris / ← ↑ → ↓ = viser', 'Mouse / arrows = aim'), tr('Clic / Espace maintenu = frapper', 'Hold click / Space = shoot'), tr('Gardien : ← ↓ →', 'Keeper: ← ↓ →')]}>
-      <canvas class="play" ref={canvas} style={{ cursor: 'crosshair', touchAction: 'none' }} onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp} />
+      <canvas class="play" ref={canvas} style={{ cursor: 'crosshair', touchAction: 'none', pointerEvents: 'auto' }} onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp} />
     </Arena>
   );
 }

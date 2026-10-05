@@ -546,8 +546,9 @@ export function Slots({ onDone, l, variant }: GameProps) {
     ctx.textAlign = 'right'; ctx.fillStyle = '#ffd6f0'; ctx.font = F(11, 800);
     ctx.fillText(`${st.spinsLeft} / ${SPINS}`, cab.x + cab.w - 30 * k, pipY);
     // coin tray
-    const tray = { x: cab.x + cab.w * 0.22, y: cab.y + cab.h - cab.h * 0.07 - 10 * k, w: cab.w * 0.56, h: cab.h * 0.07 };
-    if (tray.y > pipY + 8 * k) {
+    const trayY = pipY + 14 * k;
+    const tray = { x: cab.x + cab.w * 0.2, y: trayY, w: cab.w * 0.6, h: Math.min(cab.h * 0.08, cab.y + cab.h - 16 * k - trayY) };
+    if (tray.h >= 16 * k) {
       ctx.fillStyle = chrome(ctx, tray.y, tray.y + tray.h); roundRect(ctx, tray.x, tray.y, tray.w, tray.h, 10 * k); ctx.fill();
       ctx.fillStyle = '#0c0309'; roundRect(ctx, tray.x + 6 * k, tray.y + 5 * k, tray.w - 12 * k, tray.h - 9 * k, 7 * k); ctx.fill();
       // pile of coins proportional to the stack

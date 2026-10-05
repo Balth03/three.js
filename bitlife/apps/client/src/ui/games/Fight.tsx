@@ -1026,7 +1026,7 @@ export function Fight({ onDone, l, variant }: GameProps) {
       howTo={tr(`Face à toi : « ${s.current.name[0]} ». Quand son poing (ou sa tête) s'illumine, esquive du côté opposé ou garde ↓. Esquive réussie = il est ouvert : enchaîne jabs et crochets ! Les objets ⚠ ne se bloquent pas. Mets-le K.O. avant la fin des ${DURATION} s.`,
         `Your opponent: "${s.current.name[1]}". When his fist (or head) lights up, dodge away or block ↓. A clean dodge leaves him wide open: chain jabs and hooks! ⚠ objects can't be blocked. Knock him out within ${DURATION}s.`)}
       keys={['← → ' + tr('esquive', 'dodge'), '↓ ' + tr('garde', 'block'), 'J / Space = jab', 'K = ' + tr('crochet', 'hook')]}>
-      <canvas class="play" ref={canvas} style={{ touchAction: 'none' }}
+      <canvas class="play" ref={canvas} style={{ touchAction: 'none', pointerEvents: 'auto' }}
         onPointerDown={(e) => {
           const c = e.currentTarget as HTMLCanvasElement; const r = c.getBoundingClientRect();
           const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;

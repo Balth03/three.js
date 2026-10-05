@@ -28,16 +28,8 @@ export const schoolEvents: EventDef[] = [
     cooldown: 3,
     when: { school: KID },
     text: {
-      fr: [
-        "À la cantine, il y avait du « poisson pané ». Personne n'a pu identifier le poisson. Ni le pané.",
-        "J'ai échangé mon yaourt nature contre un Kinder et un secret. Le secret était nul. Le Kinder, non.",
-        "La dame de la cantine m'a servi des épinards « parce que ça rend fort ». J'ai été fort{|e} : je les ai cachés dans ma serviette.",
-      ],
-      en: [
-        "The cafeteria served “fish sticks.” Nobody could identify the fish. Or the stick.",
-        "I traded my plain yogurt for a chocolate bar and a secret. The secret was lame. The chocolate wasn't.",
-        "The lunch lady gave me spinach “to grow strong.” I was strong: I hid it all in my napkin.",
-      ],
+      fr: ["À la cantine, il y avait du « poisson pané ». Personne n'a pu identifier le poisson. Ni le pané.", "J'ai échangé mon yaourt nature contre un Kinder et un secret. Le secret était nul. Le Kinder, non.", "La dame de la cantine m'a servi des épinards « parce que ça rend fort ». J'ai été fort{|e} : je les ai cachés dans ma serviette.", "À la cantine, on nous a servi {w:food}. Lucas a juré que ça avait bougé. Personne n'a mangé. Le chef l'a pris très personnellement.", "À la cantine, j'ai échangé mon dessert contre {w:object}. Ma mère veut savoir d'où ça vient. Je ne balance pas mes sources."],
+      en: ["The cafeteria served “fish sticks.” Nobody could identify the fish. Or the stick.", "I traded my plain yogurt for a chocolate bar and a secret. The secret was lame. The chocolate wasn't.", "The lunch lady gave me spinach “to grow strong.” I was strong: I hid it all in my napkin.", "The cafeteria served {w:food}. Lucas swore it moved. Nobody ate. The chef took it very personally.", "At lunch, I traded my dessert for {w:object}. My mom wants to know where it came from. I don't reveal my sources."],
     },
     fx: { happy: 1 },
   },
@@ -49,14 +41,8 @@ export const schoolEvents: EventDef[] = [
     cooldown: 3,
     when: { school: KID },
     text: {
-      fr: [
-        "J'ai acheté une gomme qui sent la fraise. Je l'ai mangée. Elle ne goûte pas la fraise.",
-        "J'ai passé tout le cours de maths à construire une tour de taille-crayons. Elle a tenu jusqu'à la récré. Moi aussi, à peine.",
-      ],
-      en: [
-        "I bought a strawberry-scented eraser. I ate it. It does not taste like strawberry.",
-        "I spent all of math class building a tower of pencil sharpeners. It lasted until recess. So did I, barely.",
-      ],
+      fr: ["J'ai acheté une gomme qui sent la fraise. Je l'ai mangée. Elle ne goûte pas la fraise.", "J'ai passé tout le cours de maths à construire une tour de taille-crayons. Elle a tenu jusqu'à la récré. Moi aussi, à peine.", "J'ai échangé ma gomme contre {w:object}. Le lendemain, j'ai fait une faute et je n'avais rien pour l'effacer. Ça m'apprendra.", "En cours, j'ai dessiné {w:animal} dans la marge de mon cahier. La maîtresse a demandé qui c'était. J'ai dit « vous ». Mauvaise réponse.", "Ma trousse dégage {w:smell} depuis lundi. Personne ne sait pourquoi. Moi, si. C'est le goûter de la semaine dernière."],
+      en: ["I bought a strawberry-scented eraser. I ate it. It does not taste like strawberry.", "I spent all of math class building a tower of pencil sharpeners. It lasted until recess. So did I, barely.", "I traded my eraser for {w:object}. The next day, I made a mistake and had nothing to erase it with. Lesson learned.", "In class, I drew {w:animal} in the margin of my notebook. The teacher asked who it was. I said 'you'. Wrong answer.", "My pencil case has been giving off {w:smell} since Monday. Nobody knows why. I do. It's last week's snack."],
     },
     fx: { happy: 2, grade: -1 },
   },
@@ -88,14 +74,8 @@ export const schoolEvents: EventDef[] = [
     rating: 1,
     when: { age: [6, 9], school: KID },
     text: {
-      fr: [
-        "J'ai appris mon premier gros mot à la récré. Je l'ai testé au dîner, en demandant de passer « les putains de petits pois ». Privé{|e} de dessert, mais respecté{|e}.",
-        "Un CM2 m'a appris un mot magique à la récré. Je l'ai dit à la maîtresse. Ce n'était pas un mot magique.",
-      ],
-      en: [
-        "I learned my first swear word at recess. I tried it at dinner by asking for “the goddamn peas.” No dessert, but respect.",
-        "A fifth-grader taught me a magic word at recess. I said it to the teacher. It was not a magic word.",
-      ],
+      fr: ["J'ai appris mon premier gros mot à la récré. Je l'ai testé au dîner, en demandant de passer « les putains de petits pois ». Privé{|e} de dessert, mais respecté{|e}.", "Un CM2 m'a appris un mot magique à la récré. Je l'ai dit à la maîtresse. Ce n'était pas un mot magique.", "J'ai appris un gros mot à la récré et je l'ai utilisé pour décrire {w:food} de la cantine. La dame de la cantine était d'accord, mais m'a quand même puni{|e}.", "J'ai traité {w:animal} de « connard » au parc. Maman m'a bouché la bouche. L'animal avait l'air vexé aussi.", "J'ai crié un gros mot en me cognant contre {w:object}. Papa a demandé « où est-ce que tu as appris ça ? ». J'ai montré Papa du doigt."],
+      en: ["I learned my first swear word at recess. I tried it at dinner by asking for “the goddamn peas.” No dessert, but respect.", "A fifth-grader taught me a magic word at recess. I said it to the teacher. It was not a magic word.", "I learned a swear word at recess and used it to describe {w:food} at the cafeteria. The lunch lady agreed, but punished me anyway.", "I called {w:animal} an 'asshole' at the park. Mom covered my mouth. The animal looked offended too.", "I yelled a swear word when I bumped into {w:object}. Dad asked 'where did you learn that?'. I pointed at Dad."],
     },
     fx: { happy: 2, discipline: -2 },
   },

@@ -75,7 +75,10 @@ export function Hack({ onDone }: GameProps) {
     granted: -9, glitch: 0, errFlash: 0, ended: false, endAt: 0, outcome: '' as '' | 'win' | 'traced', t: 0,
     log: [
       { text: 'BitLife-OS v6.6.6 — terminal sécurisé (pas du tout)', color: '#3cff9a' },
+      { text: tr('> chargement de hack.exe ██████████ 100%', '> loading hack.exe ██████████ 100%'), color: '#7dffbf' },
+      { text: tr('> capuche enfilée ✓   lunettes de soleil (la nuit) ✓', '> hoodie on ✓   sunglasses (at night) ✓'), color: '#7dffbf' },
       { text: tr('> connexion via 14 proxys en Moldavie… OK', '> routing through 14 proxies in Moldova… OK'), color: '#7dffbf' },
+      { text: tr('> cible : 3 pare-feux détectés. Bonne chance.', '> target: 3 firewalls detected. Good luck.'), color: '#ffd166' },
     ] as Line[],
     rain: [] as { x: number; y: number; v: number; ch: string[] }[], rainW: 0,
     keyFx: 0, beepT: 0, warned: false, started: false,
@@ -225,19 +228,21 @@ export function Hack({ onDone }: GameProps) {
     ctx.fillStyle = 'rgba(0,255,136,.1)'; ctx.fillRect(tx, ty, tw, 30);
     ['#ff5f57', '#febc2e', '#28c840'].forEach((c, i) => { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(tx + 18 + i * 18, ty + 15, 5.5, 0, TAU); ctx.fill(); });
     ctx.fillStyle = 'rgba(180,255,210,.75)'; ctx.font = `600 12px ${MONO}`; ctx.textAlign = 'center';
-    ctx.fillText(`root@pwn — ssh ${tr('cible', 'target')}.${['mamie.box', 'mairie.gouv', 'impots.gouv'][Math.min(2, st.layer)]} — 80×24`, tx + tw / 2, ty + 19);
+    const host = ['mamie.box', 'mairie.gouv', 'impots.gouv'][Math.min(2, st.layer)];
+    ctx.fillText(tw > 520 ? `root@pwn — ssh ${tr('cible', 'target')}.${host} — 80×24` : `ssh ${host}`, tx + tw / 2 + (tw > 520 ? 0 : 20), ty + 19);
     ctx.restore();
 
     // header: firewall progress
     const pad = 20;
     let y = ty + 58;
     const L = Math.min(st.layer, LAYERS - 1);
-    ctx.textAlign = 'left'; ctx.font = `800 ${Math.round(Math.min(18, tw / 34))}px ${MONO}`;
+    const pipsW = tw > 460 ? LAYERS * 34 + 10 : 0;
+    ctx.textAlign = 'left'; ctx.font = `800 ${Math.round(Math.max(10, Math.min(18, (tw - pipsW) / 34)))}px ${MONO}`;
     ctx.save(); glow(ctx, '#ffd166', 10); ctx.fillStyle = '#ffd166';
     ctx.fillText(st.layer >= LAYERS ? tr('ACCÈS TOTAL ✓', 'FULL ACCESS ✓') : `🛡 ${tr('PARE-FEU', 'FIREWALL')} ${st.layer + 1}/${LAYERS} · ${tr(...LAYER_NAME[L])}`, tx + pad, y);
     ctx.restore();
     // layer pips
-    for (let i = 0; i < LAYERS; i++) {
+    for (let i = 0; i < (pipsW ? LAYERS : 0); i++) {
       const px = tx + tw - pad - (LAYERS - i) * 34, done = i < st.layer, curL = i === st.layer;
       ctx.save(); if (done || curL) glow(ctx, done ? '#00ff88' : '#ffd166', 10);
       roundRect(ctx, px, y - 14, 28, 16, 4); ctx.fillStyle = done ? '#00ff88' : curL ? `rgba(255,209,102,${0.35 + 0.3 * Math.sin(t * 6)})` : 'rgba(255,255,255,.08)'; ctx.fill(); ctx.restore();
@@ -322,8 +327,9 @@ export function Hack({ onDone }: GameProps) {
 
     // ─── ACCESS GRANTED / TRACED overlays ───
     const ga = st.t - st.granted;
-    if (ga >= 0 && ga < 1.3 && playing) {
-      const k = ga < 0.15 ? ga / 0.15 : ga > 1.0 ? 1 - (ga - 1.0) / 0.3 : 1;
+    const won = st.outcome === 'win';
+    if (ga >= 0 && (ga < 1.3 || won) && playing) {
+      const k = ga < 0.15 ? ga / 0.15 : ga > 1.0 && !won ? 1 - (ga - 1.0) / 0.3 : 1;
       const bh = Math.min(140, h * 0.24), by = h / 2 - bh / 2;
       ctx.save(); ctx.globalAlpha = k;
       ctx.fillStyle = 'rgba(0,10,4,.88)'; ctx.fillRect(0, by, w, bh);
@@ -352,11 +358,13 @@ export function Hack({ onDone }: GameProps) {
       ctx.save();
       ctx.fillStyle = `rgba(255,0,40,${0.12 + 0.1 * Math.sin(t * 20)})`; ctx.fillRect(0, 0, w, h);
       const bf = Math.min(58, w / 14);
+      ctx.fillStyle = 'rgba(20,0,6,.85)'; ctx.fillRect(0, h * 0.45 - bf * 1.3, w, bf * 2.5);
+      ctx.fillStyle = '#ff1f3d'; ctx.fillRect(0, h * 0.45 - bf * 1.3, w, 2); ctx.fillRect(0, h * 0.45 + bf * 1.2, w, 2);
       ctx.font = `900 ${Math.round(bf)}px ${MONO}`; ctx.textAlign = 'center';
       glow(ctx, '#ff1f3d', 30); ctx.fillStyle = '#ffd6dc';
       ctx.fillText(tr('LOCALISÉ', 'TRACED'), w / 2 + (Math.random() - 0.5) * 8, h * 0.45);
       ctx.font = `700 ${Math.round(bf * 0.32)}px ${MONO}`; ctx.fillStyle = '#ff8095';
-      ctx.fillText(tr('Interpol sonne à la porte. Et ta mère aussi.', 'Interpol is at the door. So is your mom.'), w / 2, h * 0.45 + bf * 0.8);
+      ctx.fillText(tr('Interpol sonne à la porte. Et ta mère aussi.', 'Interpol is at the door. So is your mom.'), w / 2, h * 0.45 + bf * 0.75, w - 20);
       ctx.restore();
     }
 
@@ -408,8 +416,8 @@ function drawMap(ctx: CanvasRenderingContext2D, x: number, y: number, w: number,
   ctx.textAlign = 'right'; ctx.fillStyle = Math.floor(t * 2) % 2 ? '#ff4d6d' : 'rgba(255,77,109,.4)'; ctx.fillText('● LIVE', x + w - 14, y + 22);
   // map area keeps a 3:1 aspect
   const top = y + 34, avail = h - 34 - (wide ? 150 : 12);
-  let mw = w - 28, mh = mw / 3 * (MAP.length / 16) * 1.0;
-  if (mh > avail) { mh = avail; mw = mh * 3; }
+  let mw = w - 28, mh = mw / 2.1;
+  if (mh > avail) { mh = avail; mw = mh * 2.1; }
   const mx = x + (w - mw) / 2, my = top + 6;
   const cols = MAP[0].length, rows = MAP.length, cs = mw / cols, rs = mh / rows;
   for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
@@ -480,5 +488,21 @@ function drawMap(ctx: CanvasRenderingContext2D, x: number, y: number, w: number,
       ctx.fillStyle = 'rgba(120,200,160,.6)'; ctx.fillText(`${k}`.padEnd(10, '.'), x + 16, fy + i * 20);
       ctx.fillStyle = '#7dffbf'; ctx.fillText(v, x + 16 + 100, fy + i * 20);
     });
+    // scrolling hex dump in the remaining space
+    const hy = fy + rowsTxt.length * 20 + 10, hh = y + h - hy - 12;
+    if (hh > 40) {
+      ctx.save(); ctx.beginPath(); ctx.rect(x + 12, hy, w - 24, hh); ctx.clip();
+      ctx.fillStyle = 'rgba(0,255,136,.05)'; ctx.fillRect(x + 12, hy, w - 24, hh);
+      ctx.font = `11px ${MONO}`;
+      const lh = 15, scroll = (t * 40) % lh, n = Math.ceil(hh / lh) + 1, base = Math.floor(t * 40 / lh);
+      for (let i = 0; i < n; i++) {
+        const row = base + i, yy = hy + hh - i * lh + scroll - 4;
+        let hex = '';
+        for (let b = 0; b < 8; b++) hex += ((row * 2654435761 + b * 40503) >>> (b % 4) * 3 & 255).toString(16).padStart(2, '0') + ' ';
+        ctx.fillStyle = 'rgba(0,255,136,.32)'; ctx.fillText(`0x${(row * 16).toString(16).padStart(6, '0')}  ${hex}`, x + 18, yy);
+        if (row % 7 === 0) { ctx.fillStyle = 'rgba(255,209,102,.6)'; ctx.fillText(['mdp=chat123', 'ROOT?!', 'cookie🍪', 'café.dll'][row % 4], x + w - 110, yy); }
+      }
+      ctx.restore();
+    }
   }
 }

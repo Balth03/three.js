@@ -114,14 +114,8 @@ export const babyEvents: EventDef[] = [
     rating: 1,
     when: { age: [1, 2] },
     text: {
-      fr: [
-        "À mon baptême, tonton [[Gérard|Jean-Mi|Pascal]] a fait un discours bourré de vingt-cinq minutes et m'a appelé{|e} par le nom de son chien. Trois fois.",
-        "À ma fête de naissance, tonton [[Gérard|Jean-Mi|Pascal]] s'est endormi dans le bac à fleurs avant le gâteau. Il me tenait dans ses bras deux minutes plus tôt.",
-      ],
-      en: [
-        "At my christening, Uncle [[Gary|Big Mike|Dale]] gave a twenty-five-minute drunk speech and called me by his dog's name. Three times.",
-        "At my baby shower, Uncle [[Gary|Big Mike|Dale]] passed out in the flower bed before the cake. He'd been holding me two minutes earlier.",
-      ],
+      fr: ["À mon baptême, tonton [[Gérard|Jean-Mi|Pascal]] a fait un discours bourré de vingt-cinq minutes et m'a appelé{|e} par le nom de son chien. Trois fois.", "À ma fête de naissance, tonton [[Gérard|Jean-Mi|Pascal]] s'est endormi dans le bac à fleurs avant le gâteau. Il me tenait dans ses bras deux minutes plus tôt.", "À mon baptême, tonton [[Gérard|Jean-Mi|Pascal]] m'a offert {w:object}. Le curé a froncé les sourcils. Mes parents ont tout rangé au grenier dans la foulée.", "Au repas de mon baptême, tonton [[Gérard|Jean-Mi|Pascal]] a chanté {w:song} debout sur sa chaise. Il est tombé dans le gâteau. J'ai applaudi. C'était mon premier spectacle.", "Mon baptême s'est déroulé {w:weather}. Le curé m'a aspergé{|e}, la pluie aussi, et tonton [[Gérard|Jean-Mi|Pascal]] a glissé dans le bénitier. Je n'ai pas pleuré. J'étais la seule personne sobre."],
+      en: ["At my christening, Uncle [[Gary|Big Mike|Dale]] gave a twenty-five-minute drunk speech and called me by his dog's name. Three times.", "At my baby shower, Uncle [[Gary|Big Mike|Dale]] passed out in the flower bed before the cake. He'd been holding me two minutes earlier.", "At my christening, Uncle [[Gary|Big Mike|Dale]] gave me {w:object}. The priest frowned. My parents put it straight in the attic.", "At my christening lunch, Uncle [[Gary|Big Mike|Dale]] sang {w:song} standing on his chair. He fell into the cake. I clapped. It was my first show.", "My christening took place {w:weather}. The priest sprinkled me, so did the rain, and Uncle [[Gary|Big Mike|Dale]] slipped into the font. I didn't cry. I was the only sober one."],
     },
     fx: { happy: 2 },
   },

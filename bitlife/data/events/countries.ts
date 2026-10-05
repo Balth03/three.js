@@ -2042,7 +2042,7 @@ export const countryEvents: EventDef[] = [
       {
         label: { fr: 'Suivre le rituel', en: 'Follow the ritual' },
         out: [
-          { w: 2, odds: { discipline: 1 }, text: { fr: ["Lavage parfait, serviette sur la tête, entrée lente avec un « aaaah » réglementaire. Le vieux monsieur m'a fait un signe de tête. J'ai atteint le nirvana, avec les testicules ou les seins cuits à point.", "J'ai suivi le rituel à la lettre. Vingt minutes à 44 °C. Je suis ressorti{|e} rouge comme un homard, détendu{|e} comme une nouille, et totalement en paix."], en: ["Perfect wash, towel on head, slow entry with a regulation “aaaah.” The old man nodded at me. I reached nirvana, with my private parts cooked medium-rare.", "I followed the ritual to the letter. Twenty minutes at 111°F. I came out lobster-red, relaxed as a noodle, and completely at peace."] }, fx: { happy: 9, stress: -10, health: 3 }, mood: 'happy' },
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["Lavage parfait, serviette sur la tête, entrée lente avec un « aaaah » réglementaire. Le vieux monsieur m'a fait un signe de tête. J'ai atteint le nirvana, avec mes parties intimes cuites à point.", "J'ai suivi le rituel à la lettre. Vingt minutes à 44 °C. Je suis ressorti{|e} rouge comme un homard, détendu{|e} comme une nouille, et totalement en paix."], en: ["Perfect wash, towel on head, slow entry with a regulation “aaaah.” The old man nodded at me. I reached nirvana, with my private parts cooked medium-rare.", "I followed the ritual to the letter. Twenty minutes at 111°F. I came out lobster-red, relaxed as a noodle, and completely at peace."] }, fx: { happy: 9, stress: -10, health: 3 }, mood: 'happy' },
           { w: 1, text: { fr: ["Je suis resté{|e} trop longtemps. Je me suis évanoui{|e} dans le bassin, nu{|e}, et trois papis m'ont sorti{|e} comme un sac de riz. Ils m'ont posé{|e} sur un banc avec la serviette sur le visage, par pudeur. Pour eux."], en: ["I stayed in too long. I fainted in the pool, naked, and three grandpas hauled me out like a sack of rice. They laid me on a bench with the towel over my face, for modesty. Theirs."] }, fx: { health: -5, happy: -2 }, mood: 'sick' },
         ],
       },
@@ -2856,6 +2856,715 @@ export const countryEvents: EventDef[] = [
         out: [
           { w: 1, text: { fr: ["Pour aggraver mon cas, j'ai commandé une pizza à l'ananas au bar d'à côté. Le pizzaiolo a jeté son tablier par terre et hurlé « {w:swear} ». Il a fermé boutique pour la journée « par deuil ».", "J'ai demandé une pizza hawaïenne. Le pizzaiolo m'a regardé{|e}, a pris un ananas entier et l'a écrasé à mains nues devant moi, en silence. Le jus a giclé sur ma chemise. J'ai compris le message."], en: ["To make things worse, I ordered pineapple pizza next door. The pizzaiolo threw his apron on the floor and screamed “{w:swear}” He closed for the day “in mourning.”", "I asked for a Hawaiian pizza. The pizzaiolo looked at me, took a whole pineapple and crushed it barehanded in front of me, silently. The juice squirted on my shirt. Message received."] }, fx: { happy: 4, karma: -3, stress: 5 }, mood: 'shock' },
         ],
+      },
+    ],
+  },
+  // ═════════════════════════════ ALLEMAGNE ═════════════════════════════
+  {
+    id: 'cy_de_ampel',
+    icon: '🚦',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'park', mood: 'neutral', prop: 'traffic_light' },
+    when: { country: ['de'], age: [8, 90] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Il est 3 h du matin à {city}. La rue est déserte. Pas une voiture à des kilomètres. Le feu piéton est rouge. À côté de toi, une vieille dame en imperméable attend, immobile. Elle te regarde du coin de l'œil.",
+        "Feu rouge pour les piétons. La route est vide, à part {w:animal} qui traverse tranquillement. Sur le trottoir d'en face, un père tient son enfant par la main et te fixe : « On ne traverse pas au rouge devant les enfants. »",
+        "Tu es en retard. Le feu piéton est rouge depuis 90 secondes. Il n'y a personne, {w:weather}. Seul un homme en anorak attend avec toi, les bras croisés, comme un gardien du temple.",
+        "Le petit bonhomme du feu est rouge. En face, il y a ta boulangerie, encore ouverte trois minutes. Entre vous deux : une route vide, la morale allemande et un retraité qui a sorti son téléphone pour filmer, au cas où.",
+      ],
+      en: [
+        "It's 3 a.m. in {city}. The street is deserted. Not a car for miles. The pedestrian light is red. Next to you, an old lady in a raincoat waits, motionless. She's watching you from the corner of her eye.",
+        "Red pedestrian light. The road is empty except for {w:animal} calmly crossing. On the opposite sidewalk, a father holds his child's hand and stares at you: “We don't cross on red in front of children.”",
+        "You're late. The pedestrian light has been red for 90 seconds. Nobody around, {w:weather}. Just a man in an anorak waiting with you, arms folded, like a temple guardian.",
+        "The little man on the light is red. Across the street is your bakery, open three more minutes. Between you: an empty road, German morality and a retiree who's pulled out his phone to film, just in case.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Attendre le vert', en: 'Wait for green' },
+        out: [
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["J'ai attendu le vert. Quatre minutes, sans une voiture. La vieille dame m'a fait un petit signe d'approbation. Je me suis senti{|e} accepté{|e} par la nation entière.", "J'ai attendu. La boulangerie a fermé. Mais l'homme en anorak m'a serré la main en partant. On est liés pour la vie par le respect du règlement."], en: ["I waited for green. Four minutes, not one car. The old lady gave me a small nod of approval. I felt accepted by the entire nation.", "I waited. The bakery closed. But the anorak man shook my hand as he left. We're bonded for life by respect for the rules."] }, fx: { discipline: 3, karma: 2, happy: 2 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Traverser au rouge', en: 'Cross on red' },
+        out: [
+          { w: 2, text: { fr: ["J'ai traversé. La vieille dame a dit « Unglaublich » si fort que l'écho a résonné dans toute la rue. Trois fenêtres se sont allumées. Quelqu'un a pris des notes.", "J'ai traversé au rouge. Le retraité m'a filmé{|e} et a posté la vidéo sur le groupe du quartier. J'ai maintenant une réputation et un surnom : « l'Anarchiste »."], en: ["I crossed. The old lady said “Unglaublich” so loudly it echoed down the street. Three windows lit up. Someone took notes.", "I crossed on red. The retiree filmed me and posted it to the neighborhood group. I now have a reputation and a nickname: “the Anarchist.”"] }, fx: { happy: 3, karma: -2, stress: 3 }, mood: 'shock' },
+          { w: 1, text: { fr: ["J'ai traversé et un policier à vélo a surgi de nulle part. Amende : 5 €. Il m'a fait un cours de 12 minutes sur l'exemplarité. Il était 3 h 15. Il était ravi."], en: ["I crossed and a cop on a bike appeared out of nowhere. Fine: €5. He gave me a 12-minute lecture on setting an example. It was 3:15 a.m. He was delighted."] }, fx: { money: -5, stress: 4 }, mood: 'angry' },
+        ],
+      },
+      {
+        label: { fr: 'Faire semblant de lacer', en: 'Pretend to tie my shoe' },
+        text: { fr: ["J'ai fait semblant de lacer ma chaussure jusqu'au vert. Personne n'a été dupe. La vieille dame a dit « Hm. » C'était pire qu'une insulte.", "J'ai lacé et relacé mes chaussures pendant trois minutes pour ne pas avoir l'air d'attendre. Mes lacets ont maintenant des nœuds de marin."], en: ["I pretended to tie my shoe until it turned green. Nobody bought it. The old lady said “Hm.” Worse than an insult.", "I tied and retied my shoes for three minutes so I wouldn't look like I was waiting. My laces now have sailor's knots."] },
+        fx: { stress: 2 },
+      },
+    ],
+  },
+  {
+    id: 'cy_de_pfand',
+    icon: '♻️',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'home', mood: 'angry', prop: 'bins' },
+    when: { country: ['de'], age: [10, 90] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Dans ton immeuble de {city}, il y a sept poubelles : papier, plastique, bio, verre blanc, verre brun, verre vert, et « reste ». Ce matin, un mot plastifié est scotché sur ta porte : « Un pot de yaourt a été trouvé dans le papier. Nous savons. »",
+        "Tu as 87 bouteilles consignées dans ta cuisine. Chacune vaut 25 centimes. La machine du supermarché refuse une bouteille sur trois en émettant {w:sound}. Derrière toi, une file de retraités attend avec des sacs de 200 bouteilles.",
+        "Ta voisine, Frau Schmidt, inspecte les poubelles chaque mardi avec des gants. Elle vient de sortir de la poubelle jaune {w:object} et regarde vers ta fenêtre. Tu te caches derrière le rideau.",
+        "Un nouveau voisin a mis du verre dans la poubelle à papier. Tout l'immeuble est en état d'alerte. Une réunion de crise est organisée dans la cour, avec un tableau, des feutres et {w:food} pour tenir.",
+      ],
+      en: [
+        "Your {city} building has seven bins: paper, plastic, organic, clear glass, brown glass, green glass and “rest.” This morning a laminated note is taped to your door: “A yogurt pot was found in the paper bin. We know.”",
+        "You have 87 deposit bottles in your kitchen. Each is worth 25 cents. The supermarket machine rejects one in three, making {w:sound}. Behind you, a line of retirees waits with bags of 200 bottles.",
+        "Your neighbor, Frau Schmidt, inspects the bins every Tuesday wearing gloves. She just pulled {w:object} out of the yellow bin and is looking at your window. You hide behind the curtain.",
+        "A new neighbor put glass in the paper bin. The whole building is on high alert. A crisis meeting is held in the courtyard, with a whiteboard, markers and {w:food} to keep everyone going.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Trier parfaitement', en: 'Sort perfectly' },
+        out: [
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["J'ai lavé mes pots de yaourt, retiré les étiquettes, séparé les couvercles. Frau Schmidt m'a laissé un nouveau mot : « Gut. » Je l'ai encadré.", "J'ai trié avec une précision chirurgicale. J'ai récupéré 21,75 € de consigne. Un retraité m'a félicité{|e} pour ma « technique d'insertion ». Je suis fier{|e}."], en: ["I washed my yogurt pots, removed labels, separated lids. Frau Schmidt left me a new note: “Gut.” I framed it.", "I sorted with surgical precision. Got €21.75 in deposits back. A retiree complimented my “insertion technique.” I'm proud."] }, fx: { discipline: 4, karma: 3, money: 20 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Tout jeter dans « reste »', en: 'Dump it all in “rest”' },
+        out: [
+          { w: 2, text: { fr: ["J'ai tout jeté dans la poubelle « reste », en pleine nuit, cagoule sur la tête. Le lendemain, une enquête a été ouverte. Ils ont analysé les déchets. Ils ont trouvé une facture à mon nom.", "J'ai tout mis dans la même poubelle. Frau Schmidt a déposé mes déchets triés un par un devant ma porte, avec un schéma explicatif. Ça faisait 14 pages."], en: ["I dumped everything in the “rest” bin at night, wearing a balaclava. The next day an investigation was opened. They analyzed the trash. They found a receipt with my name.", "I put everything in the same bin. Frau Schmidt laid out my trash, sorted one by one, at my door, with an explanatory diagram. It was 14 pages long."] }, fx: { karma: -4, stress: 5, happy: 2 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Vendre mes bouteilles', en: 'Return my bottles' },
+        out: [
+          { w: 1, text: { fr: ["J'ai rendu les 87 bouteilles. La machine en a refusé 31. J'ai essayé de les rentrer par l'autre bout, en soufflant dedans, en priant. J'ai gagné 14 € et un tendon froissé.", "La machine s'est bloquée à la 40e bouteille. Toute la file de retraités m'a regardé{|e} comme un criminel. Un employé est venu, a soupiré, et m'a dit « Immer die Neuen »."], en: ["I returned the 87 bottles. The machine rejected 31. I tried feeding them in backwards, blowing into them, praying. I made €14 and strained a tendon.", "The machine jammed at bottle 40. The whole line of retirees looked at me like a criminal. An employee came, sighed, and said, “Always the new ones.”"] }, fx: { money: 14, stress: 3 }, mood: 'neutral' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cy_de_schultuete',
+    icon: '🎒',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'school', mood: 'happy', prop: 'cone' },
+    when: { country: ['de'], age: [6, 7] },
+    actor: 'parent',
+    weight: 10,
+    once: true,
+    text: {
+      fr: [
+        "Premier jour d'école ! Comme tous les enfants allemands, tu reçois une Schultüte : un cône en carton géant presque aussi grand que toi, rempli de bonbons, de crayons et de surprises. {a.rel} te prend en photo 140 fois.",
+        "Le grand jour : l'entrée à l'école de {city}. Ton cône de bonbons est décoré avec {w:animal} en paillettes. Le cône d'un autre enfant est plus grand que le tien. Tu le remarques immédiatement.",
+        "Ta Schultüte pèse presque autant que toi. {a.rel} dit qu'il y a « des choses utiles » dedans. Tu entends des papiers de bonbons craquer quand tu la secoues. Et quelque chose qui ressemble à {w:object}.",
+        "Tout le monde est réuni devant l'école avec les cônes. Les parents pleurent, les grands-parents filment, et un enfant a déjà mangé la moitié de son cône. Il est vert. {a.rel} te dit d'attendre la maison.",
+      ],
+      en: [
+        "First day of school! Like all German kids, you get a Schultüte: a giant cardboard cone almost as tall as you, filled with candy, pencils and surprises. {a.rel} takes 140 photos of you.",
+        "The big day: starting school in {city}. Your candy cone is decorated with glittery {w:animal}. Another kid's cone is bigger than yours. You notice immediately.",
+        "Your Schultüte weighs almost as much as you. {a.rel} says there are “useful things” inside. You hear candy wrappers crinkle when you shake it. And something that might be {w:object}.",
+        "Everyone's gathered outside the school with their cones. Parents cry, grandparents film, and one kid has already eaten half his cone. He's green. {a.rel} tells you to wait until home.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Ouvrir tout de suite', en: 'Open it right now' },
+        out: [
+          { w: 2, text: { fr: ["J'ai ouvert le cône devant l'école et mangé onze bonbons en deux minutes. J'ai vomi sur mon nouveau cartable, en arc-en-ciel. Ma photo du premier jour est légendaire.", "Dans le cône : des crayons, une gomme en forme de bretzel, des bonbons et une lampe de poche. J'ai tout étalé dans la cour. Toute la classe est devenue mon amie, puis a mangé mes bonbons."], en: ["I opened the cone outside school and ate eleven candies in two minutes. I threw up a rainbow on my new schoolbag. My first-day photo is legendary.", "In the cone: pencils, a pretzel-shaped eraser, candy and a flashlight. I spread everything out in the yard. The whole class became my friends, then ate my candy."] }, fx: { happy: 8, health: -2, rel: -2 }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Attendre la maison', en: 'Wait until home' },
+        out: [
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["J'ai attendu toute la journée. À la maison, j'ai ouvert le cône avec cérémonie. Il y avait un mot de {a.my} : « Je suis fier de toi. » Et des bonbons. Surtout des bonbons.", "J'ai porté mon cône toute la journée sans l'ouvrir. Le maître m'a félicité{|e} pour ma « discipline allemande exemplaire ». À 7 ans. J'ai eu une étoile d'or."], en: ["I waited all day. At home, I opened the cone ceremoniously. There was a note from {a.my}: “I'm proud of you.” And candy. Mostly candy.", "I carried my cone all day without opening it. The teacher praised my “exemplary German discipline.” At 7. I got a gold star."] }, fx: { discipline: 4, happy: 6, rel: 6 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Comparer les cônes', en: 'Compare cones' },
+        text: { fr: ["J'ai comparé mon cône avec celui des autres. Le mien était le troisième plus grand. J'ai fait une crise. {a.my} a dû expliquer que la taille ne fait pas tout. Je n'y ai pas cru.", "J'ai échangé mon cône contre celui d'un garçon plus grand. Le sien était rempli de crayons et de livres. Que des choses « utiles ». J'ai été trahi{|e} par le capitalisme scolaire."], en: ["I compared my cone with everyone else's. Mine was the third biggest. I threw a tantrum. {a.my} had to explain that size isn't everything. I didn't believe it.", "I traded my cone for a bigger kid's. His was full of pencils and books. Only “useful” things. I was betrayed by school capitalism."] },
+        fx: { happy: -2 },
+      },
+    ],
+  },
+  {
+    id: 'cy_de_puenktlich',
+    icon: '⏰',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'office', mood: 'angry', prop: 'clock' },
+    when: { country: ['de'], age: [20, 65], job: true },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Réunion chez {employer} à 9 h 00. Ton train a 23 minutes de retard. Comme d'habitude. Ironie nationale : le pays le plus ponctuel du monde a les trains les moins ponctuels d'Europe. Ton chef, lui, est déjà assis, montre à la main.",
+        "Tu arrives à 9 h 02. La réunion a commencé à 9 h 00. Douze collègues te regardent entrer en silence. Le compte rendu de la réunion indique déjà : « 9 h 02 : arrivée de {first}. »",
+        "Ton collègue Klaus est arrivé à 8 h 59 et 50 secondes. Il est furieux contre lui-même. Il dit qu'il « s'est laissé aller ». Toi, tu arrives à 9 h 04 avec {w:drink} à la main et le train à blâmer.",
+        "Ton train annonce : « Retard indéterminé en raison d'une personne sur la voie, d'un problème de signalisation, et d'une vache. » Ta réunion commence dans 11 minutes. Tu es à 40 km. Un passager grogne {w:excuse}.",
+      ],
+      en: [
+        "Meeting at {employer} at 9:00. Your train is 23 minutes late. As usual. National irony: the world's most punctual country has the least punctual trains in Europe. Your boss is already seated, watch in hand.",
+        "You arrive at 9:02. The meeting started at 9:00. Twelve coworkers watch you walk in silently. The minutes already read: “9:02: {first} arrives.”",
+        "Your coworker Klaus arrived at 8:59 and 50 seconds. He's furious with himself. He says he “let himself go.” You arrive at 9:04 with {w:drink} in hand and the train to blame.",
+        "Your train announces: “Indefinite delay due to a person on the tracks, a signal failure and a cow.” Your meeting starts in 11 minutes. You're 25 miles away. A passenger mutters {w:excuse}.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Accuser le train', en: 'Blame the train' },
+        out: [
+          { w: 2, text: { fr: ["J'ai montré l'application du train à mon chef : 23 minutes de retard. Il a hoché la tête, plein de compassion. Tout le monde a soupiré en chœur. C'est le seul sujet qui unit le pays.", "J'ai accusé la Bahn. Mon chef a sorti un fichier Excel où il note les retards de chaque employé, avec le motif. « Train » représente 94 % des lignes. Il a ajouté la mienne."], en: ["I showed my boss the train app: 23 minutes late. He nodded with deep compassion. Everyone sighed in unison. It's the only topic that unites the country.", "I blamed the railway. My boss pulled up an Excel file logging every employee's delays with reasons. “Train” makes up 94% of rows. He added mine."] }, fx: { stress: 2, perf: -1 }, mood: 'neutral' },
+        ],
+      },
+      {
+        label: { fr: 'Courir 40 km', en: 'Find another way' },
+        out: [
+          { w: 1, odds: { athletic: 1 }, text: { fr: ["J'ai sauté du train, loué une trottinette, puis un vélo, puis supplié un agriculteur de m'emmener en tracteur. Arrivé{|e} à 9 h 00 pile, couvert{|e} de foin. Mon chef m'a donné une prime « pour l'esprit ».", "J'ai pris un taxi à 90 €. Arrivée 8 h 59. Klaus m'a regardé{|e} avec haine. J'avais battu Klaus. Ça valait chaque centime."], en: ["I jumped off the train, rented an e-scooter, then a bike, then begged a farmer for a tractor ride. Arrived at 9:00 sharp, covered in hay. My boss gave me a bonus “for the spirit.”", "I took a €90 taxi. Arrived 8:59. Klaus looked at me with hatred. I'd beaten Klaus. Worth every cent."] }, fx: { perf: 5, money: -90, happy: 5 }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai couru jusqu'au bureau. Arrivé{|e} à 9 h 41, en sueur, j'ai découvert que la réunion avait été annulée à cause des trains. Tout le monde était en retard. Sauf Klaus. Klaus était là, seul, depuis 8 h 59."], en: ["I ran to the office. Arrived at 9:41, drenched, to find the meeting cancelled because of the trains. Everyone was late. Except Klaus. Klaus had been there alone since 8:59."] }, fx: { athletic: 2, stress: 6, health: -2 }, mood: 'sad' },
+        ],
+      },
+      {
+        label: { fr: 'Inventer une excuse', en: 'Make up an excuse' },
+        text: { fr: ["J'ai prétendu que ma montre suisse avait pris du retard. Mon chef a répondu « les Suisses ne se trompent jamais ». J'ai perdu toute crédibilité et une partie de mon âme.", "J'ai dit que j'avais aidé une grand-mère à traverser. Au vert, évidemment. Mon chef a accepté l'excuse, mais m'a demandé le nom de la grand-mère « pour le dossier »."], en: ["I claimed my Swiss watch was running slow. My boss replied, “The Swiss are never wrong.” I lost all credibility and part of my soul.", "I said I'd helped a grandma cross the street. On green, of course. My boss accepted, but asked for the grandma's name “for the file.”"] },
+        fx: { karma: -2, stress: 3 },
+      },
+    ],
+  },
+  {
+    id: 'cy_de_autobahn',
+    icon: '🏎️',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'park', mood: 'shock', prop: 'car' },
+    when: { country: ['de'], age: [18, 80] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Autobahn, tronçon sans limitation de vitesse. Tu es à 130 km/h sur la voie de gauche dans ta petite voiture. Une Porsche apparaît dans le rétroviseur à 260 km/h, appels de phares, comme un vaisseau spatial en colère.",
+        "Tu conduis sur l'autoroute près de {city}. Tu dépasses un camion. Il te faut 40 secondes. Derrière toi, une file de berlines allemandes te colle à trois centimètres en faisant des appels de phares synchronisés.",
+        "Embouteillage monstre sur l'autoroute. Tout le monde forme spontanément une voie de secours au milieu, au centimètre près, sans un mot, comme une chorégraphie. Toi, tu es en plein milieu, avec {w:vehicle}.",
+        "Tu as loué une voiture de sport pour « tester l'Autobahn ». Tu as les mains moites, {w:song} à la radio et un panneau qui dit « fin de limitation ». Le compteur monte jusqu'à 300.",
+      ],
+      en: [
+        "Autobahn, unlimited-speed stretch. You're doing 80 mph in the left lane in your little car. A Porsche appears in the mirror at 160 mph, flashing its lights like an angry spaceship.",
+        "You're on the highway near {city}. You're passing a truck. It takes 40 seconds. Behind you, a line of German sedans tailgates at an inch, flashing their lights in sync.",
+        "Massive traffic jam on the highway. Everyone spontaneously forms an emergency lane down the middle, to the inch, wordlessly, like choreography. You're stuck right in the middle, in {w:vehicle}.",
+        "You rented a sports car to “try the Autobahn.” Sweaty palms, {w:song} on the radio and a sign saying “end of speed limit.” The speedometer goes up to 190.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Rester à gauche', en: 'Stay in the left lane' },
+        out: [
+          { w: 2, text: { fr: ["Je suis resté{|e} à gauche par principe. La Porsche m'a doublé{|e} par la droite, illégalement, en me faisant un doigt d'honneur. J'ai senti l'appel d'air faire trembler mes dents.", "Je n'ai pas bougé. Le conducteur de la Porsche est sorti à l'aire suivante pour me faire un cours sur le « Rechtsfahrgebot » pendant 15 minutes. Il avait un schéma."], en: ["I stayed left on principle. The Porsche passed me on the right, illegally, flipping me off. I felt the air blast rattle my teeth.", "I didn't budge. The Porsche driver got out at the next rest stop to lecture me on “keep right” rules for 15 minutes. He had a diagram."] }, fx: { stress: 6, karma: -1 }, mood: 'angry' },
+        ],
+      },
+      {
+        label: { fr: 'Appuyer à fond', en: 'Floor it' },
+        out: [
+          { w: 2, text: { fr: ["J'ai appuyé à fond. 240 km/h. J'ai hurlé comme un enfant sur des montagnes russes. Puis j'ai vu ma consommation d'essence et j'ai hurlé pour d'autres raisons.", "J'ai poussé jusqu'à 280. Le paysage était flou. Mes joues tremblaient. Un papi en Mercedes m'a quand même doublé{|e}, en lisant son journal."], en: ["I floored it. 150 mph. I screamed like a kid on a rollercoaster. Then I saw my fuel consumption and screamed for other reasons.", "I pushed to 175. The landscape blurred. My cheeks wobbled. A grandpa in a Mercedes still overtook me, reading his newspaper."] }, fx: { happy: 10, stress: 4, money: -80 }, mood: 'party' },
+          { w: 1, text: { fr: ["À 260 km/h, un insecte s'est écrasé sur le pare-brise avec un bruit de balle. J'ai paniqué, freiné, fait trois tête-à-queue et atterri dans un champ de colza. Les vaches m'ont regardé{|e} sans juger. Elles."], en: ["At 160 mph, a bug hit the windshield like a bullet. I panicked, braked, spun three times and landed in a canola field. The cows looked at me without judgment. At least they didn't."] }, fx: { health: -8, money: -1500, stress: 10 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Me rabattre poliment', en: 'Pull over politely' },
+        text: { fr: ["Je me suis rabattu{|e} à droite. La Porsche m'a remercié{|e} d'un warning. J'ai ressenti une profonde paix intérieure. J'ai roulé à 120 derrière un camion de saucisses pendant deux heures.", "Je suis resté{|e} à droite tout le trajet. Un camionneur polonais m'a fait un petit signe de respect. C'est le plus beau compliment de ma carrière de conducteur."], en: ["I moved right. The Porsche thanked me with its hazards. I felt deep inner peace. Drove at 75 behind a sausage truck for two hours.", "I stayed right the whole way. A Polish trucker gave me a small nod of respect. Best compliment of my driving career."] },
+        fx: { stress: -3, karma: 2 },
+      },
+    ],
+  },
+  {
+    id: 'cy_de_oktoberfest',
+    icon: '🍺',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'party', mood: 'party', prop: 'stein', fx: 'poop' },
+    when: { country: ['de'], age: [18, 70] },
+    weight: 7,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Oktoberfest à Munich. Tu portes une culotte de peau ou un dirndl, loués 80 €. Sous la tente, 8 000 personnes chantent « Ein Prosit » toutes les vingt minutes. On te sert une Maß : un litre de bière dans une chope qui pèse autant qu'un bébé.",
+        "Troisième Maß. Tu es debout sur un banc en train de chanter une chanson que tu ne connais pas, bras dessus bras dessous avec un Australien et un Bavarois de 70 ans. Il y a {w:food} par terre et du bretzel dans tes cheveux.",
+        "Une serveuse porte douze chopes d'un litre en même temps, six dans chaque main, sans transpirer. Elle les pose devant ta table. Tu as commandé une. Tes amis te regardent : « Bon. On y va. »",
+        "Il est 15 h à l'Oktoberfest. Le célèbre « Kotzhügel », la colline des vomisseurs, est déjà bien rempli. Tu en es à ta quatrième Maß, tu as mangé {w:food} et une demi-poule, et ton estomac fait {w:sound}.",
+      ],
+      en: [
+        "Oktoberfest in Munich. You're wearing lederhosen or a dirndl, rented for €80. In the tent, 8,000 people sing “Ein Prosit” every twenty minutes. They serve you a Maß: a liter of beer in a stein as heavy as a baby.",
+        "Third Maß. You're standing on a bench singing a song you don't know, arm in arm with an Australian and a 70-year-old Bavarian. There's {w:food} on the floor and pretzel in your hair.",
+        "A server carries twelve one-liter steins at once, six per hand, without breaking a sweat. She sets them on your table. You ordered one. Your friends look at you: “Well. Here we go.”",
+        "It's 3 p.m. at Oktoberfest. The famous “Puke Hill” is already crowded. You're on your fourth Maß, you've eaten {w:food} and half a chicken, and your stomach goes {w:sound}.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Encore une Maß', en: 'Another Maß' },
+        out: [
+          { w: 2, text: { fr: ["Cinquième Maß. J'ai embrassé un inconnu moustachu, perdu une chaussure dans un bac à bretzels et vomi sur le Kotzhügel, en harmonie avec quarante autres personnes. Un vrai moment de communion.", "Je me suis réveillé{|e} sous une table, la tête dans un chapeau tyrolien qui n'est pas à moi, une chope vide serrée contre la poitrine comme un doudou. La fanfare jouait encore."], en: ["Fifth Maß. I kissed a mustached stranger, lost a shoe in a pretzel bin and puked on Puke Hill in harmony with forty other people. A true moment of communion.", "I woke up under a table, head in a Tyrolean hat that isn't mine, an empty stein hugged to my chest like a teddy bear. The brass band was still playing."] }, fx: { happy: 10, health: -8, addiction: ['alcohol', 8], visual: 'poop' }, mood: 'sick' },
+          { w: 1, text: { fr: ["En trinquant trop fort, j'ai explosé ma chope contre celle d'un Bavarois. La bière a giclé, le verre aussi. J'ai une coupure au front en forme d'éclair. On m'appelle « Harry Pils »."], en: ["Toasting too hard, I shattered my stein against a Bavarian's. Beer sprayed, glass too. I have a lightning-shaped cut on my forehead. They call me “Harry Pilsner.”"] }, fx: { health: -6, happy: 6, looks: -2, visual: 'gore' }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Danser sur le banc', en: 'Dance on the bench' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai dansé sur le banc pendant trois heures. Un orchestre m'a invité{|e} sur scène pour jouer du tuba. Je ne sais pas jouer du tuba. J'ai soufflé. C'était magnifique. Ou pas. Personne ne se souvient.", "J'ai lancé une chenille de 200 personnes à travers la tente. Elle est sortie, a fait le tour de la grande roue, et est revenue. J'en suis le chef éternel."], en: ["I danced on the bench for three hours. A band invited me on stage to play tuba. I can't play tuba. I blew. It was magnificent. Or not. Nobody remembers.", "I started a 200-person conga line through the tent. It left, circled the Ferris wheel and came back. I am its eternal leader."] }, fx: { happy: 10, athletic: 1, fame: 1 }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Commander de l\'eau', en: 'Order water' },
+        text: { fr: ["J'ai commandé de l'eau. La serveuse m'a regardé{|e} comme si j'avais demandé un rein. Elle m'a apporté une Maß de bière « sans alcool ». C'était faux. J'ai compris trois chopes plus tard.", "Une eau, s'il vous plaît. Silence sous la tente. Un Bavarois a posé sa main sur mon épaule : « Tu es malade ? » J'ai bu une bière par politesse. Puis neuf."], en: ["I ordered water. The server looked at me like I'd asked for a kidney. She brought a Maß of “alcohol-free” beer. It wasn't. I realized three steins later.", "One water, please. Silence in the tent. A Bavarian put his hand on my shoulder: “Are you ill?” I had a beer out of politeness. Then nine."] },
+        fx: { happy: 4, addiction: ['alcohol', 3] },
+      },
+    ],
+  },
+  {
+    id: 'cy_de_techno',
+    icon: '🎧',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'party', mood: 'party', prop: 'strobe' },
+    when: { country: ['de'], age: [18, 45] },
+    weight: 6,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Berlin, dimanche, 4 h du matin. Tu fais la queue devant le club le plus sélectif du monde depuis trois heures. Le videur, un homme tatoué jusqu'aux paupières, refuse les gens sans explication. Il te regarde. Tu as {w:object} à la main. Erreur.",
+        "Tu es enfin entré{|e} dans le club berlinois. Pas de photos, pas de téléphone, pas d'horloge. Il y a des gens en harnais de cuir, une femme de 70 ans qui danse depuis vendredi, et une salle sombre dont tu préfères ignorer la fonction.",
+        "La soirée techno a commencé jeudi. On est lundi. Tu es toujours là. Tu ne sais plus ce que c'est, le soleil. Un inconnu torse nu te tend {w:drink} et te dit « welcome home ».",
+        "Le DJ joue le même « boum » depuis six heures. Les gens dansent les yeux fermés. Toi, tu portes une chemise à fleurs et un jean clair, ce qui à Berlin est une faute de goût passible de la peine capitale.",
+      ],
+      en: [
+        "Berlin, Sunday, 4 a.m. You've been queuing outside the world's most selective club for three hours. The bouncer, tattooed up to his eyelids, rejects people without explanation. He looks at you. You're holding {w:object}. Mistake.",
+        "You finally got into the Berlin club. No photos, no phones, no clocks. There are people in leather harnesses, a 70-year-old woman who's been dancing since Friday, and a dark room whose purpose you'd rather not know.",
+        "The techno party started Thursday. It's Monday. You're still here. You've forgotten what the sun is. A shirtless stranger hands you {w:drink} and says “welcome home.”",
+        "The DJ has been playing the same “boom” for six hours. People dance with eyes closed. You're wearing a floral shirt and light jeans, which in Berlin is a fashion crime punishable by death.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Avoir l\'air blasé{|e}', en: 'Look bored and cool' },
+        out: [
+          { w: 1, odds: { looks: 1 }, text: { fr: ["J'ai pris un air profondément ennuyé, tout en noir, sans sourire. Le videur m'a fait un signe minuscule. Je suis entré{|e}. J'ai dansé 19 heures. Je ne me souviens que des basses.", "J'ai répondu « personne » quand il m'a demandé qui était le DJ. C'était la bonne réponse. Je suis entré{|e} et j'ai perdu mon week-end, mes chaussettes et une partie de ma timidité."], en: ["I put on a deeply bored face, all black, no smile. The bouncer gave a tiny nod. I got in. Danced 19 hours. I only remember the bass.", "I said “nobody” when he asked who the DJ was. Right answer. I got in and lost my weekend, my socks and part of my shyness."] }, fx: { happy: 10, health: -5, stress: -6 }, mood: 'party' },
+          { w: 2, text: { fr: ["Il m'a regardé{|e} deux secondes et a dit « Heute nicht ». Pas aujourd'hui. Trois heures de queue pour ça. J'ai mangé un döner en pleurant, à 5 h, avec d'autres refusés. On a formé un club.", "Refusé{|e}. Il n'a même pas parlé, il a juste secoué la tête. J'ai essayé de revenir avec une moustache. Il m'a reconnu{|e}. Il a ri. C'était pire."], en: ["He looked at me for two seconds and said “Heute nicht.” Not today. Three hours in line for that. I ate a döner crying at 5 a.m. with other rejects. We started our own club.", "Rejected. He didn't even speak, just shook his head. I tried coming back with a moustache. He recognized me. He laughed. That was worse."] }, fx: { happy: -5, stress: 4 }, mood: 'sad' },
+        ],
+      },
+      {
+        label: { fr: 'Danser trois jours', en: 'Dance for three days' },
+        out: [
+          { w: 2, text: { fr: ["J'ai dansé de vendredi à lundi. J'ai transpiré quatre litres, embrassé deux personnes et un pilier, et perdu mon t-shirt dans la salle sombre. Je ne retournerai jamais le chercher.", "Trois jours de techno. Au bout de 50 heures, j'ai eu une révélation mystique sur un « boum » particulier. Je suis allé{|e} au travail lundi directement. J'ai dansé devant la photocopieuse."], en: ["I danced from Friday to Monday. Sweated a gallon, kissed two people and a pillar, and lost my t-shirt in the dark room. I will never go back for it.", "Three days of techno. After 50 hours, I had a mystical revelation on one particular “boom.” Went straight to work Monday. I danced at the photocopier."] }, fx: { happy: 9, health: -8, stress: -8 }, mood: 'party' },
+          { w: 1, text: { fr: ["Je suis entré{|e} dans la salle sombre « juste pour voir ». J'en suis ressorti{|e} quatre heures plus tard, sans pantalon, avec le numéro d'un dentiste néerlandais et un regard de survivant{|e}."], en: ["I went into the dark room “just to look.” Came out four hours later with no pants, a Dutch dentist's number and the eyes of a survivor."] }, fx: { happy: 6, stress: 4 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Rentrer dormir', en: 'Go home to sleep' },
+        text: { fr: ["Je suis rentré{|e} dormir à 5 h. Un habitué m'a dit « mais la soirée commence ». Il avait raison. Quand je suis revenu{|e} mardi soir, elle n'était toujours pas finie.", "Je suis parti{|e} prendre le premier métro. Dedans, des gens en costume allaient travailler et des gens en harnais rentraient de soirée. Personne ne regardait personne. Berlin."], en: ["I went home to sleep at 5 a.m. A regular said, “But the party is just starting.” He was right. When I came back Tuesday night, it still wasn't over.", "I left for the first subway. Inside, people in suits headed to work and people in harnesses headed home. Nobody looked at anybody. Berlin."] },
+        fx: { health: 3, happy: 1 },
+      },
+    ],
+  },
+  {
+    id: 'cy_de_sauna',
+    icon: '🧖',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'party', mood: 'shock', prop: 'towel' },
+    when: { country: ['de'], age: [18, 85] },
+    weight: 6,
+    cooldown: 5,
+    text: {
+      fr: [
+        "Sauna mixte à {city}. Règle : tout le monde est nu, et porter un maillot est considéré comme « dégoûtant et non hygiénique ». Tu as gardé ton maillot. Une dame de 75 ans, nue comme un ver, te le fait remarquer sévèrement.",
+        "C'est l'heure de l'« Aufguss » : un maître de sauna en serviette verse de l'eau parfumée sur les pierres brûlantes, puis fait tournoyer une serviette comme un hélicoptère pour t'envoyer la vapeur en pleine figure. Il fait 95 °C. Tout le monde applaudit.",
+        "Tu es assis{|e} nu{|e} dans un sauna avec ton chef, ta voisine et un monsieur qui te raconte sa randonnée dans les Alpes. Personne ne trouve ça bizarre. Ça sent {w:smell} et l'eucalyptus.",
+        "Après le sauna, la tradition est de plonger dans un bassin d'eau glacée, puis de se rouler dans la neige, {w:weather}. Un groupe de retraités le fait en riant. Ils te regardent : « Na los ! »",
+      ],
+      en: [
+        "Mixed sauna in {city}. Rule: everyone is naked, and wearing a swimsuit is considered “disgusting and unhygienic.” You kept your swimsuit on. A stark-naked 75-year-old lady sternly points this out.",
+        "Time for the “Aufguss”: a sauna master in a towel pours scented water on the scorching stones, then whirls a towel like a helicopter to blast steam in your face. It's 203°F. Everyone applauds.",
+        "You're sitting naked in a sauna with your boss, your neighbor and a man telling you about his Alpine hike. Nobody finds this strange. It smells of {w:smell} and eucalyptus.",
+        "After the sauna, tradition says you plunge into an ice-cold pool, then roll in the snow, {w:weather}. A group of retirees does it laughing. They look at you: “Na los!”",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Tout enlever', en: 'Strip off' },
+        out: [
+          { w: 2, text: { fr: ["J'ai tout enlevé. Au bout de trois minutes, plus personne ne regardait personne. Au bout de dix, je parlais de politique avec mon chef, à poil, sans malaise. L'Allemagne m'a libéré{|e}.", "Je me suis mis{|e} nu{|e}. La dame de 75 ans a hoché la tête : « Besser. » Puis elle m'a parlé de ses varices pendant vingt minutes. Je connais maintenant ses deux genoux intimement."], en: ["I stripped. After three minutes nobody was looking at anybody. After ten, I was discussing politics with my boss, butt-naked, totally relaxed. Germany set me free.", "I got naked. The 75-year-old lady nodded: “Besser.” Then talked about her varicose veins for twenty minutes. I now know both her knees intimately."] }, fx: { happy: 6, stress: -6 }, mood: 'happy' },
+          { w: 1, text: { fr: ["J'ai tout enlevé, puis je me suis assis{|e} directement sur le banc en bois brûlant, sans serviette. J'ai crié « {w:swear} ». J'ai désormais une brûlure en forme de lattes de bois sur les fesses."], en: ["I stripped, then sat directly on the scorching wooden bench, no towel. I yelled “{w:swear}” I now have a slat-shaped burn on my butt."] }, fx: { health: -5, disease: 'burns', happy: -2 }, mood: 'sick' },
+        ],
+      },
+      {
+        label: { fr: "Supporter l'Aufguss", en: 'Endure the Aufguss' },
+        out: [
+          { w: 2, odds: { health: 1 }, text: { fr: ["J'ai tenu les trois tours de serviette du maître. Ma peau a pris la couleur d'une saucisse grillée. À la fin, j'ai applaudi avec les autres, sans savoir pourquoi. C'est la tradition.", "Aufguss terminé. Je suis sorti{|e} en titubant, rouge, purifié{|e}, et j'ai plongé dans l'eau glacée. Mon cœur s'est arrêté une seconde puis est reparti. Je me sens neuf{|ve}."], en: ["I survived the master's three towel rounds. My skin turned the color of a grilled sausage. At the end I applauded with everyone, not knowing why. It's tradition.", "Aufguss over. I staggered out, red, purified, and plunged into the ice water. My heart stopped for a second, then restarted. I feel brand new."] }, fx: { health: 5, happy: 5, stress: -5 }, mood: 'happy' },
+          { w: 1, text: { fr: ["Au deuxième tour de serviette, je me suis évanoui{|e}, nu{|e}, sur les genoux d'un inconnu. Il ne m'a pas lâché{|e} et a continué la conversation avec son voisin. On m'a réveillé{|e} à l'eau froide."], en: ["On the second towel round I fainted, naked, into a stranger's lap. He held me steady and continued his conversation with his neighbor. They woke me with cold water."] }, fx: { health: -4, stress: 4 }, mood: 'sick' },
+        ],
+      },
+      {
+        label: { fr: 'Garder le maillot', en: 'Keep the swimsuit' },
+        text: { fr: ["J'ai gardé mon maillot. Un employé est venu me demander poliment de partir. Une pétition circule pour me bannir à vie. J'ai été le scandale hygiénique du mois.", "J'ai gardé mon maillot par pudeur. Tout le sauna m'a regardé{|e} comme si j'étais nu{|e}. Ironiquement, j'étais la seule personne à me sentir à poil."], en: ["I kept my swimsuit on. An employee politely asked me to leave. A petition is circulating to ban me for life. I'm the hygiene scandal of the month.", "I kept my swimsuit out of modesty. The whole sauna stared at me as if I were naked. Ironically, I was the only one who felt exposed."] },
+        fx: { stress: 4, happy: -2 },
+      },
+    ],
+  },
+  // ═════════════════════════════ SUISSE ═════════════════════════════
+  {
+    id: 'cy_ch_precision',
+    icon: '⌚',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'school', mood: 'shock', prop: 'watch' },
+    when: { country: ['ch'], age: [8, 16] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Sortie scolaire. Le train part à 8 h 03. Tu arrives sur le quai à 8 h 03 et 4 secondes. Le train s'éloigne, à l'heure, avec toute ta classe dedans. La maîtresse te fait un petit signe par la fenêtre.",
+        "Ta nouvelle montre a trois secondes de retard. Ton voisin de classe l'a remarqué. Toute la classe en parle. Le prof de maths te conseille de la « faire réviser rapidement, pour ta réputation ».",
+        "À {school}, chaque minute de retard est notée dans un carnet. Tu en as accumulé quatre en un an. Le directeur te convoque. Il a un graphique, {w:drink} et l'air très inquiet.",
+        "Concours de l'école : construire une horloge qui fonctionne. Les autres élèves présentent des mécanismes en laiton de 200 pièces. Toi, tu as fabriqué une horloge avec {w:object} et du scotch. Elle avance de deux heures.",
+      ],
+      en: [
+        "School trip. The train leaves at 8:03. You reach the platform at 8:03 and 4 seconds. The train pulls away, on time, with your whole class aboard. The teacher waves at you through the window.",
+        "Your new watch is three seconds slow. The kid next to you noticed. The whole class is talking about it. The math teacher advises you to “get it serviced quickly, for your reputation.”",
+        "At {school}, every minute of lateness is logged in a notebook. You've racked up four in a year. The principal summons you. He has a chart, {w:drink} and a very worried look.",
+        "School contest: build a working clock. The other students present brass mechanisms with 200 parts. You made a clock out of {w:object} and tape. It's two hours fast.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Courir après le train', en: 'Chase the train' },
+        out: [
+          { w: 1, odds: { athletic: 1 }, text: { fr: ["J'ai couru et sauté dans le dernier wagon au moment où les portes se fermaient. Le contrôleur a noté « embarquement irrégulier, 8 h 03 min 06 s ». Je suis un héros et un délinquant.", "J'ai sprinté le long du quai. Le train ne m'a pas attendu{|e}, mais le suivant partait 30 minutes après, à la seconde près. J'ai rejoint la classe avec un retard parfaitement calculé."], en: ["I ran and jumped into the last car as the doors closed. The conductor noted “irregular boarding, 8:03:06.” I'm a hero and a delinquent.", "I sprinted along the platform. The train didn't wait, but the next one left 30 minutes later, to the second. I joined the class with a perfectly calculated delay."] }, fx: { athletic: 2, happy: 4 }, mood: 'proud' },
+          { w: 2, text: { fr: ["Le train est parti. Je suis resté{|e} seul{|e} sur le quai. Ma mère est venue me chercher en me répétant « quatre secondes, {first}, QUATRE SECONDES » pendant tout le trajet.", "J'ai raté le train et passé la journée à la gare, à regarder les trains partir à l'heure. C'était hypnotique. Je veux devenir chef de gare."], en: ["The train left. I stood alone on the platform. My mother picked me up, repeating “four seconds, {first}, FOUR SECONDS” the whole drive.", "I missed the train and spent the day at the station watching trains leave on time. Hypnotic. I want to be a stationmaster."] }, fx: { happy: -3, discipline: 2 }, mood: 'sad' },
+        ],
+      },
+      {
+        label: { fr: 'Régler ma montre', en: 'Fix my watch' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai démonté ma montre et je l'ai remontée, avec deux pièces en trop. Elle marche à la seconde près. Le prof de maths m'a regardé{|e} avec un respect nouveau. Je serai horloger{|ère}.", "J'ai synchronisé ma montre avec l'horloge atomique. Maintenant c'est elle qui corrige celle de la classe. Le prof est jaloux."], en: ["I took my watch apart and reassembled it, with two parts left over. It's accurate to the second. The math teacher looked at me with newfound respect. I'll be a watchmaker.", "I synced my watch to the atomic clock. Now it corrects the classroom clock. The teacher is jealous."] }, fx: { smarts: 3, discipline: 2, happy: 3 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: "M'en ficher", en: "Not care" },
+        text: { fr: ["J'ai décidé que trois secondes, ce n'était rien. On m'a regardé{|e} comme un révolutionnaire dangereux. Le délégué de classe m'a demandé si mes parents étaient italiens.", "J'ai assumé mon retard avec panache. Je suis devenu{|e} le rebelle de l'école. Mon surnom : « Trois Secondes ». Je l'ai brodé sur mon sac."], en: ["I decided three seconds was nothing. People looked at me like a dangerous revolutionary. The class rep asked if my parents were Italian.", "I owned my lateness with flair. I became the school rebel. My nickname: “Three Seconds.” I embroidered it on my bag."] },
+        fx: { happy: 3, discipline: -2 },
+      },
+    ],
+  },
+  {
+    id: 'cy_ch_desalpe',
+    icon: '🐄',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'park', mood: 'happy', prop: 'cowbell', fx: 'confetti' },
+    when: { country: ['ch'], age: [6, 90] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "C'est la désalpe ! Les vaches redescendent des alpages, décorées de fleurs géantes et de cloches de la taille d'un seau. Le village entier est dans la rue. La vache de tête porte une couronne et l'air très fière d'elle.",
+        "Défilé des vaches dans le village près de {city}. Chaque vache porte une cloche qui fait le bruit d'une église. Il y en a 140. Tu ne t'entends plus penser. Un vieux paysan te propose {w:food} et un verre de vin blanc.",
+        "Une vache décorée vient de s'arrêter devant toi pendant le défilé. Elle te regarde. Elle mange ton chapeau. Le paysan dit que c'est « un grand honneur » et que ça porte bonheur pour l'hiver.",
+        "Concours de la plus belle vache du canton. Le jury évalue les pis, les cornes et « l'attitude ». La favorite s'appelle Mirabelle, et elle a plus de followers que toi sur {w:app}.",
+      ],
+      en: [
+        "It's the désalpe! Cows come down from the alpine pastures, decorated with giant flowers and bells the size of buckets. The whole village is in the street. The lead cow wears a crown and looks very pleased with herself.",
+        "Cow parade in a village near {city}. Each cow wears a bell that sounds like a church. There are 140. You can't hear yourself think. An old farmer offers you {w:food} and a glass of white wine.",
+        "A decorated cow just stopped in front of you during the parade. She looks at you. She eats your hat. The farmer says it's “a great honor” and brings luck for the winter.",
+        "Contest for the most beautiful cow in the canton. The jury rates udders, horns and “attitude.” The favorite is called Mirabelle, and she has more followers than you on {w:app}.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Caresser la vache', en: 'Pet the cow' },
+        out: [
+          { w: 2, text: { fr: ["J'ai caressé la vache de tête. Elle m'a léché le visage avec une langue de 40 cm, puis a posé sa tête sur mon épaule. Le paysan m'a dit que je pouvais revenir l'été prochain à l'alpage. J'ai dit oui sans réfléchir.", "La vache a apprécié. Elle m'a suivi{|e} pendant tout le défilé. Les gens nous ont pris en photo. Je suis sur la une du journal local, avec la légende « Amitié ».", "J'ai caressé la vache, elle m'a fait tomber dans la fontaine du village d'un coup de tête affectueux. J'ai rigolé, trempé{|e}, sous les applaudissements."], en: ["I petted the lead cow. She licked my face with a 16-inch tongue, then rested her head on my shoulder. The farmer said I could come back to the pasture next summer. I said yes without thinking.", "The cow liked it. She followed me the whole parade. People took photos of us. I'm on the front page of the local paper, captioned “Friendship.”", "I petted the cow and she nudged me affectionately into the village fountain. I laughed, soaked, to applause."] }, fx: { happy: 8, karma: 2 }, mood: 'love' },
+        ],
+      },
+      {
+        label: { fr: 'Sonner une cloche', en: 'Ring a cowbell' },
+        out: [
+          { w: 2, text: { fr: ["J'ai soulevé une cloche de vache. Elle pesait 8 kilos. J'ai sonné une fois et j'ai entendu un sifflement jusqu'au lendemain. Le paysan a ri : « Maintenant tu sais ce que vivent les vaches. »", "J'ai acheté une cloche géante en souvenir. Elle est dans mon salon. Je la sonne pour appeler la famille à table. Les voisins ont porté plainte deux fois."], en: ["I lifted a cowbell. It weighed 18 pounds. I rang it once and heard ringing until the next day. The farmer laughed: “Now you know what the cows go through.”", "I bought a giant bell as a souvenir. It's in my living room. I ring it to call the family to dinner. The neighbors have complained twice."] }, fx: { happy: 5, money: -60 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Juger le concours', en: 'Judge the contest' },
+        text: { fr: ["On m'a demandé de remplacer un juré malade. J'ai voté pour la vache la plus moche, par compassion. Elle a gagné. Son propriétaire m'a embrassé{|e}. Les autres veulent me lyncher avec des cloches.", "J'ai noté les vaches avec un sérieux absolu. J'ai donné 9,5 à Mirabelle pour « l'attitude ». Elle m'a regardé{|e} comme si elle méritait 10. Elle avait raison."], en: ["They asked me to replace a sick judge. I voted for the ugliest cow, out of compassion. She won. Her owner hugged me. The others want to lynch me with cowbells.", "I scored the cows with absolute seriousness. Gave Mirabelle 9.5 for “attitude.” She looked at me like she deserved 10. She was right."] },
+        fx: { happy: 5, karma: 2 },
+      },
+    ],
+  },
+  {
+    id: 'cy_ch_ruhe',
+    icon: '🤫',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'apartment', mood: 'angry', prop: 'note' },
+    when: { country: ['ch'], age: [18, 95] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Il est 22 h 04 dans ton immeuble de {city}. Tu viens de tirer la chasse d'eau. Le lendemain matin, un mot dactylographié t'attend dans la boîte aux lettres : « Le règlement interdit l'usage des sanitaires après 22 h. Cordialement, vos voisins. »",
+        "Dimanche matin. Tu as voulu jeter tes bouteilles dans le conteneur à verre. C'est interdit le dimanche. Le bruit du verre a été entendu. Trois rideaux ont bougé. Quelqu'un a déjà appelé la gérance.",
+        "Le tableau de la buanderie commune indique ton créneau : mardi, 14 h 15 – 16 h 45. Tu as laissé une chaussette dans le tambour à 16 h 47. Elle a été mise sous scellés, avec {w:object} et un mot.",
+        "Tu as passé l'aspirateur un dimanche, à 11 h. Le voisin du dessous a frappé au plafond avec un balai. La voisine d'en face a ouvert la fenêtre pour crier « {w:insult} ». L'immeuble entier est réveillé, ce qui est aussi interdit.",
+      ],
+      en: [
+        "It's 10:04 p.m. in your {city} building. You just flushed the toilet. The next morning, a typed note awaits in your mailbox: “The building rules prohibit use of sanitary facilities after 10 p.m. Kind regards, your neighbors.”",
+        "Sunday morning. You tried to toss your bottles in the glass container. That's forbidden on Sundays. The sound of glass was heard. Three curtains moved. Someone has already called the property manager.",
+        "The shared laundry room schedule shows your slot: Tuesday, 2:15–4:45 p.m. You left a sock in the drum at 4:47. It's been sealed in a bag, along with {w:object} and a note.",
+        "You vacuumed on a Sunday, at 11 a.m. The downstairs neighbor banged on the ceiling with a broom. The lady across the hall opened her window to yell “{w:insult}” The whole building is awake, which is also forbidden.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: "M'excuser par écrit", en: 'Apologize in writing' },
+        out: [
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["J'ai rédigé une lettre d'excuses en trois exemplaires, signée et datée, avec un chocolat dans chaque boîte aux lettres. Les voisins ont accepté. Ils m'ont dit « bonjour » dans l'escalier. Un miracle.", "Lettre d'excuses déposée. Réponse le lendemain : « Excuses acceptées. Merci de ne plus recommencer. PS : votre paillasson est de travers. » Je l'ai redressé au rapporteur."], en: ["I wrote a letter of apology in triplicate, signed and dated, with a chocolate in each mailbox. The neighbors accepted. They said “hello” on the stairs. A miracle.", "Apology letter delivered. Reply next day: “Apology accepted. Please do not repeat. PS: your doormat is crooked.” I straightened it with a protractor."] }, fx: { karma: 3, stress: -2, discipline: 2 }, mood: 'neutral' },
+        ],
+      },
+      {
+        label: { fr: 'Faire la guerre', en: 'Go to war' },
+        out: [
+          { w: 2, text: { fr: ["J'ai tiré la chasse à 23 h 59, puis à 0 h 01, puis à 3 h. La gérance m'a envoyé un avertissement officiel. Les voisins ont fait une réunion. J'ai été voté « persona non grata » à l'unanimité.", "J'ai répondu par un mot : « Chers voisins, allez vous faire voir, cordialement. » Le lendemain, ils avaient engagé un avocat. En Suisse, tout le monde en a un, comme un parapluie."], en: ["I flushed at 11:59 p.m., then 12:01, then 3 a.m. The management sent an official warning. The neighbors held a meeting. I was unanimously voted “persona non grata.”", "I replied with a note: “Dear neighbors, go to hell. Kind regards.” The next day they'd hired a lawyer. In Switzerland, everyone has one, like an umbrella."] }, fx: { happy: 6, karma: -4, stress: 5 }, mood: 'angry' },
+        ],
+      },
+      {
+        label: { fr: 'Me retenir', en: 'Hold it in' },
+        text: { fr: ["Désormais, je ne vais plus aux toilettes après 22 h. Je me retiens jusqu'à 7 h. Ma vessie a la taille d'une piscine olympique et une discipline toute helvétique.", "Je vis en silence total après 22 h. Je marche en chaussettes, je chuchote, je mange des chips en les laissant fondre. Je suis devenu{|e} un fantôme suisse."], en: ["I no longer use the toilet after 10 p.m. I hold it until 7 a.m. My bladder is Olympic-pool-sized and has very Swiss discipline.", "I live in total silence after 10 p.m. I walk in socks, whisper, and let chips melt in my mouth. I've become a Swiss ghost."] },
+        fx: { discipline: 4, health: -2 },
+      },
+    ],
+  },
+  {
+    id: 'cy_ch_bank',
+    icon: '🏦',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'office', mood: 'neutral', prop: 'vault', fx: 'money' },
+    when: { country: ['ch'], age: [25, 85] },
+    vars: { amount: [500, 5000] },
+    weight: 6,
+    once: true,
+    text: {
+      fr: [
+        "Tu ouvres un compte dans une banque privée de Genève. Le banquier chuchote, ne prononce jamais le mot « argent » et te remet une carte avec un simple numéro. Il te demande si tu souhaites « une discrétion standard ou renforcée ».",
+        "Ton banquier de {city}, Herr Vögeli, te reçoit dans un bureau en bois sombre. Pas un bruit. La moquette est si épaisse que tes pieds s'enfoncent. Il te propose un coffre-fort personnel et un café dans une tasse en porcelaine qui vaut {$amount}.",
+        "Une banque suisse te propose un « compte numéroté ». Le conseiller t'explique qu'il ne te demandera jamais d'où vient l'argent, mais qu'il voudra savoir si tu préfères les chocolats noirs ou au lait. Il te fixe sans cligner des yeux.",
+        "Tu as {$amount} d'économies et tu veux les placer. Le banquier suisse t'écoute avec la politesse d'un homme qui gère d'habitude la fortune de clients comme {w:celeb}. Il sourit. Il est poli. Il est un peu méprisant.",
+      ],
+      en: [
+        "You open an account at a private bank in Geneva. The banker whispers, never says the word “money,” and hands you a card with just a number. He asks whether you'd like “standard or enhanced discretion.”",
+        "Your {city} banker, Herr Vögeli, receives you in a dark wood office. Not a sound. The carpet is so thick your feet sink in. He offers you a private safe and coffee in a porcelain cup worth {$amount}.",
+        "A Swiss bank offers you a “numbered account.” The advisor explains he'll never ask where the money comes from, but will want to know if you prefer dark or milk chocolate. He stares at you without blinking.",
+        "You've got {$amount} in savings and want to invest. The Swiss banker listens with the politeness of a man who usually handles fortunes like {w:celeb}'s. He smiles. He's polite. He's a bit contemptuous.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Ouvrir le compte numéroté', en: 'Open the numbered account' },
+        out: [
+          { w: 2, text: { fr: ["J'ai ouvert le compte numéroté et déposé {$amount}. Je suis maintenant le client 4471-B. Personne ne connaît mon nom. Pas même moi, quand je téléphone à la banque. C'est enivrant.", "Compte ouvert. Le banquier m'a serré la main, m'a donné un chocolat et une phrase secrète à prononcer au téléphone : « Le chamois dort sous la neige. » Je me sens dans un film d'espionnage."], en: ["I opened the numbered account and deposited {$amount}. I'm now client 4471-B. Nobody knows my name. Not even me, when I call the bank. It's intoxicating.", "Account opened. The banker shook my hand, gave me a chocolate and a secret phrase to say on the phone: “The chamois sleeps under the snow.” I feel like I'm in a spy movie."] }, fx: { money: '-amount', happy: 6, flag: 'cy_ch_numbered', schedule: { key: 'cy_ch_bank_2', years: 2 } }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Demander d\'où vient leur argent', en: 'Ask where their money comes from' },
+        out: [
+          { w: 1, text: { fr: ["J'ai demandé au banquier d'où venait tout cet argent dans le coffre. Il a souri, appuyé sur un bouton sous son bureau. Deux hommes très polis m'ont raccompagné{|e} à la sortie. On m'a offert un chocolat. Très bon. Un peu menaçant.", "J'ai posé la question. Herr Vögeli a pris une longue gorgée de café, puis a parlé de la météo pendant vingt minutes. Je suis reparti{|e} sans réponse, avec un parapluie de la banque."], en: ["I asked the banker where all the money in the vault came from. He smiled and pressed a button under his desk. Two very polite men escorted me out. They gave me a chocolate. Very good. A bit threatening.", "I asked. Herr Vögeli took a long sip of coffee, then talked about the weather for twenty minutes. I left with no answer and a bank umbrella."] }, fx: { karma: 3, happy: 2 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Prendre le coffre-fort', en: 'Rent a safe' },
+        text: { fr: ["J'ai loué un coffre-fort personnel. J'y ai mis mon passeport, ma montre et un dessin d'enfant. Il est protégé par trois portes blindées et un garde armé. Mon dessin n'a jamais été autant en sécurité.", "Coffre loué pour 300 francs par an. Je n'avais rien à y mettre. J'y ai mis {w:object}. Le banquier l'a regardé sans un mot. Il en a vu d'autres."], en: ["I rented a private safe. I put in my passport, my watch and a child's drawing. It's protected by three armored doors and an armed guard. My drawing has never been safer.", "Safe rented for 300 francs a year. I had nothing to put in it. I put in {w:object}. The banker looked at it without a word. He's seen worse."] },
+        fx: { money: -300, happy: 3 },
+      },
+    ],
+  },
+  {
+    id: 'cy_ch_bank_2',
+    icon: '🗝️',
+    cat: 'country',
+    rating: 2,
+    chainOnly: true,
+    scene: { place: 'office', mood: 'shock', prop: 'vault', fx: 'money' },
+    when: { country: ['ch'], age: [25, 95], flag: 'cy_ch_numbered' },
+    vars: { amount: [20000, 120000] },
+    text: {
+      fr: [
+        "Herr Vögeli t'appelle d'une voix tendue : « Une petite erreur administrative. Votre compte 4471-B a été fusionné par erreur avec le compte 4471-D. » Le compte d'un client mystérieux, sans nom, qui n'a plus donné signe de vie depuis 1974.",
+        "Lettre de ta banque, scellée à la cire. Suite à une erreur informatique, tu as désormais accès au coffre d'un client disparu. Contenu estimé : {$amount}, un lingot, une horloge à coucou et « divers objets non identifiés ».",
+        "Herr Vögeli t'accueille dans la salle des coffres, en sueur, ce qui n'arrive jamais à un banquier suisse. « Le coffre de l'autre client est maintenant à votre nom. Personne ne doit savoir. Pas même nous. »",
+        "La banque te convoque. Dans le coffre fusionné par erreur avec le tien : {$amount} en billets anciens, une montre en or, et une petite boîte en velours qui sent {w:smell}. Le banquier refuse de l'ouvrir.",
+      ],
+      en: [
+        "Herr Vögeli calls in a tense voice: “A small administrative error. Your account 4471-B was mistakenly merged with account 4471-D.” The account of a mysterious nameless client who hasn't been heard from since 1974.",
+        "A wax-sealed letter from your bank. Due to a computer error, you now have access to a vanished client's safe. Estimated contents: {$amount}, a gold bar, a cuckoo clock and “various unidentified items.”",
+        "Herr Vögeli greets you in the vault, sweating, which never happens to a Swiss banker. “The other client's safe is now in your name. Nobody must know. Not even us.”",
+        "The bank summons you. In the safe mistakenly merged with yours: {$amount} in old banknotes, a gold watch, and a small velvet box that gives off {w:smell}. The banker refuses to open it.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Tout prendre', en: 'Take everything' },
+        out: [
+          { w: 2, text: { fr: ["J'ai tout pris : {$amount}, le lingot et l'horloge à coucou. Dans la boîte en velours : un doigt momifié portant une chevalière. Je l'ai gardé aussi. Il me pointe du doigt depuis la cheminée. Littéralement.", "J'ai vidé le coffre. Le banquier a regardé ailleurs, très professionnellement. À la maison, l'horloge à coucou chante à 3 h 33 chaque nuit, et le coucou a des dents. Mais je suis riche."], en: ["I took it all: {$amount}, the gold bar and the cuckoo clock. In the velvet box: a mummified finger wearing a signet ring. I kept that too. It points at me from the mantelpiece. Literally.", "I emptied the safe. The banker looked away, very professionally. At home, the cuckoo clock sings at 3:33 every night, and the cuckoo has teeth. But I'm rich."] }, fx: { money: 'amount', karma: -6, happy: 8, visual: 'money', unflag: 'cy_ch_numbered' }, mood: 'shock' },
+          { w: 1, text: { fr: ["J'ai pris l'argent. Le lendemain, un monsieur de 98 ans en chapeau m'a attendu{|e} devant chez moi. Il a dit : « C'était mon coffre. Gardez tout. Mais rendez-moi le doigt. C'est celui de mon frère. » Je l'ai rendu. Très vite."], en: ["I took the money. The next day a 98-year-old man in a hat was waiting outside my house. He said, “That was my safe. Keep it all. But give me back the finger. It's my brother's.” I gave it back. Very quickly."] }, fx: { money: 'amount', stress: 10, karma: -2, unflag: 'cy_ch_numbered' }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Signaler l\'erreur', en: 'Report the error' },
+        out: [
+          { w: 2, odds: { karma: 1 }, text: { fr: ["J'ai signalé l'erreur. Herr Vögeli a pleuré de soulagement, ce qui est interdit par le règlement de la banque. Il m'a offert un an de frais gratuits et une boîte de chocolats de la taille d'une valise.", "J'ai dit « ce n'est pas à moi ». La banque a été tellement émue qu'elle m'a nommé{|e} « client d'honneur ». J'ai une plaque dans le hall. Ils ont gardé le doigt."], en: ["I reported the error. Herr Vögeli wept with relief, which bank rules prohibit. He gave me a year of free fees and a suitcase-sized box of chocolates.", "I said, “It's not mine.” The bank was so moved it named me “honorary client.” I have a plaque in the lobby. They kept the finger."] }, fx: { karma: 8, happy: 4, money: 1000, unflag: 'cy_ch_numbered' }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Ouvrir la boîte', en: 'Open the box' },
+        out: [
+          { w: 1, text: { fr: ["J'ai ouvert la boîte en velours. Une odeur atroce a rempli la salle des coffres. À l'intérieur : un vieux morceau de gruyère de 1974, parfaitement affiné. Herr Vögeli l'a goûté et pleuré : « Le meilleur de ma vie. »", "Dans la boîte : une clé, et un mot : « Coffre 7, Zurich ». À Zurich, le coffre 7 contenait une autre boîte, avec une autre clé. J'en suis à la boîte 14. Je ne peux plus m'arrêter."], en: ["I opened the velvet box. A horrific smell filled the vault. Inside: a piece of 1974 gruyère, perfectly aged. Herr Vögeli tasted it and wept: “The best of my life.”", "In the box: a key and a note: “Safe 7, Zurich.” In Zurich, safe 7 held another box with another key. I'm on box 14. I can't stop."] }, fx: { happy: 6, stress: 4, money: 2000, unflag: 'cy_ch_numbered' }, mood: 'shock' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cy_ch_armee',
+    icon: '🎖️',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'park', mood: 'neutral', prop: 'knife' },
+    when: { country: ['ch'], age: [19, 32] },
+    weight: 6,
+    cooldown: 5,
+    text: {
+      fr: [
+        "Cours de répétition annuel de l'armée de milice. Trois semaines dans un abri antiatomique de montagne avec 40 types de ton âge, des rations en boîte (au menu : {w:food}) et un couteau multifonction à 33 lames qui inclut un tire-bouchon et une loupe.",
+        "Exercice militaire dans les Alpes. Ta mission : défendre un pont contre un ennemi imaginaire. Le pont est fermé pour travaux depuis 2019. Ton sergent, comptable dans le civil, prend ça très au sérieux.",
+        "Tu dois faire ton tir obligatoire annuel au stand de {city}. À côté de toi, une grand-mère de 70 ans tire dix balles dans le mille en tricotant entre deux séries. Ton premier tir touche la cible du voisin.",
+        "Chaque maison suisse a un abri antiatomique. Le tien sert de cave à vin, de débarras et de salle de jeux. L'armée vient l'inspecter. Il contient actuellement {w:object}, 200 bouteilles et un vélo d'appartement.",
+      ],
+      en: [
+        "Annual militia army refresher course. Three weeks in a mountain nuclear bunker with 40 guys your age, canned rations of {w:food} and a 33-blade multi-tool that includes a corkscrew and a magnifying glass.",
+        "Military exercise in the Alps. Your mission: defend a bridge against an imaginary enemy. The bridge has been closed for roadworks since 2019. Your sergeant, an accountant in civilian life, takes it very seriously.",
+        "You have to do your mandatory annual shooting at the {city} range. Next to you, a 70-year-old grandma hits ten bullseyes, knitting between rounds. Your first shot hits the neighbor's target.",
+        "Every Swiss house has a nuclear shelter. Yours serves as wine cellar, storage room and game room. The army is coming to inspect it. It currently holds {w:object}, 200 bottles and an exercise bike.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Jouer le jeu', en: 'Play along' },
+        out: [
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["J'ai défendu le pont fermé pendant trois jours. L'ennemi imaginaire n'est jamais venu. Le sergent m'a décoré{|e} d'une médaille en chocolat, car la vraie était en rupture de stock.", "J'ai fait le cours de répétition avec sérieux. J'ai appris à ouvrir une boîte de conserve avec 14 lames différentes. Je n'ai plus jamais eu besoin d'ouvre-boîte."], en: ["I defended the closed bridge for three days. The imaginary enemy never came. The sergeant awarded me a chocolate medal, as the real ones were out of stock.", "I did the refresher course seriously. Learned to open a can with 14 different blades. I've never needed a can opener since."] }, fx: { discipline: 4, athletic: 2, happy: 2 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Fêter dans le bunker', en: 'Party in the bunker' },
+        out: [
+          { w: 2, text: { fr: ["On a transformé l'abri antiatomique en boîte de nuit. Fondue au réchaud militaire, schnaps de prune, karaoké sur {w:song}. Le sergent nous a rejoints à minuit. À 3 h, il pleurait sur son ex.", "Soirée dans le bunker. On a bu tout le kirsch de l'armée. Le lendemain, j'ai fait l'exercice de tir avec une gueule de bois atomique. J'ai touché un sapin. Le sapin est mort."], en: ["We turned the nuclear bunker into a nightclub. Fondue on the army stove, plum schnapps, karaoke to {w:song}. The sergeant joined us at midnight. By 3 a.m. he was crying about his ex.", "Bunker party. We drank all the army's kirsch. Next day I did the shooting drill with an atomic hangover. I hit a pine tree. The pine tree died."] }, fx: { happy: 9, health: -4, addiction: ['alcohol', 4], discipline: -2 }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Défier la grand-mère', en: 'Challenge the grandma' },
+        out: [
+          { w: 1, odds: { discipline: 1 }, text: { fr: ["J'ai défié la grand-mère au tir. Égalité, 95 points chacun. Elle m'a serré la main et donné une paire de chaussettes qu'elle venait de tricoter. On s'écrit des cartes postales.", "J'ai perdu contre la grand-mère, 98 à 61. Elle m'a dit « faut respirer, petit{|e} ». Elle a 70 ans et des nerfs d'acier trempé. Je la crains et je l'aime."], en: ["I challenged the grandma. Tie, 95 points each. She shook my hand and gave me a pair of socks she'd just knitted. We exchange postcards.", "I lost to the grandma, 98 to 61. She told me, “Gotta breathe, kid.” She's 70 with nerves of tempered steel. I fear her and love her."] }, fx: { happy: 5, discipline: 2 }, mood: 'happy' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cy_ch_fondue',
+    icon: '🫕',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'home', mood: 'party', prop: 'fondue' },
+    when: { country: ['ch'], age: [18, 80] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Soirée fondue moitié-moitié chez des amis à {city}. La règle est sacrée : celui qui perd son pain dans le caquelon doit subir un gage voté par la table. Ton bout de pain vient de se détacher de la fourchette. Il coule lentement dans le fromage.",
+        "Fondue entre collègues. Quelqu'un a apporté du vin blanc, du kirsch « pour aider la digestion » et {w:drink}. Le caquelon bouillonne comme un volcan. Ton pain plonge. Tout le monde a vu.",
+        "Raclette et fondue le même soir, chez ton beau-père qui ne rigole pas avec les traditions. Il a établi la liste des gages à l'avance. Elle fait deux pages. Le gage numéro 1 implique le lac et ton slip.",
+        "Il reste la « religieuse » au fond du caquelon : la croûte de fromage grillée, le meilleur morceau. Trois personnes la veulent. Ton pain vient de tomber dans le fromage, et la table attend ton gage en tapant sur la table.",
+      ],
+      en: [
+        "Half-and-half fondue night at friends' in {city}. The rule is sacred: whoever loses their bread in the pot must perform a forfeit voted by the table. Your bread just slipped off your fork. It's slowly sinking into the cheese.",
+        "Fondue with coworkers. Someone brought white wine, kirsch “to help digestion” and {w:drink}. The pot bubbles like a volcano. Your bread plunges. Everyone saw.",
+        "Raclette and fondue the same night, at your father-in-law's, who doesn't joke about traditions. He made the forfeit list in advance. It's two pages long. Forfeit number 1 involves the lake and your underwear.",
+        "The crispy cheese crust at the bottom of the pot is left, the best bit. Three people want it. Your bread just fell into the cheese, and the table awaits your forfeit, drumming on the table.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Accepter le gage', en: 'Accept the forfeit' },
+        out: [
+          { w: 2, text: { fr: ["Gage : plonger dans le lac en sous-vêtements, en janvier. J'ai plongé. Certaines parties de mon anatomie sont remontées jusqu'à ma gorge. J'ai crié si fort qu'un cygne s'est enfui. Puis j'ai fini la fondue en tremblant.", "Gage : embrasser la personne à ma gauche. C'était le beau-père. Il a tendu la joue avec dignité. Je l'ai embrassé sur le front par panique. On n'en reparlera jamais."], en: ["Forfeit: jump in the lake in my underwear, in January. I jumped. My privates retreated up to my throat. I screamed so loud a swan fled. Then I finished the fondue, shivering.", "Forfeit: kiss the person on my left. It was my father-in-law. He offered his cheek with dignity. I panicked and kissed his forehead. We will never speak of it."] }, fx: { happy: 7, health: -3, stress: 3 }, mood: 'party' },
+          { w: 1, text: { fr: ["Gage : boire un verre de kirsch cul sec à chaque pain perdu. J'ai perdu sept pains. Au huitième, j'ai perdu la fourchette, puis connaissance, la tête dans le caquelon. On m'a sauvé{|e} avant que je ne devienne une raclette."], en: ["Forfeit: down a shot of kirsch for every lost piece of bread. I lost seven. On the eighth I lost the fork, then consciousness, face-first in the pot. They saved me before I became raclette."] }, fx: { health: -8, happy: 4, addiction: ['alcohol', 6], disease: 'burns' }, mood: 'sick' },
+        ],
+      },
+      {
+        label: { fr: 'Repêcher le pain', en: 'Fish out the bread' },
+        out: [
+          { w: 1, odds: { discipline: 1 }, text: { fr: ["J'ai repêché mon pain en trois secondes, avec une dextérité d'horloger. Personne n'a pu prouver qu'il était tombé. La table a voté : « Pas de gage, mais on te surveille. »", "J'ai plongé les doigts dans le fromage bouillant pour récupérer le pain. J'ai hurlé un « {w:swear} » qui a fait trembler les verres. J'ai des cloques, mais pas de gage."], en: ["I fished out my bread in three seconds with watchmaker dexterity. Nobody could prove it fell. The table voted: “No forfeit, but we're watching you.”", "I plunged my fingers into the boiling cheese to rescue the bread. I yelled “{w:swear}” loud enough to rattle the glasses. I have blisters, but no forfeit."] }, fx: { happy: 4, health: -2 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Voler la croûte', en: 'Steal the crust' },
+        out: [
+          { w: 1, text: { fr: ["Pendant le débat sur mon gage, j'ai volé la croûte du fond du caquelon. Trahison absolue. On m'a banni{|e} de la table. J'ai mangé la croûte seul{|e} sur le balcon, heureux{|se} et maudit{|e}.", "J'ai pris la croûte. Le beau-père a sorti son couteau suisse et l'a posé sur la table, lame ouverte, sans rien dire. J'ai partagé la croûte en quatre. Il a souri."], en: ["During the debate over my forfeit, I stole the crust from the bottom of the pot. Absolute betrayal. I was banished from the table. I ate the crust alone on the balcony, happy and cursed.", "I took the crust. My father-in-law placed his Swiss Army knife on the table, blade open, silently. I split the crust into four. He smiled."] }, fx: { happy: 6, karma: -3 }, mood: 'shock' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cy_ch_aare',
+    icon: '🐟',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'beach', mood: 'happy', prop: 'dry_bag' },
+    when: { country: ['ch'], age: [18, 70] },
+    weight: 6,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Été à Bâle. La tradition : mettre tes vêtements dans un sac étanche en forme de poisson, sauter dans le Rhin et te laisser porter par le courant à travers toute la ville. Des centaines de personnes flottent déjà, en maillot, avec leur poisson.",
+        "Baignade dans l'Aare à Berne. L'eau est turquoise, à 18 °C, et le courant file à 8 km/h. Les gens sautent des ponts en riant. Un vieux monsieur te dit de sortir « avant le barrage, sinon c'est la fin ».",
+        "Tu flottes dans le Rhin avec ton sac-poisson. C'est magnifique. Tu dépasses la vieille ville, des cathédrales et {w:animal} sur une bouée. Tu te détends tellement que tu fermes les yeux.",
+        "Après-midi baignade avec des collègues de {city}. Tout le monde saute du pont avec grâce. C'est ton tour. Le pont fait huit mètres. Le courant est rapide. Ton sac étanche contient ton téléphone, tes clés et {w:object}.",
+      ],
+      en: [
+        "Summer in Basel. The tradition: put your clothes in a fish-shaped dry bag, jump in the Rhine and let the current carry you through the whole city. Hundreds of people are already floating in swimsuits, clutching their fish.",
+        "Swimming in the Aare in Bern. The water is turquoise, 64°F, and the current runs 5 mph. People jump off bridges laughing. An old man tells you to get out “before the weir, or it's the end.”",
+        "You float down the Rhine with your fish bag. It's gorgeous. You drift past the old town, cathedrals and {w:animal} on an inflatable. You relax so much you close your eyes.",
+        "Swimming afternoon with coworkers from {city}. Everyone jumps off the bridge gracefully. Your turn. The bridge is 26 feet high. The current is fast. Your dry bag holds your phone, keys and {w:object}.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Se laisser porter', en: 'Go with the flow' },
+        out: [
+          { w: 2, text: { fr: ["J'ai flotté 40 minutes, en paix, à travers la ville. Je suis sorti{|e} au bon endroit, je me suis rhabillé{|e} sur la berge et j'ai bu une bière au soleil. Meilleure journée de l'année.", "Descente parfaite. J'ai croisé un collègue, mon dentiste et mon ancien prof de maths, tous en maillot, tous avec un poisson. On s'est salués en flottant. C'est ça, la Suisse."], en: ["I floated 40 minutes in peace through the city. Got out at the right spot, dressed on the bank and drank a beer in the sun. Best day of the year.", "Perfect float. I passed a coworker, my dentist and my old math teacher, all in swimsuits, all clutching a fish. We waved while drifting. That's Switzerland."] }, fx: { happy: 9, stress: -8, health: 2 }, mood: 'happy' },
+          { w: 1, text: { fr: ["Je me suis endormi{|e} en flottant. Je me suis réveillé{|e} en France. Ou en Allemagne. Une douane fluviale m'a repêché{|e} en maillot, avec un sac-poisson et aucun passeport. J'ai passé la nuit dans un poste-frontière, en serviette.", "J'ai raté la sortie. Le courant m'a emporté{|e} jusqu'au barrage. J'ai perdu mon maillot dans les remous et je suis sorti{|e} nu{|e} devant un groupe de touristes chinois qui m'ont applaudi{|e}. Mon poisson flottait encore, digne."], en: ["I fell asleep floating. I woke up in France. Or Germany. River customs fished me out in a swimsuit, with a fish bag and no passport. I spent the night at a border post, in a towel.", "I missed the exit. The current carried me to the weir. I lost my swimsuit in the eddies and climbed out naked in front of a tour group, who applauded. My fish was still floating, dignified."] }, fx: { happy: 4, stress: 8, fame: 1 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Sauter du pont', en: 'Jump off the bridge' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai sauté du pont en hurlant. Plat ventre parfait. Mon ventre a pris la forme d'une tomate écrasée. Mes collègues ont noté 2/10. Mais j'ai sauté.", "Saut réussi, entrée dans l'eau en chandelle. J'ai remonté le courant à la nage pour recommencer. J'ai sauté onze fois. Je suis accro."], en: ["I jumped off the bridge screaming. Perfect belly flop. My stomach looks like a crushed tomato. My coworkers scored it 2/10. But I jumped.", "Clean jump, pencil entry. I swam back upstream to do it again. I jumped eleven times. I'm hooked."] }, fx: { happy: 8, athletic: 2, health: -2 }, mood: 'proud' },
+          { w: 1, rating: 2, text: { fr: ["J'ai sauté au mauvais endroit, là où l'eau fait 40 cm. Mes deux jambes se sont enfoncées dans le lit de la rivière comme des piquets de tente. Les secours m'ont extrait{|e} avec une pelle. Les cailloux, eux, vont bien."], en: ["I jumped in the wrong spot, where the water is 16 inches deep. Both my legs drove into the riverbed like tent stakes. Rescuers dug me out with a shovel. The pebbles are fine."] }, fx: { health: -15, disease: 'broken_arm', visual: 'gore' }, mood: 'sick' },
+        ],
+      },
+      {
+        label: { fr: 'Rester sur la berge', en: 'Stay on the bank' },
+        text: { fr: ["Je suis resté{|e} sur la berge à garder les affaires de tout le monde. J'ai bronzé, lu un livre et mangé les chips de mes collègues. Au fond, c'était moi le gagnant.", "J'ai regardé les gens flotter avec leurs poissons. Ça ressemblait à une migration de saumons humains. C'était beau. J'ai fait une sieste."], en: ["I stayed on the bank guarding everyone's stuff. I tanned, read a book and ate my coworkers' chips. Deep down, I was the winner.", "I watched people float by with their fish. It looked like a human salmon migration. Beautiful. I took a nap."] },
+        fx: { happy: 4, stress: -3 },
       },
     ],
   },

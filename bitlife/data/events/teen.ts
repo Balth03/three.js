@@ -46,14 +46,8 @@ export const teenEvents: EventDef[] = [
     cooldown: 3,
     when: { age: [12, 17] },
     text: {
-      fr: [
-        "J'ai fait tomber mon téléphone. L'écran ressemble à une toile d'araignée, mais il marche. Plus ou moins. Surtout moins.",
-        "Mes parents ont épluché ma facture de téléphone. Pendant le sermon, j'ai contemplé le plafond avec beaucoup d'intérêt.",
-      ],
-      en: [
-        "I dropped my phone. The screen looks like a spiderweb, but it works. More or less. Mostly less.",
-        "My parents went through my phone bill line by line. During the lecture, I studied the ceiling with great interest.",
-      ],
+      fr: ["J'ai fait tomber mon téléphone. L'écran ressemble à une toile d'araignée, mais il marche. Plus ou moins. Surtout moins.", "Mes parents ont épluché ma facture de téléphone. Pendant le sermon, j'ai contemplé le plafond avec beaucoup d'intérêt.", "Mon téléphone est tombé dans {w:food}. Il marche encore, mais il sent bizarre et l'écran restera gras pour toujours.", "J'ai réparé l'écran de mon téléphone avec du scotch et {w:object}. Mes potes appellent ça de l'art. Mes parents appellent ça « non ».", "Ma batterie est passée de 100 % à 3 % pendant que je regardais {w:show}. Mon téléphone a fait {w:sound}, puis il est mort. Je suis en deuil."],
+      en: ["I dropped my phone. The screen looks like a spiderweb, but it works. More or less. Mostly less.", "My parents went through my phone bill line by line. During the lecture, I studied the ceiling with great interest.", "My phone fell into {w:food}. It still works, but it smells weird and the screen will be greasy forever.", "I fixed my phone screen with tape and {w:object}. My friends call it art. My parents call it 'no'.", "My battery went from 100% to 3% while I was watching {w:show}. My phone made {w:sound}, then died. I'm in mourning."],
     },
     fx: { happy: -2 },
   },
@@ -65,14 +59,8 @@ export const teenEvents: EventDef[] = [
     cooldown: 2,
     when: { age: [12, 17] },
     text: {
-      fr: [
-        "J'ai joué aux jeux vidéo jusqu'à 4 h du matin. Mon personnage a atteint le niveau 80. Mes notes, elles, ont atteint le sous-sol.",
-        "J'ai passé le week-end entier sur un jeu vidéo. J'ai sauvé un royaume, mais pas mon devoir d'histoire.",
-      ],
-      en: [
-        "I played video games until 4 a.m. My character hit level 80. My grades hit the basement.",
-        "I spent the whole weekend on a video game. I saved a kingdom, but not my history homework.",
-      ],
+      fr: ["J'ai joué aux jeux vidéo jusqu'à 4 h du matin. Mon personnage a atteint le niveau 80. Mes notes, elles, ont atteint le sous-sol.", "J'ai passé le week-end entier sur un jeu vidéo. J'ai sauvé un royaume, mais pas mon devoir d'histoire.", "J'ai passé toute la nuit à jouer en ligne contre un certain {w:nickname}. J'ai perdu [[47|63|112]] fois. Il a 9 ans. Il me l'a dit.", "Ma mère a coupé le courant pendant le boss final. J'ai poussé {w:sound}. Les voisins ont appelé pour savoir si tout allait bien.", "J'ai passé 40 heures sur un simulateur de pêche. J'ai attrapé {w:object}. J'en suis plus {fier|fière} que de mon bulletin."],
+      en: ["I played video games until 4 a.m. My character hit level 80. My grades hit the basement.", "I spent the whole weekend on a video game. I saved a kingdom, but not my history homework.", "I spent all night playing online against someone called {w:nickname}. I lost [[47|63|112]] times. He's 9. He told me.", "My mom cut the power during the final boss. I let out {w:sound}. The neighbors called to check if everything was okay.", "I spent 40 hours on a fishing simulator. I caught {w:object}. I'm prouder of it than of my report card."],
     },
     fx: { happy: 4, grade: -3, health: -1 },
   },

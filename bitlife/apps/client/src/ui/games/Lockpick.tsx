@@ -405,8 +405,8 @@ function drawSafe(ctx: CanvasRenderingContext2D, cx: number, cy: number, S: numb
     // treasure inside
     const gl = ctx.createRadialGradient(cx, cy, 0, cx, cy, S * 0.5); gl.addColorStop(0, `rgba(255,209,102,${0.55 * o})`); gl.addColorStop(1, 'rgba(255,170,0,0)');
     ctx.fillStyle = gl; ctx.fillRect(ix, iy, iw, ih);
-    for (let r = 0; r < 3; r++) for (let c = 0; c < 4 - (r % 2); c++) {
-      const bw = iw * 0.16, bh = ih * 0.07, bx = ix + iw * 0.18 + c * bw * 1.08 + (r % 2) * bw * 0.54, by = iy + ih * 0.78 - r * bh * 1.05;
+    for (let r = 0; r < 3; r++) for (let c = 0; c < 4 - r; c++) {
+      const bw = iw * 0.16, bh = ih * 0.07, bx = ix + iw * 0.17 + c * bw * 1.08 + r * bw * 0.54, by = iy + ih * 0.8 - r * bh * 1.05;
       const gb = ctx.createLinearGradient(bx, by, bx, by + bh); gb.addColorStop(0, '#fff3b0'); gb.addColorStop(0.5, '#ffc93c'); gb.addColorStop(1, '#a86a00');
       ctx.save(); glow(ctx, '#ffd166', 18 * o); ctx.fillStyle = gb; ctx.beginPath(); ctx.moveTo(bx + bw * 0.12, by); ctx.lineTo(bx + bw * 0.88, by); ctx.lineTo(bx + bw, by + bh); ctx.lineTo(bx, by + bh); ctx.closePath(); ctx.fill(); ctx.restore();
     }
@@ -434,7 +434,7 @@ function drawSafe(ctx: CanvasRenderingContext2D, cx: number, cy: number, S: numb
   const rr = S * 0.012;
   for (let i = 0; i < 6; i++) { const f = 0.08 + (i / 5) * 0.84; rivet(ctx, dx0 + dw * f, dy0 + dh * 0.03, rr); rivet(ctx, dx0 + dw * f, dy0 + dh * 0.97, rr); rivet(ctx, dx0 + dw * 0.03, dy0 + dh * f, rr); rivet(ctx, dx0 + dw * 0.97, dy0 + dh * f, rr); }
   // brand plate
-  const bpw = dw * 0.42, bph = dh * 0.07, bpx = dx0 + dw / 2 - bpw / 2 - dw * 0.04, bpy = dy0 + dh * 0.1;
+  const bpw = dw * 0.42, bph = dh * 0.07, bpx = dx0 + dw / 2 - bpw / 2 - dw * 0.04, bpy = dy0 + dh * 0.075;
   roundRect(ctx, bpx, bpy, bpw, bph, bph * 0.3);
   ctx.fillStyle = metal(ctx, bpx + bpw / 2, bpy + bph / 2, bpw / 2, BRASS); ctx.fill();
   ctx.fillStyle = '#3a2405'; ctx.font = `800 ${Math.round(bph * 0.5)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
@@ -442,7 +442,7 @@ function drawSafe(ctx: CanvasRenderingContext2D, cx: number, cy: number, S: numb
   // tumbler LEDs
   const dialX = dx0 + dw * 0.44, dialY = dy0 + dh * 0.56, R = S * 0.24;
   for (let i = 0; i < N; i++) {
-    const lx = dialX + (i - (N - 1) / 2) * S * 0.07, ly = dy0 + dh * 0.22;
+    const lx = dialX + (i - (N - 1) / 2) * S * 0.07, ly = dy0 + dh * 0.175;
     const on = i < st.idx, cur = i === st.idx;
     const col = on ? '#2dffb0' : cur ? hc : '#ff3355';
     ctx.save(); glow(ctx, col, on ? 18 : cur ? 6 + p * 16 : 4);

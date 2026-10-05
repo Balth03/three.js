@@ -1730,14 +1730,8 @@ export const teen2Events: EventDef[] = [
     cooldown: 4,
     when: { age: [18, 60] },
     text: {
-      fr: [
-        "J'ai posté un avis tranché sur les chocolatines. Je me suis fait ratio par un compte avec une grenouille en photo de profil et 11 abonnés. 40 000 likes pour « t'es qui toi, sale baltringue ? ». Je ne m'en remettrai pas.",
-        "J'ai répondu « source ? » à un inconnu sur Internet. Il m'a envoyé un lien vers un PDF de 600 pages. J'ai dû le lire par fierté. J'ai eu tort, putain, sur toute la ligne.",
-      ],
-      en: [
-        "I posted a hot take about pineapple pizza. I got ratioed by an account with a frog avatar and 11 followers. 40,000 likes for ‘who the hell asked you, clown?’. I will never recover.",
-        "I replied ‘source?’ to a stranger online. He sent me a link to a 600-page PDF. I had to read it out of pride. I was wrong, goddammit, about everything.",
-      ],
+      fr: ["J'ai posté un avis tranché sur les chocolatines. Je me suis fait ratio par un compte avec une grenouille en photo de profil et 11 abonnés. 40 000 likes pour « t'es qui toi, sale baltringue ? ». Je ne m'en remettrai pas.", "J'ai répondu « source ? » à un inconnu sur Internet. Il m'a envoyé un lien vers un PDF de 600 pages. J'ai dû le lire par fierté. J'ai eu tort, putain, sur toute la ligne.", "J'ai tweeté que {w:food} était surcoté. Trois jours de harcèlement, un appel de ma mère et un message d'un compte nommé {w:nickname} : « {w:threat} ». J'ai supprimé.", "J'ai défendu {w:movie} en commentaires contre un inconnu. Six heures de débat. À la fin, il m'a traité{|e} de « {w:insult} ». C'était mon oncle.", "J'ai posté « Je pense {w:conspiracy}, changez mon avis » pour rigoler. Personne n'a compris la blague. J'ai maintenant 4 000 abonnés très inquiétants et une invitation à un congrès. {w:swear}"],
+      en: ["I posted a hot take about pineapple pizza. I got ratioed by an account with a frog avatar and 11 followers. 40,000 likes for ‘who the hell asked you, clown?’. I will never recover.", "I replied ‘source?’ to a stranger online. He sent me a link to a 600-page PDF. I had to read it out of pride. I was wrong, goddammit, about everything.", "I tweeted that {w:food} was overrated. Three days of harassment, a call from my mom and a message from an account named {w:nickname}: '{w:threat}'. I deleted it.", "I defended {w:movie} in the comments against a stranger. Six hours of debate. In the end, he called me '{w:insult}'. It was my uncle.", "I posted 'I think {w:conspiracy}, change my mind' as a joke. Nobody got it. I now have 4,000 very worrying followers and an invitation to a convention. {w:swear}"],
     },
     fx: { happy: -3, stress: 2 },
   },
@@ -1762,14 +1756,8 @@ export const teen2Events: EventDef[] = [
     once: true,
     when: { age: [18, 80], followers: [20000, 1e9] },
     text: {
-      fr: [
-        "Un abonné m'a écrit qu'il avait appelé son chien {first} en mon honneur. Il m'a envoyé une photo. Le chien me ressemble un peu. Surtout le regard.",
-        "Une abonnée m'a envoyé une peinture à l'huile de moi en sirène, de 2 mètres de haut. Elle demande où la livrer. Je n'ai pas de mur assez grand, ni de réponse.",
-      ],
-      en: [
-        "A follower wrote to tell me he named his dog {first} in my honor. He sent a photo. The dog looks a bit like me. Especially around the eyes.",
-        "A follower sent me a six-foot oil painting of me as a mermaid. She's asking where to deliver it. I don't have a wall big enough, or an answer.",
-      ],
+      fr: ["Un abonné m'a écrit qu'il avait appelé son chien {first} en mon honneur. Il m'a envoyé une photo. Le chien me ressemble un peu. Surtout le regard.", "Une abonnée m'a envoyé une peinture à l'huile de moi en sirène, de 2 mètres de haut. Elle demande où la livrer. Je n'ai pas de mur assez grand, ni de réponse.", "Un abonné m'a envoyé {w:gift} « fait avec amour ». Il y a un mot : « Pour {first}, de la part de ton fan n° 1 ». J'ai vérifié les serrures deux fois.", "Une abonnée m'a reconnu{|e} {w:at_place} et m'a demandé un selfie. Puis un deuxième. Puis une mèche de cheveux. J'ai fui en abandonnant mon caddie.", "Un fan s'est fait tatouer mon visage sur {w:bodypart}. Il m'a envoyé la photo. Le tatoueur m'a donné [[90 ans|un strabisme|trois narines]]."],
+      en: ["A follower wrote to tell me he named his dog {first} in my honor. He sent a photo. The dog looks a bit like me. Especially around the eyes.", "A follower sent me a six-foot oil painting of me as a mermaid. She's asking where to deliver it. I don't have a wall big enough, or an answer.", "A follower sent me {w:gift} 'made with love'. There's a note: 'To {first}, from your #1 fan'. I checked the locks twice.", "A follower recognized me {w:at_place} and asked for a selfie. Then another. Then a lock of hair. I fled, abandoning my cart.", "A fan got my face tattooed on his {w:bodypart}. He sent me the photo. The tattoo artist gave me [[the face of a 90-year-old|a squint|three nostrils]]."],
     },
     fx: { happy: 4, fame: 1 },
   },
@@ -1826,28 +1814,22 @@ export const teen2Events: EventDef[] = [
     vars: { amount: [50, 300] },
     cooldown: 6,
     text: {
-      fr: [
-        "Un site propose « 10 000 abonnés 100 % réels » pour {$amount}. La page est en Comic Sans et le témoignage client vient de « Jean Abonné, Influenceur ».",
-        "Ton compte stagne à 214 abonnés depuis deux ans. Un inconnu en DM te propose « un boost de visibilité garanti » pour {$amount}. Sa photo de profil est une Lamborghini floue.",
-      ],
-      en: [
-        "A website offers ‘10,000 100% real followers’ for {$amount}. The page is in Comic Sans and the testimonial is from ‘John Follower, Influencer’.",
-        "Your account has been stuck at 214 followers for two years. A stranger in your DMs offers a ‘guaranteed visibility boost’ for {$amount}. His profile pic is a blurry Lamborghini.",
-      ],
+      fr: ["Un site propose « 10 000 abonnés 100 % réels » pour {$amount}. La page est en Comic Sans et le témoignage client vient de « Jean Abonné, Influenceur ».", "Ton compte stagne à 214 abonnés depuis deux ans. Un inconnu en DM te propose « un boost de visibilité garanti » pour {$amount}. Sa photo de profil est une Lamborghini floue.", "Une agence propose de te rendre « aussi célèbre que {w:celeb} » pour {$amount}. Leur propre compte a [[12|31|4]] abonnés.", "Ton dernier post, où tu poses avec {w:food}, a fait 9 likes. Une pub te propose « 50 000 likes garantis » pour {$amount}. Elle a l'air honnête. Elle clignote.", "Un certain {w:nickname} t'écrit en DM : « Je te fais passer de 214 à 100k abonnés. Paiement en cartes cadeaux {w:brand}, {$amount}. » Rien de louche."],
+      en: ["A website offers ‘10,000 100% real followers’ for {$amount}. The page is in Comic Sans and the testimonial is from ‘John Follower, Influencer’.", "Your account has been stuck at 214 followers for two years. A stranger in your DMs offers a ‘guaranteed visibility boost’ for {$amount}. His profile pic is a blurry Lamborghini.", "An agency offers to make you 'as famous as {w:celeb}' for {$amount}. Their own account has [[12|31|4]] followers.", "Your last post, posing with {w:food}, got 9 likes. An ad offers '50,000 guaranteed likes' for {$amount}. It looks honest. It's flashing.", "Someone called {w:nickname} DMs you: 'I'll take you from 214 to 100k followers. Payment in {w:brand} gift cards, {$amount}.' Nothing shady."],
     },
     choices: [
       {
         label: { fr: 'Acheter', en: 'Buy them' },
         out: [
-          { w: 2, text: { fr: "10 000 nouveaux abonnés en une nuit. Ils s'appellent tous « user84726193 », commentent « Nice pic bro 🔥 » sous la photo de l'enterrement de mon grand-père, et aucun ne like.", en: "10,000 new followers overnight. They're all named ‘user84726193’, comment ‘Nice pic bro 🔥’ under my grandpa's funeral photo, and none of them like anything." }, fx: { money: '-amount', followers: 10000, happy: 2, karma: -1 }, mood: 'neutral' },
-          { w: 1, text: { fr: "J'ai payé. Rien n'est arrivé, à part 400 mails pour des pilules miracles et un appel de ma banque. Le seul abonné gagné, c'est le type à la Lamborghini floue.", en: "I paid. Nothing happened, except 400 spam emails for miracle pills and a call from my bank. The only follower I gained is the blurry Lamborghini guy." }, fx: { money: '-amount', happy: -5, followers: 1 }, mood: 'angry' },
+          { w: 2, text: { fr: ["10 000 nouveaux abonnés en une nuit. Ils s'appellent tous « user84726193 », commentent « Nice pic bro 🔥 » sous la photo de l'enterrement de mon grand-père, et aucun ne like.", "Mes 10 000 nouveaux abonnés ont tous {w:animal} en photo de profil et vivent au même endroit, {w:far_place}. Ils ne likent rien. Ils observent."], en: ["10,000 new followers overnight. They're all named ‘user84726193’, comment ‘Nice pic bro 🔥’ under my grandpa's funeral photo, and none of them like anything.", "My 10,000 new followers all have {w:animal} as their profile pic and live in the same place, {w:far_place}. They don't like anything. They watch."] }, fx: { money: '-amount', followers: 10000, happy: 2, karma: -1 }, mood: 'neutral' },
+          { w: 1, text: { fr: ["J'ai payé. Rien n'est arrivé, à part 400 mails pour des pilules miracles et un appel de ma banque. Le seul abonné gagné, c'est le type à la Lamborghini floue.", "J'ai payé {$amount}. En retour : un abonné, qui s'appelle {w:nickname} et commente « 🔥 » sous tout, même mes posts de deuil."], en: ["I paid. Nothing happened, except 400 spam emails for miracle pills and a call from my bank. The only follower I gained is the blurry Lamborghini guy.", "I paid {$amount}. In return: one follower, named {w:nickname}, who comments '🔥' on everything, even my grief posts."] }, fx: { money: '-amount', happy: -5, followers: 1 }, mood: 'angry' },
         ],
       },
       {
         label: { fr: 'Croissance organique', en: 'Grow organically' },
         out: [
-          { w: 1, text: { fr: "J'ai posté tous les jours pendant un an. J'ai gagné 600 abonnés, dont 300 vrais humains. C'est lent, mais quand ils commentent, ce sont des phrases.", en: "I posted every day for a year. I gained 600 followers, 300 of them actual humans. Slow, but when they comment, they use full sentences." }, fx: { followers: 600, discipline: 3, happy: 3 }, mood: 'proud' },
-          { w: 1, text: { fr: "J'ai posté une vidéo honnête sur l'achat d'abonnés. Elle a cartonné. Ironie : des milliers de vrais abonnés pour parler de faux abonnés.", en: "I posted an honest video about buying followers. It blew up. Irony: thousands of real followers for talking about fake ones." }, fx: { followers: 7000, fame: 2, happy: 6 }, mood: 'happy' },
+          { w: 1, text: { fr: ["J'ai posté tous les jours pendant un an. J'ai gagné 600 abonnés, dont 300 vrais humains. C'est lent, mais quand ils commentent, ce sont des phrases.", "J'ai posté des vidéos de moi en train de {w:activity}. Lentement, une communauté bizarre mais fidèle s'est formée. Ils m'appellent « maître »."], en: ["I posted every day for a year. I gained 600 followers, 300 of them actual humans. Slow, but when they comment, they use full sentences.", "I posted videos of myself {w:activity}. Slowly, a weird but loyal community formed. They call me 'master'."] }, fx: { followers: 600, discipline: 3, happy: 3 }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai posté une vidéo honnête sur l'achat d'abonnés. Elle a cartonné. Ironie : des milliers de vrais abonnés pour parler de faux abonnés.", "J'ai filmé ma grand-mère qui découvrait {w:song}. Deux millions de vues. Elle veut un agent."], en: ["I posted an honest video about buying followers. It blew up. Irony: thousands of real followers for talking about fake ones.", "I filmed my grandma discovering {w:song}. Two million views. She wants an agent."] }, fx: { followers: 7000, fame: 2, happy: 6 }, mood: 'happy' },
         ],
       },
     ],

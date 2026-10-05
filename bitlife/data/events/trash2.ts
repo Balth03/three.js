@@ -2095,4 +2095,473 @@ export const trash2Events: EventDef[] = [
       },
     ],
   },
+
+  // ── Mariachis vengeurs ──
+  {
+    id: 'tr_mariachi_revenge',
+    icon: '🎺',
+    cat: 'trash',
+    rating: 2,
+    actor: 'enemy',
+    scene: { place: 'park', mood: 'happy', prop: 'trumpet' },
+    when: { age: [18, 85] },
+    weight: 6,
+    cooldown: 12,
+    text: {
+      fr: [
+        "Ton ennemi{a:|e} juré{a:|e}, {a.first}, vient encore de te pourrir sur les réseaux. Un site propose : « Faites suivre quelqu'un par un orchestre de mariachis 24 h/24 pendant une semaine. » Il reste de la place.",
+        "{a.first} t'a volé ton idée, ta place de parking et ton ex. Tu as {w:object} en main, une carte bancaire et une idée tordue impliquant des trompettes.",
+        "Tu viens d'hériter d'un peu d'argent. {a.first} vient de répandre la rumeur {w:conspiracy}, et que c'est toi qui l'as lancée. C'est le moment d'investir dans la vengeance.",
+        "Une agence de vengeance propose trois formules : « Mariachis permanents », « Colis quotidien : {w:food} en décomposition » et « Pluie de criquets vivants ». {a.first} n'a aucune idée de ce qui l'attend.",
+      ],
+      en: [
+        "Your sworn nemesis {a.first} just trashed you online again. A website offers: 'Have someone followed by a mariachi band 24/7 for a week.' Slots available.",
+        "{a.first} stole your idea, your parking spot and your ex. You're holding {w:object}, a credit card, and a twisted idea involving trumpets.",
+        "You just inherited a bit of money. {a.first} just spread the rumour {w:conspiracy}, and that you started it. Time to invest in revenge.",
+        "A revenge agency offers three packages: 'Permanent Mariachis', 'Daily parcel: decomposing {w:food}' and 'Live cricket rain'. {a.first} has no idea what's coming.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Formule mariachis', en: 'Mariachi package' }, out: [
+        { w: 2, text: { fr: ["Pendant sept jours, onze mariachis ont suivi {a.first} partout : au bureau, aux toilettes, à son rendez-vous galant, à l'enterrement de sa tante. Ils jouaient {w:song} à chaque fois qu'{a:il|elle} ouvrait la bouche. {a:Il|Elle} a craqué au jour 4.", "Les mariachis ont joué sous sa fenêtre à 4 h du matin, dans sa salle d'attente chez le proctologue et pendant son entretien d'embauche. {a.first} parle maintenant espagnol et pleure dès qu'{a:il|elle} entend une trompette."], en: ["For seven days, eleven mariachis followed {a.first} everywhere: to work, to the bathroom, on their date, to their aunt's funeral. They played {w:song} every time they opened their mouth. They cracked on day 4.", "The mariachis played under their window at 4 a.m., in their proctologist's waiting room and during their job interview. {a.first} now speaks Spanish and cries whenever they hear a trumpet."] }, fx: { happy: 16, money: -3000, karma: -4, rel: -15 }, mood: 'happy' },
+        { w: 1, text: { fr: ["{a.first} a adoré les mariachis. {a:Il|Elle} a dansé avec eux, les a embauchés pour son mariage et est devenu{a:|e} une star locale. J'ai payé 3 000 balles pour {a:le|la} rendre heureux{a:|se}. {w:swear}", "Les mariachis se sont trompés d'adresse et m'ont suivi{|e}, moi, pendant une semaine. J'ai été viré{|e}, largué{|e} et expulsé{|e} de ma salle de sport. Je sais jouer de la trompette, maintenant."], en: ["{a.first} loved the mariachis. They danced with them, hired them for their wedding and became a local star. I paid 3,000 bucks to make them happy. {w:swear}", "The mariachis got the wrong address and followed me for a week. I got fired, dumped and kicked out of my gym. I can play the trumpet now."] }, fx: { happy: -8, money: -3000 }, mood: 'angry' },
+      ] },
+      { label: { fr: 'Formule criquets', en: 'Cricket package' }, text: { fr: ["J'ai fait livrer 40 000 criquets vivants chez {a.first}, dans une boîte marquée « Fragile – cadeau ». {a:Il|Elle} l'a ouverte dans son salon. Il a fallu trois semaines et un exorciste. Sa maison chante encore la nuit.", "Les criquets ont envahi sa voiture, son lit et son {w:object}. {a.first} a dû déménager. Les criquets ont suivi. Je crois qu'ils l'aiment."], en: ["I had 40,000 live crickets delivered to {a.first}'s place, in a box marked 'Fragile – gift'. They opened it in the living room. It took three weeks and an exorcist. Their house still chirps at night.", "The crickets invaded their car, their bed and their {w:object}. {a.first} had to move. The crickets followed. I think they love them."] }, fx: { happy: 12, money: -500, karma: -4, rel: -10 }, mood: 'happy' },
+      { label: { fr: 'Pardonner, en public', en: 'Forgive publicly' }, text: { fr: ["J'ai publié un long message de pardon, larmoyant, très digne. Tout le monde a trouvé {a.first} odieux{a:|se} en comparaison. {a:Il|Elle} a perdu ses amis, son travail et son chat. Le pardon est la meilleure arme.", "J'ai pardonné à {a.first} publiquement en lui offrant {w:gift}. {a:Il|Elle} n'a jamais su si c'était sincère ou une menace. {a:Il|Elle} n'en dort plus. Parfait."], en: ["I posted a long, tearful, very dignified forgiveness message. Everyone found {a.first} awful by comparison. They lost their friends, job and cat. Forgiveness is the best weapon.", "I publicly forgave {a.first} and gave them {w:gift}. They never knew if it was sincere or a threat. They can't sleep anymore. Perfect."] }, fx: { karma: 4, happy: 8, rel: 5 }, mood: 'proud' },
+    ],
+  },
+
+  // ── Panneau publicitaire contre l'ex ──
+  {
+    id: 'tr_ex_billboard',
+    icon: '🪧',
+    cat: 'trash',
+    rating: 2,
+    actor: 'ex',
+    scene: { place: 'park', mood: 'angry', prop: 'billboard' },
+    when: { age: [18, 70] },
+    weight: 6,
+    cooldown: 15,
+    text: {
+      fr: [
+        "Un panneau publicitaire de 4 mètres sur 3, juste en face du bureau de {a.first}, ton ex, est à louer pour un mois. Tu as encore toutes les photos. Même celles {w:at_place}.",
+        "{a.first}, ton ex, vient de poster des photos de son nouveau couple en te taguant « pour info ». Un afficheur te propose le panneau géant du rond-point principal. À moitié prix.",
+        "Tu as découvert que {a.first} t'a trompé{|e} avec {w:nickname}, le coach de muscu. Tu as une carte bancaire, un logiciel de retouche et accès au panneau du centre commercial.",
+        "{a.first} raconte partout que tu étais « nul{|le} au lit ». Tu connais ses secrets : l'histoire avec {w:animal}, la culotte de sa mère, et ce qu'{a:il|elle} fait dans la douche en chantant.",
+      ],
+      en: [
+        "A 13-by-10-foot billboard right across from {a.first}'s office, your ex, is up for rent for a month. You still have all the photos. Even the ones {w:at_place}.",
+        "{a.first}, your ex, just posted photos of their new relationship tagging you 'FYI'. A billboard company offers you the giant one on the main roundabout. Half price.",
+        "You found out {a.first} cheated on you with {w:nickname}, the gym coach. You have a credit card, photo-editing software and access to the shopping mall billboard.",
+        "{a.first} tells everyone you were 'bad in bed'. You know their secrets: the story with {w:animal}, their mom's underwear, and what they do in the shower while singing.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Afficher la vérité', en: 'Post the truth' }, out: [
+        { w: 2, text: { fr: ["J'ai fait imprimer : « {a.first} : 2 minutes chrono, chaussettes gardées, pleure après. » Avec une photo. Toute la ville l'a vu pendant un mois. Son nouveau couple n'a pas tenu la semaine.", "Le panneau disait : « Si vous voyez {a.first}, demandez-lui où est passé {w:object}. » Personne ne savait ce que ça voulait dire, mais tout le monde lui a demandé. {a:Il|Elle} a craqué au bout de dix jours."], en: ["I had it printed: '{a.first}: 2 minutes flat, socks on, cries afterward.' With a photo. The whole town saw it for a month. Their new relationship didn't last the week.", "The billboard said: 'If you see {a.first}, ask them where {w:object} went.' Nobody knew what it meant, but everyone asked. They cracked after ten days."] }, fx: { happy: 16, money: -2000, karma: -5, rel: -30, fame: 2 }, mood: 'happy' },
+        { w: 1, text: { fr: ["{a.first} a porté plainte pour diffamation. J'ai dû payer et afficher des excuses sur le même panneau, avec une photo de moi en larmes. Toute la ville l'a vu. Les rôles se sont inversés.", "Le panneau a été pris en photo et est devenu un mème mondial. Mais avec ma tête à côté, car j'avais oublié d'enlever mon selfie de la maquette. Je suis le mème, désormais."], en: ["{a.first} sued for defamation. I had to pay and put an apology on the same billboard, with a photo of me in tears. The whole town saw it. The tables turned.", "The billboard was photographed and became a global meme. But with my face next to it, because I forgot to remove my selfie from the mockup. I'm the meme now."] }, fx: { happy: -8, money: -5000, followers: 10000 }, mood: 'cry' },
+      ] },
+      { label: { fr: 'Afficher un compliment flippant', en: 'Post a creepy compliment' }, text: { fr: ["J'ai affiché : « {a.first}, je te regarde dormir. ❤️ » Sans signature. {a:Il|Elle} a déménagé deux fois et installé six caméras. Je n'ai rien fait d'autre. Le panneau a fait tout le travail.", "Le panneau disait : « {a.first}, ta mère m'a dit {w:compliment}. » {a:Il|Elle} n'a plus jamais regardé sa mère de la même façon. Mission accomplie, et c'était presque gentil."], en: ["I posted: '{a.first}, I watch you sleep. ❤️' Unsigned. They moved twice and installed six cameras. I did nothing else. The billboard did all the work.", "The billboard said: '{a.first}, your mom told me {w:compliment}.' They never looked at their mom the same way again. Mission accomplished, and it was almost nice."] }, fx: { happy: 12, karma: -3, money: -2000 }, mood: 'happy' },
+      { label: { fr: 'Afficher ma nouvelle vie', en: 'Post my glow-up' }, text: { fr: ["J'ai affiché une photo de moi, bronzé{|e}, musclé{|e}, sur un yacht loué pour la photo, avec la légende « Merci de m'avoir quitté{|e} ». {a.first} est passé{a:|e} devant tous les matins. Ça l'a rongé{a:|e}.", "J'ai mis ma meilleure photo avec écrit : « Disponible. Pas comme {a.first}, qui est décevant{a:|e}. » J'ai eu 40 rendez-vous en un mois et une demande en mariage d'un inconnu en tracteur."], en: ["I posted a photo of myself, tanned, toned, on a yacht rented for the shoot, captioned 'Thanks for dumping me.' {a.first} drove past it every morning. It ate them alive.", "I put up my best photo with: 'Available. Unlike {a.first}, who's disappointing.' I got 40 dates in a month and a proposal from a stranger on a tractor."] }, fx: { happy: 12, looks: 2, money: -2500 }, mood: 'proud' },
+    ],
+  },
+
+  // ── Place de parking du crypto-bro ──
+  {
+    id: 'tr_crypto_parking',
+    icon: '🏎️',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'park', mood: 'angry', prop: 'lambo', fx: 'money' },
+    when: { age: [18, 85] },
+    weight: 6,
+    cooldown: 12,
+    text: {
+      fr: [
+        "Un crypto-bro en Lamborghini jaune s'est garé en travers de trois places handicapées et de la tienne. Plaque : « HODL ». Il descend en criant au téléphone : « Achète, achète, ACHÈTE ! »",
+        "Le type à la Lambo violette, qui parle de « NFT de singes » à tout le monde, vient de te piquer ta place en te traitant de « pauvre en Twingo ». Sa portière papillon est encore ouverte.",
+        "Un influenceur crypto a garé sa supercar devant ta porte de garage pour faire un shooting. Il pose avec {w:object} sur le capot. Tu es en retard au travail. Il te fait « chut ».",
+        "Devant le supermarché, un mec en doudoune Balenciaga a garé sa Lambo sur le passage piéton et engueule un papy qui a frôlé son rétro avec son déambulateur.",
+      ],
+      en: [
+        "A crypto bro in a yellow Lamborghini parked across three disabled spots and yours. Plate: 'HODL'. He gets out yelling into his phone: 'Buy, buy, BUY!'",
+        "The purple Lambo guy who talks about 'monkey NFTs' to everyone just stole your spot, calling you a 'broke hatchback peasant'. His butterfly door is still open.",
+        "A crypto influencer parked his supercar in front of your garage door for a photoshoot. He's posing with {w:object} on the hood. You're late for work. He shushes you.",
+        "Outside the supermarket, a guy in a designer puffer parked his Lambo on the crosswalk and is yelling at a grandpa who brushed his mirror with his walker.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Remplir la Lambo', en: 'Fill the Lambo' }, out: [
+        { w: 2, text: { fr: ["Sa portière papillon était ouverte. J'ai versé dedans le contenu d'une poubelle de poissonnerie : têtes, arêtes et {w:gross}. Par 35 degrés. Il l'a revendue la semaine suivante, à un prix de Twingo.", "J'ai rempli l'habitacle de pop-corn. Jusqu'au plafond. Il a ouvert la porte et a été englouti par une avalanche. Les passants ont applaudi. Le papy a ramassé une poignée pour la route."], en: ["His butterfly door was open. I dumped in a fishmonger's bin: heads, bones and {w:gross}. In 95-degree heat. He sold it the next week at a hatchback price.", "I filled the cabin with popcorn. To the roof. He opened the door and got swallowed by an avalanche. Passersby applauded. The grandpa grabbed a handful for the road."] }, fx: { happy: 14, karma: 2, heat: 4 }, mood: 'happy' },
+        { w: 1, text: { fr: ["J'ai voulu glisser un poisson pourri, mais la portière s'est refermée sur mon bras. Je suis resté{|e} coincé{|e} une heure à côté de sa Lambo, pendant qu'il faisait un live : « Regardez le pauvre qui veut ma voiture. » 2 millions de vues.", "La Lambo avait une alarme qui crie « VOLEUR ! » en douze langues. J'ai été arrêté{|e} un poisson à la main. Le juge, un poisson rouge sur son bureau, n'a pas ri."], en: ["I tried to slip in a rotten fish, but the door closed on my arm. I stayed stuck for an hour next to his Lambo while he livestreamed: 'Look at this poor guy who wants my car.' 2 million views.", "The Lambo had an alarm that screams 'THIEF!' in twelve languages. I got arrested holding a fish. The judge, with a goldfish on his desk, didn't laugh."] }, fx: { happy: -6, heat: 10, health: -3 }, mood: 'angry' },
+      ] },
+      { label: { fr: 'Faire monter le papy dedans', en: 'Get grandpa inside' }, text: { fr: ["J'ai aidé le papy à s'installer dans la Lambo, portière ouverte, pour « une photo souvenir ». Il a démarré par erreur et a fini dans la vitrine de la boulangerie. Il a dit que c'était le plus beau jour de sa vie.", "Le papy s'est assis dans la Lambo, a fait pipi sur le siège en cuir (prostate) et est reparti avec un grand sourire. Le crypto-bro a vomi dans son bonnet Gucci."], en: ["I helped grandpa sit in the Lambo, door open, 'for a souvenir photo'. He accidentally started it and ended up in the bakery window. He said it was the best day of his life.", "Grandpa sat in the Lambo, peed on the leather seat (prostate) and left with a big smile. The crypto bro threw up in his Gucci beanie."] }, fx: { happy: 12, karma: 3 }, mood: 'happy' },
+      { label: { fr: 'Lui parler du krach', en: 'Tell him about the crash' }, text: { fr: ["Je lui ai dit, l'air inquiet : « Tu as vu ? Ta crypto a perdu 98 % depuis ce matin. » Il a sorti son téléphone, est devenu blanc, et s'est évanoui sur son capot. C'était vrai. Je ne le savais même pas.", "J'ai lancé : « Ton jeton vient de s'effondrer, mec. » Il a hurlé {w:swear} et donné un coup de pied dans sa propre Lambo. Il s'est cassé le pied. La Lambo a une bosse. Double victoire."], en: ["I told him, looking worried: 'Did you see? Your crypto dropped 98% since this morning.' He pulled out his phone, went white and fainted on his hood. It was true. I didn't even know.", "I said: 'Your token just crashed, bro.' He screamed {w:swear} and kicked his own Lambo. He broke his foot. The Lambo has a dent. Double win."] }, fx: { happy: 10, karma: 1 }, mood: 'happy' },
+    ],
+  },
+
+  // ═════════════════════════════ KARMA : riches, flics, patrons, influenceurs ═════════════════════════════
+
+  // ── Yacht et orques ──
+  {
+    id: 'tr_orca_yacht',
+    icon: '🐋',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'beach', mood: 'happy', prop: 'yacht', fx: 'gore' },
+    when: { age: [18, 90] },
+    weight: 5,
+    cooldown: 15,
+    text: {
+      fr: [
+        "Depuis ton kayak de location, tu observes un milliardaire sur son méga-yacht qui jette des billets à ses invités en rigolant. Un groupe d'orques s'approche de la coque. Elles ont l'air organisées.",
+        "Un PDG qui a délocalisé l'usine de ta ville fait la fête sur son yacht, à 50 mètres de ta plage. Une orque se met à mordre le gouvernail, méthodiquement, comme si elle savait.",
+        "Un yacht nommé « Évasion Fiscale » mouille dans la baie. Son propriétaire fait du paddle en peignoir doré en buvant {w:drink}. Sous lui, une ombre noire et blanche de huit mètres tourne en rond.",
+        "Tu fais du pédalo. À côté, un héritier sur son yacht te jette des glaçons en criant « Dégage, les pauvres sont sur l'autre plage ! ». Les orques, elles, ont choisi leur camp.",
+      ],
+      en: [
+        "From your rental kayak, you watch a billionaire on his mega-yacht throwing bills at his guests, laughing. A pod of orcas approaches the hull. They look organised.",
+        "A CEO who offshored your town's factory is partying on his yacht, 50 yards from your beach. An orca starts biting the rudder, methodically, as if it knows.",
+        "A yacht named 'Tax Haven' is anchored in the bay. Its owner is paddleboarding in a golden bathrobe, drinking {w:drink}. Beneath him, a 25-foot black-and-white shadow circles.",
+        "You're on a pedal boat. Nearby, an heir on his yacht throws ice cubes at you yelling 'Get lost, the poor beach is over there!'. The orcas have chosen their side.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Encourager les orques', en: 'Cheer on the orcas' }, out: [
+        { w: 2, text: { fr: ["J'ai applaudi. Les orques ont arraché le gouvernail, puis la coque, puis le jacuzzi du pont supérieur. Le yacht a coulé en vingt minutes. Le milliardaire a nagé jusqu'à la plage des pauvres. On lui a prêté une serviette trouée.", "J'ai crié « ALLEZ LES FILLES ! ». Les orques ont retourné le paddle du proprio. Il est remonté sur le pédalo d'un enfant de six ans et a pleuré. L'enfant l'a fait payer 50 balles le trajet."], en: ["I applauded. The orcas tore off the rudder, then the hull, then the upper-deck jacuzzi. The yacht sank in twenty minutes. The billionaire swam to the poor beach. We lent him a towel with holes.", "I yelled 'GO GIRLS!'. The orcas flipped the owner's paddleboard. He climbed onto a six-year-old's pedal boat and cried. The kid charged him 50 bucks for the ride."] }, fx: { happy: 14, karma: 2 }, mood: 'happy' },
+        { w: 1, text: { fr: ["Les orques ont fait leur travail avec une précision chirurgicale. Une a attrapé le PDG par la jambe et l'a fait tournoyer comme une poupée de chiffon, en éclaboussant de rouge le pont blanc. Il a survécu, sans sa jambe, ni ses actions.", "Une orque a sauté hors de l'eau et a gobé le paddle avec le milliardaire dessus. Elle l'a recraché, vexée. Il est revenu sur la plage avec une seule chaussure en or et {w:gross} dans les cheveux."], en: ["The orcas did their job with surgical precision. One grabbed the CEO by the leg and spun him like a rag doll, splashing red across the white deck. He survived, minus a leg and his stock options.", "An orca leapt out of the water and swallowed the paddleboard with the billionaire on it. It spat him out, offended. He came back to the beach with one golden shoe and {w:gross} in his hair."] }, fx: { happy: 12, stress: 2, visual: 'gore' }, mood: 'shock' },
+      ] },
+      { label: { fr: 'Pagayer vers les épaves', en: 'Paddle for the loot' }, text: { fr: ["J'ai pagayé jusqu'au yacht qui coulait et j'ai repêché une bouteille de champagne à 3 000 balles, une montre et {w:object}. Les orques m'ont regardé{|e} faire sans rien dire. On est associés, maintenant.", "J'ai récupéré ce qui flottait : des billets, des lunettes de soleil et un toutou de luxe en gilet de sauvetage. J'ai adopté le chien. Il s'appelle Dividende."], en: ["I paddled to the sinking yacht and fished out a 3,000-dollar bottle of champagne, a watch and {w:object}. The orcas watched me without a word. We're partners now.", "I collected whatever floated: banknotes, sunglasses and a luxury pooch in a life vest. I adopted the dog. His name is Dividend."] }, fx: { money: 5000, happy: 10, karma: -1, visual: 'money' }, mood: 'happy' },
+      { label: { fr: 'Tenter un sauvetage héroïque', en: 'Try a heroic rescue' }, text: { fr: ["J'ai voulu sauver le milliardaire. Il m'a poussé{|e} à l'eau pour monter sur mon kayak et s'est enfui avec. Les orques l'ont rattrapé cent mètres plus loin. Moi, j'ai nagé jusqu'au bord. Leçon apprise.", "Je l'ai sorti de l'eau. Il m'a donné une pièce de 2 € « pour le dérangement ». Les orques ont soufflé de dégoût par leurs évents."], en: ["I tried to save the billionaire. He pushed me into the water to climb on my kayak and fled with it. The orcas caught him a hundred yards later. I swam back. Lesson learned.", "I pulled him out of the water. He gave me a 2-dollar coin 'for the trouble'. The orcas snorted in disgust through their blowholes."] }, fx: { karma: 4, health: -2, money: 2 } },
+    ],
+  },
+
+  // ── Flic étouffé par un donut ──
+  {
+    id: 'tr_cop_donut',
+    icon: '🍩',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'park', mood: 'shock', prop: 'donut', fx: 'police' },
+    when: { age: [18, 85] },
+    weight: 6,
+    cooldown: 12,
+    text: {
+      fr: [
+        "Le flic qui t'a mis une amende de 135 € ce matin pour « regard insolent » s'étouffe avec un donut dans sa voiture de patrouille. Il devient violet. Il te fait signe. Tu es le seul témoin.",
+        "Contrôle de police absurde : l'agent fouille ton sac, confisque {w:object} « pour enquête » et mange un beignet en même temps. Soudain, il porte les mains à sa gorge et fait {w:sound}.",
+        "Un policier qui verbalise tout le marché pour « stationnement de cageots » avale de travers un donut fourré. Ses collègues regardent ailleurs. Ils ne l'aiment pas non plus.",
+        "Le CRS qui t'a gazé{|e} à la dernière manif est devant toi à la boulangerie. Il mord dans un donut géant et s'étrangle. Le donut est coincé. Il te regarde avec des yeux de chien battu.",
+      ],
+      en: [
+        "The cop who fined you 135 bucks this morning for 'insolent staring' is choking on a donut in his patrol car. He's turning purple. He's waving at you. You're the only witness.",
+        "Absurd police stop: the officer searches your bag, confiscates {w:object} 'for investigation' and eats a doughnut at the same time. Suddenly he grabs his throat and makes {w:sound}.",
+        "A cop fining the entire market for 'crate parking' swallows a filled donut the wrong way. His colleagues look away. They don't like him either.",
+        "The riot cop who tear-gassed you at the last protest is in front of you at the bakery. He bites into a giant donut and chokes. It's stuck. He looks at you with puppy eyes.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Heimlich, mais méchant', en: 'Heimlich, but brutal' }, out: [
+        { w: 2, text: { fr: ["J'ai fait la manœuvre de Heimlich avec beaucoup, beaucoup d'enthousiasme. Le donut est sorti comme un boulet de canon et a explosé sur le pare-brise. Trois côtes de flic ont craqué. Il m'a remercié{|e}, en larmes, et a annulé mon amende.", "J'ai serré si fort que le donut est sorti, suivi du café, du sandwich et de sa dignité. Tout sur ses chaussures cirées. Il m'a décoré{|e} officiellement. J'ai la médaille sur le frigo."], en: ["I did the Heimlich manoeuvre with lots and lots of enthusiasm. The donut shot out like a cannonball and exploded on the windshield. Three cop ribs cracked. He thanked me in tears and cancelled my fine.", "I squeezed so hard the donut came out, followed by the coffee, the sandwich and his dignity. All over his polished shoes. He officially decorated me. The medal's on my fridge."] }, fx: { karma: 6, happy: 10, money: 135, heat: -10 }, mood: 'proud' },
+        { w: 1, text: { fr: ["Ma manœuvre a été si violente qu'il m'a arrêté{|e} pour « agression sur agent ». Avec le donut encore dans la bouche. Le juge a vu la vidéo et a ri si fort qu'il a dû suspendre l'audience.", "Le donut est sorti, et il m'a immédiatement verbalisé{|e} pour « contact physique non sollicité ». Je l'aurais laissé crever. La prochaine fois, je le laisse crever."], en: ["My manoeuvre was so violent he arrested me for 'assaulting an officer'. With the donut still in his mouth. The judge watched the video and laughed so hard he had to adjourn.", "The donut came out, and he immediately fined me for 'unsolicited physical contact'. I should've let him die. Next time, I'm letting him die."] }, fx: { heat: 10, money: -135, happy: -4 }, mood: 'angry' },
+      ] },
+      { label: { fr: 'Filmer et commenter', en: 'Film and commentate' }, text: { fr: ["J'ai filmé en commentant comme un match de foot : « Il tente l'expulsion… OH, ÉCHEC ! » Un passant a fini par le sauver. La vidéo a fait 5 millions de vues. Il me cherche partout. Il ne me trouvera pas.", "J'ai filmé en mangeant {w:food}. Ses collègues sont arrivés, l'ont regardé, puis m'ont demandé de partager la vidéo sur le groupe du commissariat. Il a survécu, mais pas sa réputation."], en: ["I filmed it with football-style commentary: 'He's going for the expulsion... OH, MISSED!' A passerby eventually saved him. The video got 5 million views. He's looking for me everywhere. He won't find me.", "I filmed it while eating {w:food}. His colleagues showed up, watched, then asked me to share the video in the precinct group chat. He survived, his reputation didn't."] }, fx: { followers: 30000, happy: 8, karma: -3, heat: 6 }, mood: 'happy' },
+      { label: { fr: 'Reprendre mon objet', en: 'Take my stuff back' }, text: { fr: ["Pendant qu'il s'étouffait, j'ai récupéré mon {w:object}, et mon amende, et son carnet de PV, que j'ai jeté dans une bouche d'égout. Puis j'ai appelé les secours. Je ne suis pas un monstre.", "J'ai repris mes affaires dans sa voiture, et un donut. Puis j'ai tapé dans son dos, une fois, fort. Le beignet est sorti. Il ne m'a jamais revu{|e}. Le donut était délicieux."], en: ["While he choked, I took back my {w:object}, and my ticket, and his ticket book, which I tossed down a storm drain. Then I called an ambulance. I'm not a monster.", "I took my stuff back from his car, plus a donut. Then I slapped his back, once, hard. The doughnut came out. He never saw me again. The donut was delicious."] }, fx: { happy: 10, karma: 1, heat: 3 } },
+    ],
+  },
+
+  // ── Influenceuse contre les oies ──
+  {
+    id: 'tr_influencer_geese',
+    icon: '🪿',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'park', mood: 'happy', prop: 'goose', fx: 'gore' },
+    when: { age: [18, 90] },
+    weight: 6,
+    cooldown: 12,
+    text: {
+      fr: [
+        "Au parc, une influenceuse filme une vidéo « gratitude et connexion animale » au bord du lac. Elle veut un selfie avec une oie. L'oie a d'autres plans. Il y en a vingt derrière elle.",
+        "Un influenceur fitness pousse les gens du banc pour son shooting près de l'étang. Il donne un coup de pied à un canard pour « dégager le cadre ». Un gang d'oies cendrées l'a vu.",
+        "Une influenceuse lifestyle nourrit les cygnes avec {w:food} « pour le contenu ». Un cygne lui arrache son téléphone. Elle tire. Il tire plus fort.",
+        "Tu pique-niques tranquillement quand un influenceur te demande de bouger pour sa vidéo. « T'es dans le cadre, {w:insult}. » Derrière lui, une oie énorme se met en position d'attaque.",
+      ],
+      en: [
+        "At the park, an influencer is filming a 'gratitude and animal connection' video by the lake. She wants a selfie with a goose. The goose has other plans. There are twenty more behind it.",
+        "A fitness influencer shoos people off a bench for his shoot by the pond. He kicks a duck to 'clear the frame'. A gang of greylag geese saw it.",
+        "A lifestyle influencer feeds swans {w:food} 'for the content'. A swan snatches her phone. She pulls. It pulls harder.",
+        "You're having a quiet picnic when an influencer asks you to move for his video. 'You're in the shot, {w:insult}.' Behind him, a huge goose assumes attack position.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Filmer la bataille', en: 'Film the battle' }, out: [
+        { w: 2, text: { fr: ["L'oie a attaqué. Puis les dix-neuf autres. L'influenceur a été poursuivi autour du lac, frappé à coups d'ailes, pincé aux fesses et a fini dans l'eau, en slip, sous les vivats. Ma vidéo a battu la sienne.", "Les oies l'ont plumé. Littéralement : elles lui ont arraché ses extensions de cheveux une par une. Il est reparti chauve, en pleurant, avec une plume coincée dans la narine. 3 millions de vues pour moi."], en: ["The goose attacked. Then the other nineteen. The influencer was chased around the lake, wing-slapped, pinched on the butt, and ended up in the water in his underwear to cheers. My video beat his.", "The geese plucked him. Literally: they ripped out his hair extensions one by one. He left bald, crying, with a feather stuck up his nostril. 3 million views for me."] }, fx: { followers: 25000, fame: 3, happy: 12 }, mood: 'happy' },
+        { w: 1, text: { fr: ["Les oies ont fini l'influenceur, puis se sont retournées vers moi, qui filmais. Une m'a mordu {w:bodypart}, une autre a volé mon sandwich. Le chef des oies m'a regardé{|e} dans les yeux. J'ai compris qui commandait.", "Le cygne a lâché le téléphone, qui m'est tombé sur la tête. Puis le cygne m'a cassé le bras. Les cygnes peuvent casser un bras. C'est vrai. Je le sais, maintenant."], en: ["The geese finished off the influencer, then turned to me, filming. One bit my {w:bodypart}, another stole my sandwich. The goose boss looked me in the eye. I understood who was in charge.", "The swan dropped the phone, which fell on my head. Then the swan broke my arm. Swans can break an arm. It's true. I know that now."] }, fx: { health: -10, disease: 'broken_arm', happy: -4, visual: 'gore' }, mood: 'cry' },
+      ] },
+      { label: { fr: 'Nourrir les oies, stratégiquement', en: 'Feed the geese, strategically' }, text: { fr: ["J'ai lancé des miettes de pain pile sur l'influenceur. Toutes les oies du parc lui ont sauté dessus. On ne voyait plus qu'un tas de plumes et une main tenant un téléphone. J'ai fini mon pique-nique en paix.", "J'ai versé mon paquet de graines dans sa capuche. Il a été poursuivi par trente pigeons, douze oies et {w:animal}. Il a escaladé un lampadaire. Il y est encore, je crois."], en: ["I threw breadcrumbs right onto the influencer. Every goose in the park jumped him. All you could see was a pile of feathers and a hand holding a phone. I finished my picnic in peace.", "I poured my bag of seeds into his hood. He was chased by thirty pigeons, twelve geese and {w:animal}. He climbed a lamppost. He's still up there, I think."] }, fx: { happy: 12, karma: -1 }, mood: 'happy' },
+    ],
+  },
+
+  // ── Patron foudroyé au golf ──
+  {
+    id: 'tr_boss_lightning',
+    icon: '🌩️',
+    cat: 'trash',
+    rating: 2,
+    actor: 'boss',
+    scene: { place: 'park', mood: 'shock', prop: 'golf', fx: 'fire' },
+    when: { age: [18, 70], job: true },
+    weight: 5,
+    cooldown: 15,
+    text: {
+      fr: [
+        "Séminaire d'entreprise au golf. {a.first}, ton {a:patron|patronne}, licencie trois personnes par téléphone entre deux trous, {w:weather}. {a:Il|Elle} lève son club en métal vers le ciel en criant « Même Dieu bosse pour moi ! ».",
+        "Orage sur le parcours de golf. Tout le monde se met à l'abri, sauf {a.first}, qui refuse de « perdre une minute de productivité » et brandit un club en titane au milieu du green.",
+        "{a.first} t'oblige à lui porter son sac de golf sous la pluie, {w:weather}, pendant qu'{a:il|elle} t'explique pourquoi tu n'auras pas de prime. Le tonnerre gronde. {a:Il|Elle} lève son fer 7.",
+        "Le golf d'entreprise tourne mal : {a.first} triche, insulte le caddie et lance son club sur un écureuil. Au-dessus, un nuage noir se forme pile au-dessus de sa tête, comme dans un dessin animé.",
+      ],
+      en: [
+        "Company retreat at the golf course. {a.first}, your boss, is firing three people by phone between holes, {w:weather}. They raise their metal club to the sky yelling 'Even God works for me!'.",
+        "Thunderstorm on the golf course. Everyone takes cover except {a.first}, who refuses to 'lose a minute of productivity' and waves a titanium club in the middle of the green.",
+        "{a.first} makes you carry their golf bag in the rain, {w:weather}, while explaining why you won't get a bonus. Thunder rumbles. They raise their 7-iron.",
+        "The company golf day goes south: {a.first} cheats, insults the caddie and throws a club at a squirrel. Above, a black cloud forms right over their head, like in a cartoon.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Lui tendre le plus grand club', en: 'Hand them the longest club' }, out: [
+        { w: 2, text: { fr: ["Je lui ai tendu le driver le plus long. BZZZAAAP. La foudre l'a frappé{a:|e} en plein swing. Ses cheveux se sont dressés en couronne fumante, ses chaussures ont fondu, et {a:il|elle} a dit « Fore… » avant de tomber raide. {a:Il|Elle} a survécu, avec une nouvelle coupe et une voix de Donald Duck.", "La foudre est tombée, a fait le tour de son corps comme dans un flipper et est ressortie par ses lacets. {a.first} est resté{a:|e} debout, fumant, carbonisé{a:|e} comme une saucisse oubliée. {a:Il|Elle} a démissionné pour « se recentrer »."], en: ["I handed them the longest driver. BZZZAAAP. Lightning struck mid-swing. Their hair stood up in a smoking crown, their shoes melted, and they said 'Fore...' before falling stiff. They survived, with a new haircut and a Donald Duck voice.", "Lightning struck, bounced around their body like a pinball and came out through their shoelaces. {a.first} stayed standing, smoking, charred like a forgotten sausage. They resigned to 'refocus'."] }, fx: { happy: 16, karma: -2, visual: 'fire' }, mood: 'happy' },
+        { w: 1, text: { fr: ["La foudre a raté {a.first} et touché le chariot de golf, qui a démarré tout seul et l'a poursuivi{a:|e} à travers le parcours jusqu'au lac. Les canards ont ri. Moi aussi.", "L'éclair a frappé l'arbre à côté de nous. Une branche est tombée sur {a.first}. {a:Il|Elle} est en arrêt maladie trois mois. Le bureau a organisé une fête. J'ai fait un gâteau."], en: ["Lightning missed {a.first} and hit the golf cart, which started on its own and chased them across the course into the lake. The ducks laughed. So did I.", "The bolt hit the tree next to us. A branch fell on {a.first}. They're on sick leave for three months. The office threw a party. I baked a cake."] }, fx: { happy: 12, rel: -5 }, mood: 'party' },
+      ] },
+      { label: { fr: 'Courir m\'abriter', en: 'Run for cover' }, text: { fr: ["J'ai couru au club-house. Par la fenêtre, j'ai vu {a.first} se faire foudroyer, puis se relever, puis se faire foudroyer à nouveau. Deux fois au même endroit. Le dicton est faux.", "J'ai fui avec le sac de golf. Derrière moi, un énorme flash, puis {w:smell}, puis un cri suraigu. J'ai gardé le sac. Il contenait 4 000 € en liquide. Personne n'a jamais posé de questions."], en: ["I ran to the clubhouse. Through the window I watched {a.first} get struck, get up, then get struck again. Twice in the same place. The saying is wrong.", "I ran off with the golf bag. Behind me, a huge flash, then {w:smell}, then a high-pitched scream. I kept the bag. It had 4,000 bucks in cash. Nobody ever asked."] }, fx: { happy: 10, money: 4000, karma: -2 }, mood: 'happy' },
+    ],
+  },
+
+  // ── Proprio et plancher pourri ──
+  {
+    id: 'tr_landlord_floor',
+    icon: '🏚️',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'apartment', mood: 'shock', prop: 'floor', fx: 'gore' },
+    when: { age: [18, 80] },
+    weight: 6,
+    cooldown: 12,
+    text: {
+      fr: [
+        "Ton propriétaire, qui refuse depuis deux ans de réparer le plancher « qui va très bien », vient faire l'état des lieux de sortie pour garder ta caution. Il marche droit vers la latte pourrie du salon.",
+        "Le proprio, qui loue ton 9 m² au prix d'un château, arrive pour « inspecter ». Il trouve des traces de moisissure et sourit : « Ça, c'est pour ta caution. » Il recule vers la zone que tu as signalée 14 fois.",
+        "Ton propriétaire vient augmenter le loyer de 30 % « à cause de l'inflation ». Il fait les cent pas dans ton salon en mangeant {w:food}. Le parquet craque sous lui comme {w:sound}.",
+        "Le marchand de sommeil qui te loue ton appart vient « vérifier que tu n'as pas de chat ». Il saute à pieds joints sur ton plancher « pour montrer qu'il est solide ». Tu entends un craquement.",
+      ],
+      en: [
+        "Your landlord, who's refused for two years to fix the floor 'which is totally fine', comes for the move-out inspection to keep your deposit. He's walking straight toward the rotten board in the living room.",
+        "The landlord, who rents your 100 sq ft at castle prices, arrives to 'inspect'. He finds mould and smiles: 'That's coming out of your deposit.' He backs toward the spot you reported 14 times.",
+        "Your landlord comes to raise the rent 30% 'because of inflation'. He paces your living room eating {w:food}. The floor creaks under him like {w:sound}.",
+        "The slumlord renting you your flat comes to 'check you don't have a cat'. He jumps with both feet on your floor 'to show it's solid'. You hear a crack.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Le laisser marcher', en: 'Let him walk' }, out: [
+        { w: 2, text: { fr: ["Je n'ai rien dit. Le plancher a cédé et il est passé à travers comme dans un dessin animé, jusqu'à l'appart du dessous. Il a atterri dans la baignoire du voisin, qui prenait son bain. Ils se sont regardés longtemps.", "Il a traversé le plancher jusqu'à la taille. Il est resté coincé, les jambes pendant dans la cuisine du dessous, où la voisine lui a chatouillé les pieds avec {w:object}. J'ai récupéré ma caution, et plus encore."], en: ["I said nothing. The floor gave way and he went through it cartoon-style into the flat below. He landed in the neighbour's bathtub while the neighbour was bathing. They stared at each other for a long time.", "He went through the floor up to his waist. He stayed stuck, legs dangling into the kitchen below, where the neighbour tickled his feet with {w:object}. I got my deposit back, and then some."] }, fx: { happy: 16, money: 1500, karma: 1 }, mood: 'happy' },
+        { w: 1, text: { fr: ["Il est passé à travers, tête la première. Ses jambes battaient l'air au-dessus du trou comme dans « Fargo ». En bas, un clou rouillé l'attendait. Il a hurlé une octave au-dessus de l'humain. Il a tout réparé en une semaine. Tout l'immeuble.", "Le plancher a cédé, il a chuté de deux étages et s'est réceptionné sur son propre compteur électrique. Gerbe d'étincelles, cheveux en pétard. Il a baissé tous les loyers de l'immeuble « par superstition »."], en: ["He went through headfirst. His legs flailed above the hole. Below, a rusty nail was waiting. He screamed an octave above human. He fixed everything within a week. The whole building.", "The floor gave way, he fell two storeys and landed on his own electric meter. Shower of sparks, hair standing up. He lowered every rent in the building 'out of superstition'."] }, fx: { happy: 14, money: 1000, visual: 'gore' }, mood: 'shock' },
+      ] },
+      { label: { fr: 'L\'avertir… de travers', en: 'Warn him... badly' }, text: { fr: ["J'ai crié « ATTENTION, À GAUCHE ! ». Il a sauté à gauche. Le trou était à gauche. Il est tombé en criant mon nom. Juridiquement, je l'ai prévenu. Mon avocat est d'accord.", "Je l'ai prévenu en chuchotant, très bas, en latin. Il n'a pas compris. Il est tombé. Je lui ai dit : « Je vous l'avais dit. » Il a pleuré dans le placo."], en: ["I yelled 'CAREFUL, LEFT!'. He jumped left. The hole was on the left. He fell, screaming my name. Legally, I warned him. My lawyer agrees.", "I warned him in a whisper, very quietly, in Latin. He didn't understand. He fell. I told him: 'I told you so.' He cried into the drywall."] }, fx: { happy: 12, karma: -1 }, mood: 'happy' },
+    ],
+  },
+
+  // ═════════════════════════════ GUEULES DE BOIS DE L'ENFER ═════════════════════════════
+
+  // ── Réveil dans une benne ──
+  {
+    id: 'tr_hangover_dumpster',
+    icon: '🗑️',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'park', mood: 'sick', prop: 'dumpster' },
+    when: { age: [18, 65] },
+    weight: 7,
+    cooldown: 8,
+    text: {
+      fr: [
+        "Tu te réveilles dans une benne à ordures, un cygne endormi sur le ventre, une alliance au doigt et {w:object} dans la main. Ton téléphone affiche 47 appels manqués de ta mère. Tu ne te souviens de rien.",
+        "Réveil difficile. Tu es en slip sur un rond-point, à côté d'un panneau « {city} » arraché. Ta bouche a un goût de regret, avec un arrière-goût : {w:food}. Il y a un cône de chantier sur ta tête.",
+        "Tu ouvres un œil : tu es dans un lit d'hôtel {w:far_place}, avec un sombrero, un tatouage frais et un poney nain qui te regarde. Tu habites à 3 000 kilomètres.",
+        "Lendemain de soirée. Ta tête fait {w:sound} à chaque battement de cœur. Tu as un œil au beurre noir, un sourcil rasé et un message de ton patron : « On en parle lundi. » Tu ne sais pas ce qu'est « ça ».",
+      ],
+      en: [
+        "You wake up in a dumpster, a swan asleep on your belly, a wedding ring on your finger and {w:object} in your hand. Your phone shows 47 missed calls from your mom. You remember nothing.",
+        "Rough morning. You're in your underwear on a roundabout, next to a torn-off '{city} Welcome' sign. Your mouth tastes of regret, with an aftertaste of {w:food}. There's a traffic cone on your head.",
+        "You open one eye: you're in a hotel bed {w:far_place}, wearing a sombrero, with a fresh tattoo and a miniature pony staring at you. You live 2,000 miles away.",
+        "Morning after. Your head goes {w:sound} with every heartbeat. You have a black eye, one shaved eyebrow and a text from your boss: 'We'll talk Monday.' You don't know what 'it' is.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Reconstituer la soirée', en: 'Reconstruct the night' }, out: [
+        { w: 2, text: { fr: ["J'ai regardé les photos sur mon téléphone. J'ai épousé un inconnu devant un Elvis ivre, avec {w:celeb} comme témoin (un sosie, j'espère), nagé dans une fontaine, volé le cygne et vomi sur un chauffeur Uber. On a rendu le cygne. Pas l'alliance : elle est en or.", "D'après les vidéos, j'ai fait un discours sur {w:conspiracy} à une foule de 200 personnes, debout sur une voiture de police. J'ai été applaudi{|e}. Puis arrêté{|e}. Puis relâché{|e} parce que les flics étaient fans."], en: ["I checked my phone photos. I married a stranger in front of a drunk Elvis, with {w:celeb} as witness (a lookalike, I hope), swam in a fountain, stole the swan and threw up on an Uber driver. We returned the swan. Not the ring: it's gold.", "According to the videos, I gave a speech on {w:conspiracy} to a crowd of 200, standing on a police car. I got applause. Then arrested. Then released because the cops were fans."] }, fx: { happy: 6, health: -6, money: -500, fame: 1 }, mood: 'shock' },
+        { w: 1, text: { fr: ["Les photos montrent que j'ai mangé quelque chose de cru dans une benne. Ce quelque chose bougeait. Trois jours de gastro, et j'ai désormais peur des cygnes. À juste titre.", "J'ai retrouvé ma soirée sur les réseaux. Je suis le mème « personne bourrée qui se bat avec un panneau stop ». J'ai perdu. Le panneau a 2 millions de fans."], en: ["The photos show I ate something raw in a dumpster. That something was moving. Three days of gastro, and I'm now afraid of swans. Rightly so.", "I found my night online. I'm the 'drunk person fighting a stop sign' meme. I lost. The stop sign has 2 million fans."] }, fx: { health: -8, disease: 'gastro', followers: 15000 }, mood: 'sick' },
+      ] },
+      { label: { fr: 'Jurer de ne plus jamais boire', en: 'Swear off booze forever' }, text: { fr: ["J'ai juré sur la tête de ma mère de ne plus jamais boire. J'ai tenu jusqu'au soir même, quand quelqu'un m'a offert {w:drink}. On se réveillera demain {w:at_place}, probablement.", "J'ai juré de ne plus jamais boire. J'ai tenu trois semaines, fait du yoga, bu des smoothies. Puis l'anniversaire de ma cousine est arrivé. Je me suis réveillé{|e} dans la même benne. Le cygne était là. Il m'attendait."], en: ["I swore on my mother's head never to drink again. I lasted until that very evening, when someone offered me {w:drink}. We'll wake up tomorrow {w:at_place}, probably.", "I swore never to drink again. I lasted three weeks, did yoga, drank smoothies. Then my cousin's birthday came. I woke up in the same dumpster. The swan was there. Waiting for me."] }, fx: { health: 2, discipline: 2, happy: -2 } },
+      { label: { fr: 'Recommencer, soigner le mal par le mal', en: 'Hair of the dog' }, text: { fr: ["J'ai soigné ma gueule de bois avec une bière tiède trouvée dans la benne. Puis une deuxième. À midi, j'étais de nouveau bourré{|e}, en train de danser avec le cygne. On est inséparables.", "J'ai bu, dans la benne, {w:drink}. Mon foie a émis un son. Un son de détresse. Je l'ai ignoré. Mon foie s'en souviendra."], en: ["I treated my hangover with a warm beer found in the dumpster. Then a second. By noon I was drunk again, dancing with the swan. We're inseparable.", "I drank, from the dumpster, {w:drink}. My liver made a sound. A distress sound. I ignored it. My liver will remember."] }, fx: { happy: 6, health: -6, addiction: ['alcohol', 8] }, mood: 'party' },
+    ],
+  },
+
+  // ── Gueule de bois en réunion ──
+  {
+    id: 'tr_hangover_meeting',
+    icon: '🤮',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'office', mood: 'sick', prop: 'meeting', fx: 'poop' },
+    when: { age: [18, 65], job: true },
+    weight: 6,
+    cooldown: 10,
+    text: {
+      fr: [
+        "Réunion stratégique à 8 h avec le PDG, après une nuit à boire {w:drink}. Ta tête est un marteau-piqueur. Le PDG pose son café juste devant toi. Ton estomac fait un salto.",
+        "Tu présentes le bilan annuel devant tout le conseil d'administration. Tu as dormi deux heures, dans ta baignoire. Tu sens remonter le kebab de 4 h du matin. Diapo 3 sur 47.",
+        "Visio importante avec un client japonais. Tu es vert. Le client parle de « synergies ». Ta webcam est allumée. Ta poubelle est à deux mètres, trop loin, beaucoup trop loin.",
+        "Séminaire d'entreprise, atelier « brainstorming ». Tu as encore {w:gross} dans les cheveux de la soirée d'hier. Le DRH te demande de « partager ton énergie » avec le groupe.",
+      ],
+      en: [
+        "8 a.m. strategy meeting with the CEO after a night drinking {w:drink}. Your head is a jackhammer. The CEO puts his coffee right in front of you. Your stomach does a backflip.",
+        "You're presenting the annual report to the whole board. You slept two hours, in your bathtub. You feel the 4 a.m. kebab rising. Slide 3 of 47.",
+        "Important video call with a Japanese client. You're green. The client is talking about 'synergies'. Your webcam is on. Your bin is six feet away, too far, way too far.",
+        "Company retreat, 'brainstorming' workshop. You still have {w:gross} in your hair from last night. HR asks you to 'share your energy' with the group.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Tenir jusqu\'au bout', en: 'Hold it to the end' }, out: [
+        { w: 1, odds: { discipline: 1 }, text: { fr: ["J'ai tenu. Livide, en sueur, j'ai fait la meilleure présentation de ma vie, parce que je parlais lentement pour ne pas vomir. Ils ont pris ça pour du charisme. Promotion.", "J'ai serré les dents pendant 47 diapos. À la fin, le PDG m'a serré la main : « Quelle intensité ! » J'ai vomi dans l'ascenseur, seul{|e}, heureux{|se}."], en: ["I held on. Pale, sweating, I gave the best presentation of my life, because I spoke slowly so I wouldn't puke. They mistook it for charisma. Promotion.", "I gritted my teeth through 47 slides. At the end the CEO shook my hand: 'What intensity!' I threw up in the elevator, alone, happy."] }, fx: { promote: true, happy: 8, health: -3 }, mood: 'proud' },
+        { w: 2, text: { fr: ["Diapo 4. Le vomi est sorti en jet, pile dans la tasse du PDG. Il l'a regardée, m'a regardé{|e}, et a dit : « Je le prenais noir. » Silence. J'ai été muté{|e} au service courrier.", "J'ai tenu jusqu'à la diapo « Nos valeurs ». Puis j'ai repeint l'écran du vidéoprojecteur. Les valeurs de l'entreprise sont désormais illisibles, sous ce qui fut {w:food}."], en: ["Slide 4. The vomit came out in a jet, right into the CEO's mug. He looked at it, then me, and said: 'I take it black.' Silence. I got transferred to the mailroom.", "I held on until the 'Our Values' slide. Then I repainted the projector screen. The company values are now illegible under what used to be {w:food}."] }, fx: { perf: -15, happy: -8, visual: 'poop' }, mood: 'sick' },
+      ] },
+      { label: { fr: 'Simuler un malaise', en: 'Fake fainting' }, text: { fr: ["J'ai simulé un malaise dramatique, avec chute au ralenti. Les pompiers sont venus. Dans le camion, j'ai vomi sur le brancardier. Mais j'ai eu trois jours d'arrêt. Rentable.", "Je me suis évanoui{|e} volontairement sur la table. Le PDG a cru à une crise cardiaque et m'a fait du bouche-à-bouche. J'ai vomi dans sa bouche. On n'en parle plus jamais."], en: ["I faked a dramatic fainting spell with a slow-motion fall. Paramedics came. In the ambulance, I threw up on the EMT. But I got three days of sick leave. Worth it.", "I deliberately fainted on the table. The CEO thought it was a heart attack and gave me mouth-to-mouth. I threw up in his mouth. We never speak of it."] }, fx: { happy: 4, perf: -4, health: -2 } },
+    ],
+  },
+
+  // ═════════════════════════════ ENTERREMENTS DE VIE DE GARÇON / DE JEUNE FILLE ═════════════════════════════
+
+  // ── EVG/EVJF qui dérape → chaîne : le mariage ──
+  {
+    id: 'tr_bachelor',
+    icon: '🍾',
+    cat: 'trash',
+    rating: 2,
+    actor: 'anyFriend',
+    scene: { place: 'party', mood: 'party', prop: 'costume' },
+    when: { age: [20, 50], noFlag: 'tr_bach' },
+    weight: 6,
+    once: true,
+    text: {
+      fr: [
+        "Enterrement de vie de célibataire de {a.first}. Programme : déguisement intégral (thème : {w:animal}), karting bourré, strip-tease et nuit {w:far_place}. Tu es {l'organisateur|l'organisatrice}. Tout est permis, sauf de rendre {a.first} abîmé{a:|e}.",
+        "Tu organises l'EVG/EVJF de {a.first}. Il est 23 h, {a.first} est déguisé{a:|e} en tétine géante, ivre mort{a:|e}, et vient de proposer de « finir la soirée dans un endroit dont on ne parlera jamais ».",
+        "Soirée d'enterrement de vie de célibataire de {a.first}. Le groupe a déjà été viré de trois bars. Quelqu'un propose de raser un sourcil à {a.first} et de l'attacher à un lampadaire en slip.",
+        "{a.first} se marie dans une semaine. Ce soir, c'est son EVJF/EVG. Il y a {w:drink} à volonté, une limousine rose louée et une personne en string doré qui vient d'arriver pour le show. Elle te fait coucou. C'est ton ex.",
+      ],
+      en: [
+        "{a.first}'s bachelor/bachelorette party. Programme: dressed as {w:animal}, drunk go-karting, a stripper and a night {w:far_place}. You're the organiser. Anything goes, except returning the future spouse damaged.",
+        "You're organising {a.first}'s bachelor/bachelorette party. It's 11 p.m., {a.first} is dressed as a giant pacifier, blind drunk, and just suggested 'ending the night somewhere we'll never speak of'.",
+        "{a.first}'s bachelor/bachelorette night. The group's already been kicked out of three bars. Someone suggests shaving off one of {a.first}'s eyebrows and tying them to a lamppost in their underwear.",
+        "{a.first} gets married in a week. Tonight is the party. Unlimited {w:drink}, a rented pink limo, and a stripper who just arrived. They say hi to you. It's your ex.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Le lampadaire, en slip', en: 'Lamppost, underwear only' }, text: { fr: ["On a attaché {a.first} à un lampadaire en slip, un sourcil rasé, avec une pancarte « J'échange contre {w:food} ». On l'a oublié{a:|e} là. On est revenus le chercher à 7 h. Un pigeon dormait sur sa tête.", "Lampadaire, slip léopard, sourcil rasé, et le mot « PROPRIÉTÉ PRIVÉE » écrit au feutre sur le front. Puis on est partis au karaoké. On l'a retrouvé{a:|e} au matin, en train de chanter {w:song} à des éboueurs."], en: ["We tied {a.first} to a lamppost in their underwear, one eyebrow shaved, with a sign 'Will trade for {w:food}'. We forgot them there. We came back at 7 a.m. A pigeon was asleep on their head.", "Lamppost, leopard underwear, shaved eyebrow, and 'PRIVATE PROPERTY' written in marker on the forehead. Then we left for karaoke. We found them in the morning singing {w:song} to the garbage collectors."] }, fx: { happy: 14, rel: -5, flag: 'tr_bach', schedule: { key: 'tr_bach_wedding', years: 1 } }, mood: 'party' },
+      { label: { fr: 'L\'endroit dont on ne parle pas', en: 'The place we never mention' }, text: { fr: ["On est allés dans l'endroit dont on ne parle jamais. Je n'en parlerai donc pas. Sauf pour dire qu'il y avait un nain, un bélier, un jacuzzi et un policier qui n'était pas un vrai policier. {a.first} a perdu une dent et sa dignité.", "Ce qui se passe dans l'endroit reste dans l'endroit. Je peux juste dire que {a.first} est ressorti{a:|e} avec un tatouage représentant {w:animal}, un nouveau piercing et une facture de 2 000 balles."], en: ["We went to the place we never speak of. So I won't. Except to say there was a dwarf, a ram, a hot tub and a cop who wasn't a real cop. {a.first} lost a tooth and their dignity.", "What happens at the place stays at the place. I can only say {a.first} came out with a tattoo of {w:animal}, a new piercing and a 2,000-buck bill."] }, fx: { happy: 12, money: -500, rel: 8, flag: 'tr_bach', schedule: { key: 'tr_bach_wedding', years: 1 } }, mood: 'party' },
+      { label: { fr: 'Soirée tranquille, raclette', en: 'Chill raclette night' }, text: { fr: ["J'ai organisé une raclette tranquille avec jeux de société. Tout le monde m'a détesté{|e}. À minuit, {a.first} a pleuré de gratitude. À 1 h, tout le monde était bourré quand même, avec de la raclette dans les cheveux.", "Raclette, Uno, tisane. Les invités ont fait la gueule. Puis la tata de {a.first} a sorti une bouteille de gnôle de 1972 et tout a dérapé. Le Uno a fini dans le feu."], en: ["I organised a chill raclette night with board games. Everyone hated me. At midnight, {a.first} cried with gratitude. By 1 a.m. everyone was drunk anyway, with cheese in their hair.", "Raclette, Uno, herbal tea. Guests sulked. Then {a.first}'s aunt pulled out a bottle of 1972 moonshine and everything went off the rails. The Uno deck ended up in the fire."] }, fx: { happy: 6, rel: 10 } },
+    ],
+  },
+  {
+    id: 'tr_bach_wedding',
+    icon: '💒',
+    cat: 'trash',
+    rating: 2,
+    chainOnly: true,
+    actor: 'anyFriend',
+    scene: { place: 'castle', mood: 'shock', prop: 'altar' },
+    when: { flag: 'tr_bach' },
+    text: {
+      fr: [
+        "Le mariage de {a.first}, un an après l'enterrement de vie de célibataire. Le photographe projette un diaporama. Une photo « de la soirée » apparaît sur l'écran géant. Toute la belle-famille la voit.",
+        "Au mariage, le prêtre demande : « Quelqu'un s'oppose-t-il à cette union ? » Au fond, une silhouette se lève. C'est le strip-teaseur de l'EVG. Il tient {w:object} et pleure.",
+        "Pendant la cérémonie, le sourcil rasé de {a.first} n'a toujours pas repoussé. {a:Il|Elle} l'a redessiné au feutre. Le feutre coule à cause de la chaleur, {w:weather}.",
+        "Le mariage de {a.first}. Au vin d'honneur, la police arrive : le bélier de l'enterrement de vie de célibataire a été retrouvé, et il porte le portefeuille de {a.first} autour du cou.",
+      ],
+      en: [
+        "{a.first}'s wedding, a year after the bachelor/bachelorette party. The photographer runs a slideshow. A photo 'from that night' appears on the giant screen. All the in-laws see it.",
+        "At the wedding, the priest asks: 'Does anyone object to this union?' At the back, a figure stands up. It's the stripper from the party. He's holding {w:object} and crying.",
+        "During the ceremony, {a.first}'s shaved eyebrow still hasn't grown back. They redrew it in marker. The marker is running in the heat, {w:weather}.",
+        "{a.first}'s wedding. At the cocktail hour, the police arrive: the ram from the bachelor party has been found, and it's wearing {a.first}'s wallet around its neck.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Assumer au micro', en: 'Own it on the mic' }, out: [
+        { w: 2, text: { fr: ["J'ai pris le micro : « Oui, c'était moi. Et oui, le bélier était consentant, il est juste parti avec le portefeuille. » Fou rire général. La mariée a ri plus fort que tout le monde. Le bélier a été invité au buffet.", "J'ai tout raconté avec style. La grand-mère a dit « de mon temps, c'était pire ». On a fini la soirée à danser avec le strip-teaseur. Meilleur mariage de la décennie."], en: ["I grabbed the mic: 'Yes, it was me. And yes, the ram was fine with it, he just left with the wallet.' Everyone cracked up. The bride laughed hardest. The ram was invited to the buffet.", "I told everything with style. Grandma said 'in my day it was worse'. We ended the night dancing with the stripper. Wedding of the decade."] }, fx: { happy: 14, rel: 10, unflag: 'tr_bach' }, mood: 'party' },
+        { w: 1, text: { fr: ["Mon discours a déclenché une bagarre entre les deux familles. Le gâteau a volé, l'oncle a perdu une dent, le bélier a chargé le DJ. Le mariage a été annulé. {a.first} ne me parle plus. Le bélier, si.", "J'ai voulu détendre l'atmosphère, mais la belle-mère s'est évanouie dans la fontaine à chocolat. On l'a ressortie comme un profiterole géant. {a.first} m'a rayé{|e} de sa vie."], en: ["My speech started a brawl between the two families. The cake flew, the uncle lost a tooth, the ram charged the DJ. The wedding was called off. {a.first} doesn't talk to me anymore. The ram does.", "I tried to lighten the mood, but the mother-in-law fainted into the chocolate fountain. We pulled her out like a giant profiterole. {a.first} cut me out of their life."] }, fx: { happy: -4, rel: -25, unflag: 'tr_bach' }, mood: 'shock' },
+      ] },
+      { label: { fr: 'Accuser le témoin', en: 'Blame the other witness' }, text: { fr: ["J'ai désigné l'autre témoin, Kévin, qui était trop bourré pour se souvenir de quoi que ce soit. Kévin a avoué. Kévin a été banni de la famille. Kévin m'a remercié{|e} de l'avoir aidé à se souvenir.", "J'ai rejeté la faute sur le cousin de la mariée. Il a nié, puis il a vu la photo, et il a douté. On l'a sorti de la salle. Il ne saura jamais la vérité."], en: ["I pointed at the other best man, Kevin, who was too drunk to remember anything. Kevin confessed. Kevin got banished from the family. Kevin thanked me for helping him remember.", "I blamed the bride's cousin. He denied it, then saw the photo, and doubted himself. They escorted him out. He'll never know the truth."] }, fx: { karma: -5, happy: 8, unflag: 'tr_bach' }, mood: 'happy' },
+    ],
+  },
+
+  // ── Tatouage bourré → chaîne : la révélation ──
+  {
+    id: 'tr_drunk_tattoo',
+    icon: '🖋️',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'studio', mood: 'party', prop: 'tattoo' },
+    when: { age: [18, 60], noFlag: 'tr_tattoo' },
+    weight: 5,
+    once: true,
+    text: {
+      fr: [
+        "3 h du matin. Tu es ivre devant un salon de tatouage ouvert 24 h/24 nommé « Encre & Regrets ». Le tatoueur a une main qui tremble et un œil de verre. « Je fais tout, même les fesses », dit-il.",
+        "Après {w:drink}, puis six autres, tes potes te convainquent qu'un tatouage sur la fesse représentant {w:celeb} serait « iconique ». Le tatoueur est déjà en train de préparer l'aiguille.",
+        "Soirée arrosée. Tu te réveilles à moitié dans un fauteuil de tatoueur. Il te demande : « Alors, on fait quoi ? » Tu as perdu ta capacité à dire non il y a trois heures.",
+        "Pari de soirée : le perdant se fait tatouer ce que les autres choisissent. Tu as perdu. Tes amis débattent entre {w:animal} en tutu et le prénom de ton ex en lettres gothiques.",
+      ],
+      en: [
+        "3 a.m. You're drunk outside a 24/7 tattoo parlour called 'Ink & Regrets'. The tattoo artist has a shaky hand and a glass eye. 'I do anything, even butts,' he says.",
+        "After {w:drink}, then six more, your friends convince you that {w:celeb}'s face tattooed on your butt would be 'iconic'. The artist is already preparing the needle.",
+        "Boozy night. You half-wake in a tattoo chair. The artist asks: 'So what are we doing?' You lost the ability to say no three hours ago.",
+        "Party bet: the loser gets tattooed with whatever the others choose. You lost. Your friends are debating between {w:animal} in a tutu and your ex's name in gothic letters.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Faire confiance au destin', en: 'Trust fate' }, text: { fr: ["J'ai dit : « Surprends-moi. » Je me suis endormi{|e} pendant le tatouage. Je ne l'ai pas encore vu. Il est quelque part dans mon dos. Les gens ricanent derrière moi. Ça commence bien.", "J'ai laissé le tatoueur choisir. Il a hésité, puis souri. Il a mis trois heures. Il a refusé de me montrer le résultat « pour garder la magie ». Mes potes pleurent de rire quand je me retourne."], en: ["I said: 'Surprise me.' I fell asleep during the tattoo. I haven't seen it yet. It's somewhere on my back. People snicker behind me. Off to a great start.", "I let the artist choose. He hesitated, then smiled. It took three hours. He refused to show me the result 'to keep the magic'. My friends cry laughing when I turn around."] }, fx: { happy: 6, money: -300, flag: 'tr_tattoo', schedule: { key: 'tr_tattoo_reveal', years: 1 } }, mood: 'party' },
+      { label: { fr: 'Le prénom de l\'ex', en: 'The ex\'s name' }, text: { fr: ["J'ai choisi le prénom de mon ex en gothique, sur le torse. Le tatoueur a fait une faute d'orthographe. Le prénom de mon ex est désormais un mot qui n'existe dans aucune langue. Peut-être en klingon.", "Prénom de l'ex, en énorme, sur le bas du dos, entouré de cœurs, avec {w:food} au milieu. Je ne sais pas pourquoi la nourriture. Je ne savais rien à ce moment-là."], en: ["I chose my ex's name in gothic letters on my chest. The artist made a spelling mistake. My ex's name is now a word that exists in no language. Maybe Klingon.", "The ex's name, huge, on my lower back, surrounded by hearts, with {w:food} in the middle. I don't know why the food. I didn't know anything at that point."] }, fx: { happy: 4, looks: -3, money: -250, flag: 'tr_tattoo', schedule: { key: 'tr_tattoo_reveal', years: 1 } } },
+      { label: { fr: 'Fuir avant l\'aiguille', en: 'Run before the needle' }, text: { fr: ["J'ai fui en courant, avec le dessin du tatouage encore décalqué sur la fesse. Le décalque est resté deux semaines. Mon médecin a cru à une tache de naissance en forme de bestiole. Il a appelé un collègue.", "Je me suis enfui{|e}, mais le tatoueur avait eu le temps de faire un point. Un seul point noir sur ma joue. Tout le monde croit que c'est un grain de beauté. C'est le symbole de ma lâcheté."], en: ["I ran off, with the tattoo stencil still on my butt. The stencil stayed for two weeks. My doctor thought it was a critter-shaped birthmark. He called a colleague.", "I fled, but the artist had time to make one dot. A single black dot on my cheek. Everyone thinks it's a beauty mark. It's the symbol of my cowardice."] }, fx: { happy: 2, stress: 2 } },
+    ],
+  },
+  {
+    id: 'tr_tattoo_reveal',
+    icon: '🪞',
+    cat: 'trash',
+    rating: 2,
+    chainOnly: true,
+    scene: { place: 'home', mood: 'shock', prop: 'mirror' },
+    when: { flag: 'tr_tattoo' },
+    text: {
+      fr: [
+        "Un an après ton tatouage nocturne, la personne qui partage ton lit découvre enfin ce qu'il représente, en pleine lumière. Elle te regarde, la bouche ouverte. Il s'agit d'un pénis avec une moustache qui fait du ski.",
+        "Ton tatouage de soirée s'est infecté, puis a cicatrisé de travers. Le dessin d'origine ({w:animal}, apparemment) ressemble maintenant clairement à ton patron, nu, en train de {w:activity}.",
+        "Visite médicale du travail. Le médecin te demande d'enlever ton tee-shirt. Il découvre ton tatouage : un portrait raté représentant {w:celeb}, avec ton propre prénom mal orthographié dessous. Il appelle une infirmière pour qu'elle voie aussi.",
+        "Ta mère vient de voir ton tatouage pour la première fois, à la piscine. Il dit en grosses lettres : « MAMAN = {w:insult} ». Tu ne te souviens pas d'avoir choisi ça.",
+      ],
+      en: [
+        "A year after your late-night tattoo, your partner finally discovers what it depicts, in broad daylight. They stare at you, mouth open. It's a moustached penis skiing.",
+        "Your party tattoo got infected, then healed crooked. The original design ({w:animal}, apparently) now clearly looks like your boss, naked, {w:activity}.",
+        "Work medical check-up. The doctor asks you to take off your shirt. He discovers your tattoo: {w:celeb}'s face with your own name misspelled underneath. He calls a nurse over so she can see it too.",
+        "Your mom just saw your tattoo for the first time, at the pool. In big letters it says: 'MOM = {w:insult}'. You don't remember choosing that.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Le transformer en œuvre d\'art', en: 'Turn it into art' }, out: [
+        { w: 2, text: { fr: ["J'ai fait transformer le tatouage en dragon. Le tatoueur a fait de son mieux. Le dragon a toujours une moustache, et une forme… suggestive. Au moins, maintenant, c'est un dragon suggestif.", "Le nouveau tatoueur a tout recouvert d'une rose géante. On voit encore {w:animal} qui dépasse, comme si la rose était en train de le manger. Les gens trouvent ça profond."], en: ["I had the tattoo turned into a dragon. The artist did his best. The dragon still has a moustache and a... suggestive shape. At least now it's a suggestive dragon.", "The new artist covered everything with a giant rose. You can still see {w:animal} sticking out, as if the rose is eating it. People find it deep."] }, fx: { happy: 6, money: -600, unflag: 'tr_tattoo' }, mood: 'happy' },
+        { w: 1, text: { fr: ["Le cover-up a raté. Il y a maintenant deux erreurs l'une sur l'autre. On dirait une scène de crime dessinée par un enfant. J'ai abandonné. Je porte des manches longues l'été.", "Le tatoueur du cover-up était le même que celui de la première fois. Il était bourré. Je suis reparti{|e} avec un deuxième dessin, encore pire, et un bon de réduction."], en: ["The cover-up failed. There are now two mistakes on top of each other. It looks like a crime scene drawn by a child. I gave up. I wear long sleeves in summer.", "The cover-up artist was the same guy as the first time. He was drunk. I left with a second design, even worse, and a discount coupon."] }, fx: { happy: -6, looks: -4, money: -600, unflag: 'tr_tattoo' }, mood: 'cry' },
+      ] },
+      { label: { fr: 'Assumer et l\'exhiber', en: 'Own it and flaunt it' }, text: { fr: ["Je l'ai assumé. J'en ai fait un tee-shirt, puis une marque. Les gens achètent des sweats avec mon tatouage ridicule. J'ai gagné plus qu'avec mon vrai travail. L'humanité est perdue.", "Je l'ai montré fièrement à tout le monde. Ma mère a fini par en rire. Mon patron moins. Mais j'ai lancé une mode : trois de mes collègues ont fait le même. Ensemble, on est un mouvement."], en: ["I owned it. I made it a T-shirt, then a brand. People buy hoodies with my ridiculous tattoo. I made more than at my real job. Humanity is lost.", "I proudly showed it to everyone. My mom eventually laughed. My boss less so. But I started a trend: three coworkers got the same one. Together, we're a movement."] }, fx: { happy: 10, money: 1500, fame: 2, unflag: 'tr_tattoo' }, mood: 'proud' },
+    ],
+  },
 ];

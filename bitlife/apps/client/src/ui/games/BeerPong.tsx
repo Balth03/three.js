@@ -123,7 +123,7 @@ export function BeerPong({ onDone }: GameProps) {
   const canvas = useCanvas((ctx, w, h, dt, t) => {
     const st = s.current; if (!st) return;
     try {
-      dims.current = { w, h, f: 2.4 * Math.min(h, w * 0.85) };
+      dims.current = { w, h, f: 2.75 * Math.min(h, w * 0.8) };
       step(st, dt, w, h);
       // offscreen scene → main with drunk sway / blur / double vision
       const main = ctx.canvas;
@@ -157,7 +157,7 @@ export function BeerPong({ onDone }: GameProps) {
     st.shake = Math.max(0, st.shake - dt * 3);
     st.oppT += dt;
     if (st.oppMood !== 'idle' && st.oppT > 1.8) st.oppMood = 'idle';
-    if (st.drag) st.drag.t += dt;
+    if (st.drag && aimFromDrag(st.drag).pow > 0.03) st.drag.t += dt;
     st.kb.t += dt;
     for (const c of st.cups) c.wobble *= Math.max(0, 1 - dt * 5);
     if (st.bubble) { st.bubble.t += dt; if (st.bubble.t > st.bubble.dur) st.bubble = null; }
@@ -354,8 +354,8 @@ export function BeerPong({ onDone }: GameProps) {
     // neon sign
     ctx.save(); const fl = Math.sin(t * 31) > 0.95 ? 0.35 : 1; ctx.globalAlpha = fl;
     glow(ctx, '#ff2d95', 26); ctx.fillStyle = '#ff8ad0'; ctx.font = `900 ${Math.round(h * 0.06)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center';
-    ctx.fillText('BEER PONG', w * 0.78, h * 0.12); glow(ctx, '#22d3ee', 18); ctx.fillStyle = '#a5f3fc'; ctx.font = `700 ${Math.round(h * 0.026)}px Fredoka Variable, sans-serif`;
-    ctx.fillText(tr('🍺 RÈGLE N°1 : ON NE VOMIT PAS SUR LA TABLE', '🍺 RULE #1: NO PUKING ON THE TABLE'), w * 0.78, h * 0.165); ctx.restore();
+    ctx.fillText('BEER PONG', w * 0.74, h * 0.12); glow(ctx, '#22d3ee', 18); ctx.fillStyle = '#a5f3fc'; ctx.font = `700 ${Math.round(h * 0.022)}px Fredoka Variable, sans-serif`;
+    ctx.fillText(tr('🍺 RÈGLE N°1 : ON NE VOMIT PAS SUR LA TABLE', '🍺 RULE #1: NO PUKING ON THE TABLE'), w * 0.74, h * 0.16, w * 0.4); ctx.restore();
     // string lights
     for (let row = 0; row < 2; row++) {
       ctx.strokeStyle = '#0c020f'; ctx.lineWidth = 2; ctx.beginPath();
@@ -468,12 +468,6 @@ export function BeerPong({ onDone }: GameProps) {
         ctx.save(); ctx.globalAlpha = Math.min(1, (age - PREVIEW_T - 0.25) * 3) * (1 - (age - PREVIEW_T) / 1.2); ctx.font = '800 14px Fredoka Variable, sans-serif'; ctx.textAlign = 'center'; ctx.fillStyle = '#fde68a';
         ctx.fillText(tr('…à l\'instinct maintenant 🍺', '…now go with your gut 🍺'), w / 2, h * 0.62); ctx.restore();
       }
-      // power gauge next to the hand
-      const gx = w / 2 + h * 0.16, gy = h * 0.93, gh = h * 0.26;
-      ctx.save(); ctx.fillStyle = 'rgba(0,0,0,.55)'; roundRect(ctx, gx - 8, gy - gh - 8, 26, gh + 16, 10); ctx.fill();
-      const pg = ctx.createLinearGradient(0, gy, 0, gy - gh); pg.addColorStop(0, '#a3e635'); pg.addColorStop(0.6, '#ffd166'); pg.addColorStop(1, '#ff2d95');
-      ctx.fillStyle = pg; glow(ctx, '#ffd166', 10); roundRect(ctx, gx - 2, gy - gh * aim.pow, 14, gh * aim.pow, 6); ctx.fill(); ctx.restore();
-      ctx.save(); ctx.font = '800 11px Fredoka Variable, sans-serif'; ctx.textAlign = 'center'; ctx.fillStyle = '#fff'; ctx.fillText(tr('FORCE', 'POWER'), gx + 5, gy + 22); ctx.restore();
     } else if (!st.drag) {
       // idle hint: pulsing swipe arrow
       const k = (t * 1.2) % 1;
@@ -517,7 +511,7 @@ export function BeerPong({ onDone }: GameProps) {
 
   function drawOpp(ctx: CanvasRenderingContext2D, st: BS, w: number, h: number, t: number) {
     const far = proj(0, 0, TABLE_L + 0.25);
-    const S = far.k / 520;
+    const S = Math.min(far.k / 640, (far.y - h * 0.02) / 470);
     const mood = st.oppMood, mt = st.oppT;
     const bob = Math.sin(t * 2.2) * 4 + (mood === 'laugh' ? Math.abs(Math.sin(t * 16)) * 8 : 0);
     ctx.save(); ctx.translate(w / 2 + Math.sin(t * 0.7) * 20, far.y + 10); ctx.scale(S, S);
@@ -560,6 +554,14 @@ export function BeerPong({ onDone }: GameProps) {
   }
 
   function drawUI(ctx: CanvasRenderingContext2D, st: BS, w: number, h: number, t: number) {
+    const aim = st.phase === 'aim' && g.phase === 'play' ? currentAim(st) : null;
+    if (aim && aim.pow > 0.02) {
+      const gx = w / 2 + h * 0.16, gy = h * 0.93, gh = h * 0.26;
+      ctx.save(); ctx.fillStyle = 'rgba(0,0,0,.55)'; roundRect(ctx, gx - 8, gy - gh - 8, 26, gh + 16, 10); ctx.fill();
+      const pg = ctx.createLinearGradient(0, gy, 0, gy - gh); pg.addColorStop(0, '#a3e635'); pg.addColorStop(0.6, '#ffd166'); pg.addColorStop(1, '#ff2d95');
+      ctx.fillStyle = pg; glow(ctx, '#ffd166', 10); roundRect(ctx, gx - 2, gy - gh * aim.pow, 14, gh * aim.pow, 6); ctx.fill(); ctx.restore();
+      ctx.save(); ctx.font = '800 11px Fredoka Variable, sans-serif'; ctx.textAlign = 'center'; ctx.fillStyle = '#fff'; ctx.fillText(tr('FORCE', 'POWER'), gx + 5, gy + 22); ctx.restore();
+    }
     // balls left
     ctx.save();
     ctx.fillStyle = 'rgba(0,0,0,.5)'; roundRect(ctx, 12, h - 46, 10 * 22 + 16, 34, 17); ctx.fill();
@@ -642,7 +644,7 @@ export function BeerPong({ onDone }: GameProps) {
       howTo={tr(`10 balles, 10 gobelets, et « ${s.current.opp[0]} » qui te chambre. Clique et glisse vers le haut pour viser et doser la force : la trajectoire ne s'affiche qu'une demi-seconde. Chaque raté te fait boire… et ta vue se brouille. 2 d'affilée = EN FEU 🔥, un rebond sur la table = 2 gobelets !`,
         `10 balls, 10 cups, and "${s.current.opp[1]}" trash-talking you. Click & drag up to aim and set power: the arc preview only shows for half a second. Every miss makes you drink… and your vision gets blurry. 2 in a row = ON FIRE 🔥, a table bounce = 2 cups!`)}
       keys={[tr('🖱️ glisser ↑ = viser', '🖱️ drag ↑ = aim'), tr('relâcher = lancer', 'release = throw'), tr('ou ← → ↑ ↓ + Espace', 'or ← → ↑ ↓ + Space')]}>
-      <canvas class="play" ref={canvas} style={{ touchAction: 'none', cursor: 'grab' }}
+      <canvas class="play" ref={canvas} style={{ touchAction: 'none', cursor: 'grab', pointerEvents: 'auto' }}
         onPointerDown={onDown as unknown as (e: Event) => void} onPointerMove={onMove as unknown as (e: Event) => void} onPointerUp={onUp} onPointerCancel={onUp} />
     </Arena>
   );

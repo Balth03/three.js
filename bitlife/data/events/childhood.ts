@@ -49,14 +49,8 @@ export const childhoodEvents: EventDef[] = [
     once: true,
     when: { age: [1, 4] },
     text: {
-      fr: [
-        "On m'a offert un jouet très cher. J'ai joué pendant trois semaines avec le carton.",
-        "J'ai reçu un garage en plastique avec ascenseur et sons réalistes. J'ai préféré le papier bulle.",
-      ],
-      en: [
-        "I got a very expensive toy. I played with the box for three weeks.",
-        "I got a plastic garage with a working lift and realistic sounds. I preferred the bubble wrap.",
-      ],
+      fr: ["On m'a offert un jouet très cher. J'ai joué pendant trois semaines avec le carton.", "J'ai reçu un garage en plastique avec ascenseur et sons réalistes. J'ai préféré le papier bulle.", "Mamie m'a offert un cadeau : {w:object}. J'ai joué deux heures avec le papier. Mamie a un peu pleuré.", "On m'a acheté un jouet qui chante {w:song}. Je l'ai mis dans le frigo. Il chante encore. Plus froidement.", "Mes parents ont dépensé une fortune en jouets d'éveil. J'ai préféré une cuillère en bois, une casserole et {w:object}."],
+      en: ["I got a very expensive toy. I played with the box for three weeks.", "I got a plastic garage with a working lift and realistic sounds. I preferred the bubble wrap.", "Grandma gave me a present: {w:object}. I played with the wrapping paper for two hours. Grandma cried a little.", "They bought me a toy that sings {w:song}. I put it in the fridge. It still sings. More coldly.", "My parents spent a fortune on educational toys. I preferred a wooden spoon, a saucepan and {w:object}."],
     },
     fx: { happy: 4 },
   },
@@ -756,19 +750,13 @@ export const childhoodEvents: EventDef[] = [
     when: { age: [3, 10] },
     scene: { place: 'home', mood: 'sick', prop: 'spots' },
     text: {
-      fr: [
-        "Tu te réveilles couvert{|e} de petits boutons rouges. Le médecin confirme : c'est la varicelle. Tu ressembles à une pizza.",
-        "Ça gratte. Ça gratte partout. Tu as attrapé la varicelle, comme la moitié de ta classe.",
-      ],
-      en: [
-        "You wake up covered in little red spots. The doctor confirms: it's chickenpox. You look like a pepperoni pizza.",
-        "It itches. It itches everywhere. You caught chickenpox, like half your class.",
-      ],
+      fr: ["Tu te réveilles couvert{|e} de petits boutons rouges. Le médecin confirme : c'est la varicelle. Tu ressembles à une pizza.", "Ça gratte. Ça gratte partout. Tu as attrapé la varicelle, comme la moitié de ta classe.", "Tes boutons de varicelle dessinent quelque chose sur ton ventre. Ton frère jure que c'est {w:animal}. Ta mère dit d'arrêter de les compter.", "Varicelle. Tu restes à la maison une semaine entière avec {w:show} en boucle et une crème qui dégage {w:smell}.", "Tu as la varicelle. Ta mamie dit qu'à son époque, on soignait ça avec {w:food}. Le médecin a dit que non."],
+      en: ["You wake up covered in little red spots. The doctor confirms: it's chickenpox. You look like a pepperoni pizza.", "It itches. It itches everywhere. You caught chickenpox, like half your class.", "Your chickenpox spots form a picture on your tummy. Your brother swears it's {w:animal}. Your mom says to stop counting them.", "Chickenpox. You're home for a whole week with {w:show} on loop and a cream that gives off {w:smell}.", "You have chickenpox. Grandma says in her day they cured it with {w:food}. The doctor said no."],
     },
     choices: [
-      { label: { fr: 'Gratter sans retenue', en: 'Scratch freely' }, text: { fr: "J'ai tout gratté. Il me reste une petite cicatrice sur le nez. Elle a du caractère.", en: "I scratched everything. I've got a little scar on my nose now. It has character." }, fx: { disease: 'chickenpox', looks: -3, happy: 2 } },
-      { label: { fr: 'Résister héroïquement', en: 'Resist heroically' }, text: { fr: "J'ai résisté à l'envie de me gratter pendant deux semaines. Je suis devenu{|e} une légende de la volonté.", en: "I resisted the urge to scratch for two whole weeks. I became a legend of willpower." }, fx: { disease: 'chickenpox', discipline: 5, happy: -2 }, mood: 'proud' },
-      { label: { fr: 'Aller quand même à la fête', en: 'Go to the party anyway' }, text: { fr: "Je suis allé{|e} à l'anniversaire d'un copain avec mes boutons. Toute la classe a eu la varicelle. On m'appelle Patient Zéro.", en: "I went to a friend's birthday party with my spots. The whole class caught chickenpox. They call me Patient Zero." }, fx: { disease: 'chickenpox', karma: -5, happy: 4 } },
+      { label: { fr: 'Gratter sans retenue', en: 'Scratch freely' }, text: { fr: ["J'ai tout gratté. Il me reste une petite cicatrice sur le nez. Elle a du caractère.", "J'ai gratté avec {w:object}. Résultat : des croûtes partout, et ma mère qui a caché tous les objets de la maison."], en: ["I scratched everything. I've got a little scar on my nose now. It has character.", "I scratched with {w:object}. Result: scabs everywhere, and my mom hid every object in the house."] }, fx: { disease: 'chickenpox', looks: -3, happy: 2 } },
+      { label: { fr: 'Résister héroïquement', en: 'Resist heroically' }, text: { fr: ["J'ai résisté à l'envie de me gratter pendant deux semaines. Je suis devenu{|e} une légende de la volonté.", "J'ai porté des chaussettes sur les mains pendant deux semaines. Je ressemblais à une marionnette. Zéro cicatrice."], en: ["I resisted the urge to scratch for two whole weeks. I became a legend of willpower.", "I wore socks on my hands for two weeks. I looked like a puppet. Zero scars."] }, fx: { disease: 'chickenpox', discipline: 5, happy: -2 }, mood: 'proud' },
+      { label: { fr: 'Aller quand même à la fête', en: 'Go to the party anyway' }, text: { fr: ["Je suis allé{|e} à l'anniversaire d'un copain avec mes boutons. Toute la classe a eu la varicelle. On m'appelle Patient Zéro.", "Je suis allé{|e} au goûter d'anniversaire couvert{|e} de boutons. J'ai dit que c'était du maquillage. Une semaine plus tard, l'école était vide."], en: ["I went to a friend's birthday party with my spots. The whole class caught chickenpox. They call me Patient Zero.", "I went to the birthday party covered in spots. I said it was face paint. A week later, the school was empty."] }, fx: { disease: 'chickenpox', karma: -5, happy: 4 } },
     ],
   },
 
