@@ -579,13 +579,13 @@ export const friends2Events: EventDef[] = [
     cooldown: 15,
     text: {
       fr: [
-        "{a.first} a posté une vidéo où {a:il|elle} imite {w:animal}. Douze millions de vues en une nuit. Ce matin, {a:il|elle} est au JT. Tu as son numéro. Pour l'instant.",
+        "{a.first} a posté une vidéo où {a:il|elle} imite {w:animal}. [[Douze|Trente|Quatre-vingts]] millions de vues en une nuit. Ce matin, {a:il|elle} est au JT. Tu as son numéro. Pour l'instant.",
         "{w:exclaim} {a.first} vient de signer avec une grosse maison de disques après avoir chanté {w:song} {w:at_place}. Tout le monde veut être son ami. Toi, tu l'étais avant.",
         "{a.first} est devenu{a:|e} la grande révélation de l'émission {w:show}. Ta mère te demande des autographes. Le groupe WhatsApp est en feu.",
         "Ton pote {a.first} a gagné un concours national (catégorie : {w:hobby}), puis un contrat publicitaire avec {w:brand}. Sa tête est sur les bus. Toi, tu prends le bus.",
       ],
       en: [
-        "{a.first} posted a video imitating {w:animal}. Twelve million views overnight. This morning {a:he|she} is on the news. You have {a:his|her} number. For now.",
+        "{a.first} posted a video imitating {w:animal}. [[Twelve|Thirty|Eighty]] million views overnight. This morning {a:he|she} is on the news. You have {a:his|her} number. For now.",
         "{w:exclaim} {a.first} just signed with a major label after singing {w:song} {w:at_place}. Everyone wants to be {a:his|her} friend. You were before.",
         "{a.first} became the breakout star of {w:show}. Your mom wants autographs. The group chat is on fire.",
         "Your buddy {a.first} won a national contest ({w:hobby} category), then an ad deal with {w:brand}. {a:His|Her} face is on buses. You ride the bus.",
@@ -615,14 +615,14 @@ export const friends2Events: EventDef[] = [
       fr: [
         "Deux ans de célébrité plus tard, {a.first} ne répond plus à tes messages. Son assistant{a:|e} t'a envoyé un mail : « {a.first} vous remercie pour votre soutien. »",
         "Tu as vu {a.first} à la télé dire que « ses vrais amis, ce sont ses fans ». Tu as été son témoin de mariage, son garant, son alibi. Tu n'es plus rien.",
-        "{a.first} sort une autobiographie. Tu apparais page 112 sous le nom de « un pote un peu lourd de l'époque ». C'est tout. Une ligne.",
-        "Soirée de lancement de la marque de {a.first}. Tu n'es pas sur la liste. Le videur te demande d'épeler ton nom. Deux fois.",
+        "{a.first} sort une autobiographie, en vente {w:at_place}. Tu apparais page 112 sous le nom de « un pote un peu lourd de l'époque ». C'est tout. Une ligne.",
+        "Soirée de lancement de la marque de {a.first}, sponsorisée par {w:brand}. Tu n'es pas sur la liste. Le videur te demande d'épeler ton nom. Deux fois.",
       ],
       en: [
         "Two years of fame later, {a.first} doesn't answer your texts. {a:His|Her} assistant emailed you: '{a.first} thanks you for your support.'",
         "You saw {a.first} on TV saying 'my real friends are my fans'. You were {a:his|her} wedding witness, guarantor and alibi. You're nothing now.",
-        "{a.first} is publishing a memoir. You appear on page 112 as 'a slightly annoying buddy from back then'. That's it. One line.",
-        "Launch party for {a.first}'s brand. You're not on the list. The bouncer asks you to spell your name. Twice.",
+        "{a.first} is publishing a memoir, on sale {w:at_place}. You appear on page 112 as 'a slightly annoying buddy from back then'. That's it. One line.",
+        "Launch party for {a.first}'s brand, sponsored by {w:brand}. You're not on the list. The bouncer asks you to spell your name. Twice.",
       ],
     },
     choices: [
@@ -976,13 +976,13 @@ export const friends2Events: EventDef[] = [
     cooldown: 8,
     text: {
       fr: [
-        "{a.first} s'est fait larguer et dort sur ton canapé « deux ou trois jours ». Ça fait quatre mois. {a:Il|Elle} a reçu du courrier à ton adresse. Et {w:animal}, livré ce matin.",
+        "{a.first} s'est fait larguer et dort sur ton canapé « deux ou trois jours ». Ça fait [[quatre|cinq|sept]] mois. {a:Il|Elle} a reçu du courrier à ton adresse. Et {w:animal}, livré ce matin.",
         "Le séjour « temporaire » de {a.first} sur ton canapé entre dans sa deuxième saison. {a:Il|Elle} a changé ton mot de passe Wi-Fi et appelle ton frigo « mon frigo ».",
         "{a.first} squatte chez toi depuis son divorce. Ce matin, tu l'as trouvé{a:|e} en caleçon dans ton lit, avec ton peignoir, en train de manger {w:food}.",
         "Ça fait des semaines que {a.first} vit sur ton canapé. Aujourd'hui, {a:il|elle} a ramené quelqu'un rencontré{a:|e} {w:at_place}. Tu as entendu. Tout entendu.",
       ],
       en: [
-        "{a.first} got dumped and is crashing on your couch 'two or three days'. It's been four months. {a:He|She} gets mail at your address. And {w:animal}, delivered this morning.",
+        "{a.first} got dumped and is crashing on your couch 'two or three days'. It's been [[four|five|seven]] months. {a:He|She} gets mail at your address. And {w:animal}, delivered this morning.",
         "{a.first}'s 'temporary' stay on your couch is entering season two. {a:He|She} changed your Wi-Fi password and calls your fridge 'my fridge'.",
         "{a.first} has been crashing at your place since the divorce. This morning you found {a:him|her} in your bed, in your bathrobe, eating {w:food}.",
         "{a.first} has lived on your couch for weeks. Today, {a:he|she} brought home someone met {w:at_place}. You heard. You heard everything.",
@@ -1085,13 +1085,13 @@ export const friends2Events: EventDef[] = [
     text: {
       fr: [
         "{a.first} déménage. Sixième étage sans ascenseur. Paiement prévu : une pizza pour huit. Dans les cartons : {w:object}, un piano droit et, pour une raison inconnue, {w:food}.",
-        "« Ce sera rapide, j'ai pas grand-chose », jurait {a.first}. Tu arrives : 74 cartons, un frigo américain et {w:animal} qui refuse de bouger.",
+        "« Ce sera rapide, j'ai pas grand-chose », jurait {a.first}. Tu arrives : [[74|112|203]] cartons, un frigo américain et {w:animal} qui refuse de bouger.",
         "Déménagement de {a.first} {w:weather}. Le camion loué n'a plus de freins. Le canapé ne passe pas la porte. Ton dos craque déjà.",
         "{a.first} t'a promis « juste quelques cartons ». En réalité, {a:il|elle} n'a rien emballé. Tout est en vrac, et le camion repart dans deux heures.",
       ],
       en: [
         "{a.first} is moving. Sixth floor, no elevator. Payment: one pizza for eight people. In the boxes: {w:object}, an upright piano and, for unknown reasons, {w:food}.",
-        "'It'll be quick, I don't have much stuff,' swore {a.first}. You arrive: 74 boxes, a giant fridge and {w:animal} that refuses to move.",
+        "'It'll be quick, I don't have much stuff,' swore {a.first}. You arrive: [[74|112|203]] boxes, a giant fridge and {w:animal} that refuses to move.",
         "{a.first}'s moving day {w:weather}. The rental truck has no brakes. The couch won't fit through the door. Your back is already cracking.",
         "{a.first} promised 'just a few boxes'. In reality, nothing is packed. It's all loose, and the truck leaves in two hours.",
       ],
@@ -1120,13 +1120,13 @@ export const friends2Events: EventDef[] = [
     cooldown: 6,
     text: {
       fr: [
-        "{a.first} lance son podcast : trois heures par épisode sur {w:hobby}. Tu es son seul auditeur. {a:Il|Elle} le sait, parce que les statistiques affichent « 1 ».",
+        "{a.first} lance son podcast : [[trois|quatre|cinq]] heures par épisode sur {w:hobby}. Tu es son seul auditeur. {a:Il|Elle} le sait, parce que les statistiques affichent « 1 ».",
         "{a.first} t'invite dans son podcast pour parler de « l'amitié ». Le micro est un vieux casque de jeu vidéo. Le studio, c'est sa baignoire.",
         "Nouvel épisode du podcast de {a.first}, intitulé « Pourquoi mes amis me déçoivent ». Tu l'écoutes. Le chapitre 3 parle de toi. Nommément.",
         "{a.first} veut que vous lanciez un podcast ensemble sur {w:show}. Nom proposé : « [[Les Bavards|Deux Cerveaux, Zéro Neurone|Micro Ouvert]] ». Tu as déjà mal à la tête.",
       ],
       en: [
-        "{a.first} launched a podcast: three hours per episode about {w:hobby}. You're the only listener. {a:He|She} knows, because the stats say '1'.",
+        "{a.first} launched a podcast: [[three|four|five]] hours per episode about {w:hobby}. You're the only listener. {a:He|She} knows, because the stats say '1'.",
         "{a.first} invites you onto the podcast to talk about 'friendship'. The mic is an old gaming headset. The studio is {a:his|her} bathtub.",
         "New episode of {a.first}'s podcast, titled 'Why My Friends Disappoint Me'. You listen. Chapter 3 is about you. By name.",
         "{a.first} wants to launch a podcast with you about {w:show}. Proposed name: '[[The Chatterboxes|Two Brains, Zero Neurons|Open Mic]]'. Your head already hurts.",
@@ -1340,13 +1340,13 @@ export const friends2Events: EventDef[] = [
       fr: [
         "Tu viens d'apprendre que {a.first}, ton ex, a raconté à tout le monde que tu faisais l'amour comme {w:animal}. L'heure de la vengeance a sonné.",
         "{a.first} t'a trompé{|e}, quitté{|e}, puis a gardé le chat. Ce soir, avec {w:drink} dans le sang et une boîte de crevettes dans le frigo, tu as un plan.",
-        "Ton ex {a.first} a publié une vidéo où {a:il|elle} imite ta façon de pleurer. Huit mille vues. {w:swear} Il est temps de lui rendre la monnaie.",
+        "Ton ex {a.first} a publié une vidéo où {a:il|elle} imite ta façon de pleurer. [[Huit|Douze|Quarante]] mille vues. {w:swear} Il est temps de lui rendre la monnaie.",
         "Tu as encore les clés de chez {a.first}. Tu le sais. {a:Il|Elle} ne le sait pas. Et {a:il|elle} vient de te lancer « {w:insult} » devant tes amis.",
       ],
       en: [
         "You just found out {a.first}, your ex, told everyone you make love like {w:animal}. Revenge o'clock has struck.",
         "{a.first} cheated on you, dumped you, then kept the cat. Tonight, with {w:drink} in your system and a box of shrimp in the fridge, you have a plan.",
-        "Your ex {a.first} posted a video imitating the way you cry. Eight thousand views. {w:swear} Time for payback.",
+        "Your ex {a.first} posted a video imitating the way you cry. [[Eight|Twelve|Forty]] thousand views. {w:swear} Time for payback.",
         "You still have the keys to {a.first}'s place. You know it. {a:He|She} doesn't. And {a:he|she} just called you '{w:insult}' in front of your friends.",
       ],
     },
@@ -1373,13 +1373,13 @@ export const friends2Events: EventDef[] = [
     scene: { place: 'apartment', mood: 'shock', prop: 'phone', fx: 'poop' },
     text: {
       fr: [
-        "Trois semaines plus tard. {a.first} a fait venir deux dératiseurs, un exorciste et un plombier. Personne ne trouve l'origine du problème. {a:Il|Elle} t'appelle, soupçonneux{a:|se}.",
+        "[[Trois|Quatre|Six]] semaines plus tard. {a.first} a fait venir deux dératiseurs, un exorciste et un plombier. Personne ne trouve l'origine du problème. {a:Il|Elle} t'appelle, soupçonneux{a:|se}.",
         "La vengeance a frappé. {a.first} poste en story : « Quelqu'un m'en veut. » Commentaires : 47. Ton téléphone vibre : c'est {a:lui|elle}.",
         "Ton plan a marché au-delà de tes espérances. {a.first} a dû déménager, changer de numéro et de coupe de cheveux. Mais une caméra de surveillance t'a peut-être filmé{|e}.",
         "{w:exclaim} {a.first} débarque chez toi, rouge de colère, des paillettes jusque dans les sourcils et une odeur de poisson sur les vêtements. « C'était toi. Hein ? »",
       ],
       en: [
-        "Three weeks later. {a.first} has called in two exterminators, an exorcist and a plumber. Nobody can find the source of the problem. {a:He|She} calls you, suspicious.",
+        "[[Three|Four|Six]] weeks later. {a.first} has called in two exterminators, an exorcist and a plumber. Nobody can find the source of the problem. {a:He|She} calls you, suspicious.",
         "Revenge struck. {a.first} posts a story: 'Someone has it out for me.' 47 comments. Your phone buzzes: it's {a:him|her}.",
         "Your plan worked beyond your wildest dreams. {a.first} had to move, change numbers and haircuts. But a security camera may have filmed you.",
         "{w:exclaim} {a.first} storms into your place, red with rage, glitter up to the eyebrows and smelling of fish. 'It was you. Wasn't it?'",
@@ -2136,14 +2136,14 @@ export const friends2Events: EventDef[] = [
       fr: [
         "{a.first}, {a.rel}, te frôle un peu trop souvent près de la photocopieuse. Ce matin, {a:il|elle} t'a glissé un post-it : « Réserve de fournitures, 18 h. Ferme la porte. »",
         "Depuis le séminaire, {a.first} t'envoie des messages de plus en plus chauds sur la messagerie interne. Le dernier contient un émoji pêche et le mot « tableau blanc ».",
-        "Soirée tardive au bureau. Il ne reste que toi et {a.first}. {a:Il|Elle} desserre {a:sa cravate|son chemisier} et murmure : « Personne ne regarde les caméras après 20 h. »",
-        "{a.first} t'a fait du pied pendant toute la réunion budgétaire. Sous la table. Devant le directeur financier. {a:Il|Elle} n'a même pas cligné des yeux.",
+        "Soirée tardive au bureau, [[20 h|21 h|23 h]] passées. Il ne reste que toi et {a.first}. {a:Il|Elle} desserre {a:sa cravate|son chemisier} et murmure : « Personne ne regarde les caméras après 20 h. »",
+        "{a.first} t'a fait du pied pendant toute la réunion budgétaire. Sous la table. Devant le directeur financier, qui mangeait {w:food}. {a:Il|Elle} n'a même pas cligné des yeux.",
       ],
       en: [
         "{a.first}, {a.rel}, brushes against you a little too often by the copier. This morning {a:he|she} slipped you a sticky note: 'Supply closet, 6 p.m. Close the door.'",
         "Since the seminar, {a.first} has been sending you increasingly steamy messages on the company chat. The latest contains a peach emoji and the word 'whiteboard'.",
-        "Late night at the office. Only you and {a.first} remain. {a:He|She} loosens {a:his tie|her blouse} and whispers: 'Nobody checks the cameras after 8 p.m.'",
-        "{a.first} played footsie with you through the entire budget meeting. Under the table. In front of the CFO. Without blinking.",
+        "Late night at the office, past [[8|9|11]] p.m. Only you and {a.first} remain. {a:He|She} loosens {a:his tie|her blouse} and whispers: 'Nobody checks the cameras after 8 p.m.'",
+        "{a.first} played footsie with you through the entire budget meeting. Under the table. In front of the CFO, who was eating {w:food}. Without blinking.",
       ],
     },
     choices: [
@@ -2280,13 +2280,13 @@ export const friends2Events: EventDef[] = [
     text: {
       fr: [
         "Tu reviens au bureau chercher ton chargeur à 21 h. Dans la salle de réunion vitrée, {a.first}, {a.rel}, est en pleine galoche avec un stagiaire. Les stores sont ouverts. {a.first} est marié{a:|e}.",
-        "Dans le parking souterrain, tu surprends {a.first} et quelqu'un de la compta dans une voiture dont les vitres sont très, très embuées. La voiture tangue.",
+        "Dans le parking souterrain, tu surprends {a.first} et quelqu'un de la compta dans {w:vehicle} dont les vitres sont très, très embuées. Le véhicule tangue.",
         "{a.first} sort du local de ménage en rajustant sa chemise, suivi{a:|e} trente secondes plus tard de la nouvelle recrue, décoiffée. Vous vous regardez. {a.first} comprend que tu as compris.",
         "Message envoyé par erreur sur le groupe de l'équipe par {a.first} : « Ce soir, même endroit, ne dis rien à mon conjoint 😘 ». Supprimé en dix secondes. Tu as eu le temps de lire.",
       ],
       en: [
         "You come back to the office for your charger at 9 p.m. In the glass meeting room, {a.first}, {a.rel}, is making out with an intern. The blinds are open. {a.first} is married.",
-        "In the underground parking lot, you catch {a.first} and someone from accounting in a car with very, very fogged-up windows. The car is rocking.",
+        "In the underground parking lot, you catch {a.first} and someone from accounting in {w:vehicle} with very, very fogged-up windows. It's rocking.",
         "{a.first} comes out of the janitor's closet straightening {a:his|her} shirt, followed thirty seconds later by the new hire, hair a mess. You look at each other. {a.first} knows you know.",
         "Message sent by mistake to the team chat by {a.first}: 'Tonight, same place, don't tell my spouse 😘'. Deleted within ten seconds. You had time to read it.",
       ],
@@ -2859,13 +2859,13 @@ export const friends2Events: EventDef[] = [
       fr: [
         "Brunch avec {a.first}, {a.my}. On a commandé {w:food} pour deux et refait le monde jusqu'à 16 h. Le serveur a fini par nous apporter l'addition sans qu'on la demande.",
         "Balade {w:weather} avec {a.first}. On a parlé de tout et de rien, surtout de rien. C'était parfait.",
-        "{a.first} m'a appelé{|e} juste pour me raconter qu'{a:il|elle} avait vu {w:animal} {w:at_place}. Quarante minutes. Je n'ai pas raccroché une seule fois.",
+        "{a.first} m'a appelé{|e} juste pour me raconter qu'{a:il|elle} avait vu {w:animal} {w:at_place}. [[Quarante|Cinquante|Quatre-vingt-dix]] minutes. Je n'ai pas raccroché une seule fois.",
         "Soirée canapé chez {a.first} devant {w:show}. On a commenté chaque scène comme deux vieux critiques aigris. Meilleure soirée du mois.",
       ],
       en: [
         "Brunch with {a.first}, {a.my}. We ordered {w:food} for two and fixed the world until 4 p.m. The waiter eventually brought the check without being asked.",
         "A walk {w:weather} with {a.first}. We talked about everything and nothing, mostly nothing. It was perfect.",
-        "{a.first} called just to tell me {a:he|she} saw {w:animal} {w:at_place}. Forty minutes. I didn't hang up once.",
+        "{a.first} called just to tell me {a:he|she} saw {w:animal} {w:at_place}. [[Forty|Fifty|Ninety]] minutes. I didn't hang up once.",
         "Couch night at {a.first}'s watching {w:show}. We commented on every scene like two bitter old critics. Best night of the month.",
       ],
     },
@@ -2987,14 +2987,14 @@ export const friends2Events: EventDef[] = [
     cooldown: 2,
     text: {
       fr: [
-        "Le groupe WhatsApp des potes a atteint 847 messages pendant ma douche. Le sujet : {a.first} et {w:object}. J'ai tout lu. Je n'ai rien compris.",
-        "{a.first} a renommé notre groupe de potes « {w:nickname} et les nazes ». Personne n'ose le changer. Ça fait huit mois.",
+        "Le groupe WhatsApp des potes a atteint [[847|1 203|2 418]] messages pendant ma douche. Le sujet : {a.first} et {w:object}. J'ai tout lu. Je n'ai rien compris.",
+        "{a.first} a renommé notre groupe de potes « {w:nickname} et les nazes ». Personne n'ose le changer. Ça fait [[huit|onze|dix-huit]] mois.",
         "{a.first} a posté un vocal de onze minutes dans le groupe à 2 h du matin. J'ai accéléré en x2. Ça restait cinq minutes et demie de sanglots, puis {w:sound}.",
         "Sondage lancé par {a.first} dans le groupe : « Qui est le plus nul de la bande ? » J'ai gagné, avec six voix sur sept. La septième, c'était la mienne.",
       ],
       en: [
-        "The friends' group chat hit 847 messages while I was in the shower. Topic: {a.first} and {w:object}. I read everything. I understood nothing.",
-        "{a.first} renamed our friend group '{w:nickname} & the Losers'. Nobody dares change it. It's been eight months.",
+        "The friends' group chat hit [[847|1,203|2,418]] messages while I was in the shower. Topic: {a.first} and {w:object}. I read everything. I understood nothing.",
+        "{a.first} renamed our friend group '{w:nickname} & the Losers'. Nobody dares change it. It's been [[eight|eleven|eighteen]] months.",
         "{a.first} posted an eleven-minute voice memo in the group at 2 a.m. I played it at 2x. Still five and a half minutes of sobbing, then {w:sound}.",
         "Poll launched by {a.first} in the group: 'Who's the biggest loser in the gang?' I won, six votes out of seven. The seventh was mine.",
       ],

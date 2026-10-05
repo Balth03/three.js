@@ -14,14 +14,8 @@ export const teenEvents: EventDef[] = [
     weight: 8,
     when: { age: [12, 16] },
     text: {
-      fr: [
-        "Un bouton gros comme un volcan est apparu sur mon nez la veille de la photo de classe. Il a eu sa propre place sur la photo.",
-        "Mon visage a été colonisé par l'acné. J'ai acheté quatre crèmes différentes. Les boutons les ont trouvées délicieuses.",
-      ],
-      en: [
-        "A pimple the size of a volcano erupted on my nose the day before class photos. It got its own spot in the picture.",
-        "Acne has colonized my face. I bought four different creams. The pimples found them delicious.",
-      ],
+      fr: ["Un bouton gros comme un volcan est apparu sur mon nez la veille de la photo de classe. Il a eu sa propre place sur la photo.", "Mon visage a été colonisé par l'acné. J'ai acheté quatre crèmes différentes. Les boutons les ont trouvées délicieuses.", "J'ai un bouton sur {w:bodypart} tellement gros qu'il a sa propre météo. Ma petite sœur l'a baptisé {w:nickname}.", "J'ai suivi un tuto beauté : masque dentifrice-miel. Mon visage dégage maintenant {w:smell}. Les boutons, eux, se portent très bien.", "Un bouton a éclaté pendant que je parlais à mon crush. J'ai poussé {w:sound} et je suis parti{|e} en courant. Ça fait trois jours que je ne sors plus."],
+      en: ["A pimple the size of a volcano erupted on my nose the day before class photos. It got its own spot in the picture.", "Acne has colonized my face. I bought four different creams. The pimples found them delicious.", "I have a pimple on my {w:bodypart} so big it has its own weather. My little sister named it {w:nickname}.", "I followed a beauty tutorial: toothpaste-and-honey mask. My face now gives off {w:smell}. The pimples are doing great.", "A pimple popped while I was talking to my crush. I let out {w:sound} and ran away. I haven't left the house in three days."],
     },
     fx: { disease: 'acne', happy: -3 },
   },

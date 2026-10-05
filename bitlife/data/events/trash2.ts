@@ -928,7 +928,7 @@ export const trash2Events: EventDef[] = [
           { w: 1, text: { fr: ["Miracle : rien. Mon estomac est une forteresse. Le beau-père, lui, a passé la nuit aux urgences. Il a juré que c'était à cause du vin. On sait tous que non.", "J'ai tout mangé et je n'ai rien eu. J'ai trouvé une perle dans la dernière. Elle était fausse, mais j'étais vivant{|e}, alors j'ai pleuré de joie."], en: ["Miracle: nothing. My stomach is a fortress. My father-in-law spent the night in the ER. He swore it was the wine. We all know it wasn't.", "I ate them all and nothing happened. I found a pearl in the last one. It was fake, but I was alive, so I cried with joy."] }, fx: { happy: 8, health: 2 }, mood: 'happy' },
         ],
       },
-      { label: { fr: 'En faire manger à mon ennemi', en: 'Feed them to a rival' }, text: { fr: ["J'ai offert le plateau à mon voisin insupportable, « en cadeau de réconciliation ». Il a passé quatre jours collé aux toilettes. On l'entendait à travers le mur. C'était comme une symphonie.", "J'ai emballé les huîtres et je les ai déposées chez ce {w:insult} de collègue qui vole mes yaourts. Il ne vole plus rien. Il ne sort plus de chez lui."], en: ["I gave the platter to my unbearable neighbour 'as a peace offering'. He spent four days glued to his toilet. We heard him through the wall. It was like a symphony.", "I wrapped the oysters and dropped them at the place of that {w:insult} coworker who steals my yogurts. He doesn't steal anymore. He doesn't leave his home anymore."] }, fx: { karma: -6, happy: 10 }, mood: 'happy' },
+      { label: { fr: 'En faire manger à mon ennemi', en: 'Feed them to a rival' }, text: { fr: ["J'ai offert le plateau à mon voisin insupportable, « en cadeau de réconciliation ». Il a passé quatre jours collé aux toilettes. On l'entendait à travers le mur. C'était comme une symphonie.", "J'ai emballé les huîtres et je les ai déposées chez ce collègue (« {w:insult} », je le pense très fort) qui vole mes yaourts. Il ne vole plus rien. Il ne sort plus de chez lui."], en: ["I gave the platter to my unbearable neighbour 'as a peace offering'. He spent four days glued to his toilet. We heard him through the wall. It was like a symphony.", "I wrapped the oysters and dropped them at the place of that coworker ('{w:insult}', I say it with love) who steals my yogurts. He doesn't steal anymore. He doesn't leave his home anymore."] }, fx: { karma: -6, happy: 10 }, mood: 'happy' },
       { label: { fr: 'Nourrir la mouette', en: 'Feed the seagull' }, text: { fr: ["J'ai donné une huître à la mouette. Elle l'a avalée, a fait trois pas, a vomi, et s'est envolée en zigzag. Elle a lâché un missile blanc sur la cabane en partant. Justice.", "La mouette a mangé l'huître et a eu une diarrhée aérienne sur un cabriolet décapoté. Le conducteur a hurlé {w:swear} Moi, je mangeais une gaufre, en paix."], en: ["I gave the seagull an oyster. It swallowed it, took three steps, threw up, and flew off zigzagging. It dropped a white missile on the shack as it left. Justice.", "The seagull ate the oyster and had airborne diarrhoea all over a convertible. The driver screamed {w:swear} I ate a waffle, in peace."] }, fx: { happy: 6 } },
     ],
   },
@@ -3107,5 +3107,91 @@ export const trash2Events: EventDef[] = [
       ] },
       { label: { fr: 'Laisser le chef montrer', en: 'Let the chef demo' }, text: { fr: ["J'ai laissé le chef faire sa démonstration de colère. Au troisième coup, il s'est tranché le bout du pouce. Le pouce a volé dans la casserole, dans {w:food} qui mijotait. Il l'a repêché, l'a regardé, et a continué la recette avec. Un vrai pro.", "Le chef a pris le couteau en hurlant. Il a coupé l'oignon, la planche, et son tablier en deux. Il s'est arrêté, a regardé son tablier par terre, puis nous. On a tous applaudi. Il a pleuré de gratitude."], en: ["I let the chef do his angry demo. On the third chop he sliced off the tip of his thumb. The thumb flew into the pot, right into {w:food}, simmering away. He fished it out, looked at it, and continued the recipe with it. A true pro.", "The chef grabbed the knife, screaming. He cut the onion, the board and his apron in half. He stopped, looked at his apron on the floor, then at us. We all applauded. He cried with gratitude."] }, fx: { happy: 10, karma: -1, visual: 'gore' }, mood: 'happy' },
     ],
+  },
+
+  // ═════════════════════════════ LIGNES DE JOURNAL (auto) ═════════════════════════════
+
+  // ── Journal : gross-out du quotidien ──
+  {
+    id: 'tr_auto_gross',
+    icon: '🤢',
+    cat: 'trash',
+    rating: 2,
+    auto: true,
+    scene: { place: 'home', mood: 'sick', fx: 'poop' },
+    when: { age: [18, 90], chance: 0.4 },
+    weight: 5,
+    cooldown: 3,
+    text: {
+      fr: [
+        "J'ai trouvé {w:gross} dans mon café {w:at_place}. Je l'ai bu quand même. Je n'ai plus de limites, seulement une gastro.",
+        "Un pigeon m'a chié dans la bouche pendant que je bâillais {w:weather}. J'ai craché, puis vomi {w:food} sur mes chaussures. Belle journée.",
+        "En éternuant {w:time}, j'ai expulsé une crotte de nez si énorme qu'elle a fait {w:sound} en touchant le sol. Un enfant a applaudi.",
+        "Mon ventre a lâché {w:at_place}. Je suis rentré{|e} en marchant comme un pingouin, avec une odeur qui faisait fuir {w:animal}.",
+      ],
+      en: [
+        "I found {w:gross} in my coffee {w:at_place}. I drank it anyway. I have no limits left, only a stomach bug.",
+        "A pigeon pooped in my mouth while I was yawning {w:weather}. I spat, then threw up {w:food} on my shoes. Lovely day.",
+        "Sneezing {w:time}, I expelled a booger so huge it made {w:sound} when it hit the floor. A kid applauded.",
+        "My stomach gave out {w:at_place}. I walked home like a penguin, with a smell that made {w:animal} run away.",
+      ],
+    },
+    fx: { happy: -3, health: -2, visual: 'poop' },
+  },
+
+  // ── Journal : karma des riches et des puissants ──
+  {
+    id: 'tr_auto_karma',
+    icon: '⚖️',
+    cat: 'trash',
+    rating: 2,
+    auto: true,
+    scene: { place: 'park', mood: 'happy' },
+    when: { age: [18, 90], chance: 0.4 },
+    weight: 5,
+    cooldown: 3,
+    text: {
+      fr: [
+        "J'ai vu un milliardaire glisser sur {w:food} en sortant de sa Rolls et s'étaler dans une flaque d'égout. Une mouette lui a volé sa perruque. Ma journée est faite.",
+        "Un policier qui verbalisait des SDF s'est fait pisser dessus par {w:animal}. J'ai applaudi. Il n'a rien pu faire, l'animal n'avait pas de papiers.",
+        "Le patron qui m'avait viré{|e} il y a des années a fait faillite {w:time}. J'ai fêté ça avec {w:drink} et un grand sourire.",
+        "Un influenceur qui filmait son petit-déjeuner à 300 € s'est fait attaquer par {w:animal} {w:at_place}. Il a perdu son téléphone, sa dignité et un sourcil.",
+      ],
+      en: [
+        "I watched a billionaire slip on {w:food} getting out of his Rolls and sprawl into a sewer puddle. A seagull stole his toupee. My day is made.",
+        "A cop fining homeless people got peed on by {w:animal}. I applauded. He couldn't do anything, the animal had no ID.",
+        "The boss who fired me years ago went bankrupt {w:time}. I celebrated with {w:drink} and a big grin.",
+        "An influencer filming his $300 breakfast got attacked by {w:animal} {w:at_place}. He lost his phone, his dignity and an eyebrow.",
+      ],
+    },
+    fx: { happy: 5, karma: 1 },
+  },
+
+  // ── Journal : petits accidents gore ──
+  {
+    id: 'tr_auto_ouch',
+    icon: '🩸',
+    cat: 'trash',
+    rating: 2,
+    auto: true,
+    scene: { place: 'home', mood: 'shock', fx: 'gore' },
+    when: { age: [18, 90], chance: 0.35 },
+    weight: 5,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Je me suis coincé {w:bodypart} dans une porte de métro. Le sang a giclé sur un banquier, qui a cru que c'était du vin. Il l'a léché.",
+        "J'ai marché pieds nus sur un Lego {w:time}. Mon hurlement a déclenché {w:sound} chez les voisins. Le Lego est toujours planté dans mon talon.",
+        "Je me suis tranché le bout du doigt en coupant {w:food}. J'ai mangé le plat quand même. Avec le bout du doigt. Il était bien cuit.",
+        "{w:animal} m'a mordu {w:bodypart} {w:at_place}. Ça a giclé comme un ketchup trop secoué. Les gens ont filmé au lieu d'appeler les secours.",
+      ],
+      en: [
+        "I got my {w:bodypart} stuck in a subway door. Blood squirted onto a banker, who thought it was wine. He licked it.",
+        "I stepped barefoot on a Lego {w:time}. My scream set off {w:sound} at the neighbours'. The Lego is still lodged in my heel.",
+        "I sliced off a fingertip while cutting {w:food}. I ate the dish anyway. With the fingertip. It was well done.",
+        "{w:animal} bit my {w:bodypart} {w:at_place}. It squirted like an over-shaken ketchup bottle. People filmed instead of calling for help.",
+      ],
+    },
+    fx: { health: -4, happy: -2, visual: 'gore' },
   },
 ];

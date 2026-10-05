@@ -332,8 +332,8 @@ export const weirdEvents: EventDef[] = [
     weight: 4,
     once: true,
     text: {
-      fr: ["Le fantôme qui vit sous mon lit m'a demandé de laisser la veilleuse allumée. Il a peur du noir.", "J'ai enfin vu le monstre de mon placard. C'est un petit fantôme timide qui collectionne mes dessins. Il dit qu'ils sont très bons."],
-      en: ["The ghost living under my bed asked me to leave the nightlight on. He's afraid of the dark.", "I finally saw the monster in my closet. It's a shy little ghost who collects my drawings. He says they're very good."],
+      fr: ["Le fantôme qui vit sous mon lit m'a demandé de laisser la veilleuse allumée. Il a peur du noir.", "J'ai enfin vu le monstre de mon placard. C'est un petit fantôme timide qui collectionne mes dessins. Il dit qu'ils sont très bons.", "Le fantôme de ma chambre m'a demandé de lui lire une histoire. Il a choisi celle avec {w:animal}. Il a pleuré à la fin.", "Le fantôme de mon placard a un super-pouvoir : {w:superpower}. Il me l'a montré. C'était décevant, mais j'ai applaudi quand même.", "Le petit fantôme de ma chambre a fait {w:sound} pour effrayer mon grand frère. Mon frère a hurlé. On a tapé dans nos mains. Enfin, j'ai essayé."],
+      en: ["The ghost living under my bed asked me to leave the nightlight on. He's afraid of the dark.", "I finally saw the monster in my closet. It's a shy little ghost who collects my drawings. He says they're very good.", "The ghost in my room asked me to read him a story. He picked the one with {w:animal}. He cried at the end.", "The ghost in my closet has a superpower: {w:superpower}. He showed me. It was disappointing, but I clapped anyway.", "The little ghost in my room made {w:sound} to scare my big brother. My brother screamed. We high-fived. Well, I tried."],
     },
     fx: { happy: 3 },
   },
@@ -724,8 +724,8 @@ export const weirdEvents: EventDef[] = [
     weight: 4,
     cooldown: 10,
     text: {
-      fr: ["Une voyante m'avait prédit « la rencontre d'un grand brun ténébreux ». C'était l'huissier. Il est reparti avec ma télé.", "J'ai payé 60 € une voyante pour connaître mon avenir. Elle a regardé sa boule de cristal et m'a dit « vous allez perdre 60 € ». Respect."],
-      en: ["A psychic predicted I'd meet 'a tall, dark stranger'. It was the bailiff. He left with my TV.", "I paid a psychic $60 to see my future. She looked into her crystal ball and said 'you're going to lose $60'. Respect."],
+      fr: ["Une voyante m'avait prédit « la rencontre d'un grand brun ténébreux ». C'était l'huissier. Il est reparti avec ma télé.", "J'ai payé 60 € une voyante pour connaître mon avenir. Elle a regardé sa boule de cristal et m'a dit « vous allez perdre 60 € ». Respect.", "Une voyante a lu dans les lignes de ma main que je deviendrais un jour {w:weird_job}. J'ai déjà envoyé trois candidatures.", "J'ai payé une voyante pour contacter ma grand-mère décédée. Par sa bouche, Mamie a dit : « {w:threat} ». Ça lui ressemble assez.", "Ma voyante m'a interdit de mettre les pieds {w:at_place} cette année. J'ai obéi. Il ne s'y est rien passé. Elle dit que c'est grâce à elle. Elle facture."],
+      en: ["A psychic predicted I'd meet 'a tall, dark stranger'. It was the bailiff. He left with my TV.", "I paid a psychic $60 to see my future. She looked into her crystal ball and said 'you're going to lose $60'. Respect.", "A psychic read my palm and said I'd one day become {w:weird_job}. I've already sent three applications.", "I paid a psychic to contact my late grandma. Through her, Grandma said: '{w:threat}'. Sounds like her, honestly.", "My psychic forbade me from setting foot {w:at_place} this year. I obeyed. Nothing happened there. She says it's thanks to her. She's billing me."],
     },
     fx: { money: -60, happy: -2 },
   },

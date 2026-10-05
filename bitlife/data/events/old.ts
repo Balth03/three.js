@@ -529,8 +529,8 @@ export const oldEvents: EventDef[] = [
     weight: 5,
     cooldown: 6,
     text: {
-      fr: ["Mon pilulier a désormais 28 compartiments, un code couleur et une notice plus épaisse que mon testament. Le pharmacien m'appelle par mon prénom. On se fait la bise.", "J'ai compté : je prends 14 médicaments par jour, dont 3 pour compenser les effets secondaires des 11 autres. Je fais du bruit quand je marche, comme une maraca."],
-      en: ["My pill organizer now has 28 compartments, a color code and a leaflet thicker than my will. The pharmacist calls me by my first name. We hug.", "I counted: I take 14 pills a day, 3 of which counter the side effects of the other 11. I rattle when I walk, like a maraca."],
+      fr: ["Mon pilulier a désormais 28 compartiments, un code couleur et une notice plus épaisse que mon testament. Le pharmacien m'appelle par mon prénom. On se fait la bise.", "J'ai compté : je prends 14 médicaments par jour, dont 3 pour compenser les effets secondaires des 11 autres. Je fais du bruit quand je marche, comme une maraca.", "J'ai confondu mon cachet pour la tension avec celui du chien. Je me sens bien. Le chien, lui, a une tension parfaite et s'est mis à {w:activity}.", "Ma pharmacienne m'a offert {w:gift} pour Noël. Vu ce que je dépense chez elle, c'est la moindre des choses.", "J'ai rangé mes médicaments par couleur, par taille et par goût. Mon médecin dit que ce n'est pas comme ça qu'on fait. Je lui ai répondu « {w:exclaim} »."],
+      en: ["My pill organizer now has 28 compartments, a color code and a leaflet thicker than my will. The pharmacist calls me by my first name. We hug.", "I counted: I take 14 pills a day, 3 of which counter the side effects of the other 11. I rattle when I walk, like a maraca.", "I mixed up my blood pressure pill with the dog's. I feel fine. The dog now has perfect blood pressure and has taken up {w:activity}.", "My pharmacist gave me {w:gift} for Christmas. Given what I spend there, it's the least she could do.", "I organized my pills by color, size and taste. My doctor says that's not how it works. I replied '{w:exclaim}'."],
     },
     fx: { health: 1 },
   },
@@ -647,8 +647,8 @@ export const oldEvents: EventDef[] = [
     weight: 5,
     cooldown: 6,
     text: {
-      fr: ["J'écris tous mes commentaires Facebook en MAJUSCULES et je signe « Bisous, {first} ». Tout le monde croit que je suis en colère. Je le suis un peu, maintenant.", "J'ai commenté « TOUTES MES CONDOLÉANCES » sous la photo du nouveau chiot de ma nièce. J'ai mal lu. Je ne supprimerai pas."],
-      en: ["I write all my Facebook comments IN CAPS and sign them 'Love, {first}'. Everyone thinks I'm angry. Now I kind of am.", "I commented 'SO SORRY FOR YOUR LOSS' under a photo of my niece's new puppy. I misread. I won't delete it."],
+      fr: ["J'écris tous mes commentaires Facebook en MAJUSCULES et je signe « Bisous, {first} ». Tout le monde croit que je suis en colère. Je le suis un peu, maintenant.", "J'ai commenté « TOUTES MES CONDOLÉANCES » sous la photo du nouveau chiot de ma nièce. J'ai mal lu. Je ne supprimerai pas.", "J'ai envoyé un vocal de 14 minutes au mauvais groupe WhatsApp. J'y raconte ma sortie {w:at_place}, minute par minute. Quarante inconnus l'ont écouté jusqu'au bout.", "J'ai partagé sur Facebook un article affirmant {w:conspiracy}. Mon petit-fils m'a appelé{|e} pour m'expliquer les fausses informations. Je l'ai repartagé, pour être sûr{|e}.", "J'ai découvert les émojis. J'ai répondu à un faire-part de décès avec un pouce levé et ce que je croyais être {w:animal}. Signé : « Bisous, {first} »."],
+      en: ["I write all my Facebook comments IN CAPS and sign them 'Love, {first}'. Everyone thinks I'm angry. Now I kind of am.", "I commented 'SO SORRY FOR YOUR LOSS' under a photo of my niece's new puppy. I misread. I won't delete it.", "I sent a 14-minute voice message to the wrong WhatsApp group. In it, I describe my outing {w:at_place}, minute by minute. Forty strangers listened to the end.", "I shared a Facebook article claiming {w:conspiracy}. My grandson called to explain fake news to me. I shared it again, just to be safe.", "I discovered emojis. I replied to a death announcement with a thumbs-up and what I thought was {w:animal}. Signed: 'Love, {first}'."],
     },
     fx: { happy: 1 },
   },

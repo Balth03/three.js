@@ -11,14 +11,8 @@ export const childhoodEvents: EventDef[] = [
     once: true,
     when: { age: [1, 2] },
     text: {
-      fr: [
-        "Mon premier mot a été « [[frigo|non|aspirateur|wifi]] ». Mes parents espéraient « maman » ou « papa ». Raté.",
-        "J'ai prononcé mon premier mot : « [[frigo|non|aspirateur|wifi]] ». Toute la famille débat encore de sa signification profonde.",
-      ],
-      en: [
-        "My first word was \"[[fridge|no|vacuum|wifi]]\". My parents were hoping for \"mama\" or \"dada\". Nope.",
-        "I said my first word: \"[[fridge|no|vacuum|wifi]]\". The whole family is still debating its deeper meaning.",
-      ],
+      fr: ["Mon premier mot a été « [[frigo|non|aspirateur|wifi]] ». Mes parents espéraient « maman » ou « papa ». Raté.", "J'ai prononcé mon premier mot : « [[frigo|non|aspirateur|wifi]] ». Toute la famille débat encore de sa signification profonde.", "Mon premier mot a été « {w:nickname} ». C'est comme ça que Papa appelle le voisin quand il croit que personne n'écoute.", "J'ai dit mon premier mot en montrant {w:animal} du doigt : « [[maman|papa|gâteau]] ». Toute la famille est vexée, sauf l'animal.", "Mon premier mot était « {w:food} ». Mes parents ont compris que je tenais de Papi."],
+      en: ["My first word was \"[[fridge|no|vacuum|wifi]]\". My parents were hoping for \"mama\" or \"dada\". Nope.", "I said my first word: \"[[fridge|no|vacuum|wifi]]\". The whole family is still debating its deeper meaning.", "My first word was '{w:nickname}'. It's what Dad calls the neighbor when he thinks nobody's listening.", "I said my first word pointing at {w:animal}: '[[mama|dada|cake]]'. The whole family is offended, except the animal.", "My first word was '{w:food}'. My parents realized I take after Grandpa."],
     },
     fx: { happy: 3, smarts: 2 },
   },
@@ -30,14 +24,8 @@ export const childhoodEvents: EventDef[] = [
     once: true,
     when: { age: [1, 2] },
     text: {
-      fr: [
-        "J'ai fait mes premiers pas ! Trois, exactement, avant d'atterrir dans le panier à linge.",
-        "J'ai marché tout{|e} seul{|e} du canapé jusqu'à la table basse. Puis la table basse et moi avons eu une discussion frontale.",
-      ],
-      en: [
-        "I took my first steps! Three, to be exact, before landing in the laundry basket.",
-        "I walked all by myself from the couch to the coffee table. Then the coffee table and I had a head-on discussion.",
-      ],
+      fr: ["J'ai fait mes premiers pas ! Trois, exactement, avant d'atterrir dans le panier à linge.", "J'ai marché tout{|e} seul{|e} du canapé jusqu'à la table basse. Puis la table basse et moi avons eu une discussion frontale.", "J'ai fait mes premiers pas pour attraper {w:object}. Objectif atteint. Direct dans la bouche.", "J'ai marché tout{|e} seul{|e} pour la première fois en poursuivant {w:animal}. Course perdue. Je reviendrai.", "J'ai fait mes premiers pas pendant que mes parents regardaient {w:show}. Personne n'a rien vu. J'ai dû recommencer le lendemain, devant la caméra."],
+      en: ["I took my first steps! Three, to be exact, before landing in the laundry basket.", "I walked all by myself from the couch to the coffee table. Then the coffee table and I had a head-on discussion.", "I took my first steps to grab {w:object}. Target acquired. Straight into my mouth.", "I walked on my own for the first time, chasing {w:animal}. Lost the race. I'll be back.", "I took my first steps while my parents were watching {w:show}. Nobody saw. I had to do it again the next day, for the camera."],
     },
     fx: { happy: 3, athletic: 2 },
   },
@@ -62,14 +50,8 @@ export const childhoodEvents: EventDef[] = [
     once: true,
     when: { age: [4, 8] },
     text: {
-      fr: [
-        "Je connais désormais le nom de 47 dinosaures. Personne ne me l'a demandé, mais je le dis à tout le monde.",
-        "J'ai corrigé un adulte qui confondait tyrannosaure et allosaure. Il ne s'en est pas remis.",
-      ],
-      en: [
-        "I now know the names of 47 dinosaurs. Nobody asked, but I tell everyone anyway.",
-        "I corrected a grown-up who mixed up a T. rex and an allosaurus. He never recovered.",
-      ],
+      fr: ["Je connais désormais le nom de 47 dinosaures. Personne ne me l'a demandé, mais je le dis à tout le monde.", "J'ai corrigé un adulte qui confondait tyrannosaure et allosaure. Il ne s'en est pas remis.", "J'ai expliqué à toute la famille que {w:animal} descend directement des dinosaures. Personne n'a osé me contredire.", "Plus tard, je serai paléontologue. Ou {w:weird_job}. Je n'ai pas encore décidé. Maman dit « pourquoi pas les deux, mon trésor ».", "J'ai enterré {w:object} dans le jardin pour les archéologues du futur. J'ai laissé un plan, au cas où."],
+      en: ["I now know the names of 47 dinosaurs. Nobody asked, but I tell everyone anyway.", "I corrected a grown-up who mixed up a T. rex and an allosaurus. He never recovered.", "I explained to the whole family that {w:animal} is a direct descendant of the dinosaurs. Nobody dared contradict me.", "When I grow up, I'll be a paleontologist. Or {w:weird_job}. I haven't decided yet. Mom says 'why not both, sweetie'.", "I buried {w:object} in the yard for future archaeologists. I left a map, just in case."],
     },
     fx: { smarts: 3 },
   },
@@ -81,14 +63,8 @@ export const childhoodEvents: EventDef[] = [
     once: true,
     when: { age: [3, 7] },
     text: {
-      fr: [
-        "J'ai passé la nuit à surveiller le placard. Le monstre n'est pas sorti. Il est malin.",
-        "J'ai exigé une veilleuse, deux doudous et une inspection complète sous le lit. Le monstre a dû déménager.",
-      ],
-      en: [
-        "I spent the night watching the closet. The monster never came out. It's clever.",
-        "I demanded a night light, two stuffed animals and a full under-the-bed inspection. The monster must have moved out.",
-      ],
+      fr: ["J'ai passé la nuit à surveiller le placard. Le monstre n'est pas sorti. Il est malin.", "J'ai exigé une veilleuse, deux doudous et une inspection complète sous le lit. Le monstre a dû déménager.", "Le monstre du placard a fait {w:sound} cette nuit. Papa a dit que c'était la tuyauterie. La tuyauterie n'a pas d'yeux rouges.", "J'ai monté la garde toute la nuit avec {w:object} comme arme. Le monstre n'est pas venu. Il a eu peur, c'est sûr.", "J'ai laissé {w:food} sous mon lit pour amadouer le monstre. Le lendemain, il n'y avait plus rien. Maman dit que c'est le chien. Je sais ce que je sais."],
+      en: ["I spent the night watching the closet. The monster never came out. It's clever.", "I demanded a night light, two stuffed animals and a full under-the-bed inspection. The monster must have moved out.", "The closet monster made {w:sound} last night. Dad said it was the pipes. Pipes don't have red eyes.", "I stood guard all night with {w:object} as a weapon. The monster didn't come. It got scared, for sure.", "I left {w:food} under my bed to win over the monster. The next morning, it was gone. Mom says it was the dog. I know what I know."],
     },
     fx: { happy: -2, health: -1 },
   },

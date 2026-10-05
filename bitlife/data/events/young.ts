@@ -691,8 +691,8 @@ export const youngEvents: EventDef[] = [
     weight: 7,
     cooldown: 4,
     text: {
-      fr: ["J'ai appelé ma mère pour savoir combien de temps cuire un œuf dur. Elle a ri deux minutes avant de répondre. Pendant ce temps, l'œuf a explosé.", "J'ai pris mon premier rendez-vous médical tout{|e} seul{|e}, par téléphone. J'ai transpiré, bégayé et répondu « vous aussi » à « au revoir ». Une victoire."],
-      en: ['I called my mom to ask how long to boil an egg. She laughed for two minutes before answering. Meanwhile, the egg exploded.', "I booked my first doctor's appointment by myself, by phone. I sweated, stuttered and replied 'you too' to 'goodbye'. A victory."],
+      fr: ["J'ai appelé ma mère pour savoir combien de temps cuire un œuf dur. Elle a ri deux minutes avant de répondre. Pendant ce temps, l'œuf a explosé.", "J'ai pris mon premier rendez-vous médical tout{|e} seul{|e}, par téléphone. J'ai transpiré, bégayé et répondu « vous aussi » à « au revoir ». Une victoire.", "J'ai fait ma première machine tout{|e} seul{|e}. J'ai mis {w:object} avec le blanc. Tout est rose maintenant, même mes certitudes.", "J'ai rempli ma première déclaration d'impôts. J'ai coché une case au hasard. Le fisc m'a renvoyé un courrier qui commence par « {w:exclaim} ».", "Pour mon premier vrai dîner d'adulte, j'ai invité des amis et servi {w:food}. Tout le monde a été très poli. Quelqu'un a commandé une pizza en cachette."],
+      en: ["I called my mom to ask how long to boil an egg. She laughed for two minutes before answering. Meanwhile, the egg exploded.", "I booked my first doctor's appointment by myself, by phone. I sweated, stuttered and replied 'you too' to 'goodbye'. A victory.", "I did my first load of laundry by myself. I put {w:object} in with the whites. Everything's pink now, even my convictions.", "I filed my first tax return. I ticked a random box. The tax office sent back a letter that begins with '{w:exclaim}'.", "For my first real grown-up dinner party, I invited friends and served {w:food}. Everyone was very polite. Someone secretly ordered pizza."],
     },
     fx: { happy: 2, smarts: 1 },
   },
@@ -1098,8 +1098,8 @@ export const youngEvents: EventDef[] = [
     weight: 6,
     cooldown: 4,
     text: {
-      fr: ["Revenu{|e} de vacances avec 2 300 photos. 1 900 sont des couchers de soleil identiques. Les 400 autres, mon pouce.", "Week-end à l'étranger : j'ai passé 60 % du temps à chercher du wifi et 40 % à chercher des toilettes gratuites. Très enrichissant."],
-      en: ['Back from vacation with 2,300 photos. 1,900 are identical sunsets. The other 400 are my thumb.', 'Weekend abroad: I spent 60% of it looking for wifi and 40% looking for free bathrooms. Very enriching.'],
+      fr: ["Revenu{|e} de vacances avec 2 300 photos. 1 900 sont des couchers de soleil identiques. Les 400 autres, mon pouce.", "Week-end à l'étranger : j'ai passé 60 % du temps à chercher du wifi et 40 % à chercher des toilettes gratuites. Très enrichissant.", "Week-end {w:far_place} : 400 photos, dont 380 où {w:animal} me vole la vedette. Je ne regrette rien.", "J'ai posté mes photos de vacances. Seul commentaire, celui de ma tante : « C'est {w:at_place} ? » Non. C'étaient les Maldives.", "Mon téléphone a créé un diaporama « Ton année en souvenirs » sur {w:song}. Il y a surtout des captures d'écran de factures et {w:food} sous tous les angles."],
+      en: ["Back from vacation with 2,300 photos. 1,900 are identical sunsets. The other 400 are my thumb.", "Weekend abroad: I spent 60% of it looking for wifi and 40% looking for free bathrooms. Very enriching.", "Weekend {w:far_place}: 400 photos, 380 of which feature {w:animal} stealing the show. No regrets.", "I posted my vacation photos. Only comment, from my aunt: 'Is that {w:at_place}?' No. It was the Maldives.", "My phone made a 'Your Year in Memories' slideshow set to {w:song}. It's mostly screenshots of bills and {w:food} from every angle."],
     },
     fx: { happy: 3, money: -150 },
   },

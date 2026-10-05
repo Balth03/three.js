@@ -1177,8 +1177,8 @@ export const healthEvents: EventDef[] = [
     weight: 8,
     cooldown: 3,
     text: {
-      fr: ["J'étais persuadé{|e} d'avoir la lèpre. C'était du fromage râpé collé sur mon bras.", "Cette année, j'ai cru faire une crise cardiaque, un AVC et une maladie tropicale inconnue. C'était des gaz, à chaque fois."],
-      en: ["I was convinced I had leprosy. It was grated cheese stuck to my arm.", "This year I thought I had a heart attack, a stroke and an unknown tropical disease. It was gas, every single time."],
+      fr: ["J'étais persuadé{|e} d'avoir la lèpre. C'était du fromage râpé collé sur mon bras.", "Cette année, j'ai cru faire une crise cardiaque, un AVC et une maladie tropicale inconnue. C'était des gaz, à chaque fois.", "J'ai cru faire un AVC parce que je n'arrivais plus à prononcer « {w:food} ». En fait, c'est juste difficile à prononcer.", "J'ai passé une nuit aux urgences pour une douleur dans {w:bodypart}. Diagnostic : j'avais dormi dessus. On m'a facturé le parking.", "J'ai entendu {w:sound} dans ma poitrine et j'ai appelé le SAMU. C'était mon téléphone, dans la poche de ma chemise."],
+      en: ["I was convinced I had leprosy. It was grated cheese stuck to my arm.", "This year I thought I had a heart attack, a stroke and an unknown tropical disease. It was gas, every single time.", "I thought I was having a stroke because I couldn't pronounce '{w:food}'. Turns out it's just hard to pronounce.", "I spent a night in the ER for a pain in my {w:bodypart}. Diagnosis: I'd slept on it. They charged me for parking.", "I heard {w:sound} in my chest and called an ambulance. It was my phone, in my shirt pocket."],
     },
     fx: { stress: 4, happy: -1 },
   },

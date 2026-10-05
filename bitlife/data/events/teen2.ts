@@ -42,14 +42,8 @@ export const teen2Events: EventDef[] = [
     cooldown: 3,
     when: { age: [13, 17] },
     text: {
-      fr: [
-        "Mon crush a « vu » mon message à 21 h 04. Aucune réponse. J'ai passé la nuit à analyser ce silence avec trois amis, comme une cellule de crise à l'Élysée.",
-        "J'ai envoyé « mdr » à ma mère et « je t'aime maman » au groupe de la classe. J'habite désormais dans la grotte de la honte.",
-      ],
-      en: [
-        "My crush ‘read’ my message at 9:04 p.m. No reply. I spent the whole night analyzing that silence with three friends, like a war room at the Pentagon.",
-        "I sent ‘lmao’ to my mom and ‘love you mommy’ to the class group chat. I now live in the cave of shame.",
-      ],
+      fr: ["Mon crush a « vu » mon message à 21 h 04. Aucune réponse. J'ai passé la nuit à analyser ce silence avec trois amis, comme une cellule de crise à l'Élysée.", "J'ai envoyé « mdr » à ma mère et « je t'aime maman » au groupe de la classe. J'habite désormais dans la grotte de la honte.", "Mon crush a liké une photo de moi datant de 2019, où je pose avec {w:animal}. Soit c'est de l'amour, soit c'est très bizarre. Peut-être les deux.", "J'ai envoyé un vocal à mon crush par erreur : on m'entend chanter {w:song} sous la douche. Vu à 22 h 13. Toujours pas de réponse.", "Mon crush a répondu « {w:exclaim} » à mon message de trois paragraphes. Mes amis et moi l'analysons depuis [[quatre|six|onze]] heures."],
+      en: ["My crush ‘read’ my message at 9:04 p.m. No reply. I spent the whole night analyzing that silence with three friends, like a war room at the Pentagon.", "I sent ‘lmao’ to my mom and ‘love you mommy’ to the class group chat. I now live in the cave of shame.", "My crush liked a photo of me from 2019, posing with {w:animal}. Either it's love or it's very weird. Maybe both.", "I accidentally sent my crush a voice note: you can hear me singing {w:song} in the shower. Seen at 10:13 p.m. Still no reply.", "My crush replied '{w:exclaim}' to my three-paragraph message. My friends and I have been analyzing it for [[four|six|eleven]] hours."],
     },
     fx: { happy: -2, stress: 2 },
   },

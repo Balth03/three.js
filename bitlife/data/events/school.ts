@@ -28,8 +28,8 @@ export const schoolEvents: EventDef[] = [
     cooldown: 3,
     when: { school: KID },
     text: {
-      fr: ["À la cantine, il y avait du « poisson pané ». Personne n'a pu identifier le poisson. Ni le pané.", "J'ai échangé mon yaourt nature contre un Kinder et un secret. Le secret était nul. Le Kinder, non.", "La dame de la cantine m'a servi des épinards « parce que ça rend fort ». J'ai été fort{|e} : je les ai cachés dans ma serviette.", "À la cantine, on nous a servi {w:food}. Lucas a juré que ça avait bougé. Personne n'a mangé. Le chef l'a pris très personnellement.", "À la cantine, j'ai échangé mon dessert contre {w:object}. Ma mère veut savoir d'où ça vient. Je ne balance pas mes sources."],
-      en: ["The cafeteria served “fish sticks.” Nobody could identify the fish. Or the stick.", "I traded my plain yogurt for a chocolate bar and a secret. The secret was lame. The chocolate wasn't.", "The lunch lady gave me spinach “to grow strong.” I was strong: I hid it all in my napkin.", "The cafeteria served {w:food}. Lucas swore it moved. Nobody ate. The chef took it very personally.", "At lunch, I traded my dessert for {w:object}. My mom wants to know where it came from. I don't reveal my sources."],
+      fr: ["À la cantine, il y avait du « poisson pané ». Personne n'a pu identifier le poisson. Ni le pané.", "J'ai échangé mon yaourt nature contre un Kinder et un secret. Le secret était nul. Le Kinder, non.", "La dame de la cantine m'a servi des épinards « parce que ça rend fort ». J'ai été fort{|e} : je les ai cachés dans ma serviette, puis dans {w:object}.", "À la cantine, on nous a servi {w:food}. Lucas a juré que ça avait bougé. Personne n'a mangé. Le chef l'a pris très personnellement.", "À la cantine, j'ai échangé mon dessert contre {w:object}. Ma mère veut savoir d'où ça vient. Je ne balance pas mes sources."],
+      en: ["The cafeteria served “fish sticks.” Nobody could identify the fish. Or the stick.", "I traded my plain yogurt for a chocolate bar and a secret. The secret was lame. The chocolate wasn't.", "The lunch lady gave me spinach “to grow strong.” I was strong: I hid it all in my napkin, then in {w:object}.", "The cafeteria served {w:food}. Lucas swore it moved. Nobody ate. The chef took it very personally.", "At lunch, I traded my dessert for {w:object}. My mom wants to know where it came from. I don't reveal my sources."],
     },
     fx: { happy: 1 },
   },
@@ -54,14 +54,8 @@ export const schoolEvents: EventDef[] = [
     once: true,
     when: { school: KID },
     text: {
-      fr: [
-        "J'ai appelé la maîtresse « maman » devant toute la classe. On en parlera encore à mon mariage.",
-        "J'ai levé la main et j'ai dit « Papa, je peux aller aux toilettes ? » au maître. Il a dit oui. Toute la classe a dit « Papaaaa ».",
-      ],
-      en: [
-        "I called the teacher “Mommy” in front of the whole class. They'll bring it up at my wedding.",
-        "I raised my hand and said “Dad, can I go to the bathroom?” to the teacher. He said yes. The whole class chanted “Daaaad.”",
-      ],
+      fr: ["J'ai appelé la maîtresse « maman » devant toute la classe. On en parlera encore à mon mariage.", "J'ai levé la main et j'ai dit « Papa, je peux aller aux toilettes ? » au maître. Il a dit oui. Toute la classe a dit « Papaaaa ».", "J'ai appelé la maîtresse « {w:nickname} » sans faire exprès. C'est le nom du chat. Maintenant, toute la classe l'appelle comme ça.", "En pleine dictée, j'ai levé la main pour dire que j'avais vu {w:animal} dans le jardin ce matin. Aucun rapport. La maîtresse a noté « bavard{|e} ».", "Au spectacle de fin d'année, j'ai oublié mon texte et j'ai chanté {w:song} à la place. Les parents ont applaudi. La maîtresse, [[moins|beaucoup moins|pas du tout]]."],
+      en: ["I called the teacher “Mommy” in front of the whole class. They'll bring it up at my wedding.", "I raised my hand and said “Dad, can I go to the bathroom?” to the teacher. He said yes. The whole class chanted “Daaaad.”", "I accidentally called the teacher '{w:nickname}'. It's the cat's name. Now the whole class calls her that.", "In the middle of dictation, I raised my hand to say I'd seen {w:animal} in the yard that morning. Totally unrelated. The teacher wrote 'chatterbox'.", "At the end-of-year show, I forgot my lines and sang {w:song} instead. The parents applauded. The teacher, [[less so|much less so|not at all]]."],
     },
     fx: { happy: -3 },
   },

@@ -17,10 +17,16 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "J'ai enfin reçu du courrier en prison. C'était une pub pour des piscines hors-sol. J'ai lu le catalogue onze fois.",
         "Mon correspondant de prison m'a écrit huit pages sur son chat. Je connais maintenant ce chat mieux que ma propre famille.",
+        "Ma mère m'a envoyé un colis. Dedans : {w:food}, une photo où elle pose avec {w:animal} et une lettre qui commence par « Je ne suis pas en colère, je suis déçue ». Tout avait été ouvert et goûté par les gardiens.",
+        "J'ai reçu une lettre d'un fan qui me demande une mèche de cheveux et mon avis sur {w:show}. Les gardiens l'ont lue avant moi et ont souligné les fautes. Il y en avait [[douze|vingt-trois|quarante]].",
+        "Courrier du jour : une carte postale envoyée {w:far_place} par un ancien codétenu. Il a écrit juste « Liberté ! » et dessiné {w:animal}. Je l'ai accrochée au mur. Je la regarde tous les soirs.",
       ],
       en: [
         "I finally got mail in prison. It was an ad for above-ground pools. I read the catalog eleven times.",
         "My prison pen pal wrote me eight pages about his cat. I now know that cat better than my own family.",
+        "Mom sent me a care package. Inside: {w:food}, a photo of her posing with {w:animal} and a letter that begins 'I'm not angry, I'm disappointed.' Everything had been opened and tasted by the guards.",
+        "I got a letter from a fan asking for a lock of my hair and my opinion on {w:show}. The guards read it before me and underlined the mistakes. There were [[twelve|twenty-three|forty]].",
+        "Today's mail: a postcard sent from {w:far_place} by a former cellmate. All he wrote was 'Freedom!' plus a drawing of {w:animal}. I pinned it to the wall. I look at it every night.",
       ],
     },
     fx: { happy: 2 },
@@ -36,10 +42,16 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "En prison, les nouilles instantanées servent de monnaie. J'ai économisé 40 sachets. Je suis le banquier central de l'aile B.",
         "J'ai échangé trois sachets de soupe contre une paire de chaussettes propres et un secret. Le secret était décevant. Les chaussettes, non.",
+        "J'ai troqué [[cinq|huit|douze]] sachets de nouilles contre {w:object}, une création artisanale de l'aile C. Je ne sais pas à quoi ça sert, mais tout le monde en veut un. Je suis un investisseur.",
+        "Krach boursier dans l'aile B : quelqu'un a fait entrer {w:food} en douce et les nouilles ont perdu la moitié de leur valeur. Mon épargne s'est effondrée. J'ai mangé mes économies.",
+        "J'ai inventé une recette secrète : nouilles instantanées, chips écrasées et un ingrédient secret : {w:food}. On me paie en sachets pour une portion. Je suis le chef étoilé du bloc.",
       ],
       en: [
         "In prison, instant noodles are currency. I've saved up 40 packs. I am the Federal Reserve of B Block.",
         "I traded three soup packets for a pair of clean socks and a secret. The secret was disappointing. The socks were not.",
+        "I traded [[five|eight|twelve]] noodle packs for {w:object}, an artisanal creation from C Block. No idea what it's for, but everyone wants one. I'm an investor.",
+        "Stock market crash in B Block: someone smuggled in {w:food} and noodles lost half their value. My savings collapsed. I ate my nest egg.",
+        "I invented a secret recipe: instant noodles, crushed chips and a secret ingredient: {w:food}. People pay me in packets for a serving. I'm the Michelin-star chef of the block.",
       ],
     },
     fx: { happy: 3 },
@@ -56,10 +68,16 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "Mon codétenu ronfle comme un tracteur qui s'accouple avec une tronçonneuse. J'ai dormi quatre heures cette année. Au total.",
         "Le détenu d'à côté chante du Johnny toute la nuit. Faux. Je commence à comprendre pourquoi il a pris perpète.",
+        "Mon codétenu fait {w:sound} en dormant, toutes les nuits, à heure fixe. J'ai essayé les boules Quies, {w:object} et la prière. Rien ne marche. Je dors debout pendant la promenade.",
+        "Le type de la cellule d'en face parle en dormant. Cette nuit, il a avoué {w:crime_small}, puis {w:crime_small}. Je prends des notes. Ça peut servir.",
+        "Mon voisin de cellule pète comme {w:vehicle} qui démarre un matin d'hiver, [[trois|sept|douze]] fois par nuit. Toute l'aile dégage {w:smell}. Les gardiens font leur ronde avec un masque.",
       ],
       en: [
         "My cellmate snores like a tractor mating with a chainsaw. I slept four hours this year. Total.",
         "The guy in the next cell sings power ballads all night. Off-key. I'm starting to understand why he got life.",
+        "My cellmate makes {w:sound} in his sleep, every night, like clockwork. I tried earplugs, {w:object} and prayer. Nothing works. I sleep standing up in the yard.",
+        "The guy across the hall talks in his sleep. Last night he confessed to {w:crime_small}, then to {w:crime_small}. I'm taking notes. Could come in handy.",
+        "My cell neighbor farts like {w:vehicle} starting on a winter morning, [[three|seven|twelve]] times a night. The entire wing gives off {w:smell}. The guards do their rounds wearing masks.",
       ],
     },
     fx: { happy: -3, health: -1, stress: 3 },
@@ -96,10 +114,16 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "Une voiture de police a ralenti à ma hauteur. Le flic m'a fixé{|e} en mâchant son chewing-gum. J'ai fait semblant de relacer une chaussure à scratch.",
         "J'ai sursauté en entendant une sirène. C'était une ambulance. Puis un camion de glaces. J'ai la conscience un peu chargée.",
+        "Un flic m'a dévisagé{|e} {w:at_place} pendant [[dix|trente|quarante-cinq]] secondes. J'ai acheté {w:food} pour avoir l'air normal{|e}. Je déteste ça. J'ai tout mangé quand même.",
+        "Un policier m'a demandé l'heure dans la rue. J'ai paniqué, j'ai dit « {w:excuse} » et je suis parti{|e} en courant. Il m'a regardé{|e} partir sans comprendre. Moi non plus.",
+        "Une voiture de police s'est garée derrière {w:vehicle}, juste à côté de moi. Mon cœur a fait {w:sound}. Les flics sont descendus acheter des donuts. J'ai mis deux heures à m'en remettre.",
       ],
       en: [
         "A cop car slowed down next to me. The officer stared, chewing gum. I pretended to tie a Velcro shoe.",
         "I jumped at the sound of a siren. It was an ambulance. Then an ice cream truck. My conscience is a little loaded.",
+        "A cop stared at me {w:at_place} for [[ten|thirty|forty-five]] seconds. I bought {w:food} to look normal. I hate that stuff. I ate it all anyway.",
+        "A cop asked me for the time on the street. I panicked, said '{w:excuse}' and ran off. He watched me go, confused. So was I.",
+        "A police car parked behind {w:vehicle}, right next to me. My heart made {w:sound}. The cops got out to buy donuts. It took me two hours to recover.",
       ],
     },
     fx: { stress: 4 },
@@ -116,10 +140,16 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "Un type a été arrêté dans ma rue en slip, couvert de pâte à tartiner, en hurlant qu'il était le Messie. Il a mordu un policier. Le policier a dit : « Hmm. Noisette. »",
         "Le dealer de mon quartier a lancé une carte de fidélité : dix achats, le onzième offert. Le capitalisme a gagné, même là.",
+        "Fait divers du quartier : un mec bourré a volé {w:vehicle}, l'a conduit dans la fontaine, puis s'est endormi dedans en chantant {w:song}. Les flics ont attendu la fin du couplet pour l'arrêter.",
+        "Dans ma rue, une mamie a mis en fuite un cambrioleur en lui balançant {w:object} à la tête. Il a fini aux urgences avec {w:bodypart} en vrac. Elle a fini dans le journal, en photo, avec le pouce levé.",
+        "Les nouvelles du quartier : un type a été arrêté avec [[douze|quarante|cent]] kilos d'une substance inconnue. Le labo a analysé : c'était {w:gross}. Le technicien a démissionné. {w:swear}",
       ],
       en: [
         "A guy was arrested on my street in his underwear, covered in chocolate spread, screaming he was the Messiah. He bit a cop. The cop said: “Hmm. Hazelnut.”",
         "The neighborhood dealer launched a loyalty card: buy ten, get the eleventh free. Capitalism wins, even there.",
+        "Local news: a drunk guy stole {w:vehicle}, drove it into the fountain, then fell asleep in it singing {w:song}. The cops waited for the end of the verse to arrest him.",
+        "On my street, a granny chased off a burglar by hurling {w:object} at his head. He ended up in the ER with a wrecked {w:bodypart}. She ended up in the paper, photographed with a thumbs-up.",
+        "Neighborhood news: a guy was arrested with [[twelve|forty|a hundred]] kilos of an unknown substance. The lab analyzed it: it was {w:gross}. The technician quit. {w:swear}",
       ],
     },
     fx: { happy: 3 },
@@ -138,30 +168,36 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "Ton nouveau codétenu, {a.first}, pose son baluchon sur la couchette du haut. {a:Il|Elle} te fixe longuement, puis demande si tu préfères le côté fenêtre. Il n'y a pas de fenêtre.",
         "{a.first} débarque dans ta cellule avec une plante verte en pot et un sourire inquiétant. « On va bien s'entendre, toi et moi. » La plante a l'air sceptique.",
+        "Nouveau{a:|lle} codétenu{a:|e} : {a.first}, condamné{a:|e} pour {w:crime_small} en récidive. {a:Il|Elle} déballe {w:object} et le pose sur ton étagère. « Ça, c'est chez moi. »",
+        "{a.first} entre dans la cellule en fredonnant {w:song}. {a:Il|Elle} dégage {w:smell} et te tend la main. « Appelle-moi {w:nickname}. Tout le monde le fait. Ceux qui ne le font pas… » {a:Il|Elle} ne finit pas sa phrase.",
+        "Ton nouveau colocataire carcéral, {a.first}, s'installe avec {w:object}, [[trois|cinq|onze]] paquets de cartes et un regard de joueur professionnel. « Tu joues au poker ? Non ? Tu vas apprendre. »",
       ],
       en: [
         "Your new cellmate, {a.first}, drops a bundle on the top bunk, stares at you for a long time, then asks if you prefer the window side. There is no window.",
         "{a.first} moves into your cell with a potted plant and an unsettling smile. “We're gonna get along just fine.” The plant looks skeptical.",
+        "New cellmate: {a.first}, a repeat offender convicted of {w:crime_small}. {a:He|She} unpacks {w:object} and sets it on your shelf. 'That's my spot.'",
+        "{a.first} walks into the cell humming {w:song}. {a:He|She} gives off {w:smell} and holds out a hand. 'Call me {w:nickname}. Everyone does. The ones who don't…' {a:He|She} doesn't finish the sentence.",
+        "Your new prison roommate, {a.first}, settles in with {w:object}, [[three|five|eleven]] decks of cards and the eyes of a professional gambler. 'You play poker? No? You'll learn.'",
       ],
     },
     choices: [
       {
         label: { fr: 'Sympathiser', en: 'Make friends' },
         out: [
-          { w: 3, text: { fr: "J'ai partagé mes nouilles avec {a.first}. On a parlé jusqu'à 3 h du matin de nos procès respectifs. J'ai {a:un|une} pote. Derrière des barreaux, mais {a:un|une} pote.", en: "I shared my noodles with {a.first}. We talked until 3 a.m. about our trials. I have a buddy. Behind bars, but a buddy." }, fx: { happy: 6, rel: 20, actorRole: 'friend' }, mood: 'happy' },
-          { w: 1, text: { fr: "{a.first} m'a raconté sa vie pendant six heures. Toute sa vie. Depuis la maternelle. J'ai demandé un transfert de cellule par écrit, en trois exemplaires.", en: "{a.first} told me their life story for six hours. All of it. Starting from kindergarten. I requested a cell transfer in writing, in triplicate." }, fx: { happy: -4, stress: 4 }, mood: 'sleepy' },
+          { w: 3, text: { fr: ["J'ai partagé mes nouilles avec {a.first}. On a parlé jusqu'à 3 h du matin de nos procès respectifs. J'ai {a:un|une} pote. Derrière des barreaux, mais {a:un|une} pote.", "J'ai offert à {a.first} un sachet de nouilles en signe de paix. On a découvert qu'on aimait tous les deux {w:hobby}. On prépare un club en cellule. Deux membres. Très sélect."], en: ["I shared my noodles with {a.first}. We talked until 3 a.m. about our trials. I have a buddy. Behind bars, but a buddy.", "I gave {a.first} a noodle packet as a peace offering. Turns out we both love {w:hobby}. We're starting a club in our cell. Two members. Very exclusive."] }, fx: { happy: 6, rel: 20, actorRole: 'friend' }, mood: 'happy' },
+          { w: 1, text: { fr: ["{a.first} m'a raconté sa vie pendant six heures. Toute sa vie. Depuis la maternelle. J'ai demandé un transfert de cellule par écrit, en trois exemplaires.", "J'ai voulu sympathiser. {a.first} m'a expliqué {w:conspiracy}, puis m'a demandé de signer une pétition. J'ai signé. Je ne sais pas ce que j'ai signé."], en: ["{a.first} told me their life story for six hours. All of it. Starting from kindergarten. I requested a cell transfer in writing, in triplicate.", "I tried to be friendly. {a.first} explained {w:conspiracy}, then asked me to sign a petition. I signed. I don't know what I signed."] }, fx: { happy: -4, stress: 4 }, mood: 'sleepy' },
         ],
       },
       {
         label: { fr: 'Marquer mon territoire', en: 'Establish dominance' },
         out: [
-          { w: 1, odds: { athletic: 1 }, text: { fr: "J'ai balancé le baluchon de {a.first} par terre pour montrer qui commande. {a:Il|Elle} a compris. {a:Il|Elle} fait mon lit tous les matins depuis.", en: "I threw {a.first}'s bundle on the floor to show who's boss. Message received. {a:He|She} has made my bed every morning since." }, fx: { happy: 4, rel: -10 }, mood: 'proud' },
-          { w: 1, text: { fr: "J'ai voulu jouer les caïds. {a.first} m'a fait une clé de bras en me demandant poliment d'arrêter. J'ai arrêté. Très poliment aussi.", en: "I tried to act tough. {a.first} put me in an armlock and politely asked me to stop. I stopped. Very politely." }, fx: { health: -6, happy: -5 }, mood: 'sad' },
+          { w: 1, odds: { athletic: 1 }, text: { fr: ["J'ai balancé le baluchon de {a.first} par terre pour montrer qui commande. {a:Il|Elle} a compris. {a:Il|Elle} fait mon lit tous les matins depuis.", "J'ai posé mes règles : la couchette du bas est à moi, la ventilation aussi. {a.first} a hoché la tête sans un mot. Le lendemain, {a:il|elle} m'appelait « chef »."], en: ["I threw {a.first}'s bundle on the floor to show who's boss. Message received. {a:He|She} has made my bed every morning since.", "I laid down the rules: bottom bunk is mine, so is the air vent. {a.first} nodded silently. The next day, {a:he|she} was calling me 'boss'."] }, fx: { happy: 4, rel: -10 }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai voulu jouer les caïds. {a.first} m'a fait une clé de bras en me demandant poliment d'arrêter. J'ai arrêté. Très poliment aussi.", "J'ai montré les dents. {a.first} a souri, a plié {w:object} à mains nues et m'a demandé si j'avais autre chose à dire. Je n'avais rien d'autre à dire."], en: ["I tried to act tough. {a.first} put me in an armlock and politely asked me to stop. I stopped. Very politely.", "I bared my teeth. {a.first} smiled, bent {w:object} with bare hands and asked if I had anything else to say. I didn't."] }, fx: { health: -6, happy: -5 }, mood: 'sad' },
         ],
       },
       {
         label: { fr: 'Ignorer', en: 'Ignore them' },
-        text: { fr: "J'ai tourné le dos à {a.first} et fixé le mur pendant trois semaines. Le mur et moi sommes très proches, maintenant.", en: "I turned my back on {a.first} and stared at the wall for three weeks. The wall and I are very close now." },
+        text: { fr: ["J'ai tourné le dos à {a.first} et fixé le mur pendant trois semaines. Le mur et moi sommes très proches, maintenant.", "J'ai ignoré {a.first}. {a:Il|Elle} a fini par parler à sa plante. Puis la plante a fini par me parler à moi. Je ne dors plus très bien."], en: ["I turned my back on {a.first} and stared at the wall for three weeks. The wall and I are very close now.", "I ignored {a.first}. {a:He|She} ended up talking to the plant. Then the plant started talking to me. I don't sleep well anymore."] },
         fx: { happy: -2 },
       },
     ],
@@ -255,28 +291,34 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "L'administration te propose un boulot : fabriquer des plaques d'immatriculation pour trois fois rien de l'heure, éplucher des patates en cuisine, ou plier des draps à la buanderie.",
         "Le directeur affiche les postes disponibles : atelier plaques, cuisine, ou rien. « Rien » est le poste le plus demandé.",
+        "Offre d'emploi au parloir : atelier plaques, cuisine ou glandouille. Le dernier détenu de la cuisine a été viré pour avoir servi {w:food} à tout le monde trois jours de suite. Le poste est libre.",
+        "Le surveillant chef passe dans les cellules avec un formulaire. « Plaques, cuisine, ou tu restes à {w:activity} toute la journée ? » Le salaire : [[30 centimes|50 centimes|un euro]] de l'heure. La gloire.",
+        "Les postes de travail sont affichés à côté d'une photo où {w:celeb} serre la main du directeur. Plaques d'immatriculation ou cuisine. Le détenu derrière toi dit que la cuisine, « c'est là qu'on mange en douce ».",
       ],
       en: [
         "The administration offers you a job: stamping license plates for pennies an hour, peeling potatoes in the kitchen, or folding sheets in the laundry.",
         "The warden posts the available jobs: license plates, kitchen, or nothing. “Nothing” is the most popular position.",
+        "Job posting in the visiting room: license plates, kitchen, or slacking off. The last kitchen inmate got fired for serving {w:food} to everyone three days straight. The spot is open.",
+        "The head guard comes around with a form. 'License plates, kitchen, or you sit around {w:activity} all day?' Pay: [[30 cents|50 cents|a dollar]] an hour. Glory.",
+        "The job openings are posted next to a photo of {w:celeb} shaking the warden's hand. License plates or kitchen. The inmate behind you says the kitchen is 'where you sneak food'.",
       ],
     },
     choices: [
       {
         label: { fr: "Plaques d'immatriculation", en: 'License plates' },
-        text: { fr: "J'ai fabriqué 4 000 plaques. J'ai gagné {$amount} et je reconnais maintenant chaque voiture que j'ai fabriquée dans les séries policières.", en: "I stamped 4,000 plates. I earned {$amount}, and now I recognize my own work in every cop show." },
+        text: { fr: ["J'ai fabriqué 4 000 plaques. J'ai gagné {$amount} et je reconnais maintenant chaque voiture que j'ai fabriquée dans les séries policières.", "J'ai tamponné des plaques toute l'année pour {$amount}. J'ai glissé mes initiales dans un numéro. Quelque part, {w:vehicle} roule avec ma signature."], en: ["I stamped 4,000 plates. I earned {$amount}, and now I recognize my own work in every cop show.", "I stamped plates all year for {$amount}. I slipped my initials into one number. Somewhere, {w:vehicle} is driving around with my signature."] },
         fx: { money: 'amount', discipline: 3, counter: 'prisonGood' },
       },
       {
         label: { fr: 'Cuisine', en: 'Kitchen' },
         out: [
-          { w: 2, text: { fr: "J'ai épluché des patates. Énormément de patates. J'en rêve la nuit. Elles ont des visages. Mais j'ai gagné {$amount}.", en: "I peeled potatoes. So many potatoes. I dream about them. They have faces. But I earned {$amount}." }, fx: { money: 'amount', discipline: 2, counter: 'prisonGood' } },
-          { w: 1, text: { fr: "J'ai mis du sucre à la place du sel dans la soupe de 600 détenus. Mutinerie évitée de justesse. Renvoyé{|e} de la cuisine le soir même.", en: "I used sugar instead of salt in soup for 600 inmates. A riot was narrowly avoided. Fired from the kitchen that night." }, fx: { happy: -3, stress: 5 }, mood: 'shock' },
+          { w: 2, text: { fr: ["J'ai épluché des patates. Énormément de patates. J'en rêve la nuit. Elles ont des visages. Mais j'ai gagné {$amount}.", "J'ai bossé en cuisine. J'ai gagné {$amount} et le respect de tout le bloc grâce à ma sauce secrète. Le secret : on y écrase {w:food}."], en: ["I peeled potatoes. So many potatoes. I dream about them. They have faces. But I earned {$amount}.", "I worked in the kitchen. I earned {$amount} and the whole block's respect thanks to my secret sauce. The secret: you crush {w:food} into it."] }, fx: { money: 'amount', discipline: 2, counter: 'prisonGood' } },
+          { w: 1, text: { fr: ["J'ai mis du sucre à la place du sel dans la soupe de 600 détenus. Mutinerie évitée de justesse. Renvoyé{|e} de la cuisine le soir même.", "J'ai fait brûler le ragoût de tout le bloc. L'alarme incendie a sonné pendant [[une heure|deux heures|toute la nuit]]. Viré{|e} de la cuisine et surnommé{|e} « le Pyromane » à vie."], en: ["I used sugar instead of salt in soup for 600 inmates. A riot was narrowly avoided. Fired from the kitchen that night.", "I burned the stew for the whole block. The fire alarm rang for [[an hour|two hours|the whole night]]. Fired from the kitchen and nicknamed 'the Arsonist' for life."] }, fx: { happy: -3, stress: 5 }, mood: 'shock' },
         ],
       },
       {
         label: { fr: 'Refuser', en: 'Refuse' },
-        text: { fr: "J'ai refusé de travailler. J'ai droit au repos. Et j'ai beaucoup de temps pour le prendre.", en: "I refused to work. I'm entitled to rest. And I have a lot of time to take it." },
+        text: { fr: ["J'ai refusé de travailler. J'ai droit au repos. Et j'ai beaucoup de temps pour le prendre.", "J'ai refusé. J'ai passé l'année à {w:activity} sur ma couchette. Productivité : zéro. Paix intérieure : maximale."], en: ["I refused to work. I'm entitled to rest. And I have a lot of time to take it.", "I refused. I spent the year {w:activity} on my bunk. Productivity: zero. Inner peace: maximum."] },
         fx: { happy: 2, discipline: -3 },
       },
     ],
@@ -292,28 +334,34 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "Séance de thérapie de groupe. La psy te tend le « bâton de parole », un bout de bois décoré de gommettes. Douze détenus tatoués attendent que tu partages tes émotions.",
         "Atelier « Gestion de la colère ». Le type assis à ta gauche a cassé sa chaise en arrivant. La psy sourit nerveusement et te donne la parole.",
+        "Thérapie de groupe. Aujourd'hui, chacun doit dire quel animal il serait. Le braqueur à ta droite a dit {w:animal}, en pleurant. C'est ton tour. Tout le monde te regarde.",
+        "Séance de thérapie. La psy a apporté {w:object} « pour libérer les émotions ». Un détenu s'est déjà assis dessus. Elle passe la parole au suivant : toi. [[Douze|Quinze|Vingt]] paires d'yeux tatoués te fixent.",
+        "Atelier « Parlons de nos mamans ». La psy met {w:song} en fond sonore pour détendre l'atmosphère. Ça ne marche pas. Un colosse pleure déjà dans sa capuche. À toi.",
       ],
       en: [
         "Group therapy. The counselor hands you the “talking stick,” a piece of wood decorated with stickers. Twelve tattooed inmates wait for you to share your feelings.",
         "Anger management class. The guy to your left broke his chair sitting down. The counselor smiles nervously and gives you the floor.",
+        "Group therapy. Today, everyone has to say what animal they'd be. The armed robber on your right said {w:animal}, in tears. It's your turn. Everyone's staring.",
+        "Therapy session. The counselor brought {w:object} 'to release emotions'. An inmate already sat on it. She passes the floor to the next person: you. [[Twelve|Fifteen|Twenty]] pairs of tattooed eyes stare at you.",
+        "'Let's Talk About Our Moms' workshop. The counselor plays {w:song} in the background to ease the mood. It's not working. A giant is already crying into his hoodie. Your turn.",
       ],
     },
     choices: [
       {
         label: { fr: 'Vider mon sac', en: 'Open up' },
         out: [
-          { w: 2, text: { fr: "J'ai parlé de mon enfance, de mes choix, de mes regrets. Un braqueur de deux mètres m'a pris dans ses bras en reniflant. Progrès.", en: "I talked about my childhood, my choices, my regrets. A seven-foot armed robber hugged me, sniffling. Progress." }, fx: { happy: 6, stress: -8, karma: 2, counter: 'prisonGood' }, mood: 'happy' },
-          { w: 1, text: { fr: "J'ai ouvert mon cœur. Un détenu a tout répété dans la cour. Mes traumatismes s'échangent maintenant contre des cigarettes.", en: "I opened my heart. An inmate repeated everything in the yard. My traumas are now traded for cigarettes." }, fx: { happy: -5, stress: 5 }, mood: 'sad' },
+          { w: 2, text: { fr: ["J'ai parlé de mon enfance, de mes choix, de mes regrets. Un braqueur de deux mètres m'a pris dans ses bras en reniflant. Progrès.", "J'ai tout déballé : mon enfance, mes erreurs, la fois où j'ai pleuré devant {w:movie}. Toute la salle a applaudi. Un tueur à gages m'a donné son mouchoir."], en: ["I talked about my childhood, my choices, my regrets. A seven-foot armed robber hugged me, sniffling. Progress.", "I unloaded everything: my childhood, my mistakes, the time I cried at {w:movie}. The whole room applauded. A hitman gave me his tissue."] }, fx: { happy: 6, stress: -8, karma: 2, counter: 'prisonGood' }, mood: 'happy' },
+          { w: 1, text: { fr: ["J'ai ouvert mon cœur. Un détenu a tout répété dans la cour. Mes traumatismes s'échangent maintenant contre des cigarettes.", "J'ai partagé mes peurs les plus intimes. Le lendemain, tout le bloc m'appelait « {w:nickname} ». Je ne parlerai plus jamais de mes émotions."], en: ["I opened my heart. An inmate repeated everything in the yard. My traumas are now traded for cigarettes.", "I shared my deepest fears. The next day, the whole block was calling me '{w:nickname}'. I'll never talk about my feelings again."] }, fx: { happy: -5, stress: 5 }, mood: 'sad' },
         ],
       },
       {
         label: { fr: 'Inventer une histoire', en: 'Make something up' },
-        text: { fr: "J'ai raconté que j'étais un ancien agent secret. La psy a pris des notes. Trois détenus m'ont demandé un autographe.", en: "I said I used to be a secret agent. The counselor took notes. Three inmates asked for my autograph." },
+        text: { fr: ["J'ai raconté que j'étais un ancien agent secret. La psy a pris des notes. Trois détenus m'ont demandé un autographe.", "J'ai inventé que j'avais été {w:weird_job} avant la prison, et que tout avait dérapé à cause d'un client. La psy a été très touchée. Le groupe aussi. C'était l'intrigue de {w:movie}."], en: ["I said I used to be a secret agent. The counselor took notes. Three inmates asked for my autograph.", "I made up that I'd been {w:weird_job} before prison, and that it all went wrong because of a client. The counselor was very moved. So was the group. It was the plot of {w:movie}."] },
         fx: { smarts: 1, happy: 3 },
       },
       {
         label: { fr: 'Me taire', en: 'Stay silent' },
-        text: { fr: "J'ai gardé le silence pendant une heure. La psy a écrit « progrès lents » dans mon dossier et dessiné un petit nuage triste à côté.", en: "I stayed silent for an hour. The counselor wrote “slow progress” in my file and drew a little sad cloud next to it." },
+        text: { fr: ["J'ai gardé le silence pendant une heure. La psy a écrit « progrès lents » dans mon dossier et dessiné un petit nuage triste à côté.", "Je me suis tu{|e}. Le silence a duré si longtemps que le colosse à côté de moi s'est endormi sur mon épaule. Je n'ai pas bougé. C'était presque thérapeutique."], en: ["I stayed silent for an hour. The counselor wrote “slow progress” in my file and drew a little sad cloud next to it.", "I said nothing. The silence lasted so long the giant next to me fell asleep on my shoulder. I didn't move. It was almost therapeutic."] },
         fx: { happy: -1 },
       },
     ],
@@ -329,28 +377,34 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "La bibliothèque de la prison compte 312 livres, dont 40 exemplaires du même polar et un code pénal annoté au feutre par un détenu très en colère.",
         "Le bibliothécaire de la prison, un faussaire à la retraite, te recommande « un classique ». Il te tend un magazine de déco de 1997.",
+        "Bibliothèque de la prison. Le rayon « Évasion » est vide, évidemment. Il reste un code pénal, 40 exemplaires d'un polar, un guide sur {w:hobby} et un vieux magazine de déco. Le bibliothécaire te fixe.",
+        "Le bibliothécaire de la prison, condamné pour {w:crime_small}, te recommande ses trois livres préférés : le code pénal, un polar dont il a déchiré la fin, et un magazine de déco de 1997. « Choisis bien. »",
+        "Jour de bibliothèque. Ça dégage {w:smell} et le vieux papier. Sur la table : un code pénal annoté, [[quarante|trente-neuf|quarante et un]] exemplaires du même polar, et un magazine de déco de 1997 avec {w:celeb} en couverture.",
       ],
       en: [
         "The prison library has 312 books, including 40 copies of the same thriller and a criminal code annotated in marker by a very angry inmate.",
         "The prison librarian, a retired forger, recommends “a classic.” He hands you a 1997 home decor magazine.",
+        "Prison library. The 'Escape' section is empty, obviously. What's left: a criminal code, 40 copies of a thriller, a guide to {w:hobby} and an old decor magazine. The librarian is watching you.",
+        "The prison librarian, convicted of {w:crime_small}, recommends his three favorite books: the criminal code, a thriller whose ending he tore out, and a 1997 decor magazine. 'Choose wisely.'",
+        "Library day. It gives off {w:smell} and old paper. On the table: an annotated criminal code, [[forty|thirty-nine|forty-one]] copies of the same thriller, and a 1997 decor magazine with {w:celeb} on the cover.",
       ],
     },
     choices: [
       {
         label: { fr: 'Étudier le droit', en: 'Study law' },
         out: [
-          { w: 2, odds: { smarts: 1 }, text: { fr: "J'ai dévoré le code pénal. J'ai trouvé trois vices de procédure dans mon dossier et une faute de frappe dans mon nom. Mon avocat ne m'avait rien dit. Mon avocat ne m'a jamais rien dit.", en: "I devoured the criminal code. I found three procedural errors in my case and a typo in my name. My lawyer never told me. My lawyer never told me anything." }, fx: { smarts: 6, flag: 'cr_jailhouse_lawyer' }, mood: 'proud' },
-          { w: 1, text: { fr: "J'ai lu le code pénal en entier. Conclusion : je suis encore plus coupable que je ne le pensais.", en: "I read the entire criminal code. Conclusion: I'm even guiltier than I thought." }, fx: { smarts: 4, happy: -3 } },
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai dévoré le code pénal. J'ai trouvé trois vices de procédure dans mon dossier et une faute de frappe dans mon nom. Mon avocat ne m'avait rien dit. Mon avocat ne m'a jamais rien dit.", "J'ai étudié le droit jour et nuit. Maintenant, je donne des consultations juridiques dans la cour contre des sachets de nouilles. J'ai [[douze|vingt|trente]] clients et zéro diplôme."], en: ["I devoured the criminal code. I found three procedural errors in my case and a typo in my name. My lawyer never told me. My lawyer never told me anything.", "I studied law day and night. Now I give legal consultations in the yard for noodle packets. I have [[twelve|twenty|thirty]] clients and zero degrees."] }, fx: { smarts: 6, flag: 'cr_jailhouse_lawyer' }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai lu le code pénal en entier. Conclusion : je suis encore plus coupable que je ne le pensais.", "J'ai essayé de lire le code pénal. Je me suis endormi{|e} à la page 4, la bouche ouverte, et j'ai bavé sur l'article 311. Le bibliothécaire m'a fait payer l'amende en nouilles."], en: ["I read the entire criminal code. Conclusion: I'm even guiltier than I thought.", "I tried to read the criminal code. I fell asleep on page 4, mouth open, and drooled on section 311. The librarian fined me in noodles."] }, fx: { smarts: 4, happy: -3 } },
         ],
       },
       {
         label: { fr: 'Lire le polar', en: 'Read the thriller' },
-        text: { fr: "J'ai lu les 40 exemplaires du même polar, au cas où la fin changerait. C'est toujours le jardinier.", en: "I read all 40 copies of the same thriller, in case the ending changed. It's always the gardener." },
+        text: { fr: ["J'ai lu les 40 exemplaires du même polar, au cas où la fin changerait. C'est toujours le jardinier.", "J'ai lu le polar. Le coupable, c'est le jardinier. J'ai écrit une suite où le jardinier s'évade. Elle circule dans tout le bloc. Les gardiens l'ont confisquée « par précaution »."], en: ["I read all 40 copies of the same thriller, in case the ending changed. It's always the gardener.", "I read the thriller. The gardener did it. I wrote a sequel where the gardener escapes. It's circulating through the whole block. The guards confiscated it 'as a precaution'."] },
         fx: { happy: 4, smarts: 2 },
       },
       {
         label: { fr: 'Le magazine de 1997', en: 'The 1997 magazine' },
-        text: { fr: "J'ai lu le magazine de déco de 1997. J'ai appris qu'il fallait absolument une lampe à lave et des rideaux en perles. Je sors avec un plan.", en: "I read the 1997 decor magazine. I learned I absolutely need a lava lamp and beaded curtains. I'll walk out with a plan." },
+        text: { fr: ["J'ai lu le magazine de déco de 1997. J'ai appris qu'il fallait absolument une lampe à lave et des rideaux en perles. Je sors avec un plan.", "J'ai lu le magazine de 1997 de la première à la dernière page. J'ai redécoré ma cellule avec {w:object} et du papier toilette. Mon codétenu dit que c'est « très feng shui »."], en: ["I read the 1997 decor magazine. I learned I absolutely need a lava lamp and beaded curtains. I'll walk out with a plan.", "I read the 1997 magazine cover to cover. I redecorated my cell with {w:object} and toilet paper. My cellmate says it's 'very feng shui'."] },
         fx: { happy: 2 },
       },
     ],
@@ -366,33 +420,39 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "Ton audience de libération conditionnelle approche. Tu répètes ton discours devant le « miroir » de la cellule, une plaque de métal tordue. Ton reflet a l'air coupable.",
         "La commission de libération conditionnelle se réunit bientôt. Tu as une chemise propre, un discours, et des aisselles qui transpirent rien qu'en y pensant.",
+        "Audience de libération dans [[trois jours|une semaine|48 heures]]. Ton codétenu te conseille de dire que tu as découvert {w:hobby} pour « montrer que tu as changé ». Ta mère conseille de pleurer. Ton avocat ne répond plus.",
+        "La commission t'attend demain. Tu as rédigé un discours de repentance sur {w:object} faute de papier. Il fait [[deux|six|onze]] pages. Tu le connais par cœur. Tu transpires quand même.",
+        "Ta libération conditionnelle se joue cette semaine. Le dernier détenu à y être allé a dit {w:excuse} et a pris deux ans de plus. Tu as {w:smell} sous les bras rien que d'y penser.",
       ],
       en: [
         "Your parole hearing is coming up. You rehearse your speech in front of the cell “mirror,” a dented metal plate. Your reflection looks guilty.",
         "The parole board meets soon. You have a clean shirt, a speech, and armpits that sweat just thinking about it.",
+        "Parole hearing in [[three days|a week|48 hours]]. Your cellmate advises you to say you've discovered {w:hobby} to 'show you've changed'. Your mom says to cry. Your lawyer stopped answering.",
+        "The board expects you tomorrow. You wrote your remorse speech on {w:object} for lack of paper. It's [[two|six|eleven]] pages long. You know it by heart. You're sweating anyway.",
+        "Your parole is decided this week. The last inmate who went said '{w:excuse}' and got two more years. Your armpits give off {w:smell} just thinking about it.",
       ],
     },
     choices: [
       {
         label: { fr: "Aller à l'audience", en: 'Go to the hearing' },
-        text: { fr: "J'ai mis ma chemise la moins orange, j'ai respiré un grand coup et je suis entré{|e} dans la salle.", en: "I put on my least orange shirt, took a deep breath and walked into the room." },
+        text: { fr: ["J'ai mis ma chemise la moins orange, j'ai respiré un grand coup et je suis entré{|e} dans la salle.", "Je me suis coiffé{|e} avec de l'eau et du savon, j'ai serré les fesses et je suis entré{|e} devant la commission."], en: ["I put on my least orange shirt, took a deep breath and walked into the room.", "I styled my hair with water and soap, clenched everything and walked in to face the board."] },
         fx: { stress: 4, open: 'parole' },
       },
       {
         label: { fr: 'Citer la jurisprudence', en: 'Cite case law' },
         if: { flag: 'cr_jailhouse_lawyer' },
-        text: { fr: "J'ai cité trois arrêts de cour d'appel et un vice de procédure. La commission m'a regardé{|e} comme un chien qui parle. Ils ont accepté de m'écouter.", en: "I cited three appellate rulings and a procedural flaw. The board looked at me like a talking dog. They agreed to hear me out." },
+        text: { fr: ["J'ai cité trois arrêts de cour d'appel et un vice de procédure. La commission m'a regardé{|e} comme un chien qui parle. Ils ont accepté de m'écouter.", "J'ai sorti un classeur de jurisprudence annoté au stylo à bille. Le président de la commission a enlevé ses lunettes, impressionné. Ils m'ont laissé parler."], en: ["I cited three appellate rulings and a procedural flaw. The board looked at me like a talking dog. They agreed to hear me out.", "I pulled out a binder of case law annotated in ballpoint pen. The board chairman took off his glasses, impressed. They let me speak."] },
         fx: { smarts: 2, counter: 'prisonGood', open: 'parole' },
         mood: 'proud',
       },
       {
         label: { fr: 'Répéter encore', en: 'Rehearse more' },
-        text: { fr: "J'ai répété mon discours 300 fois. Mon codétenu le connaît par cœur et pleure à la fin, à chaque fois.", en: "I rehearsed my speech 300 times. My cellmate knows it by heart and cries at the end every single time." },
+        text: { fr: ["J'ai répété mon discours 300 fois. Mon codétenu le connaît par cœur et pleure à la fin, à chaque fois.", "J'ai répété encore et encore, devant le mur, les rats et le gardien de nuit. Le gardien m'a donné des conseils de diction. Il a fait du théâtre."], en: ["I rehearsed my speech 300 times. My cellmate knows it by heart and cries at the end every single time.", "I rehearsed again and again, in front of the wall, the rats and the night guard. The guard gave me diction tips. He used to do theater."] },
         fx: { counter: 'prisonGood', stress: -3, discipline: 2 },
       },
       {
         label: { fr: 'Paniquer', en: 'Panic' },
-        text: { fr: "J'ai fait une crise d'angoisse et respiré dans un sachet de chips vide pendant vingt minutes. Ça sentait le paprika. J'ai repoussé l'audience.", en: "I had a panic attack and breathed into an empty chip bag for twenty minutes. It smelled like paprika. I postponed the hearing." },
+        text: { fr: ["J'ai fait une crise d'angoisse et respiré dans un sachet de chips vide pendant vingt minutes. Ça sentait le paprika. J'ai repoussé l'audience.", "J'ai paniqué si fort que j'ai oublié mon propre nom devant la porte. On a reporté l'audience. Je suis retourné{|e} en cellule en tremblant comme une feuille."], en: ["I had a panic attack and breathed into an empty chip bag for twenty minutes. It smelled like paprika. I postponed the hearing.", "I panicked so hard I forgot my own name at the door. They postponed the hearing. I went back to my cell shaking like a leaf."] },
         fx: { happy: -4, stress: 8 },
         mood: 'shock',
       },
@@ -411,29 +471,35 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "On t'a nommé{|e} barbier de la prison. Premier client : {a.first}, terreur de l'aile C, qui veut « juste rafraîchir les côtés ». Tes mains tremblent. Tes ciseaux sont en plastique.",
         "Le barbier de la prison a été libéré. Devine qui hérite de la tondeuse ? Et devine qui s'assoit en premier ? {a.first}, qui a mangé le dernier barbier. Selon la rumeur.",
+        "Ton premier client au salon de la prison : {a.first}, qui te montre une photo où {w:celeb} pose fièrement et dit « comme ça ». Ta tondeuse fait {w:sound}. {a:Il|Elle} a [[deux|trois|onze]] cicatrices sur le crâne.",
+        "Tu es le nouveau barbier du bloc. {a.first} s'assoit, croise les bras et dit : « Si tu me rates, je t'enferme avec {w:animal}… » Tu ne sais pas {a:s'il|si elle} plaisante. Tu ne veux pas savoir.",
+        "Salon de coiffure de la prison. Ton outil : une tondeuse qui dégage {w:smell}. Ton client : {a.first}, qui veut « un dégradé américain ». Le dernier qui l'a raté travaille maintenant à la buanderie. Avec un œil au beurre noir.",
       ],
       en: [
         "You've been named prison barber. First client: {a.first}, terror of C Block, who wants “just a little off the sides.” Your hands shake. Your scissors are plastic.",
         "The prison barber got released. Guess who inherits the clippers? And guess who sits down first? {a.first}, who ate the last barber. Allegedly.",
+        "Your first client at the prison salon: {a.first}, who shows you a photo of {w:celeb} posing proudly and says 'like that'. Your clippers make {w:sound}. {a:He|She} has [[two|three|eleven]] scars on the scalp.",
+        "You're the block's new barber. {a.first} sits down, crosses {a:his|her} arms and says: 'Mess this up and I'll lock you in with {w:animal}…' You can't tell if it's a joke. You don't want to know.",
+        "Prison barbershop. Your tool: clippers giving off {w:smell}. Your client: {a.first}, who wants 'a fade'. The last guy who botched it now works in the laundry. With a black eye.",
       ],
     },
     choices: [
       {
         label: { fr: 'Faire de mon mieux', en: 'Do my best' },
         out: [
-          { w: 2, odds: { discipline: 1 }, text: { fr: "J'ai fait à {a.first} un dégradé parfait. {a:Il|Elle} s'est admiré{a:|e} dans le dos d'une cuillère et a hoché la tête. J'ai désormais une clientèle et des privilèges.", en: "I gave {a.first} a perfect fade. {a:He|She} admired it in the back of a spoon and nodded. I now have a clientele and privileges." }, fx: { happy: 6, rel: 15, actorRole: 'friend', counter: 'prisonGood', flag: 'cr_barber' }, mood: 'proud' },
-          { w: 1, text: { fr: "J'ai raté le dégradé. {a.first} ressemble à un moine qui a perdu un pari. {a:Il|Elle} m'a regardé{|e} très longtemps. Je dors avec un œil ouvert.", en: "I botched the fade. {a.first} looks like a monk who lost a bet. {a:He|She} stared at me for a long time. I now sleep with one eye open." }, fx: { actorRole: 'enemy', stress: 10, happy: -4 }, mood: 'shock' },
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["J'ai fait à {a.first} un dégradé parfait. {a:Il|Elle} s'est admiré{a:|e} dans le dos d'une cuillère et a hoché la tête. J'ai désormais une clientèle et des privilèges.", "Coupe parfaite. {a.first} a pleuré d'émotion devant le miroir en métal. Désormais, on fait la queue devant ma cellule et on me paie avec {w:food}."], en: ["I gave {a.first} a perfect fade. {a:He|She} admired it in the back of a spoon and nodded. I now have a clientele and privileges.", "Perfect cut. {a.first} cried with emotion in front of the metal mirror. Now there's a line outside my cell and people pay me in {w:food}."] }, fx: { happy: 6, rel: 15, actorRole: 'friend', counter: 'prisonGood', flag: 'cr_barber' }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai raté le dégradé. {a.first} ressemble à un moine qui a perdu un pari. {a:Il|Elle} m'a regardé{|e} très longtemps. Je dors avec un œil ouvert.", "J'ai éternué en pleine coupe. {a.first} a maintenant une raie [[en zigzag|en forme d'éclair|qui fait le tour du crâne]]. {a:Il|Elle} dit que c'est volontaire. Tout le monde fait semblant de le croire."], en: ["I botched the fade. {a.first} looks like a monk who lost a bet. {a:He|She} stared at me for a long time. I now sleep with one eye open.", "I sneezed mid-cut. {a.first} now has a part [[in a zigzag|shaped like a lightning bolt|that goes all the way around the head]]. {a:He|She} says it's intentional. Everyone pretends to believe it."] }, fx: { actorRole: 'enemy', stress: 10, happy: -4 }, mood: 'shock' },
         ],
       },
       {
         label: { fr: 'Proposer une crête', en: 'Suggest a mohawk' },
-        text: { fr: "J'ai convaincu {a.first} de tenter la crête. Une semaine plus tard, toute l'aile C porte une crête. Je suis un influenceur carcéral.", en: "I talked {a.first} into a mohawk. A week later, all of C Block has mohawks. I am a prison influencer." },
+        text: { fr: ["J'ai convaincu {a.first} de tenter la crête. Une semaine plus tard, toute l'aile C porte une crête. Je suis un influenceur carcéral.", "J'ai proposé une crête à {a.first}. {a:Il|Elle} a accepté à condition qu'elle soit « style {w:band} ». Le résultat a lancé une mode. Les gardiens commencent à s'inquiéter."], en: ["I talked {a.first} into a mohawk. A week later, all of C Block has mohawks. I am a prison influencer.", "I suggested a mohawk to {a.first}. {a:He|She} agreed on the condition that it be '{w:band} style'. The result started a trend. The guards are getting worried."] },
         fx: { happy: 8, fame: 1, rel: 10, flag: 'cr_barber' },
         mood: 'happy',
       },
       {
         label: { fr: 'Démissionner', en: 'Quit' },
-        text: { fr: "J'ai rendu mes ciseaux avant d'avoir une erreur capillaire sur la conscience.", en: "I handed back my scissors before I had a hair crime on my conscience." },
+        text: { fr: ["J'ai rendu mes ciseaux avant d'avoir une erreur capillaire sur la conscience.", "J'ai démissionné avant même la première mèche. Mieux vaut vivre lâche que mourir coiffeur."], en: ["I handed back my scissors before I had a hair crime on my conscience.", "I quit before the first snip. Better to live a coward than die a hairdresser."] },
         fx: { happy: -1 },
       },
     ],
@@ -609,30 +675,36 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "Les détenus lancent une grève de la faim pour protester contre la gelée verte du jeudi. On compte sur ta solidarité. Et sur ton estomac.",
         "Grève de la faim générale : le directeur a supprimé le ketchup « pour raisons budgétaires ». Le même jour, il a changé de voiture.",
+        "Le bloc entre en grève de la faim : la cantine a servi {w:food} [[six|neuf|quatorze]] jours d'affilée et ça commence à dégager {w:smell}. Les meneurs passent de cellule en cellule. Tu en es ?",
+        "Grève de la faim ! La direction a remplacé le dessert du dimanche par {w:object}, « pour l'éducation ». Le mouvement prend de l'ampleur. Ton estomac fait déjà {w:sound}.",
+        "Les détenus refusent de manger tant que la télé de la salle commune restera bloquée sur {w:show}. Ça fait trois jours. Certains ont déjà craqué et mangé leur savon. On attend ta décision.",
       ],
       en: [
         "The inmates are launching a hunger strike to protest Thursday's green jello. They're counting on your solidarity. And your stomach.",
         "General hunger strike: the warden cut ketchup “for budget reasons.” The same day, he bought a new car.",
+        "The block is going on hunger strike: the cafeteria served {w:food} [[six|nine|fourteen]] days in a row and it's starting to give off {w:smell}. The ringleaders are going cell to cell. Are you in?",
+        "Hunger strike! Management replaced Sunday dessert with {w:object}, 'for educational purposes'. The movement is growing. Your stomach is already making {w:sound}.",
+        "The inmates refuse to eat until the common-room TV stops being stuck on {w:show}. It's been three days. Some have already cracked and eaten their soap. Your call.",
       ],
     },
     choices: [
       {
         label: { fr: 'Faire la grève', en: 'Join the strike' },
         out: [
-          { w: 2, odds: { discipline: 1 }, text: { fr: "J'ai tenu onze jours. Onze. La direction a cédé : la gelée est désormais… violette. Victoire historique.", en: "I lasted eleven days. Eleven. The administration caved: the jello is now… purple. A historic victory." }, fx: { health: -10, weight: -0.05, happy: 5, discipline: 4 }, mood: 'proud' },
-          { w: 1, text: { fr: "J'ai craqué au deuxième jour et mangé un tube de colle en douce. Les autres m'ont surpris{|e}, la bouche pleine. Traître{|sse} à la cause.", en: "I cracked on day two and secretly ate a glue stick. The others caught me with my mouth full. Traitor to the cause." }, fx: { health: -2, happy: -5 }, mood: 'shock' },
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["J'ai tenu onze jours. Onze. La direction a cédé : la gelée est désormais… violette. Victoire historique.", "J'ai tenu jusqu'au bout. La direction a cédé et a organisé un banquet de réconciliation : {w:food} pour tout le monde. On a tous été malades. Mais on a gagné."], en: ["I lasted eleven days. Eleven. The administration caved: the jello is now… purple. A historic victory.", "I held out until the end. Management caved and threw a reconciliation banquet: {w:food} for everyone. We all got sick. But we won."] }, fx: { health: -10, weight: -0.05, happy: 5, discipline: 4 }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai craqué au deuxième jour et mangé un tube de colle en douce. Les autres m'ont surpris{|e}, la bouche pleine. Traître{|sse} à la cause.", "J'ai flanché le troisième jour : j'ai acheté {w:food} qu'un gardien vendait sous le manteau. Les autres m'ont vu{|e}. Je suis exclu{|e} du mouvement et des conversations."], en: ["I cracked on day two and secretly ate a glue stick. The others caught me with my mouth full. Traitor to the cause.", "I caved on day three: I bought {w:food} a guard was selling under the counter. The others saw me. I've been kicked out of the movement and all conversations."] }, fx: { health: -2, happy: -5 }, mood: 'shock' },
         ],
       },
       {
         label: { fr: 'Manger en cachette', en: 'Eat in secret' },
-        text: { fr: "J'ai fait la grève le jour et mangé des barres de céréales la nuit sous ma couverture. Je suis le seul gréviste de l'histoire à avoir pris du poids.", en: "I striked by day and ate granola bars under my blanket at night. I'm the only hunger striker in history to gain weight." },
+        text: { fr: ["J'ai fait la grève le jour et mangé des barres de céréales la nuit sous ma couverture. Je suis le seul gréviste de l'histoire à avoir pris du poids.", "J'ai fait semblant de faire la grève. La nuit, je négociais {w:food} avec un gardien corrompu. J'ai pris [[deux|trois|cinq]] kilos. J'ai dit que c'était de la rétention d'eau due au stress."], en: ["I striked by day and ate granola bars under my blanket at night. I'm the only hunger striker in history to gain weight.", "I pretended to strike. At night, I bought {w:food} from a crooked guard. I gained [[four|six|ten]] pounds. I said it was stress-related water retention."] },
         fx: { weight: 0.05, happy: 3, karma: -2 },
       },
       {
         label: { fr: 'Mener la grève', en: 'Lead the strike' },
         out: [
-          { w: 1, text: { fr: "J'ai pris la tête du mouvement. Interview dans le journal local, titre : « Le Gandhi de la gamelle ». Ma famille a encadré l'article.", en: "I led the movement. Interview in the local paper, headline: “The Gandhi of the Mess Hall.” My family framed the article." }, fx: { fame: 4, health: -8, happy: 6 }, mood: 'proud' },
-          { w: 1, text: { fr: "J'ai mené la grève. La direction m'a transféré{|e} au mitard « pour préserver ma santé ». Merci la démocratie.", en: "I led the strike. The administration moved me to solitary “to protect my health.” Thanks, democracy." }, fx: { stress: 8, health: -5 }, mood: 'angry' },
+          { w: 1, text: { fr: ["J'ai pris la tête du mouvement. Interview dans le journal local, titre : « Le Gandhi de la gamelle ». Ma famille a encadré l'article.", "J'ai mené la grève avec des discours enflammés dans la cour. La direction a cédé au bout d'une semaine. Les détenus m'ont porté{|e} en triomphe. Un peu trop haut. Je me suis cogné{|e} au plafond."], en: ["I led the movement. Interview in the local paper, headline: “The Gandhi of the Mess Hall.” My family framed the article.", "I led the strike with fiery speeches in the yard. Management caved after a week. The inmates carried me in triumph. A little too high. I hit the ceiling."] }, fx: { fame: 4, health: -8, happy: 6 }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai mené la grève. La direction m'a transféré{|e} au mitard « pour préserver ma santé ». Merci la démocratie.", "J'ai pris la tête du mouvement. Le lendemain, tous les autres avaient repris les repas et j'étais seul{|e} à jeûner. Personne ne m'a prévenu{|e}. J'ai tenu par fierté. Et par bêtise."], en: ["I led the strike. The administration moved me to solitary “to protect my health.” Thanks, democracy.", "I led the movement. The next day, everyone else was eating again and I was the only one fasting. Nobody told me. I held out out of pride. And stupidity."] }, fx: { stress: 8, health: -5 }, mood: 'angry' },
         ],
       },
     ],
@@ -1028,30 +1100,36 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "Tu vois {a.first} braquer la supérette du coin, cagoule en forme de lapin sur la tête. Vos regards se croisent. {a:Il|Elle} pose un doigt sur ses lèvres.",
         "En sortant du pressing, tu tombes sur {a.first} en train de forcer une voiture avec un cintre. {a:Il|Elle} te fait un petit signe de la main, très détendu{a:|e}.",
+        "{w:time}, tu surprends {a.first} en train de sortir {w:at_place} avec {w:object} sous le bras et une alarme qui hurle derrière {a:lui|elle}. {a:Il|Elle} te fait un clin d'œil.",
+        "Tu vois {a.first} voler {w:vehicle} en plein jour, avec une décontraction déconcertante. {a:Il|Elle} règle même le rétroviseur avant de démarrer. Puis {a:il|elle} te remarque. Silence.",
+        "{a.first}, portant un masque qui représente {w:celeb}, vient de vider la caisse de la boulangerie. En sortant, {a:il|elle} te croise, s'arrête et te tend [[un croissant|une baguette|un éclair]]. « On ne s'est jamais vus. »",
       ],
       en: [
         "You see {a.first} robbing the corner store, wearing a bunny-shaped ski mask. Your eyes meet. {a:He|She} puts a finger to {a.his} lips.",
         "Leaving the dry cleaner's, you catch {a.first} breaking into a car with a coat hanger. {a:He|She} gives you a little wave, totally relaxed.",
+        "{w:time}, you catch {a.first} walking out {w:at_place} with {w:object} under {a.his} arm and an alarm blaring behind {a:him|her}. {a:He|She} winks at you.",
+        "You watch {a.first} steal {w:vehicle} in broad daylight, with unsettling calm. {a:He|She} even adjusts the mirror before driving off. Then {a:he|she} spots you. Silence.",
+        "{a.first}, wearing a mask of {w:celeb}, just emptied the bakery's till. On the way out, {a:he|she} bumps into you, stops and hands you [[a croissant|a baguette|an éclair]]. 'We never met.'",
       ],
     },
     choices: [
       {
         label: { fr: 'Témoigner', en: 'Testify' },
         out: [
-          { w: 2, text: { fr: "J'ai témoigné. {a.first} a pris trois ans. Au procès, {a:il|elle} m'a fait le signe « je te surveille » avec deux doigts. Pendant toute l'audience.", en: "I testified. {a.first} got three years. During the trial, {a:he|she} did the “I'm watching you” gesture at me. The entire time." }, fx: { actorRole: 'enemy', karma: 6, stress: 6 } },
-          { w: 1, text: { fr: "J'ai appelé la police. Ils sont arrivés 50 minutes plus tard, ont pris ma déposition, puis l'ont oubliée sur le toit de la voiture. {a.first} court toujours, et connaît mon adresse.", en: "I called the police. They showed up 50 minutes later, took my statement, then left it on the roof of the car. {a.first} is still at large, and knows my address." }, fx: { actorRole: 'enemy', stress: 10, karma: 3 }, mood: 'angry' },
+          { w: 2, text: { fr: ["J'ai témoigné. {a.first} a pris trois ans. Au procès, {a:il|elle} m'a fait le signe « je te surveille » avec deux doigts. Pendant toute l'audience.", "J'ai témoigné. {a.first} a été condamné{a:|e}. Depuis, je reçois chaque mois une carte postale de prison, sans texte, juste un dessin de lapin. Je dors mal."], en: ["I testified. {a.first} got three years. During the trial, {a:he|she} did the “I'm watching you” gesture at me. The entire time.", "I testified. {a.first} was convicted. Since then, I get a postcard from prison every month, no words, just a drawing of a bunny. I don't sleep well."] }, fx: { actorRole: 'enemy', karma: 6, stress: 6 } },
+          { w: 1, text: { fr: ["J'ai appelé la police. Ils sont arrivés 50 minutes plus tard, ont pris ma déposition, puis l'ont oubliée sur le toit de la voiture. {a.first} court toujours, et connaît mon adresse.", "J'ai témoigné, mais le policier a écrit mon nom de travers et l'adresse de {a.first} à la place de la mienne. {a.first} a reçu ma convocation. {a:Il|Elle} est venu{a:|e} me la rapporter."], en: ["I called the police. They showed up 50 minutes later, took my statement, then left it on the roof of the car. {a.first} is still at large, and knows my address.", "I testified, but the cop misspelled my name and wrote {a.first}'s address instead of mine. {a.first} got my summons. {a:He|She} came over to hand-deliver it."] }, fx: { actorRole: 'enemy', stress: 10, karma: 3 }, mood: 'angry' },
         ],
       },
       {
         label: { fr: "Je n'ai rien vu", en: 'I saw nothing' },
-        text: { fr: "Je n'ai rien vu. Rien du tout. J'ai même acheté des chips dans la supérette juste après. La caissière tremblait encore en me rendant la monnaie.", en: "I saw nothing. Nothing at all. I even bought chips at the store right after. The cashier was still shaking when she gave me change." },
+        text: { fr: ["Je n'ai rien vu. Rien du tout. J'ai même acheté des chips dans la supérette juste après. La caissière tremblait encore en me rendant la monnaie.", "Je n'ai rien vu. J'ai regardé {w:animal} sur le trottoir avec une concentration extrême jusqu'à ce que tout soit fini. Je suis un témoin parfait : aveugle."], en: ["I saw nothing. Nothing at all. I even bought chips at the store right after. The cashier was still shaking when she gave me change.", "I saw nothing. I stared at {w:animal} on the sidewalk with extreme focus until it was all over. I'm the perfect witness: blind."] },
         fx: { karma: -5, happy: -2 },
       },
       {
         label: { fr: 'Réclamer ma part', en: 'Ask for a cut' },
         out: [
-          { w: 1, text: { fr: "J'ai rattrapé {a.first} pour réclamer ma part. {a:Il|Elle} m'a donné {$amount} pour mon silence, plus un clin d'œil. Partenaires.", en: "I caught up with {a.first} and asked for a cut. {a:He|She} gave me {$amount} for my silence, plus a wink. Partners." }, fx: { money: 'amount', karma: -6, counter: 'crimes', actorRole: 'friend', heat: 5 }, mood: 'happy' },
-          { w: 1, text: { fr: "J'ai réclamé ma part. J'ai reçu un coup de coude dans le nez. Mon nez fait maintenant un angle intéressant.", en: "I asked for a cut. I got an elbow to the nose. My nose now has an interesting angle." }, fx: { health: -8, looks: -3 }, mood: 'sad' },
+          { w: 1, text: { fr: ["J'ai rattrapé {a.first} pour réclamer ma part. {a:Il|Elle} m'a donné {$amount} pour mon silence, plus un clin d'œil. Partenaires.", "J'ai réclamé ma part à {a.first}. {a:Il|Elle} a ri, puis m'a tendu {$amount} et sa carte de visite. Je crois que je viens d'être recruté{|e}."], en: ["I caught up with {a.first} and asked for a cut. {a:He|She} gave me {$amount} for my silence, plus a wink. Partners.", "I asked {a.first} for my cut. {a:He|She} laughed, then handed me {$amount} and a business card. I think I've just been recruited."] }, fx: { money: 'amount', karma: -6, counter: 'crimes', actorRole: 'friend', heat: 5 }, mood: 'happy' },
+          { w: 1, text: { fr: ["J'ai réclamé ma part. J'ai reçu un coup de coude dans le nez. Mon nez fait maintenant un angle intéressant.", "J'ai voulu ma part. {a.first} m'a donné un coup de pied dans le tibia et s'est enfui{a:|e} avec {w:object}. Je boite et je n'ai rien. Le crime ne paie pas, surtout pour les témoins."], en: ["I asked for a cut. I got an elbow to the nose. My nose now has an interesting angle.", "I wanted my cut. {a.first} kicked me in the shin and ran off with {w:object}. I'm limping and I got nothing. Crime doesn't pay, especially for witnesses."] }, fx: { health: -8, looks: -3 }, mood: 'sad' },
         ],
       },
     ],
@@ -1069,26 +1147,32 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "Un inspecteur en imperméable te paie un café et des croissants. « On sait que tu connais du monde. Deviens nos yeux et nos oreilles. On paie bien. Enfin, on paie. »",
         "Un flic en civil s'assoit à côté de toi sur un banc et fait semblant de lire le journal à l'envers. « Psst. Ça te dirait de devenir indic ? »",
+        "Un inspecteur t'aborde {w:at_place}, déguisé (très mal) en touriste. Il t'offre {w:food} et murmure : « Toi, tu entends des choses. Nous, on paie pour les entendre. »",
+        "Un type en imperméable, {w:weather}, te tend une carte de visite qui dit seulement « Police. Discrète. » Il veut un indic dans le quartier. Il te paiera [[en liquide|en tickets restaurant|en bons d'achat]].",
+        "L'inspecteur Ducros, surnommé « {w:nickname} », t'attend devant chez toi avec deux cafés. « Je ne vais pas tourner autour du pot. On a besoin d'une balance. Et tu as une tête de balance. »",
       ],
       en: [
         "A detective in a trench coat buys you coffee and croissants. “We know you know people. Be our eyes and ears. We pay well. Well, we pay.”",
         "A plainclothes cop sits next to you on a bench, pretending to read an upside-down newspaper. “Psst. How'd you like to be an informant?”",
+        "A detective approaches you {w:at_place}, disguised (very badly) as a tourist. He offers you {w:food} and whispers: 'You hear things. We pay to hear them.'",
+        "A guy in a trench coat, {w:weather}, hands you a business card that just says 'Police. Discreet.' He wants an informant in the neighborhood. He'll pay [[in cash|in meal vouchers|in store credit]].",
+        "Inspector Ducros, known as '{w:nickname}', is waiting outside your place with two coffees. 'I won't beat around the bush. We need a snitch. And you've got a snitch's face.'",
       ],
     },
     choices: [
       {
         label: { fr: 'Accepter', en: 'Accept' },
-        text: { fr: "J'ai accepté de devenir indic. Nom de code : « Croissant ». J'ai touché {$amount} pour dénoncer un voisin qui trie mal ses déchets.", en: "I agreed to be an informant. Codename: “Croissant.” I got {$amount} for reporting a neighbor who doesn't sort his recycling." },
+        text: { fr: ["J'ai accepté de devenir indic. Nom de code : « Croissant ». J'ai touché {$amount} pour dénoncer un voisin qui trie mal ses déchets.", "Je suis devenu{|e} indic. J'ai touché {$amount} pour signaler un voisin qui s'amusait à {w:crime_small}. L'inspecteur a été ravi. Le voisin, moins."], en: ["I agreed to be an informant. Codename: “Croissant.” I got {$amount} for reporting a neighbor who doesn't sort his recycling.", "I became an informant. I got {$amount} for reporting a neighbor who kept {w:crime_small}. The detective was thrilled. The neighbor, less so."] },
         fx: { money: 'amount', flag: 'cr_informant', heat: -20, schedule: { key: 'cr_informant_burned', years: 2 } },
       },
       {
         label: { fr: 'Refuser', en: 'Decline' },
-        text: { fr: "J'ai refusé, mais j'ai gardé les croissants. L'inspecteur a boudé. Il m'a même laissé l'addition.", en: "I said no, but kept the croissants. The detective sulked. He even left me the bill." },
+        text: { fr: ["J'ai refusé, mais j'ai gardé les croissants. L'inspecteur a boudé. Il m'a même laissé l'addition.", "J'ai dit non. L'inspecteur a soupiré, a repris son café et m'a dit « on se reverra ». Depuis, une voiture banalisée est garée devant chez moi [[le mardi|tous les soirs|un jour sur deux]]."], en: ["I said no, but kept the croissants. The detective sulked. He even left me the bill.", "I said no. The detective sighed, took back his coffee and said 'we'll meet again'. Since then, an unmarked car has been parked outside my place [[on Tuesdays|every night|every other day]]."] },
         fx: { happy: 2 },
       },
       {
         label: { fr: 'Exiger un badge', en: 'Demand a badge' },
-        text: { fr: "J'ai demandé un badge, une arme et une voiture banalisée. L'inspecteur a ri si fort qu'il a renversé son café sur sa cravate.", en: "I asked for a badge, a gun and an unmarked car. The detective laughed so hard he spilled coffee on his tie." },
+        text: { fr: ["J'ai demandé un badge, une arme et une voiture banalisée. L'inspecteur a ri si fort qu'il a renversé son café sur sa cravate.", "J'ai exigé un badge et {w:vehicle} de fonction. L'inspecteur m'a donné un autocollant « Shérif » sorti d'un paquet de céréales. Je le porte avec fierté."], en: ["I asked for a badge, a gun and an unmarked car. The detective laughed so hard he spilled coffee on his tie.", "I demanded a badge and {w:vehicle} as a company car. The detective gave me a 'Sheriff' sticker from a cereal box. I wear it with pride."] },
         fx: { happy: 3 },
       },
     ],
@@ -1105,30 +1189,36 @@ export const crimeEvents: EventDef[] = [
       fr: [
         "Ce matin, ta place de parking est vide. À la place de ta voiture : une flaque d'huile et un emballage de kebab. Le kebab, eux au moins, ils l'ont fini.",
         "Tu sors de chez toi, clés en main. Plus de voiture. Juste un mot sur le trottoir : « Merci ! ». Ils sont polis, au moins.",
+        "Ta voiture a disparu {w:time}. À sa place, quelqu'un a garé {w:vehicle}, avec les clés sur le contact et un mot : « On échange ? » Tu n'as pas été consulté{|e}.",
+        "Plus de voiture. La caméra du voisin montre {w:animal} qui traverse la rue, puis un type en peignoir qui démarre ta voiture en [[huit|douze|quatre]] secondes. Il a même mis le clignotant.",
+        "Ta voiture a été volée. Tout ce qu'il reste sur la place : {w:object}, {w:smell} et des traces de pneus en forme de cœur. Le voleur avait le sens de l'humour. Toi, moins.",
       ],
       en: [
         "This morning, your parking spot is empty. Where your car was: an oil stain and a kebab wrapper. At least they finished the kebab.",
         "You walk out, keys in hand. No car. Just a note on the sidewalk: “Thanks!” At least they're polite.",
+        "Your car vanished {w:time}. In its place, someone parked {w:vehicle}, keys in the ignition and a note: 'Trade?' Nobody asked you.",
+        "No more car. The neighbor's camera shows {w:animal} crossing the street, then a guy in a bathrobe starting your car in [[eight|twelve|four]] seconds. He even used his turn signal.",
+        "Your car was stolen. All that's left in the spot: {w:object}, {w:smell} and tire marks shaped like a heart. The thief had a sense of humor. You, less so.",
       ],
     },
     choices: [
       {
         label: { fr: 'Porter plainte', en: 'File a report' },
         out: [
-          { w: 2, text: { fr: "J'ai porté plainte. Le policier a tapé ma déposition avec deux doigts en soupirant et m'a dit « on vous rappelle ». On ne m'a jamais rappelé{|e}.", en: "I filed a report. The officer typed my statement with two fingers, sighing, and said “we'll call you.” Nobody ever called." }, fx: { loseAsset: 'car', happy: -8, stress: 5 }, mood: 'sad' },
-          { w: 1, text: { fr: "Ma voiture a été retrouvée trois semaines plus tard, en flammes, au milieu d'un champ. Elle était sur les réseaux avant moi.", en: "My car was found three weeks later, on fire, in the middle of a field. It went viral before I did." }, fx: { loseAsset: 'car', happy: -10, visual: 'fire' }, mood: 'cry' },
+          { w: 2, text: { fr: ["J'ai porté plainte. Le policier a tapé ma déposition avec deux doigts en soupirant et m'a dit « on vous rappelle ». On ne m'a jamais rappelé{|e}.", "J'ai porté plainte. Le policier m'a demandé la couleur de la voiture, puis s'il y avait {w:food} dedans. J'ai dit non. Il a eu l'air déçu et a classé l'affaire."], en: ["I filed a report. The officer typed my statement with two fingers, sighing, and said “we'll call you.” Nobody ever called.", "I filed a report. The officer asked the car's color, then whether there was {w:food} inside. I said no. He looked disappointed and closed the case."] }, fx: { loseAsset: 'car', happy: -8, stress: 5 }, mood: 'sad' },
+          { w: 1, text: { fr: ["Ma voiture a été retrouvée trois semaines plus tard, en flammes, au milieu d'un champ. Elle était sur les réseaux avant moi.", "La police a retrouvé ma voiture {w:far_place}, avec [[dix mille|vingt mille|quarante mille]] kilomètres de plus au compteur et un autocollant « J'ai vu la mer ». Elle a eu une vie plus riche que moi."], en: ["My car was found three weeks later, on fire, in the middle of a field. It went viral before I did.", "The police found my car {w:far_place}, with [[six thousand|twelve thousand|twenty-five thousand]] more miles on it and an 'I saw the sea' bumper sticker. It's had a richer life than me."] }, fx: { loseAsset: 'car', happy: -10, visual: 'fire' }, mood: 'cry' },
         ],
       },
       {
         label: { fr: 'Mener l’enquête', en: 'Investigate myself' },
         out: [
-          { w: 1, odds: { smarts: 1 }, text: { fr: "J'ai mené l'enquête. Mon voisin l'avait « empruntée » pour aller voir sa belle-mère. Il me l'a rendue avec le plein et une tarte aux pommes.", en: "I investigated. My neighbor had “borrowed” it to visit his mother-in-law. He returned it with a full tank and an apple pie." }, fx: { happy: 6, smarts: 2 }, mood: 'happy' },
-          { w: 2, text: { fr: "J'ai joué les détectives pendant deux semaines. Résultat : zéro voiture, mais un magnifique tableau en liège avec des fils rouges.", en: "I played detective for two weeks. Result: zero cars, but a gorgeous corkboard with red string." }, fx: { loseAsset: 'car', happy: -6, smarts: 2 } },
+          { w: 1, odds: { smarts: 1 }, text: { fr: ["J'ai mené l'enquête. Mon voisin l'avait « empruntée » pour aller voir sa belle-mère. Il me l'a rendue avec le plein et une tarte aux pommes.", "J'ai enquêté comme dans les séries. J'ai retrouvé ma voiture {w:at_place}, intacte, avec {w:object} sur la banquette arrière. Je n'ai jamais su d'où ça venait. Je n'ai pas posé de questions."], en: ["I investigated. My neighbor had “borrowed” it to visit his mother-in-law. He returned it with a full tank and an apple pie.", "I investigated like on TV. I found my car {w:at_place}, intact, with {w:object} on the back seat. I never found out where it came from. I didn't ask questions."] }, fx: { happy: 6, smarts: 2 }, mood: 'happy' },
+          { w: 2, text: { fr: ["J'ai joué les détectives pendant deux semaines. Résultat : zéro voiture, mais un magnifique tableau en liège avec des fils rouges.", "J'ai enquêté jour et nuit. J'ai fini par accuser à tort mon facteur, ma belle-sœur et {w:celeb}. La voiture, elle, n'est jamais revenue."], en: ["I played detective for two weeks. Result: zero cars, but a gorgeous corkboard with red string.", "I investigated day and night. I ended up wrongly accusing my mailman, my sister-in-law and {w:celeb}. The car never came back."] }, fx: { loseAsset: 'car', happy: -6, smarts: 2 } },
         ],
       },
       {
         label: { fr: 'Hausser les épaules', en: 'Shrug it off' },
-        text: { fr: "J'ai haussé les épaules. Elle avait 300 000 km et un siège qui sentait le chien mouillé. Bon courage au voleur.", en: "I shrugged. It had 200,000 miles and a seat that smelled like wet dog. Good luck to the thief." },
+        text: { fr: ["J'ai haussé les épaules. Elle avait 300 000 km et un siège qui sentait le chien mouillé. Bon courage au voleur.", "J'ai haussé les épaules et pris le bus. Une semaine plus tard, le voleur a ramené la voiture avec un mot : « Elle ne démarre pas en côte. Bon courage. »"], en: ["I shrugged. It had 200,000 miles and a seat that smelled like wet dog. Good luck to the thief.", "I shrugged and took the bus. A week later, the thief brought the car back with a note: 'Won't start on hills. Good luck.'"] },
         fx: { loseAsset: 'car', happy: -2 },
       },
     ],
