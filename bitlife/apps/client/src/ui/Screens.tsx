@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'preact/hooks';
 import { summarize, careerTitle, renderString, type Gender, type Orientation, type GameMode, type Life } from '@bl/sim';
 import { content } from '@bl/data';
-import { screen, life, modal, lang, showDeath, rev, retro, duo, tabloid } from '../state.ts';
-import { startLife, previewLife, loadExisting, continueAsHeir, reincarnateNow, becomeGhost } from '../game.ts';
+import { screen, life, modal, lang, showDeath, rev, retro, duo, tabloid, profile } from '../state.ts';
+import { startLife, previewLife, loadExisting, continueAsHeir, reincarnateNow, becomeGhost, startDaily, today } from '../game.ts';
 import { loadLife, slotInfo, AUTOSAVE } from '../save.ts';
 import { t } from '../i18n.ts';
 import { Btn, money, Portrait } from './common.tsx';
@@ -26,6 +26,7 @@ export function Title() {
         )}
         <Btn cls={`big ${auto?.alive ? '' : 'primary'}`} onClick={() => { unlockAudio(); sfx.open(); screen.value = 'create'; }}>✨ {t('new_life')}</Btn>
         <Btn cls="big" onClick={() => { unlockAudio(); startLife({ birthYear: 2026 }); }}>🎲 {t('random_life')}</Btn>
+        <Btn cls="big" onClick={() => { unlockAudio(); startDaily(); }}>📅 {lang.value === 'fr' ? 'Vie du jour' : 'Daily life'}{profile.value.daily?.[today()] ? <small> · 🏆 {profile.value.daily[today()]}</small> : null}</Btn>
         <Btn cls="big duo-btn" onClick={() => { unlockAudio(); sfx.open(); modal.value = { kind: 'duo' }; }}>💞 {lang.value === 'fr' ? 'Jouer à deux' : 'Play together'}{duo.value.status === 'room' ? ` · ${duo.value.code}` : ''}</Btn>
         <div class="row-btns">
           <Btn onClick={() => { unlockAudio(); modal.value = { kind: 'saves' }; }}>💾 {t('saves')}</Btn>

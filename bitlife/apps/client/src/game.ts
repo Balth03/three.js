@@ -327,6 +327,19 @@ export function doCrime(id: string) {
   dispatch({ k: 'crime', id, bonus: 0 });
 }
 
+/** Today's date and a seed derived from it: both players get the exact same starting life. */
+export function today() { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
+export function startDaily() {
+  const day = today();
+  let h = 2166136261;
+  for (const ch of day) h = Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0;
+  const countries = content.countries.map((c) => c.id);
+  startLife({ seed: h, birthYear: 2026, country: countries[h % countries.length], gender: h % 2 ? 'm' : 'f' });
+  const l = life.value;
+  if (l) { l.flags.daily = day; autosave(); }
+  showToast(lang.value === 'fr' ? `📅 Vie du jour ${day} : même départ pour tout le monde !` : `📅 Daily life ${day}: same start for everyone!`);
+}
+
 export function becomeGhost() {
   const l = life.value;
   if (!l || l.alive) return;
@@ -406,6 +419,7 @@ function onDeath() {
     checkAch();
     const s = summarize(l, content);
     const c = countryOf(content, l.country);
+    if (typeof l.flags.daily === 'string') { const d = (profile.value.daily ??= {}); d[l.flags.daily] = Math.max(d[l.flags.daily] ?? 0, s.score); }
     bury(profile.value, { id: l.id, first: l.first, last: l.last, gender: l.gender, born: l.birthYear, died: l.year, age: l.age, cause: l.death?.cause ?? { fr: '', en: '' }, netWorth: formatMoney(netWorth(l, content), c, lang.value), score: s.score, country: l.country, generation: l.generation, app: l.app, titles: s.titles, mode: l.mode });
     profile.value = { ...profile.value };
   }

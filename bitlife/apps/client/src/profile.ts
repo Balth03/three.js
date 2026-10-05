@@ -12,6 +12,8 @@ export interface Profile {
   lives: number;
   bestScore: number;
   challengesDone: Record<string, number>;
+  /** Daily life: best score per date (YYYY-MM-DD). */
+  daily?: Record<string, number>;
 }
 
 const KEY = 'bl:profile';
