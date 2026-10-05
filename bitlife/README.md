@@ -3,7 +3,29 @@
 Simulateur de vie complet dans le navigateur, façon BitLife, en **diorama 3D** (Three.js). Jeu privé, pour deux.
 Voir [`DESIGN.md`](DESIGN.md) pour la vision, la direction artistique, l'architecture et la feuille de route.
 
-> **État : version complète (étapes 1 → 7) + extras.** Une vie de la naissance à la mort (et au-delà) dans un diorama 3D qui suit l'âge : **1 700+ événements** bilingues (avec un niveau **Trash** activé par défaut), **114 métiers** (dont carrières spéciales : mafia, espion, hacker, gourou, influenceur, politicien…), **14 pays**, **55 maladies**, **44 crimes** avec procès/prison/évasion, **230+ activités** (30+ par onglet) et **44 interactions**, immobilier, voitures, bourse, prêts, entreprise, **174 succès**, dynasties (jouer ses enfants), époques, scénarios et défis, **mini-jeux** (casse, fuite, évasion, procès, blackjack, chirurgie, cuisine, match, interrogatoire, plaidoirie), cinématiques, mode photo, rétrospective… et le **mode à deux** en salon privé.
+> **État : version complète (étapes 1 → 7) + extras.** Une vie de la naissance à la mort (et au-delà) dans un diorama 3D qui suit l'âge : **2 400+ événements** bilingues (presque tous en 4–5 variantes), **580 anecdotes** du quotidien générées par combinaison, un lexique de **3 400 mots** aléatoires (avec un niveau **Trash** activé par défaut), **114 métiers** (dont carrières spéciales : mafia, espion, hacker, gourou, influenceur, politicien…), **14 pays**, **55 maladies**, **44 crimes** avec procès/prison/évasion, **240+ activités** (30+ par onglet) et **44 interactions**, immobilier, voitures, bourse, prêts, entreprise, **174 succès**, dynasties (jouer ses enfants), époques, scénarios et défis, **14 mini-jeux arcade plein écran** (voir plus bas), cinématiques, mode photo, rétrospective… et le **mode à deux** en salon privé.
+
+### Jamais deux fois la même phrase
+- Chaque texte a plusieurs variantes qui **tournent** (jamais la même deux fois de suite), et des **mots aléatoires** (`{w:food}`, `{w:place}`, `{w:insult}`…) tirés dans 36 listes bilingues : une même scène se recombine presque à l'infini.
+- Un événement déjà vu devient beaucoup plus rare dans la même vie… et dans les vies suivantes (mémoire entre les vies, héritiers et réincarnations compris).
+- 1 à 2 **anecdotes** générées chaque année.
+- Mesuré sur 60 vies simulées (`node tools/diversity.ts`) : environ 7 % de phrases répétées dans une vie (contre 20 % avant), plus de 20 000 phrases distinctes.
+- Les mots adultes/trash ne sortent jamais chez un personnage mineur ni au-dessus du niveau de contenu choisi. Élisions françaises automatiques (« d'Alex », « au coude »).
+
+### Mini-jeux arcade
+Plein écran néon, intro, compte à rebours, combo, particules, note S/A/B/C/D :
+- 🚓 **La fuite** (course-poursuite façon Outrun) — vols de voiture, braquages, courses de rue
+- 🎤🎸🎧 **Jeu de rythme** — karaoké, concert, DJ (musique synthétisée en direct)
+- ⚖️ **Duel verbal** façon *Ace Attorney* (« OBJECTION ! ») — procès, plaidoirie, interrogatoire, rencard
+- 💰 **Le casse** (coffre-fort au stéthoscope, chien qui se réveille) et crochetage de serrure
+- 💻 **Piratage** (terminal Matrix, trace d'Interpol)
+- 🥊 **Baston** façon Punch-Out (bar, prison, ring — dents qui volent)
+- 🍺 **Beer pong** (jauge d'ivresse, vision double)
+- 📈 **Day trading** (bougies, news absurdes, liquidation) · 🎰 **Machine à sous** · 🃏 **Blackjack**
+- ⚽ **Tirs au but** (gardien Gégé « Le Mur ») · 🩺 **Chirurgie** (incision, objets absurdes, suture, défibrillateur)
+- ⛓️ **La grande évasion** (infiltration, gardiens, caméras) · 👨‍🍳 **Coup de feu en cuisine** (Chef Gordon Ramsauce)
+
+Pour tester un jeu seul pendant le développement : `npm run dev` puis `http://localhost:5173/games.html?g=CarChase` (CarChase, Rhythm, Debate, Hack, Lockpick, Fight, BeerPong, Trading, Slots, Penalty, Surgery2, Blackjack2, Escape2, Cooking2 ; option `&v=` pour une variante).
 
 ### Ce qui va plus loin que BitLife
 - **Mode à deux** : vies parallèles (se rencontrer, se marier, faire des bébés ensemble… ou s'empoisonner), **vie commune** (une vie, deux joueurs qui votent), **versus** (même graine, duels avec mise), **coop** (objectifs communs). Chat et émotes.
@@ -78,6 +100,8 @@ Niveau de contenu : Options → Contenu (**Tout public**, **Adulte**, **🔥 Tra
 | `npm run typecheck` | Vérification TypeScript de tout le projet |
 | `npm run validate` | Validation des données (textes FR/EN, jetons, chaînes, maladies…) |
 | `npm run sim -- 2000` | Simulation de masse pour l'équilibrage (âge de mort, patrimoine, événements jamais vus…) |
+| `node --experimental-strip-types tools/diversity.ts 60` | Mesure la répétition des phrases (dans une vie / entre les vies) |
+| `node --experimental-strip-types tools/frequency.ts` | Événements les plus fréquents (à enrichir en priorité) |
 
 ## Architecture
 
