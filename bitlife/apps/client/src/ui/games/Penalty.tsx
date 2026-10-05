@@ -158,7 +158,7 @@ export function Penalty({ onDone, l }: GameProps) {
   const press = () => {
     const st = s.current;
     if (g.phase !== 'play') return;
-    if (st.stage === 'aim') { st.stage = 'charge'; st.power = 0; st.pdir = 1; st.beatT = 0; st.k.mood = 'lean'; synth.noise(1.6, 0.05, 380); st.bubble = null; }
+    if (st.stage === 'aim' || (st.stage === 'ready' && st.st > 0.15)) { if (st.stage === 'ready') { st.k.mood = 'taunt'; } st.stage = 'charge'; st.power = 0; st.pdir = 1; st.beatT = 0; st.k.mood = 'lean'; synth.noise(1.6, 0.05, 380); st.bubble = null; }
   };
   const keeperDive = (dir: number) => {
     const st = s.current;
@@ -243,7 +243,7 @@ export function Penalty({ onDone, l }: GameProps) {
     st.W = w; st.H = h;
     const v = view(w, h);
     const playing = g.phase === 'play';
-    if (!st.inited) { st.inited = true; startShot(st); st.banner = null; }
+    if (!st.inited && playing) { st.inited = true; startShot(st); }
     const dt = dtRaw * st.slow;
     st.t += dtRaw;
     try {
@@ -642,8 +642,9 @@ export function Penalty({ onDone, l }: GameProps) {
     const runDur = keepMode ? RUN : KICK;
     const inRun = st.stage === 'shot' || st.stage === 'krun' || st.stage === 'after' || st.stage === 'kafter';
     const rp = inRun ? clamp01(st.sc / runDur) : 0;
-    const startX = cx - Math.max(gw * 0.7, Hs * 0.55), endX = cx - Hs * 0.2;
-    const sx = lerp(startX, endX, easeOut(rp)), sy = lerp(h + Hs * 0.1, spot.y + Hs * 0.16, easeOut(rp));
+    const startX = cx - Math.max(gw * 0.7, Hs * 0.55), endX = cx - Hs * 0.36;
+    const away = (st.stage === 'after' || st.stage === 'kafter') ? easeOut(clamp01((st.st - 0.3) / 0.9)) : 0;
+    const sx = lerp(lerp(startX, endX, easeOut(rp)), startX - Hs * 0.1, away), sy = lerp(lerp(h + Hs * 0.1, spot.y + Hs * 0.3, easeOut(rp)), h + Hs * 0.12, away);
     const kickK = inRun ? clamp01((st.sc - runDur + 0.12) / 0.3) : 0;
     const celebrate = (st.stage === 'after' && st.shot?.out === 'goal') || (st.stage === 'kafter' && st.shot?.out === 'goal');
     const sLean = keepMode && st.stage === 'krun' && st.sc > 0.75 && !st.kicked ? st.sTell * 0.17 : 0;
@@ -724,7 +725,7 @@ export function Penalty({ onDone, l }: GameProps) {
     if (st.bubble) {
       st.bubble.t += dt;
       const bt = st.bubble.t;
-      if (bt > 3.2) st.bubble = null;
+      if (bt > (st.stage === 'aim' || st.stage === 'ready' ? 6 : 3)) st.bubble = null;
       else if (bt > 0) drawBubble(ctx, hip.x, hip.y - gh * 0.62, st.bubble.txt, Math.min(1, bt * 6), Math.max(13, Math.min(17, h * 0.026)), w);
     }
     // scoreboard (shots + saves)
@@ -737,7 +738,7 @@ export function Penalty({ onDone, l }: GameProps) {
       else {
         const sc = bt < 0.18 ? 2.4 - (bt / 0.18) * 1.4 : 1 + Math.sin(bt * 9) * 0.025;
         const a = bt > 1.9 ? 1 - (bt - 1.9) / 0.4 : 1;
-        ctx.save(); ctx.globalAlpha = Math.max(0, a); ctx.translate(cx, h * 0.3); ctx.scale(sc, sc); ctx.rotate(-0.04);
+        ctx.save(); ctx.globalAlpha = Math.max(0, a); ctx.translate(cx, h * 0.15); ctx.scale(sc, sc); ctx.rotate(-0.04);
         const fs = Math.max(30, Math.min(w * 0.09, h * 0.12));
         ctx.font = `900 ${fs}px ${FONT}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         ctx.lineJoin = 'round'; ctx.lineWidth = fs * 0.16; ctx.strokeStyle = '#12051f'; ctx.strokeText(st.banner.txt, 0, 0);

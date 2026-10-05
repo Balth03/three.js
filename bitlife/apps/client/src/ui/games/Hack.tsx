@@ -83,7 +83,6 @@ export function Hack({ onDone }: GameProps) {
     rain: [] as { x: number; y: number; v: number; ch: string[] }[], rainW: 0,
     keyFx: 0, beepT: 0, warned: false, started: false,
   });
-  const st0 = s.current;
   const cmdText = (c: Cmd) => tr(c[0], c[1]);
   const cur = () => { const st = s.current; return st.layer < LAYERS ? st.cmds[st.layer][st.ci] : null; };
   const pos = useRef({ cx: 0, cy: 0 });
@@ -393,7 +392,6 @@ export function Hack({ onDone }: GameProps) {
     vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, st.trace > 70 && !st.outcome ? `rgba(120,0,20,${0.4 + 0.2 * Math.sin(t * 10)})` : 'rgba(0,0,0,.6)');
     ctx.fillStyle = vg; ctx.fillRect(0, 0, w, h);
   }, true);
-  void st0;
 
   return (
     <Arena g={g} title={tr('Piratage', 'Hacking')} icon="💻" theme="matrix"

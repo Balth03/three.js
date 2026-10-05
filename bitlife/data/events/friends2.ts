@@ -204,13 +204,13 @@ export const friends2Events: EventDef[] = [
     cooldown: 6,
     text: {
       fr: [
-        "Voyage entre potes {w:far_place}, organisé par {a.first}. L'Airbnb « vue mer » donne sur un mur. Les toilettes débordent. Dans le frigo : {w:animal}, vivant{a:|e}… enfin, vivant.",
+        "Voyage entre potes {w:far_place}, organisé par {a.first}. L'Airbnb « vue mer » donne sur un mur. Les toilettes débordent. Dans le frigo : {w:animal}, encore en vie. Enfin, à peu près.",
         "{a.first} a réservé « une pépite » pour le groupe. À l'arrivée : des punaises de lit, {w:smell} et un hôte qui dort dans la baignoire. Tu as payé {$amount}.",
         "Week-end de rêve avec {a.first} et la bande. Sauf que la chasse d'eau a explosé à 3 h du matin. Tout le monde s'est réveillé dans {w:gross}. Littéralement.",
         "Le logement choisi par {a.first} {w:far_place} était « cosy ». Traduction : six adultes dans un studio, un seul lit, et un voisin qui joue {w:song} au trombone.",
       ],
       en: [
-        "Friends' trip {w:far_place}, organized by {a.first}. The 'sea view' Airbnb faces a wall. The toilet overflows. In the fridge: {w:animal}, alive… well, alive-ish.",
+        "Friends' trip {w:far_place}, organized by {a.first}. The 'sea view' Airbnb faces a wall. The toilet overflows. In the fridge: {w:animal}, still alive. More or less.",
         "{a.first} booked 'a hidden gem' for the group. On arrival: bedbugs, {w:smell} and a host sleeping in the bathtub. You paid {$amount}.",
         "Dream weekend with {a.first} and the gang. Except the toilet exploded at 3 a.m. Everyone woke up in {w:gross}. Literally.",
         "The place {a.first} picked {w:far_place} was 'cozy'. Translation: six adults in a studio, one bed, and a neighbor playing {w:song} on the trombone.",
@@ -327,7 +327,7 @@ export const friends2Events: EventDef[] = [
       fr: [
         "{a.first}, à qui tu avais tout confié, a balancé ton secret à la soirée : tu as pleuré devant {w:movie}. Trois fois. Dont une au cinéma, debout.",
         "Tout le groupe est au courant que tu as un compte secret où tu notes {w:food} sur dix. Une seule personne le savait : {a.first}. {w:swear}",
-        "{a.first} a raconté à tout le monde ta phobie secrète : {w:animal}. Ce matin, quelqu'un en a laissé un devant ta porte. Avec un nœud.",
+        "{a.first} a raconté à tout le monde ta phobie secrète : {w:animal}. Ce matin, quelqu'un en a déposé un spécimen devant ta porte. Avec un nœud.",
         "Bourré{a:|e}, {a.first} a révélé au micro du karaoké ton vrai surnom d'enfance : {w:nickname}. La salle entière le scande en rythme.",
       ],
       en: [
@@ -686,7 +686,7 @@ export const friends2Events: EventDef[] = [
     cooldown: 8,
     text: {
       fr: [
-        "Inauguration du restaurant de {a.first}. Spécialité de la maison : {w:food} « revisité{a:|e} », servi dans une chaussure. Tu sens déjà ton intestin rédiger son testament.",
+        "Inauguration du restaurant de {a.first}. Spécialité de la maison : {w:food} en version « déstructurée », dans une chaussure. Tu sens déjà ton intestin rédiger son testament.",
         "{a.first} a ouvert son food-truck. Tu es le premier client. La viande a une couleur que tu n'as jamais vue dans la nature. {a:Il|Elle} te regarde, plein{a:|e} d'espoir.",
         "Soirée dégustation chez {a.first}, qui se lance comme chef{a:|fe}. Il règne {w:smell}. Dans l'assiette : {w:food}, et quelque chose qui bouge encore.",
         "Le resto de {a.first} ouvre ce soir. Dans les cuisines, tu aperçois {w:animal} qui goûte la sauce. {a:Il|Elle} te sert la première assiette avec un clin d'œil.",
@@ -804,7 +804,7 @@ export const friends2Events: EventDef[] = [
         "It's {w:time}, and {a.first} calls you crying, blackout drunk, {w:at_place}. 'Come get me, I lost my pants and my dignity.'",
         "Your phone rings at 4:12 a.m. {a.first}, slurring: 'I'm in a dumpster. Not next to it. In it.' In the background: {w:sound}.",
         "Text from {a.first}: 'im nott drunkk' followed by 14 blurry photos {w:at_place} and a video featuring {w:animal}. Then: 'cum get me pls'.",
-        "{a.first} is calling from the sketchiest party of {a:his|her} life. {a:He|She} puked on the owner's {w:object} and someone is threatening to break {a:his|her} {w:bodypart}.",
+        "{a.first} is calling from the sketchiest party of {a:his|her} life. {a:He|She} puked on {w:object} belonging to the owner and someone is threatening to break {a:his|her} {w:bodypart}.",
       ],
     },
     choices: [
@@ -869,7 +869,7 @@ export const friends2Events: EventDef[] = [
     text: {
       fr: [
         "Appel en PCV du commissariat. {a.first} a été arrêté{a:|e} pour « {w:crime_small} » en état d'ébriété avancé. Caution : {$amount}. {a:Il|Elle} pleure dans le combiné.",
-        "{a.first} t'appelle de garde à vue. {a:Il|Elle} a tenté de voler {w:animal} au zoo « pour le libérer ». Le juge réclame {$amount} de caution et tu es son seul contact.",
+        "{a.first} t'appelle de garde à vue. {a:Il|Elle} a tenté de voler {w:animal} au zoo « pour lui rendre sa liberté ». Le juge réclame {$amount} de caution et tu es son seul contact.",
         "{w:swear} {a.first} est en cellule après une baston {w:at_place} qui a mal tourné. Le policier au bout du fil soupire : « {$amount}, ou {a:il|elle} dort ici. »",
         "Un message de {a.first} depuis un téléphone inconnu : « suis au poste, tout nu{a:|e}, longue histoire, {$amount} stp, dis rien à ma mère ».",
       ],
@@ -1049,15 +1049,15 @@ export const friends2Events: EventDef[] = [
     text: {
       fr: [
         "{a.first} part {w:far_place} et te confie son animal : {w:animal}. La liste des consignes fait onze pages. Page 7 : « ne jamais le regarder dans les yeux après 22 h ».",
-        "Tu gardes {w:animal} de {a.first} pour le week-end. Au bout d'une heure, la bête a mangé {w:object} et te fixe comme si tu étais le prochain.",
-        "{a.first} te confie son compagnon adoré, {w:animal}, pendant ses vacances. Il ne mange que {w:food}, tiède, servi à la petite cuillère, en lui chantant {w:song}.",
-        "{a.first} t'appelle tous les jours pendant que tu gardes son {w:animal}. Visio obligatoire, pour lui dire bonne nuit. Ce soir, la bête est introuvable.",
+        "Tu gardes l'animal de {a.first} pour le week-end : {w:animal}. Au bout d'une heure, la bête a mangé {w:object} et te fixe comme si tu étais le prochain.",
+        "{a.first} te confie son compagnon adoré, {w:animal}, pendant ses vacances. La bête ne mange que {w:food}, tiède, servi à la petite cuillère, en lui chantant {w:song}.",
+        "{a.first} t'appelle tous les jours pendant que tu gardes sa bestiole ({w:animal}). Visio obligatoire, pour lui dire bonne nuit. Ce soir, la bête est introuvable.",
       ],
       en: [
         "{a.first} is going {w:far_place} and leaves you the pet: {w:animal}. The instructions run eleven pages. Page 7: 'never look it in the eye after 10 p.m.'",
-        "You're watching {a.first}'s {w:animal} for the weekend. Within an hour, the beast has eaten {w:object} and stares at you like you're next.",
+        "You're pet-sitting {a.first}'s animal for the weekend: {w:animal}. Within an hour, the beast has eaten {w:object} and stares at you like you're next.",
         "{a.first} leaves you {a:his|her} beloved companion, {w:animal}, during vacation. It only eats {w:food}, lukewarm, spoon-fed, while you sing {w:song}.",
-        "{a.first} calls daily while you pet-sit {w:animal}. Mandatory video call, to say good night. Tonight, the creature is nowhere to be found.",
+        "{a.first} calls daily while you pet-sit {a:his|her} critter ({w:animal}). Mandatory video call, to say good night. Tonight, the creature is nowhere to be found.",
       ],
     },
     choices: [
@@ -1232,7 +1232,7 @@ export const friends2Events: EventDef[] = [
       fr: [
         "{a.first}, ton ex, a déposé un carton devant ta porte. « Tes affaires. » Dedans : un pull, ta brosse à dents, {w:object} et une lettre de onze pages. Recto verso.",
         "Un colis de {a.first}. Il contient tout ce que tu lui as offert en trois ans, dont {w:gift}, rangé par ordre de déception. Il y a une étiquette sur chaque objet.",
-        "{a.first} te rend tes affaires. Dans le carton, il manque ton sweat préféré mais il y a {w:animal} en peluche que tu n'as jamais vu de ta vie.",
+        "{a.first} te rend tes affaires. Dans le carton, il manque ton sweat préféré mais il y a une peluche ({w:animal}) que tu n'as jamais vue de ta vie.",
         "Tu récupères chez {a.first} le carton de tes affaires. {a:Il|Elle} a gardé ton chargeur, ta plante et ton mot de passe {w:app}. {a:Il|Elle} refuse de négocier.",
       ],
       en: [
@@ -1775,7 +1775,7 @@ export const friends2Events: EventDef[] = [
         "Secret Santa au bureau. Tu ouvres ton cadeau devant toute l'équipe : un sex-toy XXL, rose fluo, avec une carte « Pour tes longues soirées ». Ton boss te regarde. {a.first} glousse au fond.",
         "Ton paquet de Secret Santa contient {w:gross}, dans une boîte à bijoux, avec un nœud. Tout le monde attend ta réaction. {a.first} filme.",
         "Échange de cadeaux chez {employer}. Le tien vient de {a.first} : un string comestible au goût {w:food}. Ta n+2 est assise à côté.",
-        "Au Secret Santa, tu reçois une boîte qui bouge. À l'intérieur : {w:animal}, vivant, avec un mot de {a.first} : « Il s'appelle comme toi. » Il fait pipi sur le dossier du trimestre.",
+        "Au Secret Santa, tu reçois une boîte qui bouge. À l'intérieur, bien en vie : {w:animal}, avec un mot de {a.first} : « Je lui ai donné ton prénom. » La bestiole fait pipi sur le dossier du trimestre.",
       ],
       en: [
         "Office Secret Santa. You open your gift in front of the whole team: an XXL neon-pink sex toy, with a card 'For your long nights'. Your boss stares. {a.first} giggles in the back.",
@@ -1956,13 +1956,13 @@ export const friends2Events: EventDef[] = [
         "{a.first}, {a.rel}, a des étoiles dans les yeux : {a:il|elle} vend des leggings « anti-cellulite à la bave d'escargot » et cherche des « partenaires business ». Kit de démarrage : {$amount}.",
         "À la machine à café, {a.first} te coince : « Tu veux gagner de l'argent en dormant ? » Ça concerne des compléments alimentaires et {w:celeb} qui « en prend tous les jours ».",
         "{a.first} a transformé son bureau en stand de vente : shakes protéinés, bougies « énergétiques », et {w:object} qui « soigne les ondes négatives ». {a:Il|Elle} te tend un catalogue.",
-        "Invitation de {a.first} à une « soirée entre filles et garçons » chez {a:lui|elle}. C'est une réunion de vente déguisée. Il y a {w:drink} gratuit et une présentation PowerPoint de 80 slides.",
+        "Invitation de {a.first} à une « soirée entre filles et garçons » chez {a:lui|elle}. C'est une réunion de vente déguisée. Il y a {w:drink} à volonté et une présentation PowerPoint de 80 slides.",
       ],
       en: [
         "{a.first}, {a.rel}, has stars in {a:his|her} eyes: {a:he|she} sells 'anti-cellulite snail-slime leggings' and is looking for 'business partners'. Starter kit: {$amount}.",
         "At the coffee machine, {a.first} corners you: 'Wanna make money while you sleep?' It involves supplements and {w:celeb} who 'takes them every day'.",
         "{a.first} turned {a:his|her} desk into a sales booth: protein shakes, 'energy' candles, and {w:object} that 'cures negative waves'. {a:He|She} hands you a catalog.",
-        "{a.first} invites you to a 'fun night in' at {a:his|her} place. It's a disguised sales pitch. Free {w:drink} and an 80-slide PowerPoint.",
+        "{a.first} invites you to a 'fun night in' at {a:his|her} place. It's a disguised sales pitch. There's {w:drink} on the house and an 80-slide PowerPoint.",
       ],
     },
     choices: [
@@ -2063,7 +2063,7 @@ export const friends2Events: EventDef[] = [
     text: {
       fr: [
         "{a.first}, {a.rel}, fait le tour du bureau avec une enveloppe : « Cagnotte pour le pot de départ de Michel ! » Tu ne connais pas Michel. Personne ne connaît Michel. Suggestion : {$amount}.",
-        "Encore une collecte. Cette fois, {a.first} réunit de l'argent pour {w:gift} destiné au bébé d'une collègue du 4e. C'est la septième cagnotte du mois.",
+        "Encore une collecte. Cette fois, {a.first} réunit de l'argent pour offrir {w:gift} au bébé d'une collègue du 4e. C'est la septième cagnotte du mois.",
         "{a.first} passe avec une carte d'anniversaire géante à signer pour la cheffe. Toutes les cases sont prises. Il reste un minuscule coin, à côté d'un dessin représentant {w:animal}.",
         "Cagnotte surprise organisée par {a.first} pour l'anniversaire du boss. Montant suggéré : {$amount}. La liste des donateurs est affichée, avec les montants. Tout le monde regarde.",
       ],
@@ -2188,7 +2188,7 @@ export const friends2Events: EventDef[] = [
         label: { fr: 'Briller sur la piste', en: 'Shine on the dance floor' },
         out: [
           { w: 1, odds: { athletic: 1 }, text: { fr: ["J'ai mis le feu à la piste. {a.first} m'a désigné{|e} « meilleur{|e} danseur{|se} de la soirée » au micro. Au bureau, on me regarde différemment. Avec envie.", "Rock acrobatique avec la mère de {a.first}. Elle a 74 ans et une hanche neuve. On a reçu une ovation. J'ai eu une prime."], en: ["I set the dance floor on fire. {a.first} named me 'best dancer of the night' on the mic. At the office, people look at me differently. Enviously.", "Acrobatic swing dance with {a.first}'s mother. She's 74 with a new hip. We got an ovation. I got a bonus."] }, fx: { money: '-amount', rel: 15, perf: 5, happy: 8 }, mood: 'party' },
-          { w: 1, text: { fr: ["J'ai voulu faire le grand écart. Mon pantalon s'est déchiré du nombril au dos. Toute la famille de {a.first} a vu mon caleçon {w:animal}. Il y a des photos. Beaucoup.", "En dansant, j'ai envoyé la pièce montée par terre d'un coup de coude. Les choux à la crème ont giclé sur la robe. {a.first} m'a regardé{|e} avec une haine pure."], en: ["I tried to do the splits. My pants ripped from belly button to back. {a.first}'s whole family saw my {w:animal}-print underwear. There are photos. Lots.", "Dancing, I elbowed the wedding cake to the floor. Cream puffs splattered on the dress. {a.first} looked at me with pure hatred."] }, fx: { money: '-amount', rel: -15, happy: -8 }, mood: 'shock' },
+          { w: 1, text: { fr: ["J'ai voulu faire le grand écart. Mon pantalon s'est déchiré du nombril au dos. Toute la famille de {a.first} a vu mon caleçon, avec {w:animal} imprimé dessus. Il y a des photos. Beaucoup.", "En dansant, j'ai envoyé la pièce montée par terre d'un coup de coude. Les choux à la crème ont giclé sur la robe. {a.first} m'a regardé{|e} avec une haine pure."], en: ["I tried to do the splits. My pants ripped from belly button to back. {a.first}'s whole family saw my underwear, with {w:animal} printed on it. There are photos. Lots.", "Dancing, I elbowed the wedding cake to the floor. Cream puffs splattered on the dress. {a.first} looked at me with pure hatred."] }, fx: { money: '-amount', rel: -15, happy: -8 }, mood: 'shock' },
         ],
       },
       { label: { fr: 'Révéler la trahison', en: 'Reveal the betrayal' }, text: { fr: ["J'ai pris {a.first} à part et tout raconté. Le mariage a été annulé à 23 h, entre le fromage et le dessert. {a.first} m'a remercié{|e}, en larmes. Je suis devenu{|e} son confident.", "J'ai murmuré la vérité à {a.first}. {a:Il|Elle} a lancé la pièce montée sur l'amant. Puis {a:il|elle} m'a promu{|e}, deux semaines plus tard. « Tu es loyal{|e}. »"], en: ["I took {a.first} aside and told everything. The wedding was annulled at 11 p.m., between cheese and dessert. {a.first} thanked me in tears. I'm now {a:his|her} confidant.", "I whispered the truth to {a.first}. {a:He|She} threw the wedding cake at the lover. Then promoted me two weeks later. 'You're loyal.'"] }, fx: { rel: 20, perf: 6, karma: 4 } },
@@ -2748,7 +2748,7 @@ export const friends2Events: EventDef[] = [
     cooldown: 8,
     text: {
       fr: [
-        "{a:Ton coloc|Ta coloc} {a.first} a disparu. Plus de valise, plus de brosse à dents, plus de part de loyer : {$amount}. Dans sa chambre : {w:animal}, vivant, et une odeur indescriptible.",
+        "{a:Ton coloc|Ta coloc} {a.first} a disparu. Plus de valise, plus de brosse à dents, plus de part de loyer : {$amount}. Dans sa chambre : {w:animal}, bien en vie, et une odeur indescriptible.",
         "{a.first}, {a:ton coloc|ta coloc}, est parti{a:|e} {w:far_place} « pour se trouver ». Sans prévenir. Sans payer {$amount} de loyer. {a:Il|Elle} a laissé {w:gross} sous son lit et un mot : « Désolé{a:|e}, l'univers m'appelle. »",
         "Ça fait trois semaines que tu n'as pas vu {a.first}, {a:ton coloc|ta coloc}. Son téléphone sonne dans le vide. En ouvrant sa porte, tu trouves 200 pots de yaourt entamés et une colonie de mouches.",
         "Le proprio te réclame {$amount}. La part de {a.first}, qui s'est volatilisé{a:|e} en emportant ton grille-pain, ton chargeur et ton plaid préféré.",

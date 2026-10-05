@@ -42,7 +42,7 @@ const Q: Record<string, L[]> = {
   hit: [['Une carte pour monsieur/madame.', 'A card for the gambler.'], ['Encore ? Gourmand.', 'Another? Greedy.']],
 };
 
-interface Spr { c: number; x: number; y: number; rot: number; trot: number; flip: number; up: boolean; fs: number; out?: boolean }
+interface Spr { c: number; x: number; y: number; tx?: number; ty?: number; rot: number; trot: number; flip: number; up: boolean; fs: number; out?: boolean }
 interface Chip { x: number; y: number; sx: number; sy: number; tx: number; ty: number; t: number; d: number; ci: number }
 interface Btn { id: string; x: number; y: number; w: number; h: number; on: boolean }
 type Ph = 'wait' | 'bet' | 'deal' | 'player' | 'dealer' | 'result' | 'over';
@@ -225,11 +225,11 @@ export function Blackjack2({ onDone, l }: GameProps) {
     const n = st.betChips;
     if (net > 0) {
       const extraN = Math.min(14, Math.max(2, Math.round(n * (net / b))));
-      for (let k = 0; k < extraN; k++) st.chips.push({ x: 0, y: 0, sx: L.w * 0.3, sy: L.T + L.h * 0.08, tx: L.w / 2 + 34, ty: L.h * 0.8, t: -0.3 - k * 0.05, d: 0.5, ci: 1 + (k % 2) });
+      for (let k = 0; k < extraN; k++) st.chips.push({ x: 0, y: 0, sx: L.w / 2 - Math.min(L.w * 0.48, L.h * 1.02) * 0.38, sy: L.T + L.h * 0.05, tx: L.w / 2 + 34, ty: L.h * 0.8, t: -0.3 - k * 0.05, d: 0.5, ci: 1 + (k % 2) });
       after(0.3 + extraN * 0.05 + 0.5, () => { st.betChips = n + extraN; });
     } else if (net < 0) {
       st.betChips = 0;
-      for (let k = 0; k < n; k++) st.chips.push({ x: 0, y: 0, sx: L.w / 2, sy: L.h * 0.8, tx: L.w * 0.3, ty: L.T + L.h * 0.08, t: -0.25 - k * 0.04, d: 0.45, ci: CHIPIDX(st, b) });
+      for (let k = 0; k < n; k++) st.chips.push({ x: 0, y: 0, sx: L.w / 2, sy: L.h * 0.8, tx: L.w / 2 - Math.min(L.w * 0.48, L.h * 1.02) * 0.38, ty: L.T + L.h * 0.05, t: -0.25 - k * 0.04, d: 0.45, ci: CHIPIDX(st, b) });
     }
     st.ph = 'result';
     after(2.8, () => { if (st.ph === 'result') toBet(); });
@@ -364,19 +364,21 @@ export function Blackjack2({ onDone, l }: GameProps) {
       const n = arr.length; const sp = cw * 0.7;
       const tx = cx + (i - (n - 1) / 2) * sp, ty = y + (i - (n - 1) / 2) * 2;
       const k = Math.min(1, dt * 11);
+      c.tx = tx; c.ty = ty;
       c.x += (tx - c.x) * k; c.y += (ty - c.y) * k; c.rot += (c.trot - c.rot) * k;
     });
     handLayout(st.dl, T + h * 0.27);
     handLayout(st.pl, h * 0.54);
+    const dpos = discardPos(w, h, T);
     for (let i = st.gone.length - 1; i >= 0; i--) {
       const c = st.gone[i]; const k = Math.min(1, dt * 7);
-      c.x += (w * 0.12 - c.x) * k; c.y += (T + h * 0.08 - c.y) * k; c.rot += (0.5 - c.rot) * k;
-      if (Math.abs(c.x - w * 0.12) < 3 && c.flip < 0.05) st.gone.splice(i, 1);
+      c.tx = dpos.x; c.ty = dpos.y;
+      c.x += (dpos.x - c.x) * k; c.y += (dpos.y - c.y) * k; c.rot += (0.5 - c.rot) * k;
+      if (Math.abs(c.x - dpos.x) < 3 && c.flip < 0.05) st.gone.splice(i, 1);
     }
     const all = [...st.gone, ...st.dl, ...st.pl];
     for (const c of all) {
-      const tx = c.out ? w * 0.12 : c.x;
-      const near = Math.abs(tx - c.x) < 40 || c.out;
+      const near = c.out || Math.hypot((c.tx ?? c.x) - c.x, (c.ty ?? c.y) - c.y) < 30;
       const target = c.up && near ? 1 : 0;
       c.flip += Math.sign(target - c.flip) * Math.min(Math.abs(target - c.flip), dt * c.fs);
       drawCard(ctx, c, cw, ch);
@@ -571,7 +573,7 @@ function renderTable(w: number, h: number, T: number, cw: number, ch: number, dp
   arcText(ctx, tr('LE CROUPIER RESTE À 17 · LA MAISON GAGNE TOUJOURS', 'DEALER MUST STAND ON 17 · THE HOUSE ALWAYS WINS'), cx, T, rx * 0.86, ry * 0.86, Math.max(9, h * 0.017), 'rgba(233,196,106,.45)');
   ctx.restore();
   // chip tray (dealer bank)
-  const trX = w * 0.3, trY = T + h * 0.015, trW = Math.min(w * 0.16, 190), trH = h * 0.075;
+  const trX = cx - rx * 0.38, trY = T + h * 0.015, trW = Math.min(w * 0.16, 190), trH = h * 0.075;
   ctx.save(); roundRect(ctx, trX - trW / 2, trY, trW, trH, 6); ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.fill(); ctx.strokeStyle = 'rgba(233,196,106,.4)'; ctx.stroke();
   const cols = ['#d62839', '#15161c', '#7b2cbf', '#1b9aaa', '#f4a261', '#d62839'];
   for (let i = 0; i < 6; i++) { const x = trX - trW / 2 + (i + 0.5) * (trW / 6); for (let k = 0; k < 4; k++) { ctx.fillStyle = k % 2 ? '#fff' : cols[i]; ctx.beginPath(); ctx.ellipse(x, trY + trH * 0.25 + k * trH * 0.17, trW / 14, trH * 0.13, 0, 0, Math.PI * 2); ctx.fill(); } }

@@ -2564,4 +2564,548 @@ export const trash2Events: EventDef[] = [
       { label: { fr: 'Assumer et l\'exhiber', en: 'Own it and flaunt it' }, text: { fr: ["Je l'ai assumé. J'en ai fait un tee-shirt, puis une marque. Les gens achètent des sweats avec mon tatouage ridicule. J'ai gagné plus qu'avec mon vrai travail. L'humanité est perdue.", "Je l'ai montré fièrement à tout le monde. Ma mère a fini par en rire. Mon patron moins. Mais j'ai lancé une mode : trois de mes collègues ont fait le même. Ensemble, on est un mouvement."], en: ["I owned it. I made it a T-shirt, then a brand. People buy hoodies with my ridiculous tattoo. I made more than at my real job. Humanity is lost.", "I proudly showed it to everyone. My mom eventually laughed. My boss less so. But I started a trend: three coworkers got the same one. Together, we're a movement."] }, fx: { happy: 10, money: 1500, fame: 2, unflag: 'tr_tattoo' }, mood: 'proud' },
     ],
   },
+
+  // ── Détatouage au laser ──
+  {
+    id: 'tr_tattoo_laser',
+    icon: '🔦',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'hospital', mood: 'shock', prop: 'laser', fx: 'fire' },
+    when: { age: [20, 70] },
+    weight: 5,
+    cooldown: 15,
+    text: {
+      fr: [
+        "Clinique de détatouage « Laser Discount ». Le technicien, qui a appris sur YouTube, règle la machine « un peu plus fort pour aller plus vite ». Ça sent déjà {w:smell}. Ton tatouage de jeunesse frémit.",
+        "Tu veux effacer ce tatouage tribal qui ressemble à {w:food}. Le laser fait un bruit d'aspirateur possédé. Le technicien porte des lunettes de soudeur. Toi, rien.",
+        "Séance de laser pour effacer le prénom de ton ex. Le technicien se trompe de zone et vise ton sourcil. Il dit « oups » de la voix des gens qui ont l'habitude de dire « oups ».",
+        "Le laser de détatouage surchauffe. Une fumée noire s'échappe de ton épaule. Le technicien ouvre la fenêtre, allume une cigarette sur ta peau fumante et dit : « C'est normal. »",
+      ],
+      en: [
+        "'Discount Laser' tattoo removal clinic. The technician, YouTube-trained, sets the machine 'a bit higher to go faster'. It already smells like {w:smell}. Your teenage tattoo trembles.",
+        "You want to erase that tribal tattoo that looks like {w:food}. The laser sounds like a possessed vacuum. The technician wears welding goggles. You get nothing.",
+        "Laser session to remove your ex's name. The technician aims at the wrong spot and targets your eyebrow. He says 'oops' in the voice of people used to saying 'oops'.",
+        "The removal laser overheats. Black smoke rises from your shoulder. The technician opens the window, lights a cigarette off your smouldering skin and says: 'That's normal.'",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Serrer les dents', en: 'Grit my teeth' }, out: [
+        { w: 2, text: { fr: ["J'ai serré les dents. Le tatouage a disparu, et la peau autour aussi. J'ai maintenant une cicatrice brillante en forme de {w:bodypart}… non, en forme de rien. Une tache. Une tache qui brille la nuit.", "Le laser a effacé le tatouage en dix minutes, et m'a grillé la peau comme une côte de porc. J'avais l'odeur d'un barbecue de fin d'été. Le chien du voisin m'a suivi{|e} jusqu'à la maison."], en: ["I gritted my teeth. The tattoo vanished, and so did the skin around it. I now have a shiny scar shaped like... nothing. A blob. A blob that glows at night.", "The laser erased the tattoo in ten minutes and grilled my skin like a pork chop. I smelled like a late-summer barbecue. The neighbour's dog followed me home."] }, fx: { health: -8, looks: -3, disease: 'burns', visual: 'fire' }, mood: 'cry' },
+        { w: 1, text: { fr: ["Le laser a mal visé et a brûlé un nouveau motif à côté de l'ancien. J'ai maintenant deux tatouages, dont un qui ressemble à {w:animal} en flammes. C'est stylé, en fait.", "Le laser a parfaitement fonctionné. Pour la première fois de ma vie, quelque chose de bon marché a marché. J'ai pleuré de joie. Le technicien aussi, de surprise."], en: ["The laser misfired and burned a new pattern next to the old one. I now have two tattoos, one of which looks like {w:animal} on fire. It's actually kind of cool.", "The laser worked perfectly. For the first time in my life, something cheap actually worked. I cried with joy. So did the technician, out of surprise."] }, fx: { happy: 6, looks: 2 }, mood: 'happy' },
+      ] },
+      { label: { fr: 'Fuir avec la moitié du tatouage', en: 'Flee half-erased' }, text: { fr: ["J'ai fui en cours de séance. Le prénom de mon ex est maintenant à moitié effacé : il ne reste que « CON ». Ça s'appelait Conrad. Ça me correspond, finalement.", "Je suis parti{|e} en courant, l'épaule fumante comme une saucisse. Il ne reste que la moitié du dessin : la partie qui ressemble à {w:object}. Personne ne pose de questions. Moi non plus."], en: ["I fled mid-session. My ex's name is now half-erased: only 'DICK' remains. His name was Dickson. Fitting, really.", "I ran out, shoulder smoking like a sausage. Only half the design remains: the part that looks like {w:object}. Nobody asks. Neither do I."] }, fx: { happy: -2, looks: -2, money: -200 } },
+    ],
+  },
+
+  // ── Tapis de course turbo ──
+  {
+    id: 'tr_treadmill',
+    icon: '🏃',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'stadium', mood: 'shock', prop: 'treadmill', fx: 'gore' },
+    when: { age: [18, 75] },
+    weight: 6,
+    cooldown: 12,
+    text: {
+      fr: [
+        "Salle de sport. Tu cours sur le tapis en regardant ton téléphone. Ton coude appuie par erreur sur « +20 km/h ». Derrière toi, à un mètre : le miroir mural et une rangée d'haltères.",
+        "Un bodybuilder te pousse du tapis « parce que c'est son tapis ». Il le règle à fond pour impressionner une fille, en buvant {w:drink}. Il ne voit pas que sa serviette s'est coincée dans le rouleau.",
+        "Tu as voulu faire une vidéo « marcher sur le tapis à reculons en jonglant ». Le tapis est à 15 km/h. Tu tiens trois balles et {w:object}. Le public de la salle s'est arrêté pour regarder.",
+        "Le tapis de course déraille et accélère tout seul. Tu cours de plus en plus vite, comme dans un dessin animé, les jambes en roue. Le bouton d'arrêt d'urgence est juste derrière ta main… en principe.",
+      ],
+      en: [
+        "Gym. You're running on the treadmill while looking at your phone. Your elbow accidentally hits '+12 mph'. Three feet behind you: the wall mirror and a rack of dumbbells.",
+        "A bodybuilder pushes you off the treadmill 'because it's his'. He cranks it to max to impress a girl, while drinking {w:drink}. He doesn't notice his towel got caught in the roller.",
+        "You wanted to film 'walking backward on the treadmill while juggling'. It's going 9 mph. You're holding three balls and {w:object}. The whole gym stopped to watch.",
+        "The treadmill malfunctions and speeds up on its own. You run faster and faster, cartoon-style, legs spinning like wheels. The emergency stop is right behind your hand... in theory.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Sauter sur les côtés', en: 'Jump to the sides' }, out: [
+        { w: 1, odds: { athletic: 1 }, text: { fr: ["J'ai sauté sur les rebords comme un chat. Le tapis a continué à tourner dans le vide en fumant. Le bodybuilder a applaudi. La fille aussi. Elle m'a donné son numéro, pas à lui.", "Saut parfait sur les côtés. Le tapis a projeté {w:object} à travers la salle, pile dans la nuque du coach qui flirtait avec la cliente. Il s'est retourné. Je regardais ailleurs."], en: ["I jumped onto the rails like a cat. The treadmill kept spinning empty, smoking. The bodybuilder applauded. So did the girl. She gave me her number, not him.", "Perfect jump to the sides. The treadmill launched {w:object} across the gym, right into the neck of the coach flirting with a client. He turned around. I was looking elsewhere."] }, fx: { happy: 8, athletic: 2 }, mood: 'proud' },
+        { w: 2, text: { fr: ["Le tapis m'a éjecté{|e} comme un bouchon. J'ai traversé le miroir mural et j'ai atterri dans le vestiaire voisin, devant douze retraités sous la douche. J'avais des éclats de miroir dans les fesses et sept ans de malheur.", "J'ai été projeté{|e} en arrière, j'ai rebondi sur un ballon de gym et fini la tête dans la fontaine à eau. Mon nez a giclé comme un ketchup qu'on presse trop fort. Toute la salle a filmé."], en: ["The treadmill ejected me like a cork. I went through the wall mirror and landed in the next locker room, in front of twelve showering retirees. I had mirror shards in my butt and seven years of bad luck.", "I got launched backward, bounced off a gym ball and ended up head-first in the water fountain. My nose squirted like a ketchup bottle squeezed too hard. The whole gym filmed it."] }, fx: { health: -12, looks: -4, followers: 8000, visual: 'gore' }, mood: 'cry' },
+      ] },
+      { label: { fr: 'Laisser le bodybuilder s\'envoler', en: 'Let the bodybuilder fly' }, text: { fr: ["Je n'ai rien dit pour la serviette. Le tapis l'a aspiré, et il a été catapulté en arrière à travers la salle, dans le rack d'haltères. Il a fait un strike humain. La fille est partie avec moi boire {w:drink}.", "Sa serviette s'est enroulée autour de sa jambe et le tapis l'a envoyé valser contre le miroir. Son reflet et lui se sont brisés ensemble. Il a pleuré comme un enfant de cinq ans. Je l'ai filmé pour la postérité."], en: ["I said nothing about the towel. The treadmill sucked it in and he got catapulted backward across the gym into the dumbbell rack. A human strike. The girl left with me for {w:drink}.", "His towel wrapped around his leg and the treadmill flung him into the mirror. He and his reflection shattered together. He cried like a five-year-old. I filmed it for posterity."] }, fx: { happy: 12, karma: -3 }, mood: 'happy' },
+    ],
+  },
+
+  // ── Développé couché sans pareur ──
+  {
+    id: 'tr_bench_press',
+    icon: '🏋️',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'stadium', mood: 'shock', prop: 'barbell', fx: 'gore' },
+    when: { age: [18, 70] },
+    weight: 5,
+    cooldown: 15,
+    text: {
+      fr: [
+        "Développé couché, 100 kilos, sans pareur, parce que tu ne voulais pas « déranger ». Au cinquième essai, tes bras lâchent. La barre descend lentement vers ton cou. La salle est vide. Il est 23 h.",
+        "Tu tentes un record personnel au développé couché pour épater {w:nickname}, le beau gosse de la salle. La barre descend. Elle ne remonte pas. Ton visage passe par toutes les couleurs.",
+        "Un influenceur muscu te propose de te pareur pendant qu'il filme. Tu soulèves 120 kilos. Au moment critique, il lâche la barre pour répondre à un commentaire. La barre tombe vers ton entrejambe.",
+        "La barre de développé couché est coincée sur ta poitrine. Tu ne peux plus respirer. Tu as deux options humiliantes et {w:object} à portée de main.",
+      ],
+      en: [
+        "Bench press, 220 pounds, no spotter, because you didn't want to 'bother anyone'. On the fifth rep, your arms give out. The bar slowly lowers toward your neck. The gym is empty. It's 11 p.m.",
+        "You're attempting a personal bench press record to impress {w:nickname}, the gym hottie. The bar comes down. It doesn't go back up. Your face goes through every colour.",
+        "A fitness influencer offers to spot you while filming. You lift 265 pounds. At the critical moment, he lets go to reply to a comment. The bar drops toward your crotch.",
+        "The bench press bar is stuck on your chest. You can't breathe. You have two humiliating options and {w:object} within reach.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'La rouler vers le bas', en: 'Roll it down' }, out: [
+        { w: 2, text: { fr: ["J'ai fait la « roulade de la honte » : la barre a glissé de mon torse à mon ventre, puis à mes hanches, puis… plus bas. J'ai émis un son que seuls les baleines comprennent. Ma voix est restée deux octaves au-dessus pendant un mois.", "J'ai roulé la barre vers le bas. Elle a écrasé mon entrejambe comme un rouleau à pâtisserie. J'ai vu ma vie défiler, puis celle de mes enfants pas encore nés, qui me disaient adieu."], en: ["I did the 'roll of shame': the bar slid from my chest to my belly, then my hips, then... lower. I made a sound only whales understand. My voice stayed two octaves higher for a month.", "I rolled the bar down. It flattened my crotch like a rolling pin. I saw my life flash before my eyes, then my unborn children's, waving goodbye."] }, fx: { health: -10, fertility: -15, happy: -6 }, mood: 'cry' },
+        { w: 1, text: { fr: ["J'ai roulé la barre jusqu'à mes cuisses, je me suis assis{|e} et j'ai crié victoire. Un vieux monsieur de 80 ans est passé, a pris la barre d'une main et l'a rangée. Je suis rentré{|e} chez moi en silence.", "J'ai réussi à la faire rouler, puis tomber par terre avec un bruit de tonnerre. Le gérant est arrivé en courant. J'ai dit : « Je teste le sol. » Il m'a cru{|e}."], en: ["I rolled the bar down to my thighs, sat up and declared victory. An 80-year-old man walked by, picked up the bar one-handed and racked it. I went home in silence.", "I managed to roll it, then drop it with a thunderous crash. The manager came running. I said: 'Testing the floor.' He believed me."] }, fx: { happy: -2, stress: 4 } },
+      ] },
+      { label: { fr: 'Appeler à l\'aide', en: 'Call for help' }, out: [
+        { w: 2, text: { fr: ["J'ai crié « À L'AIDE ! ». Le seul autre client portait un casque à réduction de bruit. Au bout de vingt minutes, la femme de ménage m'a libéré{|e}. Elle a soulevé la barre d'une main. Je l'ai demandée en mariage. Elle a refusé.", "J'ai hurlé. {w:nickname} est venu me sauver, a soulevé la barre et m'a dit : « Faut manger plus, ma puce. » J'ai été humilié{|e} et amoureux{|se} en même temps."], en: ["I yelled 'HELP!'. The only other member was wearing noise-cancelling headphones. After twenty minutes, the cleaning lady freed me. She lifted the bar one-handed. I proposed. She said no.", "I screamed. {w:nickname} came to save me, lifted the bar and said: 'Gotta eat more, sweetie.' I was humiliated and in love at the same time."] }, fx: { happy: 2, stress: 6 }, mood: 'love' },
+        { w: 1, text: { fr: ["Personne n'est venu. La barre a écrasé ma trachée avec un petit « crouic » de jouet pour chien. On m'a retrouvé{|e} le lendemain matin, violet{|te}, avec un sourire figé. Ma tombe porte l'inscription : « Il ne voulait pas déranger. »", "La salle était vide. J'ai crié jusqu'à ne plus avoir d'air. La barre a gagné. Le gérant a mis une affiche « Toujours utiliser un pareur » avec ma photo dessus."], en: ["Nobody came. The bar crushed my windpipe with a little dog-toy 'squeak'. They found me the next morning, purple, with a frozen smile. My tombstone reads: 'Didn't want to bother anyone.'", "The gym was empty. I yelled until I had no air left. The bar won. The manager put up an 'Always use a spotter' poster with my photo on it."] }, fx: { die: { fr: "écrasé{|e} par sa propre barre de développé couché, pour ne pas déranger", en: 'crushed by my own bench press bar, so as not to bother anyone' }, visual: 'gore' } },
+      ] },
+    ],
+  },
+
+  // ── Biceps aux stéroïdes qui explose ──
+  {
+    id: 'tr_roid_bicep',
+    icon: '💪',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'stadium', mood: 'shock', prop: 'dumbbell', fx: 'gore' },
+    when: { age: [18, 65] },
+    weight: 5,
+    cooldown: 15,
+    text: {
+      fr: [
+        "Le mec le plus gonflé de la salle, surnommé « Le Frigo », te demande de le filmer pendant qu'il fait des curls avec 60 kilos. Ses veines ressemblent à des tuyaux d'arrosage. Son biceps fait {w:sound}.",
+        "Un bodybuilder bourré de produits louches contracte son biceps devant le miroir. La peau est tendue comme un ballon de baudruche trop gonflé. Il te dit : « Touche, vas-y. »",
+        "Concours de bras de fer au bar. Ton adversaire, 140 kilos de muscles et de stéroïdes, a des pectoraux qui bougent tout seuls. Il pose son coude. Son biceps palpite comme un cœur.",
+        "À la salle, « Le Frigo » s'injecte un truc vert fluo dans le bras « pour le pump ». Il fait des curls en hurlant. Son bras gonfle à vue d'œil, comme {w:food} au micro-ondes.",
+      ],
+      en: [
+        "The most jacked guy at the gym, nicknamed 'The Fridge', asks you to film him doing 130-pound curls. His veins look like garden hoses. His bicep makes {w:sound}.",
+        "A bodybuilder full of shady products flexes his bicep in the mirror. The skin is stretched like an overinflated balloon. He tells you: 'Touch it, go on.'",
+        "Arm-wrestling contest at the bar. Your opponent, 300 pounds of muscle and steroids, has pecs that move on their own. He plants his elbow. His bicep throbs like a heart.",
+        "At the gym, 'The Fridge' injects something neon green into his arm 'for the pump'. He does curls, screaming. His arm swells before your eyes, like {w:food} in a microwave.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Le toucher du doigt', en: 'Poke it' }, out: [
+        { w: 2, text: { fr: ["J'ai touché du bout du doigt. Le biceps a explosé comme une pastèque pleine de ketchup. Geyser rouge au plafond, lambeaux de muscle sur le miroir, une veine qui fouettait l'air comme un tuyau d'arrosage fou. « Le Frigo » a juste dit : « Bon. Jour de jambes demain. »", "J'ai appuyé. POP. Le bras s'est dégonflé comme un ballon, en sifflant, et a fait le tour de la salle en volant. On l'a retrouvé dans la piscine. « Le Frigo » l'a récupéré à l'épuisette."], en: ["I poked it with a fingertip. The bicep exploded like a ketchup-filled watermelon. Red geyser on the ceiling, shreds of muscle on the mirror, a vein whipping the air like a crazy garden hose. 'The Fridge' just said: 'Well. Leg day tomorrow.'", "I pressed. POP. The arm deflated like a balloon, whistling, and flew around the gym. We found it in the pool. 'The Fridge' fished it out with a net."] }, fx: { happy: 8, stress: 6, visual: 'gore' }, mood: 'shock' },
+        { w: 1, text: { fr: ["J'ai touché, rien. J'ai appuyé plus fort. Toujours rien. Puis il a éternué, et c'est son pectoral gauche qui a sauté, comme un bouchon de champagne, emportant son téton avec lui. Le téton a fini dans mon shaker.", "Le biceps a tenu. C'est mon doigt qui a cassé. Ce bras est en béton armé. J'ai désormais une attelle et un profond respect pour la chimie."], en: ["I poked, nothing. I pushed harder. Still nothing. Then he sneezed, and it was his left pec that popped like a champagne cork, taking his nipple with it. The nipple landed in my shaker.", "The bicep held. My finger broke. That arm is reinforced concrete. I now have a splint and deep respect for chemistry."] }, fx: { health: -4, happy: 4, visual: 'gore' }, mood: 'shock' },
+      ] },
+      { label: { fr: 'Filmer en ralenti', en: 'Film in slow-mo' }, text: { fr: ["J'ai filmé en ralenti 240 images par seconde. On voit très bien le moment où le biceps se déchire, la peau qui ondule, et « Le Frigo » qui regarde son bras d'un air déçu, comme un enfant devant un ballon crevé. 10 millions de vues.", "J'ai filmé. Le biceps a giclé sur l'objectif. La vidéo est rouge à 90 %, mais le son suffit : un « SPLOTCH » de légende. Elle a été reprise par {w:show}."], en: ["I filmed at 240 frames per second. You can clearly see the bicep tearing, the skin rippling, and 'The Fridge' looking at his arm with disappointment, like a kid with a popped balloon. 10 million views.", "I filmed. The bicep splattered the lens. The video is 90% red, but the audio is enough: a legendary 'SPLOTCH'. It got picked up by {w:show}."] }, fx: { followers: 40000, fame: 3, happy: 6, visual: 'gore' }, mood: 'happy' },
+      { label: { fr: 'Reculer prudemment', en: 'Back away slowly' }, text: { fr: ["J'ai reculé jusqu'au vestiaire. Trente secondes plus tard, j'ai entendu un « POC » humide et des cris. Une femme est sortie de la salle avec un morceau de triceps dans les cheveux. J'avais bien fait.", "J'ai reculé lentement, comme devant un ours. Bonne idée : l'explosion a couvert de sang tous ceux qui étaient à moins de trois mètres. Moi, j'avais juste {w:gross} sur la chaussure."], en: ["I backed away to the locker room. Thirty seconds later I heard a wet 'POCK' and screams. A woman came out of the gym with a chunk of tricep in her hair. Good call.", "I backed away slowly, like from a bear. Good idea: the explosion covered everyone within ten feet in blood. I just had {w:gross} on my shoe."] }, fx: { happy: 4, stress: 2 } },
+    ],
+  },
+
+  // ── Chirurgie esthétique low cost à l'étranger → chaîne : l'éclatement ──
+  {
+    id: 'tr_bbl_abroad',
+    icon: '🍑',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'hospital', mood: 'neutral', prop: 'scalpel' },
+    when: { age: [20, 60], noFlag: 'tr_bbl' },
+    weight: 4,
+    once: true,
+    text: {
+      fr: [
+        "Une clinique {w:far_place} propose une augmentation des fesses à 499 €, vol inclus. Le chirurgien, « Docteur Bobby », a un diplôme imprimé sur du papier de boulangerie. Il y a une promo : « deuxième fesse offerte ».",
+        "Un influenceur te vante sa clinique de chirurgie esthétique low cost. Sur les photos, les patients ont des fesses de la taille de {w:object}. Le prix est le même qu'un abonnement à Netflix.",
+        "Pub sur {w:app} : « Implants fessiers, lifting et liposuccion pour le prix d'un week-end à la mer. Anesthésie en option. » Ta carte bancaire est déjà dans ta main.",
+        "Tu arrives à la clinique « Beauté Express ». La salle d'opération est une ancienne cuisine. Le docteur se lave les mains dans l'évier, où trempe {w:food}. Il te dit de t'allonger « sur la table, là, à côté du micro-ondes ».",
+      ],
+      en: [
+        "A clinic {w:far_place} offers butt augmentation for $499, flight included. The surgeon, 'Doctor Bobby', has a diploma printed on bakery paper. There's a promo: 'second cheek free'.",
+        "An influencer promotes his low-cost cosmetic surgery clinic. In the photos, patients have butts the size of {w:object}. The price is the same as a Netflix subscription.",
+        "Ad on {w:app}: 'Butt implants, facelift and liposuction for the price of a beach weekend. Anaesthesia optional.' Your credit card is already in your hand.",
+        "You arrive at the 'Beauty Express' clinic. The operating room is a former kitchen. The doctor washes his hands in the sink, where {w:food} is soaking. He tells you to lie down 'on the table, there, next to the microwave'.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Taille XXL', en: 'XXL size' }, text: { fr: ["J'ai pris la taille XXL. Je me suis réveillé{|e} avec deux montgolfières à la place des fesses. Je ne peux plus m'asseoir, ni passer les portes de face. Mais dans le miroir, je suis une divinité. Une divinité qui dort sur le ventre.", "Taille maximale. Au réveil, j'ai dû marcher en canard jusqu'à l'aéroport. Les douaniers m'ont fouillé{|e} en pensant que je cachais quelque chose dedans. Ils ont presque eu raison : il y avait une compresse oubliée."], en: ["I went XXL. I woke up with two hot-air balloons for a butt. I can't sit down or go through doors frontways anymore. But in the mirror, I'm a deity. A deity who sleeps on their stomach.", "Maximum size. When I woke up I had to waddle to the airport. Customs searched me thinking I was hiding something in there. They were almost right: there was a forgotten gauze."] }, fx: { looks: 8, health: -6, money: -500, flag: 'tr_bbl', schedule: { key: 'tr_bbl_burst', years: 1 } }, mood: 'proud' },
+      { label: { fr: 'Juste un peu de lipo', en: 'Just a little lipo' }, out: [
+        { w: 2, text: { fr: ["Juste un peu de lipo. Le docteur Bobby a aspiré la graisse avec un aspirateur de voiture. Ça a marché, mais j'ai désormais un creux en forme de main sur le ventre. On dirait qu'un fantôme me tient en permanence.", "Lipo express. Il m'a aspiré la graisse du ventre et l'a réinjectée dans mes joues « par économie ». J'ai la tête d'un hamster qui a stocké pour l'hiver."], en: ["Just a little lipo. Doctor Bobby sucked out the fat with a car vacuum. It worked, but I now have a hand-shaped dent on my belly. Looks like a ghost is holding me permanently.", "Express lipo. He sucked the fat from my belly and reinjected it into my cheeks 'to save money'. I look like a hamster that stocked up for winter."] }, fx: { looks: -3, weight: -0.04, money: -300, health: -4 }, mood: 'shock' },
+        { w: 1, text: { fr: ["La lipo s'est bien passée. Le docteur Bobby m'a même offert le café et {w:food}. Je ne sais pas ce qu'il y avait dans le café. J'ai dormi trois jours et je me suis réveillé{|e} avec un nouveau tatouage.", "Lipo réussie, mince alors. Je suis reparti{|e} plus fin{|e}, avec un bocal de ma propre graisse en souvenir. Je l'utilise pour faire des bougies."], en: ["The lipo went fine. Doctor Bobby even gave me coffee and {w:food}. I don't know what was in the coffee. I slept for three days and woke up with a new tattoo.", "Lipo successful, who knew. I left slimmer, with a jar of my own fat as a souvenir. I use it to make candles."] }, fx: { looks: 4, weight: -0.04, money: -300 }, mood: 'happy' },
+      ] },
+      { label: { fr: 'Fuir la clinique', en: 'Flee the clinic' }, text: { fr: ["J'ai vu le docteur Bobby aiguiser son scalpel sur une pierre à couteaux. J'ai fui en blouse ouverte, fesses à l'air, à travers le parking. Un taxi m'a pris{|e} en pitié. Ironie : tout le monde a admiré mes fesses naturelles.", "J'ai fui quand j'ai vu {w:animal} se promener dans la salle d'opération. J'ai passé le reste du séjour à la plage. Meilleures vacances de ma vie, et j'ai gardé mes fesses d'origine."], en: ["I saw Doctor Bobby sharpening his scalpel on a whetstone. I fled in an open gown, butt out, across the parking lot. A taxi took pity on me. Irony: everyone admired my natural butt.", "I fled when I saw {w:animal} wandering through the operating room. I spent the rest of the trip at the beach. Best vacation of my life, and I kept my original butt."] }, fx: { happy: 6, karma: 1 } },
+    ],
+  },
+  {
+    id: 'tr_bbl_burst',
+    icon: '🎈',
+    cat: 'trash',
+    rating: 2,
+    chainOnly: true,
+    scene: { place: 'home', mood: 'shock', prop: 'plane', fx: 'explosion' },
+    when: { flag: 'tr_bbl' },
+    text: {
+      fr: [
+        "Vol long-courrier. En pleine altitude, la pression de la cabine fait gonfler tes implants fessiers du docteur Bobby. Tu entends un petit sifflement. Puis un grincement. Ton voisin te regarde, inquiet.",
+        "Un an après ton opération low cost, tes fesses se sont mises à faire {w:sound} quand tu t'assois. Ce soir, tu t'assois sur un tabouret de bar pointu, au milieu d'un anniversaire.",
+        "Au sauna, la chaleur fait réagir tes implants. L'un d'eux se déplace lentement vers ton dos. Le deuxième se met à bouillonner. Le monsieur en face, en serviette, recule.",
+        "Ton implant gauche du docteur Bobby a commencé à migrer vers ta cuisse. Le droit fait des bruits de ballon de plage. Tu dois faire un discours debout au mariage de ta sœur dans dix minutes.",
+      ],
+      en: [
+        "Long-haul flight. At cruising altitude, cabin pressure makes Doctor Bobby's butt implants swell. You hear a small hiss. Then a creak. Your seatmate looks at you, worried.",
+        "A year after your budget surgery, your butt has started making {w:sound} when you sit down. Tonight, you sit on a pointy bar stool in the middle of a birthday party.",
+        "At the sauna, the heat makes your implants react. One of them slowly migrates toward your back. The other starts bubbling. The towel-clad man across from you backs away.",
+        "Your left implant from Doctor Bobby has started migrating toward your thigh. The right one makes beach-ball noises. You have to give a standing speech at your sister's wedding in ten minutes.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Serrer et prier', en: 'Clench and pray' },
+        out: [
+          { w: 3, text: { fr: ["J'ai serré. Le premier implant a éclaté avec un « PLOF » de bouillotte, aspergeant le rang 34 de gel tiède. Le deuxième a tenu. Je suis descendu{|e} de l'avion avec une fesse normale et une fesse de diva. Asymétrie assumée.", "BANG. Une fesse a explosé comme un airbag. La gelée a giclé jusqu'au plafond. Les invités ont cru à un canon à confettis. J'ai dit « surprise ! » et je me suis assis{|e} de travers pour le reste de la soirée."], en: ["I clenched. The first implant burst with a hot-water-bottle 'PLOF', spraying row 34 with warm gel. The second held. I got off the plane with one normal cheek and one diva cheek. Owning the asymmetry.", "BANG. One cheek exploded like an airbag. The jelly shot up to the ceiling. Guests thought it was a confetti cannon. I said 'surprise!' and sat sideways for the rest of the night."] }, fx: { looks: -8, health: -10, happy: -6, unflag: 'tr_bbl', visual: 'explosion' }, mood: 'cry' },
+          { w: 1, text: { fr: ["Les deux implants ont explosé en même temps, propulsant mon corps vers le plafond comme une fusée à eau. Je me suis cogné{|e} la tête contre le compartiment à bagages. Le docteur Bobby avait oublié de préciser : « Ne pas prendre l'avion. Jamais. »", "L'explosion m'a projeté{|e} dans les airs comme un bouchon. Atterrissage sur la tête, dans le buffet. Le docteur Bobby a été radié, et moi enterré{|e} avec un cercueil spécial, plus large à l'arrière."], en: ["Both implants exploded at the same time, launching my body toward the ceiling like a water rocket. I hit my head on the overhead bin. Doctor Bobby forgot to mention: 'Never fly. Ever.'", "The explosion launched me into the air like a cork. Landed on my head in the buffet. Doctor Bobby was struck off, and I was buried in a special coffin, wider at the back."] }, fx: { die: { fr: "propulsé{|e} par l'explosion de ses implants fessiers low cost", en: 'launched by the explosion of my budget butt implants' }, visual: 'explosion' } },
+        ],
+      },
+      { label: { fr: 'Les faire retirer en urgence', en: 'Emergency removal' }, text: { fr: ["Je suis allé{|e} aux urgences. Le chirurgien a retiré deux implants, une compresse, un gant en latex et la montre du docteur Bobby. Il l'a mise sous verre au musée de l'hôpital. Je suis reparti{|e} avec des fesses plates et une facture énorme.", "Retrait en urgence. Le médecin a trouvé, coincé{|e} dans mon implant gauche, {w:object}. Personne n'a jamais su comment c'était arrivé là. Le docteur Bobby ne répond plus au téléphone."], en: ["I went to the ER. The surgeon removed two implants, a gauze, a latex glove and Doctor Bobby's watch. He displayed it in the hospital museum. I left with a flat butt and a huge bill.", "Emergency removal. The doctor found {w:object} stuck in my left implant. Nobody ever figured out how it got there. Doctor Bobby no longer answers his phone."] }, fx: { health: -4, money: -4000, looks: -2, unflag: 'tr_bbl' }, mood: 'sad' },
+    ],
+  },
+
+  // ── Téléphone oublié dans le ventre ──
+  {
+    id: 'tr_phone_inside',
+    icon: '📳',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'hospital', mood: 'shock', prop: 'phone' },
+    when: { age: [18, 90] },
+    weight: 6,
+    cooldown: 15,
+    text: {
+      fr: [
+        "Une semaine après ton opération de l'appendicite, ton ventre se met à vibrer. Puis à sonner. Une sonnerie : {w:song}. Le chirurgien a perdu son téléphone. Tu sais où il est.",
+        "Depuis ton opération, ton ventre vibre à chaque notification {w:app}. Le chirurgien t'appelle : « Ah, c'est vous qui avez mon iPhone ? Ne décrochez pas, c'est ma femme. »",
+        "En pleine réunion, ton ventre émet un « Ding ! » sonore, puis la voix d'un GPS dit : « Faites demi-tour dès que possible. » Tout le monde te regarde. Ton opération date de mardi.",
+        "Le scanner post-opératoire révèle, dans ton abdomen, un téléphone, des clés de voiture et {w:object}. Le chirurgien demande s'il peut « juste récupérer les clés, il doit rentrer chez lui ».",
+      ],
+      en: [
+        "A week after your appendix surgery, your belly starts vibrating. Then ringing. Ringtone: {w:song}. The surgeon lost his phone. You know where it is.",
+        "Since your surgery, your belly vibrates with every {w:app} notification. The surgeon calls: 'Ah, you have my iPhone? Don't answer, it's my wife.'",
+        "In the middle of a meeting, your belly goes 'Ding!' loudly, then a GPS voice says: 'Make a U-turn when possible.' Everyone stares. Your surgery was Tuesday.",
+        "The post-op scan reveals, inside your abdomen, a phone, car keys and {w:object}. The surgeon asks if he can 'just get the keys back, he needs to drive home'.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Décrocher, par le nombril', en: 'Answer through the belly button' }, out: [
+        { w: 2, text: { fr: ["J'ai collé mon oreille à mon ventre et dit « allô ? ». C'était sa maîtresse. Je lui ai dit qu'il était en réunion. J'ai pris un message. Je suis devenu{|e} son secrétaire interne, au sens propre.", "J'ai répondu en criant contre mon nombril. C'était le chirurgien-chef. Il a cru à une mauvaise blague et a viré son collègue. J'ai gardé le téléphone trois semaines de plus. J'ai battu mon record de pas."], en: ["I pressed my ear to my belly and said 'hello?'. It was his mistress. I said he was in a meeting. I took a message. I became his internal secretary, literally.", "I answered by shouting at my belly button. It was the chief surgeon. He thought it was a bad joke and fired his colleague. I kept the phone three more weeks. I beat my step record."] }, fx: { happy: 8, health: -4 }, mood: 'happy' },
+        { w: 1, text: { fr: ["Le téléphone a surchauffé pendant l'appel. Brûlure interne, ambulance, deuxième opération. Cette fois, ils ont oublié une montre. Elle fait tic-tac. Je suis une horloge humaine.", "La batterie du téléphone a gonflé dans mon ventre. J'avais l'air enceint{|e} de six mois. Les gens me laissaient leur place dans le bus. J'en ai profité deux semaines avant la réopération."], en: ["The phone overheated during the call. Internal burn, ambulance, second surgery. This time they forgot a watch. It ticks. I'm a human clock.", "The phone battery swelled inside my belly. I looked six months pregnant. People gave me their seat on the bus. I enjoyed it for two weeks before the second surgery."] }, fx: { health: -12, disease: 'burns', happy: -4 }, mood: 'sick' },
+      ] },
+      { label: { fr: 'Procès à six chiffres', en: 'Six-figure lawsuit' }, text: { fr: ["J'ai attaqué l'hôpital. Mon avocat a fait sonner le téléphone en plein tribunal. Le juge a éclaté de rire. J'ai gagné une fortune, et le téléphone, qu'ils ont dû me laisser comme pièce à conviction.", "Procès gagné. Le chirurgien a dû me payer de quoi m'acheter une maison. Il a aussi dû payer son forfait téléphonique, qui a continué à tourner dans mon ventre pendant le procès. 400 € de hors-forfait."], en: ["I sued the hospital. My lawyer made the phone ring in court. The judge burst out laughing. I won a fortune, and the phone, which they had to let me keep as evidence.", "Lawsuit won. The surgeon had to pay me enough to buy a house. He also had to pay his phone bill, which kept running inside me during the trial. $400 in overage fees."] }, fx: { money: 50000, happy: 12, health: -4, visual: 'money' }, mood: 'proud' },
+    ],
+  },
+
+  // ── Liposuccion inversée ──
+  {
+    id: 'tr_lipo_reverse',
+    icon: '🎈',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'hospital', mood: 'shock', prop: 'machine', fx: 'explosion' },
+    when: { age: [20, 70] },
+    weight: 4,
+    cooldown: 20,
+    text: {
+      fr: [
+        "Séance de liposuccion. L'infirmier stagiaire branche le tuyau de la machine à l'envers. Au lieu d'aspirer, elle souffle. Tu sens ton ventre gonfler. Puis tes joues. Puis tes doigts, comme des saucisses.",
+        "Le médecin a branché la machine de lipo sur « gonflage », celle qui sert pour les matelas pneumatiques. Tu gonfles comme {w:food} au four. Il est parti chercher un café.",
+        "Opération de liposuccion. Tu es sous anesthésie locale. Tu vois ton ventre monter, monter, comme une pâte à pizza. L'infirmière dit : « Euh, docteur ? » Le docteur répond depuis le couloir : « Deux minutes ! »",
+        "Une erreur de branchement transforme ta lipo en séance de gonflage. Tu ressembles maintenant à un personnage de dessin animé qui a avalé une pompe à vélo. Tu commences à flotter au-dessus de la table.",
+      ],
+      en: [
+        "Liposuction session. The trainee nurse connects the machine's hose backward. Instead of sucking, it blows. You feel your belly inflate. Then your cheeks. Then your fingers, like sausages.",
+        "The doctor set the lipo machine to 'inflate', the setting used for air mattresses. You're swelling like {w:food} in the oven. He went to get coffee.",
+        "Liposuction surgery. You're under local anaesthesia. You watch your belly rise and rise like pizza dough. The nurse says: 'Uh, doctor?' The doctor answers from the hallway: 'Two minutes!'",
+        "A wiring mistake turns your lipo into an inflation session. You now look like a cartoon character who swallowed a bike pump. You start floating above the table.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Arracher le tuyau', en: 'Yank the hose' },
+        out: [
+          { w: 2, text: { fr: ["J'ai arraché le tuyau. Je me suis dégonflé{|e} comme un ballon lâché, en sifflant, et j'ai fait trois tours de la salle d'opération en volant, avant de m'écraser dans le chariot d'instruments. L'infirmière a applaudi.", "Tuyau arraché, PFFFFFRRRT. J'ai émis un pet de 45 secondes, le plus long de l'histoire de la médecine. Le chirurgien l'a enregistré pour un congrès. Je suis cité{|e} dans une revue scientifique."], en: ["I yanked the hose. I deflated like a released balloon, whistling, and flew three laps around the operating room before crashing into the instrument tray. The nurse applauded.", "Hose yanked, PFFFFFRRRT. I let out a 45-second fart, the longest in medical history. The surgeon recorded it for a conference. I'm cited in a scientific journal."] }, fx: { health: -6, happy: 6 }, mood: 'shock' },
+          { w: 1, text: { fr: ["Trop tard. J'ai gonflé jusqu'à atteindre la taille d'une montgolfière, puis BOUM. Les murs de la salle d'op ont été repeints en rose. Le stagiaire a été viré. Moi, je suis parti{|e} en confettis.", "J'ai voulu arracher le tuyau, mais mes doigts étaient trop gonflés. J'ai éclaté comme une baudruche géante, avec un bruit qui a fait sursauter tout l'hôpital. Les médecins ont parlé d'une « première mondiale »."], en: ["Too late. I swelled to the size of a hot-air balloon, then BOOM. The OR walls got repainted pink. The trainee got fired. I left as confetti.", "I tried to yank the hose, but my fingers were too swollen. I burst like a giant balloon with a bang that made the whole hospital jump. The doctors called it 'a world first'."] }, fx: { die: { fr: "éclaté{|e} comme un ballon pendant une liposuccion branchée à l'envers", en: 'popped like a balloon during a backward-wired liposuction' }, visual: 'explosion' } },
+        ],
+      },
+      { label: { fr: 'Flotter et profiter', en: 'Float and enjoy' }, text: { fr: ["Je me suis laissé{|e} flotter jusqu'au plafond. C'était paisible. Les pompiers m'ont décroché{|e} avec une perche, et dégonflé{|e} lentement. Le chirurgien m'a remboursé{|e} et offert {w:gift}.", "J'ai flotté par la fenêtre ouverte. J'ai survolé la ville pendant une heure, au-dessus des gens qui pointaient du doigt. Atterrissage dans un champ de vaches. Une vache m'a dégonflé{|e} d'un coup de corne. Merci, la vache."], en: ["I let myself float to the ceiling. It was peaceful. Firefighters got me down with a pole and deflated me slowly. The surgeon refunded me and gave me {w:gift}.", "I floated out the open window. I flew over the city for an hour, above people pointing. Landed in a cow field. A cow deflated me with one horn jab. Thanks, cow."] }, fx: { happy: 10, health: -4, money: 2000 }, mood: 'happy' },
+    ],
+  },
+
+  // ── Dentiste qui éternue ──
+  {
+    id: 'tr_dentist_sneeze',
+    icon: '🦷',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'hospital', mood: 'shock', prop: 'drill', fx: 'gore' },
+    when: { age: [18, 90] },
+    weight: 6,
+    cooldown: 12,
+    text: {
+      fr: [
+        "Chez le dentiste, la fraise vrombit dans ta bouche. Le dentiste a le nez qui coule, les yeux qui pleurent, et il prend une grande inspiration. « Ah… ah… » Sa fraise est sur ta molaire.",
+        "Ton dentiste est enrhumé, a bu {w:drink} au déjeuner et a les mains qui tremblent. Il vient de te faire une anesthésie dans la mauvaise joue. Il allume la fraise en rigolant.",
+        "Détartrage chez un dentiste qui regarde {w:show} sur une tablette posée sur ton torse. Il rit fort. Il a la fraise à la main. Il vient d'arriver à un passage très drôle.",
+        "Le dentiste te fait un plombage pendant un tremblement de terre. Ou alors c'est lui qui tremble. Ou les deux. Son assistante vient de crier : « Docteur, un rat ! »",
+      ],
+      en: [
+        "At the dentist, the drill whirs in your mouth. The dentist's nose is running, his eyes watering, and he takes a deep breath. 'Ah... ah...' His drill is on your molar.",
+        "Your dentist has a cold, had {w:drink} at lunch and his hands are shaking. He just numbed the wrong cheek. He turns on the drill, giggling.",
+        "Cleaning at a dentist who's watching {w:show} on a tablet resting on your chest. He's laughing loudly. Drill in hand. He just reached a very funny scene.",
+        "The dentist is doing your filling during an earthquake. Or he's the one shaking. Or both. His assistant just screamed: 'Doctor, a rat!'",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Lui mordre la main', en: 'Bite his hand' }, out: [
+        { w: 2, text: { fr: ["Je lui ai mordu la main par réflexe. Il a lâché la fraise, qui a fait le tour de ma bouche en tournoyant comme un hélicoptère et est ressortie par la joue. J'ai un trou en plus. Je siffle en parlant.", "J'ai mordu. Il a hurlé, éternué, et la fraise a ricoché sur trois dents. Elles ont giclé de ma bouche comme du pop-corn. Une a fini dans l'aquarium. Le poisson l'a gardée."], en: ["I bit his hand by reflex. He dropped the drill, which spun around my mouth like a helicopter and came out through my cheek. I have an extra hole now. I whistle when I talk.", "I bit. He screamed, sneezed, and the drill ricocheted off three teeth. They shot out of my mouth like popcorn. One ended up in the fish tank. The fish kept it."] }, fx: { health: -12, looks: -6, visual: 'gore' }, mood: 'cry' },
+        { w: 1, text: { fr: ["Je l'ai mordu juste avant l'éternuement. Il a lâché la fraise, éternué sur son assistante, qui a éternué sur le rat. Le rat a fui. Je suis reparti{|e} sans soin, mais vivant{|e}, avec la morve du docteur sur le visage.", "Ma morsure lui a coûté une phalange. On est quittes : il m'en coûte une molaire. On a échangé nos assurances et on se dit bonjour au marché."], en: ["I bit him right before the sneeze. He dropped the drill and sneezed on his assistant, who sneezed on the rat. The rat fled. I left untreated but alive, with the doctor's snot on my face.", "My bite cost him a knuckle. We're even: it cost me a molar. We swapped insurance details and say hi at the market."] }, fx: { health: -3, happy: 2 }, mood: 'shock' },
+      ] },
+      { label: { fr: 'Fermer les yeux et prier', en: 'Close my eyes and pray' }, out: [
+        { w: 2, text: { fr: ["Il a éternué. La fraise a dérapé, traversé ma joue et s'est arrêtée à un centimètre de mon œil. Il m'a recousu avec du fil dentaire. La cicatrice ressemble à un sourire. J'ai l'air content{|e} en permanence, comme le Joker.", "ATCHOUM. La fraise a ripé et m'a percé la langue. J'ai désormais un piercing involontaire. Ma langue siffle quand je parle. Mon ou ma partenaire trouve ça sexy."], en: ["He sneezed. The drill slipped, went through my cheek and stopped half an inch from my eye. He stitched me up with dental floss. The scar looks like a smile. I look permanently happy, like the Joker.", "ACHOO. The drill slipped and pierced my tongue. I now have an involuntary piercing. My tongue whistles when I talk. My partner finds it sexy."] }, fx: { health: -10, looks: -4, visual: 'gore' }, mood: 'cry' },
+        { w: 1, text: { fr: ["Il a retenu son éternuement. Il a explosé par les oreilles. Du sang a coulé de son nez sur mon visage. On a tous les deux hurlé. Il ne m'a pas fait payer. Je ne suis jamais revenu{|e}.", "Il a éternué sur le côté, comme un pro. Le plombage était parfait. Je sors avec une molaire neuve et {w:gross} dans les cheveux. Bilan positif."], en: ["He held back his sneeze. It exploded out of his ears. Blood ran from his nose onto my face. We both screamed. He didn't charge me. I never went back.", "He sneezed sideways like a pro. The filling was perfect. I'm leaving with a brand-new molar and {w:gross} in my hair. Net positive."] }, fx: { happy: 2, health: -1 }, mood: 'neutral' },
+      ] },
+    ],
+  },
+
+  // ── Zoo : le singe et ses projectiles ──
+  {
+    id: 'tr_monkey_zoo',
+    icon: '🐒',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'park', mood: 'shock', prop: 'monkey', fx: 'poop' },
+    when: { age: [18, 90] },
+    weight: 6,
+    cooldown: 12,
+    text: {
+      fr: [
+        "Au zoo, devant l'enclos des chimpanzés. Le mâle dominant te fixe dans les yeux. Il fouille derrière lui. Il en sort quelque chose de brun et de tiède. Il prend son élan.",
+        "Un babouin du zoo a volé ton téléphone, déverrouillé, et s'enfuit en haut de son arbre. Il ouvre ta galerie photo. Il a l'air très intéressé. Puis il commence à appeler tes contacts.",
+        "Tu fais un selfie devant l'enclos des orangs-outans en faisant des grimaces. Le plus gros vient de lâcher {w:sound} et prépare clairement une riposte. Il en a plein les mains.",
+        "Au zoo, un singe capucin s'est échappé et s'est installé sur ta tête. Il te tire les cheveux, mange ton {w:food} et se gratte les fesses sur ton front. Les gens prennent des photos.",
+      ],
+      en: [
+        "At the zoo, in front of the chimp enclosure. The alpha male stares you in the eye. He reaches behind himself. He pulls out something brown and warm. He winds up.",
+        "A zoo baboon stole your phone, unlocked, and ran up its tree. It opens your photo gallery. It looks very interested. Then it starts calling your contacts.",
+        "You're taking a selfie in front of the orangutan enclosure, making faces. The biggest one just let out {w:sound} and is clearly preparing a counterattack. Its hands are full.",
+        "At the zoo, an escaped capuchin monkey has settled on your head. It's pulling your hair, eating your {w:food} and scratching its butt on your forehead. People are taking pictures.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Esquiver', en: 'Dodge' }, out: [
+        { w: 1, odds: { athletic: 1 }, text: { fr: ["J'ai esquivé façon Matrix. Le projectile a atterri en plein dans la bouche d'un influenceur qui filmait derrière moi. Il a fait la grimace de sa vie. Le chimpanzé et moi, on s'est fait un check.", "Esquive parfaite. La crotte a fini sur la poussette à 2 000 € d'un couple qui m'avait doublé{|e} à la billetterie. Le karma a des mains, et il les a pleines."], en: ["I dodged Matrix-style. The projectile landed right in the mouth of an influencer filming behind me. He made the face of his life. The chimp and I fist-bumped.", "Perfect dodge. The poop landed on the $2,000 stroller of a couple who'd cut ahead of me at the ticket booth. Karma has hands, and they're full."] }, fx: { happy: 12, athletic: 1 }, mood: 'happy' },
+        { w: 2, text: { fr: ["J'ai esquivé à gauche. Il avait anticipé à gauche. En pleine face, chaud, avec une précision de sniper. J'ai {w:gross} et pire encore dans les sourcils. Le chimpanzé a fait une danse de victoire.", "Trop lent{|e}. Le projectile m'a frappé{|e} pile entre les yeux, avec un bruit de « splotch » mou. Un enfant a crié « ENCORE ! ». Le singe a obéi."], en: ["I dodged left. He anticipated left. Full in the face, warm, with sniper precision. I have {w:gross} and worse in my eyebrows. The chimp did a victory dance.", "Too slow. The projectile hit me right between the eyes with a soft 'splotch'. A kid yelled 'AGAIN!'. The monkey obliged."] }, fx: { happy: -8, looks: -4, visual: 'poop' }, mood: 'sick' },
+      ] },
+      { label: { fr: 'Lui renvoyer le projectile', en: 'Throw it back' }, text: { fr: ["J'ai ramassé le projectile et je l'ai renvoyé. Le chimpanzé l'a attrapé au vol et me l'a relancé, avec ses copains. Bataille générale. J'ai été sorti{|e} du zoo par la sécurité, couvert{|e} de la tête aux pieds. Les singes ont gagné.", "Je l'ai relancé. J'ai raté le singe et touché le gardien du zoo. Le singe a éclaté de rire, un vrai rire de singe. Le gardien m'a interdit{|e} de zoo à vie. Le singe me manque."], en: ["I picked up the projectile and threw it back. The chimp caught it midair and threw it back with his buddies. All-out war. Security escorted me out, covered head to toe. The monkeys won.", "I threw it back. I missed the monkey and hit the zookeeper. The monkey burst out laughing, a real monkey laugh. The keeper banned me from the zoo for life. I miss the monkey."] }, fx: { happy: 4, looks: -3, karma: -1, visual: 'poop' }, mood: 'shock' },
+      { label: { fr: 'Négocier avec une banane', en: 'Negotiate with a banana' }, text: { fr: ["J'ai sorti une banane du sac. Le singe a lâché son arme et m'a pris la banane. On a mangé ensemble, chacun de son côté de la vitre. C'est la relation la plus saine que j'aie jamais eue.", "J'ai proposé une banane contre mon téléphone. Le babouin a accepté, après avoir appelé ma mère, mon patron et mon ex. Ma mère a trouvé qu'il avait plus de conversation que moi."], en: ["I pulled a banana out of my bag. The monkey dropped its weapon and took the banana. We ate together, each on our side of the glass. Healthiest relationship I've ever had.", "I offered a banana for my phone. The baboon agreed, after calling my mom, my boss and my ex. My mom said he was a better conversationalist than me."] }, fx: { happy: 8, karma: 2 }, mood: 'happy' },
+    ],
+  },
+
+  // ── Concours de barbe d'abeilles ──
+  {
+    id: 'tr_bee_beard',
+    icon: '🐝',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'park', mood: 'shock', prop: 'bees' },
+    when: { age: [18, 80] },
+    weight: 5,
+    cooldown: 15,
+    text: {
+      fr: [
+        "Fête du miel au village. Concours de « barbe d'abeilles » : celui qui garde le plus d'abeilles sur le visage gagne {w:gift}. L'apiculteur te pose la reine sur le menton. 10 000 abeilles arrivent.",
+        "Un apiculteur te propose de tenir une ruche « deux secondes, pour la photo ». Une abeille entre dans ta manche. Puis vingt. Puis elles trouvent le chemin de ton pantalon.",
+        "Pique-nique au bord d'un champ. Tu t'assois sur ce que tu crois être une souche. C'est une ruche. Elle fait {w:sound}. Les abeilles ne sont pas contentes.",
+        "Tu as un pot de miel ouvert dans le sac et du soda sur le tee-shirt. Un essaim entier te prend pour une fleur géante. Tu as {w:bodypart} déjà recouvert d'abeilles.",
+      ],
+      en: [
+        "Village honey festival. 'Bee beard' contest: whoever keeps the most bees on their face wins {w:gift}. The beekeeper places the queen on your chin. 10,000 bees arrive.",
+        "A beekeeper offers to let you hold a hive 'for two seconds, for the photo'. A bee goes up your sleeve. Then twenty. Then they find their way into your pants.",
+        "Picnic at the edge of a field. You sit on what you think is a stump. It's a beehive. It's making {w:sound}. The bees are not happy.",
+        "You have an open honey jar in your bag and soda on your T-shirt. A whole swarm thinks you're a giant flower. Your {w:bodypart} is already covered in bees.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Rester zen', en: 'Stay zen' }, out: [
+        { w: 2, odds: { discipline: 1 }, text: { fr: ["Je suis resté{|e} parfaitement immobile, comme un moine. Les abeilles ont fait une barbe magnifique. J'ai gagné le concours. Puis j'ai éternué. Le reste est flou, et enflé.", "Zen absolu. Les abeilles m'ont recouvert{|e} comme une statue vivante. J'ai gagné, j'ai eu ma photo dans le journal local. Une seule abeille m'a piqué{|e}. Sur la paupière. J'ai ressemblé à Rocky pendant une semaine."], en: ["I stayed perfectly still, like a monk. The bees formed a magnificent beard. I won the contest. Then I sneezed. The rest is blurry, and swollen.", "Absolute zen. The bees covered me like a living statue. I won and got my picture in the local paper. Only one bee stung me. On the eyelid. I looked like Rocky for a week."] }, fx: { happy: 10, fame: 1, looks: -2 }, mood: 'proud' },
+        { w: 1, text: { fr: ["J'ai tenu dix secondes. Puis une abeille est entrée dans ma narine. J'ai hurlé, elles ont toutes piqué. Mon visage a gonflé comme {w:food}. J'ai été hospitalisé{|e} sous le nom de « patient ballon ».", "Une abeille a trouvé le chemin de mon slip. J'ai fait une danse que personne n'avait jamais vue. 400 piqûres. Mon entrejambe a triplé de volume. Pas pour les bonnes raisons."], en: ["I lasted ten seconds. Then a bee went up my nostril. I screamed, they all stung. My face swelled up like {w:food}. I was admitted under the name 'balloon patient'.", "A bee found its way into my underwear. I did a dance nobody had ever seen. 400 stings. My crotch tripled in size. Not for the right reasons."] }, fx: { health: -14, looks: -6, disease: 'allergies' }, mood: 'cry' },
+      ] },
+      { label: { fr: 'Courir vers le lac', en: 'Run for the lake' }, text: { fr: ["J'ai couru vers le lac en hurlant, suivi{|e} d'un nuage d'abeilles, comme dans un dessin animé. J'ai plongé. Les abeilles ont attendu au-dessus de l'eau. J'ai respiré par une paille pendant quarante minutes.", "J'ai sprinté jusqu'au lac, suivi{|e} par l'essaim. J'ai plongé et atterri sur un cygne. Le cygne m'a mordu{|e}. Les abeilles ont piqué le cygne. Tout le monde a perdu."], en: ["I ran to the lake screaming, followed by a cloud of bees, cartoon-style. I dove. The bees waited above the water. I breathed through a straw for forty minutes.", "I sprinted to the lake, chased by the swarm. I dove and landed on a swan. The swan bit me. The bees stung the swan. Everyone lost."] }, fx: { health: -6, athletic: 2, happy: 2 } },
+    ],
+  },
+
+  // ── Écureuil dans le pantalon ──
+  {
+    id: 'tr_squirrel_pants',
+    icon: '🐿️',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'park', mood: 'shock', prop: 'squirrel' },
+    when: { age: [18, 90] },
+    weight: 6,
+    cooldown: 12,
+    text: {
+      fr: [
+        "Pique-nique au parc avec ton ou ta partenaire. Tu as des cacahuètes dans la poche. Un écureuil les a senties. Il vient d'entrer dans ta jambe de pantalon. Il monte.",
+        "Un écureuil enragé t'a pris pour un arbre. Il est entré par ton col et fait le tour de ton torse à toute vitesse. Il cherche quelque chose. Il ne le trouve pas. Il descend.",
+        "Tu fais ton jogging quand un écureuil te saute dessus et disparaît dans ton short. Une mère de famille et ses trois enfants te regardent te tortiller. Tu cries {w:swear}",
+        "Au parc, tu nourris les écureuils avec {w:food}. L'un d'eux trouve que tu n'es pas assez généreux{|se} et décide d'aller voir directement dans ton pantalon.",
+      ],
+      en: [
+        "Picnic at the park with your partner. You have peanuts in your pocket. A squirrel smelled them. It just went up your pant leg. It's climbing.",
+        "A rabid squirrel mistook you for a tree. It went in through your collar and is racing around your chest. It's looking for something. It doesn't find it. It heads down.",
+        "You're jogging when a squirrel jumps on you and disappears into your shorts. A mom and her three kids watch you wriggle. You scream {w:swear}",
+        "At the park, you're feeding the squirrels {w:food}. One of them thinks you're not generous enough and decides to check your pants directly.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Enlever le pantalon', en: 'Drop my pants' }, out: [
+        { w: 2, text: { fr: ["J'ai baissé mon pantalon en plein parc. L'écureuil est sorti avec une cacahuète et un poil pubien, l'air satisfait. Une patrouille de police passait. J'ai dû expliquer. Ils ont noté « écureuil » dans le rapport, avec un point d'interrogation.", "Pantalon à terre, slip à l'air, je me suis secoué{|e} comme un chien mouillé. L'écureuil est sorti, a croqué mon {w:bodypart} au passage, et s'est enfui. Une mamie a dit : « Joli spectacle. »"], en: ["I dropped my pants in the middle of the park. The squirrel came out with a peanut and a pubic hair, looking satisfied. A police patrol passed by. I had to explain. They wrote 'squirrel' in the report, with a question mark.", "Pants down, underwear out, I shook like a wet dog. The squirrel came out, bit my {w:bodypart} on the way, and fled. A granny said: 'Nice show.'"] }, fx: { happy: -2, heat: 4, health: -3 }, mood: 'shock' },
+        { w: 1, text: { fr: ["J'ai baissé mon pantalon, et l'écureuil a refusé de sortir. Il s'est installé. Il avait trouvé un nid. Il a fallu un vétérinaire, un pompier et un sachet de noisettes pour le convaincre.", "Je l'ai fait sortir, mais il m'avait mordu là où ça compte. Vaccin contre la rage, dans les fesses, dans le même hôpital où ma tante travaille. Toute la famille sait."], en: ["I dropped my pants, and the squirrel refused to come out. It settled in. It had found a nest. It took a vet, a firefighter and a bag of hazelnuts to convince it.", "I got it out, but it had bitten me where it counts. Rabies shot in the butt, in the same hospital where my aunt works. The whole family knows."] }, fx: { health: -8, happy: -6, stress: 6 }, mood: 'cry' },
+      ] },
+      { label: { fr: 'Rester immobile', en: 'Freeze' }, text: { fr: ["Je suis resté{|e} immobile, comme un arbre. L'écureuil a fait trois tours de mon corps, a trouvé la cacahuète et est reparti par le col. Il m'a laissé un souvenir dans le slip. Une noisette. Enfin, j'espère que c'est une noisette.", "Je n'ai pas bougé d'un millimètre. L'écureuil a fini par s'endormir dans ma poche. Je l'ai ramené à la maison. Il s'appelle {w:nickname}. Il me méprise."], en: ["I froze like a tree. The squirrel did three laps around my body, found the peanut and left through the collar. It left a souvenir in my underwear. A hazelnut. Well, I hope it's a hazelnut.", "I didn't move an inch. The squirrel eventually fell asleep in my pocket. I took it home. Its name is {w:nickname}. It despises me."] }, fx: { happy: 6, discipline: 2 }, mood: 'happy' },
+    ],
+  },
+
+  // ── Safari et touriste milliardaire ──
+  {
+    id: 'tr_croc_safari',
+    icon: '🐊',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'beach', mood: 'shock', prop: 'crocodile', fx: 'gore' },
+    when: { age: [18, 85] },
+    weight: 5,
+    cooldown: 15,
+    text: {
+      fr: [
+        "Safari en bateau. Un touriste milliardaire, chapeau colonial et montre en or, tend le bras au-dessus de l'eau pour un selfie avec un crocodile. Il crie au guide : « Je paie, alors il va sourire ! »",
+        "Le guide a dit : « Ne vous penchez pas. » Le patron de start-up à côté de toi se penche, en faisant un live pour ses employés licenciés. Sous l'eau, deux yeux jaunes s'approchent.",
+        "Un chasseur de trophées en safari a payé 50 000 € pour « tirer un lion ». Il pose devant le Jeep avec sa carabine. Derrière lui, l'herbe bouge. Ce n'est pas un lion. C'est pire. C'est un hippopotame.",
+        "Ton voisin de bateau, un banquier, jette {w:food} aux crocodiles pour « les faire danser ». Il en tient un morceau entre les dents pour la photo. Le crocodile le plus gros a très faim.",
+      ],
+      en: [
+        "Boat safari. A billionaire tourist, pith helmet and gold watch, stretches his arm over the water for a selfie with a crocodile. He yells at the guide: 'I'm paying, so it's going to smile!'",
+        "The guide said: 'Don't lean over.' The startup CEO next to you leans over while livestreaming to his laid-off employees. Underwater, two yellow eyes approach.",
+        "A trophy hunter on safari paid $50,000 to 'shoot a lion'. He poses by the jeep with his rifle. Behind him, the grass moves. It's not a lion. It's worse. It's a hippo.",
+        "Your boatmate, a banker, throws {w:food} to the crocodiles 'to make them dance'. He holds a piece between his teeth for the photo. The biggest croc is very hungry.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Ne rien dire', en: 'Say nothing' }, out: [
+        { w: 2, text: { fr: ["Je n'ai rien dit. CHOMP. Le crocodile a pris le bras, la montre en or et le selfie stick. Il a fait un roulé-boulé dans l'eau, qui est devenue rouge comme un Bloody Mary. Le milliardaire a crié « JE VAIS PORTER PLAINTE ! » à un crocodile.", "Silence. L'hippopotame a chargé le chasseur et l'a projeté dans les airs comme une poupée de chiffon. Il est retombé dans une bouse d'éléphant, tête la première. Le lion, au loin, riait. Je le jure, il riait."], en: ["I said nothing. CHOMP. The croc took the arm, the gold watch and the selfie stick. It death-rolled in the water, which turned red as a Bloody Mary. The billionaire yelled 'I'LL SUE!' at a crocodile.", "Silence. The hippo charged the hunter and tossed him in the air like a rag doll. He landed headfirst in elephant dung. The lion, in the distance, was laughing. I swear it was laughing."] }, fx: { happy: 12, karma: 1, visual: 'gore' }, mood: 'shock' },
+        { w: 1, text: { fr: ["Le crocodile a raté le banquier et a mordu le bateau. On a tous coulé. J'ai nagé jusqu'à la rive le plus vite de ma vie, suivi{|e} de trois crocodiles et du banquier, qui me poussait pour passer devant.", "Le crocodile a recraché le PDG : trop amer. Il a préféré mon sac à dos, qui contenait {w:food}. Il est reparti avec. Le PDG a gardé ses deux bras, et toute sa connerie."], en: ["The croc missed the banker and bit the boat. We all sank. I swam to shore faster than ever, followed by three crocs and the banker, who was pushing me to get ahead.", "The croc spat out the CEO: too bitter. It preferred my backpack, which had {w:food} in it. It left with it. The CEO kept both arms, and all his stupidity."] }, fx: { happy: -2, health: -4, stress: 8 }, mood: 'shock' },
+      ] },
+      { label: { fr: 'Le prévenir, mollement', en: 'Warn him, half-heartedly' }, text: { fr: ["J'ai dit, très doucement : « Attention… peut-être… » Il ne m'a pas entendu. Le crocodile, si. Le milliardaire a perdu sa main et sa Rolex. Sur l'appli d'avis, il a mis une étoile au crocodile.", "J'ai murmuré « crocodile » en regardant ailleurs. Il a dit « Quoi ? » en se penchant encore plus. Le crocodile lui a arraché son chapeau colonial avec un bout de cuir chevelu. Le guide a dit : « Je l'avais dit. »"], en: ["I said, very softly: 'Careful... maybe...' He didn't hear me. The croc did. The billionaire lost his hand and his Rolex. On the review app, he gave the crocodile one star.", "I murmured 'crocodile' while looking away. He said 'What?' and leaned further. The croc ripped off his pith helmet with a chunk of scalp. The guide said: 'I told you.'"] }, fx: { happy: 10, karma: -1, visual: 'gore' }, mood: 'happy' },
+    ],
+  },
+
+  // ── Fromage aux asticots ──
+  {
+    id: 'tr_maggot_cheese',
+    icon: '🧀',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'home', mood: 'sick', prop: 'cheese' },
+    when: { age: [18, 90] },
+    weight: 6,
+    cooldown: 12,
+    text: {
+      fr: [
+        "Ton beau-père, fier, sort son fromage « affiné à l'ancienne ». Quand il coupe, des asticots vivants sautent hors de la croûte. L'un d'eux atterrit sur ta joue. Toute la famille attend que tu goûtes.",
+        "Un ami gastronome te fait goûter du casu marzu, un fromage où les larves sont « le cœur de la recette ». Elles peuvent sauter jusqu'à 15 cm. Il te conseille de « fermer les yeux ». Ça sent {w:smell}.",
+        "Au marché, un vieux fromager te tend un échantillon qui bouge. « C'est vivant, c'est bon signe ! » Il a trois dents et un sourire de pirate. Il attend.",
+        "Dîner chez tes futurs beaux-parents. Le plat principal : un fromage qui grouille. Ta future belle-mère dit : « Ceux qui refusent ne font pas partie de la famille. » Elle est sérieuse.",
+      ],
+      en: [
+        "Your father-in-law proudly brings out his 'old-school aged' cheese. When he cuts it, live maggots jump out of the rind. One lands on your cheek. The whole family waits for you to taste it.",
+        "A foodie friend has you taste casu marzu, a cheese where larvae are 'the heart of the recipe'. They can jump six inches. He advises you to 'close your eyes'. It smells like {w:smell}.",
+        "At the market, an old cheesemonger hands you a sample that moves. 'It's alive, that's a good sign!' He has three teeth and a pirate grin. He's waiting.",
+        "Dinner at your future in-laws'. Main course: a squirming cheese. Your future mother-in-law says: 'Those who refuse aren't part of the family.' She's serious.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Croquer, yeux fermés', en: 'Bite, eyes closed' }, out: [
+        { w: 2, text: { fr: ["J'ai croqué. Ça grouillait sous mes dents comme du pop-corn vivant. Un asticot a sauté de ma bouche jusque dans l'œil de mon beau-père. Il a dit : « Tu es des nôtres. » J'ai vomi dans son béret.", "J'ai mangé. C'était crémeux, piquant, et ça a bougé jusqu'à mon estomac. Je l'ai senti. Toute la nuit. Mon ventre faisait {w:sound}. Mais j'ai été accepté{|e} dans la famille."], en: ["I bit in. It squirmed under my teeth like live popcorn. A maggot leapt from my mouth into my father-in-law's eye. He said: 'You're one of us.' I threw up in his beret.", "I ate it. Creamy, sharp, and it wriggled all the way to my stomach. I felt it. All night. My belly went {w:sound}. But I was accepted into the family."] }, fx: { happy: 4, health: -4, rel: 6, disease: 'food_poisoning' }, mood: 'sick' },
+        { w: 1, text: { fr: ["J'ai croqué et… c'était divin. Je suis devenu{|e} accro au fromage vivant. J'en élève dans ma cave. Les voisins se plaignent de l'odeur. Les asticots, eux, m'adorent.", "J'ai croqué et je n'ai rien senti, à part un léger chatouillement. Mon beau-père m'a désigné{|e} héritier ou héritière de sa cave à fromages. C'est une immense responsabilité vivante."], en: ["I bit in and... it was divine. I became addicted to living cheese. I breed it in my cellar. Neighbours complain about the smell. The maggots adore me.", "I bit in and felt nothing but a slight tickle. My father-in-law named me heir to his cheese cellar. It's a huge, living responsibility."] }, fx: { happy: 8, rel: 10 }, mood: 'happy' },
+      ] },
+      { label: { fr: 'Le refiler au chien', en: 'Slip it to the dog' }, text: { fr: ["J'ai fait semblant de manger et donné le morceau au chien sous la table. Le chien a vomi sur les pieds de la belle-mère. Les asticots se sont échappés sur le tapis. On a passé la soirée à quatre pattes à les rattraper.", "J'ai glissé le fromage au chien. Le chien a refusé, m'a regardé{|e} avec mépris et est sorti de la pièce. Même le chien a plus de dignité que moi."], en: ["I pretended to eat and gave the piece to the dog under the table. The dog threw up on the mother-in-law's feet. The maggots escaped onto the rug. We spent the evening on all fours catching them.", "I slipped the cheese to the dog. The dog refused, gave me a look of contempt and left the room. Even the dog has more dignity than me."] }, fx: { happy: 4, karma: -2, rel: -4 } },
+      { label: { fr: 'Refuser poliment', en: 'Politely decline' }, text: { fr: ["J'ai refusé poliment, en invoquant une allergie aux « fromages qui ont des enfants ». Toute la tablée a ri. La belle-mère non. Je mange à la table des enfants depuis.", "J'ai dit non. Le fromager a haussé les épaules, a mangé l'échantillon lui-même et un asticot s'est échappé par son nez. J'ai eu raison."], en: ["I politely declined, citing an allergy to 'cheeses that have children'. The whole table laughed. The mother-in-law didn't. I've been seated at the kids' table ever since.", "I said no. The cheesemonger shrugged, ate the sample himself and a maggot escaped through his nose. I was right."] }, fx: { happy: 2, rel: -6 } },
+    ],
+  },
+
+  // ── Buffet à volonté : la dernière bouchée ──
+  {
+    id: 'tr_buffet_boom',
+    icon: '🍽️',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'party', mood: 'sick', prop: 'buffet', fx: 'explosion' },
+    when: { age: [18, 90] },
+    weight: 4,
+    cooldown: 20,
+    text: {
+      fr: [
+        "Buffet à volonté « Le Goinfre Royal », 19,90 €. Tu en es à ta septième assiette. Ton pantalon a déjà craqué. Le serveur, très poli, te propose « juste une dernière petite menthe, toute fine ».",
+        "Tu as mangé trois kilos de sushis, deux pizzas et {w:food}. Ta ceinture a éclaté et touché le serveur. Le patron du buffet te regarde avec une haine pure. Il reste une crevette.",
+        "Défi : manger le burger de 4 kilos en 30 minutes pour l'avoir gratuit. Il reste une bouchée. Ton ventre est tendu comme une peau de tambour. Il fait {w:sound}.",
+        "Repas de mariage, douzième plat. Ta chemise est ouverte, tes yeux sont injectés. On t'apporte le trou normand, puis le fromage, puis un minuscule chocolat. « Allez, ce n'est rien. »",
+      ],
+      en: [
+        "'The Royal Glutton' all-you-can-eat buffet, $19.90. You're on your seventh plate. Your pants already split. The very polite waiter offers you 'just one more wafer-thin mint'.",
+        "You've eaten six pounds of sushi, two pizzas and {w:food}. Your belt burst and hit the waiter. The buffet owner looks at you with pure hatred. One shrimp left.",
+        "Challenge: eat the 9-pound burger in 30 minutes to get it free. One bite left. Your belly is stretched like a drum. It's making {w:sound}.",
+        "Wedding meal, twelfth course. Your shirt's open, your eyes bloodshot. They bring the palate cleanser, then the cheese, then one tiny chocolate. 'Come on, it's nothing.'",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'La dernière bouchée', en: 'The last bite' },
+        out: [
+          { w: 3, text: { fr: ["J'ai mangé la dernière bouchée. Mon estomac a fait « non ». Puis tout est ressorti, en jet continu, par-dessus trois tables, comme une fontaine de Rome. Le patron m'a interdit{|e} à vie. J'ai quand même eu le burger gratuit.", "J'ai avalé. Mon ventre a émis un craquement de vieux parquet. J'ai vomi dans le seau à glace, puis dans le sac d'une dame, puis dans mes propres chaussures. Mais j'ai ma photo au mur des champions."], en: ["I ate the last bite. My stomach said 'no'. Then everything came back out in a continuous jet over three tables, like a Roman fountain. The owner banned me for life. I still got the free burger.", "I swallowed. My belly creaked like an old floorboard. I threw up in the ice bucket, then in a lady's handbag, then in my own shoes. But my photo's on the champions' wall."] }, fx: { happy: 4, health: -8, weight: 0.03, visual: 'poop' }, mood: 'sick' },
+          { w: 1, text: { fr: ["J'ai pris la petite menthe. Une seule. Mon ventre a gonflé, gonflé… et BOUM. J'ai explosé comme dans les Monty Python. Le buffet entier a été repeint. Le serveur, couvert de moi, a dit : « Monsieur ou madame désire-t-il l'addition ? »", "La dernière crevette fut la crevette de trop. Mon estomac a éclaté avec un bruit de pétard mouillé. Il y avait du riz cantonais jusqu'au plafond. Le patron a ajouté « nettoyage » sur l'addition, que ma famille a reçue."], en: ["I took the little mint. Just one. My belly swelled, and swelled... and BOOM. I exploded like in Monty Python. The whole buffet got repainted. The waiter, covered in me, said: 'Would sir or madam like the check?'", "The last shrimp was one shrimp too many. My stomach burst with a wet firecracker sound. Fried rice all the way to the ceiling. The owner added 'cleaning' to the bill, which my family received."] }, fx: { die: { fr: "explosé{|e} au buffet à volonté après une dernière petite menthe", en: 'exploded at an all-you-can-eat buffet after one last wafer-thin mint' }, visual: 'explosion' } },
+        ],
+      },
+      { label: { fr: 'Abandonner et ramper dehors', en: 'Give up and crawl out' }, text: { fr: ["J'ai abandonné. J'ai rampé jusqu'au parking, où je me suis allongé{|e} sur le capot d'une voiture comme un phoque échoué. Le propriétaire est arrivé, m'a regardé{|e}, et est reparti à pied. Il a compris.", "J'ai déclaré forfait. On m'a ramené{|e} chez moi dans un caddie. J'ai dormi seize heures et rêvé de {w:food}. Le lendemain, j'avais faim. Le corps humain est un mystère."], en: ["I gave up. I crawled to the parking lot, where I lay down on a car hood like a beached seal. The owner arrived, looked at me, and walked home. He understood.", "I forfeited. They took me home in a shopping cart. I slept sixteen hours and dreamed of {w:food}. The next day, I was hungry. The human body is a mystery."] }, fx: { health: -3, weight: 0.02, happy: 2 } },
+    ],
+  },
+
+  // ── Cours de cuisine : le doigt dans la soupe ──
+  {
+    id: 'tr_cooking_class',
+    icon: '🔪',
+    cat: 'trash',
+    rating: 2,
+    scene: { place: 'studio', mood: 'shock', prop: 'knife', fx: 'gore' },
+    when: { age: [18, 85] },
+    weight: 6,
+    cooldown: 12,
+    text: {
+      fr: [
+        "Cours de cuisine « Chef en un soir ». Le chef te montre la technique de découpe « ultra-rapide » avec un couteau japonais aiguisé comme un rasoir. Il te tend le couteau : « À toi. Vite ! Plus vite ! »",
+        "Atelier cuisine entre collègues. Ton voisin découpe des oignons à toute vitesse en pleurant, en racontant sa rupture. Il ne regarde plus ses doigts. Le couteau monte et descend comme une guillotine.",
+        "Cours de cuisine pour couples. Tu découpes {w:food} quand ton ou ta partenaire te fait une remarque sur ta mère. Ta main tremble. Le couteau dérape.",
+        "Le chef du cours de cuisine, connu pour ses colères, te hurle dessus parce que ta julienne est « une insulte à la France ». Il te prend le couteau pour montrer. Il est furieux. Il va très vite.",
+      ],
+      en: [
+        "'Chef in One Night' cooking class. The chef demonstrates the 'ultra-fast' chopping technique with a razor-sharp Japanese knife. He hands you the knife: 'Your turn. Fast! Faster!'",
+        "Cooking workshop with coworkers. Your neighbour is dicing onions at top speed, crying, telling you about his breakup. He's no longer watching his fingers. The knife goes up and down like a guillotine.",
+        "Couples cooking class. You're chopping {w:food} when your partner makes a comment about your mother. Your hand shakes. The knife slips.",
+        "The cooking class chef, famous for his temper, screams at you because your julienne is 'an insult to France'. He grabs the knife to demonstrate. He's furious. He's going very fast.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Couper à toute vitesse', en: 'Chop at full speed' }, out: [
+        { w: 2, text: { fr: ["J'ai coupé comme un ninja. Les carottes, le céleri et le bout de mon index ont fini dans la soupe. Le chef a goûté : « Il manque du sel. » Il n'a pas remarqué le doigt. Moi si.", "J'ai découpé à la vitesse de la lumière. Un geyser de sang a jailli de mon pouce et a peint la toque du chef en rouge. Il a dit : « Enfin, de la passion ! » J'ai eu la meilleure note."], en: ["I chopped like a ninja. The carrots, the celery and the tip of my index finger ended up in the soup. The chef tasted it: 'Needs salt.' He didn't notice the finger. I did.", "I chopped at light speed. A geyser of blood shot from my thumb and painted the chef's hat red. He said: 'Finally, some passion!' I got the top grade."] }, fx: { health: -10, disease: 'missing_finger', happy: -2, visual: 'gore' }, mood: 'cry' },
+        { w: 1, odds: { smarts: 1 }, text: { fr: ["Découpe parfaite, ultra-rapide. Le chef a pleuré. Il m'a proposé un poste dans son restaurant. J'ai refusé : je ne travaille pas pour quelqu'un qui hurle. Puis j'ai accepté pour l'argent.", "J'ai fait une julienne si fine qu'on voyait à travers. Le chef m'a embrassé{|e} sur la bouche, par émotion. Personne n'était à l'aise. Mais j'ai gagné {w:gift}."], en: ["Perfect, ultra-fast chopping. The chef cried. He offered me a job at his restaurant. I refused: I don't work for screamers. Then I accepted for the money.", "I made a julienne so thin you could see through it. The chef kissed me on the mouth out of emotion. Nobody was comfortable. But I won {w:gift}."] }, fx: { happy: 10, smarts: 2 }, mood: 'proud' },
+      ] },
+      { label: { fr: 'Laisser le chef montrer', en: 'Let the chef demo' }, text: { fr: ["J'ai laissé le chef faire sa démonstration de colère. Au troisième coup, il s'est tranché le bout du pouce. Le pouce a volé dans la casserole de {w:food}. Il l'a repêché, l'a regardé, et a continué la recette avec. Un vrai pro.", "Le chef a pris le couteau en hurlant. Il a coupé l'oignon, la planche, et son tablier en deux. Il s'est arrêté, a regardé son tablier par terre, puis nous. On a tous applaudi. Il a pleuré de gratitude."], en: ["I let the chef do his angry demo. On the third chop he sliced off the tip of his thumb. The thumb flew into the pot of {w:food}. He fished it out, looked at it, and continued the recipe with it. A true pro.", "The chef grabbed the knife, screaming. He cut the onion, the board and his apron in half. He stopped, looked at his apron on the floor, then at us. We all applauded. He cried with gratitude."] }, fx: { happy: 10, karma: -1, visual: 'gore' }, mood: 'happy' },
+    ],
+  },
 ];
