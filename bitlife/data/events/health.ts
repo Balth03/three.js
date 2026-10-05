@@ -324,23 +324,23 @@ export const healthEvents: EventDef[] = [
     weight: 9,
     cooldown: 4,
     text: {
-      fr: ["Ta balance affiche un chiffre puis, après réflexion, affiche « ERR ». Même elle n'y croit pas.", "Ton jean préféré a rendu l'âme en plein ascenseur, bouton du milieu en premier, dans un bruit de coup de fusil."],
-      en: ["Your scale shows a number, then, after some thought, shows 'ERR'. Even it can't believe it.", "Your favorite jeans gave up mid-elevator, middle button first, with the sound of a gunshot."],
+      fr: ["Ta balance affiche un chiffre puis, après réflexion, affiche « ERR ». Même elle n'y croit pas.", "Ton jean préféré a rendu l'âme en plein ascenseur, bouton du milieu en premier, dans un bruit de coup de fusil.", "Ton médecin te tend une brochure « Bouger plus, manger mieux », avec {w:celeb} en jogging sur la couverture. Il a entouré « manger mieux » trois fois.", "En te penchant pour ramasser {w:object}, tu entends ton pantalon craquer [[à l'arrière|sur toute la longueur|avec de l'écho]]. Il est peut-être temps d'agir.", "Tu as mangé {w:food} au petit-déjeuner, {w:food} à midi, et tu hésites pour le dîner. Ta balance t'a laissé un message vocal. Elle pleure."],
+      en: ["Your scale shows a number, then, after some thought, shows 'ERR'. Even it can't believe it.", "Your favorite jeans gave up mid-elevator, middle button first, with the sound of a gunshot.", "Your doctor hands you a 'Move More, Eat Better' brochure with {w:celeb} in sweatpants on the cover. He circled 'eat better' three times.", "Bending down to pick up {w:object}, you hear your pants rip [[at the back|all the way down|with an echo]]. Maybe it's time to act.", "You had {w:food} for breakfast, {w:food} for lunch, and you're torn about dinner. Your scale left you a voicemail. It's crying."],
     },
     choices: [
       {
         label: { fr: 'Régime strict', en: 'Strict diet' },
         out: [
-          { w: 2, odds: { discipline: 1 }, text: { fr: "Trois mois de brocolis vapeur. J'ai perdu huit kilos et toute joie de vivre. Mais quel fessier.", en: "Three months of steamed broccoli. I lost eighteen pounds and all joy in life. But what a butt." }, fx: { weight: -0.06, looks: 5, health: 4, happy: -3 } },
-          { w: 1, text: { fr: "J'ai tenu jusqu'au jeudi, 16 h 12. Puis j'ai mangé un poulet rôti entier, debout devant le frigo. Avec les mains.", en: "I lasted until Thursday, 4:12 p.m. Then I ate a whole rotisserie chicken standing at the fridge. With my hands." }, fx: { weight: 0.02, happy: 2 } },
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["Trois mois de brocolis vapeur. J'ai perdu huit kilos et toute joie de vivre. Mais quel fessier.", "Régime militaire, zéro écart. Moins six kilos. J'ai fêté ça en regardant {w:food} à travers une vitrine. Juste regarder."], en: ["Three months of steamed broccoli. I lost eighteen pounds and all joy in life. But what a butt.", "Military diet, zero cheating. Thirteen pounds down. I celebrated by staring at {w:food} through a shop window. Just staring."] }, fx: { weight: -0.06, looks: 5, health: 4, happy: -3 } },
+          { w: 1, text: { fr: ["J'ai tenu jusqu'au jeudi, 16 h 12. Puis j'ai mangé un poulet rôti entier, debout devant le frigo. Avec les mains.", "J'ai craqué au troisième jour devant {w:food}, à 2 h du matin, à la lumière du frigo. Personne n'a rien vu. Sauf le chat."], en: ["I lasted until Thursday, 4:12 p.m. Then I ate a whole rotisserie chicken standing at the fridge. With my hands.", "I cracked on day three in front of {w:food}, at 2 a.m., by the light of the fridge. Nobody saw. Except the cat."] }, fx: { weight: 0.02, happy: 2 } },
         ],
       },
-      { label: { fr: 'Cure de jus détox', en: 'Juice cleanse' }, text: { fr: "Cinq jours de jus de céleri. J'ai perdu deux kilos, principalement aux toilettes, et j'ai commencé à entendre les couleurs.", en: "Five days of celery juice. I lost four pounds, mostly in the bathroom, and started hearing colors." }, fx: { weight: -0.02, health: -2, happy: -4 } },
+      { label: { fr: 'Cure de jus détox', en: 'Juice cleanse' }, text: { fr: ["Cinq jours de jus de céleri. J'ai perdu deux kilos, principalement aux toilettes, et j'ai commencé à entendre les couleurs.", "La cure détox m'a rendu{|e} si irritable que j'ai engueulé {w:object}. J'ai perdu un kilo et deux amis."], en: ["Five days of celery juice. I lost four pounds, mostly in the bathroom, and started hearing colors.", "The juice cleanse made me so cranky I yelled at {w:object}. I lost two pounds and two friends."] }, fx: { weight: -0.02, health: -2, happy: -4 } },
       {
         label: { fr: 'Manger mes émotions', en: 'Eat my feelings' },
         out: [
-          { w: 2, text: { fr: "J'ai consolé mon jean avec un tiramisu familial. Puis un deuxième, pour qu'il ne se sente pas seul. Le médecin a prononcé le mot « obésité » très, très doucement.", en: "I consoled my jeans with a family-size tiramisu. Then a second, so the first wouldn't feel lonely. The doctor said the word 'obesity' very, very gently." }, fx: { disease: 'obesity', weight: 0.06, health: -5 } },
-          { w: 1, text: { fr: "J'ai décidé que mon corps était parfait. J'ai acheté un nouveau jean, une taille au-dessus, et je l'adore.", en: "I decided my body is perfect. I bought new jeans, one size up, and I love them." }, fx: { weight: 0.02, happy: 6, stress: -3 } },
+          { w: 2, text: { fr: ["J'ai consolé mon jean avec un tiramisu familial. Puis un deuxième, pour qu'il ne se sente pas seul. Le médecin a prononcé le mot « obésité » très, très doucement.", "J'ai noyé mes émotions dans {w:food}, puis dans {w:food}, puis dans le frigo entier. Le médecin a prononcé le mot « obésité » en évitant mon regard."], en: ["I consoled my jeans with a family-size tiramisu. Then a second, so the first wouldn't feel lonely. The doctor said the word 'obesity' very, very gently.", "I drowned my feelings in {w:food}, then {w:food}, then the entire fridge. The doctor said the word 'obesity' without meeting my eyes."] }, fx: { disease: 'obesity', weight: 0.06, health: -5 } },
+          { w: 1, text: { fr: ["J'ai décidé que mon corps était parfait. J'ai acheté un nouveau jean, une taille au-dessus, et je l'adore.", "J'ai jeté la balance par la fenêtre. Elle a atterri sur {w:vehicle}. J'ai décidé d'aimer mon corps et de nier toute implication."], en: ["I decided my body is perfect. I bought new jeans, one size up, and I love them.", "I threw the scale out the window. It landed on {w:vehicle}. I decided to love my body and deny any involvement."] }, fx: { weight: 0.02, happy: 6, stress: -3 } },
         ],
       },
     ],
@@ -1225,8 +1225,8 @@ export const healthEvents: EventDef[] = [
     weight: 7,
     cooldown: 5,
     text: {
-      fr: ["Je me suis bloqué le dos en ramassant une chaussette. Une chaussette. Même pas sale.", "J'ai éternué trop fort et je me suis froissé un muscle du cou. Je regarde vers la gauche depuis trois semaines."],
-      en: ["I threw out my back picking up a sock. A sock. Not even a dirty one.", "I sneezed too hard and pulled a neck muscle. I've been looking to the left for three weeks."],
+      fr: ["Je me suis bloqué le dos en ramassant une chaussette. Une chaussette. Même pas sale.", "J'ai éternué trop fort et je me suis froissé un muscle du cou. Je regarde vers la gauche depuis trois semaines.", "Je me suis tordu {w:bodypart} en essayant de {w:activity}. Le médecin a soupiré : « À votre âge… » Dans ma tête, j'ai toujours 22 ans.", "Je me suis levé{|e} du canapé et mon dos a fait {w:sound}. Toute la famille s'est retournée. Le chat a quitté la pièce.", "J'ai acheté une ceinture lombaire [[chauffante|connectée|vue à la télé]] {w:at_place}. Je la porte même pour dormir. Je ressemble à un catcheur à la retraite."],
+      en: ["I threw out my back picking up a sock. A sock. Not even a dirty one.", "I sneezed too hard and pulled a neck muscle. I've been looking to the left for three weeks.", "I twisted my {w:bodypart} while {w:activity}. The doctor sighed: 'At your age…' In my head, I'm still 22.", "I got up from the couch and my back made {w:sound}. The whole family turned around. The cat left the room.", "I bought a [[heated|smart|as-seen-on-TV]] back brace {w:at_place}. I even sleep in it. I look like a retired wrestler."],
     },
     fx: { health: -3, happy: -2 },
   },
@@ -1257,8 +1257,8 @@ export const healthEvents: EventDef[] = [
     weight: 7,
     cooldown: 5,
     text: {
-      fr: ["J'ai payé un abonnement à la salle toute l'année. J'y suis allé{|e} une fois, pour demander où étaient les toilettes.", "J'ai pris l'abonnement premium de la salle « pour me motiver ». Ma seule séance de l'année m'a coûté environ 360 balles."],
-      en: ["I paid for a gym membership all year. I went once, to ask where the restroom was.", "I got the premium gym plan 'for motivation'. My one workout of the year cost me about 360 bucks."],
+      fr: ["J'ai payé un abonnement à la salle toute l'année. J'y suis allé{|e} une fois, pour demander où étaient les toilettes.", "J'ai pris l'abonnement premium de la salle « pour me motiver ». Ma seule séance de l'année m'a coûté environ 360 balles.", "Je me suis inscrit{|e} à la salle en janvier. En février, j'ai découvert que je préférais {w:activity}. En mars, la salle m'envoyait des cartes « prompt rétablissement ».", "Le coach de la salle m'a demandé mon modèle. J'ai répondu « {w:celeb} ». Il a regardé mon ventre et proposé de viser [[2040|une autre vie|quelque chose de plus réaliste]].", "Ma seule séance de sport de l'année : courir après {w:vehicle} [[sous la pluie|en tongs|avec un sac de courses]]. Raté. Courbatures jusqu'en août."],
+      en: ["I paid for a gym membership all year. I went once, to ask where the restroom was.", "I got the premium gym plan 'for motivation'. My one workout of the year cost me about 360 bucks.", "I signed up for the gym in January. By February, I'd discovered I preferred {w:activity}. By March, the gym was sending me get-well cards.", "The gym coach asked who my role model was. I said '{w:celeb}'. He looked at my belly and suggested aiming for [[2040|a next life|something more realistic]].", "My only workout of the year: chasing {w:vehicle} [[in the rain|in flip-flops|with a bag of groceries]]. Missed it. Sore until August."],
     },
     fx: { money: -360, happy: -1 },
   },

@@ -347,8 +347,8 @@ export const oldEvents: EventDef[] = [
     weight: 5,
     cooldown: 6,
     text: {
-      fr: ["Mon petit-fils m'a dessiné{|e}. Sur le dessin, j'ai trois jambes, pas de cou et une canne plus grande que la maison. Je l'ai encadré. C'est ressemblant.", "Ma petite-fille m'a offert un dessin de « toi au paradis ». Je ne suis pas mort{|e}. Elle anticipe. Je l'ai mis sur le frigo quand même."],
-      en: ["My grandson drew me. In the drawing I have three legs, no neck and a cane taller than the house. I framed it. Good likeness.", "My granddaughter gave me a drawing of 'you in heaven'. I'm not dead. She's planning ahead. It's on the fridge anyway."],
+      fr: ["Mon petit-fils m'a dessiné{|e}. Sur le dessin, j'ai trois jambes, pas de cou et une canne plus grande que la maison. Je l'ai encadré. C'est ressemblant.", "Ma petite-fille m'a offert un dessin de « toi au paradis ». Je ne suis pas mort{|e}. Elle anticipe. Je l'ai mis sur le frigo quand même.", "Mon petit-fils m'a dessiné{|e} en train de {w:activity}. Je n'ai jamais fait ça de ma vie. Il dit que si, quand il dort.", "Ma petite-fille m'a dessiné{|e} main dans la main avec {w:celeb}. Elle dit que c'est mon amour secret. J'ai démenti. Mollement.", "Mes petits-enfants m'ont dessiné{|e} avec {w:object} à la place de la tête. Ils disent que c'est « [[l'esprit|ressemblant|de l'art]] ». Je l'ai accroché au salon."],
+      en: ["My grandson drew me. In the drawing I have three legs, no neck and a cane taller than the house. I framed it. Good likeness.", "My granddaughter gave me a drawing of 'you in heaven'. I'm not dead. She's planning ahead. It's on the fridge anyway.", "My grandson drew me {w:activity}. I've never done that in my life. He says I do, when he's asleep.", "My granddaughter drew me holding hands with {w:celeb}. She says it's my secret love. I denied it. Weakly.", "My grandkids drew me with {w:object} instead of a head. They say it's '[[the vibe|a good likeness|art]]'. I hung it in the living room."],
     },
     fx: { happy: 4 },
   },

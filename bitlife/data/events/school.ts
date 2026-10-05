@@ -113,14 +113,8 @@ export const schoolEvents: EventDef[] = [
     cooldown: 3,
     when: { school: TEEN },
     text: {
-      fr: [
-        "J'ai dormi pendant tout le cours de philo. J'ai rêvé que je comprenais Kant. Au réveil, plus rien.",
-        "Mon réveil a sonné neuf fois. Je l'ai éteint neuf fois. Je suis arrivé{|e} au lycée pour la cantine, ce qui est un genre de ponctualité.",
-      ],
-      en: [
-        "I slept through the whole philosophy class. I dreamed I understood Kant. When I woke up, it was gone.",
-        "My alarm rang nine times. I turned it off nine times. I arrived at school just in time for lunch, which is a kind of punctuality.",
-      ],
+      fr: ["J'ai dormi pendant tout le cours de philo. J'ai rêvé que je comprenais Kant. Au réveil, plus rien.", "Mon réveil a sonné neuf fois. Je l'ai éteint neuf fois. Je suis arrivé{|e} au lycée pour la cantine, ce qui est un genre de ponctualité.", "J'ai raté le bus parce que je regardais {w:animal} sur le trottoir. Ça valait le coup. Le CPE n'était pas d'accord.", "Pendant le contrôle, il y a eu {w:sound} au fond de la classe. Tout le monde a ri. Moi aussi. Le prof m'a mis un zéro « par solidarité ».", "Je me suis endormi{|e} en cours et j'ai rêvé que je mangeais {w:food}. J'ai mâché mon stylo pour de vrai. Il n'avait [[pas du tout|vraiment pas|presque]] le même goût."],
+      en: ["I slept through the whole philosophy class. I dreamed I understood Kant. When I woke up, it was gone.", "My alarm rang nine times. I turned it off nine times. I arrived at school just in time for lunch, which is a kind of punctuality.", "I missed the bus because I was watching {w:animal} on the sidewalk. Worth it. The principal disagreed.", "During the test, there was {w:sound} from the back of the class. Everyone laughed. So did I. The teacher gave me a zero 'for solidarity'.", "I fell asleep in class and dreamed I was eating {w:food}. I chewed my pen for real. It tasted [[nothing|absolutely nothing|almost]] like it."],
     },
     fx: { grade: -2, discipline: -1 },
   },

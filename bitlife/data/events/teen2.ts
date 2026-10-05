@@ -1767,14 +1767,8 @@ export const teen2Events: EventDef[] = [
     cooldown: 3,
     when: { age: [18, 70], followers: [10000, 1e9] },
     text: {
-      fr: [
-        "L'algorithme a changé dans la nuit. Mes vidéos ne sont plus montrées qu'à des retraités en Ouzbékistan. Ils sont adorables, mais ils ne likent pas.",
-        "Un nouveau format est à la mode : des vidéos de 4 secondes où l'on hoche la tête sur un son de klaxon. J'ai suivi la tendance. J'ai perdu des abonnés et un peu de mon âme.",
-      ],
-      en: [
-        "The algorithm changed overnight. My videos are now only shown to retirees in Uzbekistan. They're lovely, but they don't like anything.",
-        "A new format is trending: four-second videos of people nodding to a car horn sound. I followed the trend. I lost followers and a bit of my soul.",
-      ],
+      fr: ["L'algorithme a changé dans la nuit. Mes vidéos ne sont plus montrées qu'à des retraités en Ouzbékistan. Ils sont adorables, mais ils ne likent pas.", "Un nouveau format est à la mode : des vidéos de 4 secondes où l'on hoche la tête sur un son de klaxon. J'ai suivi la tendance. J'ai perdu des abonnés et un peu de mon âme.", "L'algorithme ne montre plus que mes vidéos où je mange {w:food}. J'ai gagné [[12|40|200]] abonnés et une crise d'identité.", "Ma vidéo sérieuse sur la santé mentale : 300 vues. Ma vidéo où {w:animal} éternue : [[2 millions|4 millions|11 millions]]. J'ai compris le message.", "Un gourou du marketing m'a conseillé de poster « {w:time}, pour l'engagement ». Je l'ai fait. Engagement : ma mère, et un compte bot nommé {w:nickname}."],
+      en: ["The algorithm changed overnight. My videos are now only shown to retirees in Uzbekistan. They're lovely, but they don't like anything.", "A new format is trending: four-second videos of people nodding to a car horn sound. I followed the trend. I lost followers and a bit of my soul.", "The algorithm now only shows my videos where I'm eating {w:food}. I gained [[12|40|200]] followers and an identity crisis.", "My serious video about mental health: 300 views. My video of {w:animal} sneezing: [[2 million|4 million|11 million]]. Message received.", "A marketing guru told me to post '{w:time}, for engagement'. I did. Engagement: my mom, and a bot account named {w:nickname}."],
     },
     fx: { followers: -2500, happy: -3 },
   },

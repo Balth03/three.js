@@ -106,14 +106,8 @@ export const childhoodEvents: EventDef[] = [
     cooldown: 3,
     when: { age: [3, 9] },
     text: {
-      fr: [
-        "J'ai sauté dans toutes les flaques du trajet de l'école. Mes chaussettes sont devenues des éponges.",
-        "Il a plu toute la journée. J'ai fait des courses de feuilles mortes dans le caniveau. Victoire de la feuille jaune.",
-      ],
-      en: [
-        "I jumped in every puddle on the way to school. My socks are now sponges.",
-        "It rained all day. I raced dead leaves down the gutter. The yellow leaf won.",
-      ],
+      fr: ["J'ai sauté dans toutes les flaques du trajet de l'école. Mes chaussettes sont devenues des éponges.", "Il a plu toute la journée. J'ai fait des courses de feuilles mortes dans le caniveau. Victoire de la feuille jaune.", "J'ai vu {w:animal} dans le jardin et je lui ai construit une maison en cailloux. Mon invité n'est pas resté. Quel ingrat.", "Il a neigé ! J'ai fait un bonhomme de neige et je l'ai appelé {w:nickname}. Il a fondu le lendemain. J'ai organisé des funérailles [[très émouvantes|avec des biscuits|en pyjama]].", "J'ai creusé un trou dans le jardin tout l'après-midi pour atteindre la Chine. J'ai trouvé {w:object}. C'est presque pareil."],
+      en: ["I jumped in every puddle on the way to school. My socks are now sponges.", "It rained all day. I raced dead leaves down the gutter. The yellow leaf won.", "I saw {w:animal} in the yard and built it a house out of pebbles. My guest didn't stay. How rude.", "It snowed! I built a snowman and named him {w:nickname}. He melted the next day. I held a [[very moving|cookie-catered|pajama]] funeral.", "I dug a hole in the yard all afternoon to reach China. I found {w:object}. Close enough."],
     },
     fx: { happy: 3, health: -1 },
   },

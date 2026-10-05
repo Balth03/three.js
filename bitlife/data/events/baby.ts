@@ -34,14 +34,8 @@ export const babyEvents: EventDef[] = [
     once: true,
     when: { age: [3, 5] },
     text: {
-      fr: [
-        "J'ai demandé « pourquoi ? » 412 fois en une journée. Vers 21 h, on m'a répondu « parce que la vie est une souffrance ». Je n'ai plus rien demandé.",
-        "« Pourquoi les poissons ont pas de bras ? Pourquoi le monsieur il est vieux ? Pourquoi tu pleures ? » Grosse journée de questions pour mes parents.",
-      ],
-      en: [
-        "I asked “why?” 412 times in one day. Around 9 p.m., the answer was “because life is suffering.” I stopped asking.",
-        "“Why don't fish have arms? Why is that man old? Why are you crying?” Big day of questions for my parents.",
-      ],
+      fr: ["J'ai demandé « pourquoi ? » 412 fois en une journée. Vers 21 h, on m'a répondu « parce que la vie est une souffrance ». Je n'ai plus rien demandé.", "« Pourquoi les poissons ont pas de bras ? Pourquoi le monsieur il est vieux ? Pourquoi tu pleures ? » Grosse journée de questions pour mes parents.", "« Pourquoi {w:animal}, il parle pas ? » J'ai posé la question à toute la famille. Personne n'a su répondre. Je les trouve un peu nuls.", "J'ai demandé pourquoi on ne mange pas {w:food} au petit-déjeuner. Papa a dit « parce que ». J'ai demandé « parce que quoi ? ». Il est allé s'allonger.", "J'ai demandé pourquoi le ciel est bleu, pourquoi l'eau mouille et pourquoi {w:object} ne vole pas. Maman a dit « demande à ton père ». Papa a dit « demande à ta mère »."],
+      en: ["I asked “why?” 412 times in one day. Around 9 p.m., the answer was “because life is suffering.” I stopped asking.", "“Why don't fish have arms? Why is that man old? Why are you crying?” Big day of questions for my parents.", "'Why can't {w:animal} talk?' I asked the whole family. Nobody knew. I think they're kind of useless.", "I asked why we can't have {w:food} for breakfast. Dad said 'because'. I asked 'because what?'. He went to lie down.", "I asked why the sky is blue, why water is wet and why {w:object} can't fly. Mom said 'ask your father'. Dad said 'ask your mother'."],
     },
     fx: { smarts: 3 },
   },
@@ -72,14 +66,8 @@ export const babyEvents: EventDef[] = [
     once: true,
     when: { age: [4, 7] },
     text: {
-      fr: [
-        "J'ai planté une frite dans le jardin pour faire pousser un arbre à frites. Je l'arrose tous les matins. Rien. La nature est une arnaque.",
-        "J'ai enterré une pièce dans le bac à sable pour faire pousser un arbre à sous. Un écureuil l'a déterrée. C'est lui le riche, maintenant.",
-      ],
-      en: [
-        "I planted a French fry in the garden to grow a French fry tree. I water it every morning. Nothing. Nature is a scam.",
-        "I buried a coin in the sandbox to grow a money tree. A squirrel dug it up. He's the rich one now.",
-      ],
+      fr: ["J'ai planté une frite dans le jardin pour faire pousser un arbre à frites. Je l'arrose tous les matins. Rien. La nature est une arnaque.", "J'ai enterré une pièce dans le bac à sable pour faire pousser un arbre à sous. Un écureuil l'a déterrée. C'est lui le riche, maintenant.", "J'ai planté {w:food} dans un pot de fleurs pour en avoir plein. Maman a trouvé le pot une semaine plus tard. À l'odeur.", "J'ai enterré {w:object} dans le jardin pour faire pousser un arbre à jouets. Le chien a tout déterré. Il garde le secret de la récolte.", "J'ai arrosé mes chaussures tous les soirs pour qu'elles grandissent avec moi. Elles dégagent maintenant {w:smell}. Elles n'ont [[pas grandi d'un millimètre|pas grandi du tout|même rétréci]]."],
+      en: ["I planted a French fry in the garden to grow a French fry tree. I water it every morning. Nothing. Nature is a scam.", "I buried a coin in the sandbox to grow a money tree. A squirrel dug it up. He's the rich one now.", "I planted {w:food} in a flowerpot to grow a whole bunch. Mom found the pot a week later. By the smell.", "I buried {w:object} in the yard to grow a toy tree. The dog dug it all up. He's keeping the harvest a secret.", "I watered my shoes every night so they'd grow with me. They now give off {w:smell}. They [[haven't grown an inch|didn't grow at all|actually shrank]]."],
     },
     fx: { happy: 2, smarts: -1 },
   },

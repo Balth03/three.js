@@ -23,14 +23,8 @@ export const mafiaEvents: EventDef[] = [
     weight: 4,
     when: { age: [16, 90], noFlag: 'mf_made' },
     text: {
-      fr: [
-        "J'ai regardé les trois films du Parrain d'affilée. J'ai passé la semaine à parler avec du coton dans les joues. Ma boulangère m'a demandé si j'avais une rage de dents.",
-        "Après une série sur la mafia, j'ai commandé un expresso en faisant un geste de la main très lent. Le serveur m'a apporté l'addition. Respect.",
-      ],
-      en: [
-        "I binge-watched all three Godfather movies. I spent the week talking with cotton balls in my cheeks. The barista asked if I needed a dentist.",
-        "After a mob series, I ordered an espresso with a very slow hand gesture. The waiter brought me the check. Respect.",
-      ],
+      fr: ["J'ai regardé les trois films du Parrain d'affilée. J'ai passé la semaine à parler avec du coton dans les joues. Ma boulangère m'a demandé si j'avais une rage de dents.", "Après une série sur la mafia, j'ai commandé un expresso en faisant un geste de la main très lent. Le serveur m'a apporté l'addition. Respect.", "Après un marathon de films de mafia, j'ai appelé mon voisin « Don Corleone » et je lui ai offert {w:gift}. Il l'a pris comme une menace. Il me rend mes colis beaucoup plus vite.", "J'ai regardé « Scarface » en entier. Depuis, je présente {w:food} à mes invités en disant « Dis bonjour à mon petit ami ». Plus personne ne vient dîner.", "Inspiré{|e} par une série de gangsters, je me suis trouvé un surnom : {w:nickname}. Personne ne l'utilise, sauf moi, à voix haute, devant le miroir, avec {w:object} en guise de cigare."],
+      en: ["I binge-watched all three Godfather movies. I spent the week talking with cotton balls in my cheeks. The barista asked if I needed a dentist.", "After a mob series, I ordered an espresso with a very slow hand gesture. The waiter brought me the check. Respect.", "After a mob movie marathon, I called my neighbor 'Don Corleone' and gave him {w:gift}. He took it as a threat. He returns my packages much faster now.", "I watched all of Scarface. Now I present {w:food} to my guests saying 'Say hello to my little friend'. Nobody comes to dinner anymore.", "Inspired by a gangster show, I gave myself a nickname: {w:nickname}. Nobody uses it except me, out loud, in the mirror, with {w:object} as a cigar."],
     },
     fx: { happy: 3 },
   },
@@ -207,32 +201,26 @@ export const mafiaEvents: EventDef[] = [
     weight: 5,
     vars: { amount: [200, 1500] },
     text: {
-      fr: [
-        "Tu fais l'extra comme serveur{|se} à un mariage italien. 400 invités, dont 61 s'appellent Tony. Le père de la mariée reçoit les gens un par un dans son bureau, comme un dentiste.",
-        "Mariage dans une villa. Les invités offrent des enveloppes, pas de cadeaux. Un monsieur t'en glisse une par erreur. Elle contient {$amount}. Il te regarde.",
-      ],
-      en: [
-        "You're a temp waiter at an Italian wedding. 400 guests, 61 of them named Tony. The bride's father sees people one by one in his study, like a dentist.",
-        "Wedding at a villa. Guests give envelopes, not gifts. A gentleman slips you one by mistake. It holds {$amount}. He's looking at you.",
-      ],
+      fr: ["Tu fais l'extra comme serveur{|se} à un mariage italien. 400 invités, dont 61 s'appellent Tony. Le père de la mariée reçoit les gens un par un dans son bureau, comme un dentiste.", "Mariage dans une villa. Les invités offrent des enveloppes, pas de cadeaux. Un monsieur t'en glisse une par erreur. Elle contient {$amount}. Il te regarde.", "Extra au mariage d'une « grande famille ». On t'a demandé de servir {w:food} à la table 7 « sans regarder personne dans les yeux ». Tu ne sais plus où mettre les tiens.", "Au mariage où tu fais le service, l'orchestre joue {w:song} en boucle depuis deux heures. Le marié te glisse {$amount} pour que ça continue. Le DJ pleure.", "Serveur{|se} à un mariage sicilien. Un oncle t'a surnommé{|e} {w:nickname} et t'offre {w:gift}. Impossible de savoir si c'est de l'affection ou un avertissement."],
+      en: ["You're a temp waiter at an Italian wedding. 400 guests, 61 of them named Tony. The bride's father sees people one by one in his study, like a dentist.", "Wedding at a villa. Guests give envelopes, not gifts. A gentleman slips you one by mistake. It holds {$amount}. He's looking at you.", "Temping at a 'big family' wedding. You've been told to serve {w:food} at table 7 'without looking anyone in the eye'. You don't know where to put yours.", "At the wedding you're waiting at, the band has been playing {w:song} on loop for two hours. The groom slips you {$amount} to keep it going. The DJ is crying.", "Waiting tables at a Sicilian wedding. An uncle has nicknamed you {w:nickname} and gives you {w:gift}. You can't tell if it's affection or a warning."],
     },
     choices: [
       {
         label: { fr: "Rendre l'enveloppe", en: 'Return the envelope' },
-        text: { fr: "J'ai rendu l'enveloppe. Le monsieur m'a pincé la joue et m'a dit que j'avais « une bonne mère ». J'ai eu double part de tiramisu. L'honnêteté paie, en mascarpone.", en: "I returned the envelope. The man pinched my cheek and said I had “a good mother.” I got double tiramisu. Honesty pays, in mascarpone." },
+        text: { fr: ["J'ai rendu l'enveloppe. Le monsieur m'a pincé la joue et m'a dit que j'avais « une bonne mère ». J'ai eu double part de tiramisu. L'honnêteté paie, en mascarpone.", "J'ai rendu l'enveloppe. Le monsieur a souri : « Tu iras loin. » Puis il a ajouté : « Mais pas trop loin. » J'ai eu froid toute la soirée."], en: ["I returned the envelope. The man pinched my cheek and said I had “a good mother.” I got double tiramisu. Honesty pays, in mascarpone.", "I returned the envelope. The man smiled: 'You'll go far.' Then he added: 'But not too far.' I felt cold all night."] },
         fx: { karma: 5, happy: 5 },
         mood: 'happy',
       },
       {
         label: { fr: 'Garder discrètement', en: 'Keep it quietly' },
         out: [
-          { w: 2, text: { fr: "J'ai gardé l'enveloppe dans mon tablier. Personne n'a rien remarqué. J'ai servi le reste de la soirée en transpirant comme une mozzarella au soleil.", en: "I kept the envelope in my apron. Nobody noticed. I served the rest of the night sweating like a mozzarella in the sun." }, fx: { money: 'amount', karma: -4, stress: 6 } },
-          { w: 1, text: { fr: "J'ai gardé l'enveloppe. À minuit, trois Tony m'ont gentiment demandé de vider mes poches. Puis de partir. Puis de changer de ville. J'ai gardé ma ville.", en: "I kept it. At midnight, three Tonys politely asked me to empty my pockets. Then to leave. Then to leave town. I kept my town." }, fx: { karma: -3, stress: 10, happy: -4 }, mood: 'shock' },
+          { w: 2, text: { fr: ["J'ai gardé l'enveloppe dans mon tablier. Personne n'a rien remarqué. J'ai servi le reste de la soirée en transpirant comme une mozzarella au soleil.", "J'ai glissé l'enveloppe sous {w:food} sur mon plateau et je suis sorti{|e} par les cuisines. Personne ne m'a suivi{|e}. Pour l'instant."], en: ["I kept the envelope in my apron. Nobody noticed. I served the rest of the night sweating like a mozzarella in the sun.", "I slid the envelope under {w:food} on my tray and left through the kitchen. Nobody followed me. So far."] }, fx: { money: 'amount', karma: -4, stress: 6 } },
+          { w: 1, text: { fr: ["J'ai gardé l'enveloppe. À minuit, trois Tony m'ont gentiment demandé de vider mes poches. Puis de partir. Puis de changer de ville. J'ai gardé ma ville.", "À la fin du bal, un Tony m'a raccompagné{|e} au parking en me tenant l'épaule « amicalement ». J'ai rendu l'enveloppe, et mes pourboires avec."], en: ["I kept it. At midnight, three Tonys politely asked me to empty my pockets. Then to leave. Then to leave town. I kept my town.", "At the end of the night, a Tony walked me to the parking lot, holding my shoulder 'in a friendly way'. I gave back the envelope, and my tips too."] }, fx: { karma: -3, stress: 10, happy: -4 }, mood: 'shock' },
         ],
       },
       {
         label: { fr: 'Danser la tarentelle', en: 'Join the tarantella' },
-        text: { fr: "J'ai lâché mon plateau pour danser la tarentelle. Une grand-mère de 90 ans m'a fait tourner jusqu'à la nausée. J'ai été viré{|e}, mais adopté{|e} par la famille.", en: "I dropped my tray to dance the tarantella. A 90-year-old grandma spun me to the point of nausea. I got fired, but adopted by the family." },
+        text: { fr: ["J'ai lâché mon plateau pour danser la tarentelle. Une grand-mère de 90 ans m'a fait tourner jusqu'à la nausée. J'ai été viré{|e}, mais adopté{|e} par la famille.", "J'ai dansé la tarentelle avec la mariée sous les yeux du marié. Il a applaudi. Ses cousins aussi. Lentement. On m'a renvoyé{|e} chez moi en taxi, payé par la famille."], en: ["I dropped my tray to dance the tarantella. A 90-year-old grandma spun me to the point of nausea. I got fired, but adopted by the family.", "I danced the tarantella with the bride while the groom watched. He clapped. His cousins did too. Slowly. They sent me home in a taxi, paid for by the family."] },
         fx: { happy: 8, athletic: 2 },
         mood: 'party',
       },
@@ -422,27 +410,21 @@ export const mafiaEvents: EventDef[] = [
     weight: 5,
     actor: { create: { role: 'acquaintance', age: [55, 90], abs: true, gender: 'f' } },
     text: {
-      fr: [
-        "Nonna {a.first}, 84 ans, mère de « gens importants » du quartier, te fait goûter ses cannoli. Toute la famille retient son souffle. Le dernier qui a dit « un peu sec » vit maintenant en Belgique.",
-        "La grand-mère des {a.last}, une famille dont on ne prononce le nom qu'à voix basse, t'invite à déjeuner. Elle te sert une assiette de pâtes de la taille d'une roue de tracteur. « Mange. »",
-      ],
-      en: [
-        "Nonna {a.first}, 84, mother of some “important people” in the neighborhood, has you taste her cannoli. The whole family holds its breath. The last guy who said “a bit dry” now lives in Belgium.",
-        "Grandma {a.last}, from a family whose name is only whispered, invites you to lunch. She serves you a plate of pasta the size of a tractor tire. “Eat.”",
-      ],
+      fr: ["Nonna {a.first}, 84 ans, mère de « gens importants » du quartier, te fait goûter ses cannoli. Toute la famille retient son souffle. Le dernier qui a dit « un peu sec » vit maintenant en Belgique.", "La grand-mère des {a.last}, une famille dont on ne prononce le nom qu'à voix basse, t'invite à déjeuner. Elle te sert une assiette de pâtes de la taille d'une roue de tracteur. « Mange. »", "Nonna {a.first} t'a préparé {w:food} « à la sicilienne ». Ça n'a rien de sicilien. Ses six petits-fils te fixent, bras croisés. « Alors ? »", "Chez Nonna {a.first}, le dessert est sacré. Elle a passé la nuit sur ses cannoli en écoutant {w:song}. Elle pose l'assiette devant toi et croise les mains.", "Nonna {a.first} te sert sa lasagne « de la paix ». Le dernier qui en a laissé est parti vivre {w:far_place}, et pas en vacances. Ta fourchette tremble."],
+      en: ["Nonna {a.first}, 84, mother of some “important people” in the neighborhood, has you taste her cannoli. The whole family holds its breath. The last guy who said “a bit dry” now lives in Belgium.", "Grandma {a.last}, from a family whose name is only whispered, invites you to lunch. She serves you a plate of pasta the size of a tractor tire. “Eat.”", "Nonna {a.first} has made you {w:food} 'Sicilian style'. Nothing about it is Sicilian. Her six grandsons stare at you, arms crossed. 'Well?'", "At Nonna {a.first}'s, dessert is sacred. She spent the night on her cannoli listening to {w:song}. She sets the plate in front of you and folds her hands.", "Nonna {a.first} serves you her 'peace lasagna'. The last guy who left some went to live {w:far_place}, and not on vacation. Your fork trembles."],
     },
     choices: [
       {
         label: { fr: 'Tout finir', en: 'Clean the plate' },
-        text: { fr: "J'ai tout fini. Puis la deuxième assiette. Puis la troisième. Nonna m'a béni{|e} en italien. Toute la famille me salue maintenant dans la rue. J'ai pris trois kilos de respect.", en: "I finished it all. Then a second plate. Then a third. Nonna blessed me in Italian. The whole family greets me in the street now. I gained seven pounds of respect." },
+        text: { fr: ["J'ai tout fini. Puis la deuxième assiette. Puis la troisième. Nonna m'a béni{|e} en italien. Toute la famille me salue maintenant dans la rue. J'ai pris trois kilos de respect.", "J'ai tout fini, saucé l'assiette et redemandé. Nonna a pleuré de joie. Un de ses petits-fils m'a offert {w:gift}. Je n'ose pas demander d'où ça vient."], en: ["I finished it all. Then a second plate. Then a third. Nonna blessed me in Italian. The whole family greets me in the street now. I gained seven pounds of respect.", "I finished everything, wiped the plate and asked for more. Nonna wept with joy. One of her grandsons gave me {w:gift}. I don't dare ask where it came from."] },
         fx: { happy: 6, weight: 0.03, rel: 20, keep: true, flag: 'mf_known' },
         mood: 'happy',
       },
       {
         label: { fr: 'Dire la vérité', en: 'Be honest' },
         out: [
-          { w: 1, text: { fr: "J'ai dit que c'était un peu sec. Silence de mort. Puis Nonna a éclaté de rire : « Enfin quelqu'un qui a des couilles ! » Elle m'a donné sa recette secrète. C'était du beurre. Plus de beurre.", en: "I said they were a bit dry. Dead silence. Then Nonna burst out laughing: “Finally, someone with guts!” She gave me her secret recipe. It was butter. More butter." }, fx: { happy: 8, smarts: 2, rel: 25, keep: true, flag: 'mf_known' }, mood: 'happy' },
-          { w: 1, text: { fr: "J'ai dit que c'était un peu sec. Nonna a posé sa cuillère. Ses petits-fils ont posé leurs fourchettes. Je suis parti{|e} en marche arrière, très lentement.", en: "I said they were a bit dry. Nonna put down her spoon. Her grandsons put down their forks. I backed out very, very slowly." }, fx: { stress: 10, happy: -4 }, mood: 'shock' },
+          { w: 1, text: { fr: ["J'ai dit que c'était un peu sec. Silence de mort. Puis Nonna a éclaté de rire : « Enfin quelqu'un qui a des couilles ! » Elle m'a donné sa recette secrète. C'était du beurre. Plus de beurre.", "J'ai dit que c'était sec. Nonna a hoché la tête : « Toi, tu es honnête. » Elle m'a présenté{|e} à la famille comme « le nouveau goûteur ». Je goûte tout, maintenant. Même ce qui ne se mange pas."], en: ["I said they were a bit dry. Dead silence. Then Nonna burst out laughing: “Finally, someone with guts!” She gave me her secret recipe. It was butter. More butter.", "I said it was dry. Nonna nodded: 'You, you're honest.' She introduced me to the family as 'the new taster'. Now I taste everything. Even things that aren't food."] }, fx: { happy: 8, smarts: 2, rel: 25, keep: true, flag: 'mf_known' }, mood: 'happy' },
+          { w: 1, text: { fr: ["J'ai dit que c'était un peu sec. Nonna a posé sa cuillère. Ses petits-fils ont posé leurs fourchettes. Je suis parti{|e} en marche arrière, très lentement.", "J'ai osé « un peu sec ». Nonna a souri. Le lendemain, j'ai reçu {w:object} par la poste, sans un mot. Message reçu."], en: ["I said they were a bit dry. Nonna put down her spoon. Her grandsons put down their forks. I backed out very, very slowly.", "I dared to say 'a bit dry'. Nonna smiled. The next day, I got {w:object} in the mail, no note. Message received."] }, fx: { stress: 10, happy: -4 }, mood: 'shock' },
         ],
       },
     ],

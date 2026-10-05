@@ -1,6 +1,6 @@
 import type { Pool } from './index.ts';
 
-export const wordsB: Partial<Record<Pool, [string, string][]>> = {
+export const wordsB: Partial<Record<Pool, ([string, string] | [string, string, 1 | 2])[]>> = {
   time: [
     ['pendant le repas de Noël', 'during Christmas dinner'],
     ['au mariage de ma cousine', 'at my cousin\'s wedding'],

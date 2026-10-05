@@ -13,14 +13,8 @@ export const socialEvents: EventDef[] = [
     weight: 8,
     when: { age: [18, 70] },
     text: {
-      fr: [
-        "J'ai rouvert le groupe « Les Bros du Lycée » après trois semaines en sourdine : 847 messages non lus. J'ai tout marqué comme lu et répondu « mdr ». Personne n'a vu la différence.",
-        "Quelqu'un a renommé notre groupe d'amis « Projet Barbecue 2019 ». Le barbecue n'a jamais eu lieu. Le groupe, lui, ne mourra jamais.",
-      ],
-      en: [
-        "I unmuted the 'High School Bros' group chat after three weeks: 847 unread messages. I marked them all as read and replied 'lmao'. Nobody noticed.",
-        "Someone renamed our friend group chat 'BBQ Project 2019'. The barbecue never happened. The chat will never die.",
-      ],
+      fr: ["J'ai rouvert le groupe « Les Bros du Lycée » après trois semaines en sourdine : 847 messages non lus. J'ai tout marqué comme lu et répondu « mdr ». Personne n'a vu la différence.", "Quelqu'un a renommé notre groupe d'amis « Projet Barbecue 2019 ». Le barbecue n'a jamais eu lieu. Le groupe, lui, ne mourra jamais.", "Dans le groupe de la famille, mon oncle a partagé une vidéo affirmant {w:conspiracy}. Vingt-trois réponses. Ma tante a juste écrit « {w:exclaim} ».", "Le groupe « Anciens de la promo » s'est réveillé après deux ans pour une seule question : qui a gardé {w:object} de la soirée de 2016 ? Silence radio. Le groupe s'est rendormi.", "Quelqu'un a proposé un week-end {w:far_place} dans le groupe. [[43|86|112]] messages pour fixer une date. Conclusion : un apéro {w:at_place}, un mardi, sans moi."],
+      en: ["I unmuted the 'High School Bros' group chat after three weeks: 847 unread messages. I marked them all as read and replied 'lmao'. Nobody noticed.", "Someone renamed our friend group chat 'BBQ Project 2019'. The barbecue never happened. The chat will never die.", "In the family group chat, my uncle shared a video claiming {w:conspiracy}. Twenty-three replies. My aunt just wrote '{w:exclaim}'.", "The 'Class Alumni' group chat woke up after two years for a single question: who kept {w:object} from that 2016 party? Radio silence. The chat went back to sleep.", "Someone in the group chat suggested a weekend {w:far_place}. [[43|86|112]] messages to pick a date. Outcome: drinks {w:at_place}, on a Tuesday, without me."],
     },
     fx: { happy: 1 },
   },
@@ -34,14 +28,8 @@ export const socialEvents: EventDef[] = [
     actor: 'anyFriend',
     when: { age: [16, 80] },
     text: {
-      fr: [
-        "J'ai oublié l'anniversaire de {a.first}. Je lui ai souhaité trois jours plus tard avec un GIF de chaton qui s'excuse. {a:Il|Elle} a répondu « ok ». Juste « ok ». Avec un point.",
-        "J'ai souhaité un joyeux anniversaire à {a.first} le mauvais jour. Avec un mois d'avance. {a:Il|Elle} a trouvé ça « attentionné mais inquiétant ».",
-      ],
-      en: [
-        "I forgot {a.first}'s birthday. I wished {a.him} a happy one three days late with a GIF of an apologizing kitten. {a:He|She} replied 'ok.' Just 'ok.' With a period.",
-        "I wished {a.first} a happy birthday on the wrong day. A month early. {a:He|She} called it 'thoughtful but worrying'.",
-      ],
+      fr: ["J'ai oublié l'anniversaire de {a.first}. Je lui ai souhaité trois jours plus tard avec un GIF de chaton qui s'excuse. {a:Il|Elle} a répondu « ok ». Juste « ok ». Avec un point.", "J'ai souhaité un joyeux anniversaire à {a.first} le mauvais jour. Avec un mois d'avance. {a:Il|Elle} a trouvé ça « attentionné mais inquiétant ».", "Pour me faire pardonner d'avoir oublié l'anniversaire de {a.first}, je lui ai offert {w:gift}. {a:Il|Elle} m'a regardé{|e} très longtemps. J'aurais dû ne rien offrir.", "J'ai oublié l'anniversaire de {a.first}. Je me suis justifié{|e} : « J'étais occupé{|e} à {w:activity}. » {a:Il|Elle} a fait une capture d'écran pour le groupe. [[47|112|300]] réactions.", "Facebook m'a rappelé l'anniversaire de {a.first} pendant que je regardais {w:show}. J'ai écrit « JOYEUX ANNIV » avec [[trois|onze|vingt]] émojis gâteau. Facebook avait deux semaines de retard. Moi aussi, du coup."],
+      en: ["I forgot {a.first}'s birthday. I wished {a.him} a happy one three days late with a GIF of an apologizing kitten. {a:He|She} replied 'ok.' Just 'ok.' With a period.", "I wished {a.first} a happy birthday on the wrong day. A month early. {a:He|She} called it 'thoughtful but worrying'.", "To make up for forgetting {a.first}'s birthday, I gave {a.him} {w:gift}. {a:He|She} stared at me for a very long time. I should have given nothing.", "I forgot {a.first}'s birthday. My defense: 'I was busy {w:activity}.' {a:He|She} screenshotted it for the group chat. [[47|112|300]] reactions.", "Facebook reminded me of {a.first}'s birthday while I was watching {w:show}. I wrote 'HAPPY BDAY' with [[three|eleven|twenty]] cake emojis. Facebook was two weeks late. So was I, then."],
     },
     fx: { rel: -6, happy: -1 },
   },
@@ -118,14 +106,8 @@ export const socialEvents: EventDef[] = [
     cooldown: 4,
     when: { age: [18, 65] },
     text: {
-      fr: [
-        "Bourré{|e} à 3 h du matin, j'ai envoyé « je vous aime tous putain » à l'intégralité de mes contacts. Mon dentiste a répondu « moi aussi ». C'est gênant à chaque détartrage.",
-        "J'ai écrit un vocal de 11 minutes à mes potes après six mojitos. Je l'ai réécouté le lendemain. J'y pleure sur un pigeon. Personne n'en parle, et c'est pire.",
-      ],
-      en: [
-        "Drunk at 3 a.m., I texted 'I fucking love you all' to every single contact. My dentist replied 'me too'. Cleanings are awkward now.",
-        "I sent my friends an 11-minute voice memo after six mojitos. I listened to it the next morning. I'm crying about a pigeon in it. Nobody mentions it, which is worse.",
-      ],
+      fr: ["Bourré{|e} à 3 h du matin, j'ai envoyé « je vous aime tous putain » à l'intégralité de mes contacts. Mon dentiste a répondu « moi aussi ». C'est gênant à chaque détartrage.", "J'ai écrit un vocal de 11 minutes à mes potes après six mojitos. Je l'ai réécouté le lendemain. J'y pleure sur un pigeon. Personne n'en parle, et c'est pire.", "Après {w:drink} et beaucoup de regrets, j'ai envoyé un vocal à mon ex où je chante {w:song}. En entier. Il y a eu un « vu ». Puis rien. Pour toujours.", "Bourré{|e}, j'ai écrit « {w:swear} je t'ai toujours admiré » à mon ancien prof de maths. Il a répondu « Qui est-ce ? ». J'ai répondu « ton pire cauchemar ». Je ne bois plus le mardi.", "J'ai retrouvé dans mon téléphone un SMS envoyé à [[4 h 12|3 h 47|5 h 01]] à mon patron : « tu as {w:bodypart} d'un dieu grec ». Ni lui ni moi n'en avons parlé. Il me sourit trop."],
+      en: ["Drunk at 3 a.m., I texted 'I fucking love you all' to every single contact. My dentist replied 'me too'. Cleanings are awkward now.", "I sent my friends an 11-minute voice memo after six mojitos. I listened to it the next morning. I'm crying about a pigeon in it. Nobody mentions it, which is worse.", "After {w:drink} and a lot of regret, I sent my ex a voice memo of me singing {w:song}. All of it. Marked 'seen'. Then nothing. Forever.", "Drunk, I texted my old math teacher '{w:swear} I always looked up to you'. He replied 'Who is this?'. I answered 'your worst nightmare'. I don't drink on Tuesdays anymore.", "I found a text on my phone sent at [[4:12|3:47|5:01]] a.m. to my boss: 'you have the {w:bodypart} of a Greek god'. Neither of us has brought it up. He smiles at me too much."],
     },
     fx: { happy: -2, stress: 3 },
   },

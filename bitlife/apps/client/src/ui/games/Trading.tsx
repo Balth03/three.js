@@ -370,8 +370,7 @@ export function Trading({ onDone, l }: GameProps) {
     const chg = st.price / st.open0 - 1;
     const col = chg >= 0 ? UP : DOWN;
     const px = Math.max(250 * k, w * 0.36);
-    ctx.save(); glow(ctx, st.tickDir > 0 ? UP : DOWN, 16 + st.pulse * 10); ctx.fillStyle = st.tickDir > 0 ? '#d9fff0' : '#ffd9e2'; ctx.font = F(30, 800, true); ctx.fillText(fmtPrice(st.price), px, hh / 2); ctx.restore();
-    const pw = ctx.measureText(fmtPrice(st.price)).width;
+    ctx.save(); glow(ctx, st.tickDir > 0 ? UP : DOWN, 16 + st.pulse * 10); ctx.fillStyle = st.tickDir > 0 ? '#d9fff0' : '#ffd9e2'; ctx.font = F(30, 800, true); ctx.fillText(fmtPrice(st.price), px, hh / 2); const pw = ctx.measureText(fmtPrice(st.price)).width; ctx.restore();
     ctx.font = F(15, 800, true); ctx.fillStyle = col; ctx.fillText(`${chg >= 0 ? '▲' : '▼'} ${(Math.abs(chg) * 100).toFixed(2)}%`, px + pw + 12 * k, hh / 2);
     // fear & greed gauge
     if (w > 560) {
@@ -419,15 +418,15 @@ export function Trading({ onDone, l }: GameProps) {
       ctx.fillStyle = 'rgba(160,255,210,.45)'; ctx.fillText(fmtPrice(p), plot.x + plot.w + 6, y);
     }
     const frac = st.candleT / CANDLE;
-    const xRight = plot.x + plot.w - spacing * 0.9;
+    const xRight = plot.x + plot.w - spacing * 0.2;
     for (let i = 0; i < 12; i++) { const x = xRight - ((i * 6 + frac) * spacing) % (plot.w + spacing); ctx.beginPath(); ctx.moveTo(x, plot.y); ctx.lineTo(x, plot.y + plot.h + volH); ctx.stroke(); }
     // candles
     const n = vis.length;
+    const X = (i: number) => xRight - (n - 1 - i) * spacing - frac * spacing;
     const bodyW = spacing * 0.62;
     for (let i = 0; i < n; i++) {
       const cd = vis[i];
-      const x = xRight - (n - 1 - i) * spacing - (i === n - 1 ? 0 : frac * spacing) + (i === n - 1 ? 0 : 0);
-      const xx = i === n - 1 ? xRight : x;
+      const xx = X(i);
       if (xx < plot.x - spacing) continue;
       const up = cd.c >= cd.o, col = up ? UP : DOWN;
       const live = i === n - 1;
@@ -447,7 +446,7 @@ export function Trading({ onDone, l }: GameProps) {
     ctx.strokeStyle = 'rgba(255,184,0,.7)'; ctx.lineWidth = 1.5 * k; ctx.beginPath();
     for (let i = 0; i < n; i++) {
       let sum = 0, m = 0; for (let j = Math.max(0, all.length - n + i - 7); j <= all.length - n + i; j++) { if (all[j]) { sum += all[j].c; m++; } }
-      const xx = i === n - 1 ? xRight : xRight - (n - 1 - i) * spacing - frac * spacing;
+      const xx = X(i);
       const y = Y(sum / Math.max(1, m));
       if (i === 0) ctx.moveTo(xx, y); else ctx.lineTo(xx, y);
     }
@@ -456,7 +455,7 @@ export function Trading({ onDone, l }: GameProps) {
     const base = all.length - n;
     for (const m of st.marks) {
       const i = m.i - base; if (i < 0 || i >= n) continue;
-      const xx = i === n - 1 ? xRight : xRight - (n - 1 - i) * spacing - frac * spacing;
+      const xx = X(i);
       const y = Y(m.price);
       ctx.fillStyle = m.dir > 0 ? UP : DOWN; glow(ctx, ctx.fillStyle as string, 10);
       ctx.beginPath();
@@ -533,7 +532,9 @@ export function Trading({ onDone, l }: GameProps) {
     const boxH = 54 * k;
     const fl = st.pnlFlash;
     const fcol = st.pnlFlashUp ? '0,255,156' : '255,51,102';
-    ctx.fillStyle = `rgba(${fcol},${0.08 + fl * 0.35})`; roundRect(ctx, cx - 4, y - 4, colW + 8, boxH, 8 * k); ctx.fill();
+    const baseCol = !pos || Math.abs(u) < 0.5 ? '255,255,255' : u > 0 ? '0,255,156' : '255,51,102';
+    ctx.fillStyle = `rgba(${baseCol},0.06)`; roundRect(ctx, cx - 4, y - 4, colW + 8, boxH, 8 * k); ctx.fill();
+    ctx.fillStyle = `rgba(${fcol},${fl * 0.4})`; roundRect(ctx, cx - 4, y - 4, colW + 8, boxH, 8 * k); ctx.fill();
     ctx.strokeStyle = `rgba(${fcol},${0.3 + fl * 0.6})`; ctx.stroke();
     ctx.font = F(10, 700, true); ctx.fillStyle = 'rgba(255,255,255,.6)'; ctx.fillText(tr('P&L LATENT', 'UNREALIZED P&L'), cx + 4, y + 8 * k);
     const pcol = st.dispPnl > 0.5 ? UP : st.dispPnl < -0.5 ? DOWN : '#cfd8d5';
@@ -719,7 +720,7 @@ function init(l: Life) {
   // pre-history so the chart is already alive
   for (let i = 0; i < 90; i++) {
     const o = price; let h = o, lo = o;
-    for (let j = 0; j < 8; j++) { price *= Math.exp(0.012 * Math.sqrt(CANDLE / 8) * gauss() + (Math.sin(i / 9) * 0.004)); h = Math.max(h, price); lo = Math.min(lo, price); }
+    for (let j = 0; j < 8; j++) { price *= Math.exp(0.012 * Math.sqrt(CANDLE / 8) * gauss() + (Math.sin(i / 11) * 0.0012)); h = Math.max(h, price); lo = Math.min(lo, price); }
     candles.push({ o, h, l: lo, c: price, v: rand(0.2, 1) });
   }
   const others = TICKERS.filter((t) => t !== tk).map((t) => ({ s: `$${t.sym}`, v: rand(-9, 9) }));

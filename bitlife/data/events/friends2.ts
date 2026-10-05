@@ -181,7 +181,7 @@ export const friends2Events: EventDef[] = [
           { w: 1, text: { fr: ["{a.first} ne m'a pas cru{|e}. Sa moitié a juré que c'était MOI qui l'avais allumé{a:|e}. Je suis passé{|e} pour un serpent. Le vrai serpent rigole encore.", "J'ai dit la vérité, {a.first} a choisi le mensonge. Il paraît que j'ai « toujours été jaloux{|se} ». Bloqué{|e}, banni{|e}, détesté{|e}."], en: ["{a.first} didn't believe me. The partner swore I was the one hitting on THEM. I came off as the snake. The real snake is still laughing.", "I told the truth, {a.first} chose the lie. Apparently I've 'always been jealous'. Blocked, banned, hated."] }, fx: { rel: -30, actorRole: 'enemy', happy: -6 }, mood: 'angry' },
         ],
       },
-      { label: { fr: 'Balancer dans le groupe', en: 'Post it in the group chat' }, text: { fr: ["J'ai posté la capture dans le groupe des potes. 47 messages en une minute, dont 12 émojis aubergine. Le couple n'a pas survécu à la nuit.", "Capture d'écran, groupe WhatsApp, enter. Silence de mort, puis {a.first} a écrit « merci ». Puis « je vais le/la tuer ». Puis plus rien."], en: ["I posted the screenshot in the friends' group chat. 47 messages in a minute, 12 of them eggplant emojis. The couple didn't survive the night.", "Screenshot, group chat, enter. Dead silence, then {a.first} wrote 'thanks'. Then 'I'm going to kill them'. Then nothing."] }, fx: { rel: 6, fame: 2, stress: 6 } },
+      { label: { fr: 'Balancer dans le groupe', en: 'Post it in the group chat' }, text: { fr: ["J'ai posté la capture dans le groupe des potes. 47 messages en une minute, dont 12 émojis aubergine. Le couple n'a pas survécu à la nuit.", "Capture d'écran, groupe WhatsApp, enter. Silence de mort, puis {a.first} a écrit « merci ». Puis « je vais l'étrangler ». Puis plus rien."], en: ["I posted the screenshot in the friends' group chat. 47 messages in a minute, 12 of them eggplant emojis. The couple didn't survive the night.", "Screenshot, group chat, enter. Dead silence, then {a.first} wrote 'thanks'. Then 'I'm going to kill them'. Then nothing."] }, fx: { rel: 6, fame: 2, stress: 6 } },
       {
         label: { fr: 'Céder à la tentation', en: 'Give in' },
         out: [
@@ -600,7 +600,7 @@ export const friends2Events: EventDef[] = [
           { w: 1, text: { fr: ["J'ai vendu une photo de {a.first} bourré{a:|e} à un magazine. 2 000 balles. {a:Il|Elle} a reconnu l'angle de mon téléphone. Ami{a:|e} perdu{a:|e}, loyer payé.", "J'ai donné une interview sur « le vrai {a.first} ». J'ai trop parlé. {a:Il|Elle} m'a bloqué{|e} et son avocat m'a écrit."], en: ["I sold a photo of drunk {a.first} to a tabloid. Two grand. {a:He|She} recognized my phone's angle. Friend lost, rent paid.", "I gave an interview about 'the real {a.first}'. I said too much. {a:He|She} blocked me and {a:his|her} lawyer wrote to me."] }, fx: { money: 2000, rel: -40, actorRole: 'enemy', karma: -8 }, mood: 'shock' },
         ],
       },
-      { label: { fr: 'Être jaloux{|se} en silence', en: 'Be silently jealous' }, text: { fr: ["Je n'ai rien dit. J'ai juste regardé chaque vidéo en serrant les dents et j'ai laissé des commentaires anonymes du type « surcoté ». Je ne suis pas fier{|e}.", "J'ai mis {a.first} en sourdine partout. Je le/la vois quand même sur les bus. La jalousie me ronge comme {w:animal} une vieille chaussure."], en: ["I said nothing. I just watched every video through gritted teeth and left anonymous comments like 'overrated'. Not proud.", "I muted {a.first} everywhere. I still see that face on the buses. Jealousy gnaws at me like {w:animal} on an old shoe."] }, fx: { happy: -5, karma: -2, rel: -5 } },
+      { label: { fr: 'Être jaloux{|se} en silence', en: 'Be silently jealous' }, text: { fr: ["Je n'ai rien dit. J'ai juste regardé chaque vidéo en serrant les dents et j'ai laissé des commentaires anonymes du type « surcoté ». Je ne suis pas fier{|e}.", "J'ai mis {a.first} en sourdine partout. Je {a:le|la} vois quand même sur les bus. La jalousie me ronge comme {w:animal} une vieille chaussure."], en: ["I said nothing. I just watched every video through gritted teeth and left anonymous comments like 'overrated'. Not proud.", "I muted {a.first} everywhere. I still see that face on the buses. Jealousy gnaws at me like {w:animal} on an old shoe."] }, fx: { happy: -5, karma: -2, rel: -5 } },
     ],
   },
   {
@@ -627,7 +627,7 @@ export const friends2Events: EventDef[] = [
     },
     choices: [
       {
-        label: { fr: 'Le/La confronter', en: 'Confront them' },
+        label: { fr: '{a:Le|La} confronter', en: 'Confront them' },
         out: [
           { w: 1, text: { fr: ["J'ai forcé l'entrée, j'ai trouvé {a.first} et je lui ai dit ses quatre vérités. {a:Il|Elle} a fondu en larmes : « Tout le monde me ment, sauf toi. » On a fini la soirée en kebab, comme avant.", "Je l'ai coincé{a:|e} dans les loges. Silence, puis {a:il|elle} a éclaté de rire et m'a serré{|e} dans ses bras. La gloire lui avait juste grillé quelques neurones."], en: ["I forced my way in, found {a.first} and told {a:him|her} the hard truth. {a:He|She} burst into tears: 'Everyone lies to me except you.' We ended the night eating kebabs, like old times.", "I cornered {a:him|her} backstage. Silence, then {a:he|she} burst out laughing and hugged me. Fame had just fried a few neurons."] }, fx: { rel: 20, happy: 8 }, mood: 'happy' },
           { w: 1, text: { fr: ["La sécurité m'a sorti{|e} par le col avant que j'ouvre la bouche. Le lendemain, j'étais dans la presse : « Un fan déséquilibré tente d'approcher {a.first}. » Le fan, c'est moi.", "{a.first} m'a regardé{|e} comme un inconnu et a fait signe au garde du corps. Fin d'une amitié de vingt ans, en un geste de la main."], en: ["Security dragged me out by the collar before I could speak. Next day, I was in the press: 'Unhinged fan tries to approach {a.first}.' The fan is me.", "{a.first} looked at me like a stranger and signaled the bodyguard. Twenty years of friendship, ended with a hand gesture."] }, fx: { rel: -40, actorRole: 'enemy', happy: -10, fame: 1 }, mood: 'cry' },
@@ -670,7 +670,7 @@ export const friends2Events: EventDef[] = [
           { w: 1, text: { fr: ["Descente de police au bout de trois semaines. J'étais le seul à avoir signé quelque chose. {a.first} a disparu en hélicoptère. Moi, en fourgon.", "Le GIGN a défoncé la porte pendant le rituel. J'étais en toge, couvert{|e} de miel, à genoux devant un bouc. La photo est au dossier."], en: ["Police raid after three weeks. I was the only one who'd signed anything. {a.first} vanished by helicopter. I left by police van.", "SWAT smashed the door during the ritual. I was in a toga, covered in honey, kneeling before a goat. The photo is in the file."] }, fx: { arrest: 'ponzi', karma: -10, visual: 'police' }, mood: 'shock' },
         ],
       },
-      { label: { fr: 'Le/La faire désenvoûter', en: 'Stage a deprogramming' }, text: { fr: ["J'ai kidnappé {a.first} avec trois potes et un minibus. Quarante-huit heures de Disney et de pizzas. {a:Il|Elle} est revenu{a:|e} à la raison, mais réclame encore qu'on L'appelle Lumière.", "Opération exfiltration : sac sur la tête, coffre de la Clio. {a.first} m'a mordu{|e} au sang. Puis {a:il|elle} a pleuré dans mes bras. Retour à la normale, plus ou moins."], en: ["I kidnapped {a.first} with three friends and a minivan. Forty-eight hours of Disney and pizza. {a:He|She} came back to reason, but still insists we call {a:him|her} Light.", "Extraction op: bag over the head, car trunk. {a.first} bit me until I bled. Then cried in my arms. Back to normal, more or less."] }, fx: { rel: 10, karma: 6, health: -3, heat: 5 } },
+      { label: { fr: '{a:Le|La} faire désenvoûter', en: 'Stage a deprogramming' }, text: { fr: ["J'ai kidnappé {a.first} avec trois potes et un minibus. Quarante-huit heures de Disney et de pizzas. {a:Il|Elle} est revenu{a:|e} à la raison, mais réclame encore qu'on L'appelle Lumière.", "Opération exfiltration : sac sur la tête, coffre de la Clio. {a.first} m'a mordu{|e} au sang. Puis {a:il|elle} a pleuré dans mes bras. Retour à la normale, plus ou moins."], en: ["I kidnapped {a.first} with three friends and a minivan. Forty-eight hours of Disney and pizza. {a:He|She} came back to reason, but still insists we call {a:him|her} Light.", "Extraction op: bag over the head, car trunk. {a.first} bit me until I bled. Then cried in my arms. Back to normal, more or less."] }, fx: { rel: 10, karma: 6, health: -3, heat: 5 } },
       { label: { fr: 'Venir juste pour le buffet', en: 'Just come for the buffet' }, text: { fr: ["Je suis venu{|e} pour le buffet. J'ai mangé, bu, hoché la tête pendant le sermon, et je suis reparti{|e} avec un tupperware. Les sectes ont de super traiteurs.", "J'ai profité du buffet gratuit en restant au fond. Une disciple m'a fait du pied pendant le chant sacré. J'ai pris son numéro et deux parts de gâteau."], en: ["I came for the buffet. Ate, drank, nodded through the sermon, and left with a Tupperware. Cults have amazing caterers.", "I enjoyed the free buffet from the back row. A disciple played footsie with me during the sacred chant. I got her number and two slices of cake."] }, fx: { happy: 5, weight: 0.02, rel: 2 } },
     ],
   },
@@ -772,7 +772,7 @@ export const friends2Events: EventDef[] = [
       ],
     },
     choices: [
-      { label: { fr: 'Dire « Magnifique ! »', en: "Say 'Gorgeous!'" }, text: { fr: ["J'ai menti avec un grand sourire. Le bébé porte ce nom maintenant. Dans quinze ans, il saura que j'aurais pu l'arrêter.", "« Magnifique ! » ai-je dit, en mourant à l'intérieur. {a.first} m'a nommé{|e} parrain/marraine. Je suis complice à vie."], en: ["I lied with a big smile. The baby has that name now. In fifteen years, the kid will know I could have stopped it.", "'Gorgeous!' I said, dying inside. {a.first} made me the godparent. I'm an accomplice for life."] }, fx: { rel: 10, karma: -2 } },
+      { label: { fr: 'Dire « Magnifique ! »', en: "Say 'Gorgeous!'" }, text: { fr: ["J'ai menti avec un grand sourire. Le bébé porte ce nom maintenant. Dans quinze ans, il saura que j'aurais pu l'arrêter.", "« Magnifique ! » ai-je dit, en mourant à l'intérieur. {a.first} m'a nommé{|e} {parrain|marraine}. Je suis complice à vie."], en: ["I lied with a big smile. The baby has that name now. In fifteen years, the kid will know I could have stopped it.", "'Gorgeous!' I said, dying inside. {a.first} made me the godparent. I'm an accomplice for life."] }, fx: { rel: 10, karma: -2 } },
       {
         label: { fr: 'Dire la vérité', en: 'Tell the truth' },
         out: [
@@ -809,9 +809,9 @@ export const friends2Events: EventDef[] = [
     },
     choices: [
       {
-        label: { fr: 'Foncer le/la chercher', en: 'Rush over' },
+        label: { fr: 'Foncer {a:le|la} chercher', en: 'Rush over' },
         out: [
-          { w: 2, text: { fr: ["Je suis allé{|e} le/la chercher en pyjama. {a.first} a vomi dans ma voiture, sur moi, puis dans mes cheveux. Puis {a:il|elle} m'a dit « t'es le meilleur humain du monde ». Ça compense presque.", "Sauvetage réussi. J'ai porté {a.first} jusqu'à son lit comme un sac de patates. Le lendemain, {a:il|elle} m'a offert {w:gift} sans rien dire. On s'est compris."], en: ["I went to get {a:him|her} in my pajamas. {a.first} puked in my car, on me, then in my hair. Then said 'you're the best human in the world'. Almost worth it.", "Rescue successful. I carried {a.first} to bed like a sack of potatoes. Next day, {a:he|she} gave me {w:gift} without a word. We understood each other."] }, fx: { rel: 15, health: -2, happy: -2, karma: 4, visual: 'poop' } },
+          { w: 2, text: { fr: ["Je suis allé{|e} {a:le|la} chercher en pyjama. {a.first} a vomi dans ma voiture, sur moi, puis dans mes cheveux. Puis {a:il|elle} m'a dit « t'es le meilleur humain du monde ». Ça compense presque.", "Sauvetage réussi. J'ai porté {a.first} jusqu'à son lit comme un sac de patates. Le lendemain, {a:il|elle} m'a offert {w:gift} sans rien dire. On s'est compris."], en: ["I went to get {a:him|her} in my pajamas. {a.first} puked in my car, on me, then in my hair. Then said 'you're the best human in the world'. Almost worth it.", "Rescue successful. I carried {a.first} to bed like a sack of potatoes. Next day, {a:he|she} gave me {w:gift} without a word. We understood each other."] }, fx: { rel: 15, health: -2, happy: -2, karma: 4, visual: 'poop' } },
           { w: 1, text: { fr: ["En arrivant, je me suis pris une bouteille perdue dans la tempe. Les urgences ont recousu mon front. {a.first} dormait paisiblement dans le couloir, sur un brancard volé.", "J'ai récupéré {a.first}, mais la soirée m'a récupéré{|e} aussi. Je me suis réveillé{|e} à 11 h sur un canapé inconnu, avec {a.first} qui me tendait un café. Inversion des rôles."], en: ["When I got there, a stray bottle hit me in the temple. The ER stitched my forehead. {a.first} was sleeping peacefully in the hallway on a stolen gurney.", "I picked up {a.first}, but the party picked me up too. I woke at 11 a.m. on a stranger's couch, with {a.first} handing me coffee. Roles reversed."] }, fx: { rel: 10, health: -8, happy: 2 }, mood: 'sick' },
         ],
       },
@@ -889,7 +889,7 @@ export const friends2Events: EventDef[] = [
           { w: 1, text: { fr: ["J'ai tenté d'amadouer les flics. J'ai dit un mot de trop. Je dors maintenant dans la cellule voisine de {a.first}. On se parle à travers le mur.", "Ma négociation s'est terminée en garde à vue pour « outrage ». {a.first} et moi, menottés côte à côte. Au moins, on est ensemble."], en: ["I tried to charm the cops. I said one word too many. Now I'm sleeping in the cell next to {a.first}. We talk through the wall.", "My negotiation ended in custody for 'contempt'. {a.first} and me, cuffed side by side. At least we're together."] }, fx: { rel: 8, heat: 10, happy: -6, visual: 'police' }, mood: 'shock' },
         ],
       },
-      { label: { fr: 'Le/La laisser mariner', en: 'Let them stew' }, text: { fr: ["J'ai laissé {a.first} une nuit au frais. « Pour sa leçon. » {a:Il|Elle} est ressorti{a:|e} avec un nouveau tatouage fait au stylo et une rancune tenace.", "Pas un centime. {a.first} a dormi en cellule avec un type qui parlait à ses pieds. {a:Il|Elle} m'a envoyé une carte postale de la prison. Glaçante."], en: ["I let {a.first} spend a night in the cooler. 'To learn a lesson.' {a:He|She} came out with a new ballpoint-pen tattoo and a stubborn grudge.", "Not a cent. {a.first} slept in a cell with a guy who talks to his feet. {a:He|She} sent me a postcard from jail. Chilling."] }, fx: { rel: -20 } },
+      { label: { fr: '{a:Le|La} laisser mariner', en: 'Let them stew' }, text: { fr: ["J'ai laissé {a.first} une nuit au frais. « Pour sa leçon. » {a:Il|Elle} est ressorti{a:|e} avec un nouveau tatouage fait au stylo et une rancune tenace.", "Pas un centime. {a.first} a dormi en cellule avec un type qui parlait à ses pieds. {a:Il|Elle} m'a envoyé une carte postale de la prison. Glaçante."], en: ["I let {a.first} spend a night in the cooler. 'To learn a lesson.' {a:He|She} came out with a new ballpoint-pen tattoo and a stubborn grudge.", "Not a cent. {a.first} slept in a cell with a guy who talks to his feet. {a:He|She} sent me a postcard from jail. Chilling."] }, fx: { rel: -20 } },
     ],
   },
   {
@@ -921,7 +921,7 @@ export const friends2Events: EventDef[] = [
       {
         label: { fr: 'Les convertir', en: 'Convert them' },
         out: [
-          { w: 1, odds: { smarts: 1 }, text: { fr: ["J'ai fait une contre-présentation passionnée. À la fin, la moitié du groupe était convertie. On a fondé un club. {a.first} en est le/la trésorier{a:|e}.", "J'ai répondu avec tant de passion que {a.first} m'a demandé des conseils pour débuter. L'intervention s'est transformée en atelier."], en: ["I gave a passionate counter-presentation. By the end, half the group was converted. We founded a club. {a.first} is treasurer.", "I answered with such passion that {a.first} asked me for beginner tips. The intervention turned into a workshop."] }, fx: { rel: 8, happy: 6, smarts: 2 }, mood: 'proud' },
+          { w: 1, odds: { smarts: 1 }, text: { fr: ["J'ai fait une contre-présentation passionnée. À la fin, la moitié du groupe était convertie. On a fondé un club. {a.first} en est {a:le trésorier|la trésorière}.", "J'ai répondu avec tant de passion que {a.first} m'a demandé des conseils pour débuter. L'intervention s'est transformée en atelier."], en: ["I gave a passionate counter-presentation. By the end, half the group was converted. We founded a club. {a.first} is treasurer.", "I answered with such passion that {a.first} asked me for beginner tips. The intervention turned into a workshop."] }, fx: { rel: 8, happy: 6, smarts: 2 }, mood: 'proud' },
           { w: 1, text: { fr: ["J'ai parlé pendant deux heures. Ils sont partis un par un. {a.first} est resté{a:|e} jusqu'au bout, par politesse, et s'est endormi{a:|e} sur le canapé.", "Mon plaidoyer a été si long que l'intervention a été officiellement déclarée « échec ». Le groupe a créé une conversation sans moi pour en parler."], en: ["I talked for two hours. They left one by one. {a.first} stayed till the end out of politeness and fell asleep on the couch.", "My plea was so long the intervention was officially declared 'a failure'. The group made a chat without me to discuss it."] }, fx: { rel: -6, happy: -2 } },
         ],
       },
@@ -956,7 +956,7 @@ export const friends2Events: EventDef[] = [
       {
         label: { fr: 'Débattre avec des faits', en: 'Debate with facts' },
         out: [
-          { w: 1, odds: { smarts: 1 }, text: { fr: ["J'ai sorti des sources, des graphiques et de la patience. Au bout de trois semaines, {a.first} a admis qu'{a:il|elle} s'était peut-être un peu emballé{a:|e}. Le chapeau est au placard.", "Débat calme, arguments solides. {a.first} a fini par rire de lui-même/d'elle-même. On a brûlé le chapeau alu au barbecue, en cérémonie."], en: ["I pulled out sources, charts and patience. After three weeks, {a.first} admitted {a:he|she} might have gotten carried away. The hat is in the closet.", "Calm debate, solid arguments. {a.first} ended up laughing at {a:himself|herself}. We ceremonially burned the tinfoil hat on the barbecue."] }, fx: { rel: 10, smarts: 3, karma: 3 }, mood: 'proud' },
+          { w: 1, odds: { smarts: 1 }, text: { fr: ["J'ai sorti des sources, des graphiques et de la patience. Au bout de trois semaines, {a.first} a admis qu'{a:il|elle} s'était peut-être un peu emballé{a:|e}. Le chapeau est au placard.", "Débat calme, arguments solides. {a.first} a fini par rire de {a:lui|elle}-même. On a brûlé le chapeau alu au barbecue, en cérémonie."], en: ["I pulled out sources, charts and patience. After three weeks, {a.first} admitted {a:he|she} might have gotten carried away. The hat is in the closet.", "Calm debate, solid arguments. {a.first} ended up laughing at {a:himself|herself}. We ceremonially burned the tinfoil hat on the barbecue."] }, fx: { rel: 10, smarts: 3, karma: 3 }, mood: 'proud' },
           { w: 2, text: { fr: ["Chaque fait que je donnais était « exactement ce qu'ils veulent que tu croies ». J'ai perdu le débat contre quelqu'un qui pense que les pigeons sont des drones.", "{a.first} a conclu que j'étais « payé{|e} par eux ». J'aimerais bien, au moins je serais payé{|e} pour ce débat."], en: ["Every fact I gave was 'exactly what they want you to believe'. I lost a debate to someone who thinks pigeons are drones.", "{a.first} concluded I'm 'paid by them'. I wish; at least I'd get paid for this debate."] }, fx: { rel: -6, stress: 6 } },
         ],
       },
@@ -1142,6 +1142,584 @@ export const friends2Events: EventDef[] = [
       },
       { label: { fr: 'Laisser une note 5 étoiles', en: 'Leave a 5-star review' }, text: { fr: ["J'ai laissé cinq étoiles et un commentaire élogieux sous un faux nom. {a.first} l'a lu à voix haute dans l'épisode suivant, ému{a:|e} aux larmes.", "Je n'écoute pas, mais je laisse un avis cinq étoiles chaque semaine. {a.first} pense avoir une fan base. C'est moi, avec quatorze comptes."], en: ["I left five stars and a glowing review under a fake name. {a.first} read it aloud on the next episode, moved to tears.", "I don't listen, but I leave a five-star review every week. {a.first} thinks there's a fan base. It's me, with fourteen accounts."] }, fx: { rel: 8, karma: 2 } },
       { label: { fr: 'Critiquer honnêtement', en: 'Give honest feedback' }, text: { fr: ["Je lui ai dit que trois heures sur ce sujet, c'était long. {a.first} a fait un épisode entier pour me répondre. Quatre heures.", "J'ai suggéré de couper les silences. {a.first} a coupé les silences, et moi de sa liste d'amis."], en: ["I told {a:him|her} three hours on that subject was a lot. {a.first} made an entire episode replying to me. Four hours.", "I suggested cutting the silences. {a.first} cut the silences, and me from {a:his|her} friend list."] }, fx: { rel: -8, smarts: 1 } },
+    ],
+  },
+  // ───────────────────────────── exes ─────────────────────────────
+  {
+    id: 'fr2_ex_worst_moment',
+    icon: '😱',
+    cat: 'friends',
+    rating: 1,
+    actor: 'ex',
+    scene: { place: 'office', mood: 'shock', prop: 'tie' },
+    when: { age: [18, 80] },
+    weight: 7,
+    cooldown: 6,
+    text: {
+      fr: [
+        "Entretien d'embauche décisif. La porte s'ouvre : c'est {a.first}, ton ex, qui va te faire passer l'entretien. {a:Il|Elle} sourit. Le genre de sourire de {a:celui|celle} qui se souvient de tout.",
+        "Premier rendez-vous avec quelqu'un de prometteur. Le serveur qui arrive pour prendre la commande : {a.first}, ton ex. {a:Il|Elle} te tend la carte : « Je te conseille {w:food}. Comme d'habitude. »",
+        "Tu es {w:at_place}, en survêtement troué, cheveux gras, en train de manger {w:food} à même le paquet. Évidemment, c'est le moment que choisit {a.first}, ton ex, pour apparaître. Bronzé{a:|e}. Rayonnant{a:|e}.",
+        "Repas de famille chez ta nouvelle moitié. On sonne : c'est le cousin, accompagné de sa nouvelle copine… ou copain : {a.first}. Ton ex. {w:swear}",
+      ],
+      en: [
+        "Crucial job interview. The door opens: it's {a.first}, your ex, who'll be interviewing you. {a:He|She} smiles. The kind of smile of someone who remembers everything.",
+        "First date with someone promising. The waiter coming to take your order: {a.first}, your ex. {a:He|She} hands you the menu: 'I recommend {w:food}. Like always.'",
+        "You're {w:at_place}, in ripped sweatpants, greasy hair, eating {w:food} straight from the bag. Naturally, this is when {a.first}, your ex, appears. Tanned. Radiant.",
+        "Family dinner at your new partner's. Doorbell: it's the cousin, with a new date: {a.first}. Your ex. {w:swear}",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Jouer la classe', en: 'Play it classy' },
+        out: [
+          { w: 1, odds: { looks: 1 }, text: { fr: ["J'ai été d'une élégance folle : sourire, poignée de main, humour léger. {a.first} a perdu ses moyens et renversé son verre. Victoire par K.-O. émotionnel.", "Classe absolue. J'ai même complimenté sa coupe de cheveux. {a.first} est reparti{a:|e} troublé{a:|e}, et moi en paix avec mon passé."], en: ["I was insanely elegant: smile, handshake, light humor. {a.first} lost composure and spilled a drink. Victory by emotional knockout.", "Pure class. I even complimented the haircut. {a.first} left flustered, and I left at peace with my past."] }, fx: { happy: 8, rel: 5, looks: 1 }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai voulu jouer la classe. J'ai trébuché sur {w:object}, et mon « Bonjour, ça fait longtemps » est sorti en couinement. {a.first} a ri. Fort.", "Ma voix a déraillé, mes mains ont tremblé, et j'ai appelé {a.first} « mon cœur » par réflexe. Devant tout le monde. On m'enterre où ?"], en: ["I tried to play it classy. Tripped over {w:object}, and my 'Hi, long time' came out as a squeak. {a.first} laughed. Loudly.", "My voice cracked, my hands shook, and I called {a.first} 'babe' out of reflex. In front of everyone. Where do I get buried?"] }, fx: { happy: -8, stress: 6 }, mood: 'shock' },
+        ],
+      },
+      { label: { fr: 'Fuir par les toilettes', en: 'Flee via the bathroom' }, text: { fr: ["J'ai prétexté une envie pressante et je suis sorti{|e} par la fenêtre des toilettes. Je suis resté{|e} coincé{|e} à mi-corps. C'est {a.first} qui m'a dégagé{|e}. Par les jambes.", "Fuite express par la porte de service. J'ai couru trois rues avant de réaliser que j'avais laissé mon manteau, mes clés et ma dignité."], en: ["I faked an urgent need and climbed out the bathroom window. Got stuck halfway. It was {a.first} who pulled me out. By the legs.", "Express escape via the service door. I ran three blocks before realizing I'd left my coat, my keys and my dignity."] }, fx: { happy: -4, rel: -3 } },
+      { label: { fr: 'Balancer une pique', en: 'Throw some shade' }, text: { fr: ["« Tiens, t'as enfin appris à te laver ? » La phrase est sortie toute seule. {a.first} a répliqué par une anecdote intime sur moi. Match nul, carnage total.", "J'ai lâché une vacherie bien sentie. {a.first} a souri et lancé : « Toujours aussi petit{|e}, à ce que je vois. » Je n'ai pas compris de quoi {a:il|elle} parlait. Tout le monde, si."], en: ["'Oh, you finally learned to shower?' It just came out. {a.first} replied with an intimate anecdote about me. A draw, total carnage.", "I fired off a perfect jab. {a.first} smiled and said: 'Still as small as ever, I see.' I didn't get what {a:he|she} meant. Everyone else did."] }, fx: { rel: -12, happy: 2 } },
+    ],
+  },
+  {
+    id: 'fr2_ex_wedding_invite',
+    icon: '💌',
+    cat: 'friends',
+    rating: 1,
+    actor: 'ex',
+    vars: { amount: [100, 400] },
+    scene: { place: 'party', mood: 'shock', prop: 'envelope' },
+    when: { age: [22, 75] },
+    weight: 5,
+    cooldown: 10,
+    text: {
+      fr: [
+        "Faire-part de mariage dans ta boîte aux lettres. C'est {a.first}, ton ex. Il y a même un petit mot : « Ce serait important pour moi que tu sois là. » Liste de mariage : {w:gift}.",
+        "{a.first}, ton ex, t'invite à son mariage {w:far_place}. Tu ne sais pas si c'est de la maturité, de la vengeance, ou juste une erreur de liste Excel.",
+        "{a.first} se marie. Avec quelqu'un qui te ressemble beaucoup, mais en mieux. Et tu es invité{|e}, table 14, entre sa grand-mère et {w:animal}.",
+        "{w:exclaim} Ton ex {a.first} t'envoie un faire-part doré avec une photo du couple {w:at_place}. Au dos : « Viens, ça me ferait plaisir 😘 ». Le smiley t'inquiète.",
+      ],
+      en: [
+        "Wedding invitation in your mailbox. It's from {a.first}, your ex. There's even a little note: 'It would mean a lot to me if you came.' Registry: {w:gift}.",
+        "{a.first}, your ex, invites you to the wedding {w:far_place}. You can't tell if it's maturity, revenge, or just a spreadsheet mistake.",
+        "{a.first} is getting married. To someone who looks a lot like you, but better. And you're invited, table 14, between the grandma and {w:animal}.",
+        "{w:exclaim} Your ex {a.first} sends a golden invitation with a photo of the couple {w:at_place}. On the back: 'Come, I'd love that 😘'. The emoji worries you.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Y aller, digne', en: 'Go, with dignity' },
+        out: [
+          { w: 2, text: { fr: ["J'y suis allé{|e}, j'ai offert un cadeau à {$amount}, j'ai dansé, j'ai souri. C'était étrangement libérateur. Le chapitre est fermé, et j'ai mangé trois parts de pièce montée.", "Belle cérémonie. J'ai même pleuré un peu, pour de bonnes raisons. {a.first} m'a remercié{|e} d'être venu{|e}. On est presque amis, maintenant."], en: ["I went, gave a {$amount} gift, danced, smiled. Weirdly liberating. Chapter closed, and I ate three slices of wedding cake.", "Lovely ceremony. I even cried a bit, for good reasons. {a.first} thanked me for coming. We're almost friends now."] }, fx: { money: '-amount', happy: 6, rel: 12, stress: -4 }, mood: 'happy' },
+          { w: 1, text: { fr: ["J'ai bu. Trop. Au moment du « Si quelqu'un s'oppose… », j'ai levé la main pour attraper une mouche. Tout le monde a cru que je m'opposais. Silence de cathédrale.", "Pendant le slow, j'ai dragué le témoin, puis la mère du marié. Puis j'ai pleuré dans le vestiaire en mangeant {w:food}. Belle soirée."], en: ["I drank. Too much. At 'If anyone objects…', I raised my hand to swat a fly. Everyone thought I was objecting. Cathedral silence.", "During the slow dance, I hit on the best man, then the groom's mother. Then cried in the coat room eating {w:food}. Lovely evening."] }, fx: { money: '-amount', happy: -6, rel: -10, fame: 1 }, mood: 'shock' },
+        ],
+      },
+      { label: { fr: 'Venir avec un date canon', en: 'Bring a hot date' }, rating: 1, text: { fr: ["J'ai loué un{|e} cavalier{|ère} sublime sur une appli. Toute la soirée, les invités l'ont regardé{|e}, et pas les mariés. {a.first} m'a fusillé{|e} du regard. Mission accomplie.", "Je suis venu{|e} avec un mannequin rencontré la veille. Le mannequin a mangé tout le buffet et vomi dans la fontaine à champagne. On a marqué les esprits."], en: ["I rented a gorgeous date on an app. All night, guests stared at them instead of the couple. {a.first} glared at me. Mission accomplished.", "I showed up with a model I'd met the day before. They ate the whole buffet and puked in the champagne fountain. We made an impression."] }, fx: { money: -500, happy: 6, rel: -8 } },
+      { label: { fr: 'Décliner poliment', en: 'Politely decline' }, text: { fr: ["J'ai décliné avec un mot gentil et un petit chèque. Je suis resté{|e} chez moi devant {w:show}. Zéro drame, zéro regret.", "J'ai répondu « indisponible ». J'étais disponible. J'ai passé la journée à regarder leurs stories en mangeant des chips. Je ne suis pas guéri{|e}."], en: ["I declined with a kind note and a small check. Stayed home watching {w:show}. Zero drama, zero regrets.", "I replied 'unavailable'. I was available. I spent the day watching their stories eating chips. I am not healed."] }, fx: { money: -50, rel: 3 } },
+    ],
+  },
+  {
+    id: 'fr2_ex_box',
+    icon: '📦',
+    cat: 'friends',
+    rating: 0,
+    actor: 'ex',
+    scene: { place: 'home', mood: 'sad', prop: 'box' },
+    when: { age: [15, 80] },
+    weight: 7,
+    cooldown: 8,
+    text: {
+      fr: [
+        "{a.first}, ton ex, a déposé un carton devant ta porte. « Tes affaires. » Dedans : un pull, ta brosse à dents, {w:object} et une lettre de onze pages. Recto verso.",
+        "Un colis de {a.first}. Il contient tout ce que tu lui as offert en trois ans, dont {w:gift}, rangé par ordre de déception. Il y a une étiquette sur chaque objet.",
+        "{a.first} te rend tes affaires. Dans le carton, il manque ton sweat préféré mais il y a {w:animal} en peluche que tu n'as jamais vu de ta vie.",
+        "Tu récupères chez {a.first} le carton de tes affaires. {a:Il|Elle} a gardé ton chargeur, ta plante et ton mot de passe {w:app}. {a:Il|Elle} refuse de négocier.",
+      ],
+      en: [
+        "{a.first}, your ex, left a box at your door. 'Your stuff.' Inside: a sweater, your toothbrush, {w:object} and an eleven-page letter. Double-sided.",
+        "A package from {a.first}. It contains everything you gave {a:him|her} in three years, including {w:gift}, sorted by level of disappointment. Each item is labeled.",
+        "{a.first} is returning your stuff. The box is missing your favorite hoodie but contains a plush version of {w:animal} you've never seen in your life.",
+        "You pick up your box of stuff at {a.first}'s. {a:He|She} kept your charger, your plant and your {w:app} password. {a:He|She} refuses to negotiate.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Lire la lettre', en: 'Read the letter' }, text: { fr: ["J'ai lu les onze pages. Il y avait de l'amour, des reproches, et une recette de lasagnes. J'ai pleuré sur la recette.", "J'ai lu la lettre trois fois. La page 9 m'a fait rire, la page 10 m'a brisé{|e}. J'ai fait les lasagnes. Elles étaient délicieuses."], en: ["I read all eleven pages. There was love, blame, and a lasagna recipe. I cried over the recipe.", "I read the letter three times. Page 9 made me laugh, page 10 broke me. I made the lasagna. It was delicious."] }, fx: { happy: -3, smarts: 1, rel: 4 }, mood: 'cry' },
+      {
+        label: { fr: 'Exiger le reste', en: 'Demand the rest' },
+        out: [
+          { w: 1, text: { fr: ["J'ai envoyé une liste détaillée. {a.first} m'a tout rendu, plus un mot : « Prends soin de toi. » C'était étrangement adulte. On est quittes.", "J'ai réclamé mon sweat. {a.first} me l'a rendu, lavé, plié, parfumé. J'ai failli lui redemander de sortir avec moi."], en: ["I sent a detailed list. {a.first} returned everything, plus a note: 'Take care.' It was weirdly grown-up. We're square.", "I asked for my hoodie. {a.first} returned it washed, folded, scented. I almost asked {a:him|her} out again."] }, fx: { happy: 4, rel: 6 } },
+          { w: 1, text: { fr: ["{a.first} m'a renvoyé mon chargeur. Coupé en deux. Avec un mot : « Voilà. » Le message est passé.", "J'ai réclamé ma plante. {a.first} me l'a rendue morte, dans un sac congélation, avec une étiquette : « Comme notre couple. »"], en: ["{a.first} sent back my charger. Cut in half. With a note: 'There.' Message received.", "I asked for my plant. {a.first} returned it dead, in a freezer bag, labeled: 'Like our relationship.'"] }, fx: { happy: -4, rel: -10 }, mood: 'angry' },
+        ],
+      },
+      { label: { fr: 'Tout brûler', en: 'Burn it all' }, text: { fr: ["J'ai brûlé le carton dans le jardin, en chantant {w:song}. Les voisins ont appelé les pompiers. J'ai dû expliquer ma rupture à un capitaine très patient.", "Feu de joie purificateur. La lettre s'est envolée, encore enflammée, jusque sur le barbecue du voisin. Sa saucisse a goût de rupture."], en: ["I burned the box in the garden singing {w:song}. The neighbors called the fire department. I had to explain my breakup to a very patient captain.", "Purifying bonfire. The letter flew off, still burning, onto the neighbor's barbecue. His sausage now tastes like heartbreak."] }, fx: { happy: 6, stress: -6, visual: 'fire' } },
+    ],
+  },
+  {
+    id: 'fr2_ex_booty_text',
+    icon: '🍑',
+    cat: 'friends',
+    rating: 2,
+    actor: 'ex',
+    scene: { place: 'apartment', mood: 'love', prop: 'phone', fx: 'hearts' },
+    when: { age: [18, 70] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "2 h 47. Message de {a.first}, ton ex : « t'es réveillé{|e} ? » suivi d'un émoji aubergine, d'un émoji goutte et d'une photo qui ne laisse aucune place au doute.",
+        "{a.first}, ton ex, sort d'une soirée et t'écrit : « Je pense à toi. À nous. À ce qu'on faisait sur la machine à laver. » Tu te souviens de la machine à laver.",
+        "Ton ex {a.first} t'envoie une vidéo de {a:lui|elle} en sous-vêtements, avec {w:song} en fond. Légende : « Tu me manques. Une partie de toi, surtout. »",
+        "{w:time}, {a.first} sonne chez toi, {w:drink} à la main, et pas grand-chose d'autre sur le dos. « Juste une fois, pour le bon vieux temps ? »",
+      ],
+      en: [
+        "2:47 a.m. Text from {a.first}, your ex: 'u up?' followed by an eggplant emoji, a droplet emoji and a photo that leaves no room for doubt.",
+        "{a.first}, your ex, just left a party and texts: 'Thinking of you. Of us. Of what we used to do on the washing machine.' You remember the washing machine.",
+        "Your ex {a.first} sends you a video in underwear, with {w:song} playing. Caption: 'I miss you. One part of you, mostly.'",
+        "{w:time}, {a.first} rings your doorbell with {w:drink} in hand, and not much else on. 'Just once, for old times' sake?'",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Céder', en: 'Give in' },
+        out: [
+          { w: 2, text: { fr: ["J'ai cédé. Ce fut intense, nostalgique, et la machine à laver n'a pas survécu. À 6 h, {a.first} était parti{a:|e}. Avec mon caleçon préféré.", "On a remis le couvert. Le lit a cédé, le voisin a tapé au mur, et à l'aube on s'est souvenus pourquoi on avait rompu. Mais quelle nuit."], en: ["I gave in. It was intense, nostalgic, and the washing machine didn't survive. By 6 a.m., {a.first} was gone. With my favorite underwear.", "We went for round two. The bed broke, the neighbor banged on the wall, and at dawn we remembered why we broke up. But what a night."] }, fx: { happy: 8, rel: 10, stress: 4, visual: 'hearts' }, mood: 'love' },
+          { w: 1, text: { fr: ["Une nuit, puis deux, puis on s'est remis ensemble. Personne n'y comprend rien, nous les premiers. Mes amis ont créé un groupe pour en parler.", "On a cédé. Au petit-déj, {a.first} m'a dit : « On recommence ? Pour de vrai ? » Et j'ai dit oui, la bouche pleine de croissant."], en: ["One night, then two, then we got back together. Nobody understands, least of all us. My friends made a group chat about it.", "We gave in. At breakfast, {a.first} said: 'Shall we try again? For real?' And I said yes, mouth full of croissant."] }, fx: { happy: 8, rel: 25, actorRole: 'partner' }, mood: 'love' },
+        ],
+      },
+      { label: { fr: 'Répondre par un mème', en: 'Reply with a meme' }, text: { fr: ["J'ai répondu avec une photo où {w:animal} me juge du regard. {a.first} a envoyé « ok 😢 ». Dignité préservée, libido frustrée.", "J'ai envoyé un mème de chat déçu. {a.first} a répondu « t'as pas changé ». Toi non plus, {a.first}. C'est bien le problème."], en: ["I replied with a photo of {w:animal} looking judgmental. {a.first} sent 'ok 😢'. Dignity preserved, libido frustrated.", "I sent a disappointed-cat meme. {a.first} replied 'you haven't changed'. Neither have you. That's the problem."] }, fx: { happy: 3, rel: -3, discipline: 2 } },
+      { label: { fr: 'Partager au groupe', en: 'Share it with the group' }, text: { fr: ["J'ai fait suivre la photo au groupe de potes pour avoir leur avis. Votes : 6 « vas-y », 3 « t'es fou{|lle} », 1 « c'est mon cousin ». Le monde est petit. Trop petit.", "Capture envoyée aux potes avec « JE FAIS QUOI ». La réponse unanime : « BLOQUE ». J'ai bloqué. À regret."], en: ["I forwarded the photo to the friend group for opinions. Votes: 6 'go for it', 3 'you're insane', 1 'that's my cousin'. Small world. Too small.", "Screenshot sent to the gang with 'WHAT DO I DO'. Unanimous answer: 'BLOCK'. I blocked. Reluctantly."] }, fx: { happy: 4, karma: -4, rel: -15 } },
+    ],
+  },
+  {
+    id: 'fr2_ex_lookalike',
+    icon: '🪞',
+    cat: 'friends',
+    rating: 1,
+    actor: 'ex',
+    scene: { place: 'park', mood: 'shock', prop: 'phone' },
+    when: { age: [18, 70] },
+    weight: 6,
+    cooldown: 8,
+    text: {
+      fr: [
+        "{a.first}, ton ex, s'affiche avec sa nouvelle moitié. Problème : c'est toi. Enfin, ton sosie. Même coupe, même nez, même façon de tenir {w:drink}. C'est flippant.",
+        "Tu croises ton ex {a.first} {w:at_place}, au bras de quelqu'un qui porte ton vieux manteau. Ton manteau. Celui que tu avais oublié chez {a:lui|elle}.",
+        "Sur les réseaux, {a.first} présente son nouveau couple. Tes amis t'envoient tous la même capture : « C'est toi ?? » Non. Mais ça pourrait.",
+        "{a.first}, ton ex, a appelé son nouveau chien… comme toi. Le chien te ressemble. Un peu. Surtout le regard, façon {w:animal} sous la pluie.",
+      ],
+      en: [
+        "{a.first}, your ex, is showing off a new partner. Problem: it's you. Well, your double. Same haircut, same nose, same way of holding {w:drink}. It's creepy.",
+        "You run into your ex {a.first} {w:at_place}, arm in arm with someone wearing your old coat. YOUR coat. The one you left at {a:his|her} place.",
+        "On socials, {a.first} introduces the new relationship. Your friends all send you the same screenshot: 'Is that you??' No. But it could be.",
+        "{a.first}, your ex, named the new dog… after you. The dog looks like you. A bit. Mostly the look, like {w:animal} in the rain.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Rencontrer mon sosie', en: 'Meet my double' },
+        out: [
+          { w: 1, text: { fr: ["J'ai abordé mon sosie. On a parlé pendant des heures. On a les mêmes goûts, les mêmes blessures, la même ex. On est devenus potes. {a.first} est terrifié{a:|e}.", "Rencontre surréaliste avec mon double. On a comparé nos grains de beauté. Puis on a ri de {a.first} ensemble pendant trois heures. Thérapie gratuite."], en: ["I approached my double. We talked for hours. Same tastes, same wounds, same ex. We're friends now. {a.first} is terrified.", "Surreal meeting with my doppelgänger. We compared moles. Then laughed at {a.first} together for three hours. Free therapy."] }, fx: { happy: 8, rel: -6 }, mood: 'happy' },
+          { w: 1, text: { fr: ["Mon sosie m'a regardé{|e} de haut en bas et a dit : « Ah. La version bêta. » Je n'ai jamais été aussi humilié{|e} par mon propre visage.", "J'ai voulu parler à mon double. Mon double a cru que j'étais un harceleur et a appelé la sécurité. Le vigile nous a regardés tous les deux, très perplexe."], en: ["My double looked me up and down and said: 'Oh. The beta version.' I've never been so humiliated by my own face.", "I tried to talk to my double. They thought I was a stalker and called security. The guard looked at both of us, very confused."] }, fx: { happy: -6, looks: -1 } },
+        ],
+      },
+      { label: { fr: "Changer de look", en: 'Change my look' }, text: { fr: ["J'ai tout changé : cheveux, lunettes, style. Personne ne doit pouvoir me confondre avec la nouvelle version. Résultat : je ressemble maintenant à mon oncle.", "Teinture, nouvelle garde-robe, nouvelle démarche. Deux semaines plus tard, mon sosie a copié mon nouveau look. C'est une guerre."], en: ["I changed everything: hair, glasses, style. Nobody can mistake me for the new version. Result: I now look like my uncle.", "Hair dye, new wardrobe, new walk. Two weeks later, my double copied my new look. This is war."] }, fx: { looks: 2, money: -300, happy: 2 } },
+      { label: { fr: 'Le prendre comme un compliment', en: 'Take it as a compliment' }, text: { fr: ["J'ai décidé que c'était flatteur : {a.first} ne s'est jamais remis{a:|e} de moi. J'ai posté un selfie avec le hashtag #original. Mes potes ont liké en masse.", "Si {a.first} cherche à me remplacer par une copie, c'est que l'original était top. Je marche plus droit depuis."], en: ["I decided it was flattering: {a.first} never got over me. I posted a selfie with #original. My friends liked it en masse.", "If {a.first} is trying to replace me with a copy, the original must've been great. I've been walking taller since."] }, fx: { happy: 5, looks: 1 }, mood: 'proud' },
+    ],
+  },
+  {
+    id: 'fr2_ex_revenge_plot',
+    icon: '😈',
+    cat: 'friends',
+    rating: 2,
+    actor: 'ex',
+    scene: { place: 'apartment', mood: 'angry', prop: 'shrimp' },
+    when: { age: [18, 70] },
+    weight: 5,
+    cooldown: 10,
+    text: {
+      fr: [
+        "Tu viens d'apprendre que {a.first}, ton ex, a raconté à tout le monde que tu faisais l'amour comme {w:animal}. L'heure de la vengeance a sonné.",
+        "{a.first} t'a trompé{|e}, quitté{|e}, puis a gardé le chat. Ce soir, avec {w:drink} dans le sang et une boîte de crevettes dans le frigo, tu as un plan.",
+        "Ton ex {a.first} a publié une vidéo où {a:il|elle} imite ta façon de pleurer. Huit mille vues. {w:swear} Il est temps de lui rendre la monnaie.",
+        "Tu as encore les clés de chez {a.first}. Tu le sais. {a:Il|Elle} ne le sait pas. Et {a:il|elle} vient de te lancer « {w:insult} » devant tes amis.",
+      ],
+      en: [
+        "You just found out {a.first}, your ex, told everyone you make love like {w:animal}. Revenge o'clock has struck.",
+        "{a.first} cheated on you, dumped you, then kept the cat. Tonight, with {w:drink} in your system and a box of shrimp in the fridge, you have a plan.",
+        "Your ex {a.first} posted a video imitating the way you cry. Eight thousand views. {w:swear} Time for payback.",
+        "You still have the keys to {a.first}'s place. You know it. {a:He|She} doesn't. And {a:he|she} just called you '{w:insult}' in front of your friends.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Crevettes dans les tringles', en: 'Shrimp in the curtain rods' }, text: { fr: ["J'ai glissé des crevettes crues dans toutes les tringles à rideaux de {a.first}. Puis j'ai attendu, comme un crocodile au bord d'un marigot.", "Opération Crevette lancée : douze crustacés cachés dans les tringles, les pieds de chaise et le pommeau de douche. Le compte à rebours olfactif a commencé."], en: ["I slipped raw shrimp into every curtain rod at {a.first}'s place. Then waited, like a crocodile by a swamp.", "Operation Shrimp launched: twelve crustaceans hidden in curtain rods, chair legs and the showerhead. The olfactory countdown has begun."] }, fx: { karma: -6, happy: 4, chain: 'fr2_ex_revenge_result' } },
+      { label: { fr: 'Faux profil de rencontre', en: 'Fake dating profile' }, text: { fr: ["J'ai créé un profil de {a.first} sur {w:app}, avec ses pires photos et la bio « cherche quelqu'un pour me faire honte en public ». Les messages ont commencé à pleuvoir.", "Faux profil en ligne au nom de {a.first}, avec son vrai numéro. Passions déclarées : {w:hobby} et « les pieds ». Puis j'ai éteint mon téléphone."], en: ["I made a {w:app} profile for {a.first}, with the worst photos and the bio 'looking for someone to humiliate me in public'. Messages started pouring in.", "Fake online profile in {a.first}'s name, with the real phone number. Declared passions: {w:hobby} and 'feet'. Then I turned off my phone."] }, fx: { karma: -6, happy: 4, chain: 'fr2_ex_revenge_result' } },
+      { label: { fr: 'Paillettes par la poste', en: 'Glitter bomb by mail' }, text: { fr: ["J'ai envoyé à {a.first} une enveloppe piégée remplie de 2 kilos de paillettes. Les paillettes, c'est éternel. Comme ma rancune.", "Colis anonyme : une bombe à paillettes et un mot, « Brille autant que tu m'as éteint{|e} ». Paillettes biodégradables, je ne suis pas un monstre."], en: ["I mailed {a.first} a booby-trapped envelope with 4 pounds of glitter. Glitter is forever. Like my grudge.", "Anonymous parcel: a glitter bomb and a note, 'Shine as bright as you dimmed me'. Biodegradable glitter; I'm not a monster."] }, fx: { karma: -4, happy: 4, money: -30, chain: 'fr2_ex_revenge_result' } },
+      {
+        label: { fr: 'Lâcher prise', en: 'Let it go' },
+        out: [
+          { w: 2, text: { fr: ["J'ai respiré. J'ai jeté les crevettes à la poubelle. Puis je les ai ressorties. Puis rejetées. La maturité, c'est un muscle.", "Pas de vengeance. Je suis allé{|e} courir, j'ai pleuré, j'ai mangé {w:food}. {a.first} ne mérite pas mon énergie. Mais je garde les clés."], en: ["I breathed. Threw the shrimp in the trash. Then took them back out. Then threw them away again. Maturity is a muscle.", "No revenge. I went for a run, cried, ate {w:food}. {a.first} doesn't deserve my energy. But I'm keeping the keys."] }, fx: { karma: 5, stress: -4, discipline: 3 } },
+          { w: 1, text: { fr: ["J'ai lâché prise. Le karma s'en est chargé à ma place : {a.first} a glissé sur {w:food} devant toute sa boîte, en direct sur l'écran géant. Je n'ai rien fait. Je savoure.", "Je n'ai rien tenté. Une semaine plus tard, {a.first} s'est fait larguer par message vocal, en public. L'univers est mon complice."], en: ["I let it go. Karma handled it for me: {a.first} slipped on {w:food} in front of the whole office, live on the big screen. I did nothing. I'm savoring it.", "I tried nothing. A week later, {a.first} got dumped by voice memo, in public. The universe is my accomplice."] }, fx: { karma: 5, happy: 8 }, mood: 'proud' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'fr2_ex_revenge_result',
+    icon: '🦐',
+    cat: 'friends',
+    rating: 2,
+    chainOnly: true,
+    actor: 'ex',
+    scene: { place: 'apartment', mood: 'shock', prop: 'phone', fx: 'poop' },
+    text: {
+      fr: [
+        "Trois semaines plus tard. {a.first} a fait venir deux dératiseurs, un exorciste et un plombier. Personne ne trouve l'origine du problème. {a:Il|Elle} t'appelle, soupçonneux{a:|se}.",
+        "La vengeance a frappé. {a.first} poste en story : « Quelqu'un m'en veut. » Commentaires : 47. Ton téléphone vibre : c'est {a:lui|elle}.",
+        "Ton plan a marché au-delà de tes espérances. {a.first} a dû déménager, changer de numéro et de coupe de cheveux. Mais une caméra de surveillance t'a peut-être filmé{|e}.",
+        "{w:exclaim} {a.first} débarque chez toi, rouge de colère, des paillettes jusque dans les sourcils et une odeur de poisson sur les vêtements. « C'était toi. Hein ? »",
+      ],
+      en: [
+        "Three weeks later. {a.first} has called in two exterminators, an exorcist and a plumber. Nobody can find the source of the problem. {a:He|She} calls you, suspicious.",
+        "Revenge struck. {a.first} posts a story: 'Someone has it out for me.' 47 comments. Your phone buzzes: it's {a:him|her}.",
+        "Your plan worked beyond your wildest dreams. {a.first} had to move, change numbers and haircuts. But a security camera may have filmed you.",
+        "{w:exclaim} {a.first} storms into your place, red with rage, glitter up to the eyebrows and smelling of fish. 'It was you. Wasn't it?'",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Nier en bloc', en: 'Deny everything' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai nié avec un aplomb de politicien. {a.first} est reparti{a:|e}, dans le doute. Je savoure ce doute tous les soirs, comme un bon vin.", "« Moi ? Jamais. » {a.first} a fini par accuser son voisin du dessus. Ils sont en procès. Je n'interviendrai pas."], en: ["I denied it with a politician's poise. {a.first} left, doubting. I savor that doubt every night, like a fine wine.", "'Me? Never.' {a.first} ended up blaming the upstairs neighbor. They're suing each other. I won't intervene."] }, fx: { happy: 8, karma: -3 }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai nié, mais j'avais encore une crevette dans la poche de ma veste. {a.first} l'a vue. Plainte déposée pour « dégradation olfactive ». Ça existe, apparemment.", "J'ai nié. {a.first} a sorti la vidéo de surveillance : moi, en cagoule, avec un sac marqué « CREVETTES ». {w:swear}"], en: ["I denied it, but I still had a shrimp in my jacket pocket. {a.first} saw it. Complaint filed for 'olfactory damage'. That's a thing, apparently.", "I denied it. {a.first} pulled out the security footage: me, in a balaclava, carrying a bag labeled 'SHRIMP'. {w:swear}"] }, fx: { arrest: 'vandal', rel: -30, actorRole: 'enemy' }, mood: 'shock' },
+        ],
+      },
+      { label: { fr: 'Avouer fièrement', en: 'Confess proudly' }, text: { fr: ["« Oui, c'était moi. » J'ai vu une lueur d'admiration dans ses yeux. Puis une claque. Puis on a éclaté de rire. On est presque réconciliés, de façon très malsaine.", "J'ai tout avoué, avec les détails techniques. {a.first} m'a traité{|e} de psychopathe, puis m'a demandé comment j'avais fait pour le pommeau de douche."], en: ["'Yes, it was me.' I saw a glimmer of admiration in {a:his|her} eyes. Then a slap. Then we burst out laughing. Almost reconciled, in a very unhealthy way.", "I confessed everything, with technical details. {a.first} called me a psychopath, then asked how I'd done the showerhead."] }, fx: { rel: 10, health: -2, happy: 5 } },
+      { label: { fr: 'Contre-attaquer encore', en: 'Strike again' }, text: { fr: ["J'ai doublé la mise : paillettes dans la ventilation de sa voiture. {a.first} a déclaré la guerre officiellement. On est ennemis jurés. Je me sens vivant{|e}.", "Vengeance numéro deux : 40 abonnements à son nom à des magazines spécialisés (thème : {w:hobby}). {a.first} m'a juré une haine éternelle. Le jeu continue."], en: ["I doubled down: glitter in the car vents. {a.first} officially declared war. We're sworn enemies. I feel alive.", "Revenge number two: 40 magazine subscriptions about {w:hobby} in {a:his|her} name. {a.first} swore eternal hatred. The game goes on."] }, fx: { rel: -25, actorRole: 'enemy', happy: 5, karma: -5 } },
+    ],
+  },
+  {
+    id: 'fr2_ex_second_chance',
+    icon: '💞',
+    cat: 'friends',
+    rating: 0,
+    actor: 'ex',
+    scene: { place: 'park', mood: 'love', prop: 'flowers' },
+    when: { age: [18, 85], noHas: 'lover' },
+    weight: 5,
+    cooldown: 6,
+    text: {
+      fr: [
+        "{a.first}, ton ex, t'attend devant chez toi avec {w:gift} et des yeux de chien battu. « J'ai changé. J'ai fait une thérapie. Et un stage de poterie. Laisse-moi une chance. »",
+        "Des années après votre rupture, {a.first} t'écrit une lettre manuscrite. Pas de fautes, pas d'émojis. Juste : « Je pense encore à nous. Un café ? »",
+        "Tu croises ton ex {a.first} {w:at_place}. Vous rigolez comme avant. À la fin, {a:il|elle} te demande, gêné{a:|e} : « Et si on réessayait ? »",
+        "{a.first} t'a fait livrer {w:food} avec un mot : « Ton plat préféré. Je n'ai jamais oublié. Ni toi. » Ton plat préféré, ce n'est pas ça. Mais l'intention est là.",
+      ],
+      en: [
+        "{a.first}, your ex, waits outside your place with {w:gift} and puppy eyes. 'I've changed. I did therapy. And a pottery class. Give me a chance.'",
+        "Years after your breakup, {a.first} writes you a handwritten letter. No typos, no emojis. Just: 'I still think about us. Coffee?'",
+        "You bump into your ex {a.first} {w:at_place}. You laugh like old times. At the end, {a:he|she} asks, embarrassed: 'What if we tried again?'",
+        "{a.first} had {w:food} delivered to you with a note: 'Your favorite dish. I never forgot. Or you.' That's not your favorite dish. But the thought counts.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Retenter le coup', en: 'Give it another shot' },
+        out: [
+          { w: 2, text: { fr: ["On a réessayé. Cette fois, c'est différent : on se parle, on s'écoute, on se dispute moins fort. La poterie, ça aide, apparemment.", "Deuxième chance accordée. Les premières semaines sont magiques. On a même ressorti nos vieux surnoms ridicules."], en: ["We tried again. This time it's different: we talk, we listen, we fight more quietly. Pottery helps, apparently.", "Second chance granted. The first weeks are magical. We even brought back our ridiculous old pet names."] }, fx: { actorRole: 'partner', rel: 25, happy: 10, visual: 'hearts' }, mood: 'love' },
+          { w: 1, text: { fr: ["On a réessayé. Au bout de dix jours, on s'est disputés pour exactement la même raison qu'avant. Au mot près. On est des disques rayés.", "Le café était sympa, le dîner aussi. Puis {a.first} a mâché la bouche ouverte et tout m'est revenu d'un coup. Non. Définitivement non."], en: ["We tried again. After ten days, we fought over exactly the same thing as before. Word for word. We're broken records.", "The coffee was nice, the dinner too. Then {a.first} chewed with mouth open and it all came back at once. No. Definitely no."] }, fx: { rel: -10, happy: -4 } },
+        ],
+      },
+      { label: { fr: 'Rester amis', en: 'Stay friends' }, text: { fr: ["Je lui ai proposé d'être amis. {a.first} a souri tristement, puis accepté. On se voit pour des cafés. Parfois je me demande. Puis je bois mon café.", "« Amis ? » {a.first} a dit oui. On a trinqué. C'est bizarre, mais sain. Ma psy est fière de moi."], en: ["I suggested we be friends. {a.first} smiled sadly, then agreed. We meet for coffee. Sometimes I wonder. Then I drink my coffee.", "'Friends?' {a.first} said yes. We clinked glasses. It's weird, but healthy. My therapist is proud of me."] }, fx: { actorRole: 'friend', rel: 10, happy: 3 } },
+      { label: { fr: 'Claquer la porte', en: 'Slam the door' }, text: { fr: ["Je lui ai rendu {w:gift} et fermé la porte. Doucement, mais fermement. Je me suis senti{|e} adulte pendant au moins cinq minutes.", "« Non. » Un mot, pas de discussion. {a.first} est reparti{a:|e}. J'ai mangé ce qu'{a:il|elle} avait apporté. On ne gâche pas la nourriture."], en: ["I handed back {w:gift} and closed the door. Gently, but firmly. I felt like an adult for at least five minutes.", "'No.' One word, no discussion. {a.first} left. I ate what {a:he|she} brought. You don't waste food."] }, fx: { rel: -8, discipline: 2, happy: 2 } },
+    ],
+  },
+  {
+    id: 'fr2_ex_custody',
+    icon: '🪴',
+    cat: 'friends',
+    rating: 0,
+    actor: 'ex',
+    scene: { place: 'apartment', mood: 'angry', prop: 'plant' },
+    when: { age: [18, 70] },
+    weight: 6,
+    cooldown: 8,
+    text: {
+      fr: [
+        "{a.first}, ton ex, réclame la garde partagée du ficus. Une semaine sur deux. Avec un planning et un cahier de liaison. Le ficus va mal.",
+        "Négociations post-rupture avec {a.first}. Sujets sensibles : le compte Netflix, {w:object} et la garde du poisson rouge, Gérard. {a:Il|Elle} a pris un avocat.",
+        "{a.first} veut récupérer {w:animal} « qu'on avait adopté ensemble ». Tu ne te souviens pas de cette adoption. {a:Il|Elle} a des photos.",
+        "Ton ex {a.first} utilise encore ton compte {w:app} et regarde des séries sur ton profil. Ton algorithme est ruiné. Il te propose des documentaires sur {w:hobby}.",
+      ],
+      en: [
+        "{a.first}, your ex, demands joint custody of the ficus. Every other week. With a schedule and a log book. The ficus isn't doing well.",
+        "Post-breakup negotiations with {a.first}. Sensitive topics: the Netflix account, {w:object} and custody of the goldfish, Gerald. {a:He|She} lawyered up.",
+        "{a.first} wants {w:animal} back, 'the one we adopted together'. You don't remember that adoption. {a:He|She} has photos.",
+        "Your ex {a.first} still uses your {w:app} account and watches shows on your profile. Your algorithm is ruined. It recommends documentaries about {w:hobby}.",
+      ],
+    },
+    choices: [
+      { label: { fr: 'Partager équitablement', en: 'Split it fairly' }, text: { fr: ["On a fait un planning de garde partagée. Le ficus voyage en bus une semaine sur deux. Il n'a jamais été aussi vert. Il a besoin de nous deux.", "Partage équitable : je garde le compte, {a.first} garde le poisson. On s'envoie des nouvelles le dimanche. C'est presque mignon."], en: ["We made a joint custody schedule. The ficus rides the bus every other week. It's never been greener. It needs us both.", "Fair split: I keep the account, {a.first} keeps the fish. We send updates on Sundays. It's almost cute."] }, fx: { rel: 10, happy: 2 } },
+      {
+        label: { fr: 'Me battre pour tout', en: 'Fight for everything' },
+        out: [
+          { w: 1, odds: { smarts: 1 }, text: { fr: ["J'ai monté un dossier béton : photos, témoignages, factures d'engrais. {a.first} a abandonné. J'ai tout gardé. Victoire amère, mais victoire.", "Médiation de trois heures. J'ai gagné le ficus, le poisson ET le compte. {a.first} est reparti{a:|e} avec {w:object}. Justice."], en: ["I built an ironclad case: photos, testimonies, fertilizer receipts. {a.first} gave up. I kept everything. Bitter victory, but victory.", "Three-hour mediation. I won the ficus, the fish AND the account. {a.first} left with {w:object}. Justice."] }, fx: { happy: 4, rel: -12 }, mood: 'proud' },
+          { w: 1, text: { fr: ["La bataille a duré six mois. Pendant ce temps, le ficus est mort de stress. On a fait un enterrement commun. C'était le plus beau moment de notre relation.", "J'ai perdu sur tous les fronts. {a.first} a même obtenu mon mot de passe. Je regarde maintenant mes séries sur le compte de ma mère."], en: ["The battle lasted six months. Meanwhile, the ficus died of stress. We held a joint funeral. It was the best moment of our relationship.", "I lost on every front. {a.first} even got my password. Now I watch shows on my mom's account."] }, fx: { happy: -6, rel: -6, stress: 6 } },
+        ],
+      },
+      { label: { fr: 'Changer le mot de passe', en: 'Change the password' }, text: { fr: ["J'ai changé le mot de passe en « TuMeManquesPas ». Petite victoire mesquine. {a.first} m'a appelé{|e} trois fois. Je n'ai pas décroché.", "Nouveau mot de passe, nouveau profil, nouvelle vie. Mon algorithme se remet doucement. Il me propose à nouveau des trucs de mon âge."], en: ["I changed the password to 'IDontMissYou'. Small petty win. {a.first} called three times. I didn't pick up.", "New password, new profile, new life. My algorithm is slowly healing. It's recommending age-appropriate stuff again."] }, fx: { happy: 4, rel: -6 } },
+    ],
+  },
+  // ───────────────────────────── enemies ─────────────────────────────
+  {
+    id: 'fr2_enemy_gym',
+    icon: '🏋️',
+    cat: 'enemies',
+    rating: 2,
+    actor: 'enemy',
+    scene: { place: 'stadium', mood: 'angry', prop: 'dumbbell' },
+    when: { age: [18, 70] },
+    weight: 7,
+    cooldown: 6,
+    text: {
+      fr: [
+        "{a.first}, ton ennemi{a:|e} juré{a:|e}, vient de s'inscrire à TA salle de sport. {a:Il|Elle} prend la machine à côté de la tienne et soulève exactement deux kilos de plus. Chaque fois.",
+        "À la salle, {a.first} te fixe dans le miroir pendant tes squats. {a:Il|Elle} murmure {w:insult}. Il y a de la sueur, de la haine et {w:smell}.",
+        "Cours de spinning. Ton ennemi{a:|e} {a.first} est sur le vélo d'en face. Le prof hurle « PLUS VITE ». Pour vous deux, c'est une question d'honneur.",
+        "{a.first} te défie au développé couché devant toute la salle. L'enjeu : le dernier casier près de la porte. Et ta fierté. Surtout ta fierté.",
+      ],
+      en: [
+        "{a.first}, your sworn enemy, just joined YOUR gym. {a:He|She} takes the machine next to yours and lifts exactly five pounds more. Every time.",
+        "At the gym, {a.first} stares at you in the mirror during your squats. {a:He|She} mutters '{w:insult}'. There's sweat, hatred and {w:smell}.",
+        "Spin class. Your nemesis {a.first} is on the bike across from you. The instructor yells 'FASTER'. For you two, it's a matter of honor.",
+        "{a.first} challenges you to a bench press in front of the whole gym. The stakes: the last locker by the door. And your pride. Mostly your pride.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Accepter le défi', en: 'Accept the challenge' },
+        out: [
+          { w: 1, odds: { athletic: 1 }, text: { fr: ["J'ai soulevé plus lourd que {a.first}, sous les applaudissements. {a:Il|Elle} a forcé pour me battre, et son short s'est déchiré du mauvais côté. La salle entière a vu. Victoire écrasante.", "J'ai gagné. {a.first} a forcé si fort qu'{a:il|elle} a lâché un pet monumental en pleine série. Le coach a ouvert les fenêtres. Légende instantanée."], en: ["I out-lifted {a.first} to applause. {a:He|She} strained to beat me and {a:his|her} shorts ripped on the wrong side. The whole gym saw. Crushing victory.", "I won. {a.first} pushed so hard {a:he|she} let out a monumental fart mid-set. The coach opened the windows. Instant legend."] }, fx: { athletic: 4, happy: 10, rel: -5 }, mood: 'proud' },
+          { w: 1, text: { fr: ["La barre m'est retombée sur la poitrine. J'ai couiné comme un jouet pour chien. {a.first} m'a « aidé{|e} » en la soulevant avec un doigt, en souriant.", "J'ai forcé trop fort. Un vaisseau a pété dans mon œil, ma vessie a lâché, et {a.first} a tout filmé. La vidéo s'appelle « Le jour où j'ai gagné »."], en: ["The bar fell back on my chest. I squeaked like a dog toy. {a.first} 'helped' by lifting it with one finger, smiling.", "I pushed too hard. A blood vessel popped in my eye, my bladder gave out, and {a.first} filmed it all. The video is called 'The Day I Won'."] }, fx: { health: -6, happy: -10, rel: -5 }, mood: 'shock' },
+        ],
+      },
+      { label: { fr: 'Saboter sa gourde', en: 'Spike their water bottle' }, rating: 2, text: { fr: ["J'ai versé un laxatif dans la gourde de {a.first}. Au bout de vingt minutes de rameur, {a:il|elle} a sprinté vers les vestiaires. Trop tard. Le rameur est condamné.", "Une pincée de laxatif dans sa boisson protéinée. Les squats suivants ont été… explosifs. La salle a fermé deux jours pour désinfection."], en: ["I put a laxative in {a.first}'s water bottle. Twenty minutes into the rowing machine, {a:he|she} sprinted for the locker room. Too late. The rowing machine is condemned.", "A pinch of laxative in the protein shake. The next squats were… explosive. The gym closed for two days of disinfection."] }, fx: { karma: -10, happy: 8, visual: 'poop' } },
+      { label: { fr: 'Changer de salle', en: 'Switch gyms' }, text: { fr: ["J'ai changé de salle. Le lendemain, {a.first} s'y est inscrit{a:|e} aussi. C'est plus une rivalité, c'est une filature.", "Nouvelle salle, nouvelle vie. Trois semaines de paix. Puis j'ai entendu sa voix au vestiaire. {a:Il|Elle} m'a suivi{|e}. Ou c'est le destin. Ou les deux."], en: ["I switched gyms. Next day, {a.first} signed up there too. It's not a rivalry anymore, it's surveillance.", "New gym, new life. Three weeks of peace. Then I heard that voice in the locker room. {a:He|She} followed me. Or it's fate. Or both."] }, fx: { stress: 4, money: -100 } },
+    ],
+  },
+  {
+    id: 'fr2_enemy_next_door',
+    icon: '🏠',
+    cat: 'enemies',
+    rating: 1,
+    actor: 'enemy',
+    scene: { place: 'home', mood: 'angry', prop: 'fence' },
+    when: { age: [20, 85], movedOut: true },
+    weight: 5,
+    cooldown: 10,
+    text: {
+      fr: [
+        "Le camion de déménagement s'arrête devant la maison d'à côté. Ton nouveau voisin descend : {a.first}. Ton ennemi{a:|e} juré{a:|e}. {a:Il|Elle} te fait un petit coucou. {w:swear}",
+        "{a.first} a acheté l'appartement en face du tien. {a:Il|Elle} a installé un télescope pointé sur ta fenêtre. « C'est pour les étoiles », dit-{a:il|elle}. Il fait jour.",
+        "Ton pire ennemi{a:|e}, {a.first}, emménage sur ton palier. Premier geste : un paillasson « BIENVENUE » orienté vers chez toi. Ironiquement.",
+        "{a.first} est désormais ton voisin{a:|e}. {a:Il|Elle} tond sa pelouse à 7 h du matin, en écoutant {w:song}, en te regardant droit dans les yeux.",
+      ],
+      en: [
+        "A moving truck stops in front of the house next door. Your new neighbor steps out: {a.first}. Your sworn enemy. {a:He|She} gives you a little wave. {w:swear}",
+        "{a.first} bought the apartment across from yours. {a:He|She} set up a telescope pointed at your window. 'It's for the stars,' {a:he|she} says. It's daytime.",
+        "Your worst enemy, {a.first}, moves onto your landing. First move: a 'WELCOME' doormat facing your door. Ironically.",
+        "{a.first} is now your neighbor. {a:He|She} mows the lawn at 7 a.m., blasting {w:song}, staring you dead in the eye.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Guerre de voisinage', en: 'Neighborhood war' },
+        out: [
+          { w: 1, text: { fr: ["J'ai installé un nain de jardin qui fait un doigt d'honneur, orienté vers sa fenêtre. {a:Il|Elle} a répondu avec un épouvantail à mon effigie. Escalade en cours.", "J'ai planté une haie de cyprès de quatre mètres. {a.first} a acheté une échelle et des jumelles. La guerre froide de la rue des Lilas a commencé."], en: ["I installed a garden gnome giving the finger, aimed at {a:his|her} window. {a:He|She} responded with a scarecrow in my likeness. Escalation ongoing.", "I planted a 13-foot hedge. {a.first} bought a ladder and binoculars. The Cold War of Maple Street has begun."] }, fx: { happy: 4, stress: 6, rel: -8 } },
+          { w: 1, text: { fr: ["J'ai voulu jouer au plus malin, mais {a.first} a fait venir le syndic, la mairie et un huissier. Ma boîte aux lettres était « non réglementaire ». Amende.", "Ma première offensive a raté : j'ai jeté des œufs sur sa voiture, c'était celle du maire. Le maire habite de l'autre côté."], en: ["I tried to be clever, but {a.first} called the HOA, city hall and a bailiff. My mailbox was 'non-compliant'. Fine.", "My first offensive failed: I egged {a:his|her} car; it was the mayor's. The mayor lives on the other side."] }, fx: { money: -250, happy: -5, rel: -5 }, mood: 'angry' },
+        ],
+      },
+      { label: { fr: 'Apporter un gâteau', en: 'Bring a cake' }, text: { fr: ["J'ai apporté un gâteau de bienvenue. {a.first} l'a regardé longtemps, cherchant le piège. Il n'y en avait pas. {a:Il|Elle} est désemparé{a:|e}. C'est ma meilleure arme.", "Gâteau au chocolat, sourire, poignée de main. {a.first} a fait analyser le gâteau. Négatif. On a fini par le manger ensemble. Trêve fragile."], en: ["I brought a welcome cake. {a.first} stared at it for a long time, looking for the trap. There wasn't one. {a:He|She} is baffled. It's my best weapon.", "Chocolate cake, smile, handshake. {a.first} had the cake tested. Negative. We ended up eating it together. Fragile truce."] }, fx: { rel: 15, karma: 4 } },
+      { label: { fr: 'Déménager', en: 'Move away' }, rating: 1, text: { fr: ["J'ai mis ma maison en vente. {a.first} a posé un panneau « BON DÉBARRAS » dans son jardin le jour de mon départ. Je l'ai pris en photo pour mes mémoires.", "J'ai fui. Nouveau quartier, nouveaux voisins. Le premier soir, j'ai reçu une carte : « Bienvenue chez toi. – {a.first} ». Comment ?"], en: ["I put my house up for sale. {a.first} put up a 'GOOD RIDDANCE' sign in the yard on moving day. I photographed it for my memoirs.", "I fled. New neighborhood, new neighbors. First night, I got a card: 'Welcome home. – {a.first}'. How?"] }, fx: { stress: -4, money: -1000, happy: -2 } },
+    ],
+  },
+  {
+    id: 'fr2_enemy_hospital',
+    icon: '🏥',
+    cat: 'enemies',
+    rating: 2,
+    actor: 'enemy',
+    scene: { place: 'hospital', mood: 'angry', prop: 'bed', fx: 'gore' },
+    when: { age: [18, 95] },
+    weight: 4,
+    cooldown: 10,
+    text: {
+      fr: [
+        "Tu te réveilles à l'hôpital après une opération. Dans le lit d'à côté, plâtré{a:|e} des pieds à la tête : {a.first}, ton ennemi{a:|e}. Le rideau de séparation est en panne.",
+        "Chambre double aux urgences. Ton voisin de lit, c'est {a.first}. {a:Il|Elle} s'est cassé {w:bodypart} en glissant sur {w:food}. {a:Il|Elle} ronfle comme une tronçonneuse.",
+        "Aux urgences, l'infirmière te place à côté de {a.first}, ton pire ennemi{a:|e}, qui attend qu'on lui retire {w:object} d'un endroit où le soleil ne brille pas.",
+        "Tu rends visite à quelqu'un à l'hôpital. Erreur de chambre : c'est {a.first}, perfusé{a:|e}, sans défense, avec une télécommande qui ne marche pas. Le pouvoir est entre tes mains.",
+      ],
+      en: [
+        "You wake up in the hospital after surgery. In the next bed, in a full-body cast: {a.first}, your nemesis. The privacy curtain is broken.",
+        "Shared room in the ER. Your bed neighbor is {a.first}. {a:He|She} broke {a:his|her} {w:bodypart} slipping on {w:food}. {a:He|She} snores like a chainsaw.",
+        "In the ER, the nurse puts you next to {a.first}, your worst enemy, who's waiting to have {w:object} removed from a place where the sun doesn't shine.",
+        "You're visiting someone at the hospital. Wrong room: it's {a.first}, on an IV drip, defenseless, with a broken remote. The power is in your hands.",
+      ],
+    },
+    choices: [
+      { label: { fr: '{a:Le|La} torturer gentiment', en: 'Gently torment them' }, text: { fr: ["J'ai mangé des chips très fort, chanté {w:song} toute la nuit et raconté des blagues pour faire rire ses points de suture. Ils ont lâché. Le sang a giclé sur l'interne.", "J'ai changé sa télé sur la chaîne météo, caché la sonnette d'urgence et mangé son dessert. {a.first} me maudit en silence, avec la mâchoire bloquée."], en: ["I ate chips very loudly, sang {w:song} all night and told jokes to make {a:his|her} stitches laugh. They burst. Blood sprayed on the intern.", "I switched the TV to the weather channel, hid the call button and ate {a:his|her} dessert. {a.first} curses me silently, jaw wired shut."] }, fx: { happy: 8, karma: -8, rel: -10, visual: 'gore' } },
+      {
+        label: { fr: 'Faire la paix', en: 'Make peace' },
+        out: [
+          { w: 1, text: { fr: ["Deux nuits côte à côte, à partager nos peurs et la gelée de l'hôpital. On est sortis amis. Bizarrement, la morphine aide beaucoup.", "On a parlé jusqu'à l'aube. On s'est rendu compte qu'on se détestait pour une histoire de place de parking en 2009. On a ri. Puis on a eu mal, parce qu'on était recousus."], en: ["Two nights side by side, sharing our fears and hospital Jell-O. We left as friends. Weirdly, morphine helps a lot.", "We talked until dawn. Turned out we'd hated each other over a parking spot back in 2009. We laughed. Then it hurt, because of the stitches."] }, fx: { actorRole: 'friend', rel: 40, happy: 6, karma: 6 }, mood: 'happy' },
+          { w: 1, text: { fr: ["J'ai tendu la main. {a.first} m'a vomi dessus. Pas par haine, juste l'anesthésie. Mais le symbole est fort.", "J'ai proposé la paix. {a.first} a fait semblant de dormir. Puis a « accidentellement » débranché ma perfusion avec son pied."], en: ["I offered my hand. {a.first} puked on it. Not out of hatred, just the anesthesia. But the symbolism is strong.", "I offered peace. {a.first} pretended to sleep. Then 'accidentally' unplugged my IV with a foot."] }, fx: { health: -4, rel: 2 } },
+        ],
+      },
+      { label: { fr: 'Demander à changer de chambre', en: 'Ask for another room' }, text: { fr: ["J'ai exigé un changement de chambre. On m'a mis{|e} dans le couloir, sur un brancard, à côté d'un type qui chantait l'hymne national en boucle. J'ai presque regretté {a.first}.", "Changement de chambre accordé. Ma nouvelle voisine de lit m'a raconté ses 14 opérations en détail, avec photos. {a.first}, au moins, ne me parlait pas."], en: ["I demanded another room. They put me in the hallway on a gurney next to a guy singing the national anthem on loop. I almost missed {a.first}.", "Room change granted. My new roommate told me about her 14 surgeries in detail, with photos. At least {a.first} didn't talk to me."] }, fx: { stress: 4, health: -2 } },
+    ],
+  },
+  {
+    id: 'fr2_enemy_dates_family',
+    icon: '💔',
+    cat: 'enemies',
+    rating: 1,
+    actor: 'enemy',
+    scene: { place: 'home', mood: 'shock', prop: 'dinner' },
+    when: { age: [16, 80], has: 'sibling' },
+    weight: 4,
+    cooldown: 12,
+    text: {
+      fr: [
+        "Repas de famille. Ton frère ou ta sœur annonce : « Je vous présente l'amour de ma vie. » C'est {a.first}. Ton ennemi{a:|e} juré{a:|e}. {a:Il|Elle} te sourit en tenant la main de ta fratrie.",
+        "{a.first}, ton ennemi{a:|e} de toujours, sort maintenant avec ton frère ou ta sœur. Ce soir, {a:il|elle} est à table chez tes parents et ta mère lui ressert du gratin.",
+        "Ta mère est ravie : la nouvelle moitié de ta fratrie est « adorable, poli{a:|e}, et apporte toujours {w:gift} ». C'est {a.first}. {a:Celui|Celle} qui a pourri ton adolescence.",
+        "Photo de famille pour Noël. Au milieu, avec un pull assorti au tien : {a.first}, ton pire ennemi{a:|e}, désormais en couple avec ton frère ou ta sœur. {w:exclaim}",
+      ],
+      en: [
+        "Family dinner. Your sibling announces: 'Meet the love of my life.' It's {a.first}. Your sworn enemy. {a:He|She} smiles at you, holding your sibling's hand.",
+        "{a.first}, your lifelong nemesis, is now dating your sibling. Tonight, {a:he|she} is at your parents' table and your mom is serving {a:him|her} seconds.",
+        "Your mom is thrilled: your sibling's new partner is 'adorable, polite, and always brings {w:gift}'. It's {a.first}. The one who ruined your teenage years.",
+        "Christmas family photo. In the middle, in a sweater matching yours: {a.first}, your worst enemy, now dating your sibling. {w:exclaim}",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Tout révéler à table', en: 'Expose them at dinner' },
+        out: [
+          { w: 1, text: { fr: ["J'ai sorti la liste de ses crimes, de la maternelle à aujourd'hui. Ma fratrie a pleuré, rompu, puis m'a remercié{|e}. {a.first} est parti{a:|e} avec le gratin.", "J'ai tout déballé avec preuves à l'appui. Ma mère a confisqué le dessert de {a.first}. Justice familiale rendue."], en: ["I pulled out the list of {a:his|her} crimes, from preschool to now. My sibling cried, broke up, then thanked me. {a.first} left with the casserole.", "I spilled everything with evidence. My mom confiscated {a.first}'s dessert. Family justice served."] }, fx: { happy: 8, rel: -10 }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai tout révélé. Personne ne m'a cru{|e}. Ma mère a dit que j'étais « jaloux{|se} depuis toujours ». Je suis privé{|e} de dessert. À mon âge.", "Ma révélation a fait un flop. {a.first} a pleuré de façon très convaincante. C'est moi le méchant, maintenant. Encore."], en: ["I revealed everything. Nobody believed me. Mom said I've 'always been jealous'. I got no dessert. At my age.", "My exposé flopped. {a.first} cried very convincingly. Now I'm the villain. Again."] }, fx: { happy: -8, stress: 6 }, mood: 'angry' },
+        ],
+      },
+      { label: { fr: 'Enterrer la hache', en: 'Bury the hatchet' }, text: { fr: ["Pour le bien de la famille, j'ai proposé une trêve. {a.first} a accepté. On fait semblant à table. Avec le temps, on fait de moins en moins semblant.", "J'ai tendu la main, pour ma fratrie. {a.first} l'a serrée, avec un sourire sincère. Peut-être que les gens changent. Peut-être."], en: ["For the family's sake, I proposed a truce. {a.first} accepted. We pretend at dinner. Over time, we pretend less and less.", "I offered my hand, for my sibling. {a.first} shook it, with a sincere smile. Maybe people change. Maybe."] }, fx: { rel: 25, karma: 5, actorRole: 'friend' } },
+      { label: { fr: 'Saboter discrètement', en: 'Quietly sabotage' }, text: { fr: ["Opération longue durée : petites remarques, regards appuyés, vieilles photos ressorties. Six mois plus tard, rupture. Personne ne sait que c'est moi. Sauf {a.first}.", "J'ai glissé du poivre dans le dessert de {a.first} à chaque repas. {a:Il|Elle} pleure et éternue à chaque fête de famille. Ma mère croit à une allergie."], en: ["Long-term op: little remarks, pointed looks, old photos dug up. Six months later, breakup. Nobody knows it was me. Except {a.first}.", "I sprinkled pepper into {a.first}'s dessert at every meal. {a:He|She} cries and sneezes at every family gathering. Mom thinks it's an allergy."] }, fx: { karma: -6, happy: 4, rel: -8 } },
+    ],
+  },
+  {
+    id: 'fr2_enemy_truce_bbq',
+    icon: '🍖',
+    cat: 'enemies',
+    rating: 0,
+    actor: 'enemy',
+    scene: { place: 'park', mood: 'neutral', prop: 'grill' },
+    when: { age: [14, 85] },
+    weight: 6,
+    cooldown: 8,
+    text: {
+      fr: [
+        "{a.first}, ton ennemi{a:|e}, t'invite à un barbecue « de réconciliation ». Il y a une banderole « PAIX » et des saucisses. Tu cherches le piège.",
+        "Un message inattendu de {a.first} : « On arrête ? Je t'invite. Il y aura {w:food}. » Ça fait des années que vous vous détestez. Tu as faim.",
+        "Médiation organisée par des amis communs : {a.first} et toi, face à face, chacun avec {w:drink}. Il faut dire une chose positive sur l'autre. Silence.",
+        "{a.first} te propose une trêve {w:at_place}, devant témoins. {a:Il|Elle} a même apporté un contrat de paix écrit à la main, avec des fautes d'orthographe.",
+      ],
+      en: [
+        "{a.first}, your nemesis, invites you to a 'reconciliation' barbecue. There's a 'PEACE' banner and sausages. You look for the trap.",
+        "An unexpected text from {a.first}: 'Truce? My treat. There'll be {w:food}.' You've hated each other for years. You're hungry.",
+        "Mediation set up by mutual friends: {a.first} and you, face to face, over {w:drink}. You must each say one nice thing about the other. Silence.",
+        "{a.first} proposes a truce {w:at_place}, before witnesses. {a:He|She} even brought a handwritten peace treaty, with typos.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Accepter la trêve', en: 'Accept the truce' },
+        out: [
+          { w: 2, text: { fr: ["On a trinqué, mangé, et ri de nos vieilles conneries. {a.first} n'est pas si terrible. Bon, {a:il|elle} met du ketchup sur tout. Mais personne n'est parfait.", "La trêve tient. On a même découvert qu'on aimait tous les deux {w:hobby}. On se voit dimanche. C'est étrange, mais agréable."], en: ["We clinked glasses, ate, and laughed about our old nonsense. {a.first} isn't so bad. Okay, {a:he|she} puts ketchup on everything. Nobody's perfect.", "The truce holds. We even discovered we both love {w:hobby}. We're meeting Sunday. Strange, but nice."] }, fx: { actorRole: 'friend', rel: 35, happy: 6, karma: 4 }, mood: 'happy' },
+          { w: 1, text: { fr: ["La trêve a duré quarante minutes. Puis on s'est disputés sur la cuisson des saucisses. Je suis reparti{|e} avec de la moutarde dans les cheveux.", "Tout allait bien, jusqu'à ce que {a.first} raconte « en rigolant » une de mes pires hontes. Retour à la case guerre."], en: ["The truce lasted forty minutes. Then we argued about how to grill sausages. I left with mustard in my hair.", "All was well, until {a.first} told 'jokingly' one of my worst embarrassments. Back to war."] }, fx: { rel: -6, happy: -3 } },
+        ],
+      },
+      { label: { fr: 'Venir, mais armé{|e}', en: 'Go, but armed' }, text: { fr: ["Je suis venu{|e} avec des boules puantes dans la poche, au cas où. {a.first} avait les mêmes. On s'est regardés, on a compris, et on a mangé en silence.", "J'ai apporté mon propre ketchup, testé, scellé. {a.first} a trouvé ça insultant. Moi, prudent. La paix n'a pas pris."], en: ["I came with stink bombs in my pocket, just in case. {a.first} had the same. We looked at each other, understood, and ate in silence.", "I brought my own ketchup, tested and sealed. {a.first} found that insulting. I found it prudent. Peace didn't take."] }, fx: { rel: 2, stress: 3 } },
+      { label: { fr: 'Refuser', en: 'Refuse' }, text: { fr: ["J'ai refusé. On ne pardonne pas l'affaire du cartable de 6e. Jamais. {a.first} a mangé toutes les saucisses seul{a:|e}, et c'est très bien comme ça.", "Non merci. Mes ennemis restent mes ennemis, c'est une question de stabilité émotionnelle. J'ai mangé {w:food} chez moi, fier{|e} et seul{|e}."], en: ["I refused. Some things can't be forgiven, like the sixth-grade backpack incident. Never. {a.first} ate all the sausages alone, and that's fine.", "No thanks. My enemies stay my enemies; it's about emotional stability. I ate {w:food} at home, proud and alone."] }, fx: { rel: -5, happy: 1 } },
+    ],
+  },
+  {
+    id: 'fr2_enemy_prank_war',
+    icon: '💩',
+    cat: 'enemies',
+    rating: 2,
+    actor: 'enemy',
+    scene: { place: 'home', mood: 'angry', prop: 'bag', fx: 'poop' },
+    when: { age: [18, 75] },
+    weight: 6,
+    cooldown: 6,
+    text: {
+      fr: [
+        "Ce matin, ta voiture était entièrement recouverte de post-it. Signé : {a.first}. La guerre des farces est déclarée, et tu as sous la main {w:gross}.",
+        "{a.first}, ton ennemi{a:|e}, a inscrit ton numéro sur un site de rencontres pour {w:weird_job}. Ton téléphone n'arrête pas de sonner. Il est temps de riposter.",
+        "Un colis anonyme t'attend. À l'intérieur : {w:gross} emballé dans du papier cadeau, avec une carte : « Bisous, {a.first} ». C'est la guerre.",
+        "Ton ennemi{a:|e} {a.first} a remplacé ta sonnerie de réveil par {w:sound} à plein volume. Tu as sursauté si fort que tu t'es cassé {w:bodypart}. Riposte obligatoire.",
+      ],
+      en: [
+        "This morning your car was completely covered in sticky notes. Signed: {a.first}. The prank war is on, and you have access to {w:gross}.",
+        "{a.first}, your nemesis, signed your number up on a dating site for {w:weird_job}. Your phone won't stop ringing. Time to strike back.",
+        "An anonymous package awaits you. Inside: {w:gross}, gift-wrapped, with a card: 'Kisses, {a.first}'. This means war.",
+        "Your nemesis {a.first} replaced your alarm with {w:sound} at full volume. You jumped so hard you broke your {w:bodypart}. Retaliation mandatory.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Sac enflammé sur le paillasson', en: 'Flaming bag on the doormat' },
+        out: [
+          { w: 2, text: { fr: ["Classique indémodable : sac en papier, contenu douteux, allumette. {a.first} a ouvert la porte, a piétiné le feu en chaussons. Splash. Le cri a réveillé le quartier.", "Le sac a brûlé à la perfection. {a.first} a sauté dessus pieds nus. Je n'oublierai jamais le bruit. Ni l'odeur. Victoire, mais à quel prix ?"], en: ["Timeless classic: paper bag, dubious contents, match. {a.first} opened the door and stomped the fire in slippers. Splat. The scream woke the neighborhood.", "The bag burned perfectly. {a.first} jumped on it barefoot. I'll never forget the sound. Or the smell. Victory, but at what cost?"] }, fx: { happy: 10, karma: -6, rel: -10, visual: 'poop' }, mood: 'party' },
+          { w: 1, text: { fr: ["Le vent a tourné. Le feu a pris dans la haie, puis dans mes cheveux. Je suis rentré{|e} chauve, brûlé{|e} et recouvert{|e} de ce qu'il y avait dans le sac.", "Mauvaise porte. C'était le chalet de la voisine de 80 ans, qui m'a reconnu{|e} et appelé la police. J'ai une plainte et une réputation."], en: ["The wind shifted. The fire caught the hedge, then my hair. I came home bald, burned and covered in whatever was in the bag.", "Wrong door. It was the 80-year-old neighbor's, who recognized me and called the cops. I have a complaint and a reputation."] }, fx: { health: -8, happy: -6, heat: 6, visual: 'fire' }, mood: 'shock' },
+        ],
+      },
+      { label: { fr: 'Abonnements piégés', en: 'Booby-trap subscriptions' }, text: { fr: ["J'ai abonné {a.first} à 200 catalogues, trois newsletters sur {w:hobby} et un club de chant grégorien. Sa boîte aux lettres a explosé. Littéralement, le facteur a porté plainte.", "Inscription de {a.first} à tout : cours de claquettes, secte locale, livraison hebdo de choux. Une vengeance lente, comme un bon fromage."], en: ["I subscribed {a.first} to 200 catalogs, three newsletters about {w:hobby} and a Gregorian chant club. The mailbox exploded. Literally; the mailman filed a complaint.", "Signed {a.first} up for everything: tap dance, a local cult, weekly cabbage delivery. Slow revenge, like a good cheese."] }, fx: { happy: 6, karma: -3, rel: -5 } },
+      { label: { fr: 'Déclarer forfait', en: 'Forfeit' }, text: { fr: ["J'ai hissé un drapeau blanc devant chez moi. {a.first} a gagné. {a:Il|Elle} a imprimé un diplôme de victoire et l'a scotché sur ma porte. Je respecte.", "J'ai abandonné la guerre. Le lendemain, {a.first} m'a envoyé des fleurs. Ou des orties. Difficile à dire, de loin."], en: ["I raised a white flag outside my house. {a.first} won. {a:He|She} printed a victory certificate and taped it to my door. I respect that.", "I gave up the war. Next day, {a.first} sent me flowers. Or nettles. Hard to tell from a distance."] }, fx: { rel: 8, happy: -3, stress: -5 } },
+    ],
+  },
+  {
+    id: 'fr2_enemy_needs_help',
+    icon: '🌧️',
+    cat: 'enemies',
+    rating: 0,
+    actor: 'enemy',
+    scene: { place: 'park', mood: 'sad', prop: 'car' },
+    when: { age: [16, 90] },
+    weight: 6,
+    cooldown: 8,
+    text: {
+      fr: [
+        "{w:weather}, tu tombes sur {a.first}, ton ennemi{a:|e}, en panne au bord de la route. {a:Il|Elle} est trempé{a:|e}, seul{a:|e}, et son téléphone est mort. {a:Il|Elle} te voit.",
+        "{a.first} est coincé{a:|e} {w:at_place}, sans portefeuille, sans clés, et sans dignité. La seule personne qui passe, c'est toi. {a:Il|Elle} détourne les yeux.",
+        "Ton ennemi{a:|e} juré{a:|e}, {a.first}, s'est fait voler son vélo et pleure sur un banc. Tu pourrais passer ton chemin. Ce serait si simple.",
+        "{a.first} t'appelle. Toi. À 23 h. « Je n'ai personne d'autre. Mon {w:animal} est coincé dans un arbre. » Tu entends des miaulements, ou peut-être des sanglots.",
+      ],
+      en: [
+        "{w:weather}, you come across {a.first}, your nemesis, broken down on the roadside. {a:He|She} is soaked, alone, phone dead. {a:He|She} sees you.",
+        "{a.first} is stuck {w:at_place}, no wallet, no keys, no dignity. The only person passing by is you. {a:He|She} looks away.",
+        "Your sworn enemy, {a.first}, just had {a:his|her} bike stolen and is crying on a bench. You could just walk on by. It would be so easy.",
+        "{a.first} calls you. You. At 11 p.m. 'I have nobody else. My pet ({w:animal}) is stuck in a tree.' You hear meowing, or maybe sobbing.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: "L'aider", en: 'Help them' },
+        out: [
+          { w: 2, text: { fr: ["J'ai aidé {a.first} sans rien dire. {a:Il|Elle} m'a regardé{|e} longtemps, puis a murmuré « merci ». Le lendemain, une boîte de chocolats sur mon paillasson. La guerre est finie.", "Je l'ai dépanné{a:|e}, ramené{a:|e}, réchauffé{a:|e}. {a.first} a pleuré dans ma voiture. On a parlé deux heures. Je crois qu'on est amis, maintenant."], en: ["I helped {a.first} without a word. {a:He|She} looked at me a long time, then whispered 'thank you'. Next day, a box of chocolates on my doormat. The war is over.", "I helped, drove {a:him|her} home, warmed {a:him|her} up. {a.first} cried in my car. We talked for two hours. I think we're friends now."] }, fx: { actorRole: 'friend', rel: 40, karma: 10, happy: 6 }, mood: 'happy' },
+          { w: 1, text: { fr: ["Je l'ai aidé{a:|e}. {a:Il|Elle} m'a remercié{|e}, puis le lendemain a raconté à tout le monde qu'{a:il|elle} s'était débrouillé{a:|e} tout{a:|e} seul{a:|e}. Certains ennemis le restent.", "J'ai aidé {a.first}. En partant, {a:il|elle} a dit : « Ça ne change rien. » Puis a hésité. « Enfin, un peu. »"], en: ["I helped. {a:He|She} thanked me, then the next day told everyone {a:he|she} managed alone. Some enemies stay enemies.", "I helped {a.first}. Leaving, {a:he|she} said: 'This changes nothing.' Then hesitated. 'Well, a little.'"] }, fx: { rel: 12, karma: 8 } },
+        ],
+      },
+      { label: { fr: 'Passer mon chemin', en: 'Walk on by' }, text: { fr: ["Je suis passé{|e} sans m'arrêter. Dans le rétro, je l'ai vu{a:|e} me regarder. J'ai eu du mal à dormir. Un peu.", "J'ai fait semblant de ne pas voir {a.first}. Mon karma m'a puni{|e} dans l'heure : crevaison, sous la même pluie."], en: ["I drove past without stopping. In the mirror, I saw {a:him|her} watching me. I had trouble sleeping. A little.", "I pretended not to see {a.first}. My karma punished me within the hour: flat tire, same rain."] }, fx: { karma: -6, rel: -5 } },
+      { label: { fr: "L'aider en {a:le|la} filmant", en: 'Help while filming' }, rating: 1, text: { fr: ["Je l'ai aidé{a:|e}, oui. Mais en filmant tout, avec commentaires. La vidéo s'appelle « Je sauve mon pire ennemi ». 30 000 vues. {a.first} me déteste encore plus.", "Aide humanitaire, en direct sur {w:app}. Mes abonnés ont adoré. {a.first}, beaucoup moins."], en: ["I helped, sure. But filmed everything, with commentary. The video is called 'I Save My Worst Enemy'. 30,000 views. {a.first} hates me even more.", "Humanitarian aid, live on {w:app}. My followers loved it. {a.first}, much less."] }, fx: { followers: 3000, rel: -10, karma: -2 } },
     ],
   },
 ];

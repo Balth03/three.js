@@ -175,15 +175,15 @@ export function Lockpick({ onDone, variant = 'heist' }: GameProps) {
           g.float(tr('WOUF WOUF ! 🚨', 'WOOF WOOF! 🚨'), 50, 36, '#ff1f3d', true);
           g.flash('#ff1f3d'); g.shake(); g.miss();
         }
-        if (g.time <= 0) finish(0.06 + 0.32 * (st.idx / N) - Math.min(0.1, st.mistakes * 0.02), tr('⏰ TEMPS ÉCOULÉ', '⏰ OUT OF TIME'));
+        if (g.time <= 0) finish(0.06 + 0.32 * (st.idx / N) - Math.min(0.1, st.mistakes * 0.02), tr('⏰ TROP LENT', '⏰ TOO SLOW'));
       }
       if (st.busted && Math.floor(st.t * 6) !== Math.floor((st.t - dt) * 6)) g.flash(Math.floor(st.t * 6) % 2 ? '#ff1f3d' : '#2563eb');
       if (st.opened) st.opened = Math.min(1, st.opened + dt / 1.2);
       if (st.endAt && st.t >= st.endAt) {
-        if (st.busted) finish(Math.min(0.3, 0.05 + 0.06 * st.idx), tr('🚨 L\'ALARME A SONNÉ', '🚨 ALARM TRIPPED'));
+        if (st.busted) finish(Math.min(0.3, 0.05 + 0.06 * st.idx), tr('🚨 GRILLÉ', '🚨 BUSTED'));
         else {
           const tl = clamp01(g.time / DUR);
-          finish(Math.max(0.45, 0.6 + 0.3 * tl + 0.1 * (1 - st.alarmMax / 100) - 0.07 * st.mistakes), pins ? tr('🔓 SERRURE CROCHETÉE', '🔓 LOCK PICKED') : tr('💰 COFFRE PILLÉ', '💰 SAFE LOOTED'));
+          finish(Math.max(0.45, 0.6 + 0.3 * tl + 0.1 * (1 - st.alarmMax / 100) - 0.07 * st.mistakes), pins ? tr('🔓 OUVERTE', '🔓 PICKED') : tr('💰 PILLÉ', '💰 LOOTED'));
         }
       }
       st.env = Math.max(0.035, st.env * Math.exp(-dt * 9));
@@ -496,7 +496,7 @@ function drawPins(ctx: CanvasRenderingContext2D, cx0: number, cy0: number, S: nu
   ctx.restore();
   // plug
   const plx = bx + bw * 0.05, ply = by + bh * 0.58, plw = bw * 0.9, plh = bh * 0.34;
-  const shift = o * plh * 0.25;
+  const shift = 0;
   roundRect(ctx, plx, ply + shift, plw, plh, plh * 0.2);
   const pgr = ctx.createLinearGradient(0, ply, 0, ply + plh); pgr.addColorStop(0, '#e8c56a'); pgr.addColorStop(0.5, '#a87422'); pgr.addColorStop(1, '#5e3c0a');
   ctx.fillStyle = pgr; ctx.fill();
@@ -573,7 +573,12 @@ function drawPins(ctx: CanvasRenderingContext2D, cx0: number, cy0: number, S: nu
     ctx.save(); glow(ctx, '#2dffb0', 20); ctx.strokeStyle = `rgba(45,255,176,${st.crackFx})`; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(pinX(Math.max(0, st.idx - 1)), ply, S * 0.04 + (1 - st.crackFx) * S * 0.15, 0, TAU); ctx.stroke(); ctx.restore();
   }
-  if (o > 0) { ctx.save(); ctx.globalAlpha = o; glow(ctx, '#ffd166', 30); ctx.font = `${Math.round(S * 0.16)}px serif`; ctx.textAlign = 'center'; ctx.fillText('🔓', cx, by - S * 0.06); ctx.restore(); }
+  if (o > 0) {
+    ctx.save(); ctx.globalAlpha = o;
+    const gl = ctx.createRadialGradient(cx, by + bh * 0.5, 0, cx, by + bh * 0.5, bw * 0.6); gl.addColorStop(0, 'rgba(255,209,102,.45)'); gl.addColorStop(1, 'rgba(255,209,102,0)');
+    ctx.fillStyle = gl; ctx.fillRect(bx - bw * 0.1, by - bh * 0.2, bw * 1.2, bh * 1.4);
+    glow(ctx, '#ffd166', 30); ctx.font = `${Math.round(S * (0.12 + o * 0.06))}px serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('🔓', cx, by + bh * 0.3); ctx.restore();
+  }
 }
 
 function drawScope(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, wave: number[], hc: string, p: number, sweet: boolean, t: number) {
