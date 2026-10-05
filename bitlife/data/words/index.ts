@@ -5,7 +5,8 @@
 //  - Activity-like pools: FR infinitive / EN gerund (« faire du yoga sous la pluie » / "doing yoga in the rain").
 //  - Clause pools: excuse « parce que… » / "because…", conspiracy « que… » / "that…".
 //  - bodypart: FR with definite article « le coude » / EN bare noun "elbow" (used as « je me suis cassé {w:bodypart} » / "I broke my {w:bodypart}").
-//  - No braces/brackets inside entries. Rating: pools are mostly safe; `swear` and `gross` are for rating ≥ 1 content only.
+//  - No braces/brackets inside entries. An optional 3rd element marks adult (1) or trash (2) entries: the engine never shows them
+//    to characters under 16/18 nor above the player's content rating. `swear` and `gross` entries are all ≥ 1 by nature.
 import { wordsA } from './a.ts';
 import { wordsB } from './b.ts';
 
@@ -16,13 +17,14 @@ export const POOLS = [
 ] as const;
 export type Pool = (typeof POOLS)[number];
 
-function merge(...parts: Partial<Record<Pool, [string, string][]>>[]): Record<string, [string, string][]> {
-  const out: Record<string, [string, string][]> = {};
+type Entry = [string, string] | [string, string, 1 | 2];
+function merge(...parts: Partial<Record<Pool, Entry[]>>[]): Record<string, Entry[]> {
+  const out: Record<string, Entry[]> = {};
   for (const p of parts) for (const k in p) out[k] = [...(out[k] ?? []), ...(p[k as Pool] ?? [])];
   return out;
 }
 
-const seed: Partial<Record<Pool, [string, string][]>> = {
+const seed: Partial<Record<Pool, Entry[]>> = {
   object: [['un grille-pain rouillé', 'a rusty toaster'], ['une chaussette orpheline', 'an orphaned sock'], ['un nain de jardin hanté', 'a haunted garden gnome'], ['une lampe à lave', 'a lava lamp'], ['un fer à repasser', 'a clothes iron'], ['une perceuse sans fil', 'a cordless drill'], ['un tabouret bancal', 'a wobbly stool'], ['un parapluie retourné', 'an inside-out umbrella']],
   food: [['une raclette industrielle', 'an industrial-size raclette'], ['un kebab sauce samouraï', 'a kebab drowning in hot sauce'], ['une quiche suspecte', 'a suspicious quiche'], ['un cassoulet en boîte', 'a can of cassoulet'], ['une pizza à l\'ananas', 'a pineapple pizza'], ['un croissant écrasé', 'a squashed croissant'], ['une fondue au fromage', 'a cheese fondue'], ['un tacos trois viandes', 'a triple-meat taco']],
   drink: [['un mojito tiède', 'a lukewarm mojito'], ['une bière sans bulles', 'a flat beer'], ['un café filtre de 2019', 'a filter coffee from 2019'], ['un smoothie au chou kale', 'a kale smoothie'], ['un pastis bien tassé', 'a strong pastis'], ['une limonade maison', 'a homemade lemonade'], ['un energy drink', 'an energy drink'], ['un thé froid éventé', 'a stale iced tea']],

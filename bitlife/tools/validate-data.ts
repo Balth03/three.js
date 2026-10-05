@@ -1,6 +1,6 @@
 // Content validation: `npm run validate`
 import { content as base } from '../data/index.ts';
-import type { LocText, EventDef, Content, AnecdoteDef } from '../packages/sim/src/index.ts';
+import type { LocText, EventDef, Content, AnecdoteDef, WordEntry } from '../packages/sim/src/index.ts';
 import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 
@@ -10,11 +10,11 @@ if (process.argv[2]) {
   const mod = await import(pathToFileURL(resolve(process.argv[2])).href) as Record<string, unknown>;
   // Exports named `anecdotes*` are anecdote lists, `words*` are word-pool objects, other arrays are events.
   const anec = Object.entries(mod).filter(([k, v]) => /^anecdotes/i.test(k) && Array.isArray(v)).flatMap(([, v]) => v as AnecdoteDef[]);
-  const words = Object.entries(mod).filter(([k, v]) => /^words/i.test(k) && v && typeof v === 'object' && !Array.isArray(v)).map(([, v]) => v as Record<string, [string, string][]>);
+  const words = Object.entries(mod).filter(([k, v]) => /^words/i.test(k) && v && typeof v === 'object' && !Array.isArray(v)).map(([, v]) => v as Record<string, WordEntry[]>);
   const extra = Object.entries(mod).filter(([k, v]) => !/^(anecdotes|words)/i.test(k) && Array.isArray(v)).flatMap(([, v]) => v as EventDef[]);
   const known = new Set(base.events.map((e) => e.id));
   const knownA = new Set((base.anecdotes ?? []).map((e) => e.id));
-  const mergedWords: Record<string, [string, string][]> = { ...(base.words ?? {}) };
+  const mergedWords: Record<string, WordEntry[]> = { ...(base.words ?? {}) };
   for (const w of words) for (const k in w) mergedWords[k] = [...(mergedWords[k] ?? []), ...w[k]];
   content = { ...base, words: mergedWords, anecdotes: [...(base.anecdotes ?? []), ...anec.filter((e) => !knownA.has(e.id))], events: [...base.events, ...extra.filter((e) => !known.has(e.id))] };
   console.log(`+ ${extra.length} events, ${anec.length} anecdotes, ${words.reduce((n, w) => n + Object.values(w).flat().length, 0)} words from ${process.argv[2]}`);
@@ -67,7 +67,7 @@ for (const [k, list] of Object.entries(content.words ?? {})) {
   if (!/^[a-z_0-9]+$/.test(k)) errors.push(`word pool name "${k}" must be lowercase a-z/0-9/_`);
   const seenFr = new Set<string>();
   list.forEach((e, i) => {
-    if (!Array.isArray(e) || e.length !== 2 || !e[0]?.trim() || !e[1]?.trim()) errors.push(`words.${k}[${i}]: must be [fr, en]`);
+    if (!Array.isArray(e) || (e.length !== 2 && e.length !== 3) || !e[0]?.trim() || !e[1]?.trim() || (e.length === 3 && e[2] !== 1 && e[2] !== 2)) errors.push(`words.${k}[${i}]: must be [fr, en] or [fr, en, 1|2]`);
     else if (/[{}\[\]]/.test(e[0] + e[1])) errors.push(`words.${k}[${i}]: no braces/brackets inside words`);
     else if (seenFr.has(e[0])) warn.push(`words.${k}: duplicate "${e[0]}"`);
     else seenFr.add(e[0]);

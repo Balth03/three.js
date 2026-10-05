@@ -145,7 +145,11 @@ export function renderString(tpl: string, ctx: TextCtx, lang: Lang, draws: numbe
     const occ: Record<string, number> = {};
     const used: Record<string, Set<number>> = {};
     s = s.replace(/\{w:([a-z_0-9]+)\}/g, (whole, pool: string) => {
-      const list = ctx.content.words![pool];
+      // Adult / trash words never reach kids, and respect the content rating.
+      const maxR = life.age < 16 ? 0 : life.age < 18 ? Math.min(1, life.rating) : life.rating;
+      const all = ctx.content.words![pool];
+      const base = pool === 'gross' || pool === 'swear' ? 1 : 0;
+      const list = all?.some((e) => (e[2] ?? base) > maxR) ? all.filter((e) => (e[2] ?? base) <= maxR) : all;
       if (!list?.length) return whole;
       const n = (occ[pool] = (occ[pool] ?? -1) + 1);
       let h = 2166136261 ^ seed;

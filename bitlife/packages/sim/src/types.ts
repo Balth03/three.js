@@ -528,7 +528,7 @@ export interface Content {
   diseases: DiseaseDef[];
   events: EventDef[];
   /** Word pools for `{w:pool}` tokens: entries are [fr, en] complete phrases. */
-  words?: Record<string, [string, string][]>;
+  words?: Record<string, WordEntry[]>;
   /** Procedural daily-life feed lines. */
   anecdotes?: AnecdoteDef[];
   actions: ActionDef[];
@@ -562,6 +562,9 @@ export interface YearReport {
   deltas: Delta[];
   milestones: string[];     // e.g. 'school:primary', 'graduate:high', 'promotion'
 }
+
+/** A word-pool entry: [fr, en] or [fr, en, rating] (1 = adult, 2 = trash; never shown to characters under 16/18). */
+export type WordEntry = [string, string] | [string, string, 1 | 2];
 
 /** A feed-only daily-life line (first person), rendered with word pools for near-infinite variety. */
 export interface AnecdoteDef { id: string; icon: string; tone?: Tone; rating?: Rating; w?: number; when?: Cond; text: LocText }
