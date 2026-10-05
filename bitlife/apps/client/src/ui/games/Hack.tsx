@@ -87,7 +87,6 @@ export function Hack({ onDone }: GameProps) {
   const cmdText = (c: Cmd) => tr(c[0], c[1]);
   const cur = () => { const st = s.current; return st.layer < LAYERS ? st.cmds[st.layer][st.ci] : null; };
   const pos = useRef({ cx: 0, cy: 0 });
-  (window as unknown as { __hk: unknown }).__hk = () => { const c = cur(); return c ? cmdText(c).slice(s.current.typed) : ''; }; // TEMPDEBUG
   const pct = (x: number, y: number): [number, number] => {
     const c = cv.current; const a = c?.closest('.arena');
     if (!c || !a) return [50, 50];

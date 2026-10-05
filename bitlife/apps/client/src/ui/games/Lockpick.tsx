@@ -54,7 +54,6 @@ export function Lockpick({ onDone, variant = 'heist' }: GameProps) {
     started: false, lastLvl: 0,
   });
   const st0 = s.current;
-  (window as unknown as { __lp: unknown }).__lp = st0; // TEMPDEBUG
   const pct = (x: number, y: number): [number, number] => {
     const c = cv.current; const a = c?.closest('.arena');
     if (!c || !a) return [50, 50];
@@ -406,12 +405,12 @@ function drawSafe(ctx: CanvasRenderingContext2D, cx: number, cy: number, S: numb
     const gl = ctx.createRadialGradient(cx, cy, 0, cx, cy, S * 0.5); gl.addColorStop(0, `rgba(255,209,102,${0.55 * o})`); gl.addColorStop(1, 'rgba(255,170,0,0)');
     ctx.fillStyle = gl; ctx.fillRect(ix, iy, iw, ih);
     for (let r = 0; r < 3; r++) for (let c = 0; c < 4 - r; c++) {
-      const bw = iw * 0.16, bh = ih * 0.07, bx = ix + iw * 0.17 + c * bw * 1.08 + r * bw * 0.54, by = iy + ih * 0.8 - r * bh * 1.05;
+      const bw = iw * 0.16, bh = ih * 0.07, bx = ix + iw * 0.25 + c * bw * 1.08 + r * bw * 0.54, by = iy + ih * 0.8 - r * bh * 1.05;
       const gb = ctx.createLinearGradient(bx, by, bx, by + bh); gb.addColorStop(0, '#fff3b0'); gb.addColorStop(0.5, '#ffc93c'); gb.addColorStop(1, '#a86a00');
       ctx.save(); glow(ctx, '#ffd166', 18 * o); ctx.fillStyle = gb; ctx.beginPath(); ctx.moveTo(bx + bw * 0.12, by); ctx.lineTo(bx + bw * 0.88, by); ctx.lineTo(bx + bw, by + bh); ctx.lineTo(bx, by + bh); ctx.closePath(); ctx.fill(); ctx.restore();
     }
     ctx.font = `${Math.round(S * 0.09)}px serif`; ctx.textAlign = 'center';
-    ctx.fillText('💰', cx - S * 0.18, iy + ih * 0.42); ctx.fillText('💎', cx + S * 0.05, iy + ih * 0.36); ctx.fillText('💵', cx + S * 0.25, iy + ih * 0.44);
+    ctx.fillText('💰', cx - S * 0.06, iy + ih * 0.44); ctx.fillText('💎', cx + S * 0.12, iy + ih * 0.34); ctx.fillText('💵', cx + S * 0.28, iy + ih * 0.46);
   }
   // door (swings around the left hinge)
   ctx.save();
@@ -655,9 +654,9 @@ function drawDog(ctx: CanvasRenderingContext2D, x: number, y: number, sz: number
     for (let i = 0; i < 3; i++) { const k = (t * 0.6 + i / 3) % 1; ctx.globalAlpha = 1 - k; ctx.fillStyle = '#c4b5fd'; ctx.font = `800 ${Math.round(sz * (0.22 + k * 0.2))}px Fredoka Variable, sans-serif`; ctx.fillText('z', x + sz * 0.4 + k * sz * 0.5, y - sz * 0.5 - k * sz * 0.7); }
     ctx.globalAlpha = 1;
   } else {
-    const txt = lvl === 1 ? '?' : lvl === 2 ? 'grr…' : 'WOUF!';
+    const txt = lvl === 1 ? '?' : 'grr…';
     ctx.save(); glow(ctx, lvl >= 3 ? '#ff1f3d' : '#ffd166', 12); ctx.fillStyle = lvl >= 3 ? '#ff3355' : '#ffd166';
     ctx.font = `800 ${Math.round(sz * (lvl >= 3 ? 0.42 : 0.34))}px Fredoka Variable, sans-serif`;
-    ctx.fillText(lvl >= 3 ? tr('WOUF !', 'WOOF!') : txt, x + sz * 0.75, y - sz * 0.6 + Math.sin(t * 8) * 3); ctx.restore();
+    ctx.fillText(lvl === 4 ? tr('WOUF !', 'WOOF!') : lvl === 3 ? 'GRRRR!' : txt, x + sz * 0.75, y - sz * 0.6 + Math.sin(t * 8) * 3); ctx.restore();
   }
 }

@@ -2260,13 +2260,13 @@ export const dailyEvents: EventDef[] = [
     cooldown: 6,
     text: {
       fr: [
-        "Tu bâilles en marchant dans la rue. Un pigeon, en vol, au-dessus de toi, choisit cet instant précis. C'est tiède. C'est dans ta bouche. C'est sur ta langue. Ça a un arrière-goût de {w:food}.",
+        "Tu bâilles en marchant dans la rue. Un pigeon, en vol, au-dessus de toi, choisit cet instant précis. C'est tiède. C'est dans ta bouche. C'est sur ta langue. Arrière-goût : {w:food}.",
         "Terrasse de café, tu lèves ton verre pour trinquer. Une mouette lâche une fiente pile dedans. Ta boisson ({w:drink}) a maintenant une garniture.",
         "Tu es en plein appel vidéo important, dans la rue, quand un pigeon te chie dessus. Sur la tête, le front, puis l'œil. Ton interlocuteur a tout vu en HD. Il a lâché un « {w:exclaim} » très professionnel.",
         "Un vol de pigeons passe au-dessus du parc. Tu lèves la tête pour regarder, bouche ouverte, émerveillé{|e}. Erreur. Erreur fatale.",
       ],
       en: [
-        "You yawn while walking down the street. A pigeon flying overhead chooses that precise moment. It's warm. It's in your mouth. It's on your tongue. It has an aftertaste of {w:food}.",
+        "You yawn while walking down the street. A pigeon flying overhead chooses that precise moment. It's warm. It's in your mouth. It's on your tongue. Aftertaste: {w:food}.",
         "Café terrace, you raise your glass for a toast. A seagull drops a load right into it. Your drink ({w:drink}) now has a garnish.",
         "You're on an important video call, outside, when a pigeon poops on you. On the head, the forehead, then the eye. The person on the call saw everything in HD. They let out a very professional '{w:exclaim}'",
         "A flock of pigeons flies over the park. You look up, mouth open, in awe. Mistake. Fatal mistake.",
@@ -2296,13 +2296,13 @@ export const dailyEvents: EventDef[] = [
     cooldown: 4,
     text: {
       fr: [
-        "Tu sors sans parapluie parce que l'appli météo dit « 0 % de pluie ». Il pleut. Fort. Les égouts débordent. Un canard passe à la nage devant toi sur le trottoir, suivi de {w:object}.",
+        "Tu sors sans parapluie parce que l'appli météo dit « 0 % de pluie ». Il pleut. Fort. Les égouts débordent. Un canard passe à la nage devant toi sur le trottoir, puis {w:object}.",
         "Ton parapluie se retourne à la première rafale, puis s'envole et se plante dans le pare-brise d'une voiture de police. Les policiers te regardent en mangeant {w:food}. Il pleut toujours.",
         "Une voiture roule dans une flaque à 50 km/h juste à côté de toi. Tu es trempé{|e} de la tête aux pieds d'une eau brune qui dégage {w:smell}. Tu as un entretien dans dix minutes.",
         "Tu as mis des chaussures en daim et un pantalon blanc. Il se met à grêler. Puis à neiger. Puis le soleil revient pour se moquer de toi. Il est 9 h du matin, et le présentateur météo est {w:celeb}.",
       ],
       en: [
-        "You go out without an umbrella because the weather app says '0% rain'. It's pouring. The sewers are overflowing. A duck swims past you on the sidewalk, followed by {w:object}.",
+        "You go out without an umbrella because the weather app says '0% rain'. It's pouring. The sewers are overflowing. A duck swims past you on the sidewalk, then {w:object}.",
         "Your umbrella flips inside out at the first gust, then flies off and sticks into a police car's windshield. The cops look at you while eating {w:food}. It's still raining.",
         "A car drives through a puddle at 30 mph right next to you. You're soaked from head to toe in brown water that gives off {w:smell}. You have an interview in ten minutes.",
         "You wore suede shoes and white pants. It starts to hail. Then snow. Then the sun comes back to mock you. It's 9 a.m., and the weatherman is {w:celeb}.",
@@ -2331,13 +2331,13 @@ export const dailyEvents: EventDef[] = [
     cooldown: 5,
     text: {
       fr: [
-        "Canicule. Il fait 38 °C dans ton appart sous les toits. Tu dors nu{|e}, sans drap, avec un ventilateur qui brasse de l'air chaud et une serviette mouillée sur le visage. Tu transpires dans tes rêves. Tu rêves de {w:drink}",
+        "Canicule. Il fait 38 °C dans ton appart sous les toits. Tu dors nu{|e}, sans drap, avec un ventilateur qui brasse de l'air chaud et une serviette mouillée sur le visage. Tu transpires dans tes rêves. Dans tes rêves, il y a {w:drink}.",
         "Quatrième jour de canicule. Tes cuisses collent au canapé en cuir. Quand tu te lèves, ça fait {w:sound}. Ta sueur a laissé ta silhouette sur le canapé, comme le Suaire de Turin.",
         "Il fait tellement chaud que ton beurre est liquide, ton chocolat est une soupe et ton chat s'est allongé dans l'évier. Tu envisages de dormir dans le frigo, entre les yaourts et {w:food}.",
         "Canicule dans le bus. Pas de clim. Tu es collé{|e} à un inconnu, et vos sueurs se mélangent. Il dégage {w:smell}. Tu envies les gens qui marchent dehors, même {w:weather}.",
       ],
       en: [
-        "Heatwave. It's 100°F in your attic apartment. You sleep naked, no sheet, with a fan pushing hot air around and a wet towel on your face. You sweat in your dreams. You dream of {w:drink}",
+        "Heatwave. It's 100°F in your attic apartment. You sleep naked, no sheet, with a fan pushing hot air around and a wet towel on your face. You sweat in your dreams. In your dreams, there's {w:drink}.",
         "Fourth day of the heatwave. Your thighs stick to the leather couch. When you get up, it makes {w:sound}. Your sweat left your silhouette on the couch, like the Shroud of Turin.",
         "It's so hot your butter is liquid, your chocolate is soup and your cat is lying in the sink. You're considering sleeping in the fridge, between the yogurts and {w:food}.",
         "Heatwave on the bus. No AC. You're glued to a stranger, and your sweat is mixing. He gives off {w:smell}. You envy the people walking outside, even {w:weather}.",
@@ -2577,7 +2577,7 @@ export const dailyEvents: EventDef[] = [
     cooldown: 6,
     text: {
       fr: [
-        "Un numéro inconnu t'écrit : « Mamie, c'est Lucas ! On arrive dimanche pour le gratin, t'oublies pas le fromage 😘 ». Tu n'es la mamie de personne. Le message suivant contient une photo {w:at_place}.",
+        "Un numéro inconnu t'écrit : « Mamie, c'est Lucas ! On arrive dimanche pour le gratin, t'oublies pas le fromage 😘 ». Tu n'es la mamie de personne. Le message suivant contient une photo prise {w:at_place}.",
         "Quelqu'un t'envoie par erreur des messages destinés à son ex. Très longs. Très sincères. Il en est au chapitre 4 de ses regrets, avec des poèmes et une chanson : {w:song}.",
         "Un SMS d'un inconnu : « Le colis est prêt. Même endroit, 22 h. Viens seul. » Suivi immédiatement de : « Pardon, mauvais numéro. C'était pour un gâteau d'anniversaire. » Puis : « Enfin, et pour {w:object}. »",
         "Un inconnu t'appelle et te parle pendant trois minutes de sa tondeuse avant de réaliser que tu n'es pas Gérard. Il a l'air tellement seul. Tu n'as pas le cœur de raccrocher. Il enchaîne sur {w:hobby}.",
@@ -2643,13 +2643,13 @@ export const dailyEvents: EventDef[] = [
         "Dans la rue, une bande d'ados te prend pour {w:celeb}. Ils crient, sortent leurs téléphones et te demandent un autographe. Tu ne lui ressembles pas. Du tout.",
         "Au supermarché, une femme te gifle : « Ça, c'est pour ce que tu as fait à ma sœur, Kevin ! » Tu ne t'appelles pas Kevin. Tu n'as jamais vu sa sœur. Elle repart en te traitant de « {w:insult} ».",
         "Au restaurant, le serveur te traite comme un roi : champagne offert, meilleure table. Le patron te serre la main : « C'est un honneur de recevoir {w:celeb} ! »",
-        "Un inconnu te tombe dans les bras en pleurant : « Je savais que tu n'étais pas mort ! » Il t'appelle Dédé. Il a l'air vraiment heureux. Il te rend {w:object} « que tu lui avais prêté{|e} ».",
+        "Un inconnu te tombe dans les bras en pleurant : « Je savais que tu n'étais pas mort ! » Il t'appelle Dédé. Il a l'air vraiment heureux. Il te rend {w:object} : « Je te devais bien ça. »",
       ],
       en: [
         "On the street, a group of teens mistakes you for {w:celeb}. They scream, pull out their phones and ask for an autograph. You look nothing like them. Nothing.",
         "At the supermarket, a woman slaps you: 'That's for what you did to my sister, Kevin!' Your name isn't Kevin. You've never met her sister. She leaves calling you '{w:insult}'.",
         "At a restaurant, the waiter treats you like royalty: free champagne, best table. The owner shakes your hand: 'It's an honor to host {w:celeb}!'",
-        "A stranger falls into your arms, crying: 'I knew you weren't dead!' He calls you Dédé. He seems genuinely happy. He returns {w:object} 'you lent him'.",
+        "A stranger falls into your arms, crying: 'I knew you weren't dead!' He calls you Dédé. He seems genuinely happy. He hands you {w:object}: 'I owed you this.'",
       ],
     },
     choices: [
@@ -2744,14 +2744,14 @@ export const dailyEvents: EventDef[] = [
     text: {
       fr: [
         "Sur le chemin d'un entretien important, ton pied droit s'enfonce dans quelque chose de mou et tiède. Une crotte de chien. Une grosse. Un berger allemand, au minimum. Ou {w:animal}.",
-        "Tu rentres chez toi. Une odeur te suit. Elle est dans le salon. Elle est sur le tapis blanc. Elle est sous ta chaussure, incrustée dans les rainures, et tu as marché partout. Ça sent {w:food} mal digéré.",
-        "Tu glisses sur une crotte de chien, tu fais un grand écart involontaire et tu atterris assis{|e} dans une deuxième. Elle était encore tiède. Le chien est assis à côté et te regarde. Son maître, lui, fait {w:activity}.",
+        "Tu rentres chez toi. Une odeur te suit. Elle est dans le salon. Elle est sur le tapis blanc. Elle est sous ta chaussure, incrustée dans les rainures, et tu as marché partout. Ça évoque {w:food}, version digérée.",
+        "Tu glisses sur une crotte de chien, tu fais un grand écart involontaire et tu atterris assis{|e} dans une deuxième. Elle était encore tiède. Le chien est assis à côté et te regarde. Son maître fait semblant de ne pas te voir, en écoutant {w:song}.",
         "Tu as marché dans une crotte {w:weather}. Tu as frotté ta chaussure sur le trottoir pendant cinq minutes. Ça n'a fait qu'étaler. Tu as maintenant une trace de 3 mètres et, en prime, ceci collé à la semelle : {w:gross}.",
       ],
       en: [
         "On your way to an important interview, your right foot sinks into something soft and warm. Dog poop. A big one. German shepherd, at least. Or {w:animal}.",
-        "You come home. A smell follows you. It's in the living room. It's on the white rug. It's under your shoe, packed into the grooves, and you've walked everywhere. It smells like badly digested {w:food}.",
-        "You slip on dog poop, do an involuntary split and land butt-first in a second one. Still warm. The dog is sitting nearby, watching you. Its owner is busy {w:activity}.",
+        "You come home. A smell follows you. It's in the living room. It's on the white rug. It's under your shoe, packed into the grooves, and you've walked everywhere. It evokes {w:food}, digested edition.",
+        "You slip on dog poop, do an involuntary split and land butt-first in a second one. Still warm. The dog is sitting nearby, watching you. Its owner pretends not to see you, listening to {w:song}.",
         "You stepped in poop {w:weather}. You scraped your shoe on the sidewalk for five minutes. It just spread it around. You now have a 10-foot streak and, as a bonus, {w:gross} stuck to your sole.",
       ],
     },
@@ -2786,7 +2786,7 @@ export const dailyEvents: EventDef[] = [
       ],
       en: [
         "First dinner at {a.first}'s place, whom you've been trying to woo for weeks. You go to the bathroom. You flush. The water rises. And rises. It doesn't go down. There's {w:smell} in the air.",
-        "At {a.first}'s, you clogged the toilet. No plunger. The water's at the rim, trembling. {w:object} is floating in it. From behind the door, {a:he|she} asks: 'Everything okay?'",
+        "At {a.first}'s, you clogged the toilet. No plunger. The water's at the rim, trembling. Floating in it: {w:object}. From behind the door, {a:he|she} asks: 'Everything okay?'",
         "Evening at {a.first}'s. The bathroom has no lock, the flush is temperamental and your stomach just surrendered after {w:food}. A disaster in three acts.",
         "You flush at {a.first}'s and a pipe noise echoes through the whole building, like {w:sound}. Brown water starts spilling over the bowl.",
       ],
@@ -2967,13 +2967,13 @@ export const dailyEvents: EventDef[] = [
       fr: [
         "Ma tartine est tombée côté confiture. Sur le tapis. Le chat a marché dessus, puis sur le canapé, puis sur mon oreiller, puis sur {w:object}. Putain de lundi.",
         "J'ai appliqué la règle des cinq secondes à une chips tombée {w:at_place}. Elle avait un cheveu. Je l'ai mangée quand même. Je ne regrette rien.",
-        "J'ai fait tomber mon café sur mon pantalon clair juste avant de partir. Puis le deuxième, sur le pantalon de rechange. Je suis allé{|e} bosser en jogging. Le boss m'a demandé si je revenais {w:to_place}.",
+        "J'ai fait tomber mon café sur mon pantalon clair juste avant de partir. Puis le deuxième, sur le pantalon de rechange. Je suis allé{|e} bosser en jogging. Le boss m'a demandé si je partais {w:to_place}.",
         "Mon croissant s'est fait voler par {w:animal} pendant que je cherchais mes clés. Il m'a regardé{|e} en le mangeant. Il savait que je ne ferais rien.",
       ],
       en: [
         "My toast fell jam-side down. On the rug. The cat walked through it, then onto the couch, then onto my pillow, then onto {w:object}. Fucking Monday.",
         "I applied the five-second rule to a chip that fell {w:at_place}. It had a hair on it. I ate it anyway. No regrets.",
-        "I spilled coffee on my light-colored pants right before leaving. Then the second cup, on the backup pants. I went to work in sweatpants. The boss asked if I was coming back from going {w:to_place}.",
+        "I spilled coffee on my light-colored pants right before leaving. Then the second cup, on the backup pants. I went to work in sweatpants. The boss asked if I was off {w:to_place}.",
         "My croissant got stolen by {w:animal} while I was looking for my keys. It stared at me while eating it. It knew I wouldn't do anything.",
       ],
     },
@@ -3045,13 +3045,13 @@ export const dailyEvents: EventDef[] = [
       fr: [
         "J'ai ouvert la porte des toilettes d'un resto sur un monsieur en pleine action, qui n'avait pas fermé le verrou. On s'est regardés. Il m'a dit « bonjour ». J'ai dit « bon appétit ». Je ne sais pas pourquoi. Il lisait un article sur {w:show}.",
         "Les toilettes du bureau ont un verrou cassé. J'ai tenu la porte avec mon pied pendant tout le processus, en équilibre, comme un flamant rose constipé. Quelqu'un a frappé en chantant {w:song}.",
-        "J'ai lâché une bombe dans les toilettes du bureau et je suis sorti{|e} pile au moment où le boss entrait. Il a reniflé. Il m'a regardé{|e}. Il est ressorti. Ça sentait {w:food} recyclé.",
+        "J'ai lâché une bombe dans les toilettes du bureau et je suis sorti{|e} pile au moment où le boss entrait. Il a reniflé. Il m'a regardé{|e}. Il est ressorti. L'odeur rappelait vaguement {w:food}.",
         "Dans les toilettes de la gare, la cabine d'à côté a dégagé {w:smell} et des bruits de fin du monde. J'ai prié pour son âme. Et pour la mienne.",
       ],
       en: [
         "I opened a restaurant bathroom door on a man mid-business who hadn't locked it. We looked at each other. He said 'hello'. I said 'enjoy your meal'. I don't know why. He was reading about {w:show}.",
         "The office bathroom lock is broken. I held the door shut with my foot through the entire process, balancing like a constipated flamingo. Someone knocked, singing {w:song}.",
-        "I dropped a bomb in the office bathroom and walked out just as the boss walked in. He sniffed. He looked at me. He walked back out. It smelled like recycled {w:food}.",
+        "I dropped a bomb in the office bathroom and walked out just as the boss walked in. He sniffed. He looked at me. He walked back out. The smell vaguely recalled {w:food}.",
         "In the train station bathroom, the next stall gave off {w:smell} and apocalyptic noises. I prayed for their soul. And mine.",
       ],
     },

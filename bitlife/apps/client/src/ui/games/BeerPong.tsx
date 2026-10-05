@@ -442,7 +442,7 @@ export function BeerPong({ onDone }: GameProps) {
 
   function simulatePreview(st: BS, yaw: number, pow: number) {
     const v = launch(st, yaw, pow, 0);
-    const pts: { x: number; y: number }[] = [];
+    const pts: { x: number; y: number; k: number }[] = [];
     let x = START.x, y = START.y, z = START.z, vx = v.vx, vy = v.vy, vz = v.vz;
     for (let i = 0; i < 90; i++) {
       const dt = 1 / 60; vy -= G * dt; x += vx * dt; y += vy * dt; z += vz * dt;

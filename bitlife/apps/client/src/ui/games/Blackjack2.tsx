@@ -81,7 +81,7 @@ export function Blackjack2({ onDone, l }: GameProps) {
     ph: 'wait' as Ph, hand: 0, bank: start, net: 0, total: 0, bet: 0, betChips: 0, wins: 0, losses: 0, pushes: 0, bjs: 0, doubled: 0, best: 0,
     shoe: [] as number[], pl: [] as Spr[], dl: [] as Spr[], gone: [] as Spr[], chips: [] as Chip[], q: [] as { at: number; f: () => void }[], clock: 0,
     quip: Q.bet[0] as L, quipT: 0, banner: null as null | { text: string; sub: string; col: string; t: number; bj?: boolean }, btns: [] as Btn[], mx: -1, my: -1,
-    dShown: 0, ended: false, results: [] as number[], dealerBounce: 0, lay: { w: 0, h: 0, T: 0, cw: 0, ch: 0 },
+    dShown: 0, ended: false, table: null as HTMLCanvasElement | null, tableKey: '', results: [] as number[], dealerBounce: 0, lay: { w: 0, h: 0, T: 0, cw: 0, ch: 0 },
   });
   const pct = (x: number, y: number): [number, number] => {
     const r = cref.current?.getBoundingClientRect();
@@ -98,7 +98,8 @@ export function Blackjack2({ onDone, l }: GameProps) {
   const bets = () => { const st = s.current; return [0.05, 0.15, 0.4].map((f) => Math.max(cfg.current!.min, Math.round(st.bank * f))); };
   const deal = (to: 'p' | 'd', up = true) => {
     const st = s.current, L = st.lay;
-    const sp: Spr = { c: draw1(), x: L.w * 0.88, y: L.T + L.h * 0.1, rot: -0.6, trot: (Math.random() - 0.5) * 0.08, flip: 0, up, fs: 4.5 };
+    const sh = shoePos(L.w, L.h, L.T);
+    const sp: Spr = { c: draw1(), x: sh.x, y: sh.y, rot: -0.6, trot: (Math.random() - 0.5) * 0.08, flip: 0, up, fs: 4.5 };
     (to === 'p' ? st.pl : st.dl).push(sp);
     sfx.card();
   };
@@ -301,62 +302,20 @@ export function Blackjack2({ onDone, l }: GameProps) {
     if (st.banner) st.banner.t += dt;
     st.dealerBounce = Math.max(0, st.dealerBounce - dt * 3);
 
-    // ── background & table ──
+    // ── background & table (cached) ──
     ctx.clearRect(0, 0, w, h);
-    const bg = ctx.createRadialGradient(w / 2, h * 0.3, 10, w / 2, h * 0.4, w * 0.8);
-    bg.addColorStop(0, '#2a1606'); bg.addColorStop(1, '#070302');
-    ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h);
-    // bokeh lights
-    for (let i = 0; i < 9; i++) {
-      const bx = ((i * 211.7) % w), by = h * 0.12 + ((i * 97) % (h * 0.8)), r = 20 + (i * 13) % 40;
-      ctx.fillStyle = `rgba(255,${190 + (i * 7) % 60},90,${0.03 + 0.02 * Math.sin(t * 0.8 + i)})`;
-      ctx.beginPath(); ctx.arc(bx, by, r, 0, Math.PI * 2); ctx.fill();
+    const rx = Math.min(w * 0.48, h * 1.02), cx = w / 2;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const tk = `${w}x${h}x${dpr}`;
+    if (st.tableKey !== tk || !st.table) { st.table = renderTable(w, h, T, cw, ch, dpr); st.tableKey = tk; }
+    ctx.drawImage(st.table, 0, 0, w, h);
+    // twinkling lights
+    for (let i = 0; i < 6; i++) {
+      const bx = ((i * 211.7 + 60) % w), by = h * 0.15 + ((i * 137) % (h * 0.7));
+      if (Math.abs(bx - cx) < rx * 0.9) continue;
+      ctx.fillStyle = `rgba(255,${200 + (i * 7) % 50},110,${0.04 + 0.03 * Math.sin(t * 0.9 + i * 2)})`;
+      ctx.beginPath(); ctx.arc(bx, by, 26 + (i * 13) % 30, 0, Math.PI * 2); ctx.fill();
     }
-    const rx = Math.min(w * 0.48, h * 1.02), ry = h * 0.93, cx = w / 2;
-    const half = (ox: number, oy: number) => { ctx.beginPath(); ctx.moveTo(cx - rx - ox, T - oy); ctx.lineTo(cx + rx + ox, T - oy); ctx.ellipse(cx, T, rx + ox, ry + ox, 0, 0, Math.PI); ctx.closePath(); };
-    // rail
-    ctx.save();
-    ctx.shadowColor = 'rgba(0,0,0,.7)'; ctx.shadowBlur = 40; ctx.shadowOffsetY = 14;
-    half(22, 22);
-    const wood = ctx.createLinearGradient(0, T, 0, T + ry + 22);
-    wood.addColorStop(0, '#3a1a08'); wood.addColorStop(0.5, '#6b3410'); wood.addColorStop(1, '#2a1004');
-    ctx.fillStyle = wood; ctx.fill();
-    ctx.restore();
-    half(10, 10); ctx.strokeStyle = 'rgba(255,200,140,.18)'; ctx.lineWidth = 2; ctx.stroke();
-    half(2, 2); ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 3; ctx.stroke();
-    // felt
-    half(0, 0);
-    const fg = ctx.createRadialGradient(cx, h * 0.45, 20, cx, h * 0.45, rx);
-    fg.addColorStop(0, '#1d8a4e'); fg.addColorStop(0.6, '#106b39'); fg.addColorStop(1, '#063d20');
-    ctx.fillStyle = fg; ctx.fill();
-    const pat = felt(ctx); if (pat) { ctx.fillStyle = pat; ctx.fill(); }
-    // printed lines & texts
-    ctx.save();
-    ctx.strokeStyle = 'rgba(233,196,106,.55)'; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.ellipse(cx, T, rx * 0.62, ry * 0.5, 0, 0.12 * Math.PI, 0.88 * Math.PI); ctx.stroke();
-    ctx.beginPath(); ctx.ellipse(cx, T, rx * 0.62, ry * 0.565, 0, 0.12 * Math.PI, 0.88 * Math.PI); ctx.stroke();
-    arcText(ctx, tr('LE BLACKJACK PAIE 3 CONTRE 2', 'BLACKJACK PAYS 3 TO 2'), cx, T, rx * 0.62, ry * 0.532, Math.max(11, h * 0.026), '#e9c46a');
-    arcText(ctx, tr('LE CROUPIER RESTE À 17 · LA MAISON GAGNE TOUJOURS', 'DEALER MUST STAND ON 17 · THE HOUSE ALWAYS WINS'), cx, T, rx * 0.78, ry * 0.69, Math.max(9, h * 0.019), 'rgba(233,196,106,.55)');
-    ctx.restore();
-
-    // chip tray (dealer bank)
-    const trX = w * 0.3, trY = T + h * 0.015, trW = Math.min(w * 0.16, 190), trH = h * 0.075;
-    ctx.save(); roundRect(ctx, trX - trW / 2, trY, trW, trH, 6); ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.fill(); ctx.strokeStyle = 'rgba(233,196,106,.4)'; ctx.stroke();
-    const cols = ['#d62839', '#15161c', '#7b2cbf', '#1b9aaa', '#f4a261', '#d62839'];
-    for (let i = 0; i < 6; i++) { const x = trX - trW / 2 + (i + 0.5) * (trW / 6); for (let k = 0; k < 4; k++) { ctx.fillStyle = k % 2 ? '#fff' : cols[i]; ctx.beginPath(); ctx.ellipse(x, trY + trH * 0.25 + k * trH * 0.17, trW / 14, trH * 0.13, 0, 0, Math.PI * 2); ctx.fill(); } }
-    ctx.restore();
-    // shoe
-    const shX = w * 0.88, shY = T + h * 0.1;
-    ctx.save(); ctx.translate(shX, shY); ctx.rotate(-0.6);
-    ctx.shadowColor = 'rgba(0,0,0,.6)'; ctx.shadowBlur = 14; ctx.shadowOffsetY = 6;
-    roundRect(ctx, -cw * 0.62, -ch * 0.58, cw * 1.24, ch * 1.16, 8); ctx.fillStyle = '#1b0d05'; ctx.fill(); ctx.shadowBlur = 0;
-    ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 2; ctx.stroke();
-    for (let i = 3; i >= 0; i--) { ctx.save(); ctx.translate(i * 1.5, -i * 1.5); cardBack(ctx, cw, ch); ctx.restore(); }
-    ctx.restore();
-    // discard holder
-    ctx.save(); ctx.translate(w * 0.12, T + h * 0.08); ctx.rotate(0.5);
-    roundRect(ctx, -cw * 0.55, -ch * 0.55, cw * 1.1, ch * 1.1, 8); ctx.strokeStyle = 'rgba(233,196,106,.35)'; ctx.setLineDash([5, 5]); ctx.lineWidth = 2; ctx.stroke(); ctx.setLineDash([]);
-    ctx.restore();
 
     // dealer medallion + speech bubble
     const mdX = cx, mdY = T + h * 0.065 - st.dealerBounce * 6, mdR = Math.min(h * 0.055, 34);
@@ -573,6 +532,82 @@ export function Blackjack2({ onDone, l }: GameProps) {
 }
 
 // ───────────────────────── drawing helpers ─────────────────────────
+function renderTable(w: number, h: number, T: number, cw: number, ch: number, dpr: number): HTMLCanvasElement {
+  const cv = document.createElement('canvas');
+  cv.width = Math.max(1, Math.round(w * dpr)); cv.height = Math.max(1, Math.round(h * dpr));
+  const ctx = cv.getContext('2d'); if (!ctx) return cv;
+  ctx.scale(dpr, dpr);
+  const bg = ctx.createRadialGradient(w / 2, h * 0.3, 10, w / 2, h * 0.4, w * 0.8);
+  bg.addColorStop(0, '#2a1606'); bg.addColorStop(1, '#070302');
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h);
+  const rx = Math.min(w * 0.48, h * 1.02), ry = h * 0.93, cx = w / 2;
+  const half = (ox: number, oy: number) => { ctx.beginPath(); ctx.moveTo(cx - rx - ox, T - oy); ctx.lineTo(cx + rx + ox, T - oy); ctx.ellipse(cx, T, rx + ox, ry + ox, 0, 0, Math.PI); ctx.closePath(); };
+  // rail
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,0,0,.7)'; ctx.shadowBlur = 40; ctx.shadowOffsetY = 14;
+  half(22, 22);
+  const wood = ctx.createLinearGradient(0, T, 0, T + ry + 22);
+  wood.addColorStop(0, '#3a1a08'); wood.addColorStop(0.5, '#6b3410'); wood.addColorStop(1, '#2a1004');
+  ctx.fillStyle = wood; ctx.fill();
+  ctx.restore();
+  half(14, 14); ctx.strokeStyle = 'rgba(255,200,140,.14)'; ctx.lineWidth = 6; ctx.stroke();
+  half(2, 2); ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 3; ctx.stroke();
+  // felt
+  half(0, 0);
+  const fg = ctx.createRadialGradient(cx, h * 0.45, 20, cx, h * 0.45, rx);
+  fg.addColorStop(0, '#1d8a4e'); fg.addColorStop(0.6, '#106b39'); fg.addColorStop(1, '#063d20');
+  ctx.fillStyle = fg; ctx.fill();
+  const pat = felt(ctx); if (pat) { ctx.fillStyle = pat; ctx.fill(); }
+  // inner shadow along the rail
+  ctx.save(); half(0, 0); ctx.clip();
+  ctx.shadowColor = 'rgba(0,0,0,.6)'; ctx.shadowBlur = 30; half(30, 30); ctx.lineWidth = 60; ctx.strokeStyle = '#000'; ctx.stroke();
+  ctx.restore();
+  // printed band & texts
+  ctx.save();
+  ctx.strokeStyle = 'rgba(233,196,106,.55)'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.ellipse(cx, T, rx * 0.66, ry * 0.68, 0, 0.1 * Math.PI, 0.9 * Math.PI); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(cx, T, rx * 0.66, ry * 0.745, 0, 0.1 * Math.PI, 0.9 * Math.PI); ctx.stroke();
+  arcText(ctx, tr('LE BLACKJACK PAIE 3 CONTRE 2', 'BLACKJACK PAYS 3 TO 2'), cx, T, rx * 0.66, ry * 0.712, Math.max(11, h * 0.024), '#e9c46a');
+  arcText(ctx, tr('LE CROUPIER RESTE À 17 · LA MAISON GAGNE TOUJOURS', 'DEALER MUST STAND ON 17 · THE HOUSE ALWAYS WINS'), cx, T, rx * 0.86, ry * 0.86, Math.max(9, h * 0.017), 'rgba(233,196,106,.45)');
+  ctx.restore();
+  // chip tray (dealer bank)
+  const trX = w * 0.3, trY = T + h * 0.015, trW = Math.min(w * 0.16, 190), trH = h * 0.075;
+  ctx.save(); roundRect(ctx, trX - trW / 2, trY, trW, trH, 6); ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.fill(); ctx.strokeStyle = 'rgba(233,196,106,.4)'; ctx.stroke();
+  const cols = ['#d62839', '#15161c', '#7b2cbf', '#1b9aaa', '#f4a261', '#d62839'];
+  for (let i = 0; i < 6; i++) { const x = trX - trW / 2 + (i + 0.5) * (trW / 6); for (let k = 0; k < 4; k++) { ctx.fillStyle = k % 2 ? '#fff' : cols[i]; ctx.beginPath(); ctx.ellipse(x, trY + trH * 0.25 + k * trH * 0.17, trW / 14, trH * 0.13, 0, 0, Math.PI * 2); ctx.fill(); } }
+  ctx.restore();
+  // shoe
+  const sh = shoePos(w, h, T);
+  ctx.save(); ctx.translate(sh.x, sh.y); ctx.rotate(-0.6);
+  ctx.shadowColor = 'rgba(0,0,0,.6)'; ctx.shadowBlur = 14; ctx.shadowOffsetY = 6;
+  roundRect(ctx, -cw * 0.62, -ch * 0.58, cw * 1.24, ch * 1.16, 8); ctx.fillStyle = '#1b0d05'; ctx.fill(); ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+  ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 2; ctx.stroke();
+  for (let i = 3; i >= 0; i--) { ctx.save(); ctx.translate(i * 1.5, -i * 1.5); cardBack(ctx, cw, ch); ctx.restore(); }
+  ctx.restore();
+  // discard holder
+  const dp = discardPos(w, h, T);
+  ctx.save(); ctx.translate(dp.x, dp.y); ctx.rotate(0.5);
+  roundRect(ctx, -cw * 0.55, -ch * 0.55, cw * 1.1, ch * 1.1, 8); ctx.strokeStyle = 'rgba(233,196,106,.35)'; ctx.setLineDash([5, 5]); ctx.lineWidth = 2; ctx.stroke(); ctx.setLineDash([]);
+  ctx.restore();
+  return cv;
+}
+const shoePos = (w: number, h: number, T: number) => ({ x: w / 2 + Math.min(w * 0.48, h * 1.02) * 0.68, y: T + h * 0.15 });
+const discardPos = (w: number, h: number, T: number) => ({ x: w / 2 - Math.min(w * 0.48, h * 1.02) * 0.68, y: T + h * 0.15 });
+const cardCache = new Map<string, HTMLCanvasElement>();
+function cachedCard(c: number, cw: number, ch: number, back: boolean): HTMLCanvasElement | null {
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const key = `${back ? 'b' : c}_${cw}_${dpr}`;
+  let cv = cardCache.get(key);
+  if (!cv) {
+    if (cardCache.size > 160) cardCache.clear();
+    cv = document.createElement('canvas'); cv.width = Math.ceil((cw + 4) * dpr); cv.height = Math.ceil((ch + 4) * dpr);
+    const x = cv.getContext('2d'); if (!x) return null;
+    x.scale(dpr, dpr); x.translate((cw + 4) / 2, (ch + 4) / 2);
+    if (back) cardBack(x, cw, ch); else cardFace(x, c, cw, ch);
+    cardCache.set(key, cv);
+  }
+  return cv;
+}
 function easeOutBack(k: number) { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); }
 function shade(hex: string, amt: number) {
   const n = parseInt(hex.slice(1), 16); let r = (n >> 16) & 255, gg = (n >> 8) & 255, b = n & 255;
@@ -682,10 +717,13 @@ function drawCard(ctx: CanvasRenderingContext2D, s: Spr, cw: number, ch: number)
   const sx = Math.max(0.02, Math.abs(Math.cos(ang)));
   const lift = Math.sin(ang) * 0.12;
   ctx.save();
-  ctx.translate(s.x, s.y - lift * ch * 0.3); ctx.rotate(s.rot); ctx.scale(sx * (1 + lift), 1 + lift);
-  ctx.shadowColor = 'rgba(0,0,0,.45)'; ctx.shadowBlur = 10 + lift * 80; ctx.shadowOffsetY = 4 + lift * 40;
-  ctx.fillStyle = '#000'; roundRect(ctx, -cw / 2, -ch / 2, cw, ch, cw * 0.08); ctx.fill();
-  ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
-  if (ang > Math.PI / 2) cardFace(ctx, s.c, cw, ch); else cardBack(ctx, cw, ch);
+  ctx.translate(s.x, s.y - lift * ch * 0.3); ctx.rotate(s.rot);
+  // soft shadow (no blur: two offset layers)
+  const so = 4 + lift * 40;
+  ctx.fillStyle = 'rgba(0,0,0,.18)'; roundRect(ctx, -cw * sx / 2 + so * 0.3 - 2, -ch / 2 + so - 1, cw * sx + 4, ch + 4, cw * 0.1); ctx.fill();
+  ctx.fillStyle = 'rgba(0,0,0,.22)'; roundRect(ctx, -cw * sx / 2 + so * 0.3, -ch / 2 + so * 0.6, cw * sx, ch, cw * 0.08); ctx.fill();
+  ctx.scale(sx * (1 + lift), 1 + lift);
+  const img = cachedCard(s.c, cw, ch, ang <= Math.PI / 2);
+  if (img) ctx.drawImage(img, -(cw + 4) / 2, -(ch + 4) / 2, cw + 4, ch + 4);
   ctx.restore();
 }

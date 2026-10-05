@@ -256,7 +256,7 @@ export function Slots({ onDone, l, variant }: GameProps) {
         if (u >= 1) {
           r.pos = r.to; r.state = 'idle'; r.landedAt = st.t;
           synth.kick(); synth.noise(0.05, 0.12, 2400); st.thump = 1;
-          if (i === 1 && st.reels[2].tease) { synth.tone(180, 1.7, 'sawtooth', 0.035, 0, 4); for (let b = 0; b < 6; b++) synth.tone(60, 0.12, 'sine', 0.25, b * 0.28); }
+          if (i === 1 && st.reels[2].tease) { st.msg = { text: tr('ALLEZ… ALLEZ… 🙏', 'COME ON… COME ON… 🙏'), col: GOLD, t: 0 }; synth.tone(180, 1.7, 'sawtooth', 0.035, 0, 4); for (let b = 0; b < 6; b++) synth.tone(60, 0.12, 'sine', 0.25, b * 0.28); }
           if (i === 2) settle();
         }
       }
