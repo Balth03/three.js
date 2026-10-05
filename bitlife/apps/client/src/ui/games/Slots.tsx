@@ -164,7 +164,7 @@ export function Slots({ onDone, l, variant }: GameProps) {
     if (total > 0) {
       st.stackBefore = st.stack; st.stack += total; st.winsCount++; st.biggest = Math.max(st.biggest, total);
       st.mode = 'pay'; st.payT = 0; st.payDur = Math.min(3.2, 0.7 + Math.log(1 + mult) * 0.7);
-      g.add(Math.round(mult * 100), undefined);
+      g.add(Math.round(mult * 100), signed(total), 50, 62, GOLD);
       const jackpot = wins.some((w) => w.sym === SEVEN || (w.sym === WILD && w.mult >= 100));
       if (jackpot) {
         st.jackpots++; st.banner = { kind: 'jackpot', t: 0 }; st.siren = 4;
@@ -203,11 +203,11 @@ export function Slots({ onDone, l, variant }: GameProps) {
     const r = Math.max(-1, Math.min(5, st.stack / st.start - 1));
     const score = r < 0 ? 0.45 * (1 + r) : 0.45 + 0.55 * (1 - Math.exp(-r * 3));
     g.end(score, [
-      [tr('Jetons', 'Stack'), `${fmt(st.start)} → ${fmt(st.stack)}`],
-      [tr('Résultat net', 'Net result'), `${signed(st.stack - st.start)} (${r >= 0 ? '+' : '−'}${Math.abs(r * 100).toFixed(0)} %)`],
-      [tr('Plus gros gain', 'Biggest win'), st.biggest > 0 ? fmt(st.biggest) : '—'],
-      [tr('Tours gagnants', 'Winning spins'), `${st.winsCount} / ${st.spinsDone}`],
-      [tr('Jackpots · frôlés', 'Jackpots · near-misses'), `${st.jackpots} · ${st.nearMisses}`],
+      [tr('Jetons finaux', 'Final stack'), fmt(st.stack)],
+      [tr('Résultat', 'Net'), `${r >= 0 ? '+' : '−'}${Math.abs(r * 100).toFixed(0)} %`],
+      [tr('Plus gros gain', 'Best win'), st.biggest > 0 ? fmt(st.biggest) : '—'],
+      [tr('Tours gagnants', 'Winning spins'), `${st.winsCount}/${st.spinsDone}`],
+      [tr('Jackpots · frôlés', 'Jackpots · close'), `${st.jackpots}🎰 ${st.nearMisses}😱`],
     ], r);
   };
 

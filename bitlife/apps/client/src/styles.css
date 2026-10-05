@@ -490,7 +490,7 @@ html.reduced .event-card.gory::after, html.reduced .event-card.poopy::after { an
 .stat-inputs input[type=number] { width: 64px; padding: 4px; border-radius: 8px; border: 1px solid rgba(0,0,0,.15); }
 
 /* ═════════════ Minigame arena ═════════════ */
-.arena { position: fixed; inset: 0; z-index: 120; overflow: hidden; color: #fff; font-family: 'Fredoka Variable', system-ui, sans-serif; user-select: none; }
+.arena { pointer-events: auto; position: fixed; inset: 0; z-index: 120; overflow: hidden; color: #fff; font-family: 'Fredoka Variable', system-ui, sans-serif; user-select: none; }
 .arena-bg { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 110%, var(--a2) 0%, var(--a1) 45%, #07040f 100%); }
 .arena-grid { position: absolute; left: -50%; right: -50%; bottom: -10%; height: 60%; background-image: linear-gradient(var(--grid) 2px, transparent 2px), linear-gradient(90deg, var(--grid) 2px, transparent 2px); background-size: 60px 60px; transform: perspective(400px) rotateX(62deg); transform-origin: 50% 100%; animation: grid-run 1.2s linear infinite; opacity: .55; mask-image: linear-gradient(to top, #000 30%, transparent); }
 @keyframes grid-run { to { background-position: 0 60px; } }

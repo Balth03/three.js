@@ -179,9 +179,9 @@ export function Trading({ onDone, l }: GameProps) {
     const score = p < 0 ? 0.4 * Math.max(0, 1 + p / 0.9) : 0.4 + 0.6 * (1 - Math.exp(-p * 2.2));
     const pctTxt = `${p >= 0 ? '+' : '−'}${Math.abs(p * 100).toFixed(1)} %`;
     g.end(score, [
-      [tr('Profit', 'Profit'), `${pctTxt} (${money(eq - st.start)})`],
+      [tr('Profit', 'Profit'), pctTxt],
       [tr('Capital final', 'Final equity'), fmt(eq)],
-      [tr('Trades gagnants', 'Winning trades'), `${st.wins} / ${st.trades}`],
+      [tr('Trades gagnants', 'Winning trades'), `${st.wins}/${st.trades}`],
       [tr('Meilleur trade', 'Best trade'), st.trades ? money(st.best) : '—'],
       [tr('Liquidations', 'Liquidations'), st.liqs ? `💀 × ${st.liqs}` : '0 😎'],
     ], p);

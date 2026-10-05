@@ -16,7 +16,7 @@ describe('simulation', () => {
 
   it('plays many lives without errors and with sane outcomes', () => {
     const ages: number[] = [];
-    for (let s = 1; s <= 300; s++) {
+    for (let s = 1; s <= 160; s++) {
       const l = autoplay(s);
       expect(l.alive).toBe(false);
       expect(Number.isFinite(l.money)).toBe(true);

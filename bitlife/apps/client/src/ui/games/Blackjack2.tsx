@@ -81,7 +81,7 @@ export function Blackjack2({ onDone, l }: GameProps) {
     ph: 'wait' as Ph, hand: 0, bank: start, net: 0, total: 0, bet: 0, betChips: 0, wins: 0, losses: 0, pushes: 0, bjs: 0, doubled: 0, best: 0,
     shoe: [] as number[], pl: [] as Spr[], dl: [] as Spr[], gone: [] as Spr[], chips: [] as Chip[], q: [] as { at: number; f: () => void }[], clock: 0,
     quip: Q.bet[0] as L, quipT: 0, banner: null as null | { text: string; sub: string; col: string; t: number; bj?: boolean }, btns: [] as Btn[], mx: -1, my: -1,
-    dShown: 0, ended: false, table: null as HTMLCanvasElement | null, tableKey: '', results: [] as number[], dealerBounce: 0, lay: { w: 0, h: 0, T: 0, cw: 0, ch: 0 },
+    dShown: 0, discarded: 0, ended: false, table: null as HTMLCanvasElement | null, tableKey: '', results: [] as number[], dealerBounce: 0, lay: { w: 0, h: 0, T: 0, cw: 0, ch: 0 },
   });
   if (import.meta.env.DEV) (window as unknown as Record<string, unknown>).__bj = s.current;
   const pct = (x: number, y: number): [number, number] => {
@@ -291,7 +291,7 @@ export function Blackjack2({ onDone, l }: GameProps) {
     const st = s.current;
     const playing = g.phase === 'play';
     const T = Math.round(h * 0.03);
-    const cw = Math.round(Math.min(w * 0.085, h * 0.17, 112)), ch = Math.round(cw * 1.4);
+    const cw = Math.round(Math.min(Math.max(w * 0.085, Math.min(w * 0.17, h * 0.11)), h * 0.17, 112)), ch = Math.round(cw * 1.4);
     st.lay = { w, h, T, cw, ch };
     if (playing) {
       st.clock += dt; st.quipT += dt;
@@ -375,8 +375,10 @@ export function Blackjack2({ onDone, l }: GameProps) {
       const c = st.gone[i]; const k = Math.min(1, dt * 7);
       c.tx = dpos.x; c.ty = dpos.y;
       c.x += (dpos.x - c.x) * k; c.y += (dpos.y - c.y) * k; c.rot += (0.5 - c.rot) * k;
-      if (Math.abs(c.x - dpos.x) < 3 && c.flip < 0.05) st.gone.splice(i, 1);
+      if (Math.abs(c.x - dpos.x) < 4 && Math.abs(c.y - dpos.y) < 4 && c.flip < 0.05) { st.gone.splice(i, 1); st.discarded++; }
     }
+    // discard pile
+    for (let i = 0; i < Math.min(8, Math.ceil(st.discarded / 2)); i++) drawCard(ctx, { c: 0, x: dpos.x + i * 0.8, y: dpos.y - i * 1.6, rot: 0.5 + ((i * 37) % 7 - 3) * 0.02, trot: 0, flip: 0, up: false, fs: 0 }, cw, ch);
     const all = [...st.gone, ...st.dl, ...st.pl];
     for (const c of all) {
       const near = c.out || Math.hypot((c.tx ?? c.x) - c.x, (c.ty ?? c.y) - c.y) < 30;
@@ -490,7 +492,7 @@ export function Blackjack2({ onDone, l }: GameProps) {
       ctx.fillText(`${tr('Bilan', 'Net')} ${net > 0 ? '+' : ''}${fmt(net)}`, px + 14, py + 14 + fs * 3.3);
       // hand pips
       for (let i = 0; i < HANDS; i++) {
-        const r = st.results[i]; const x = px + pw - 18 - (HANDS - 1 - i) * 20, y = py + 18;
+        const r = st.results[i]; const x = px + pw - 18 - (HANDS - 1 - i) * 20, y = pw < 200 ? py + ph - 14 : py + 18;
         ctx.beginPath(); ctx.arc(x, y, 7, 0, Math.PI * 2);
         ctx.fillStyle = r === undefined ? (i === st.hand ? `rgba(255,209,102,${0.6 + 0.4 * Math.sin(t * 6)})` : 'rgba(255,255,255,.18)') : r > 0 ? '#06d6a0' : r < 0 ? '#ff4d6d' : '#b8c0ff';
         ctx.fill();
@@ -516,6 +518,7 @@ export function Blackjack2({ onDone, l }: GameProps) {
       const fs = Math.max(26, Math.min(64, h * 0.09));
       ctx.font = `900 ${fs}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       const tw = ctx.measureText(b.text).width;
+      const fit = Math.min(1, (w * 0.94) / (tw + 60)); ctx.scale(fit, fit);
       ctx.fillStyle = 'rgba(0,0,0,.6)'; roundRect(ctx, -tw / 2 - 30, -fs * 0.75, tw + 60, fs * (b.sub ? 2.05 : 1.5), 18); ctx.fill();
       ctx.strokeStyle = b.col; ctx.lineWidth = 3; ctx.stroke();
       glow(ctx, b.col, 30); ctx.fillStyle = b.col; ctx.fillText(b.text, 0, 0);
@@ -602,8 +605,8 @@ function renderTable(w: number, h: number, T: number, cw: number, ch: number, dp
   ctx.restore();
   return cv;
 }
-const shoePos = (w: number, h: number, T: number) => ({ x: w / 2 + Math.min(w * 0.48, h * 1.02) * 0.68, y: T + h * 0.15 });
-const discardPos = (w: number, h: number, T: number) => ({ x: w / 2 - Math.min(w * 0.48, h * 1.02) * 0.68, y: T + h * 0.15 });
+const shoePos = (w: number, h: number, T: number) => ({ x: w / 2 + Math.min(w * 0.48, h * 1.02) * 0.68, y: T + h * (w < h ? 0.27 : 0.15) });
+const discardPos = (w: number, h: number, T: number) => ({ x: w / 2 - Math.min(w * 0.48, h * 1.02) * 0.68, y: T + h * (w < h ? 0.27 : 0.15) });
 const cardCache = new Map<string, HTMLCanvasElement>();
 function cachedCard(c: number, cw: number, ch: number, back: boolean): HTMLCanvasElement | null {
   const dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -637,6 +640,7 @@ function arcText(ctx: CanvasRenderingContext2D, text: string, cx: number, cy: nu
   const chars = [...text]; const widths = chars.map((c) => ctx.measureText(c).width + size * 0.08);
   const total = widths.reduce((a, b) => a + b, 0);
   const R = (rx + ry) / 2;
+  if (total > Math.min(rx, ry) * Math.PI * 0.55) { ctx.restore(); return; }
   let a = Math.PI / 2 + total / R / 2;
   chars.forEach((c, i) => {
     const da = widths[i] / R; a -= da / 2;

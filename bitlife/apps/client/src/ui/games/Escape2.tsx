@@ -110,7 +110,7 @@ export function Escape2({ onDone }: GameProps) {
         [tr('Résultat', 'Result'), win ? tr('🏃 ÉVADÉ', '🏃 ESCAPED') : why === 'time' ? tr('⏰ PROJECTEURS', '⏰ SEARCHLIGHTS') : tr('🚨 RATTRAPÉ', '🚨 CAUGHT')],
         [tr('Temps', 'Time'), `${el.toFixed(1)} s`],
         [tr('Clé', 'Key'), st.hasKey ? '🔑 ✓' : '✗'],
-        [tr('Alarmes', 'Alarms'), st.alarms ? `🚨 × ${st.alarms}` : tr('Aucune, fantôme 👻', 'None, ghost 👻')],
+        [tr('Alarmes', 'Alarms'), st.alarms ? `🚨 × ${st.alarms}` : '0 👻'],
         [tr('Distance', 'Distance'), `${Math.round(st.dist * 2)} m`],
       ]);
     }, 1300);

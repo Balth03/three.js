@@ -190,7 +190,7 @@ export const lifeEvents: EventDef[] = [
         label: { fr: 'Fouiller le quartier', en: 'Search the area' },
         out: [
           { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai couru six kilomètres en criant son nom. J'ai retrouvé {a.first} chez le boucher, adopté{a:|e} par toute l'équipe.", "J'ai fouillé le quartier toute la soirée. J'ai retrouvé {a.first} {w:at_place}, en train de se faire nourrir par des inconnus. {a:Il|Elle} avait l'air de très bien vivre sans moi. Ça m'a vexé{|e}."], en: ["I ran four miles shouting the name. Found {a.first} at the butcher's, adopted by the whole staff.", "I searched the neighborhood all evening. Found {a.first} {w:at_place}, being fed by strangers. {a:He|She} seemed to be doing great without me. I was offended."] }, fx: { athletic: 4, happy: 6, rel: 4 }, mood: 'happy' },
-          { w: 1, text: { fr: ["J'ai fouillé toute la nuit. Rien. {a.first} a peut-être enfin trouvé sa vraie vocation. Je laisse la fenêtre ouverte.", "J'ai cherché partout, avec une lampe torche et un paquet de croquettes que je secouais en criant. Je n'ai trouvé que {w:animal}, qui m'a suivi{|e} jusqu'à la maison. Ce n'est pas pareil."], en: ["I searched all night. Nothing. Maybe {a.first} finally found their true calling. I leave the window open.", "I searched everywhere, with a flashlight and a bag of kibble I kept shaking and yelling. All I found was {w:animal}, which followed me home. It's not the same."] }, fx: { happy: -10, health: -2, schedule: { key: 'lf_pet_return', years: 2 } }, mood: 'cry' },
+          { w: 1, text: { fr: ["J'ai fouillé toute la nuit. Rien. {a.first} a peut-être enfin trouvé sa vraie vocation. Je laisse la fenêtre ouverte.", "J'ai cherché partout, avec une lampe torche et un paquet de croquettes que je secouais en criant. J'ai seulement trouvé {w:animal}, qui m'a suivi{|e} jusqu'à la maison. Ce n'est pas pareil."], en: ["I searched all night. Nothing. Maybe {a.first} finally found their true calling. I leave the window open.", "I searched everywhere, with a flashlight and a bag of kibble I kept shaking and yelling. All I found was {w:animal}, which followed me home. It's not the same."] }, fx: { happy: -10, health: -2, schedule: { key: 'lf_pet_return', years: 2 } }, mood: 'cry' },
         ],
       },
       { label: { fr: 'Laisser partir', en: 'Let it go' }, text: { fr: ["Je me suis dit que {a.first} était parti{a:|e} vivre sa meilleure vie. J'ai pleuré dans la gamelle. Je l'ai gardée.", "J'ai laissé {a.first} partir. J'aime l'imaginer {w:far_place}, libre, heureu{a:x|se}. En vrai, {a:il|elle} est sûrement chez la voisine du 2e, qui donne du jambon."], en: ["I told myself {a.first} left to live their best life. I cried into the food bowl. I kept it.", "I let {a.first} go. I like to imagine {a:him|her} {w:far_place}, free and happy. Realistically, {a:he|she}'s probably at the second-floor neighbor's, who gives out ham."] }, fx: { happy: -12, actorGone: true }, mood: 'cry' },
@@ -890,7 +890,7 @@ export const lifeEvents: EventDef[] = [
         "Tu atterris pour une semaine au soleil. Ta valise, elle, est partie à Oulan-Bator. Tu as sur toi un jean, une polaire et un oreiller cervical.",
         "Le tapis à bagages tourne depuis 45 minutes. Il ne reste qu'une valise : la tienne, ouverte, vide, avec un mot qui dit « désolé ».",
         "Ta valise a été aperçue pour la dernière fois {w:far_place}. Toi, tu es en vacances ailleurs, avec un jean, {w:object} et un paquet de chips d'avion. La semaine commence.",
-        "Le tapis à bagages ne te rend que {w:object} qui n'est pas à toi, et une odeur bizarre. Ta valise, d'après l'appli, fait le tour du monde sans toi. Elle a déjà vu plus de pays que toi.",
+        "Le tapis à bagages te rend seulement {w:object} qui n'est pas à toi, et une odeur bizarre. Ta valise, d'après l'appli, fait le tour du monde sans toi. Elle a déjà vu plus de pays que toi.",
         "Ta valise est perdue. La compagnie te remet un « kit de survie » : une brosse à dents, un t-shirt [[XXXL|taille enfant|à l'effigie de la compagnie]] et un bon pour {w:food}. Il fait 34 °C dehors.",
       ],
       en: [
@@ -1015,14 +1015,14 @@ export const lifeEvents: EventDef[] = [
         "Voyage romantique à Paris. Il pleut, le métro sent l'urine et le croissant coûte 3,80 €. Tu fais une crise de « syndrome de Paris » au pied de Montmartre.",
         "Paris, enfin ! Sauf que la Joconde est minuscule, la queue dure [[trois|quatre|cinq]] heures et un type t'a vendu {w:object} « fabriqué à Montmartre », étiqueté Made in China. Le rêve s'effrite.",
         "Ton séjour à Paris : {w:weather}, un café à 7 euros et un serveur qui t'a appelé{|e} « {w:insult} » en souriant. Tu t'attendais à Amélie Poulain. Tu as eu une grève de métro.",
-        "Tu es à Paris depuis deux heures. Tu as déjà marché dans quelque chose, payé {w:food} une fortune et vu un rat plus gros que {w:animal}. Tu t'assois sur un banc et tu regardes le vide.",
+        "Tu es à Paris depuis deux heures. Tu as déjà marché dans quelque chose, payé {w:food} une fortune et vu un rat dévorer {w:animal} sous tes yeux. Tu t'assois sur un banc et tu regardes le vide.",
       ],
       en: [
         "You finally visit Paris. The waiter despised you in three languages, a pigeon pooped on your shoulder and someone sold you a light-up Eiffel Tower that doesn't light up. You feel an immense void.",
         "Romantic trip to Paris. It's raining, the metro smells like pee and a croissant costs $4. You have a full-blown “Paris syndrome” breakdown at the foot of Montmartre.",
         "Paris, at last! Except the Mona Lisa is tiny, the line takes [[three|four|five]] hours and a guy sold you {w:object} 'made in Montmartre', labeled Made in China. The dream crumbles.",
         "Your trip to Paris: {w:weather}, a 7-dollar coffee and a waiter who called you '{w:insult}' with a smile. You expected Amélie. You got a subway strike.",
-        "You've been in Paris for two hours. You've already stepped in something, paid a fortune for {w:food} and seen a rat bigger than {w:animal}. You sit on a bench and stare into the void.",
+        "You've been in Paris for two hours. You've already stepped in something, paid a fortune for {w:food} and watched a rat devour {w:animal} right in front of you. You sit on a bench and stare into the void.",
       ],
     },
     choices: [

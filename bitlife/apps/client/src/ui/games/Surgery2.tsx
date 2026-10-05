@@ -86,13 +86,13 @@ function newState() {
     shake: 0, drops: [] as Drop[], splats: [] as { x: number; y: number; r: number; a: number }[],
     eyes: 0, bubble: null as null | { txt: string; t: number }, banner: null as null | { txt: string; sub: string; col: string; t: number },
     flatT: 0, zaps: 0, jump: 0, outcome: 'alive' as 'alive' | 'revived' | 'dead' | 'awake',
-    ended: false, inited: false, ringT: 2, flashCut: 0, zz: 0,
+    ended: false, inited: false, ringT: 2, flashCut: 0, zz: 0, portrait: false,
   };
 }
 type S = ReturnType<typeof newState>;
 
 export function Surgery2({ onDone }: GameProps) {
-  const g = useGame({ duration: 50, onDone });
+  const g = useGame({ duration: 55, onDone });
   const s = useRef<S>(newState());
 
   const toV = (e: PointerEvent) => {
@@ -160,7 +160,7 @@ export function Surgery2({ onDone }: GameProps) {
     st.zaps++; st.jump = 1; st.shake = 1.2; st.spike = 1.5; snd.zap(); g.flash('#ffffff'); g.shake();
     const [px, py] = pct(430, 300); g.float(tr('DÉGAGEZ !', 'CLEAR!'), px, py - 10, '#7fdcff', true);
     if (st.zaps >= 4) {
-      st.outcome = 'revived'; st.bpm = 128; st.stage = 'done'; st.st = 0; g.burst(px, py, '#a3e635', 30);
+      st.outcome = 'revived'; st.bpm = 128; st.eyes = 3; st.stage = 'done'; st.st = 0; g.burst(px, py, '#a3e635', 30);
       st.banner = { txt: tr('IL EST VIVANT !', 'IT\'S ALIVE!'), sub: tr('Légèrement grillé, mais vivant.', 'Slightly toasted, but alive.'), col: '#a3e635', t: 0 };
       st.bubble = { txt: tr('…j\'ai vu ma grand-mère.', '…I saw my grandma.'), t: 0 };
     }
@@ -182,13 +182,13 @@ export function Surgery2({ onDone }: GameProps) {
     const timeB = clamp01(g.time / 14);
     let sc = 0.28 * inc + 0.34 * extr + 0.26 * sti + 0.12 * timeB;
     if (st.outcome === 'revived') sc *= 0.8; else if (st.outcome === 'dead') sc *= 0.35; else if (st.outcome === 'awake') sc *= 0.75;
-    const used = 50 - g.time;
+    const used = 55 - g.time;
     g.end(sc, [
-      [tr('Précision incision', 'Incision accuracy'), `${Math.round(inc * 100)}%`],
-      [tr('Contacts (BZZZT)', 'Edge touches (BZZZT)'), `⚡ ${st.touches}`],
-      [tr('Objets extraits', 'Objects removed'), `${st.extracted}/3`],
-      [tr('Points de suture', 'Stitches'), `${st.sPerfect + st.sGood}/${STITCHES} (${st.sPerfect} ${tr('parfaits', 'perfect')})`],
-      [tr('Patient', 'Patient'), st.outcome === 'alive' ? tr(`😎 Vivant (${used.toFixed(1)} s)`, `😎 Alive (${used.toFixed(1)} s)`) : st.outcome === 'revived' ? tr('⚡ Réanimé de justesse', '⚡ Barely revived') : st.outcome === 'dead' ? tr('☠️ Décédé (oups)', '☠️ Deceased (oops)') : tr('😱 Réveillé pendant l\'op', '😱 Woke up mid-op')],
+      [tr('Incision', 'Incision'), `${Math.round(inc * 100)}%`],
+      [tr('Objets · BZZZT', 'Objects · BZZZT'), `${st.extracted}/3 · ⚡${st.touches}`],
+      [tr('Sutures', 'Stitches'), `${st.sPerfect + st.sGood}/${STITCHES} (${st.sPerfect}★)`],
+      [tr('Temps', 'Time'), `${used.toFixed(1)} s`],
+      [tr('Patient', 'Patient'), st.outcome === 'alive' ? tr('😎 Vivant', '😎 Alive') : st.outcome === 'revived' ? tr('⚡ Réanimé', '⚡ Revived') : st.outcome === 'dead' ? tr('☠️ Décédé', '☠️ Dead') : tr('😱 Réveillé', '😱 Awake')],
     ]);
   };
 
@@ -271,7 +271,7 @@ export function Surgery2({ onDone }: GameProps) {
       if (bi >= st.nextTick && bi < STITCHES + 3) { st.nextTick = bi + 1; snd.tick(); }
       const i = st.stitched;
       if (i < STITCHES && st.st - (st.stitchT0 + i * BEAT) > 0.2) { st.sMiss++; st.sResults.push(0); const p = stitchPt(st, i); mistake(st, p.x, p.y, tr('RATÉ', 'MISSED'), 6); st.stitched++; }
-      st.open = Math.max(0, 1 - st.stitched / STITCHES) * 0.92 + 0.08 * (st.stitched < STITCHES ? 1 : 0);
+      st.open += (0.22 * (1 - st.stitched / STITCHES) - st.open) * Math.min(1, dt * 4);
       if (st.stitched >= STITCHES && st.st > st.stitchT0 + STITCHES * BEAT) {
         st.open = 0;
         const errs = st.cutErr + st.touches + st.sMiss;
@@ -298,12 +298,14 @@ export function Surgery2({ onDone }: GameProps) {
 
   const canvas = useCanvas((ctx, w, h, dt) => {
     const st = s.current;
-    st.W = w; st.H = h; (window as unknown as Record<string, unknown>).__surg = st;
-    st.S = Math.min(w / VW, h / VH); st.ox = (w - VW * st.S) / 2; st.oy = (h - VH * st.S) / 2;
+    st.W = w; st.H = h;
+    st.portrait = h > w * 1.05;
+    const vw = st.portrait ? 700 : VW, vh = st.portrait ? 930 : VH;
+    st.S = Math.min(w / vw, h / vh); st.ox = (w - vw * st.S) / 2; st.oy = (h - vh * st.S) / 2;
     st.t += dt;
     if (!st.inited) { st.inited = true; }
     if (g.phase === 'play' && !st.banner && st.stage === 'cut' && st.st === 0) st.banner = { txt: tr('1. INCISION', '1. INCISION'), sub: tr('Suis les pointillés au scalpel, sans trembler.', 'Follow the dotted line with the scalpel. No shaking.'), col: '#7fdcff', t: 0 };
-    try { if (g.phase === 'play' && !st.ended) update(st, dt); } catch { /* never throw */ }
+    try { if (g.phase === 'play' && !st.ended) update(st, dt); else if (st.outcome !== 'dead') st.phase += (dt * st.bpm) / 60; } catch { /* never throw */ }
     try { render(ctx, st, w, h, dt); } catch { /* never throw */ }
   }, true);
 
@@ -354,7 +356,7 @@ export function Surgery2({ onDone }: GameProps) {
     const lg = ctx.createRadialGradient(lx, ly, 20, lx, ly, 300); lg.addColorStop(0, 'rgba(255,255,240,.16)'); lg.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = lg; ctx.fillRect(0, 0, 700, 600); ctx.restore();
     const vg = ctx.createRadialGradient(400, 300, 220, 400, 300, 560); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,10,20,.55)');
-    ctx.fillStyle = vg; ctx.fillRect(-200, -100, 1400, 800);
+    ctx.fillStyle = vg; ctx.fillRect(-400, -400, 2000, 2000);
     // ─ blood drops in the air
     for (let i = st.drops.length - 1; i >= 0; i--) {
       const d = st.drops[i];
@@ -379,7 +381,7 @@ export function Surgery2({ onDone }: GameProps) {
       drawTool(ctx, tp.x, tp.y, tool, st.held >= 0, false);
     }
     // flatline red pulse
-    if (st.stage === 'flat' && st.outcome === 'alive') { ctx.fillStyle = `rgba(255,0,40,${0.12 + 0.1 * Math.sin(t * 14)})`; ctx.fillRect(-200, -100, 1400, 800); }
+    if (st.stage === 'flat' && st.outcome === 'alive') { ctx.fillStyle = `rgba(255,0,40,${0.12 + 0.1 * Math.sin(t * 14)})`; ctx.fillRect(-400, -400, 2000, 2000); }
     // banner
     if (st.banner) {
       st.banner.t += dt;
@@ -539,7 +541,9 @@ export function Surgery2({ onDone }: GameProps) {
       if (st.stage === 'stitch') {
         for (let i = st.stitched; i < STITCHES; i++) {
           const p = stitchPt(st, i), ti = st.stitchT0 + i * BEAT, dtb = ti - st.st;
-          ctx.fillStyle = i === st.stitched ? '#fff' : 'rgba(255,255,255,.4)'; ctx.beginPath(); ctx.arc(p.x, p.y, 6, 0, Math.PI * 2); ctx.fill();
+          ctx.save(); if (i === st.stitched) glow(ctx, '#7fdcff', 12);
+          ctx.fillStyle = '#04142b'; ctx.beginPath(); ctx.arc(p.x, p.y, 8, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = i === st.stitched ? '#ffffff' : 'rgba(200,230,255,.55)'; ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, Math.PI * 2); ctx.fill(); ctx.restore();
           if (dtb < 1.3 && dtb > -0.2) {
             const R = 9 + Math.max(0, dtb) * 42;
             const near = Math.abs(dtb) < 0.17;
@@ -554,6 +558,9 @@ export function Surgery2({ onDone }: GameProps) {
 
   function drawPanel(ctx: CanvasRenderingContext2D, st: S, t: number, dt: number) {
     const X = 708, Wd = 280;
+    // portrait: monitor bottom-left, the rest bottom-right
+    const mon = st.portrait ? [20 - X, 600 - 36] : [0, 0], rest = st.portrait ? [370 - X, 600 - 262] : [0, 0];
+    ctx.save(); ctx.translate(mon[0], mon[1]);
     // monitor
     ctx.save(); ctx.shadowColor = 'rgba(0,0,0,.6)'; ctx.shadowBlur = 20;
     ctx.fillStyle = '#1b2733'; roundRect(ctx, X, 36, Wd, 214, 16); ctx.fill(); ctx.restore();
@@ -600,6 +607,8 @@ export function Surgery2({ onDone }: GameProps) {
     ctx.font = `700 11px ${FONT}`; ctx.fillText('SpO₂ %', X + Wd - 18, 226);
     ctx.textAlign = 'left'; ctx.fillStyle = 'rgba(40,255,140,.7)'; ctx.font = `700 11px ${FONT}`; ctx.fillText('II  ECG', X + 18, 62);
     if (danger) { ctx.save(); glow(ctx, '#ff1f3d', 12); ctx.fillStyle = '#ff4d6d'; ctx.font = `900 14px ${FONT}`; ctx.fillText(flatNow ? tr('⚠ ASYSTOLIE', '⚠ ASYSTOLE') : tr('⚠ TACHYCARDIE', '⚠ TACHYCARDIA'), X + 70, 62); ctx.restore(); }
+    ctx.restore();
+    ctx.save(); ctx.translate(rest[0], rest[1]);
     // steps
     ctx.fillStyle = 'rgba(4,20,43,.8)'; roundRect(ctx, X, 262, Wd, 128, 14); ctx.fill();
     ctx.strokeStyle = 'rgba(127,220,255,.35)'; ctx.lineWidth = 1.5; ctx.stroke();
@@ -624,15 +633,16 @@ export function Surgery2({ onDone }: GameProps) {
     ctx.save(); glow(ctx, tc, 10); ctx.fillStyle = tc; roundRect(ctx, X, 418, Math.max(12, Wd * trem), 12, 6); ctx.fill(); ctx.restore();
     const errs = st.cutErr + st.touches + st.sMiss;
     ctx.fillStyle = errs >= FLAT_ERR - 2 ? '#ff4d6d' : 'rgba(255,255,255,.65)'; ctx.font = `700 12px ${FONT}`;
-    ctx.fillText(errs >= FLAT_ERR ? tr(`💀 ARRÊT CARDIAQUE IMMINENT (${errs})`, `💀 CARDIAC ARREST INCOMING (${errs})`) : `${tr('Erreurs', 'Mistakes')} : ${errs} / ${FLAT_ERR}`, X + 4, 448);
+    ctx.fillText(st.outcome === 'revived' ? tr('⚡ Réanimé. Personne ne saura.', '⚡ Revived. Nobody will know.') : errs >= FLAT_ERR ? tr(`💀 ARRÊT CARDIAQUE IMMINENT (${errs})`, `💀 CARDIAC ARREST INCOMING (${errs})`) : `${tr('Erreurs', 'Mistakes')} : ${errs} / ${FLAT_ERR}`, X + 4, 448);
     // tray (kidney dish)
     ctx.fillStyle = '#8fa3b6'; ctx.beginPath(); ctx.ellipse(X + Wd / 2, 512, Wd / 2, 46, 0, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = '#c8d5e2'; ctx.beginPath(); ctx.ellipse(X + Wd / 2, 510, Wd / 2 - 8, 38, 0, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = 'rgba(255,255,255,.45)'; ctx.beginPath(); ctx.ellipse(X + Wd / 2 - 30, 496, 60, 10, 0, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = 'rgba(4,20,43,.5)'; ctx.font = `800 11px ${FONT}`; ctx.textAlign = 'center'; ctx.fillText(tr('BUTIN', 'LOOT'), X + Wd / 2, 548);
+    ctx.restore();
     st.objs.forEach((o) => {
       if (o.fly < 0) return;
-      const tx = X + 60 + o.slot * 80, ty = 510, k = easeInOut(o.fly);
+      const tx = X + 60 + o.slot * 80 + rest[0], ty = 510 + rest[1], k = easeInOut(o.fly);
       const x = o.fx + (tx - o.fx) * k, y = o.fy + (ty - o.fy) * k - Math.sin(Math.PI * k) * 120;
       drawObj(ctx, o.kind, x, y, 1 + Math.sin(Math.PI * k) * 0.6, t);
     });

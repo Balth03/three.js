@@ -422,7 +422,7 @@ export const crimeEvents: EventDef[] = [
         "La commission de libération conditionnelle se réunit bientôt. Tu as une chemise propre, un discours, et des aisselles qui transpirent rien qu'en y pensant.",
         "Audience de libération dans [[trois jours|une semaine|48 heures]]. Ton codétenu te conseille de dire que tu as découvert {w:hobby} pour « montrer que tu as changé ». Ta mère conseille de pleurer. Ton avocat ne répond plus.",
         "La commission t'attend demain. Tu as rédigé un discours de repentance sur {w:object} faute de papier. Il fait [[deux|six|onze]] pages. Tu le connais par cœur. Tu transpires quand même.",
-        "Ta libération conditionnelle se joue cette semaine. Le dernier détenu à y être allé a dit {w:excuse} et a pris deux ans de plus. Tu as {w:smell} sous les bras rien que d'y penser.",
+        "Ta libération conditionnelle se joue cette semaine. Le dernier détenu à y être allé a dit « {w:excuse} » et a pris deux ans de plus. Tu as {w:smell} sous les bras rien que d'y penser.",
       ],
       en: [
         "Your parole hearing is coming up. You rehearse your speech in front of the cell “mirror,” a dented metal plate. Your reflection looks guilty.",

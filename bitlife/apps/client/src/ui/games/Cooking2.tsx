@@ -72,10 +72,12 @@ export function Cooking2({ onDone }: GameProps) {
   };
   const L = () => {
     const { w, h } = s.current.lay;
-    const leftW = w * 0.77;
-    const counterY = h * 0.36, counterH = h * 0.31;
+    const portrait = w < h * 0.85;
+    const leftW = portrait ? w : w * 0.77;
+    const counterY = portrait ? h * 0.47 : h * 0.36, counterH = portrait ? h * 0.25 : h * 0.31;
     const st3 = [leftW * 0.17, leftW * 0.5, leftW * 0.83];
-    return { w, h, leftW, counterY, counterH, board: { x: st3[0], y: counterY + counterH * 0.5 }, pan: { x: st3[1], y: counterY + counterH * 0.52 }, plate: { x: st3[2], y: counterY + counterH * 0.5 }, binY: h * 0.74, binH: h * 0.22 };
+    const chef = portrait ? { x: w * 0.84, y: h * 0.375, s: Math.min(h * 0.115, w * 0.28) } : { x: leftW + (w - leftW) / 2, y: h * 0.72, s: Math.min((w - leftW) * 0.8, h * 0.36) };
+    return { w, h, portrait, leftW, counterY, counterH, chef, maxTk: portrait ? 3 : 4, board: { x: st3[0], y: counterY + counterH * 0.5 }, pan: { x: st3[1], y: counterY + counterH * 0.52 }, plate: { x: st3[2], y: counterY + counterH * 0.5 }, binY: portrait ? h * 0.77 : h * 0.74, binH: portrait ? h * 0.19 : h * 0.22 };
   };
   const cur = () => { const st = s.current; return st.tickets.find((t) => t.id === st.active) ?? st.tickets[0]; };
   const puff = (x: number, y: number, kind: Part['kind'], n: number, col = '#fff') => {
@@ -199,7 +201,8 @@ export function Cooking2({ onDone }: GameProps) {
         if (!st.started) { st.started = true; say('start', true); spawnTicket(); spawnTicket(); st.spawn = 4; }
         const el = DURATION - G.time;
         st.spawn -= dt;
-        if (st.spawn <= 0 && st.tickets.length < 4) { spawnTicket(); st.spawn = Math.max(3.4, 5.6 - el * 0.06); }
+        if (!st.tickets.length) st.spawn = Math.min(st.spawn, 0.7);
+        if (st.spawn <= 0 && st.tickets.length < l.maxTk) { spawnTicket(); st.spawn = Math.max(3.4, 5.6 - el * 0.06); }
         st.lineCd -= dt; st.idle += dt;
         if (st.idle > 4) { st.idle = 0; say('idle'); }
         for (const tk of [...st.tickets]) {
@@ -235,7 +238,7 @@ export function Cooking2({ onDone }: GameProps) {
         st.anger = Math.max(0, st.anger - dt * 0.03);
         if (G.time <= 0 && !st.ended) {
           st.ended = true;
-          const score = (st.served - st.failed * 0.5 - st.burns * 0.25 + st.perfect * 0.1) / 6.5;
+          const score = (st.served - st.failed * 0.5 - st.burns * 0.25 + st.perfect * 0.1) / 7.5;
           G.end(score, [
             [tr('Plats servis', 'Dishes served'), `🍽️ ${st.served}`],
             [tr('Commandes perdues', 'Orders lost'), String(st.failed)],
@@ -258,7 +261,7 @@ export function Cooking2({ onDone }: GameProps) {
     const step = active?.d.steps[active.step];
 
     // ── tickets ──
-    const tw = Math.min(200, (l.leftW - 30) / 4 - 10), th = h * 0.25;
+    const tw = Math.min(200, (l.leftW - 30) / l.maxTk - 10), th = l.portrait ? h * 0.27 : h * 0.25;
     const order = st.tickets;
     order.forEach((tk, i) => {
       const tx = 16 + i * (tw + 12);
@@ -409,7 +412,7 @@ export function Cooking2({ onDone }: GameProps) {
 
     // ── chef ──
     {
-      const cx = l.leftW + (w - l.leftW) / 2, cy = h * 0.72, cs = Math.min((w - l.leftW) * 0.8, h * 0.36);
+      const cx = l.chef.x, cy = l.chef.y, cs = l.chef.s;
       const shake = st.shakeChef > 0 ? Math.sin(t * 60) * 4 * st.shakeChef : 0;
       drawChef(ctx, cx + shake, cy, cs, st.anger, st.yell, t);
       // bubble
@@ -418,32 +421,38 @@ export function Cooking2({ onDone }: GameProps) {
       const angry = st.yell > 0.6 || /[!?]$/.test(txt) && txt === txt.toUpperCase();
       const fs = Math.max(12, Math.min(17, h * 0.027));
       ctx.save(); ctx.font = `800 ${fs}px Fredoka Variable, sans-serif`;
-      const maxW = Math.min(w - l.leftW - 16, 260);
+      const maxW = l.portrait ? Math.min(w * 0.62, 300) : Math.min(w - l.leftW - 16, 260);
       const lines = wrap(ctx, txt, maxW - 22);
       const bw = Math.min(maxW, Math.max(...lines.map((x) => ctx.measureText(x).width)) + 24), bh = lines.length * fs * 1.25 + 16;
-      const bx = Math.min(w - bw - 8, cx - bw / 2), by = cy - cs * 0.95 - bh;
+      const bx = l.portrait ? cx - cs * 0.5 - bw - 12 : Math.min(w - bw - 8, cx - bw / 2), by = l.portrait ? cy - bh / 2 : cy - cs * 0.95 - bh;
       ctx.translate(bx + bw / 2, by + bh); ctx.scale(0.7 + 0.3 * k, 0.7 + 0.3 * k); ctx.translate(-(bx + bw / 2), -(by + bh));
       if (angry) { ctx.translate(Math.sin(t * 50) * 1.5, 0); }
       ctx.fillStyle = angry ? '#fff1f0' : '#ffffff'; glow(ctx, angry ? '#ff1f3d' : '#ffb347', 14);
       roundRect(ctx, bx, by, bw, bh, 12); ctx.fill(); ctx.shadowBlur = 0;
-      ctx.beginPath(); ctx.moveTo(cx - 10, by + bh - 1); ctx.lineTo(cx, by + bh + 12); ctx.lineTo(cx + 8, by + bh - 1); ctx.fill();
+      if (l.portrait) { ctx.beginPath(); ctx.moveTo(bx + bw - 1, cy - 8); ctx.lineTo(bx + bw + 12, cy); ctx.lineTo(bx + bw - 1, cy + 8); ctx.fill(); }
+      else { ctx.beginPath(); ctx.moveTo(cx - 10, by + bh - 1); ctx.lineTo(cx, by + bh + 12); ctx.lineTo(cx + 8, by + bh - 1); ctx.fill(); }
       ctx.fillStyle = angry ? '#c1121f' : '#2b1606'; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
       lines.forEach((ln, i) => ctx.fillText(ln, bx + bw / 2, by + 8 + i * fs * 1.25));
       ctx.restore();
-      ctx.save(); ctx.font = `800 ${Math.max(10, h * 0.018)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center'; ctx.fillStyle = 'rgba(255,255,255,.65)';
-      ctx.fillText(tr('CHEF GORDON RAMSAUCE', 'CHEF GORDON RAMSAUCE'), cx, h - 10); ctx.restore();
+      if (!l.portrait) { ctx.save(); ctx.font = `800 ${Math.max(10, h * 0.018)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center'; ctx.fillStyle = 'rgba(255,255,255,.65)';
+      ctx.fillText('CHEF GORDON RAMSAUCE', cx, h - 10); ctx.restore(); }
       // anger meter
-      const mw = Math.min(140, (w - l.leftW) * 0.7), mx = cx - mw / 2, my = h - 34;
+      const mw = l.portrait ? cs * 0.9 : Math.min(140, (w - l.leftW) * 0.7), mx = cx - mw / 2, my = l.portrait ? cy + cs * 0.62 : h - 34;
       ctx.fillStyle = 'rgba(0,0,0,.5)'; roundRect(ctx, mx, my, mw, 8, 4); ctx.fill();
       ctx.save(); const ac = st.anger > 0.66 ? '#ff1f3d' : st.anger > 0.33 ? '#ff9f1c' : '#9be15d'; glow(ctx, ac, 8); ctx.fillStyle = ac; roundRect(ctx, mx, my, Math.max(8, mw * st.anger), 8, 4); ctx.fill(); ctx.restore();
     }
 
     // counters
     {
-      ctx.save(); ctx.font = `800 ${Math.max(11, h * 0.022)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'right'; ctx.textBaseline = 'top';
-      ctx.fillStyle = '#7dffbf'; ctx.fillText(`🍽️ ${st.served}`, w - 14, h * 0.04);
-      ctx.fillStyle = '#ff8fa3'; ctx.fillText(`❌ ${st.failed}`, w - 14, h * 0.04 + h * 0.035);
-      ctx.fillStyle = '#ffb347'; ctx.fillText(`🔥 ${st.burns}`, w - 14, h * 0.04 + h * 0.07);
+      ctx.save(); ctx.font = `800 ${Math.max(11, h * 0.022)}px Fredoka Variable, sans-serif`; ctx.textAlign = l.portrait ? 'left' : 'right'; ctx.textBaseline = 'top';
+      if (l.portrait) {
+        const y = l.counterY - h * 0.035;
+        ctx.fillStyle = '#7dffbf'; ctx.fillText(`🍽️ ${st.served}`, 12, y); ctx.fillStyle = '#ff8fa3'; ctx.fillText(`❌ ${st.failed}`, 62, y); ctx.fillStyle = '#ffb347'; ctx.fillText(`🔥 ${st.burns}`, 112, y);
+      } else {
+        ctx.fillStyle = '#7dffbf'; ctx.fillText(`🍽️ ${st.served}`, w - 14, h * 0.04);
+        ctx.fillStyle = '#ff8fa3'; ctx.fillText(`❌ ${st.failed}`, w - 14, h * 0.04 + h * 0.035);
+        ctx.fillStyle = '#ffb347'; ctx.fillText(`🔥 ${st.burns}`, w - 14, h * 0.04 + h * 0.07);
+      }
       ctx.restore();
     }
   }, true);
@@ -585,7 +594,7 @@ function drawChef(ctx: CanvasRenderingContext2D, x: number, y: number, s: number
   }
   ctx.restore();
 }
-function renderBg(w: number, h: number, l: { leftW: number; counterY: number; counterH: number; binY: number; binH: number }): HTMLCanvasElement {
+function renderBg(w: number, h: number, l: { portrait: boolean; leftW: number; counterY: number; counterH: number; binY: number; binH: number }): HTMLCanvasElement {
   const c = document.createElement('canvas');
   const dpr = Math.min(2, window.devicePixelRatio || 1);
   c.width = Math.max(1, Math.round(w * dpr)); c.height = Math.max(1, Math.round(h * dpr));
@@ -615,6 +624,7 @@ function renderBg(w: number, h: number, l: { leftW: number; counterY: number; co
   ctx.fillStyle = '#20232b'; ctx.fillRect(0, l.counterY + l.counterH + 6, l.leftW + 4, h);
   // chef corner (pass window)
   const cx0 = l.leftW + 4;
+  if (l.portrait) return c;
   const pg = ctx.createLinearGradient(cx0, 0, w, 0); pg.addColorStop(0, '#2a1a1d'); pg.addColorStop(1, '#3d2326');
   ctx.fillStyle = pg; ctx.fillRect(cx0, 0, w - cx0, h);
   ctx.fillStyle = 'rgba(255,179,71,.12)'; ctx.fillRect(cx0, 0, 3, h);

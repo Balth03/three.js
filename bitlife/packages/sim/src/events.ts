@@ -26,7 +26,26 @@ export function eventDef(content: Content, id: string): EventDef | undefined {
 }
 
 /** Call after mutating `content.events` at runtime (custom events). */
-export function invalidateContent(content: Content) { eventIndex.delete(content); }
+export function invalidateContent(content: Content) { eventIndex.delete(content); ageIndex.delete(content); }
+
+// Events bucketed by the ages they can fire at (most `when.age` ranges are narrow): avoids testing 2000+ events every year.
+const ageIndex: WeakMap<Content, { byAge: EventDef[][]; prio: EventDef[] }> = new WeakMap();
+function byAge(content: Content) {
+  let x = ageIndex.get(content);
+  if (!x) {
+    const arr: EventDef[][] = Array.from({ length: 131 }, () => []);
+    const prio: EventDef[] = [];
+    for (const e of content.events) {
+      if (e.priority) prio.push(e);
+      const [a, b] = e.when?.age ?? [0, 130];
+      for (let i = Math.max(0, a); i <= Math.min(130, b); i++) arr[i].push(e);
+    }
+    x = { byAge: arr, prio };
+    ageIndex.set(content, x);
+  }
+  return x;
+}
+const eventsAt = (content: Content, age: number) => byAge(content).byAge[Math.max(0, Math.min(130, age))];
 
 // ───────────────────────────── actors ─────────────────────────────
 
@@ -80,7 +99,7 @@ export function variety(life: Life, id: string): number {
 }
 
 export function pickEvents(life: Life, content: Content, rng: Rng, count: number): EventDef[] {
-  const pool = content.events.filter((e) => !e.priority && !e.auto && eligible(life, content, e));
+  const pool = eventsAt(content, life.age).filter((e) => !e.priority && !e.auto && eligible(life, content, e));
   const out: EventDef[] = [];
   const cats = new Set<string>();
   for (let i = 0; i < count && pool.length; i++) {
@@ -314,7 +333,7 @@ export function runScheduled(life: Life, content: Content, rng: Rng) {
 }
 
 export function runPriority(life: Life, content: Content, rng: Rng) {
-  for (const e of content.events) {
+  for (const e of byAge(content).prio) {
     if (!e.priority) continue;
     if (eligible(life, content, e)) queueEvent(life, content, e.id, rng);
   }
@@ -338,7 +357,7 @@ export function runAnecdotes(life: Life, content: Content, rng: Rng) {
 }
 
 export function runAuto(life: Life, content: Content, rng: Rng, max: number) {
-  const pool = content.events.filter((e) => e.auto && !e.priority && eligible(life, content, e));
+  const pool = eventsAt(content, life.age).filter((e) => e.auto && !e.priority && eligible(life, content, e));
   for (let i = 0; i < max && pool.length; i++) {
     const e = rng.weighted(pool, (x) => (x.weight ?? 10) * variety(life, x.id));
     if (!e) break;

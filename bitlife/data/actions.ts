@@ -68,8 +68,8 @@ export const actions: ActionDef[] = [
         en: ['I meditated for twenty minutes. Reached inner peace, then thought about fries.', 'Successful meditation: I breathed in, out, and forgot my worries.', 'Guided meditation: the voice told me to picture a beach. I pictured {w:food}.', 'Twenty minutes of total silence, interrupted only once by {w:sound}. The rest was perfect.', 'I meditated cross-legged until I couldn\'t feel my legs. Was that enlightenment? No, [[pins and needles|cramps|giant pins and needles]].'],
       }, fx: { happy: 4, stress: -8, health: 1 } },
       { w: 1, text: {
-        fr: ['Impossible de méditer : le voisin perce un mur depuis 9h.', "Pas moyen de méditer : mon cerveau voulait absolument {w:activity}.", "J'ai fermé les yeux pour méditer et je me suis réveillé{|e} trois heures plus tard avec {w:animal} sur les genoux.", "Mon appli de méditation a planté en plein « respirez profondément ». J'ai arrêté de respirer par solidarité."],
-        en: ["Couldn't meditate: the neighbor has been drilling since 9am.", 'No way to meditate: my brain was dead set on {w:activity}.', 'I closed my eyes to meditate and woke up three hours later with {w:animal} on my lap.', 'My meditation app crashed mid "breathe deeply". I stopped breathing out of solidarity.'],
+        fr: ['Impossible de méditer : le voisin perce un mur depuis 9h.', "Pas moyen de méditer : je voulais absolument {w:activity}.", "J'ai fermé les yeux pour méditer et je me suis réveillé{|e} trois heures plus tard avec {w:animal} sur les genoux.", "Mon appli de méditation a planté en plein « respirez profondément ». J'ai arrêté de respirer par solidarité."],
+        en: ["Couldn't meditate: the neighbor has been drilling since 9am.", 'No way to meditate: all I wanted was {w:activity}.', 'I closed my eyes to meditate and woke up three hours later with {w:animal} on my lap.', 'My meditation app crashed mid "breathe deeply". I stopped breathing out of solidarity.'],
       }, fx: { happy: -1 } },
     ],
   },
@@ -84,7 +84,7 @@ export const actions: ActionDef[] = [
     id: 'diet', tab: 'activities', group: 'mind', icon: '🥗', label: { fr: 'Faire un régime', en: 'Go on a diet' }, when: { age: [14, 100] }, limit: 1,
     out: [
       { w: 2, text: {
-        fr: ['J\'ai tenu mon régime toute l\'année. J\'ai même goûté du chou kale de mon plein gré.', "Un an de régime : j'ai renoncé à jamais à {w:food}. J'en ai fait le deuil comme d'un proche.", "J'ai compté chaque calorie, même celles du dentifrice. Bilan : [[deux|quatre|six]] kilos en moins et une relation toxique avec ma balance.", "La nuit, je rêve qu'on m'offre {w:food}. Le jour, je mange du céleri. Régime tenu."],
+        fr: ['J\'ai tenu mon régime toute l\'année. J\'ai même goûté du chou kale de mon plein gré.', "Un an de régime : j'ai rayé {w:food} de ma vie. J'en ai fait le deuil comme d'un proche.", "J'ai compté chaque calorie, même celles du dentifrice. Bilan : [[deux|quatre|six]] kilos en moins et une relation toxique avec ma balance.", "La nuit, je rêve qu'on m'offre {w:food}. Le jour, je mange du céleri. Régime tenu."],
         en: ['I stuck to my diet all year. I even ate kale voluntarily.', 'A year of dieting: I gave up {w:food} forever. I mourned it like a relative.', 'I counted every calorie, even the toothpaste. Result: [[two|four|six]] kilos down and a toxic relationship with my scale.', 'At night I dream someone hands me {w:food}. By day I eat celery. Diet kept.'],
       }, fx: { health: 4, looks: 3, weight: -0.06, happy: -1 } },
       { w: 2, text: {

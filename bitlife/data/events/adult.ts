@@ -753,14 +753,14 @@ export const adultEvents: EventDef[] = [
       fr: [
         "Une vieille dame se bat avec une valise énorme en haut des escaliers du métro. Ton train part dans deux minutes, et la valise semble contenir un piano.",
         "Une mamie te fait signe : sa valise est coincée dans le tourniquet du métro et la file derrière elle commence à gronder. Ton train part dans deux minutes.",
-        "Une vieille dame, {w:weather}, tente de monter une valise aussi grosse que {w:vehicle} dans l'escalier du métro. Elle te regarde avec des yeux de chiot. Ton train part dans deux minutes.",
+        "Une vieille dame, {w:weather}, tente de monter une valise énorme (on dirait {w:vehicle}) dans l'escalier du métro. Elle te regarde avec des yeux de chiot. Ton train part dans deux minutes.",
         "Une mamie en manteau léopard est bloquée en bas de l'escalier avec une valise d'où dépasse {w:object}. Elle soupire très fort dans ta direction. Ton train arrive dans [[deux|trois|une]] minute(s).",
         "Une vieille dame lutte avec une valise qui dégage {w:smell} et fait {w:sound} quand on la bouge. Elle te demande de l'aide avec un grand sourire. Ton train part dans deux minutes.",
       ],
       en: [
         "An old lady is wrestling a huge suitcase at the top of the subway stairs. Your train leaves in two minutes, and the suitcase seems to contain a piano.",
         "A granny waves at you: her suitcase is stuck in the subway turnstile and the line behind her is starting to grumble. Your train leaves in two minutes.",
-        "An old lady, {w:weather}, is trying to drag a suitcase as big as {w:vehicle} up the subway stairs. She gives you puppy eyes. Your train leaves in two minutes.",
+        "An old lady, {w:weather}, is trying to drag a suitcase so huge it looks like {w:vehicle} up the subway stairs. She gives you puppy eyes. Your train leaves in two minutes.",
         "A granny in a leopard coat is stuck at the bottom of the stairs with a suitcase that has {w:object} sticking out of it. She sighs very loudly in your direction. Your train arrives in [[two|three|one]] minute(s).",
         "An old lady is struggling with a suitcase that gives off {w:smell} and makes {w:sound} when moved. She asks for help with a big smile. Your train leaves in two minutes.",
       ],

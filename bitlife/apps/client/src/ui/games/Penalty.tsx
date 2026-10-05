@@ -127,9 +127,9 @@ export function Penalty({ onDone, l }: GameProps) {
     st.commit = Math.random() < 0.15 ? 0 : Math.random() < 0.5 ? -1 : 1;
     st.tell = st.commit === 0 ? 0 : Math.random() < 0.25 ? -st.commit : st.commit;
     st.sweetHi = 0.84 - st.round * 0.012; st.sweetLo = st.sweetHi - (0.18 - st.round * 0.02);
-    const tt = pick(TAUNTS); st.bubble = { txt: tr(tt[0], tt[1]), t: 0 };
+    const tt = pick(TAUNTS); st.bubble = { txt: tr(tt[0], tt[1]), t: -1.1 };
     st.tifo = tr(`ALLEZ ${first}`, `GO ${first}`); st.tifoMode = 'name';
-    st.banner = { txt: tr(`TIR ${st.round + 1}/5`, `SHOT ${st.round + 1}/5`), sub: st.round === 4 ? tr('Le dernier. Pas de pression.', 'Last one. No pressure.') : '', col: '#ffffff', t: 0 };
+    st.banner = { txt: tr(`TIR ${st.round + 1}/5`, `SHOT ${st.round + 1}/5`), sub: st.round === 4 ? tr('Le dernier. Pas de pression.', 'Last one. No pressure.') : '', col: '#ffffff', t: 0.7 };
   };
   const startKeep = (st: S) => {
     st.stage = 'kready'; st.st = 0; st.sc = 0; st.kicked = false; st.arrived = false; st.trail = []; st.zoom = 1; st.slow = 1; st.pdive = null; st.early = false;
@@ -240,7 +240,7 @@ export function Penalty({ onDone, l }: GameProps) {
 
   const canvas = useCanvas((ctx, w, h, dtRaw) => {
     const st = s.current;
-    st.W = w; st.H = h; (window as unknown as Record<string, unknown>).__pen = st;
+    st.W = w; st.H = h;
     const v = view(w, h);
     const playing = g.phase === 'play';
     if (!st.inited && playing) { st.inited = true; startShot(st); }

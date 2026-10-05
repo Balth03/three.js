@@ -164,7 +164,7 @@ export function renderString(tpl: string, ctx: TextCtx, lang: Lang, draws: numbe
       const u = (used[pool] ??= new Set());
       while (u.has(idx) && u.size < list.length) idx = (idx + 1) % list.length;
       u.add(idx);
-      return list[idx][lang === 'fr' ? 0 : 1];
+      return `\u0001${list[idx][lang === 'fr' ? 0 : 1]}\u0002`;
     });
   }
   s = s.replace(/\{([^{}]*)\}/g, (whole, inner: string) => {
@@ -175,9 +175,11 @@ export function renderString(tpl: string, ctx: TextCtx, lang: Lang, draws: numbe
       const [m, f] = body.split('|');
       return g === 'm' ? m : (f ?? m);
     }
-    return resolveVar(inner, ctx, lang) ?? whole;
+    const v = resolveVar(inner, ctx, lang);
+    return v === undefined ? whole : `\u0001${v}\u0002`;
   });
   if (lang === 'fr') s = frenchFix(s);
+  s = s.replace(/[\u0001\u0002]/g, '');
   // Capitalise after sentence ends too (tokens like {a.my} can start a sentence).
   s = s.replace(/([.!?…] +)([a-zàâäéèêëîïôöùûüç])/g, (_, p: string, c: string) => p + c.toUpperCase());
   return capitalize(s);
@@ -185,12 +187,16 @@ export function renderString(tpl: string, ctx: TextCtx, lang: Lang, draws: numbe
 
 /** French elisions & contractions after token substitution: « de Alex » → « d'Alex », « à le coude » → « au coude »… */
 export function frenchFix(s: string): string {
+  // Only fix the seam between a hand-written word and an inserted value (marked \u0001…\u0002), never the authored text.
+  const V = '[aeiouàâäéèêëîïôöùûüœAEIOUÀÂÄÉÈÊËÎÏÔÖÙÛÜŒ]';
   return s
-    .replace(/\b([dDjJmMtTsSnN])e (?=[aeiouàâäéèêëîïôöùûüœAEIOUÀÂÉÈÊÎÔŒ])/g, "$1'")
-    .replace(/\b([qQ])ue (?=[aeiouàâäéèêëîïôöùûüAEIOUÀÂÉÈÊÎÔ])/g, "$1u'")
-    .replace(/\b([lL])[ea] (?=[aeiouàâäéèêëîïôöùûüAEIOUÀÂÉÈÊÎÔ])(?![A-ZÀÂÉÈÊÎÔ][a-z]*\b)/g, "$1'")
-    .replace(/(^|[\s«(])à les /g, '$1aux ').replace(/(^|[\s«(])à le /g, '$1au ').replace(/(^|[\s«(])À le /g, '$1Au ')
-    .replace(/\bde les /g, 'des ').replace(/\bde le /g, 'du ').replace(/\bDe le /g, 'Du ');
+    .replace(new RegExp(`(?<!\\p{L})([dDjJmMtTsSnN])e \u0001(?=${V})`, 'gu'), "$1'\u0001")
+    .replace(new RegExp(`(?<!\\p{L})([qQ])ue \u0001(?=${V})`, 'gu'), "$1u'\u0001")
+    .replace(new RegExp(`(?<!\\p{L})([lL])[ea] \u0001(?=${V})`, 'gu'), "$1'\u0001")
+    .replace(/(?<!\p{L})([àÀ]) \u0001les /gu, (_, a: string) => `${a === 'À' ? 'Aux' : 'aux'} \u0001`)
+    .replace(/(?<!\p{L})([àÀ]) \u0001le /gu, (_, a: string) => `${a === 'À' ? 'Au' : 'au'} \u0001`)
+    .replace(/(?<!\p{L})([dD])e \u0001les /gu, '$1es \u0001')
+    .replace(/(?<!\p{L})([dD])e \u0001le /gu, (_, d: string) => `${d === 'D' ? 'Du' : 'du'} \u0001`);
 }
 
 function resolveVar(name: string, ctx: TextCtx, lang: Lang): string | undefined {

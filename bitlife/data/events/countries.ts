@@ -371,13 +371,13 @@ export const countryEvents: EventDef[] = [
     cooldown: 3,
     text: {
       fr: [
-        "Sortie à la friterie du coin avec ta famille. Au-dessus du comptoir, un panneau liste 47 sauces : andalouse, samouraï, américaine, brazil, pickles, géante… Le friturier te fixe. Il attend ta décision comme un juge.",
+        "Sortie à la friterie du coin avec ta famille. Au-dessus du comptoir, un panneau liste 47 sauces : andalouse, samouraï, américaine, brazil, pickles, géante… Le friturier te fixe. Il attend ta décision comme un juge. {w:celeb} fait la queue derrière toi, incognito.",
         "Tu as le droit de commander tout{|e} seul{|e} au fritkot. Le monsieur derrière la vitre a des avant-bras comme des jambons et une moustache qui a connu deux guerres. « Et avec ça, une sauce ? »",
         "Les frites ici sont cuites deux fois dans de la graisse de bœuf, et le friturier en est très fier. Devant toi, un client commande une mitraillette : une demi-baguette, deux fricadelles, des frites et trois sauces. Tu es impressionné{|e}.",
         "C'est vendredi soir à {city} : friterie ! Dans la file, il y a un monsieur en costume, {w:animal} et une mamie qui commande « un grand cornet, sel, mayonnaise, comme en 1962 ».",
       ],
       en: [
-        "A trip to the local fry shack with your family. Above the counter, a sign lists 47 sauces: andalouse, samurai, américaine, brazil, pickles, giant… The fry guy is staring at you. He awaits your verdict like a judge.",
+        "A trip to the local fry shack with your family. Above the counter, a sign lists 47 sauces: andalouse, samurai, américaine, brazil, pickles, giant… The fry guy is staring at you. He awaits your verdict like a judge. {w:celeb} is in line behind you, incognito.",
         "You're allowed to order on your own at the fritkot. The man behind the glass has forearms like hams and a moustache that's seen two wars. “And with that, a sauce?”",
         "Fries here are double-fried in beef fat, and the fry guy is very proud of it. In front of you, someone orders a mitraillette: half a baguette, two sausages, fries and three sauces. You're in awe.",
         "Friday night in {city}: fry shack time! In line there's a man in a suit, {w:animal} and a granny ordering “a large cone, salt, mayo, like in 1962.”",
@@ -416,13 +416,13 @@ export const countryEvents: EventDef[] = [
     cooldown: 4,
     text: {
       fr: [
-        "Il pleut à {city} depuis 41 jours. Ce matin, un rayon de soleil traverse les nuages. Les gens sortent des maisons, les yeux plissés, comme des taupes. Un voisin pleure. Un autre appelle la météo pour vérifier.",
+        "Il pleut à {city} depuis 41 jours. Ce matin, un rayon de soleil traverse les nuages. Les gens sortent des maisons, les yeux plissés, comme des taupes. Un voisin pleure. Un autre appelle la météo pour vérifier. Quelqu'un sort {w:object} pour célébrer.",
         "Alerte : il fait 19 °C et il ne pleut pas. Les terrasses sont prises d'assaut, les Belges sont en short, et quelqu'un a déjà allumé un barbecue {w:at_place}. Tout le monde sait que ça ne durera pas.",
         "La météo annonce « éclaircies passagères ». En Belgique, ça veut dire qu'entre deux averses, tu auras quatre minutes de ciel gris clair. Tu as un parapluie, un K-way et un plan.",
         "Grand soleil sur {city}. C'est tellement rare que le journal télévisé fait une édition spéciale. Un expert explique comment reconnaître le soleil et quoi faire si on en croise un.",
       ],
       en: [
-        "It's been raining in {city} for 41 days. This morning a ray of sunshine pierces the clouds. People stumble out of their houses squinting like moles. One neighbor is crying. Another calls the weather service to check.",
+        "It's been raining in {city} for 41 days. This morning a ray of sunshine pierces the clouds. People stumble out of their houses squinting like moles. One neighbor is crying. Another calls the weather service to check. Someone brings out {w:object} to celebrate.",
         "Alert: it's 66°F and not raining. Terraces are stormed, Belgians are in shorts, and someone's already fired up a barbecue {w:at_place}. Everyone knows it won't last.",
         "The forecast says “brief sunny spells.” In Belgium that means between two downpours you'll get four minutes of light grey sky. You have an umbrella, a rain jacket and a plan.",
         "Bright sunshine over {city}. It's so rare the TV news runs a special edition. An expert explains how to recognize the sun and what to do if you encounter one.",
@@ -459,13 +459,13 @@ export const countryEvents: EventDef[] = [
     cooldown: 6,
     text: {
       fr: [
-        "Le pays n'a plus de gouvernement depuis [[412|541|589]] jours. Les trains roulent, les impôts tombent, les frites sont bonnes. Un journaliste te demande dans la rue : « Est-ce que le gouvernement vous manque ? » Tu dois réfléchir.",
+        "Le pays n'a plus de gouvernement depuis [[412|541|589]] jours. Les trains roulent, les impôts tombent, les frites sont bonnes. Un journaliste te demande dans la rue : « Est-ce que le gouvernement vous manque ? » Tu dois réfléchir. Tu tiens {w:food} à la main.",
         "Les négociations pour former un gouvernement s'éternisent. Il y a maintenant neuf ministres de la Santé, sept parlements et un comité chargé de décider de quel côté du rond-point on met le panneau. Ton voisin propose de te présenter.",
         "Ta copropriété de {city} n'arrive pas à décider de la couleur de la façade. Solution typiquement belge : on peint la moitié gauche en jaune, la moitié droite en rouge, et le milieu en beige « pour ne froisser personne ». On te demande ton avis.",
         "Réunion de quartier : faut-il un panneau bilingue, trilingue ou un pictogramme {w:animal} pour indiquer la boulangerie ? Ça dure depuis trois heures. On a déjà formé deux sous-commissions et une cellule de crise.",
       ],
       en: [
-        "The country has had no government for [[412|541|589]] days. Trains run, taxes get collected, fries are great. A reporter stops you in the street: “Do you miss having a government?” You have to think about it.",
+        "The country has had no government for [[412|541|589]] days. Trains run, taxes get collected, fries are great. A reporter stops you in the street: “Do you miss having a government?” You have to think about it. You're holding {w:food}.",
         "Coalition talks drag on. There are now nine health ministers, seven parliaments and a committee deciding which side of the roundabout the sign goes on. Your neighbor suggests you run.",
         "Your {city} condo board can't agree on the façade color. A typically Belgian solution: paint the left half yellow, the right half red, and the middle beige “so nobody gets offended.” They want your opinion.",
         "Neighborhood meeting: should the bakery sign be bilingual, trilingual or a pictogram of {w:animal}? It's been three hours. Two sub-committees and a crisis unit have already been formed.",
@@ -865,13 +865,13 @@ export const countryEvents: EventDef[] = [
     once: true,
     text: {
       fr: [
-        "Tu t'es tordu la cheville en descendant d'un trottoir à {city}. Ambulance, radio, aspirine, attelle. La facture arrive : {$amount}. Dont 38 $ pour « une poignée de main de l'infirmière » et 112 $ pour « présence d'une fenêtre ».",
+        "Tu t'es tordu la cheville en descendant d'un trottoir à {city}. Ambulance, radio, aspirine, attelle. La facture arrive : {$amount}. Dont 38 $ pour « une poignée de main de l'infirmière » et 112 $ pour « présence d'une fenêtre ». Il y a aussi 60 $ pour « regard compatissant » et un supplément {w:excuse}.",
         "Petit passage aux urgences pour une coupure au doigt. Douze minutes, trois points de suture, un pansement à licornes. Facture : {$amount}. Ton assurance couvre « l'émotion, mais pas les soins ».",
         "Tu t'es évanoui{|e} au supermarché à cause de la clim. Tu t'es réveillé{|e} dans une ambulance en criant « Pas d'ambulance, j'ai pas les moyens ! ». Trop tard. Facture : {$amount}.",
         "Ton assurance santé vient de refuser ta prise en charge {w:excuse}. Montant à régler : {$amount}. Une ligne indique « Frais de facturation de la facture : 45 $ ».",
       ],
       en: [
-        "You twisted your ankle stepping off a curb in {city}. Ambulance, X-ray, aspirin, splint. The bill arrives: {$amount}. Including $38 for “nurse handshake” and $112 for “presence of a window.”",
+        "You twisted your ankle stepping off a curb in {city}. Ambulance, X-ray, aspirin, splint. The bill arrives: {$amount}. Including $38 for “nurse handshake” and $112 for “presence of a window.” There's also $60 for “compassionate look” and a surcharge {w:excuse}.",
         "Quick ER visit for a cut finger. Twelve minutes, three stitches, a cartoon band-aid. Bill: {$amount}. Your insurance covers “emotional support, not care.”",
         "You fainted at the supermarket because of the AC. You woke up in an ambulance screaming “No ambulance, I can't afford it!” Too late. Bill: {$amount}.",
         "Your health insurer just denied your claim {w:excuse}. Amount due: {$amount}. One line reads “Bill-billing fee: $45.”",
@@ -954,13 +954,13 @@ export const countryEvents: EventDef[] = [
     cooldown: 5,
     text: {
       fr: [
-        "L'association des propriétaires de ton lotissement t'envoie une amende de {$amount}. Motif : ton gazon fait 2 centimètres de trop, et ton flamant rose en plastique est « d'une teinte de rose non approuvée ».",
+        "L'association des propriétaires de ton lotissement t'envoie une amende de {$amount}. Motif : ton gazon fait 2 centimètres de trop, et ton flamant rose en plastique est « d'une teinte de rose non approuvée ». Le courrier précise que ton voisin, lui, a le droit d'exposer {w:object}.",
         "Linda, la présidente du comité de quartier, a mesuré ta pelouse avec une règle. Puis ta boîte aux lettres. Puis ton chien. Elle t'a laissé un mot plastifié et une amende de {$amount}.",
         "Nouvelle lettre du comité de quartier de {city} : ta poubelle a été sortie à 18 h 02 au lieu de 18 h. Ta porte de garage est « beige foncé » au lieu de « beige clair ». Total : {$amount}.",
         "Le comité des propriétaires a interdit {w:object} dans les jardins. Tu en as un. Il t'a été offert par ta grand-mère morte. Linda menace d'une amende de {$amount}.",
       ],
       en: [
-        "Your subdivision's homeowners association fines you {$amount}. Reason: your lawn is an inch too long, and your plastic flamingo is “an unapproved shade of pink.”",
+        "Your subdivision's homeowners association fines you {$amount}. Reason: your lawn is an inch too long, and your plastic flamingo is “an unapproved shade of pink.” The letter notes that your neighbor is allowed to display {w:object}.",
         "Linda, the HOA president, measured your lawn with a ruler. Then your mailbox. Then your dog. She left you a laminated note and a {$amount} fine.",
         "New letter from your {city} HOA: your trash can went out at 6:02 p.m. instead of 6:00. Your garage door is “dark beige” instead of “light beige.” Total: {$amount}.",
         "The HOA has banned {w:object} from front yards. You have one. Your late grandmother gave it to you. Linda threatens a {$amount} fine.",
@@ -1182,13 +1182,13 @@ export const countryEvents: EventDef[] = [
     cooldown: 4,
     text: {
       fr: [
-        "Le journal annonce « la canicule » : 23 °C. Tout {city} s'est mis torse nu dans les parcs. Les tabloïds parlent de « fournaise » et les trains sont annulés parce que les rails ont « un peu chaud ».",
+        "Le journal annonce « la canicule » : 23 °C. Tout {city} s'est mis torse nu dans les parcs. Les tabloïds parlent de « fournaise » et les trains sont annulés parce que les rails ont « un peu chaud ». Ton voisin a installé {w:animal} sur une serviette de plage. Bronzage collectif.",
         "Tu organises un barbecue « estival » dans le jardin. Il fait 14 °C, il bruine de côté, et tes invités sont en short et en polaire. Les saucisses refusent de cuire par principe.",
         "Premier jour de soleil de l'année. Ton voisin a enlevé son t-shirt à 9 h. À 9 h 20, il est rouge homard. À 10 h, il pleut à nouveau. Il reste dehors par fierté, avec {w:drink}.",
         "Il a plu 300 jours cette année à {city}. Les gens parlent de la météo dans chaque conversation : « Pas terrible, hein ? » « Ça pourrait être pire. » « On dirait qu'il va pleuvoir. » Il pleut déjà.",
       ],
       en: [
-        "The papers announce a “heatwave”: 73°F. All of {city} has gone shirtless in the parks. The tabloids say “scorcher” and trains are cancelled because the rails are “a bit warm.”",
+        "The papers announce a “heatwave”: 73°F. All of {city} has gone shirtless in the parks. The tabloids say “scorcher” and trains are cancelled because the rails are “a bit warm.” Your neighbour has laid out {w:animal} on a beach towel. Group tanning.",
         "You host a “summer” barbecue in the garden. It's 57°F, drizzling sideways, and your guests are in shorts and fleeces. The sausages refuse to cook on principle.",
         "First sunny day of the year. Your neighbour took his shirt off at 9 a.m. By 9:20 he's lobster red. By 10 it's raining again. He stays out of pride, holding {w:drink}.",
         "It rained 300 days in {city} this year. Every conversation is about the weather: “Not great, is it?” “Could be worse.” “Looks like rain.” It's already raining.",
@@ -1661,13 +1661,13 @@ export const countryEvents: EventDef[] = [
     cooldown: 3,
     text: {
       fr: [
-        "Ligue de garage de {city}, mardi 23 h. Ton équipe, les Castors Enragés, joue contre un dentiste, deux plombiers et un comptable qui patine comme un bulldozer. Le comptable vient de te fixer en mimant de t'égorger.",
+        "Ligue de garage de {city}, mardi 23 h. Ton équipe, les Castors Enragés, joue contre un dentiste, deux plombiers et un comptable qui patine comme un bulldozer. Le comptable vient de te fixer en mimant de t'égorger. Dans les gradins : trois conjoints, {w:animal} et un thermos de café.",
         "Match de hockey amateur. Le gars d'en face t'a mis un coup de crosse « par accident », puis un deuxième, puis un troisième. Il enlève ses gants. Il te regarde. Dans le hockey canadien, c'est une invitation.",
         "Ton coéquipier, un camionneur de 130 kilos, se fait bousculer. Les règles non écrites du hockey sont claires : quelqu'un doit répondre. Tout le banc se tourne vers toi.",
         "Finale de ligue au petit aréna de {city}. Les gradins sont pleins : 40 personnes, {w:animal} et un vendeur de frites. Il reste deux minutes. Tu as la rondelle et un défenseur barbu fonce sur toi.",
       ],
       en: [
-        "Beer league in {city}, Tuesday 11 p.m. Your team, the Rabid Beavers, faces a dentist, two plumbers and an accountant who skates like a bulldozer. The accountant just stared at you and mimed slitting your throat.",
+        "Beer league in {city}, Tuesday 11 p.m. Your team, the Rabid Beavers, faces a dentist, two plumbers and an accountant who skates like a bulldozer. The accountant just stared at you and mimed slitting your throat. In the stands: three spouses, {w:animal} and a thermos of coffee.",
         "Amateur hockey game. The guy across slashed you “by accident,” then again, then a third time. He drops his gloves. He looks at you. In Canadian hockey, that's an invitation.",
         "Your teammate, a 290-pound trucker, gets shoved. The unwritten rules of hockey are clear: someone has to answer. The whole bench turns to look at you.",
         "League final at the little {city} arena. The stands are packed: 40 people, {w:animal} and a fries vendor. Two minutes left. You've got the puck and a bearded defenseman is charging.",
@@ -2711,7 +2711,7 @@ export const countryEvents: EventDef[] = [
       {
         label: { fr: 'Rester, c\'est confortable', en: 'Stay, it’s comfy' },
         out: [
-          { w: 2, text: { fr: ["Je suis resté{|e}. Mes caleçons sont repassés, mon assiette est pleine et mon compte en banque se porte à merveille. Ma vie amoureuse, elle, est en soins palliatifs.", "J'ai dit à {a.my} que je restais encore « un an ou deux ». Elle a fait un tiramisu de célébration. J'en ai mangé la moitié, en pyjama, à 34 ans. Je suis heureu{x|se}."], en: ["I stayed. My underwear is ironed, my plate is full and my bank account is thriving. My love life is in palliative care.", "I told {a.my} I'd stay “another year or two.” She made a celebration tiramisu. I ate half of it, in pajamas, at 34. I'm happy."] }, fx: { happy: 4, rel: 8, money: 500, discipline: -2 }, mood: 'happy' },
+          { w: 2, text: { fr: ["Je suis resté{|e}. Mes caleçons sont repassés, mon assiette est pleine et mon compte en banque se porte à merveille. Ma vie amoureuse, elle, est en soins palliatifs.", "J'ai dit à {a.my} que je restais encore « un an ou deux ». Elle a fait un tiramisu de célébration. J'en ai mangé la moitié, en pyjama, à {age} ans. Je suis heureu{x|se}."], en: ["I stayed. My underwear is ironed, my plate is full and my bank account is thriving. My love life is in palliative care.", "I told {a.my} I'd stay “another year or two.” She made a celebration tiramisu. I ate half of it, in pajamas, at {age}. I'm happy."] }, fx: { happy: 4, rel: 8, money: 500, discipline: -2 }, mood: 'happy' },
         ],
       },
       {
@@ -2779,13 +2779,13 @@ export const countryEvents: EventDef[] = [
     cooldown: 10,
     text: {
       fr: [
-        "Tu vis au pied du Vésuve, dans une maison héritée de ton arrière-grand-père. Ce matin, la terre tremble légèrement, le café a des vaguelettes, et une fumée inhabituelle sort du sommet. Tes voisins jouent aux cartes, imperturbables.",
+        "Tu vis au pied du Vésuve, dans une maison héritée de ton arrière-grand-père. Ce matin, la terre tremble légèrement, le café a des vaguelettes, et une fumée inhabituelle sort du sommet. Tes voisins jouent aux cartes, imperturbables. Le facteur t'apporte {w:gift}, comme si de rien n'était.",
         "Alerte : le volcan gronde. Les autorités recommandent « une évacuation volontaire ». Ton voisin, 84 ans, refuse de partir sans sa machine à pâtes, son chat et {w:object}. Ta mère refuse de partir sans avoir fini la sauce.",
         "Visite de Pompéi avec un guide très enthousiaste. Il te montre un moulage de citoyen figé dans la cendre il y a 2000 ans, en train de manger. Il te dit : « Le volcan est toujours actif, d'ailleurs. » Le sol vibre.",
         "Une odeur de soufre flotte sur {city}. Les sismographes s'affolent. À la télé, un volcanologue dit « pas de panique » en transpirant beaucoup. Tu as une pizza dans le four et elle sera prête dans huit minutes.",
       ],
       en: [
-        "You live at the foot of Vesuvius, in a house inherited from your great-grandfather. This morning the ground trembles slightly, your coffee ripples, and unusual smoke rises from the summit. Your neighbors keep playing cards, unbothered.",
+        "You live at the foot of Vesuvius, in a house inherited from your great-grandfather. This morning the ground trembles slightly, your coffee ripples, and unusual smoke rises from the summit. Your neighbors keep playing cards, unbothered. The mailman brings you {w:gift}, as if nothing were happening.",
         "Alert: the volcano is rumbling. Authorities recommend “voluntary evacuation.” Your 84-year-old neighbor refuses to leave without his pasta machine, his cat and {w:object}. Your mother refuses to leave before the sauce is done.",
         "Pompeii tour with a very enthusiastic guide. He shows you the cast of a citizen frozen in ash 2,000 years ago, mid-meal. He says, “The volcano is still active, by the way.” The ground shakes.",
         "A smell of sulfur hangs over {city}. Seismographs go wild. On TV a volcanologist says “no panic” while sweating heavily. You have a pizza in the oven and it'll be ready in eight minutes.",
@@ -3357,13 +3357,13 @@ export const countryEvents: EventDef[] = [
     once: true,
     text: {
       fr: [
-        "Tu ouvres un compte dans une banque privée de Genève. Le banquier chuchote, ne prononce jamais le mot « argent » et te remet une carte avec un simple numéro. Il te demande si tu souhaites « une discrétion standard ou renforcée ».",
+        "Tu ouvres un compte dans une banque privée de Genève. Le banquier chuchote, ne prononce jamais le mot « argent » et te remet une carte avec un simple numéro. Il te demande si tu souhaites « une discrétion standard ou renforcée ». Sur son bureau trône {w:object}, sous cloche.",
         "Ton banquier de {city}, Herr Vögeli, te reçoit dans un bureau en bois sombre. Pas un bruit. La moquette est si épaisse que tes pieds s'enfoncent. Il te propose un coffre-fort personnel et un café dans une tasse en porcelaine qui vaut {$amount}.",
         "Une banque suisse te propose un « compte numéroté ». Le conseiller t'explique qu'il ne te demandera jamais d'où vient l'argent, mais qu'il voudra savoir si tu préfères les chocolats noirs ou au lait. Il te fixe sans cligner des yeux.",
         "Tu as {$amount} d'économies et tu veux les placer. Le banquier suisse t'écoute avec la politesse d'un homme qui gère d'habitude la fortune de clients comme {w:celeb}. Il sourit. Il est poli. Il est un peu méprisant.",
       ],
       en: [
-        "You open an account at a private bank in Geneva. The banker whispers, never says the word “money,” and hands you a card with just a number. He asks whether you'd like “standard or enhanced discretion.”",
+        "You open an account at a private bank in Geneva. The banker whispers, never says the word “money,” and hands you a card with just a number. He asks whether you'd like “standard or enhanced discretion.” On his desk sits {w:object}, under a glass dome.",
         "Your {city} banker, Herr Vögeli, receives you in a dark wood office. Not a sound. The carpet is so thick your feet sink in. He offers you a private safe and coffee in a porcelain cup worth {$amount}.",
         "A Swiss bank offers you a “numbered account.” The advisor explains he'll never ask where the money comes from, but will want to know if you prefer dark or milk chocolate. He stares at you without blinking.",
         "You've got {$amount} in savings and want to invest. The Swiss banker listens with the politeness of a man who usually handles fortunes like {w:celeb}'s. He smiles. He's polite. He's a bit contemptuous.",
@@ -3489,13 +3489,13 @@ export const countryEvents: EventDef[] = [
     cooldown: 4,
     text: {
       fr: [
-        "Soirée fondue moitié-moitié chez des amis à {city}. La règle est sacrée : celui qui perd son pain dans le caquelon doit subir un gage voté par la table. Ton bout de pain vient de se détacher de la fourchette. Il coule lentement dans le fromage.",
+        "Soirée fondue moitié-moitié chez des amis à {city}. La règle est sacrée : celui qui perd son pain dans le caquelon doit subir un gage voté par la table. Ton bout de pain vient de se détacher de la fourchette. Il coule lentement dans le fromage. Le caquelon dégage {w:smell}.",
         "Fondue entre collègues. Quelqu'un a apporté du vin blanc, du kirsch « pour aider la digestion » et {w:drink}. Le caquelon bouillonne comme un volcan. Ton pain plonge. Tout le monde a vu.",
         "Raclette et fondue le même soir, chez ton beau-père qui ne rigole pas avec les traditions. Il a établi la liste des gages à l'avance. Elle fait deux pages. Le gage numéro 1 implique le lac et ton slip.",
         "Il reste la « religieuse » au fond du caquelon : la croûte de fromage grillée, le meilleur morceau. Trois personnes la veulent. Ton pain vient de tomber dans le fromage, et la table attend ton gage en tapant sur la table.",
       ],
       en: [
-        "Half-and-half fondue night at friends' in {city}. The rule is sacred: whoever loses their bread in the pot must perform a forfeit voted by the table. Your bread just slipped off your fork. It's slowly sinking into the cheese.",
+        "Half-and-half fondue night at friends' in {city}. The rule is sacred: whoever loses their bread in the pot must perform a forfeit voted by the table. Your bread just slipped off your fork. It's slowly sinking into the cheese. The pot gives off {w:smell}.",
         "Fondue with coworkers. Someone brought white wine, kirsch “to help digestion” and {w:drink}. The pot bubbles like a volcano. Your bread plunges. Everyone saw.",
         "Raclette and fondue the same night, at your father-in-law's, who doesn't joke about traditions. He made the forfeit list in advance. It's two pages long. Forfeit number 1 involves the lake and your underwear.",
         "The crispy cheese crust at the bottom of the pot is left, the best bit. Three people want it. Your bread just fell into the cheese, and the table awaits your forfeit, drumming on the table.",
@@ -3843,13 +3843,13 @@ export const countryEvents: EventDef[] = [
     cooldown: 4,
     text: {
       fr: [
-        "Embouteillage à São Paulo : 300 km de bouchons cumulés, record battu. Tu es coincé{|e} depuis trois heures. Au-dessus de toi, des hélicoptères emmènent les riches au travail. Un vendeur te propose des chips, un chargeur de téléphone et un chiot à travers la fenêtre.",
+        "Embouteillage à São Paulo : 300 km de bouchons cumulés, record battu. Tu es coincé{|e} depuis trois heures. Au-dessus de toi, des hélicoptères emmènent les riches au travail. Un vendeur te propose des chips, un chargeur de téléphone et un chiot à travers la fenêtre. À la radio, {w:song} passe pour la quatrième fois.",
         "Tu es dans le bus pour aller travailler à {city}. Le trajet devait durer 40 minutes. Ça fait deux heures. Tu as fini ton livre, ta batterie et ta patience. Un passager vient de commencer une sieste sur ton épaule.",
         "Bouchons monstres. Ton collègue riche te propose de partager son hélicoptère « pour seulement » 400 reais. Le chauffeur de moto-taxi, lui, te propose de faire le trajet en 15 minutes, sans casque, en zigzaguant entre les camions.",
         "Ça fait quatre heures que tu es dans les bouchons et tu as très, très envie de faire pipi. Le prochain café est à 2 km, soit 90 minutes. Tu as une bouteille vide et {w:object} dans la voiture.",
       ],
       en: [
-        "São Paulo gridlock: 190 miles of combined traffic jams, a new record. You've been stuck for three hours. Above you, helicopters fly the rich to work. A vendor offers chips, a phone charger and a puppy through your window.",
+        "São Paulo gridlock: 190 miles of combined traffic jams, a new record. You've been stuck for three hours. Above you, helicopters fly the rich to work. A vendor offers chips, a phone charger and a puppy through your window. On the radio, {w:song} plays for the fourth time.",
         "You're on the bus to work in {city}. The ride should take 40 minutes. It's been two hours. You've finished your book, your battery and your patience. A passenger just started napping on your shoulder.",
         "Monster traffic. Your rich coworker offers to share his helicopter “for just” 400 reais. The moto-taxi driver offers to get you there in 15 minutes, no helmet, zigzagging between trucks.",
         "You've been stuck in traffic for four hours and you really, really need to pee. The next café is a mile away, which means 90 minutes. You have an empty bottle and {w:object} in the car.",
@@ -4063,18 +4063,18 @@ export const countryEvents: EventDef[] = [
     cat: 'country',
     rating: 1,
     scene: { place: 'stadium', mood: 'proud', prop: 'mask' },
-    when: { country: ['mx'], age: [16, 45] },
+    when: { country: ['mx'], age: [18, 45] },
     weight: 6,
     once: true,
     text: {
       fr: [
-        "Soirée lucha libre à l'arène de {city}. Un des catcheurs s'est blessé et l'organisateur cherche un remplaçant dans le public. Il te désigne. Il te tend un masque doré et te demande ton nom de scène.",
+        "Soirée lucha libre à l'arène de {city}. Un des catcheurs s'est blessé et l'organisateur cherche un remplaçant dans le public. Il te désigne. Il te tend un masque doré et te demande ton nom de scène. Le public te jette {w:food}.",
         "Tu t'entraînes en secret dans une salle de lucha libre depuis six mois. Le coach, un ancien champion masqué de 60 ans, dit que tu es prêt{|e} pour ton premier combat. Ton adversaire s'appelle « El Destructor de Abuelas ».",
         "Ton oncle était un luchador célèbre dans les années 80 : « El Pulpo Místico ». Il te transmet son masque, sa cape et sa prise secrète. Il a les larmes aux yeux. Il a aussi des genoux en plastique.",
         "Un recruteur de lucha libre t'a vu{|e} porter {w:object} à bout de bras au marché. Il te propose un combat ce samedi. Le prix : 2 000 pesos et la gloire. Il te demande quel animal tu veux sur ton masque.",
       ],
       en: [
-        "Lucha libre night at the {city} arena. A wrestler got injured and the promoter is looking for a replacement in the crowd. He points at you. He hands you a golden mask and asks for your ring name.",
+        "Lucha libre night at the {city} arena. A wrestler got injured and the promoter is looking for a replacement in the crowd. He points at you. He hands you a golden mask and asks for your ring name. The crowd throws {w:food} at you.",
         "You've been training secretly at a lucha libre gym for six months. The coach, a 60-year-old masked ex-champion, says you're ready for your first bout. Your opponent is “El Destructor de Abuelas.”",
         "Your uncle was a famous luchador in the '80s: “El Pulpo Místico.” He passes down his mask, his cape and his secret hold. He has tears in his eyes. He also has plastic knees.",
         "A lucha libre scout saw you carrying {w:object} at arm's length at the market. He offers you a bout this Saturday. The prize: 2,000 pesos and glory. He asks what animal you want on your mask.",
@@ -4108,7 +4108,7 @@ export const countryEvents: EventDef[] = [
     rating: 2,
     chainOnly: true,
     scene: { place: 'stadium', mood: 'angry', prop: 'mask', fx: 'gore' },
-    when: { country: ['mx'], age: [17, 50], flag: 'cy_mx_luchador' },
+    when: { country: ['mx'], age: [18, 50], flag: 'cy_mx_luchador' },
     text: {
       fr: [
         "La revanche ! Combat « máscara contra máscara » : le perdant devra retirer son masque devant toute l'arène et révéler son identité. Ton adversaire, « El Hijo del Tsunami », a juré de t'humilier. 15 000 personnes hurlent ton nom de scène.",
@@ -4150,7 +4150,7 @@ export const countryEvents: EventDef[] = [
     cat: 'country',
     rating: 1,
     scene: { place: 'party', mood: 'party', prop: 'ballgown' },
-    when: { country: ['mx'], age: [16, 60] },
+    when: { country: ['mx'], age: [18, 60] },
     weight: 6,
     cooldown: 5,
     text: {
@@ -4183,7 +4183,7 @@ export const countryEvents: EventDef[] = [
       },
       {
         label: { fr: 'Ouvrir le bal à la tequila', en: 'Hit the tequila bar' },
-        text: { fr: ["J'ai passé la soirée au bar avec les oncles. À minuit, on a fait une chorégraphie improvisée sur {w:song}. L'oncle Beto a fait le grand écart et ne s'est jamais relevé. Il va bien. Il dort encore.", "Tequila, mezcal, tequila. J'ai dansé avec toutes les tantes, une par une. La tante Rosa m'a mis un billet dans la poche « pour tes études ». J'ai 34 ans."], en: ["I spent the night at the bar with the uncles. At midnight we did an improvised dance routine to {w:song}. Uncle Beto did the splits and never got up. He's fine. Still asleep.", "Tequila, mezcal, tequila. I danced with every aunt, one by one. Aunt Rosa slipped money in my pocket “for your studies.” I'm 34."] },
+        text: { fr: ["J'ai passé la soirée au bar avec les oncles. À minuit, on a fait une chorégraphie improvisée sur {w:song}. L'oncle Beto a fait le grand écart et ne s'est jamais relevé. Il va bien. Il dort encore.", "Tequila, mezcal, tequila. J'ai dansé avec toutes les tantes, une par une. La tante Rosa m'a mis un billet dans la poche « pour tes études ». J'ai {age} ans."], en: ["I spent the night at the bar with the uncles. At midnight we did an improvised dance routine to {w:song}. Uncle Beto did the splits and never got up. He's fine. Still asleep.", "Tequila, mezcal, tequila. I danced with every aunt, one by one. Aunt Rosa slipped money in my pocket “for your studies.” I'm {age}."] },
         fx: { happy: 8, addiction: ['alcohol', 4] },
       },
     ],
@@ -4424,13 +4424,13 @@ export const countryEvents: EventDef[] = [
     cooldown: 3,
     text: {
       fr: [
-        "Mariage de ta cousine : trois jours de fête, 800 invités, un orchestre de dakka marrakchia qui joue des tambours jusqu'à 5 h du matin. La mariée change de tenue sept fois. Tu en es à ton quatrième repas de la soirée. Il est 2 h.",
+        "Mariage de ta cousine : trois jours de fête, 800 invités, un orchestre de dakka marrakchia qui joue des tambours jusqu'à 5 h du matin. La mariée change de tenue sept fois. Tu en es à ton quatrième repas de la soirée. Il est 2 h. Une tante te tend {w:food}, « pour tenir ».",
         "Au mariage de ton cousin à {city}, les tantes t'ont repéré{|e}. Elles approchent en formation, comme un escadron. Question numéro 1 : « Et toi, c'est pour quand ? » Question numéro 2 : « Tu veux qu'on te présente quelqu'un ? »",
         "Les mariés vont être portés sur l'amariya, un trône doré, au-dessus de la foule. On cherche quatre porteurs. Ton oncle te désigne. La mariée porte une robe brodée de 12 kilos et 4 kilos de bijoux.",
         "Mariage traditionnel. La negafa, l'organisatrice, a un planning militaire : entrée, robe 1, tajine, robe 2, pastilla, robe 3, méchoui, robe 4, gâteaux, robe 5… Tu as mangé {w:food} et trois pastillas. Ta ceinture a demandé l'asile.",
       ],
       en: [
-        "Your cousin's wedding: three days of celebration, 800 guests, a dakka marrakchia band drumming until 5 a.m. The bride changes outfits seven times. You're on your fourth meal of the night. It's 2 a.m.",
+        "Your cousin's wedding: three days of celebration, 800 guests, a dakka marrakchia band drumming until 5 a.m. The bride changes outfits seven times. You're on your fourth meal of the night. It's 2 a.m. An aunt hands you {w:food}, “to keep you going.”",
         "At your cousin's wedding in {city}, the aunties have spotted you. They approach in formation, like a squadron. Question 1: “And you, when's your turn?” Question 2: “Want us to introduce you to someone?”",
         "The newlyweds are about to be carried on the amariya, a golden throne, above the crowd. They need four bearers. Your uncle points at you. The bride wears a 26-pound embroidered gown and 9 pounds of jewelry.",
         "Traditional wedding. The negafa, the wedding planner, runs a military schedule: entrance, outfit 1, tagine, outfit 2, pastilla, outfit 3, roast lamb, outfit 4, pastries, outfit 5… You've eaten {w:food} and three pastillas. Your belt has requested asylum.",
@@ -4513,13 +4513,13 @@ export const countryEvents: EventDef[] = [
     cooldown: 4,
     text: {
       fr: [
-        "Hammam du quartier à {city}. La kessala, une dame aux avant-bras de bûcheron, t'allonge sur la pierre chaude, te tartine de savon noir et sort le gant de kessa. « Détends-toi. » Tu entends quelqu'un hurler dans la salle d'à côté.",
+        "Hammam du quartier à {city}. La kessala, une dame aux avant-bras de bûcheron, t'allonge sur la pierre chaude, te tartine de savon noir et sort le gant de kessa. « Détends-toi. » Tu entends quelqu'un hurler dans la salle d'à côté. Ça sent {w:smell} et le savon noir.",
         "Premier hammam traditionnel. Trois salles : chaude, très chaude et « enfer ». Des seaux d'eau brûlante, de la vapeur, et des habitués qui te regardent comme un débutant. Le gommage coûte {$amount}. On te promet « une peau de bébé ».",
         "La kessala frotte ton dos avec le gant de crin. Des rouleaux de peau morte tombent par terre, gris, longs comme des nouilles. Il y en a tellement que tu pourrais en faire un deuxième toi. Elle dit : « Tu ne t'étais pas lavé{|e} depuis quand ? »",
         "Hammam entre amis. L'un d'eux t'a convaincu{|e} que le gommage « fait du bien au moral ». Tu es en maillot, assis{|e} dans la vapeur, avec un seau, {w:object} qui traîne là sans raison, et une sensation de cuisson lente.",
       ],
       en: [
-        "The {city} neighborhood hammam. The attendant, a woman with lumberjack forearms, lays you on the hot stone, slathers you in black soap and pulls out the kessa glove. “Relax.” You hear someone screaming in the next room.",
+        "The {city} neighborhood hammam. The attendant, a woman with lumberjack forearms, lays you on the hot stone, slathers you in black soap and pulls out the kessa glove. “Relax.” You hear someone screaming in the next room. It smells of {w:smell} and black soap.",
         "First traditional hammam. Three rooms: hot, very hot and “hell.” Buckets of scalding water, steam, and regulars eyeing you like a rookie. The scrub costs {$amount}. They promise “baby skin.”",
         "The attendant scrubs your back with the horsehair glove. Rolls of dead skin fall to the floor, grey, long as noodles. There's so much you could build a second you. She says: “When did you last wash?”",
         "Hammam with friends. One convinced you a scrub “is good for morale.” You're in a swimsuit, sitting in the steam, with a bucket, {w:object} lying around for no reason, and a slow-cooking sensation.",
@@ -4773,7 +4773,7 @@ export const countryEvents: EventDef[] = [
     cat: 'country',
     rating: 1,
     scene: { place: 'beach', mood: 'shock', prop: 'surfboard' },
-    when: { country: ['au'], age: [16, 60] },
+    when: { country: ['au'], age: [18, 60] },
     weight: 7,
     cooldown: 4,
     text: {
@@ -4912,13 +4912,13 @@ export const countryEvents: EventDef[] = [
     cooldown: 6,
     text: {
       fr: [
-        "Pub de Darwin, 23 h. Tu vas aux toilettes. Il y a un crocodile de trois mètres dans les toilettes. Il est entré par la porte de derrière, restée ouverte. Le barman dit : « Ah, c'est Kevin. Utilise celles des filles. »",
+        "Pub de Darwin, 23 h. Tu vas aux toilettes. Il y a un crocodile de trois mètres dans les toilettes. Il est entré par la porte de derrière, restée ouverte. Le barman dit : « Ah, c'est Kevin. Utilise celles des filles. » Tu as {w:drink} à la main et plus du tout envie de faire pipi.",
         "Pêche en bateau dans le nord. Le panneau sur la berge dit « Attention crocodiles ». Ton guide, un vieux bonhomme avec trois doigts, dit qu'il n'y a « aucun problème si on ne laisse pas pendre le bras ». Tu as le bras qui pend.",
         "Baignade dans un trou d'eau magnifique près de {city}. L'eau est claire, il fait 37 °C. Un panneau à moitié effacé dit « No swi… ». Le reste a été arraché. On dirait des traces de dents. Tes amis sont déjà dans l'eau.",
         "Ton voisin a trouvé un crocodile d'eau salée dans sa piscine. Il te demande de l'aider à le sortir avec une serpillière, une corde et {w:object}. Il a déjà ouvert une bière « pour le courage ».",
       ],
       en: [
-        "Darwin pub, 11 p.m. You go to the toilets. There's a ten-foot crocodile in the toilets. It came in through the back door, left open. The bartender says, “Ah, that's Kevin. Use the ladies'.”",
+        "Darwin pub, 11 p.m. You go to the toilets. There's a ten-foot crocodile in the toilets. It came in through the back door, left open. The bartender says, “Ah, that's Kevin. Use the ladies'.” You're holding {w:drink} and no longer need to pee at all.",
         "Boat fishing up north. The sign on the bank says “Beware crocodiles.” Your guide, an old bloke with three fingers, says there's “no problem as long as you don't dangle your arm.” Your arm is dangling.",
         "Swimming in a gorgeous waterhole near {city}. Clear water, 99°F. A half-faded sign reads “No swi…”. The rest was torn off. Looks like tooth marks. Your friends are already in the water.",
         "Your neighbor found a saltwater croc in his pool. He wants your help getting it out with a mop, a rope and {w:object}. He's already opened a beer “for courage.”",
@@ -4957,13 +4957,13 @@ export const countryEvents: EventDef[] = [
     cooldown: 5,
     text: {
       fr: [
-        "Un kangourou de deux mètres, musclé comme un bodybuilder, est dans ton jardin. Il mange ta pelouse. Il te regarde. Il gonfle les pectoraux. Il prend la posture d'un boxeur. Il veut se battre.",
+        "Un kangourou de deux mètres, musclé comme un bodybuilder, est dans ton jardin. Il mange ta pelouse. Il te regarde. Il gonfle les pectoraux. Il prend la posture d'un boxeur. Il veut se battre. Derrière lui, {w:animal} regarde la scène en mâchant.",
         "Golf à {city}. Un groupe de kangourous traîne sur le green. Le plus gros, surnommé « Big Jack » par le club, a des biceps plus gros que tes cuisses. Ta balle a atterri entre ses pattes.",
         "Tu fais ton jogging matinal. Un kangourou surgit sur le chemin et commence à courir à côté de toi, à ta vitesse, en te regardant. Puis il accélère. Puis il ralentit. Il se moque de toi.",
         "La nuit, sur une route de campagne, un kangourou bondit devant ta voiture. Tu freines à temps. Il se retourne, s'approche de ta portière, et frappe à la vitre. Avec {w:object} dans la poche ventrale.",
       ],
       en: [
-        "A six-foot kangaroo, ripped like a bodybuilder, is in your backyard. It's eating your lawn. It looks at you. It puffs its chest. It takes a boxer's stance. It wants a fight.",
+        "A six-foot kangaroo, ripped like a bodybuilder, is in your backyard. It's eating your lawn. It looks at you. It puffs its chest. It takes a boxer's stance. It wants a fight. Behind it, {w:animal} watches, chewing.",
         "Golf in {city}. A mob of kangaroos lounges on the green. The biggest, nicknamed “Big Jack” by the club, has biceps bigger than your thighs. Your ball landed between his feet.",
         "You're on your morning jog. A kangaroo appears on the path and starts running next to you, at your pace, watching you. Then speeds up. Then slows down. It's mocking you.",
         "At night on a country road, a kangaroo leaps in front of your car. You brake in time. It turns, approaches your door and knocks on the window. With {w:object} in its pouch.",
