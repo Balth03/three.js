@@ -1,0 +1,22 @@
+{
+  "name": "neon-tag",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "npm run dev -w @neon/client",
+    "build": "npm run build -w @neon/client",
+    "preview": "npm run preview -w @neon/client",
+    "typecheck": "tsc -p packages/shared --noEmit && tsc -p apps/client --noEmit",
+    "test": "vitest run",
+    "map:build": "tsx tools/maps/build-maze.ts",
+    "map:validate": "tsx tools/maps/validate.ts",
+    "sim:match": "tsx tools/sim/headless-match.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.0"
+  }
+}

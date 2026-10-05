@@ -1,0 +1,13 @@
+{
+  "id": "tdm",
+  "name": "Team Deathmatch",
+  "shortName": "TDM",
+  "description": "Deux équipes. Éteins un maximum de gilets adverses.",
+  "timeLimit": 300,
+  "scoreLimit": 30,
+  "pointsPerDeactivation": 1,
+  "warmup": 4,
+  "overtimeLimit": 60,
+  "friendlyFire": false,
+  "endScreenTime": 0
+}

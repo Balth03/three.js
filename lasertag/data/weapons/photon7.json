@@ -1,0 +1,45 @@
+{
+  "id": "photon7",
+  "name": "Photon-7",
+  "description": "Blaster automatique polyvalent. Fiable, nerveux, honn\u00eate.",
+  "fireInterval": 0.12,
+  "range": 90,
+  "energyMax": 100,
+  "energyPerShot": 2,
+  "heatPerShot": 5,
+  "heatMax": 100,
+  "coolRate": 45,
+  "coolDelay": 0.2,
+  "overheatLock": 1.3,
+  "ventTime": 0.7,
+  "damage": {
+    "chest": 20,
+    "back": 30,
+    "shoulder": 17,
+    "head": 40,
+    "blaster": 12
+  },
+  "jamTime": 0.8,
+  "spread": {
+    "baseDeg": 0.12,
+    "moveDeg": 0.45,
+    "airDeg": 1.1,
+    "crouchMul": 0.7,
+    "adsMul": 0.3,
+    "perShotDeg": 0.12,
+    "maxBloomDeg": 0.9,
+    "bloomRecovery": 5,
+    "firstShotPerfect": true
+  },
+  "adsFovMul": 0.75,
+  "recoil": {
+    "pitchKickDeg": 0.35,
+    "yawJitterDeg": 0.12,
+    "recovery": 18
+  },
+  "beamColorBoost": 1.0,
+  "hitboxBonus": {
+    "human": 0.045,
+    "bot": 0.0
+  }
+}
