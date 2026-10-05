@@ -80,6 +80,8 @@ export class Game {
   private briefT = 0;
   private lastCount = -1;
   private hintEl: HTMLElement | null = null;
+  /** look-dev: stop the simulation clock */
+  frozen = false;
   private fixedCam: { p: THREE.Vector3; t: THREE.Vector3 } | null = null;
 
   // perf
@@ -356,7 +358,7 @@ export class Game {
     this.input.pollGamepad(dt);
     const sim = this.sim;
     if (!sim) return;
-    const running = this.mode !== 'match' || !this.paused;
+    const running = (this.mode !== 'match' || !this.paused) && !this.frozen;
 
     if (this.mode === 'match' && this.me && !this.paused) this.updateLook(dt);
 
