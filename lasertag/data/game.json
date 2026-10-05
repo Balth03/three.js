@@ -1,0 +1,47 @@
+{
+  "tickRate": 60,
+  "movement": {
+    "radius": 0.35,
+    "height": 1.8,
+    "crouchHeight": 1.15,
+    "eyeHeight": 1.62,
+    "crouchEyeHeight": 1.0,
+    "runSpeed": 7.2,
+    "sprintSpeed": 9.6,
+    "crouchSpeed": 3.6,
+    "adsSpeedMul": 0.6,
+    "groundAccel": 70,
+    "airAccel": 18,
+    "friction": 9,
+    "stopSpeed": 2.5,
+    "gravity": 22,
+    "jumpVelocity": 7.4,
+    "coyoteTime": 0.1,
+    "jumpBuffer": 0.12,
+    "stepHeight": 0.45,
+    "maxSlopeDeg": 46,
+    "snapDistance": 0.3,
+    "slideMinSpeed": 6.5,
+    "slideBoost": 3.2,
+    "slideMaxSpeed": 12.5,
+    "slideDuration": 0.8,
+    "slideFriction": 1.1,
+    "slideCooldown": 0.6
+  },
+  "vest": {
+    "maxCharge": 100,
+    "regenDelay": 3.0,
+    "regenRate": 30,
+    "shutdownTime": 4.0,
+    "respawnInvuln": 2.0,
+    "respawnFireLock": 0.4
+  },
+  "energy": {
+    "passiveRegenCap": 30,
+    "passiveRegenRate": 6,
+    "passiveRegenDelay": 1.5,
+    "baseRechargeRate": 45,
+    "stationRechargeRate": 30,
+    "stationRadius": 1.8
+  }
+}

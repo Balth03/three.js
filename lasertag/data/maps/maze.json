@@ -1,0 +1,1866 @@
+{
+ "id": "maze",
+ "name": "The Maze",
+ "subtitle": "Labyrinthe classique — couloirs, miroirs, plateforme centrale",
+ "bounds": {
+  "min": [
+   -28,
+   -20
+  ],
+  "max": [
+   28,
+   20
+  ]
+ },
+ "ceiling": 9,
+ "atmosphere": {
+  "fogColor": "#1b0c3d",
+  "fogDensity": 0.032,
+  "fogHeight": 3.5,
+  "uvAmbient": "#3a1f8a",
+  "uvGround": "#0b0620",
+  "patternTints": [
+   "#7a4dff",
+   "#2f86ff",
+   "#ff8a1f",
+   "#efe6ff"
+  ],
+  "exposure": 1
+ },
+ "boxes": [
+  {
+   "min": [
+    -28.6,
+    0,
+    20
+   ],
+   "max": [
+    28.6,
+    9,
+    20.6
+   ],
+   "kind": "perimeter",
+   "mat": "wall",
+   "trim": "violet",
+   "pattern": "stars",
+   "tint": 0
+  },
+  {
+   "min": [
+    -28.6,
+    0,
+    -20.6
+   ],
+   "max": [
+    28.6,
+    9,
+    -20
+   ],
+   "kind": "perimeter",
+   "mat": "wall",
+   "trim": "violet",
+   "pattern": "stars",
+   "tint": 0
+  },
+  {
+   "min": [
+    -28.6,
+    0,
+    -20
+   ],
+   "max": [
+    -28,
+    9,
+    20
+   ],
+   "kind": "perimeter",
+   "mat": "wall",
+   "trim": "team0",
+   "pattern": "chevron",
+   "tint": 1
+  },
+  {
+   "min": [
+    28,
+    0,
+    -20
+   ],
+   "max": [
+    28.6,
+    9,
+    20
+   ],
+   "kind": "perimeter",
+   "mat": "wall",
+   "trim": "team1",
+   "pattern": "chevron",
+   "tint": 1
+  },
+  {
+   "min": [
+    -5,
+    2.1,
+    -4
+   ],
+   "max": [
+    5,
+    2.4,
+    4
+   ],
+   "kind": "platform",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "hex",
+   "tint": 2
+  },
+  {
+   "min": [
+    -0.45,
+    0,
+    -0.45
+   ],
+   "max": [
+    0.45,
+    2.1,
+    0.45
+   ],
+   "kind": "pillar",
+   "mat": "metal",
+   "trim": "orange",
+   "pattern": "circuit",
+   "tint": 2
+  },
+  {
+   "min": [
+    -2.5,
+    0,
+    12.8
+   ],
+   "max": [
+    2.5,
+    2.6,
+    13.2
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "hex",
+   "tint": 2
+  },
+  {
+   "min": [
+    -2,
+    0,
+    7.8
+   ],
+   "max": [
+    2,
+    2.6,
+    8.2
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "violet",
+   "pattern": "grid",
+   "tint": 0
+  },
+  {
+   "min": [
+    -1,
+    0,
+    -12.6
+   ],
+   "max": [
+    1,
+    1.1,
+    -11.6
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    -22.2,
+    0,
+    3
+   ],
+   "max": [
+    -21.8,
+    2.6,
+    8.2
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "team0",
+   "pattern": "chevron",
+   "tint": 1
+  },
+  {
+   "min": [
+    -22.2,
+    0,
+    -8.2
+   ],
+   "max": [
+    -21.8,
+    2.6,
+    -3
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "team0",
+   "pattern": "chevron",
+   "tint": 1
+  },
+  {
+   "min": [
+    -28,
+    0,
+    7.8
+   ],
+   "max": [
+    -25,
+    2.6,
+    8.2
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "team0",
+   "pattern": "chevron",
+   "tint": 1
+  },
+  {
+   "min": [
+    -28,
+    0,
+    -8.2
+   ],
+   "max": [
+    -25,
+    2.6,
+    -7.8
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "team0",
+   "pattern": "chevron",
+   "tint": 1
+  },
+  {
+   "min": [
+    -24.4,
+    0,
+    -1.3
+   ],
+   "max": [
+    -23.6,
+    1.1,
+    1.3
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "team0",
+   "pattern": "chevron",
+   "tint": 1
+  },
+  {
+   "min": [
+    -19.7,
+    0,
+    11
+   ],
+   "max": [
+    -19.3,
+    2.6,
+    20
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "violet",
+   "pattern": "grid",
+   "tint": 0
+  },
+  {
+   "min": [
+    -16.5,
+    0,
+    12.3
+   ],
+   "max": [
+    -10,
+    2.6,
+    12.7
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "blue",
+   "pattern": "circuit",
+   "tint": 1
+  },
+  {
+   "min": [
+    -13.2,
+    0,
+    15.5
+   ],
+   "max": [
+    -12.8,
+    2.6,
+    20
+   ],
+   "kind": "wall",
+   "mat": "mirror",
+   "trim": "white",
+   "pattern": "none",
+   "tint": 0
+  },
+  {
+   "min": [
+    -6.7,
+    0,
+    9.2
+   ],
+   "max": [
+    -6.3,
+    2.6,
+    14
+   ],
+   "kind": "wall",
+   "mat": "mirror",
+   "trim": "white",
+   "pattern": "none",
+   "tint": 0
+  },
+  {
+   "min": [
+    -10,
+    0,
+    16.8
+   ],
+   "max": [
+    -3.5,
+    2.6,
+    17.2
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "violet",
+   "pattern": "stars",
+   "tint": 3
+  },
+  {
+   "min": [
+    -16.4,
+    0,
+    16.1
+   ],
+   "max": [
+    -15.6,
+    2.6,
+    16.9
+   ],
+   "kind": "pillar",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    -24.2,
+    0,
+    13.5
+   ],
+   "max": [
+    -22.6,
+    1.2,
+    15.1
+   ],
+   "kind": "cover",
+   "mat": "crate",
+   "trim": "orange",
+   "pattern": "hex",
+   "tint": 2
+  },
+  {
+   "min": [
+    -21.8,
+    0,
+    7.8
+   ],
+   "max": [
+    -15,
+    2.6,
+    8.2
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "violet",
+   "pattern": "grid",
+   "tint": 0
+  },
+  {
+   "min": [
+    -11,
+    0,
+    7.8
+   ],
+   "max": [
+    -6,
+    2.6,
+    8.2
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "blue",
+   "pattern": "circuit",
+   "tint": 1
+  },
+  {
+   "min": [
+    -21.8,
+    0,
+    -8.2
+   ],
+   "max": [
+    -17,
+    2.6,
+    -7.8
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "violet",
+   "pattern": "grid",
+   "tint": 0
+  },
+  {
+   "min": [
+    -13,
+    0,
+    -8.2
+   ],
+   "max": [
+    -5.5,
+    2.6,
+    -7.8
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "blue",
+   "pattern": "stripes",
+   "tint": 1
+  },
+  {
+   "min": [
+    -22,
+    0,
+    -20
+   ],
+   "max": [
+    -18,
+    1.3,
+    -16.5
+   ],
+   "kind": "platform",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "hex",
+   "tint": 2
+  },
+  {
+   "min": [
+    -18.3,
+    1.3,
+    -20
+   ],
+   "max": [
+    -18,
+    2.2,
+    -17.6
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    -15,
+    0,
+    -13.6
+   ],
+   "max": [
+    -13,
+    1.1,
+    -12.8
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    -10,
+    0,
+    -17.2
+   ],
+   "max": [
+    -9,
+    2.6,
+    -16.2
+   ],
+   "kind": "pillar",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    -6.2,
+    0,
+    -16
+   ],
+   "max": [
+    -5.4,
+    1.1,
+    -12.4
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "violet",
+   "pattern": "grid",
+   "tint": 0
+  },
+  {
+   "min": [
+    -3.4,
+    0,
+    -18.4
+   ],
+   "max": [
+    -2,
+    1.2,
+    -17.4
+   ],
+   "kind": "cover",
+   "mat": "crate",
+   "trim": "orange",
+   "pattern": "hex",
+   "tint": 2
+  },
+  {
+   "min": [
+    -4.6,
+    0,
+    -3.6
+   ],
+   "max": [
+    -4,
+    2.1,
+    -3
+   ],
+   "kind": "pillar",
+   "mat": "metal",
+   "trim": "none",
+   "pattern": "none",
+   "tint": 0
+  },
+  {
+   "min": [
+    -4.6,
+    0,
+    3
+   ],
+   "max": [
+    -4,
+    2.1,
+    3.6
+   ],
+   "kind": "pillar",
+   "mat": "metal",
+   "trim": "none",
+   "pattern": "none",
+   "tint": 0
+  },
+  {
+   "min": [
+    -5,
+    2.4,
+    3.8
+   ],
+   "max": [
+    -1.6,
+    3.3,
+    4
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    -5,
+    2.4,
+    -4
+   ],
+   "max": [
+    -1.6,
+    3.3,
+    -3.8
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    -5,
+    2.4,
+    1.25
+   ],
+   "max": [
+    -4.8,
+    3.3,
+    3.8
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    -5,
+    2.4,
+    -3.8
+   ],
+   "max": [
+    -4.8,
+    3.3,
+    -1.25
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    -15.6,
+    0,
+    -3.3
+   ],
+   "max": [
+    -14.6,
+    1.1,
+    -1.3
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    -15.6,
+    0,
+    1.3
+   ],
+   "max": [
+    -14.6,
+    1.1,
+    3.3
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    -18.6,
+    0,
+    4.4
+   ],
+   "max": [
+    -17.4,
+    1.2,
+    5.6
+   ],
+   "kind": "cover",
+   "mat": "crate",
+   "trim": "orange",
+   "pattern": "hex",
+   "tint": 2
+  },
+  {
+   "min": [
+    -9.2,
+    0,
+    -6.3
+   ],
+   "max": [
+    -8,
+    1.2,
+    -5.1
+   ],
+   "kind": "cover",
+   "mat": "crate",
+   "trim": "orange",
+   "pattern": "hex",
+   "tint": 2
+  },
+  {
+   "min": [
+    -9.2,
+    0,
+    4.6
+   ],
+   "max": [
+    -8.8,
+    2.6,
+    7.6
+   ],
+   "kind": "wall",
+   "mat": "mirror",
+   "trim": "white",
+   "pattern": "none",
+   "tint": 0
+  },
+  {
+   "min": [
+    21.8,
+    0,
+    3
+   ],
+   "max": [
+    22.2,
+    2.6,
+    8.2
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "team1",
+   "pattern": "chevron",
+   "tint": 1
+  },
+  {
+   "min": [
+    21.8,
+    0,
+    -8.2
+   ],
+   "max": [
+    22.2,
+    2.6,
+    -3
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "team1",
+   "pattern": "chevron",
+   "tint": 1
+  },
+  {
+   "min": [
+    25,
+    0,
+    7.8
+   ],
+   "max": [
+    28,
+    2.6,
+    8.2
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "team1",
+   "pattern": "chevron",
+   "tint": 1
+  },
+  {
+   "min": [
+    25,
+    0,
+    -8.2
+   ],
+   "max": [
+    28,
+    2.6,
+    -7.8
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "team1",
+   "pattern": "chevron",
+   "tint": 1
+  },
+  {
+   "min": [
+    23.6,
+    0,
+    -1.3
+   ],
+   "max": [
+    24.4,
+    1.1,
+    1.3
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "team1",
+   "pattern": "chevron",
+   "tint": 1
+  },
+  {
+   "min": [
+    19.3,
+    0,
+    11
+   ],
+   "max": [
+    19.7,
+    2.6,
+    20
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "violet",
+   "pattern": "grid",
+   "tint": 0
+  },
+  {
+   "min": [
+    10,
+    0,
+    12.3
+   ],
+   "max": [
+    16.5,
+    2.6,
+    12.7
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "blue",
+   "pattern": "circuit",
+   "tint": 1
+  },
+  {
+   "min": [
+    12.8,
+    0,
+    15.5
+   ],
+   "max": [
+    13.2,
+    2.6,
+    20
+   ],
+   "kind": "wall",
+   "mat": "mirror",
+   "trim": "white",
+   "pattern": "none",
+   "tint": 0
+  },
+  {
+   "min": [
+    6.3,
+    0,
+    9.2
+   ],
+   "max": [
+    6.7,
+    2.6,
+    14
+   ],
+   "kind": "wall",
+   "mat": "mirror",
+   "trim": "white",
+   "pattern": "none",
+   "tint": 0
+  },
+  {
+   "min": [
+    3.5,
+    0,
+    16.8
+   ],
+   "max": [
+    10,
+    2.6,
+    17.2
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "violet",
+   "pattern": "stars",
+   "tint": 3
+  },
+  {
+   "min": [
+    15.6,
+    0,
+    16.1
+   ],
+   "max": [
+    16.4,
+    2.6,
+    16.9
+   ],
+   "kind": "pillar",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    22.6,
+    0,
+    13.5
+   ],
+   "max": [
+    24.2,
+    1.2,
+    15.1
+   ],
+   "kind": "cover",
+   "mat": "crate",
+   "trim": "orange",
+   "pattern": "hex",
+   "tint": 2
+  },
+  {
+   "min": [
+    15,
+    0,
+    7.8
+   ],
+   "max": [
+    21.8,
+    2.6,
+    8.2
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "violet",
+   "pattern": "grid",
+   "tint": 0
+  },
+  {
+   "min": [
+    6,
+    0,
+    7.8
+   ],
+   "max": [
+    11,
+    2.6,
+    8.2
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "blue",
+   "pattern": "circuit",
+   "tint": 1
+  },
+  {
+   "min": [
+    17,
+    0,
+    -8.2
+   ],
+   "max": [
+    21.8,
+    2.6,
+    -7.8
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "violet",
+   "pattern": "grid",
+   "tint": 0
+  },
+  {
+   "min": [
+    5.5,
+    0,
+    -8.2
+   ],
+   "max": [
+    13,
+    2.6,
+    -7.8
+   ],
+   "kind": "wall",
+   "mat": "wall",
+   "trim": "blue",
+   "pattern": "stripes",
+   "tint": 1
+  },
+  {
+   "min": [
+    18,
+    0,
+    -20
+   ],
+   "max": [
+    22,
+    1.3,
+    -16.5
+   ],
+   "kind": "platform",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "hex",
+   "tint": 2
+  },
+  {
+   "min": [
+    18,
+    1.3,
+    -20
+   ],
+   "max": [
+    18.3,
+    2.2,
+    -17.6
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    13,
+    0,
+    -13.6
+   ],
+   "max": [
+    15,
+    1.1,
+    -12.8
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    9,
+    0,
+    -17.2
+   ],
+   "max": [
+    10,
+    2.6,
+    -16.2
+   ],
+   "kind": "pillar",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    5.4,
+    0,
+    -16
+   ],
+   "max": [
+    6.2,
+    1.1,
+    -12.4
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "violet",
+   "pattern": "grid",
+   "tint": 0
+  },
+  {
+   "min": [
+    2,
+    0,
+    -18.4
+   ],
+   "max": [
+    3.4,
+    1.2,
+    -17.4
+   ],
+   "kind": "cover",
+   "mat": "crate",
+   "trim": "orange",
+   "pattern": "hex",
+   "tint": 2
+  },
+  {
+   "min": [
+    4,
+    0,
+    -3.6
+   ],
+   "max": [
+    4.6,
+    2.1,
+    -3
+   ],
+   "kind": "pillar",
+   "mat": "metal",
+   "trim": "none",
+   "pattern": "none",
+   "tint": 0
+  },
+  {
+   "min": [
+    4,
+    0,
+    3
+   ],
+   "max": [
+    4.6,
+    2.1,
+    3.6
+   ],
+   "kind": "pillar",
+   "mat": "metal",
+   "trim": "none",
+   "pattern": "none",
+   "tint": 0
+  },
+  {
+   "min": [
+    1.6,
+    2.4,
+    3.8
+   ],
+   "max": [
+    5,
+    3.3,
+    4
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    1.6,
+    2.4,
+    -4
+   ],
+   "max": [
+    5,
+    3.3,
+    -3.8
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    4.8,
+    2.4,
+    1.25
+   ],
+   "max": [
+    5,
+    3.3,
+    3.8
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    4.8,
+    2.4,
+    -3.8
+   ],
+   "max": [
+    5,
+    3.3,
+    -1.25
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    14.6,
+    0,
+    -3.3
+   ],
+   "max": [
+    15.6,
+    1.1,
+    -1.3
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    14.6,
+    0,
+    1.3
+   ],
+   "max": [
+    15.6,
+    1.1,
+    3.3
+   ],
+   "kind": "cover",
+   "mat": "wall",
+   "trim": "orange",
+   "pattern": "stripes",
+   "tint": 2
+  },
+  {
+   "min": [
+    17.4,
+    0,
+    4.4
+   ],
+   "max": [
+    18.6,
+    1.2,
+    5.6
+   ],
+   "kind": "cover",
+   "mat": "crate",
+   "trim": "orange",
+   "pattern": "hex",
+   "tint": 2
+  },
+  {
+   "min": [
+    8,
+    0,
+    -6.3
+   ],
+   "max": [
+    9.2,
+    1.2,
+    -5.1
+   ],
+   "kind": "cover",
+   "mat": "crate",
+   "trim": "orange",
+   "pattern": "hex",
+   "tint": 2
+  },
+  {
+   "min": [
+    8.8,
+    0,
+    4.6
+   ],
+   "max": [
+    9.2,
+    2.6,
+    7.6
+   ],
+   "kind": "wall",
+   "mat": "mirror",
+   "trim": "white",
+   "pattern": "none",
+   "tint": 0
+  }
+ ],
+ "ramps": [
+  {
+   "min": [
+    -21.2,
+    0,
+    -16.5
+   ],
+   "max": [
+    -19.2,
+    1.3,
+    -12.8
+   ],
+   "rise": "z-",
+   "trim": "orange"
+  },
+  {
+   "min": [
+    -11,
+    0,
+    -1.25
+   ],
+   "max": [
+    -5,
+    2.4,
+    1.25
+   ],
+   "rise": "x+",
+   "trim": "orange"
+  },
+  {
+   "min": [
+    19.2,
+    0,
+    -16.5
+   ],
+   "max": [
+    21.2,
+    1.3,
+    -12.8
+   ],
+   "rise": "z-",
+   "trim": "orange"
+  },
+  {
+   "min": [
+    5,
+    0,
+    -1.25
+   ],
+   "max": [
+    11,
+    2.4,
+    1.25
+   ],
+   "rise": "x-",
+   "trim": "orange"
+  }
+ ],
+ "zones": [
+  {
+   "type": "station",
+   "team": -1,
+   "center": [
+    0,
+    0,
+    0
+   ],
+   "size": [
+    1.8,
+    2.1,
+    1.8
+   ]
+  },
+  {
+   "type": "base",
+   "team": 0,
+   "center": [
+    -25,
+    1.5,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ]
+  },
+  {
+   "type": "base",
+   "team": 1,
+   "center": [
+    25,
+    1.5,
+    0
+   ],
+   "size": [
+    3,
+    3,
+    8
+   ]
+  }
+ ],
+ "spawns": [
+  {
+   "team": 0,
+   "pos": [
+    -26.6,
+    0,
+    -5
+   ],
+   "yaw": -1.571
+  },
+  {
+   "team": 0,
+   "pos": [
+    -26.6,
+    0,
+    -2.5
+   ],
+   "yaw": -1.571
+  },
+  {
+   "team": 0,
+   "pos": [
+    -26.6,
+    0,
+    0
+   ],
+   "yaw": -1.571
+  },
+  {
+   "team": 0,
+   "pos": [
+    -26.6,
+    0,
+    2.5
+   ],
+   "yaw": -1.571
+  },
+  {
+   "team": 0,
+   "pos": [
+    -26.6,
+    0,
+    5
+   ],
+   "yaw": -1.571
+  },
+  {
+   "team": 0,
+   "pos": [
+    -24,
+    0,
+    -5.6
+   ],
+   "yaw": -1.571
+  },
+  {
+   "team": 0,
+   "pos": [
+    -24,
+    0,
+    5.6
+   ],
+   "yaw": -1.571
+  },
+  {
+   "team": 1,
+   "pos": [
+    26.6,
+    0,
+    -5
+   ],
+   "yaw": 1.571
+  },
+  {
+   "team": 1,
+   "pos": [
+    26.6,
+    0,
+    -2.5
+   ],
+   "yaw": 1.571
+  },
+  {
+   "team": 1,
+   "pos": [
+    26.6,
+    0,
+    0
+   ],
+   "yaw": 1.571
+  },
+  {
+   "team": 1,
+   "pos": [
+    26.6,
+    0,
+    2.5
+   ],
+   "yaw": 1.571
+  },
+  {
+   "team": 1,
+   "pos": [
+    26.6,
+    0,
+    5
+   ],
+   "yaw": 1.571
+  },
+  {
+   "team": 1,
+   "pos": [
+    24,
+    0,
+    -5.6
+   ],
+   "yaw": 1.571
+  },
+  {
+   "team": 1,
+   "pos": [
+    24,
+    0,
+    5.6
+   ],
+   "yaw": 1.571
+  }
+ ],
+ "lights": [
+  {
+   "pos": [
+    0,
+    8.6,
+    0
+   ],
+   "color": "#b388ff",
+   "intensity": 3,
+   "range": 16,
+   "cone": true,
+   "coneRadius": 4.5
+  },
+  {
+   "pos": [
+    0,
+    1.4,
+    0
+   ],
+   "color": "#ff8a1f",
+   "intensity": 1.6,
+   "range": 5.5
+  },
+  {
+   "pos": [
+    -25,
+    6.5,
+    0
+   ],
+   "color": "#18e7ff",
+   "intensity": 3.2,
+   "range": 15,
+   "cone": true,
+   "coneRadius": 3.2
+  },
+  {
+   "pos": [
+    -13,
+    7.5,
+    14.5
+   ],
+   "color": "#ff8a1f",
+   "intensity": 2.4,
+   "range": 13,
+   "cone": true,
+   "coneRadius": 2.4
+  },
+  {
+   "pos": [
+    -11,
+    7.5,
+    -14
+   ],
+   "color": "#4d6bff",
+   "intensity": 2.8,
+   "range": 14,
+   "cone": true,
+   "coneRadius": 2.8
+  },
+  {
+   "pos": [
+    25,
+    6.5,
+    0
+   ],
+   "color": "#ff2bd6",
+   "intensity": 3.2,
+   "range": 15,
+   "cone": true,
+   "coneRadius": 3.2
+  },
+  {
+   "pos": [
+    13,
+    7.5,
+    14.5
+   ],
+   "color": "#ff8a1f",
+   "intensity": 2.4,
+   "range": 13,
+   "cone": true,
+   "coneRadius": 2.4
+  },
+  {
+   "pos": [
+    11,
+    7.5,
+    -14
+   ],
+   "color": "#4d6bff",
+   "intensity": 2.8,
+   "range": 14,
+   "cone": true,
+   "coneRadius": 2.8
+  }
+ ],
+ "signs": [
+  {
+   "text": "▲ CYAN",
+   "pos": [
+    -27.95,
+    4.6,
+    0
+   ],
+   "yaw": 1.571,
+   "size": 1.7,
+   "color": "#18e7ff"
+  },
+  {
+   "text": "◆ MAGENTA",
+   "pos": [
+    27.95,
+    4.6,
+    0
+   ],
+   "yaw": -1.571,
+   "size": 1.7,
+   "color": "#ff2bd6"
+  },
+  {
+   "text": "A1",
+   "pos": [
+    -19.25,
+    1.9,
+    13
+   ],
+   "yaw": 1.571,
+   "size": 0.8,
+   "color": "#fff2e0"
+  },
+  {
+   "text": "B1",
+   "pos": [
+    19.25,
+    1.9,
+    13
+   ],
+   "yaw": -1.571,
+   "size": 0.8,
+   "color": "#fff2e0"
+  },
+  {
+   "text": "A3",
+   "pos": [
+    -13,
+    1.9,
+    -7.75
+   ],
+   "yaw": 0,
+   "size": 0.8,
+   "color": "#fff2e0"
+  },
+  {
+   "text": "B3",
+   "pos": [
+    13,
+    1.9,
+    -7.75
+   ],
+   "yaw": 0,
+   "size": 0.8,
+   "color": "#fff2e0"
+  },
+  {
+   "text": "A2",
+   "pos": [
+    -15,
+    1.9,
+    8.25
+   ],
+   "yaw": 3.142,
+   "size": 0.8,
+   "color": "#fff2e0"
+  },
+  {
+   "text": "B2",
+   "pos": [
+    15,
+    1.9,
+    8.25
+   ],
+   "yaw": 3.142,
+   "size": 0.8,
+   "color": "#fff2e0"
+  },
+  {
+   "text": "NOYAU",
+   "pos": [
+    0,
+    1.6,
+    0.47
+   ],
+   "yaw": 0,
+   "size": 0.32,
+   "color": "#ff8a1f"
+  },
+  {
+   "text": "THE MAZE",
+   "pos": [
+    0,
+    6.2,
+    19.95
+   ],
+   "yaw": 3.142,
+   "size": 2.2,
+   "color": "#b388ff"
+  },
+  {
+   "text": "THE MAZE",
+   "pos": [
+    0,
+    6.2,
+    -19.95
+   ],
+   "yaw": 0,
+   "size": 2.2,
+   "color": "#b388ff"
+  }
+ ],
+ "hotspots": [
+  {
+   "pos": [
+    0,
+    2.4,
+    0
+   ],
+   "weight": 2.2,
+   "label": "platform"
+  },
+  {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "weight": 1,
+   "label": "station"
+  },
+  {
+   "pos": [
+    0,
+    0,
+    15
+   ],
+   "weight": 1,
+   "label": "north-mid"
+  },
+  {
+   "pos": [
+    0,
+    0,
+    -15
+   ],
+   "weight": 1,
+   "label": "gallery-mid"
+  },
+  {
+   "pos": [
+    -12,
+    0,
+    14.5
+   ],
+   "weight": 1.2,
+   "label": "north"
+  },
+  {
+   "pos": [
+    -8,
+    0,
+    -14
+   ],
+   "weight": 1.2,
+   "label": "gallery"
+  },
+  {
+   "pos": [
+    -20,
+    1.3,
+    -18.3
+   ],
+   "weight": 0.6,
+   "label": "ledge"
+  },
+  {
+   "pos": [
+    -13,
+    0,
+    0
+   ],
+   "weight": 1,
+   "label": "mid"
+  },
+  {
+   "pos": [
+    12,
+    0,
+    14.5
+   ],
+   "weight": 1.2,
+   "label": "north-b"
+  },
+  {
+   "pos": [
+    8,
+    0,
+    -14
+   ],
+   "weight": 1.2,
+   "label": "gallery-b"
+  },
+  {
+   "pos": [
+    20,
+    1.3,
+    -18.3
+   ],
+   "weight": 0.6,
+   "label": "ledge-b"
+  },
+  {
+   "pos": [
+    13,
+    0,
+    0
+   ],
+   "weight": 1,
+   "label": "mid-b"
+  }
+ ]
+}
