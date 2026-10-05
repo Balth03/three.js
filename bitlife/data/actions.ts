@@ -4,7 +4,10 @@ import { addLine, cure, L } from '@bl/sim';
 const doctorFx: Effect = {
   fn: ({ life, content, rand }) => {
     if (!life.conditions.length) {
-      addLine(life, L('Le médecin m\'a trouvé{|e} en pleine forme et m\'a donné une sucette.'.replace('{|e}', life.gender === 'f' ? 'e' : ''), 'The doctor said I was perfectly healthy and gave me a lollipop.'), '🩺', 'good');
+      const e = life.gender === 'f' ? 'e' : '';
+      const OK: [string, string][] = [[`Le médecin m'a trouvé${e} en pleine forme et m'a donné une sucette.`, 'The doctor said I was perfectly healthy and gave me a lollipop.'], ['Bilan : rien. Le médecin a soupiré, déçu de ne rien trouver à facturer.', 'Check-up: nothing. The doctor sighed, disappointed there was nothing to bill.'], [`« Vous êtes en meilleure santé que moi », m'a dit le médecin en toussant.`, '"You\'re healthier than me," said the doctor, coughing.'], [`Tout est normal. Le médecin m'a quand même prescrit « du repos et moins d'écrans ».`, 'All normal. The doctor still prescribed "rest and less screen time".'], [`Prise de sang parfaite. Je suis reparti${e} fier${e === 'e' ? 'e' : ''} comme un paon.`, 'Perfect blood test. I left proud as a peacock.']];
+      const [ofr, oen] = OK[Math.floor(rand() * OK.length)];
+      addLine(life, L(ofr, oen), '🩺', 'good');
       return;
     }
     for (const c of life.conditions.slice()) {
@@ -48,7 +51,10 @@ export const actions: ActionDef[] = [
   },
   {
     id: 'doctor', tab: 'activities', group: 'mind', icon: '🩺', label: { fr: 'Consulter un médecin', en: 'See a doctor' }, desc: { fr: 'Soigner ses maladies', en: 'Treat illnesses' }, limit: 2, cost: 60,
-    out: [{ text: { fr: 'Je suis allé{|e} chez le médecin.', en: 'I went to see a doctor.' }, fx: doctorFx }], scene: { place: 'hospital' },
+    out: [{ text: {
+      fr: ['Je suis allé{|e} chez le médecin.', 'Salle d\'attente : 2 h avec {w:object} et un magazine de 2009, puis 4 minutes de consultation.', 'Rendez-vous chez le docteur. Il a dit « hmm » onze fois.', 'Consultation express : le médecin a tapé sur son clavier sans jamais me regarder.', 'Visite médicale {w:time}. Le cabinet dégageait {w:smell}.', 'Chez le médecin, j\'ai dû expliquer mes symptômes devant une salle pleine. Grosse gêne.'],
+      en: ['I went to see a doctor.', 'Waiting room: 2 hours with {w:object} and a 2009 magazine, then a 4-minute appointment.', 'Doctor\'s appointment. He said "hmm" eleven times.', 'Express visit: the doctor typed the whole time without looking at me.', 'Doctor\'s visit {w:time}. The office had {w:smell}.', 'At the doctor\'s I had to describe my symptoms in front of a full waiting room. So awkward.'],
+    }, fx: doctorFx }], scene: { place: 'hospital' },
   },
   {
     id: 'diet', tab: 'activities', group: 'mind', icon: '🥗', label: { fr: 'Faire un régime', en: 'Go on a diet' }, when: { age: [14, 100] }, limit: 1,

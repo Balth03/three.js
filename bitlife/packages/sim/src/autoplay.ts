@@ -9,6 +9,7 @@ import { enrollUni, tuitionCost, tuitionOptions } from './edu.ts';
 import { listCrimes, commitCrime, trial, escape, parole } from './crime.ts';
 import { assetOffers, buyAsset, buyStock, sellStock, startBusiness, canAfford } from './money.ts';
 import type { Resolution } from './types.ts';
+import { arcadeResult, type ArcadeKind } from './minigames.ts';
 
 export interface AutoplayOpts extends NewLifeOptions { maxAge?: number; ambition?: number; crime?: number; spend?: number; vice?: number }
 
@@ -30,6 +31,11 @@ export function autoplay(content: Content, seed: number, o: AutoplayOpts = {}): 
     else if (res.open === 'minigame:trial') trial(life, content, 'minigame', pick.next());
     else if (res.open === 'minigame:escape') escape(life, content, pick.next());
     else if (res.open === 'parole') parole(life, content);
+    else if (res.open.startsWith('minigame:')) {
+      const k = res.open.slice(9);
+      const map: Record<string, ArcadeKind> = { karaoke: 'karaoke', concert: 'concert', dj: 'dj', beerpong: 'beerpong', fight: 'fight', hack: 'hack', slots: 'slots', trading: 'trading', getaway: 'race' };
+      if (map[k]) arcadeResult(life, content, map[k], pick.next(), pick.next() - 0.55);
+    }
   };
   const drain = () => {
     let guard = 0;
@@ -71,6 +77,8 @@ export function autoplay(content: Content, seed: number, o: AutoplayOpts = {}): 
     if (Object.values(life.addictions).some((v) => v > 35)) care('rehab');
     if (life.stats.health < 45 || life.conditions.length) care('doctor');
     for (let i = 0; i < 3 && acts.length; i++) { doAction(life, content, pick.pick(acts).def.id); drain(); }
+    // now and then, play an arcade minigame (random skill)
+    if (pick.chance(0.25)) { const mg = listActions(life, content).filter((a) => a.ok && a.def.open?.startsWith('minigame:') && a.def.id.startsWith('mg_')); if (mg.length) { handleOpen(doAction(life, content, pick.pick(mg).def.id)); drain(); } }
     if (life.age >= 18 && !life.edu.enrolled && life.edu.degrees.includes('high') && !life.edu.degrees.some((d) => d.startsWith('uni:')) && life.age < 24 && pick.chance(ambition)) {
       const m = pick.pick(content.majors);
       const cost = tuitionCost(life, content);

@@ -34,7 +34,7 @@ export function doAction(life: Life, content: Content, id: string): Resolution |
     return { text: { fr: '', en: '' }, icon: a.icon, tone: 'neutral', deltas: [], scene: a.scene };
   }
   if (a.open) return { text: { fr: '', en: '' }, icon: a.icon, tone: 'neutral', deltas: [], open: a.open };
-  const res = resolveOutcomes(life, content, a.out ?? [], undefined, a.icon);
+  const res = resolveOutcomes(life, content, a.out ?? [], undefined, a.icon, undefined, `act:${a.id}`);
   res.scene = a.scene;
   return res;
 }

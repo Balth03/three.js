@@ -133,7 +133,7 @@ export function doRelAction(life: Life, content: Content, npcId: number, actionI
   const a = view.def;
   n.interacted = { ...(n.interacted ?? {}), [a.id]: (n.interacted?.[a.id] ?? 0) + 1 };
   if (a.cost) life.money -= Math.round(toLocal(a.cost, country(content, life.country)));
-  const res = resolveOutcomes(life, content, a.out, n, a.icon);
+  const res = resolveOutcomes(life, content, a.out, n, a.icon, undefined, `rel:${a.id}`);
   res.scene = a.scene;
   return res;
 }

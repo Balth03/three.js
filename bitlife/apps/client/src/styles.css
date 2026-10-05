@@ -546,3 +546,31 @@ html.reduced .event-card.gory::after, html.reduced .event-card.poopy::after { an
 .res-stats div { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px dashed rgba(255,255,255,.2); padding: 3px 0; }
 .res-stats span { opacity: .7; }
 html.reduced .arena-grid { animation: none; }
+/* Debate (Ace Attorney style) */
+.debate { position: relative; width: min(900px, 94vw); height: min(600px, calc(100vh - 110px)); display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.db-meter { display: flex; align-items: center; gap: 10px; width: 100%; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; font-size: 13px; }
+.db-bar { position: relative; flex: 1; height: 18px; border-radius: 9px; background: linear-gradient(90deg, #06d6a0 0%, #06d6a0 50%, #ff4d6d 50%, #ff4d6d 100%); overflow: visible; box-shadow: 0 0 18px rgba(0,0,0,.5) inset; }
+.db-bar div { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--acc2), var(--acc)); border-radius: 9px; transition: width .5s cubic-bezier(.2, 1.4, .4, 1); box-shadow: 0 0 18px var(--acc); }
+.db-bar i { position: absolute; top: 50%; transform: translate(-50%, -50%); font-size: 26px; font-style: normal; transition: left .5s cubic-bezier(.2, 1.4, .4, 1); filter: drop-shadow(0 0 8px #ffd166); }
+.db-foe { display: flex; flex-direction: column; align-items: center; margin-top: 6px; }
+.db-face { font-size: 120px; line-height: 1; filter: drop-shadow(0 0 30px var(--acc)); animation: bob 2s ease-in-out infinite; }
+.db-foe.mood-hurt .db-face { animation: hurt .4s; }
+.db-foe.mood-smug .db-face { animation: smug .6s; }
+@keyframes hurt { 30% { transform: translateX(-24px) rotate(-14deg); } 60% { transform: translateX(14px) rotate(8deg); } }
+@keyframes smug { 50% { transform: scale(1.15) rotate(6deg); } }
+.db-name { font-weight: 800; color: var(--acc); text-transform: uppercase; letter-spacing: 2px; }
+.db-bubble { position: relative; max-width: 760px; background: #fff; color: #1a1030; border-radius: 22px; padding: 16px 22px; font-size: 21px; font-weight: 700; box-shadow: 0 10px 40px rgba(0,0,0,.5); min-height: 30px; }
+.db-bubble::before { content: ''; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); border: 14px solid transparent; border-bottom-color: #fff; border-top: 0; }
+.caret { animation: blink .7s infinite; color: var(--acc); }
+.db-answers { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 820px; }
+.db-timer { grid-column: 1 / -1; height: 8px; border-radius: 4px; background: rgba(255,255,255,.15); overflow: hidden; }
+.db-timer div { height: 100%; background: linear-gradient(90deg, #ff4d6d, #ffd166, #06d6a0); transition: width .1s linear; }
+.db-ans { text-align: left; display: flex; gap: 10px; align-items: center; padding: 12px 16px; border-radius: 14px; border: 2px solid color-mix(in srgb, var(--acc) 70%, transparent); background: rgba(10, 4, 24, .75); color: #fff; font: 700 16px 'Fredoka Variable', sans-serif; cursor: pointer; transition: transform .1s, background .1s; }
+.db-ans:hover:not(:disabled) { transform: translateY(-2px) scale(1.02); background: color-mix(in srgb, var(--acc) 30%, rgba(10,4,24,.8)); box-shadow: 0 0 20px color-mix(in srgb, var(--acc) 50%, transparent); }
+.db-ans kbd { flex: none; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 8px; background: var(--acc); color: #12051f; font: 800 15px monospace; }
+.db-slam { position: absolute; top: 34%; left: 50%; font: 900 clamp(48px, 9vw, 110px) Impact, 'Fredoka Variable', sans-serif; letter-spacing: 3px; transform: translate(-50%, -50%) rotate(-8deg); padding: 6px 30px; border: 8px solid; border-radius: 18px; animation: slam .45s cubic-bezier(.2, 1.8, .4, 1); pointer-events: none; z-index: 2; }
+.db-slam.good { color: #fff; background: #e63946; border-color: #fff; text-shadow: 4px 4px 0 #1a1030; box-shadow: 0 0 60px #e63946; }
+.db-slam.bad { color: #ff4d6d; background: #1a1030; border-color: #ff4d6d; }
+@keyframes slam { 0% { transform: translate(-50%, -50%) rotate(-8deg) scale(3); opacity: 0; } 100% { transform: translate(-50%, -50%) rotate(-8deg) scale(1); opacity: 1; } }
+.db-round { position: absolute; right: 0; top: 30px; font-weight: 800; opacity: .7; }
+@media (max-width: 700px) { .db-answers { grid-template-columns: 1fr; } .db-face { font-size: 80px; } }

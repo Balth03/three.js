@@ -212,12 +212,12 @@ export function pickOutcome(life: Life, outs0: Outcome[], rng: Rng): Outcome {
 }
 
 /** Resolves a list of outcomes outside the event flow (actions). */
-export function resolveOutcomes(life: Life, content: Content, outs: Outcome[], actor: Npc | undefined, icon: string, vars: Record<string, number | string> = emptyVars): Resolution {
+export function resolveOutcomes(life: Life, content: Content, outs: Outcome[], actor: Npc | undefined, icon: string, vars: Record<string, number | string> = emptyVars, memo?: string): Resolution {
   const rng = rngOf(life);
   const before = snapshot(life);
   life.lastFx = [];
   const out = pickOutcome(life, outs, rng);
-  let text = renderLoc(out.text, { life, content, actor, vars }, () => rng.next());
+  let text = renderLoc(out.text, { life, content, actor, vars, memo: memo ? `${memo}:${outs.indexOf(out)}` : undefined }, () => rng.next());
   const over = applyEffect(life, content, out.fx ?? {}, actor, vars, rng);
   if (over) text = text.fr ? { fr: `${text.fr} ${over.fr}`, en: `${text.en} ${over.en}` } : over;
   const tone = out.tone ?? toneOf(out.fx);

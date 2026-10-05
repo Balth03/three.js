@@ -13,7 +13,19 @@ export function contract(life: Life, content: Content, id: string, rng: Rng, sil
   life.conditions.push({ id, since: life.age, severity: rng.range(0.6, 1.2) });
   life.counters.illnesses = (life.counters.illnesses ?? 0) + 1;
   life.stats.health = clamp(life.stats.health - d.health * 0.5);
-  if (!silent) addLine(life, { fr: renderString(`On m'a diagnostiqué : ${d.name.fr.toLowerCase()}.`, { life, content }, 'fr'), en: `I was diagnosed with ${d.name.en.toLowerCase()}.` }, d.icon, 'bad');
+  if (!silent) {
+    const fr = d.name.fr.toLowerCase(), en = d.name.en.toLowerCase();
+    const DX: [string, string][] = [
+      [`On m'a diagnostiqué : ${fr}.`, `I was diagnosed with ${en}.`],
+      [`Verdict du médecin, après 40 minutes de salle d'attente : ${fr}.`, `The doctor's verdict, after 40 minutes in the waiting room: ${en}.`],
+      [`Mauvaise nouvelle : ${fr}. Le médecin l'a annoncé en mangeant un sandwich.`, `Bad news: ${en}. The doctor announced it while eating a sandwich.`],
+      [`J'ai tapé mes symptômes sur Internet : cancer. Le vrai médecin : ${fr}. Ouf ?`, `I googled my symptoms: cancer. The real doctor: ${en}. Phew?`],
+      [`Diagnostic officiel : ${fr}. J'ai reçu une ordonnance illisible et un regard plein de pitié.`, `Official diagnosis: ${en}. I got an illegible prescription and a pitying look.`],
+      [`Ça se confirme : ${fr}. Ma grand-mère dit que c'est parce que je sors sans écharpe.`, `It's confirmed: ${en}. Grandma says it's because I go out without a scarf.`],
+    ];
+    const [a, b] = DX[Math.floor(rng.next() * DX.length)];
+    addLine(life, { fr: renderString(a, { life, content }, 'fr'), en: b }, d.icon, 'bad');
+  }
   return true;
 }
 
@@ -81,7 +93,16 @@ export function yearlyHealth(life: Life, content: Content, rng: Rng, report: Yea
     const d = content.diseases.find((x) => x.id === c.id);
     if (!d || d.chronic) return true;
     if (rng.chance(d.curable * 0.5 + 0.25)) {
-      addLine(life, { fr: `Je me suis remis${life.gender === 'f' ? 'e' : ''} : ${d.name.fr.toLowerCase()}.`, en: `I recovered from ${d.name.en.toLowerCase()}.` }, '🌿', 'good');
+      const e = life.gender === 'f' ? 'e' : '', fr = d.name.fr.toLowerCase(), en = d.name.en.toLowerCase();
+      const RX: [string, string][] = [
+        [`Je me suis remis${e} : ${fr}.`, `I recovered from ${en}.`],
+        [`Guéri${e} (${fr}) ! Mon corps a gagné, sans l'aide de personne.`, `Cured (${en})! My body won, no help needed.`],
+        [`Adieu ${fr}. On ne se reverra pas, j'espère.`, `Goodbye ${en}. Hopefully forever.`],
+        [`Le mal est parti : ${fr}, c'est fini. J'ai fêté ça avec une soupe.`, `It's gone: no more ${en}. Celebrated with soup.`],
+        [`Rétabli${e} : ${fr}. Le médecin a pris le mérite, évidemment.`, `Recovered from ${en}. The doctor took the credit, obviously.`],
+      ];
+      const [a, b] = RX[Math.floor(rng.next() * RX.length)];
+      addLine(life, { fr: a, en: b }, '🌿', 'good');
       return false;
     }
     return true;

@@ -17,8 +17,12 @@ import { Trading } from './ui/games/Trading.tsx';
 import { Slots } from './ui/games/Slots.tsx';
 import { Penalty } from './ui/games/Penalty.tsx';
 import { Surgery2 } from './ui/games/Surgery2.tsx';
+import { Debate } from './ui/games/Debate.tsx';
+import { Blackjack2 } from './ui/games/Blackjack2.tsx';
+import { Escape2 } from './ui/games/Escape2.tsx';
+import { Cooking2 } from './ui/games/Cooking2.tsx';
 
-const GAMES = { CarChase, Rhythm, Hack, Lockpick, Fight, BeerPong, Trading, Slots, Penalty, Surgery2 } as const;
+const GAMES = { CarChase, Rhythm, Hack, Lockpick, Fight, BeerPong, Trading, Slots, Penalty, Surgery2, Debate, Blackjack2, Escape2, Cooking2 } as const;
 const fakeLife = { first: 'Test', last: 'Dummy', gender: 'f', age: 28, city: 'Paris', country: 'fr', money: 25000, stats: { happy: 60, health: 80, smarts: 70, looks: 60 }, attrs: { athletic: 60, karma: 50, fame: 10, discipline: 50, stress: 30 }, seed: 42, rng: [1, 2, 3, 4], flags: {}, npcs: [], log: [] } as unknown as Life;
 
 function Harness() {

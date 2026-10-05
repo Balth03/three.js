@@ -15,6 +15,10 @@ import { Trading } from './games/Trading.tsx';
 import { Slots } from './games/Slots.tsx';
 import { Penalty } from './games/Penalty.tsx';
 import { Surgery2 } from './games/Surgery2.tsx';
+import { Debate } from './games/Debate.tsx';
+import { Blackjack2 } from './games/Blackjack2.tsx';
+import { Escape2 } from './games/Escape2.tsx';
+import { Cooking2 } from './games/Cooking2.tsx';
 
 const T = (fr: string, en: string) => (lang.value === 'fr' ? fr : en);
 type Done = (score: number, extra?: number) => void;
@@ -378,6 +382,10 @@ export function Minigame({ game, title, onDone, l }: { game: MinigameKind; title
     case 'slots': return <Slots onDone={onDone} l={l} />;
     case 'penalty': case 'match': return <Penalty onDone={onDone} l={l} />;
     case 'surgery': return <Surgery2 onDone={onDone} l={l} />;
+    case 'trial': case 'case': case 'interrogation': case 'date': return <Debate onDone={onDone} l={l} variant={game} />;
+    case 'blackjack': return <Blackjack2 onDone={onDone} l={l} />;
+    case 'escape': return <Escape2 onDone={onDone} l={l} />;
+    case 'cooking': return <Cooking2 onDone={onDone} l={l} />;
   }
   let body;
   switch (game) {
