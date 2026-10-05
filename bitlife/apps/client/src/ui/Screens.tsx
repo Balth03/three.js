@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'preact/hooks';
 import { summarize, careerTitle, renderString, type Gender, type Orientation, type GameMode, type Life } from '@bl/sim';
 import { content } from '@bl/data';
-import { screen, life, modal, lang, showDeath, rev, retro, duo } from '../state.ts';
-import { startLife, previewLife, loadExisting, continueAsHeir } from '../game.ts';
+import { screen, life, modal, lang, showDeath, rev, retro, duo, tabloid } from '../state.ts';
+import { startLife, previewLife, loadExisting, continueAsHeir, reincarnateNow, becomeGhost } from '../game.ts';
 import { loadLife, slotInfo, AUTOSAVE } from '../save.ts';
 import { t } from '../i18n.ts';
 import { Btn, money, Portrait } from './common.tsx';
@@ -152,6 +152,9 @@ export function Death() {
         <div class="row-btns">
           {kids.map((k) => <Btn key={k.id} cls="primary" onClick={() => { sfx.good(); continueAsHeir(k.id); }}>👶 {t('play_child')} : {k.first} ({l.year - k.birthYear} {t('years')})</Btn>)}
           <Btn cls="primary" onClick={() => { sfx.open(); showDeath.value = false; screen.value = 'create'; }}>✨ {t('new_life')}</Btn>
+          {!l.flags.ascended && <Btn onClick={() => { becomeGhost(); }}>👻 {lang.value === 'fr' ? (l.flags.ghost !== undefined ? 'Continuer à hanter' : 'Hanter les vivants') : (l.flags.ghost !== undefined ? 'Keep haunting' : 'Haunt the living')}</Btn>}
+          <Btn cls="primary" onClick={() => { sfx.good(); reincarnateNow(); }}>♻️ {lang.value === 'fr' ? 'Réincarnation' : 'Reincarnate'} <small>(karma {Math.round(l.attrs.karma)})</small></Btn>
+          <Btn onClick={() => { sfx.open(); tabloid.value = true; }}>📰 {lang.value === 'fr' ? 'Nécrologie' : 'Obituary'}</Btn>
           <Btn onClick={() => { showDeath.value = false; retro.value = true; }}>🎞️ {lang.value === 'fr' ? 'Rétrospective' : 'Retrospective'}</Btn>
           <Btn onClick={() => { showDeath.value = false; }}>📜 {t('view_life')}</Btn>
           <Btn cls="ghost" onClick={() => { showDeath.value = false; screen.value = 'title'; }}>🏠 {t('main_menu')}</Btn>

@@ -1,5 +1,6 @@
 // The 3D stage: renderer, post-processing, sky, light, dioramas, characters, camera direction.
 import * as THREE from 'three';
+import { sfx } from '../audio.ts';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
@@ -275,6 +276,7 @@ export class Stage {
   cinematic(kind: 'birth' | 'wedding' | 'graduation' | 'prison' | 'death' | 'baby' | 'promotion' | 'release' | 'jackpot') {
     const fxMap: Record<string, string[]> = { birth: ['confetti', 'hearts'], wedding: ['hearts', 'confetti'], graduation: ['confetti'], prison: ['police'], death: ['ghost'], baby: ['hearts'], promotion: ['confetti', 'money'], release: ['confetti'], jackpot: ['money', 'confetti'] };
     this.fx(fxMap[kind] ?? []);
+    if (kind === 'wedding') sfx.bells();
     if (kind === 'death' || kind === 'prison') { this.player?.setMood(kind === 'death' ? 'sleepy' : 'cry'); }
     else this.player?.play('celebrate');
     if (this.reducedMotion) return;
@@ -299,6 +301,7 @@ export class Stage {
   private splats: { m: THREE.Mesh; life: number }[] = [];
 
   fx(list: string[]) {
+    list.slice(0, 2).forEach((v, i) => setTimeout(() => sfx.forVisual(v), i * 250));
     if (!this.player) return;
     const origin = this.player.root.getWorldPosition(new THREE.Vector3());
     origin.y += this.player.height * 0.6;

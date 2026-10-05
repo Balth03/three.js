@@ -117,3 +117,38 @@ export function heirLife(old: Life, content: Content, childId: number): Life {
   life.history.push(statPoint(life));
   return life;
 }
+
+// ───────────────────────────── reincarnation ─────────────────────────────
+
+export interface Reincarnation { life: Life; verdict: 'saint' | 'good' | 'meh' | 'bad' | 'monster' }
+
+/** Karma decides the next life: country wealth, family money, starting stats and a memory of the previous life. */
+export function reincarnate(old: Life, content: Content, createLife: (c: Content, o: import('./types.ts').NewLifeOptions) => Life): Reincarnation {
+  const k = old.attrs.karma;
+  const seed = (old.seed * 2654435761 + old.year) >>> 0;
+  const rng = new Rng(seedState(seed));
+  const verdict: Reincarnation['verdict'] = k >= 85 ? 'saint' : k >= 60 ? 'good' : k >= 35 ? 'meh' : k >= 12 ? 'bad' : 'monster';
+  const byWealth = content.countries.slice().sort((a, b) => b.wage - a.wage);
+  const third = Math.max(1, Math.floor(byWealth.length / 3));
+  const pool = verdict === 'saint' || verdict === 'good' ? byWealth.slice(0, third + 1) : verdict === 'meh' ? byWealth : byWealth.slice(-third - 1);
+  const ctry = rng.pick(pool)!;
+  const wealth: Life['wealth'] = verdict === 'saint' ? 'rich' : verdict === 'good' ? (rng.chance(0.5) ? 'rich' : 'middle') : verdict === 'meh' ? 'middle' : 'poor';
+  const life = createLife(content, { seed, country: ctry.id, birthYear: old.year, mode: old.mode, rating: old.rating, wealth });
+  const bump = { saint: 18, good: 8, meh: 0, bad: -10, monster: -20 }[verdict];
+  for (const s of ['health', 'looks', 'smarts', 'happy'] as const) life.stats[s] = clamp(life.stats[s] + bump + rng.range(-5, 5));
+  life.attrs.karma = clamp(50 + (k - 50) * 0.3);
+  life.flags.reincarnated = ((old.flags.reincarnated as number) ?? 0) + 1;
+  life.flags.pastLife = `${old.first} ${old.last}`;
+  life.counters.reincarnations = (old.counters.reincarnations ?? 0) + 1;
+  const name = `${old.first} ${old.last}`;
+  const lines: Record<Reincarnation['verdict'], [string, string]> = {
+    saint: [`Je me souviens vaguement d'avoir été ${name}, une âme pure. L'univers m'a récompensé{|e} : une famille en or.`, `I vaguely remember being ${name}, a pure soul. The universe rewarded me with a golden family.`],
+    good: [`Une impression de déjà-vu : j'ai été ${name}, quelqu'un de plutôt bien. Le karma est bon joueur.`, `Déjà vu: I used to be ${name}, a fairly decent person. Karma is a good sport.`],
+    meh: [`Dans une vie antérieure, j'étais ${name}. Ni saint, ni salaud. Retour à la case départ.`, `In a past life I was ${name}. Neither saint nor bastard. Back to square one.`],
+    bad: [`J'ai été ${name}, et le karma n'a pas oublié. Je suis né{|e} dans la galère, avec une vague envie de m'excuser.`, `I was ${name}, and karma didn't forget. Born into hardship, with a vague urge to apologise.`],
+    monster: [`Ancien${old.gender === 'f' ? 'ne' : ''} ${name}, ordure cosmique notoire. Le karma m'a renvoyé{|e} sur Terre au fond du trou, avec les dettes morales en prime.`, `Formerly ${name}, notorious cosmic scumbag. Karma sent me back to the bottom of the pit, moral debts included.`],
+  };
+  const [fr, en] = lines[verdict];
+  addLine(life, { fr: fr.replace(/\{\|e\}/g, life.gender === 'f' ? 'e' : ''), en }, '♻️', verdict === 'bad' || verdict === 'monster' ? 'bad' : 'good');
+  return { life, verdict };
+}

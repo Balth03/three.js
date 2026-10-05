@@ -62,3 +62,25 @@ describe('simulation', () => {
     expect(copy.age).toBe(l.age);
   });
 });
+
+describe('afterlife', () => {
+  it('ghost mode haunts deterministically and ends', async () => {
+    const { content } = await import('../../../data/index.ts');
+    const { autoplay, startGhost, haunt, ghostYear, hauntable, isGhost, reincarnate, createLife } = await import('../src/index.ts');
+    const l = autoplay(content, 11, { rating: 2 });
+    expect(l.alive).toBe(false);
+    startGhost(l);
+    expect(isGhost(l)).toBe(true);
+    let done = false, guard = 0;
+    while (!done && guard++ < 20) {
+      const p = hauntable(l)[0];
+      if (p) haunt(l, content, p.id, 'scare');
+      done = ghostYear(l, content);
+    }
+    expect(done).toBe(true);
+    expect(l.flags.ascended).toBe(1);
+    const r = reincarnate(l, content, createLife);
+    expect(r.life.alive).toBe(true);
+    expect(r.life.counters.reincarnations).toBe(1);
+  });
+});

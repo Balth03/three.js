@@ -24,4 +24,5 @@ export type { CrimeView, Defense } from './crime.ts';
 export { assetOffers, canAfford, buyAsset, sellAsset, renovate, toggleRent, moveInto, maxLoan, takeLoan, repayLoans, debt, portfolioValue, buyStock, sellStock, startBusiness, investBusiness, sellBusiness, netWorth, homeAsset, initMarket } from './money.ts';
 export type { AssetOffer, Financing } from './money.ts';
 export { checkAchievements, ADDICTIONS } from './world.ts';
-export { heirLife, heirs, ancestorOf } from './lineage.ts';
+export { heirLife, heirs, ancestorOf, reincarnate, type Reincarnation } from './lineage.ts';
+export { startGhost, haunt, ghostYear, ascend, isGhost, ghostYears, hauntable, ghostActionsLeft, GHOST_ACTIONS, GHOST_YEARS, type GhostKind, type GhostAction } from './ghost.ts';

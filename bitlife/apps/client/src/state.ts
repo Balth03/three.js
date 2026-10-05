@@ -8,7 +8,7 @@ export type Screen = 'title' | 'create' | 'game';
 export type MinigameKind = 'heist' | 'getaway' | 'escape' | 'trial' | 'blackjack' | 'surgery' | 'cooking' | 'match' | 'interrogation' | 'case' | 'date';
 export type Modal = null | { kind: 'jobs' } | { kind: 'university' } | { kind: 'grad' } | { kind: 'dating' } | { kind: 'npc'; id: number } | { kind: 'saves' } | { kind: 'settings' } | { kind: 'menu' } | { kind: 'profile' }
   | { kind: 'crime' } | { kind: 'realestate' } | { kind: 'cars' } | { kind: 'shop' } | { kind: 'stocks' } | { kind: 'bank' } | { kind: 'business' }
-  | { kind: 'achievements' } | { kind: 'graveyard' } | { kind: 'tree' } | { kind: 'god' } | { kind: 'duo' }
+  | { kind: 'achievements' } | { kind: 'graveyard' } | { kind: 'tree' } | { kind: 'god' } | { kind: 'duo' } | { kind: 'ghost' }
   | { kind: 'minigame'; game: MinigameKind; title: string; onDone: (score: number, extra?: number) => void };
 
 const s0 = loadSettings();
@@ -53,6 +53,10 @@ export interface DuoState {
   error?: string;
 }
 export const duo = signal<DuoState>({ status: 'off', connected: false, code: '', you: '', host: false, mode: 'parallel', players: [], peer: null, peerOnline: false, chat: [], unread: 0 });
+/** Mugshot overlay shown when the player is locked up. */
+export const mugshot = signal<{ crime: string; years: number; n: number } | null>(null);
+/** Tabloid front page (obituary or year headlines). */
+export const tabloid = signal(false);
 export const emoteFx = signal<{ e: string; mine: boolean; id: number } | null>(null);
 
 let toastId = 0;

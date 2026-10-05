@@ -10,7 +10,7 @@ const doctorFx: Effect = {
     for (const c of life.conditions.slice()) {
       const d = content.diseases.find((x) => x.id === c.id);
       if (d && rand() < d.curable) cure(life, content, c.id);
-      else if (d) addLine(life, { fr: `Le traitement contre : ${d.name.fr.toLowerCase()} n'a pas marché.`, en: `The treatment for ${d.name.en.toLowerCase()} didn't work.` }, '💊', 'bad');
+      else if (d) addLine(life, { fr: `Le traitement n'a rien donné (${d.name.fr.toLowerCase()}). Le médecin a haussé les épaules et encaissé le chèque.`, en: `The treatment for ${d.name.en.toLowerCase()} didn't work.` }, '💊', 'bad');
     }
     life.stats.health = Math.min(100, life.stats.health + 4);
   },

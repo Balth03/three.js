@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'preact/hooks';
+import { useState, useMemo, useEffect } from 'preact/hooks';
 import { listJobs, careerTitle, tuitionCost, tuitionOptions, relActionsFor, datingCandidates, npcAge, gradeLetter, type Life, type TuitionPlan } from '@bl/sim';
 import { content } from '@bl/data';
-import { life, rev, modal, lang, settings, screen, bump, showToast } from '../state.ts';
+import { life, rev, modal, lang, settings, screen, bump, showToast, tabloid } from '../state.ts';
 import { apply, enroll, date, runRelAction, loadExisting, getStage } from '../game.ts';
 import { t, tl } from '../i18n.ts';
 import { Sheet, Portrait, Bar, money, npcLabel, STAT_META, Btn } from './common.tsx';
@@ -12,6 +12,8 @@ import { CrimeSheet } from './Crime.tsx';
 import { Achievements, Graveyard, FamilyTree, GodPanel } from './Meta.tsx';
 import { Minigame } from './Minigames.tsx';
 import { DuoLobby } from './Duo.tsx';
+import { GhostPanel } from './Ghost.tsx';
+import { bindings, applyBindings, setCapturing } from './App.tsx';
 
 const close = () => { sfx.close(); modal.value = null; };
 
@@ -85,24 +87,67 @@ function University({ l, grad }: { l: Life; grad: boolean }) {
   );
 }
 
+const BIOS: [string, string, number][] = [
+  ['Aime les longues balades sur la plage et les vrais crimes.', 'Loves long walks on the beach and true crime.', 0],
+  ['Cherche quelqu\'un pour partager mes pizzas (non).', 'Looking for someone to share my pizza with (no).', 0],
+  ['Mon chat doit t\'approuver. Il n\'a approuvé personne depuis 2019.', 'My cat has to approve of you. He hasn\'t approved anyone since 2019.', 0],
+  ['Entrepreneur dans la crypto. Enfin, j\'en ai acheté une fois.', 'Crypto entrepreneur. Well, I bought some once.', 0],
+  ['Je cours des marathons. Bon, un 5 km. Bon, jusqu\'au frigo.', 'I run marathons. OK, a 5K. OK, to the fridge.', 0],
+  ['Ma mère vit avec moi. Ou l\'inverse, c\'est compliqué.', 'My mom lives with me. Or the other way round, it\'s complicated.', 0],
+  ['Pas de prise de tête, pas de photos de poissons.', 'No drama, no fish pics.', 0],
+  ['1m80 (assis sur un tabouret).', '6ft (standing on a stool).', 0],
+  ['Fraîchement divorcé·e, encore plus fraîchement vacciné·e contre l\'amour.', 'Freshly divorced, even more freshly immune to love.', 1],
+  ['Je cherche du sérieux. Ou un plan ce soir. Surprends-moi.', 'Looking for something serious. Or tonight. Surprise me.', 1],
+  ['Bourré·e à 90 % du temps, sincère à 100 %.', 'Drunk 90% of the time, sincere 100%.', 1],
+  ['Mon ex dit que je suis toxique. Mon ex dit beaucoup de choses.', 'My ex says I\'m toxic. My ex says a lot of things.', 1],
+  ['Casier judiciaire : vierge (on n\'a jamais rien prouvé).', 'Criminal record: clean (they never proved anything).', 2],
+  ['J\'ai un congélateur coffre. Ne pose pas de questions.', 'I own a chest freezer. Don\'t ask questions.', 2],
+  ['Pieds : oui. Photos : contre paiement.', 'Feet: yes. Pics: paid.', 2],
+  ['Je collectionne les dents. Les miennes, hein. Pour l\'instant.', 'I collect teeth. Mine. For now.', 2],
+];
+
 function Dating({ l }: { l: Life }) {
   void rev.value;
   const people = useMemo(() => datingCandidates(l, content), [l.age]);
+  const [gone, setGone] = useState<number[]>([]);
+  const [drag, setDrag] = useState<{ x0: number; dx: number } | null>(null);
   const lg = lang.value;
+  const stack = people.filter((n) => n.flags.candidate !== undefined && !gone.includes(n.id));
+  const n = stack[0];
+  const bio = (id: number) => { const pool = BIOS.filter((b) => b[2] <= l.rating); const b = pool[(id * 7 + l.age) % pool.length]; return lg === 'fr' ? b[0] : b[1]; };
+  const swipe = (right: boolean) => {
+    if (!n) return;
+    if (right) { sfx.love(); date(n.id); } else { sfx.close(); setGone([...gone, n.id]); }
+    setDrag(null);
+  };
   return (
-    <Sheet title={t('dating_title')} icon="💘" onClose={close} cls="wide">
-      <div class="date-grid">
-        {people.filter((n) => n.flags.candidate !== undefined).map((n) => (
-          <div class="date-card" key={n.id}>
-            <Portrait l={l} npc={n} size={110} />
-            <div class="dc-name">{n.first}</div>
-            <div class="dc-sub">{npcAge(n, l.year)} {t('years')} · {n.job ? careerTitle(content, n.job, 1, n.gender, lg) : lg === 'fr' ? 'Étudiant' + (n.gender === 'f' ? 'e' : '') : 'Student'}</div>
+    <Sheet title={t('dating_title')} icon="💘" onClose={close} cls="swipe-sheet">
+      {n ? (
+        <div class="swipe-wrap">
+          {stack.slice(1, 3).reverse().map((m, i) => <div key={m.id} class="swipe-card behind" style={{ transform: `scale(${0.92 + i * 0.04}) translateY(${(1 - i) * 14}px)` }} />)}
+          <div class="swipe-card" key={n.id}
+            style={{ transform: drag ? `translateX(${drag.dx}px) rotate(${drag.dx / 18}deg)` : undefined, transition: drag ? 'none' : undefined }}
+            onPointerDown={(e) => { (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId); setDrag({ x0: e.clientX, dx: 0 }); }}
+            onPointerMove={(e) => { if (drag) setDrag({ ...drag, dx: e.clientX - drag.x0 }); }}
+            onPointerUp={() => { if (drag && Math.abs(drag.dx) > 90) swipe(drag.dx > 0); else setDrag(null); }}>
+            {drag && drag.dx > 40 && <div class="stamp like">{lg === 'fr' ? 'OUI' : 'LIKE'}</div>}
+            {drag && drag.dx < -40 && <div class="stamp nope">{lg === 'fr' ? 'BEURK' : 'NOPE'}</div>}
+            <Portrait l={l} npc={n} size={200} />
+            <div class="sw-name">{n.first}, {npcAge(n, l.year)}</div>
+            <div class="sw-job">💼 {n.job ? careerTitle(content, n.job, 1, n.gender, lg) : lg === 'fr' ? 'Sans emploi (« en reconversion »)' : 'Unemployed ("between jobs")'}</div>
+            <p class="sw-bio">« {bio(n.id)} »</p>
+            <div class="chips">{n.traits.map((tid) => content.traits.find((x) => x.id === tid)).filter(Boolean).map((tr) => <span class="chip" key={tr!.id}>{tr!.icon} {tr!.name[lg]}</span>)}</div>
             <div class="dc-stat">✨ <Bar value={n.looks} color={STAT_META.looks.color} small /></div>
             <div class="dc-stat">🧠 <Bar value={n.smarts} color={STAT_META.smarts.color} small /></div>
-            <Btn cls="primary" onClick={() => date(n.id)}>💘 {t('ask_out')}</Btn>
           </div>
-        ))}
-      </div>
+          <div class="swipe-btns">
+            <button class="sw-btn nope" onClick={() => swipe(false)} title="←">✖</button>
+            <button class="sw-btn like" onClick={() => swipe(true)} title="→">💚</button>
+          </div>
+        </div>
+      ) : (
+        <p class="center muted">{lg === 'fr' ? 'Plus personne dans ta zone. Même les bots t\'ont ghosté. Reviens l\'an prochain.' : 'Nobody left in your area. Even the bots ghosted you. Come back next year.'}</p>
+      )}
     </Sheet>
   );
 }
@@ -229,6 +274,7 @@ export function SettingsSheet() {
       {([['reducedMotion', 'reduced_motion'], ['previews', 'previews'], ['dyslexic', 'dyslexic'], ['contrast', 'high_contrast']] as const).map(([k, key]) => (
         <label class="setting" key={k}><span>{t(key)}</span><input type="checkbox" checked={s[k]} onChange={(e) => set({ [k]: (e.target as HTMLInputElement).checked } as Partial<Settings>)} /></label>
       ))}
+      <KeyBindings keys={s.keys} onChange={(keys) => set({ keys })} />
       <p class="muted small">{t('controls')}</p>
     </Sheet>
   );
@@ -251,6 +297,7 @@ function Menu() {
         <Btn cls="big" onClick={() => { modal.value = { kind: 'saves' }; }}>💾 {t('saves')}</Btn>
         <Btn cls="big" onClick={() => { modal.value = { kind: 'settings' }; }}>⚙️ {t('settings')}</Btn>
         <Btn cls="big" onClick={() => { modal.value = { kind: 'achievements' }; }}>🏆 {lang.value === 'fr' ? 'Succès' : 'Achievements'}</Btn>
+        <Btn cls="big" onClick={() => { modal.value = null; tabloid.value = true; sfx.open(); }}>📰 {lang.value === 'fr' ? 'Le Torchon (la une)' : 'The Daily Rag'}</Btn>
         <Btn cls="big" onClick={() => { modal.value = { kind: 'tree' }; }}>🌳 {lang.value === 'fr' ? 'Arbre généalogique' : 'Family tree'}</Btn>
         {life.value?.mode === 'god' && <Btn cls="big" onClick={() => { modal.value = { kind: 'god' }; }}>⚡ {lang.value === 'fr' ? 'Mode Dieu' : 'God mode'}</Btn>}
         <Btn cls="big ghost" onClick={() => { modal.value = null; screen.value = 'title'; }}>🏠 {t('main_menu')}</Btn>
@@ -271,6 +318,7 @@ export function Modals() {
     case 'grad': return l ? <University l={l} grad /> : null;
     case 'dating': return l ? <Dating l={l} /> : null;
     case 'duo': return <DuoLobby />;
+    case 'ghost': return l ? <GhostPanel l={l} /> : null;
     case 'npc': return l ? <NpcSheet l={l} id={m.id} /> : null;
     case 'profile': return l ? <Profile l={l} /> : null;
     case 'saves': return <Saves />;
@@ -293,3 +341,37 @@ export function Modals() {
 }
 
 export { tl };
+
+const KEY_LABELS: Record<string, [string, string]> = {
+  ageUp: ['Vieillir', 'Age up'], confirm: ['Valider', 'Confirm'], choice1: ['Choix 1', 'Choice 1'], choice2: ['Choix 2', 'Choice 2'], choice3: ['Choix 3', 'Choice 3'], choice4: ['Choix 4', 'Choice 4'],
+  nextTab: ['Onglet suivant', 'Next tab'], menu: ['Menu / retour', 'Menu / back'], fullscreen: ['Plein écran', 'Fullscreen'], mute: ['Muet', 'Mute'], photo: ['Mode photo', 'Photo mode'],
+};
+const keyName = (c: string) => c.replace(/^Key/, '').replace(/^Digit/, '').replace(/^Numpad/, 'Num ').replace('Space', '␣').replace('Escape', 'Échap').replace('Enter', '↵');
+
+function KeyBindings({ keys, onChange }: { keys?: Record<string, string[]>; onChange: (k: Record<string, string[]>) => void }) {
+  const [wait, setWait] = useState<string | null>(null);
+  useEffect(() => {
+    if (!wait) return;
+    setCapturing(true);
+    const h = (e: KeyboardEvent) => {
+      e.preventDefault(); e.stopPropagation();
+      if (e.code !== 'Escape') { const next = { ...(keys ?? {}), [wait]: [e.code] }; applyBindings(next); onChange(next); }
+      setWait(null);
+    };
+    window.addEventListener('keydown', h, { capture: true, once: true });
+    return () => { window.removeEventListener('keydown', h, { capture: true }); setCapturing(false); };
+  }, [wait]);
+  const lg = lang.value === 'fr' ? 0 : 1;
+  return (
+    <details class="keys">
+      <summary>⌨️ {lg ? 'Keyboard shortcuts' : 'Raccourcis clavier'}</summary>
+      {Object.keys(KEY_LABELS).map((a) => (
+        <div class="setting" key={a}>
+          <span>{KEY_LABELS[a][lg]}</span>
+          <button class={`btn small ${wait === a ? 'primary' : ''}`} onClick={() => setWait(a)}>{wait === a ? (lg ? 'Press a key…' : 'Appuie sur une touche…') : (bindings[a] ?? []).map(keyName).join(' / ')}</button>
+        </div>
+      ))}
+      <button class="btn small ghost" onClick={() => { applyBindings(undefined); onChange({}); }}>↺ {lg ? 'Reset' : 'Réinitialiser'}</button>
+    </details>
+  );
+}

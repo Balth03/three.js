@@ -134,7 +134,7 @@ bitlife/
 - **Entrées abstraites** : actions nommées (`ageUp`, `choice1..4`, `nextTab`, `menu`, `fullscreen`, `mute`, `photo`) → bindings clavier remappables ; souris native. Le tactile se branchera sur les mêmes actions.
 
 ### 7.3 Réseau (étape 6)
-Petit serveur Node `ws` lancé par `npm run duo` : salle à code de 4 lettres, 2 joueurs, serveur relais + autoritaire léger (il fait tourner le moteur pour la « vie commune »). Persistance SQLite (fichier). Pas de comptes. Alternative sans serveur : WebRTC avec échange manuel du code d'offre.
+Petit serveur Node `ws` (`apps/server`, lancé par `npm run duo`) qui sert aussi le client construit : salon à code de 4 lettres, 2 joueurs, reconnexion par pseudo. Le serveur est un **relais ordonné** : il numérote les opérations (`op`) et les renvoie aux deux clients dans le même ordre ; il arbitre les **votes** (vie commune). Persistance en **fichier JSON** (`apps/server/data/rooms.json`, aucune dépendance native). Pas de comptes.
 
 ## 8. Format des données
 
@@ -175,14 +175,19 @@ Le contenu est écrit en **TypeScript typé** dans `data/` (validation à la com
 ### 8.3 Autres données
 `countries.ts` (monnaie, taux, niveau de prix/salaires, impôts, noms d'écoles, espérance de vie, villes), `names.ts` (prénoms M/F + noms par pays), `careers.ts` (titres par niveau, prérequis, salaires de base en USD), `majors.ts`, `actions.ts` (activités par onglet), `relactions.ts` (interactions de relation), `traits.ts`, `balance.ts` (toutes les constantes d'équilibrage).
 
-## 9. Mode à deux (étape 6)
-Salon privé (code), deux clients. Modes : **Vies parallèles** (même monde, rencontres possibles, mariage entre joueurs qui lie les foyers, enfants jouables par l'un ou l'autre), **Vie commune** (un foyer, votes sur les gros choix, désaccord → événement de couple, budget commun), **Compétition** (même seed, score de vie, duels), **Coop** (défis à deux). Messages, emotes, cadeaux, album souvenirs 3D, sauvegarde commune exportable.
+## 9. Mode à deux (étape 6 — livré)
+Salon privé (code de 4 lettres), deux navigateurs. Quatre modes :
+- **Vies parallèles** — chacun sa vie ; le partenaire apparaît comme un PNJ spécial (`playerId: 'peer'`) synchronisé avec sa vraie vie (âge, look, mort). Interactions à demande/acceptation : se rencontrer, sortir ensemble, se marier (cinématique de mariage des deux côtés), **faire un bébé** (l'enfant hérite des deux apparences, même prénom dans les deux vies), offrir de l'argent (converti entre devises), rompre, gifler, **empoisonner** (trash).
+- **Vie commune** — une seule vie, deux cerveaux. Toutes les opérations (Âge+, activités, achats, crimes, mini-jeux…) passent par `dispatch(op)` → serveur → `applyOp` chez les deux joueurs, dans le même ordre. Le moteur étant déterministe, les deux vies restent identiques ; l'hôte envoie un instantané après chaque action et l'invité se resynchronise si l'empreinte (`lifeHash`) diffère. Les choix d'événement sont **votés** : en cas de désaccord, pile ou face côté serveur + ligne « dispute de couple ». Les actions « Âge+ » et « OK » portent une signature pour ignorer les doubles clics simultanés.
+- **Versus** — même graine, même pays, même année ; tableau des scores (score de vie, fortune, célébrité, karma…) et **duels** avec mise (mini-jeu, le meilleur score rafle la mise).
+- **Coop** — vies parallèles + objectifs communs (1 M$ cumulés, se marier ensemble, 3 enfants ensemble, 80 ans tous les deux, « Bonnie & Clyde »…).
+Chat, émotes plein écran, carte du partenaire en jeu, succès dédiés.
 
-## 10. Contenu sensible
-Ton léger/satirique, rien de graphique, rien d'explicite. **Mode « Tout public » par défaut** (les événements marqués `mature` sont masqués ou adoucis) ; mode « Adulte » non graphique. Pas de stéréotypes lourds ; orientations et genres respectés (l'orientation du joueur est choisie ou découverte). Les « lignes d'aide » sont fictives.
+## 10. Niveau de contenu (`rating`)
+Demande explicite des joueurs (jeu privé, adultes) : humour trash, politiquement incorrect, gore cartoon. Trois niveaux réglables dans les options : **0 Tout public**, **1 Adulte** (alcool, drogue, sexe suggéré, gros mots), **2 Trash** (par défaut : gore façon Happy Tree Friends, humour noir et cru, morts absurdes). Le `rating` existe sur l'événement, le choix, l'issue, les activités et interactions ; le moteur filtre à la source. Limites absolues quel que soit le niveau : rien de sexuel impliquant un mineur (ni quand le joueur a moins de 18 ans), pas d'insultes haineuses visant des groupes réels, pas de mode d'emploi réel de crime.
 
 ## 11. Options & accessibilité
-Qualité Low/Med/High (post-process, ombres, pixel ratio), réduction des animations, taille du texte, contraste élevé, police dyslexie, langue FR/EN, volumes musique/SFX, vitesse et auto-avance optionnelle des cartes, remap clavier, aperçu des effets des choix. Aucun chrono par défaut.
+Qualité Low/Med/High (post-process, ombres, pixel ratio), réduction des animations, taille du texte, contraste élevé, police dyslexie, langue FR/EN, volumes musique/SFX, remap clavier (Options → Raccourcis clavier), aperçu des effets des choix. Aucun chrono par défaut (sauf mini-jeux).
 
 ## 12. Plan par étapes
 1. **Vertical slice 0→30 ans** (et au-delà jusqu'à la mort) : création de personnage, avatar 3D qui vieillit, dioramas maison / école / bureau (+ hôpital, cimetière, université), boucle Âge+ avec **80+ événements**, école/carrière/relations de base, stats, argent, mort, sauvegardes. Beau et addictif.
@@ -214,3 +219,9 @@ Qualité Low/Med/High (post-process, ombres, pixel ratio), réduction des animat
 - **D8 — Limites d'actions annuelles** (agenda) plutôt qu'un système d'énergie : plus proche de BitLife, empêche le spam (gym ×50).
 - **D9 — Les vies continuent après 30 ans** dès l'étape 1 (vieillesse, retraite, mort) ; le contenu spécifique s'étoffe aux étapes suivantes.
 - **D10 — Portraits PNJ en 3D** rendus hors-écran par le même renderer (cache par PNJ et tranche d'âge) : les listes de relations ne sont jamais du texte nu.
+- **D11 — Niveaux de contenu** plutôt qu'un simple drapeau `mature` : filtrage par événement / choix / issue, trash par défaut (demande des joueurs).
+- **D12 — Pas d'inflation** : les prix et salaires restent en dollars constants convertis par pays ; les époques changent le contexte (événements d'ère), pas les montants.
+- **D13 — Vie commune par rejeu d'opérations** plutôt qu'un moteur côté serveur : le serveur reste un relais minuscule ; le déterminisme du moteur fait le reste, avec instantanés + empreinte pour se resynchroniser.
+- **D14 — Persistance JSON** côté serveur au lieu de SQLite : zéro dépendance native, suffisant pour deux joueurs.
+- **D15 — « Armure scénaristique »** : avec 1500+ événements, les morts rares s'additionnent ; le poids des issues mortelles est réduit (×0,15 avant 40 ans, ×0,3 après ; ×1 en mode Chaos) et le corps guérit des blessures avec le temps.
+- **D16 — Composants Preact** : chaque composant qui lit la vie (objet mutable) s'abonne à `rev`, car @preact/signals saute les composants dont les props sont identiques.

@@ -1,3 +1,4 @@
+import * as stateMod from './state.ts';
 import * as duoMod from './duo.ts';
 import { duo } from './state.ts';
 import { render } from 'preact';
@@ -33,4 +34,4 @@ syncStage();
 if (!params.has('shot')) stage.start();
 
 // Debug / test handle
-(window as unknown as Record<string, unknown>).game = { stage: getStage(), life, screen, rev, sim, content, ctl, showDeath, modal, paused: params.has('shot'), duo: duoMod, duoState: duo };
+(window as unknown as Record<string, unknown>).game = { stage: getStage(), life, screen, rev, sim, content, ctl, showDeath, modal, paused: params.has('shot'), duo: duoMod, duoState: duo, st: stateMod };

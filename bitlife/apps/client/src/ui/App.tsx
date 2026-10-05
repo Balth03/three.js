@@ -8,15 +8,25 @@ import { Title, Create, Death } from './Screens.tsx';
 import { ChallengeChip, AchievementToast } from './Meta.tsx';
 import { Retro } from './Retro.tsx';
 import { DuoDock, DuoAsk, EmoteBurst } from './Duo.tsx';
-import { retro } from '../state.ts';
+import { Tabloid } from './Tabloid.tsx';
+import { Mugshot } from './Mugshot.tsx';
+import { retro, tabloid } from '../state.ts';
 import { t } from '../i18n.ts';
 import { sfx, toggleMute, unlockAudio } from '../audio.ts';
 
-// Keyboard: abstract actions → remappable bindings
+// Keyboard: abstract actions → remappable bindings (Settings → Touches)
+let capturing = false;
+export function setCapturing(v: boolean) { capturing = v; }
 export const bindings: Record<string, string[]> = {
   ageUp: ['Space'], choice1: ['Digit1', 'Numpad1'], choice2: ['Digit2', 'Numpad2'], choice3: ['Digit3', 'Numpad3'], choice4: ['Digit4', 'Numpad4'],
   choice5: ['Digit5', 'Numpad5'], choice6: ['Digit6', 'Numpad6'], choice7: ['Digit7', 'Numpad7'], confirm: ['Enter', 'NumpadEnter'], nextTab: ['Tab'], menu: ['Escape'], fullscreen: ['KeyF'], mute: ['KeyM'], photo: ['KeyP'],
 };
+
+export const DEFAULT_BINDINGS: Record<string, string[]> = JSON.parse(JSON.stringify(bindings));
+export function applyBindings(keys?: Record<string, string[]>) {
+  for (const a in DEFAULT_BINDINGS) bindings[a] = keys?.[a]?.length ? keys[a] : [...DEFAULT_BINDINGS[a]];
+}
+applyBindings(settings.peek().keys);
 
 function actionOf(code: string): string | undefined {
   for (const a in bindings) if (bindings[a].includes(code)) return a;
@@ -29,6 +39,7 @@ export function App() {
     const onKey = (e: KeyboardEvent) => {
       const tag = (e.target as HTMLElement)?.tagName;
       if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+      if (capturing) return;
       const a = actionOf(e.code);
       if (!a) return;
       unlockAudio();
@@ -99,6 +110,8 @@ export function App() {
       <Modals />
       {toast.value && <div class="toast glass" key={toast.value.id}>{toast.value.text}</div>}
       <AchievementToast />
+      {tabloid.value && life.value && <Tabloid l={life.value} onClose={() => { tabloid.value = false; }} />}
+      <Mugshot />
       <DuoAsk />
       <EmoteBurst />
     </div>

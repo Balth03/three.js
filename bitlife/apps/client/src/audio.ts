@@ -81,6 +81,23 @@ export const sfx = {
   card: () => { noise(0.15, 0.05, 2500); tone(700, 0.08, 'sine', 0.08, 0.02, 1.5); },
   death: () => { [392, 330, 262, 196].forEach((f, i) => tone(f, 0.7, 'sine', 0.12, i * 0.35)); },
   love: () => { [784, 988, 1175].forEach((f, i) => tone(f, 0.25, 'sine', 0.12, i * 0.1)); },
+  /** Police siren (two-tone wail). */
+  siren: () => { for (let i = 0; i < 4; i++) { tone(740, 0.32, 'sawtooth', 0.035, i * 0.64, 1.25); tone(925, 0.32, 'sawtooth', 0.035, i * 0.64 + 0.32, 0.8); } },
+  /** Wet cartoon splat. */
+  splat: () => { noise(0.25, 0.25, 300); tone(140, 0.18, 'sine', 0.25, 0, 0.4); tone(90, 0.3, 'triangle', 0.15, 0.08, 0.5); },
+  boom: () => { noise(0.9, 0.4, 120); tone(70, 0.8, 'sine', 0.35, 0, 0.3); },
+  fart: () => { const c = ac(); if (!c) return; for (let i = 0; i < 7; i++) tone(85 + Math.random() * 40, 0.07, 'sawtooth', 0.09, i * 0.06, 0.8); noise(0.4, 0.05, 200); },
+  ghost: () => { tone(330, 1.2, 'sine', 0.08, 0, 1.5); tone(392, 1.2, 'sine', 0.06, 0.3, 0.7); },
+  fire: () => { for (let i = 0; i < 6; i++) noise(0.08, 0.08, 1800 + Math.random() * 2000, i * 0.09); },
+  scream: () => { tone(900, 0.6, 'sawtooth', 0.05, 0, 1.6); tone(950, 0.6, 'square', 0.03, 0.02, 1.5); },
+  cash: () => { noise(0.06, 0.08, 4000); [1568, 2093, 2637].forEach((f, i) => tone(f, 0.12, 'square', 0.05, 0.05 + i * 0.05)); },
+  bells: () => { [1047, 1319, 1568, 1319, 1047, 1568].forEach((f, i) => tone(f, 0.9, 'sine', 0.08, i * 0.22)); },
+  gavel: () => { noise(0.05, 0.3, 900); tone(160, 0.12, 'square', 0.12); noise(0.05, 0.3, 900, 0.25); tone(160, 0.12, 'square', 0.12, 0.25); },
+  /** Plays the sound matching a 3D visual effect. */
+  forVisual: (v: string) => {
+    const m: Record<string, () => void> = { police: () => sfx.siren(), gore: () => { sfx.splat(); sfx.scream(); }, explosion: () => sfx.boom(), poop: () => sfx.fart(), ghost: () => sfx.ghost(), fire: () => sfx.fire(), money: () => sfx.cash(), confetti: () => sfx.good(), hearts: () => sfx.love() };
+    m[v]?.();
+  },
   /** Animal-Crossing style babble for dialogue text. */
   blips: (text: string) => {
     const n = Math.min(14, Math.ceil(text.length / 12));

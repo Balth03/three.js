@@ -6,7 +6,8 @@ import {
 } from '@bl/sim';
 import type { Stage, StageView } from './three/stage.ts';
 import type { AvatarSpec } from './three/avatar.ts';
-import { life, rev, result, modal, screen, tab, bump, showToast, ageBusy, showDeath, settings, lang, profile, achToast, type MinigameKind } from './state.ts';
+import { life, rev, result, modal, screen, tab, bump, showToast, ageBusy, showDeath, settings, lang, profile, achToast, mugshot, type MinigameKind } from './state.ts';
+import { reincarnate, startGhost, ghostYear, haunt, ascend, isGhost, type GhostKind } from '@bl/sim';
 import { commitCrime, trial, escape, parole, appeal, gamble, workMinigame, summarize, heirLife, netWorth, formatMoney, country as countryOf, type Loc } from '@bl/sim';
 import { mergeAchievements, bury } from './profile.ts';
 import { listJobs, datingCandidates, assetOffers, buyAsset, sellAsset, renovate, toggleRent, moveInto, takeLoan, repayLoans, buyStock, sellStock, startBusiness, investBusiness, sellBusiness, type AssetDef, type Financing } from '@bl/sim';
@@ -115,6 +116,7 @@ export function previewLife(opts: NewLifeOptions): Life {
 
 function doAgeUpLocal() {
   const l = life.value;
+  if (l && isGhost(l) && !l.flags.ascended) { ghostNext(); return; }
   if (!l || !l.alive || ageBusy.value) return;
   if (l.queue.length || result.value) { showToast(t('finish_event')); return; }
   modal.value = null;
@@ -128,7 +130,8 @@ function doAgeUpLocal() {
   const moodOf: Mood = rep.died ? 'sad' : rep.milestones.some((m) => m.startsWith('graduate') || m === 'promotion' || m === 'baby') ? 'proud' : rep.milestones.some((m) => m.startsWith('death') || m === 'fired') ? 'sad' : 'neutral';
   stage?.setMood(moodOf);
   const cine = rep.died ? null : rep.milestones.includes('baby') ? 'baby' : rep.milestones.some((m) => m.startsWith('graduate')) ? 'graduation' : rep.milestones.includes('promotion') ? 'promotion' : rep.milestones.includes('released') ? 'release' : rep.milestones.includes('arrested') ? 'prison' : null;
-  if (cine) setTimeout(() => stage?.cinematic(cine), 450);
+  if (cine && cine !== 'prison') setTimeout(() => stage?.cinematic(cine), 450);
+  checkPrisonEntry(l);
   if (rep.milestones.includes('promotion') || rep.milestones.some((m) => m.startsWith('graduate'))) setTimeout(() => { stage?.play('celebrate'); sfx.good(); }, 500);
   checkAch();
   setTimeout(() => {
@@ -194,14 +197,21 @@ function checkAch() {
 
 let lastMarriages = 0;
 let lastPrison = false;
+function checkPrisonEntry(l: Life) {
+  if (!!l.prison && !lastPrison) {
+    setTimeout(() => stage?.cinematic('prison'), 300);
+    const r = l.record[l.record.length - 1];
+    mugshot.value = { crime: r?.crime ?? '', years: l.prison.years, n: Date.now() };
+  }
+  lastPrison = !!l.prison;
+}
 function afterResolution(res: Resolution, showCard: boolean) {
   const l = life.value!;
   if (res.visual?.length) stage?.fx(res.visual);
   const m = l.counters.marriages ?? 0;
   if (m > lastMarriages) setTimeout(() => stage?.cinematic('wedding'), 300);
   lastMarriages = m;
-  if (!!l.prison && !lastPrison) setTimeout(() => stage?.cinematic('prison'), 300);
-  lastPrison = !!l.prison;
+  checkPrisonEntry(l);
   checkAch();
   stage?.setMood(res.mood ?? (res.tone === 'good' ? 'happy' : res.tone === 'bad' ? 'sad' : 'neutral'));
   if (res.mood === 'love') sfx.love(); else if (res.tone === 'good') sfx.good(); else if (res.tone === 'bad') sfx.bad();
@@ -297,6 +307,60 @@ export function doCrime(id: string) {
   }
   modal.value = null;
   dispatch({ k: 'crime', id, bonus: 0 });
+}
+
+export function becomeGhost() {
+  const l = life.value;
+  if (!l || l.alive) return;
+  startGhost(l);
+  showDeath.value = false;
+  modal.value = { kind: 'ghost' };
+  stage?.fx(['ghost']);
+  bump(); autosave();
+}
+
+export function ghostNext() {
+  const l = life.value;
+  if (!l || !isGhost(l)) return;
+  const done = ghostYear(l, content);
+  stage?.fx(['ghost']);
+  sfx.ghost();
+  bump(); autosave(); checkAch();
+  if (done) { modal.value = null; setTimeout(() => { showDeath.value = true; }, 900); }
+}
+
+export function ghostHaunt(npcId: number, kind: GhostKind) {
+  const l = life.value;
+  if (!l) return;
+  const t = haunt(l, content, npcId, kind);
+  if (!t) return;
+  stage?.fx(kind === 'nightmare' ? ['gore', 'ghost'] : kind === 'whisper' ? ['money'] : kind === 'bless' ? ['hearts'] : ['ghost']);
+  showToast(t[lang.value]);
+  bump(); autosave();
+}
+
+export function ghostAscend() {
+  const l = life.value;
+  if (!l) return;
+  ascend(l);
+  modal.value = null;
+  bump(); autosave(); checkAch();
+  setTimeout(() => { showDeath.value = true; }, 600);
+}
+
+export function reincarnateNow() {
+  const old = life.value;
+  if (!old || old.alive) return;
+  const { life: l, verdict } = reincarnate(old, content, createLife);
+  life.value = l;
+  result.value = null; modal.value = null; tab.value = null; showDeath.value = false; placeOverride = null;
+  lastMarriages = 0; lastPrison = false;
+  screen.value = 'game';
+  refresh();
+  stage?.resetCamera();
+  setTimeout(() => stage?.cinematic(verdict === 'bad' || verdict === 'monster' ? 'death' : 'birth'), 500);
+  showToast(verdict === 'saint' ? '😇 Karma : jackpot !' : verdict === 'monster' ? '😈 Karma : tu vas payer.' : '♻️ Réincarnation');
+  autosave();
 }
 
 export function continueAsHeir(childId: number) { dispatch({ k: 'heir', child: childId }); }
@@ -440,6 +504,7 @@ export function applyOp(op: Op, mine: boolean) {
     case 'bizSell': handleRes(sellBusiness(l, content)); break;
     case 'trial': {
       const v = trial(l, content, 'minigame', op.score);
+      sfx.gavel();
       const r: Resolution = { text: v, icon: '⚖️', tone: l.prison ? 'bad' : 'good', deltas: [], mood: l.prison ? 'cry' : 'proud' };
       addLog(v, '⚖️', r.tone);
       handleRes(r);
