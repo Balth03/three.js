@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Neon Ping</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    background: radial-gradient(ellipse at 50% 25%, #3a0f5e 0%, #120733 45%, #03010c 100%);
+    color: #fff; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    touch-action: none; user-select: none; -webkit-user-select: none; cursor: crosshair;
+  }
+  canvas { display: block; position: fixed; inset: 0; }
+  .hidden { display: none !important; }
+
+  #hud { position: fixed; top: 10px; left: 0; right: 0; text-align: center; pointer-events: none; }
+  #score { font-size: 46px; font-weight: 800; letter-spacing: 3px; }
+  #score .p { color: #00f0ff; text-shadow: 0 0 12px #00f0ff; }
+  #score .a { color: #ff2bd6; text-shadow: 0 0 12px #ff2bd6; }
+  #score .sep { color: #777; margin: 0 14px; font-weight: 300; }
+  #labels { font-size: 11px; letter-spacing: 6px; opacity: .65; }
+  #pts { margin-top: 4px; font-size: 16px; font-weight: 700; color: #ffe46b; text-shadow: 0 0 8px #ffb000; }
+
+  #combo { position: fixed; top: 118px; left: 0; right: 0; text-align: center; font-weight: 900;
+    pointer-events: none; opacity: 0; transition: opacity .2s; letter-spacing: 2px; }
+  #combo.on { opacity: 1; }
+  #combo.pop span { animation: pop .28s ease-out; }
+  #combo span { display: inline-block; }
+  @keyframes pop { 0% { transform: scale(1.7); } 100% { transform: scale(1); } }
+
+  #msg { position: fixed; top: 40%; left: 0; right: 0; text-align: center; font-size: clamp(36px, 8vw, 64px);
+    font-weight: 900; pointer-events: none; opacity: 0; letter-spacing: 3px; }
+  #msg.show { animation: msg 1s ease-out forwards; }
+  @keyframes msg {
+    0% { opacity: 0; transform: scale(.5); } 15% { opacity: 1; transform: scale(1.12); }
+    70% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: translateY(-24px); }
+  }
+
+  #btns { position: fixed; top: 12px; right: 12px; display: flex; gap: 8px; z-index: 20; }
+  #btns button { width: 42px; height: 42px; border-radius: 50%; border: 1px solid #00f0ff88;
+    background: #0009; color: #fff; font-size: 17px; cursor: pointer; }
+
+  .screen { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 16px; background: rgba(4, 0, 18, .5); z-index: 10; text-align: center; padding: 16px; }
+  h1 { font-size: clamp(48px, 12vw, 104px); font-weight: 900; letter-spacing: 6px; line-height: 1;
+    background: linear-gradient(90deg, #00f0ff, #b34dff, #ff2bd6); -webkit-background-clip: text; background-clip: text;
+    color: transparent; filter: drop-shadow(0 0 18px #b34dffaa); }
+  h2 { font-size: clamp(36px, 8vw, 64px); font-weight: 900; letter-spacing: 4px; text-shadow: 0 0 18px currentColor; }
+  .sub { opacity: .8; max-width: 420px; line-height: 1.5; font-size: 15px; }
+  .btn { font: inherit; font-size: 22px; font-weight: 800; letter-spacing: 3px; padding: 14px 44px; border-radius: 40px;
+    border: 2px solid #00f0ff; color: #fff; background: #00f0ff22; box-shadow: 0 0 18px #00f0ff88, inset 0 0 12px #00f0ff55;
+    cursor: pointer; text-transform: uppercase; transition: transform .1s; }
+  .btn:hover { transform: scale(1.06); }
+  .btn.alt { border-color: #ff2bd6; background: #ff2bd622; box-shadow: 0 0 14px #ff2bd688; font-size: 16px; padding: 10px 30px; }
+  .stats { display: grid; grid-template-columns: auto auto; gap: 6px 22px; font-size: 18px; text-align: left; }
+  .stats b { color: #ffe46b; text-align: right; }
+  #oNew { color: #ffe46b; font-weight: 800; letter-spacing: 2px; text-shadow: 0 0 10px #ffb000; }
+</style>
+</head>
+<body>
+
+<div id="hud" class="hidden">
+  <div id="score"><span class="p" id="sp">0</span><span class="sep">–</span><span class="a" id="sa">0</span></div>
+  <div id="labels">VOUS &nbsp;·&nbsp; IA</div>
+  <div id="pts">0 pts</div>
+</div>
+<div id="combo"><span>COMBO <b id="comboNum">x0</b></span></div>
+<div id="msg"></div>
+<div id="btns">
+  <button id="pauseBtn" title="Pause (Échap / P)">⏸</button>
+  <button id="muteBtn" title="Son">🔊</button>
+</div>
+
+<div id="menu" class="screen">
+  <h1>NEON PING</h1>
+  <p class="sub">Déplacez votre raquette à la souris ou au doigt.<br>Bougez vite au moment de frapper pour un <b>SMASH</b>.<br>Premier à 7 points.</p>
+  <button class="btn" id="playBtn">Jouer</button>
+  <p class="sub" id="menuBest"></p>
+</div>
+
+<div id="pause" class="screen hidden">
+  <h2 style="color:#00f0ff">PAUSE</h2>
+  <button class="btn" id="resumeBtn">Reprendre</button>
+  <button class="btn alt" id="quitBtn">Menu</button>
+</div>
+
+<div id="over" class="screen hidden">
+  <h2 id="overTitle">VICTOIRE !</h2>
+  <div class="stats">
+    <span>Score</span><b id="oScore">7 – 0</b>
+    <span>Points arcade</span><b id="oPts">0</b>
+    <span>Meilleur combo</span><b id="oCombo">0</b>
+    <span>Meilleur score</span><b id="oBest">0</b>
+  </div>
+  <div id="oNew" class="hidden">NOUVEAU RECORD !</div>
+  <button class="btn" id="replayBtn">Rejouer</button>
+  <button class="btn alt" id="menuBtn">Menu</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+'use strict';
+
+/* ================= CONFIG ================= */
+const CFG = {
+  W: 5, L: 9, netH: 0.28, ballR: 0.11, padR: 0.5,
+  g: 13, restitution: 0.88, minBounceVy: 3.4,
+  baseSpeed: 7, accel: 1.045, maxSpeed: 17,
+  smashSpeed: 9, smashMul: 1.45,
+  winScore: 7, serveDelay: 1.0,
+};
+const HALF_W = CFG.W / 2, HALF_L = CFG.L / 2, PADDLE_Z = HALF_L + 0.4;
+const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
+const lerp = (a, b, t) => a + (b - a) * t;
+const rand = (a, b) => a + Math.random() * (b - a);
+
+/* ================= ÉTAT (indépendant du rendu) ================= */
+function makePaddle(side, controller) {
+  const z = side * PADDLE_Z;
+  return { side, controller, x: 0, y: 0.5, z, px: 0, pz: z, vx: 0, vz: 0, tx: 0, tz: z, aiErr: 0 };
+}
+
+const game = {
+  phase: 'menu',          // menu | play | pause | over
+  demo: true,             // partie IA vs IA derrière le menu
+  score: [0, 0], arcade: 0, combo: 0, bestCombo: 0,
+  rally: 0, aiLevel: 0, server: 1, serveTimer: 0,
+  ball: { x: 0, y: 0.6, z: 0, vx: 0, vy: 0, vz: 0, live: false },
+  // paddles[0] = joueur (côté +z), paddles[1] = IA. Un controller 'input' peut remplacer 'ai' (multi plus tard).
+  paddles: [makePaddle(1, 'ai'), makePaddle(-1, 'ai')],
+  events: [],
+};
+let bestScore = 0;
+const input = { x: 0, z: PADDLE_Z };
+
+function emit(type, data) { game.events.push(Object.assign({ type }, data)); }
+
+function startMatch(demo) {
+  game.demo = demo;
+  game.phase = demo ? 'menu' : 'play';
+  game.paddles[0].controller = demo ? 'ai' : 'input';
+  game.score = [0, 0]; game.arcade = 0; game.combo = 0; game.bestCombo = 0;
+  game.aiLevel = 0; game.server = 1;
+  startServe();
+}
+
+function startServe() {
+  game.ball.live = false;
+  game.serveTimer = CFG.serveDelay;
+  game.rally = 0;
+  game.combo = 0;
+}
+
+/* ================= LOGIQUE ================= */
+function updateGame(dt) {
+  for (const p of game.paddles) updatePaddle(p, dt);
+  const b = game.ball;
+  if (!b.live) {
+    const s = game.paddles[game.server];
+    b.x = s.x; b.y = 0.6; b.z = s.z - s.side * 0.35;
+    b.vx = b.vy = b.vz = 0;
+    game.serveTimer -= dt;
+    if (game.serveTimer <= 0) { b.live = true; hitBall(s, false); emit('serve', {}); }
+    return;
+  }
+  stepBall(dt);
+}
+
+function updatePaddle(p, dt) {
+  p.px = p.x; p.pz = p.z;
+  if (p.controller === 'input') {
+    p.tx = input.x; p.tz = input.z;
+    const k = 1 - Math.exp(-28 * dt);
+    p.x = lerp(p.x, p.tx, k); p.z = lerp(p.z, p.tz, k);
+  } else {
+    aiThink(p);
+    const max = aiSpeed() * dt;
+    p.x += clamp(p.tx - p.x, -max, max);
+    p.z += clamp(p.tz - p.z, -max, max);
+  }
+  p.vx = lerp(p.vx, (p.x - p.px) / dt, 0.5);
+  p.vz = lerp(p.vz, (p.z - p.pz) / dt, 0.5);
+  // hauteur purement visuelle : la raquette suit la balle qui arrive
+  const b = game.ball;
+  const coming = b.live && Math.sign(b.vz) === p.side;
+  p.y = lerp(p.y, coming ? clamp(b.y, 0.4, 1.8) : 0.55, 1 - Math.exp(-10 * dt));
+}
+
+function aiSpeed() { return game.demo ? 7 : Math.min(9, 3.8 + game.aiLevel * 0.6); }
+
+function aiThink(p) {
+  const b = game.ball;
+  let tx;
+  if (b.live && Math.sign(b.vz) === p.side) {
+    const t = Math.max(0, (p.z - b.z) / b.vz);
+    tx = b.x + b.vx * t + p.aiErr;
+  } else if (!b.live && game.paddles[game.server] === p) {
+    tx = 0;
+  } else {
+    tx = b.x * 0.4;
+  }
+  p.tx = clamp(tx, -HALF_W - 1, HALF_W + 1);
+  p.tz = p.side * PADDLE_Z;
+}
+
+// L'IA décide à l'avance de son erreur (et parfois de rater) dès que l'adversaire frappe.
+function setAiIntent(p, speed) {
+  const lvl = game.demo ? 4 : game.aiLevel;
+  const fast = (speed - CFG.baseSpeed) / (CFG.maxSpeed - CFG.baseSpeed);
+  const missChance = Math.max(0.04, 0.15 - lvl * 0.015) + clamp(fast, 0, 1) * 0.08;
+  const reach = CFG.padR + CFG.ballR;
+  p.aiErr = Math.random() < missChance
+    ? (Math.random() < 0.5 ? -1 : 1) * (reach + rand(0.15, 0.6))
+    : rand(-1, 1) * Math.max(0.08, 0.38 - lvl * 0.04);
+}
+
+function aiAim(p) {
+  const opp = game.paddles.find(q => q !== p);
+  const lvl = game.demo ? 3 : game.aiLevel;
+  if (Math.random() < Math.min(0.8, 0.3 + lvl * 0.08)) {
+    const away = opp.x > 0 ? -1 : 1;
+    return away * rand(0.3, 0.95) * HALF_W;
+  }
+  return rand(-0.85, 0.85) * HALF_W;
+}
+
+function hitBall(p, smash) {
+  const b = game.ball, dir = -p.side;
+  game.rally++;
+  let speed = Math.min(CFG.baseSpeed * Math.pow(CFG.accel, game.rally - 1), CFG.maxSpeed);
+  speed += Math.max(0, -p.vz * p.side) * 0.12; // poussée vers l'avant
+  if (smash) speed = Math.min(speed * CFG.smashMul, CFG.maxSpeed * 1.35);
+
+  const offset = clamp((b.x - p.x) / CFG.padR, -1, 1);
+  let tx = p.controller === 'input'
+    ? b.x + offset * HALF_W * 0.8 + p.vx * 0.18
+    : aiAim(p) + offset * 0.4;
+  tx = clamp(tx, -HALF_W * 0.88, HALF_W * 0.88);
+  const tz = dir * HALF_L * (smash ? rand(0.7, 0.9) : rand(0.35, 0.8));
+
+  // trajectoire en cloche qui atterrit sur (tx, tz)
+  const t = Math.abs(tz - b.z) / speed;
+  b.vz = dir * speed;
+  b.vx = (tx - b.x) / t;
+  b.vy = (0.5 * CFG.g * t * t - b.y) / t;
+
+  for (const q of game.paddles) if (q !== p && q.controller === 'ai') setAiIntent(q, speed);
+}
+
+function onPaddleHit(p) {
+  const b = game.ball;
+  const human = p.controller === 'input';
+  const smash = human
+    ? Math.hypot(p.vx, p.vz) > CFG.smashSpeed
+    : !game.demo && b.y > 0.8 && Math.random() < Math.min(0.25, 0.04 + game.aiLevel * 0.03);
+  hitBall(p, smash);
+  if (human) {
+    game.combo++;
+    game.bestCombo = Math.max(game.bestCombo, game.combo);
+    game.arcade += 10 * game.combo + (smash ? 50 : 0);
+  }
+  emit(smash ? 'smash' : 'hit', { x: b.x, y: b.y, z: b.z, human, combo: game.combo });
+}
+
+// Intégration en sous-pas : chaque sous-pas avance la balle de moins de son rayon => pas de tunneling.
+function stepBall(dt) {
+  const b = game.ball;
+  const dist = Math.hypot(b.vx, b.vy, b.vz) * dt;
+  const n = Math.max(1, Math.ceil(dist / (CFG.ballR * 0.75)));
+  const h = dt / n;
+  for (let i = 0; i < n; i++) {
+    const z0 = b.z;
+    b.vy -= CFG.g * h;
+    b.x += b.vx * h; b.y += b.vy * h; b.z += b.vz * h;
+
+    if (b.vy < 0 && b.y < CFG.ballR && b.y > -0.3 && Math.abs(b.x) <= HALF_W && Math.abs(b.z) <= HALF_L) {
+      b.y = CFG.ballR;
+      b.vy = Math.max(-b.vy * CFG.restitution, CFG.minBounceVy);
+      emit('bounce', { x: b.x, z: b.z });
+    }
+
+    const s = Math.sign(b.vz);
+    for (const p of game.paddles) {
+      if (p.side !== s) continue;
+      const pz0 = lerp(p.pz, p.z, i / n), pz1 = lerp(p.pz, p.z, (i + 1) / n);
+      const px1 = lerp(p.px, p.x, (i + 1) / n);
+      // la balle passe du devant au derrière du plan de la raquette pendant ce sous-pas
+      if ((z0 - pz0) * s < 0 && (b.z - pz1) * s >= 0 &&
+          Math.abs(b.x - px1) < CFG.padR + CFG.ballR && b.y > -0.5) {
+        b.z = pz1 - s * 0.02;
+        onPaddleHit(p);
+        break;
+      }
+    }
+    if (checkPoint()) return;
+  }
+}
+
+function checkPoint() {
+  const b = game.ball, s = Math.sign(b.vz) || 1;
+  const ri = game.paddles.findIndex(p => p.side === s);
+  if ((b.z - game.paddles[ri].z) * s > 1.2 || b.y < -2.5) { pointTo(1 - ri); return true; }
+  return false;
+}
+
+function pointTo(w) {
+  if (game.demo) { game.server = 1 - w; startServe(); return; }
+  const human = game.paddles[w].controller === 'input';
+  const combo = game.combo;
+  game.score[w]++;
+  if (human) { game.arcade += 100 + combo * 20; game.aiLevel++; }
+  emit('point', { human, combo });
+  if (game.score[w] >= CFG.winScore) { endGame(w); return; }
+  game.server = 1 - w;
+  startServe();
+}
+
+function endGame(w) {
+  game.phase = 'over';
+  game.ball.live = false;
+  const isNew = game.arcade > bestScore;
+  if (isNew) bestScore = game.arcade;
+  emit('end', { win: game.paddles[w].controller === 'input', isNew });
+}
+
+/* ================= SON ================= */
+let actx = null, muted = false;
+function audio() {
+  if (!actx) { const C = window.AudioContext || window.webkitAudioContext; if (C) actx = new C(); }
+  if (actx && actx.state === 'suspended') actx.resume();
+  return actx;
+}
+function beep(f, d = 0.08, type = 'square', vol = 0.12, f2 = 0, delay = 0) {
+  if (muted || game.demo || !actx) return;
+  const t = actx.currentTime + delay;
+  const o = actx.createOscillator(), g = actx.createGain();
+  o.type = type;
+  o.frequency.setValueAtTime(f, t);
+  if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + d);
+  g.gain.setValueAtTime(vol, t);
+  g.gain.exponentialRampToValueAtTime(0.001, t + d);
+  o.connect(g); g.connect(actx.destination);
+  o.start(t); o.stop(t + d + 0.02);
+}
+const SFX = {
+  bounce: () => beep(300, 0.05, 'sine', 0.22, 220),
+  hit: c => beep(500 + Math.min(c, 20) * 30, 0.07, 'square', 0.1),
+  smash: () => { beep(1100, 0.22, 'sawtooth', 0.12, 180); beep(1600, 0.08, 'square', 0.07); },
+  serve: () => beep(700, 0.04, 'triangle', 0.1),
+  win: () => { beep(660, 0.09); beep(990, 0.14, 'square', 0.12, 0, 0.09); },
+  lose: () => beep(320, 0.3, 'triangle', 0.18, 90),
+  end: win => (win ? [523, 659, 784, 1047] : [440, 370, 311, 220])
+    .forEach((f, i) => beep(f, 0.18, 'square', 0.12, 0, i * 0.13)),
+};
+
+/* ================= RENDU ================= */
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setClearColor(0x000000, 0);
+document.body.prepend(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x120733, 14, 38);
+const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
+const CAM_BASE = new THREE.Vector3(0, 3.6, HALF_L + 4.6);
+const CAM_LOOK = new THREE.Vector3(0, 0, -1);
+
+function glowTexture() {
+  const c = document.createElement('canvas'); c.width = c.height = 64;
+  const g = c.getContext('2d');
+  const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  gr.addColorStop(0, 'rgba(255,255,255,1)');
+  gr.addColorStop(0.25, 'rgba(255,255,255,.55)');
+  gr.addColorStop(1, 'rgba(255,255,255,0)');
+  g.fillStyle = gr; g.fillRect(0, 0, 64, 64);
+  return new THREE.CanvasTexture(c);
+}
+const GLOW = glowTexture();
+const ADD = { transparent: true, blending: THREE.AdditiveBlending, depthWrite: false };
+
+scene.add(new THREE.AmbientLight(0x6060a0, 0.9));
+const dirLight = new THREE.DirectionalLight(0xffffff, 0.5); dirLight.position.set(2, 8, 4); scene.add(dirLight);
+const flashLight = new THREE.PointLight(0xffffff, 0, 6); scene.add(flashLight);
+
+// Table
+const table = new THREE.Mesh(new THREE.BoxGeometry(CFG.W, 0.16, CFG.L),
+  new THREE.MeshStandardMaterial({ color: 0x0a1030, roughness: 0.35, metalness: 0.4 }));
+table.position.y = -0.08; scene.add(table);
+const lineMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
+const LINE_BASE = new THREE.Color(0x00f0ff);
+function addLine(w, d, x, z) {
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, 0.02, d), lineMat);
+  m.position.set(x, 0.005, z); scene.add(m);
+}
+addLine(CFG.W, 0.05, 0, HALF_L); addLine(CFG.W, 0.05, 0, -HALF_L);
+addLine(0.05, CFG.L, HALF_W, 0); addLine(0.05, CFG.L, -HALF_W, 0);
+addLine(0.025, CFG.L, 0, 0);
+const net = new THREE.Mesh(new THREE.BoxGeometry(CFG.W + 0.3, CFG.netH, 0.02),
+  new THREE.MeshBasicMaterial({ color: 0xff2bd6, transparent: true, opacity: 0.3 }));
+net.position.y = CFG.netH / 2; scene.add(net);
+const netTop = new THREE.Mesh(new THREE.BoxGeometry(CFG.W + 0.3, 0.025, 0.03), new THREE.MeshBasicMaterial({ color: 0xff7be8 }));
+netTop.position.y = CFG.netH; scene.add(netTop);
+const grid = new THREE.GridHelper(70, 50, 0xff2bd6, 0x4a1a8a);
+grid.position.y = -2.2; grid.material.transparent = true; grid.material.opacity = 0.35; scene.add(grid);
+
+// Balle
+const ballMesh = new THREE.Mesh(new THREE.SphereGeometry(CFG.ballR, 16, 12), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+scene.add(ballMesh);
+const ballGlow = new THREE.Sprite(new THREE.SpriteMaterial(Object.assign({ map: GLOW, color: 0x00f0ff }, ADD)));
+ballMesh.add(ballGlow);
+const ballLight = new THREE.PointLight(0x00f0ff, 0.9, 3); ballMesh.add(ballLight);
+const shadow = new THREE.Mesh(new THREE.CircleGeometry(CFG.ballR * 1.3, 16),
+  new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.5, depthWrite: false }));
+shadow.rotation.x = -Math.PI / 2; scene.add(shadow);
+
+// Raquettes
+function makePaddleMesh(color, opacity) {
+  const g = new THREE.Group();
+  const mat = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.5, roughness: 0.4,
+    transparent: opacity < 1, opacity });
+  const face = new THREE.Mesh(new THREE.CylinderGeometry(CFG.padR, CFG.padR, 0.05, 32), mat);
+  face.rotation.x = Math.PI / 2; g.add(face);
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(CFG.padR, 0.025, 8, 40), new THREE.MeshBasicMaterial({ color }));
+  g.add(rim);
+  const handle = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.38, 0.06), mat);
+  handle.position.y = -CFG.padR - 0.17; g.add(handle);
+  scene.add(g);
+  return g;
+}
+const paddleMeshes = [makePaddleMesh(0x00e5ff, 0.55), makePaddleMesh(0xff2bd6, 1)];
+
+// Traînée
+const TRAIL_N = 18;
+const trail = [], trailHist = [];
+for (let i = 0; i < TRAIL_N; i++) {
+  const s = new THREE.Sprite(new THREE.SpriteMaterial(Object.assign({ map: GLOW }, ADD)));
+  s.visible = false; scene.add(s); trail.push(s); trailHist.push(new THREE.Vector3());
+}
+let trailCount = 0;
+
+// Particules
+const P_N = 300;
+const pPos = new Float32Array(P_N * 3), pCol = new Float32Array(P_N * 3);
+const parts = Array.from({ length: P_N }, () => ({ vx: 0, vy: 0, vz: 0, life: 0, max: 1, r: 1, g: 1, b: 1 }));
+const pGeo = new THREE.BufferGeometry();
+pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+pGeo.setAttribute('color', new THREE.BufferAttribute(pCol, 3));
+const points = new THREE.Points(pGeo, new THREE.PointsMaterial(Object.assign({ size: 0.16, map: GLOW, vertexColors: true }, ADD)));
+points.frustumCulled = false; scene.add(points);
+let pNext = 0;
+for (let i = 0; i < P_N; i++) pPos[i * 3 + 1] = -999;
+
+// Anneaux de rebond
+const rings = [];
+for (let i = 0; i < 4; i++) {
+  const r = new THREE.Mesh(new THREE.RingGeometry(0.14, 0.2, 28), new THREE.MeshBasicMaterial(Object.assign({ color: 0x00f0ff, side: THREE.DoubleSide }, ADD)));
+  r.rotation.x = -Math.PI / 2; r.visible = false; r.userData.t = 0; scene.add(r); rings.push(r);
+}
+let ringNext = 0;
+
+/* ---- effets ---- */
+let shake = 0, lineFlash = 0;
+const tmpColor = new THREE.Color();
+function comboColor(c, out = tmpColor) { return out.setHSL((0.52 - Math.min(c, 20) * 0.03 + 1) % 1, 1, 0.6); }
+
+function spawnParticles(x, y, z, count, color, speed) {
+  for (let i = 0; i < count; i++) {
+    const p = parts[pNext]; const k = pNext * 3;
+    pNext = (pNext + 1) % P_N;
+    pPos[k] = x; pPos[k + 1] = y; pPos[k + 2] = z;
+    p.vx = rand(-1, 1) * speed; p.vy = rand(0, 1.2) * speed; p.vz = rand(-1, 1) * speed;
+    p.life = p.max = rand(0.35, 0.8);
+    p.r = color.r; p.g = color.g; p.b = color.b;
+  }
+}
+function spawnRing(x, z, color) {
+  const r = rings[ringNext]; ringNext = (ringNext + 1) % rings.length;
+  r.position.set(x, 0.02, z); r.visible = true; r.userData.t = 0; r.material.color.copy(color);
+}
+function flash(x, y, z, color, power) {
+  flashLight.position.set(x, y + 0.3, z); flashLight.color.copy(color); flashLight.intensity = power;
+}
+
+function updateFx(dt) {
+  for (let i = 0; i < P_N; i++) {
+    const p = parts[i], k = i * 3;
+    if (p.life <= 0) continue;
+    p.life -= dt;
+    if (p.life <= 0) { pPos[k + 1] = -999; continue; }
+    p.vy -= 6 * dt;
+    pPos[k] += p.vx * dt; pPos[k + 1] += p.vy * dt; pPos[k + 2] += p.vz * dt;
+    const f = p.life / p.max;
+    pCol[k] = p.r * f; pCol[k + 1] = p.g * f; pCol[k + 2] = p.b * f;
+  }
+  pGeo.attributes.position.needsUpdate = true;
+  pGeo.attributes.color.needsUpdate = true;
+
+  for (const r of rings) {
+    if (!r.visible) continue;
+    r.userData.t += dt * 2.5;
+    const t = r.userData.t;
+    if (t >= 1) { r.visible = false; continue; }
+    r.scale.setScalar(1 + t * 4); r.material.opacity = 1 - t;
+  }
+
+  flashLight.intensity *= Math.exp(-10 * dt);
+  lineFlash *= Math.exp(-8 * dt);
+  lineMat.color.copy(LINE_BASE).lerp(comboColor(game.combo), Math.min(game.combo / 10, 1)).lerp(tmpColor.set(0xffffff), lineFlash);
+
+  shake *= Math.exp(-9 * dt);
+  camera.position.set(CAM_BASE.x + rand(-1, 1) * shake, CAM_BASE.y + rand(-1, 1) * shake, CAM_BASE.z);
+  camera.lookAt(CAM_LOOK);
+}
+
+function syncScene() {
+  const b = game.ball, c = comboColor(game.combo);
+  ballMesh.position.set(b.x, b.y, b.z);
+  ballGlow.material.color.copy(c);
+  ballGlow.scale.setScalar(0.75 + Math.min(game.combo, 20) * 0.05);
+  ballLight.color.copy(c);
+
+  const onTable = Math.abs(b.x) < HALF_W && Math.abs(b.z) < HALF_L && b.y > 0;
+  shadow.visible = onTable;
+  shadow.position.set(b.x, 0.012, b.z);
+  shadow.material.opacity = clamp(0.6 - b.y * 0.2, 0.1, 0.6);
+
+  game.paddles.forEach((p, i) => {
+    const m = paddleMeshes[i];
+    m.position.set(p.x, p.y, p.z);
+    m.rotation.z = clamp(-p.vx * 0.03, -0.5, 0.5);
+    m.rotation.x = clamp(p.vz * 0.02, -0.4, 0.4);
+  });
+
+  // traînée : historique des positions, plus longue et vive avec le combo
+  if (b.live) {
+    for (let i = TRAIL_N - 1; i > 0; i--) trailHist[i].copy(trailHist[i - 1]);
+    trailHist[0].set(b.x, b.y, b.z);
+    trailCount = Math.min(trailCount + 1, TRAIL_N);
+  } else trailCount = 0;
+  const len = Math.min(trailCount, 8 + Math.min(game.combo, 10));
+  for (let i = 0; i < TRAIL_N; i++) {
+    const s = trail[i];
+    s.visible = i < len;
+    if (!s.visible) continue;
+    const f = 1 - i / len;
+    s.position.copy(trailHist[i]);
+    s.scale.setScalar(0.35 * f + 0.05);
+    s.material.color.copy(c);
+    s.material.opacity = 0.55 * f;
+  }
+}
+
+/* ================= HUD / ÉCRANS ================= */
+const $ = id => document.getElementById(id);
+const comboEl = $('combo');
+let hudKey = '';
+function updateHud() {
+  const key = [game.score, game.arcade, game.combo, game.demo].join('|');
+  if (key === hudKey) return;
+  hudKey = key;
+  $('hud').classList.toggle('hidden', game.demo);
+  $('sp').textContent = game.score[0];
+  $('sa').textContent = game.score[1];
+  $('pts').textContent = game.arcade + ' pts';
+  const c = game.combo;
+  comboEl.classList.toggle('on', c >= 2 && !game.demo);
+  $('comboNum').textContent = 'x' + c;
+  const col = '#' + comboColor(c).getHexString();
+  comboEl.style.fontSize = (26 + Math.min(c, 20) * 2) + 'px';
+  comboEl.style.color = col;
+  comboEl.style.textShadow = `0 0 ${8 + Math.min(c, 20)}px ${col}`;
+}
+function comboPop() { comboEl.classList.remove('pop'); void comboEl.offsetWidth; comboEl.classList.add('pop'); }
+function showMsg(text, color) {
+  const m = $('msg');
+  m.textContent = text; m.style.color = color; m.style.textShadow = `0 0 20px ${color}`;
+  m.classList.remove('show'); void m.offsetWidth; m.classList.add('show');
+}
+function showScreen(id) {
+  for (const s of ['menu', 'pause', 'over']) $(s).classList.toggle('hidden', s !== id);
+}
+
+const COMBO_MSG = { 5: 'EN FEU !', 10: 'INARRÊTABLE !', 15: 'LÉGENDAIRE !', 20: 'DIVIN !' };
+
+// Les événements de la logique pilotent son, effets et HUD.
+function processEvents() {
+  for (const e of game.events) {
+    const c = comboColor(game.combo).clone();
+    switch (e.type) {
+      case 'bounce':
+        SFX.bounce(); spawnRing(e.x, e.z, c); flash(e.x, 0, e.z, c, 2); lineFlash = 0.6;
+        break;
+      case 'hit':
+        SFX.hit(e.combo);
+        spawnParticles(e.x, e.y, e.z, 6 + Math.min(e.combo, 15) * 2, c, 1.5 + Math.min(e.combo, 15) * 0.1);
+        shake = Math.max(shake, 0.02 + Math.min(e.combo, 20) * 0.004);
+        if (e.human && e.combo >= 2) comboPop();
+        if (e.human && COMBO_MSG[e.combo] && !game.demo) { showMsg(COMBO_MSG[e.combo], '#' + c.getHexString()); shake = 0.15; }
+        break;
+      case 'smash':
+        SFX.smash();
+        spawnParticles(e.x, e.y, e.z, 60, tmpColor.set(0xffe46b).clone(), 5);
+        spawnParticles(e.x, e.y, e.z, 30, c, 3.5);
+        flash(e.x, e.y, e.z, tmpColor.set(0xffe46b), 4);
+        shake = Math.max(shake, 0.28);
+        if (e.human) { comboPop(); showMsg('SMASH !', '#ffe46b'); }
+        break;
+      case 'serve': SFX.serve(); break;
+      case 'point':
+        if (e.human) { SFX.win(); showMsg(e.combo >= 3 ? `POINT ! +${e.combo * 20}` : 'POINT !', '#00f0ff'); shake = 0.12; }
+        else { SFX.lose(); showMsg('RATÉ !', '#ff2bd6'); shake = 0.25; }
+        break;
+      case 'end':
+        SFX.end(e.win);
+        setTimeout(() => { if (game.phase === 'over') showOver(e); }, 700);
+        break;
+    }
+  }
+  game.events.length = 0;
+}
+
+function showOver(e) {
+  $('overTitle').textContent = e.win ? 'VICTOIRE !' : 'DÉFAITE';
+  $('overTitle').style.color = e.win ? '#00f0ff' : '#ff2bd6';
+  $('oScore').textContent = `${game.score[0]} – ${game.score[1]}`;
+  $('oPts').textContent = game.arcade;
+  $('oCombo').textContent = game.bestCombo;
+  $('oBest').textContent = bestScore;
+  $('oNew').classList.toggle('hidden', !e.isNew);
+  showScreen('over');
+}
+
+function play() { audio(); startMatch(false); showScreen(null); hudKey = ''; }
+function toMenu() {
+  startMatch(true); showScreen('menu'); hudKey = '';
+  $('menuBest').textContent = bestScore > 0 ? `Meilleur score : ${bestScore} pts` : '';
+}
+function togglePause() {
+  if (game.phase === 'play') { game.phase = 'pause'; showScreen('pause'); }
+  else if (game.phase === 'pause') { game.phase = 'play'; showScreen(null); }
+}
+
+/* ================= ENTRÉES ================= */
+const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), hitPt = new THREE.Vector3();
+const inputPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -0.4);
+function onPointer(e) {
+  ndc.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
+  ray.setFromCamera(ndc, camera);
+  if (ray.ray.intersectPlane(inputPlane, hitPt)) {
+    input.x = clamp(hitPt.x, -HALF_W - 1, HALF_W + 1);
+    // au doigt, on décale la raquette pour qu'elle reste visible au-dessus du doigt
+    input.z = clamp(hitPt.z - (e.pointerType === 'touch' ? 0.8 : 0), 0.8, HALF_L + 1.2);
+  }
+}
+window.addEventListener('pointermove', onPointer);
+window.addEventListener('pointerdown', onPointer);
+window.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+window.addEventListener('keydown', e => {
+  const k = e.key.toLowerCase();
+  if (k === 'escape' || k === 'p') togglePause();
+  else if (k === 'enter' && (game.phase === 'menu' || game.phase === 'over')) play();
+});
+window.addEventListener('blur', () => { if (game.phase === 'play') togglePause(); });
+
+$('playBtn').onclick = play;
+$('replayBtn').onclick = play;
+$('menuBtn').onclick = toMenu;
+$('quitBtn').onclick = toMenu;
+$('resumeBtn').onclick = togglePause;
+$('pauseBtn').onclick = e => { e.currentTarget.blur(); togglePause(); };
+$('muteBtn').onclick = e => {
+  muted = !muted; e.currentTarget.textContent = muted ? '🔇' : '🔊'; e.currentTarget.blur(); audio();
+};
+
+function resize() {
+  const w = innerWidth, h = innerHeight, aspect = w / h;
+  renderer.setSize(w, h);
+  camera.aspect = aspect;
+  camera.fov = aspect < 1 ? Math.min(90, 55 / aspect * 0.75) : 55;
+  camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+
+/* ================= BOUCLE ================= */
+let last = performance.now();
+function frame(now) {
+  requestAnimationFrame(frame);
+  const dt = Math.min((now - last) / 1000, 1 / 30);
+  last = now;
+  if (dt <= 0) return;
+  if (game.phase === 'play' || game.phase === 'menu') updateGame(dt);
+  processEvents();
+  updateFx(dt);
+  syncScene();
+  updateHud();
+  renderer.render(scene, camera);
+}
+
+resize();
+toMenu();
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
