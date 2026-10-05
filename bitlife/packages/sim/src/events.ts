@@ -72,13 +72,20 @@ export function eligible(life: Life, content: Content, e: EventDef, ignoreChain 
   return canBindActor(life, e.actor);
 }
 
+/** Variety: an event already seen in this life (or often in past lives) becomes much rarer. */
+export function variety(life: Life, id: string): number {
+  const n = life.seenCount?.[id] ?? 0;
+  const f = Math.min(6, life.fatigue?.[id] ?? 0);
+  return 1 / ((1 + 2.5 * n) * (1 + 0.45 * f));
+}
+
 export function pickEvents(life: Life, content: Content, rng: Rng, count: number): EventDef[] {
   const pool = content.events.filter((e) => !e.priority && !e.auto && eligible(life, content, e));
   const out: EventDef[] = [];
   const cats = new Set<string>();
   for (let i = 0; i < count && pool.length; i++) {
     const chaos = life.mode === 'chaos';
-    const e = rng.weighted(pool, (x) => (x.weight ?? 10) * (cats.has(x.cat) ? 0.25 : 1) * (chaos && (x.cat === 'weird' || x.cat === 'chaos') ? 6 : 1) * ((x.rating ?? 0) > 0 && life.rating === 2 ? 1.4 : 1));
+    const e = rng.weighted(pool, (x) => (x.weight ?? 10) * variety(life, x.id) * (cats.has(x.cat) ? 0.25 : 1) * (chaos && (x.cat === 'weird' || x.cat === 'chaos') ? 6 : 1) * ((x.rating ?? 0) > 0 && life.rating === 2 ? 1.4 : 1));
     if (!e) break;
     if (e.when?.chance !== undefined && !rng.chance(e.when.chance)) { pool.splice(pool.indexOf(e), 1); i--; continue; }
     out.push(e);
@@ -102,9 +109,11 @@ export function queueEvent(life: Life, content: Content, id: string, rng: Rng, a
   const vars: Record<string, number | string> = {};
   if (e.vars) for (const k in e.vars) vars[k] = Math.round(rng.range(e.vars[k][0], e.vars[k][1]) / 5) * 5 || e.vars[k][0];
   life.seen[e.id] = life.age;
+  const sc = (life.seenCount ??= {});
+  sc[e.id] = (sc[e.id] ?? 0) + 1;
   const ctx = { life, content, actor: actor ?? undefined, vars };
   const rand = () => rng.next();
-  const text = renderLoc(e.text, ctx, rand);
+  const text = renderLoc(e.text, { ...ctx, memo: e.id }, rand);
   if (e.auto) {
     // Feed-only line: apply effects now
     applyEffect(life, content, e.fx ?? {}, actor ?? undefined, vars, rng);
@@ -169,9 +178,10 @@ export function choose(life: Life, content: Content, choiceIndex: number): Resol
   } else {
     const pc = p.choices[Math.max(0, Math.min(choiceIndex, p.choices.length - 1))];
     const c = e.choices![pc.idx];
-    const out = pickOutcome(life, choiceOutcomes(c), rng);
+    const outs = choiceOutcomes(c);
+    const out = pickOutcome(life, outs, rng);
     const ctx = { life, content, actor, vars: p.vars };
-    let text = renderLoc(out.text, ctx, () => rng.next());
+    let text = renderLoc(out.text, { ...ctx, memo: `${e.id}:${pc.idx}:${outs.indexOf(out)}` }, () => rng.next());
     const over = applyEffect(life, content, out.fx ?? {}, actor, p.vars, rng);
     if (over) text = text.fr ? { fr: `${text.fr} ${over.fr}`, en: `${text.en} ${over.en}` } : over;
     const tone = out.tone ?? toneOf(out.fx);
@@ -310,10 +320,27 @@ export function runPriority(life: Life, content: Content, rng: Rng) {
   }
 }
 
+/** Procedural daily-life lines: one or two per year, word pools make them almost never identical. */
+export function runAnecdotes(life: Life, content: Content, rng: Rng) {
+  const all = content.anecdotes;
+  if (!all?.length || life.age < 2) return;
+  const n = (rng.chance(0.8) ? 1 : 0) + (rng.chance(0.3) ? 1 : 0);
+  if (!n) return;
+  const pool = all.filter((a) => (a.rating ?? 0) <= life.rating && (!!life.prison === (a.when?.prison === true)) && checkCond(life, content, a.when));
+  for (let i = 0; i < n && pool.length; i++) {
+    const a = rng.weighted(pool, (x) => (x.w ?? 10) * variety(life, `an:${x.id}`));
+    if (!a) break;
+    pool.splice(pool.indexOf(a), 1);
+    const sc = (life.seenCount ??= {});
+    sc[`an:${a.id}`] = (sc[`an:${a.id}`] ?? 0) + 1;
+    addLine(life, renderLoc(a.text, { life, content, memo: `an:${a.id}` }, () => rng.next()), a.icon, a.tone ?? 'neutral');
+  }
+}
+
 export function runAuto(life: Life, content: Content, rng: Rng, max: number) {
   const pool = content.events.filter((e) => e.auto && !e.priority && eligible(life, content, e));
   for (let i = 0; i < max && pool.length; i++) {
-    const e = rng.weighted(pool, (x) => x.weight ?? 10);
+    const e = rng.weighted(pool, (x) => (x.weight ?? 10) * variety(life, x.id));
     if (!e) break;
     pool.splice(pool.indexOf(e), 1);
     if (e.when?.chance !== undefined && !rng.chance(e.when.chance)) continue;

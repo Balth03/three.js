@@ -8,7 +8,7 @@ import { yearlyEdu } from './edu.ts';
 import { yearlyJob, taxOf } from './career.ts';
 import { yearlyHealth, mortality } from './health.ts';
 import { yearlyRelations } from './relations.ts';
-import { pickEvents, queueEvent, runAuto, runPriority, runScheduled } from './events.ts';
+import { pickEvents, queueEvent, runAuto, runAnecdotes, runPriority, runScheduled } from './events.ts';
 import { snapshot, diff } from './snapshot.ts';
 import { yearlyPrison } from './crime.ts';
 import { yearlyMoney2, initMarket, netWorth, homeAsset } from './money.ts';
@@ -76,6 +76,9 @@ export function createLife(content: Content, o0: NewLifeOptions = {}): Life {
     nextId: 1,
     flags: {},
     seen: {},
+    seenCount: {},
+    fatigue: o.fatigue,
+    textMemo: {},
     queue: [],
     scheduled: [],
     log: [],
@@ -221,6 +224,7 @@ export function ageUp(life: Life, content: Content): YearReport {
     n = Math.max(0, n - Math.max(0, life.queue.length - 1));
     for (const e of pickEvents(life, content, rng, n)) queueEvent(life, content, e.id, rng);
     runAuto(life, content, rng, life.age < 3 ? 1 : rng.int(0, 2));
+    runAnecdotes(life, content, rng);
   }
   if (!life.alive) report.died = true;
   const fresh = checkAchievements(life, content, life.alive ? 'year' : 'death');

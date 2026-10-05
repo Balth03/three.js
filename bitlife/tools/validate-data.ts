@@ -1,6 +1,6 @@
 // Content validation: `npm run validate`
 import { content as base } from '../data/index.ts';
-import type { LocText, EventDef, Content } from '../packages/sim/src/index.ts';
+import type { LocText, EventDef, Content, AnecdoteDef } from '../packages/sim/src/index.ts';
 import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 
@@ -8,10 +8,16 @@ import { resolve } from 'node:path';
 let content: Content = base;
 if (process.argv[2]) {
   const mod = await import(pathToFileURL(resolve(process.argv[2])).href) as Record<string, unknown>;
-  const extra = Object.values(mod).filter(Array.isArray).flat() as EventDef[];
+  // Exports named `anecdotes*` are anecdote lists, `words*` are word-pool objects, other arrays are events.
+  const anec = Object.entries(mod).filter(([k, v]) => /^anecdotes/i.test(k) && Array.isArray(v)).flatMap(([, v]) => v as AnecdoteDef[]);
+  const words = Object.entries(mod).filter(([k, v]) => /^words/i.test(k) && v && typeof v === 'object' && !Array.isArray(v)).map(([, v]) => v as Record<string, [string, string][]>);
+  const extra = Object.entries(mod).filter(([k, v]) => !/^(anecdotes|words)/i.test(k) && Array.isArray(v)).flatMap(([, v]) => v as EventDef[]);
   const known = new Set(base.events.map((e) => e.id));
-  content = { ...base, events: [...base.events, ...extra.filter((e) => !known.has(e.id))] };
-  console.log(`+ ${extra.length} events from ${process.argv[2]}`);
+  const knownA = new Set((base.anecdotes ?? []).map((e) => e.id));
+  const mergedWords: Record<string, [string, string][]> = { ...(base.words ?? {}) };
+  for (const w of words) for (const k in w) mergedWords[k] = [...(mergedWords[k] ?? []), ...w[k]];
+  content = { ...base, words: mergedWords, anecdotes: [...(base.anecdotes ?? []), ...anec.filter((e) => !knownA.has(e.id))], events: [...base.events, ...extra.filter((e) => !known.has(e.id))] };
+  console.log(`+ ${extra.length} events, ${anec.length} anecdotes, ${words.reduce((n, w) => n + Object.values(w).flat().length, 0)} words from ${process.argv[2]}`);
 }
 
 const errors: string[] = [];
@@ -29,6 +35,7 @@ const texts = (l: LocText | undefined, where: string) => {
       for (const m of s.matchAll(/\{([^{}]*)\}/g)) {
         const k = m[1];
         if (k.includes('|')) continue;
+        if (k.startsWith('w:')) { if (!content.words?.[k.slice(2)]?.length) errors.push(`${where} (${lang}): unknown word pool {${k}}`); continue; }
         if (!/^(first|last|full|age|year|city|country|school|job|employer|major|\$\w+|a\.(first|last|full|age|rel|my|title|he|him|his|job|species)|\w+)$/.test(k)) errors.push(`${where} (${lang}): unknown token {${k}}`);
       }
     }
@@ -55,10 +62,30 @@ for (const e of content.events) {
   });
   if (e.fx?.disease && !content.diseases.some((d) => d.id === e.fx!.disease)) errors.push(`${e.id}: unknown disease ${e.fx.disease}`);
 }
+// Word pools
+for (const [k, list] of Object.entries(content.words ?? {})) {
+  if (!/^[a-z_0-9]+$/.test(k)) errors.push(`word pool name "${k}" must be lowercase a-z/0-9/_`);
+  const seenFr = new Set<string>();
+  list.forEach((e, i) => {
+    if (!Array.isArray(e) || e.length !== 2 || !e[0]?.trim() || !e[1]?.trim()) errors.push(`words.${k}[${i}]: must be [fr, en]`);
+    else if (/[{}\[\]]/.test(e[0] + e[1])) errors.push(`words.${k}[${i}]: no braces/brackets inside words`);
+    else if (seenFr.has(e[0])) warn.push(`words.${k}: duplicate "${e[0]}"`);
+    else seenFr.add(e[0]);
+  });
+  if (list.length < 8) warn.push(`words.${k}: only ${list.length} entries`);
+}
+// Anecdotes
+const aIds = new Set<string>();
+for (const a of content.anecdotes ?? []) {
+  if (aIds.has(a.id)) errors.push(`duplicate anecdote id ${a.id}`);
+  aIds.add(a.id);
+  texts(a.text, `anecdote ${a.id}`);
+  for (const lang of ['fr', 'en'] as const) for (const t of [a.text[lang]].flat()) if (/\{a\./.test(t)) errors.push(`anecdote ${a.id}: no actor tokens in anecdotes`);
+}
 for (const a of content.actions) { texts(a.label, `action ${a.id}`); a.out?.forEach((o, j) => texts(o.text, `action ${a.id}.out${j}`)); }
 for (const a of content.relActions) { texts(a.label, `rel ${a.id}`); a.out.forEach((o, j) => texts(o.text, `rel ${a.id}.out${j}`)); }
 for (const f of flagsRead) if (!flagsSet.has(f) && !['expelled', 'pension', 'pregnant', 'record', 'tuition'].includes(f)) warn.push(`flag "${f}" is read but never set`);
-console.log(`Events: ${content.events.length} · Actions: ${content.actions.length} · Interactions: ${content.relActions.length} · Careers: ${content.careers.length} · Countries: ${content.countries.length} · Diseases: ${content.diseases.length}`);
+console.log(`Events: ${content.events.length} · Anecdotes: ${(content.anecdotes ?? []).length} · Words: ${Object.values(content.words ?? {}).flat().length} in ${Object.keys(content.words ?? {}).length} pools · Actions: ${content.actions.length} · Interactions: ${content.relActions.length} · Careers: ${content.careers.length} · Countries: ${content.countries.length} · Diseases: ${content.diseases.length}`);
 for (const w of warn) console.log('⚠️ ', w);
 for (const e of errors) console.log('❌', e);
 if (errors.length) { console.log(`${errors.length} error(s)`); process.exit(1); }

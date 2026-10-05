@@ -160,6 +160,12 @@ export interface Life {
   nextId: number;
   flags: Record<string, number | string | boolean>;
   seen: Record<string, number>;
+  /** How many times each event fired in this life (variety: repeated events get rarer). */
+  seenCount?: Record<string, number>;
+  /** Event counts carried over from previous lives (cross-life variety). */
+  fatigue?: Record<string, number>;
+  /** Last text variant used per text key (variants rotate instead of repeating). */
+  textMemo?: Record<string, number>;
   queue: Pending[];
   scheduled: { key: string; age: number; actorId?: number }[];
   log: YearLog[];
@@ -520,6 +526,10 @@ export interface Content {
   talents: TalentDef[];
   diseases: DiseaseDef[];
   events: EventDef[];
+  /** Word pools for `{w:pool}` tokens: entries are [fr, en] complete phrases. */
+  words?: Record<string, [string, string][]>;
+  /** Procedural daily-life feed lines. */
+  anecdotes?: AnecdoteDef[];
   actions: ActionDef[];
   relActions: RelActionDef[];
   balance: Balance;
@@ -552,7 +562,12 @@ export interface YearReport {
   milestones: string[];     // e.g. 'school:primary', 'graduate:high', 'promotion'
 }
 
+/** A feed-only daily-life line (first person), rendered with word pools for near-infinite variety. */
+export interface AnecdoteDef { id: string; icon: string; tone?: Tone; rating?: Rating; w?: number; when?: Cond; text: LocText }
+
 export interface NewLifeOptions {
+  /** Event counts from previous lives, so the same stories don't come back every life. */
+  fatigue?: Record<string, number>;
   seed?: number;
   first?: string;
   last?: string;

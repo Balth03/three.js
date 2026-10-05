@@ -6,6 +6,8 @@ export interface TextCtx {
   content: Content;
   actor?: Npc;
   vars?: Record<string, number | string>;
+  /** Key used to rotate text variants (the same variant never comes twice in a row). */
+  memo?: string;
 }
 
 const fmtCache = new Map<string, Intl.NumberFormat>();
@@ -111,7 +113,16 @@ export function renderLoc(text: LocText, ctx: TextCtx, rand: () => number): Loc<
   const r0 = rand();
   const draws: number[] = [];
   for (let i = 0; i < 6; i++) draws.push(rand());
-  const pickVariant = (v: string | string[]) => (Array.isArray(v) ? v[Math.floor(r0 * v.length)] ?? v[0] : v);
+  // Variant rotation: first time a random variant, then the next one each time the same text comes back.
+  let slot = -1;
+  const multi = Array.isArray(text.fr) && text.fr.length > 1 || Array.isArray(text.en) && text.en.length > 1;
+  if (ctx.memo && multi) {
+    const memo = (ctx.life.textMemo ??= {});
+    const prev = memo[ctx.memo];
+    slot = prev === undefined ? Math.floor(r0 * 1000) : prev + 1;
+    memo[ctx.memo] = slot;
+  }
+  const pickVariant = (v: string | string[]) => (Array.isArray(v) ? (slot >= 0 ? v[slot % v.length] : v[Math.floor(r0 * v.length)]) ?? v[0] : v);
   return {
     fr: renderString(pickVariant(text.fr), ctx, 'fr', draws),
     en: renderString(pickVariant(text.en), ctx, 'en', draws),
@@ -127,6 +138,26 @@ export function renderString(tpl: string, ctx: TextCtx, lang: Lang, draws: numbe
     return opts[Math.floor(r * opts.length)] ?? opts[0];
   });
   const { life, actor } = ctx;
+  // {w:pool} word tokens: the n-th occurrence of a pool picks the same entry in FR and EN (order-independent).
+  if (s.includes('{w:') && ctx.content.words) {
+    const zero = draws.every((d) => !d);
+    const seed = zero ? (life.rng[0] ^ (life.age * 7919) ^ (life.log.length * 104729)) >>> 0 : Math.floor(draws[0] * 4294967295) ^ Math.floor((draws[1] ?? 0.5) * 2654435761);
+    const occ: Record<string, number> = {};
+    const used: Record<string, Set<number>> = {};
+    s = s.replace(/\{w:([a-z_0-9]+)\}/g, (whole, pool: string) => {
+      const list = ctx.content.words![pool];
+      if (!list?.length) return whole;
+      const n = (occ[pool] = (occ[pool] ?? -1) + 1);
+      let h = 2166136261 ^ seed;
+      for (let i = 0; i < pool.length; i++) h = Math.imul(h ^ pool.charCodeAt(i), 16777619);
+      h = Math.imul(h ^ (n * 2246822519), 2654435761) >>> 0;
+      let idx = h % list.length;
+      const u = (used[pool] ??= new Set());
+      while (u.has(idx) && u.size < list.length) idx = (idx + 1) % list.length;
+      u.add(idx);
+      return list[idx][lang === 'fr' ? 0 : 1];
+    });
+  }
   s = s.replace(/\{([^{}]*)\}/g, (whole, inner: string) => {
     if (inner.includes('|')) {
       let g: Gender = life.gender;

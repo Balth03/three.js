@@ -18,6 +18,14 @@ export function ancestorOf(life: Life, content: Content): AncestorRecord {
   };
 }
 
+/** Cross-life variety memory: older lives fade, the most recent one counts fully. */
+export function mergeFatigue(prev: Record<string, number> | undefined, last: Record<string, number> | undefined): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const k in prev ?? {}) { const v = Math.floor(prev![k] * 0.6 * 10) / 10; if (v >= 0.3) out[k] = v; }
+  for (const k in last ?? {}) out[k] = Math.min(10, (out[k] ?? 0) + last![k]);
+  return out;
+}
+
 export function heirs(life: Life): Npc[] {
   return life.npcs.filter((n) => n.role === 'child' && n.alive);
 }
@@ -115,6 +123,8 @@ export function heirLife(old: Life, content: Content, childId: number): Life {
     life.place = age < 18 ? life.place : content.assets.find((d) => d.id === h.def)?.home ?? 'home';
   }
   life.history.push(statPoint(life));
+  life.fatigue = mergeFatigue(old.fatigue, old.seenCount);
+  life.seenCount = {}; life.textMemo = {};
   return life;
 }
 
@@ -133,7 +143,7 @@ export function reincarnate(old: Life, content: Content, createLife: (c: Content
   const pool = verdict === 'saint' || verdict === 'good' ? byWealth.slice(0, third + 1) : verdict === 'meh' ? byWealth : byWealth.slice(-third - 1);
   const ctry = rng.pick(pool)!;
   const wealth: Life['wealth'] = verdict === 'saint' ? 'rich' : verdict === 'good' ? (rng.chance(0.5) ? 'rich' : 'middle') : verdict === 'meh' ? 'middle' : 'poor';
-  const life = createLife(content, { seed, country: ctry.id, birthYear: old.year, mode: old.mode, rating: old.rating, wealth });
+  const life = createLife(content, { seed, country: ctry.id, birthYear: old.year, mode: old.mode, rating: old.rating, wealth, fatigue: mergeFatigue(old.fatigue, old.seenCount) });
   const bump = { saint: 18, good: 8, meh: 0, bad: -10, monster: -20 }[verdict];
   for (const s of ['health', 'looks', 'smarts', 'happy'] as const) life.stats[s] = clamp(life.stats[s] + bump + rng.range(-5, 5));
   life.attrs.karma = clamp(50 + (k - 50) * 0.3);
