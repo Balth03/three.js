@@ -169,7 +169,7 @@ export const friends2Events: EventDef[] = [
       en: [
         "{a.first}'s partner corners you in the kitchen, {w:drink} in hand, breath reeking, and whispers: 'You and me, bathroom, two minutes.' Your friend is ten feet away cutting the cake.",
         "Notification at 2 a.m.: {a.first}'s partner sends you a photo of a body part that has no business being on your phone. Caption: 'let's keep this between us 😏'.",
-        "At {a.first}'s wedding, the brand-new spouse grabs your butt during {w:song}. You smell {w:smell}, and deep discomfort.",
+        "At {a.first}'s wedding, the brand-new spouse grabs your butt during {w:song}. You notice {w:smell}, and deep discomfort.",
         "{w:exclaim} You catch {a.first}'s partner making out with someone {w:at_place}. They see you. They wink. {w:swear}",
       ],
     },
@@ -400,13 +400,13 @@ export const friends2Events: EventDef[] = [
         "Tu rentres chez toi avec une gastro carabinée, en serrant les fesses comme jamais. La lumière s'allume : « SURPRIIIISE ! » {a.first} a invité trente personnes. Les toilettes sont derrière eux.",
         "Tu passes la porte, tout nu{|e} sous ton manteau parce que ton date a mal tourné. « SURPRISE ! » hurlent {a.first}, tes collègues et ta grand-mère.",
         "{a.first} t'a organisé une fête surprise. Tu arrives en plein appel coquin au téléphone, haut-parleur activé. Quarante invités entendent la fin de la phrase.",
-        "Fête surprise montée par {a.first}. Mauvaise idée : tu reviens de la salle de sport, tu sens {w:smell}, et tu as {w:gross} collé sur la joue. Tout est filmé.",
+        "Fête surprise montée par {a.first}. Mauvaise idée : tu reviens de la salle de sport, tu dégages {w:smell}, et tu as {w:gross} collé sur la joue. Tout est filmé.",
       ],
       en: [
         "You come home with violent food poisoning, clenching like never before. Lights on: 'SURPRIIIISE!' {a.first} invited thirty people. The bathroom is behind them.",
         "You walk in naked under your coat because your date went sideways. 'SURPRISE!' scream {a.first}, your coworkers and your grandma.",
         "{a.first} threw you a surprise party. You walk in mid-sexy phone call, on speaker. Forty guests hear the end of the sentence.",
-        "Surprise party set up by {a.first}. Bad idea: you're back from the gym, you smell {w:smell}, and you have {w:gross} stuck to your cheek. It's all being filmed.",
+        "Surprise party set up by {a.first}. Bad idea: you're back from the gym, you give off {w:smell}, and you have {w:gross} stuck to your cheek. It's all being filmed.",
       ],
     },
     choices: [
@@ -815,7 +815,7 @@ export const friends2Events: EventDef[] = [
           { w: 1, text: { fr: ["En arrivant, je me suis pris une bouteille perdue dans la tempe. Les urgences ont recousu mon front. {a.first} dormait paisiblement dans le couloir, sur un brancard volé.", "J'ai récupéré {a.first}, mais la soirée m'a récupéré{|e} aussi. Je me suis réveillé{|e} à 11 h sur un canapé inconnu, avec {a.first} qui me tendait un café. Inversion des rôles."], en: ["When I got there, a stray bottle hit me in the temple. The ER stitched my forehead. {a.first} was sleeping peacefully in the hallway on a stolen gurney.", "I picked up {a.first}, but the party picked me up too. I woke at 11 a.m. on a stranger's couch, with {a.first} handing me coffee. Roles reversed."] }, fx: { rel: 10, health: -8, happy: 2 }, mood: 'sick' },
         ],
       },
-      { label: { fr: 'Lui payer un taxi', en: 'Pay for a cab' }, text: { fr: ["J'ai commandé un taxi à distance. Le chauffeur m'a facturé 80 balles de « nettoyage ». J'ai payé, j'ai dormi. Investissement rentable.", "Taxi commandé, pourboire laissé, problème réglé. Le chauffeur m'a envoyé une note une étoile : « Votre ami chante faux et sent {w:smell}. »"], en: ["I ordered a cab remotely. The driver charged me 80 bucks for 'cleaning'. I paid, I slept. Good investment.", "Cab ordered, tip left, problem solved. The driver left me a one-star rating: 'Your friend sings off-key and smells of {w:smell}.'"] }, fx: { money: -80, rel: 6 } },
+      { label: { fr: 'Lui payer un taxi', en: 'Pay for a cab' }, text: { fr: ["J'ai commandé un taxi à distance. Le chauffeur m'a facturé 80 balles de « nettoyage ». J'ai payé, j'ai dormi. Investissement rentable.", "Taxi commandé, pourboire laissé, problème réglé. Le chauffeur m'a envoyé une note une étoile : « Votre ami chante faux et sent {w:smell}. »"], en: ["I ordered a cab remotely. The driver charged me 80 bucks for 'cleaning'. I paid, I slept. Good investment.", "Cab ordered, tip left, problem solved. The driver left me a one-star rating: 'Your friend sings off-key and gives off {w:smell}.'"] }, fx: { money: -80, rel: 6 } },
       { label: { fr: 'Couper le téléphone', en: 'Turn off the phone' }, text: { fr: ["J'ai éteint mon téléphone. Au réveil : 37 appels manqués et une photo de {a.first} endormi{a:|e} dans un caddie. {a:Il|Elle} est vivant{a:|e}. Mais vexé{a:|e}.", "J'ai coupé et je me suis rendormi{|e}. {a.first} a fini la nuit au commissariat, où un flic sympa lui a prêté un pantalon. {a:Il|Elle} me le rappelle à chaque soirée."], en: ["I turned off my phone. Woke up to 37 missed calls and a photo of {a.first} asleep in a shopping cart. Alive. But offended.", "I switched it off and went back to sleep. {a.first} spent the night at the police station, where a nice cop lent {a:him|her} pants. {a:He|She} reminds me at every party."] }, fx: { rel: -15, health: 2 } },
     ],
   },
@@ -1018,7 +1018,7 @@ export const friends2Events: EventDef[] = [
         "{a.first} rend tes clés en évitant ton regard. La voiture a une nouvelle bosse, une contravention sur le pare-brise, et la banquette est poisseuse. « J'ai eu un date », dit-{a:il|elle}.",
       ],
       en: [
-        "{a.first} returns your car after the weekend. It smells of {w:smell}. In the back seat: {w:object}, underwear belonging to nobody you know, and {w:gross}.",
+        "{a.first} returns your car after the weekend. It gives off {w:smell}. In the back seat: {w:object}, underwear belonging to nobody you know, and {w:gross}.",
         "Your car comes back from {a.first}'s with 600 more miles, one less mirror and suspicious stains on the ceiling. The CEILING. {w:swear}",
         "{a.first} borrowed your car 'for a move'. In the trunk you find {w:animal}, a shovel and a tarp. {a:He|She} says it's 'not what you think'.",
         "{a.first} hands back your keys avoiding eye contact. The car has a new dent, a ticket on the windshield, and the back seat is sticky. 'I had a date,' {a:he|she} says.",
@@ -1852,7 +1852,7 @@ export const friends2Events: EventDef[] = [
       en: [
         "HR 'trust' workshop. You must fall backwards into the arms of {a.first}, {a.rel}. {a:He|She} is looking at {a:his|her} phone.",
         "Team exercise at {employer}: blindfolded, you must follow {a.first}'s voice through an obstacle course. {a:He|She} still owes you money.",
-        "The life coach demands you give {a.first} a thirty-second hug. {a:He|She} smells of {w:smell} and hasn't said hello to you in four years.",
+        "The life coach demands you give {a.first} a thirty-second hug. {a:He|She} gives off {w:smell} and hasn't said hello to you in four years.",
         "Trust fall at the seminar. {a.first} is behind you. {a:He|She} had {w:food} for lunch and {a:his|her} hands are still greasy.",
       ],
     },
@@ -1973,7 +1973,7 @@ export const friends2Events: EventDef[] = [
           { w: 1, text: { fr: ["Miracle : j'ai recruté tout le service compta. Je suis au-dessus de {a.first} dans la pyramide. {a:Il|Elle} me déteste. Je roule en voiture de fonction rose.", "J'ai cartonné. Trois mois plus tard, l'entreprise mère a été fermée pour fraude. J'ai gardé 400 leggings et une enquête en cours."], en: ["Miracle: I recruited the whole accounting department. I'm above {a.first} in the pyramid. {a:He|She} hates me. I drive a pink company car.", "I crushed it. Three months later, the parent company was shut down for fraud. I kept 400 leggings and an ongoing investigation."] }, fx: { money: 'amount', rel: -10, karma: -6, heat: 3 }, mood: 'proud' },
         ],
       },
-      { label: { fr: 'Acheter un truc, par pitié', en: 'Buy one thing out of pity' }, text: { fr: ["J'ai acheté une bougie énergétique. Elle sent {w:smell}. {a.first} m'appelle maintenant « {mon meilleur client|ma meilleure cliente} » et me relance tous les lundis.", "J'ai pris un pot de crème à 49 €. Elle m'a donné des boutons. {a.first} dit que c'est « la détox qui sort ». Je suis détoxé{|e} du portefeuille."], en: ["I bought an energy candle. It smells of {w:smell}. {a.first} now calls me 'my best customer' and follows up every Monday.", "I bought a $49 cream. It gave me pimples. {a.first} says it's 'the toxins coming out'. Mostly the money came out."] }, fx: { money: -50, rel: 5 } },
+      { label: { fr: 'Acheter un truc, par pitié', en: 'Buy one thing out of pity' }, text: { fr: ["J'ai acheté une bougie énergétique. Elle sent {w:smell}. {a.first} m'appelle maintenant « {mon meilleur client|ma meilleure cliente} » et me relance tous les lundis.", "J'ai pris un pot de crème à 49 €. Elle m'a donné des boutons. {a.first} dit que c'est « la détox qui sort ». Je suis détoxé{|e} du portefeuille."], en: ["I bought an energy candle. It gives off {w:smell}. {a.first} now calls me 'my best customer' and follows up every Monday.", "I bought a $49 cream. It gave me pimples. {a.first} says it's 'the toxins coming out'. Mostly the money came out."] }, fx: { money: -50, rel: 5 } },
       { label: { fr: 'Le dénoncer à la direction', en: 'Report it to management' }, text: { fr: ["J'ai signalé le business de {a.first} à la direction. Interdiction de vendre au bureau. {a:Il|Elle} m'a placé{|e} sur sa liste noire « énergétique ». Je vis avec.", "Mail aux RH. Le stand a été démonté. {a.first} me regarde comme si j'avais tué {a:son|sa} chef{a:|fe} de lignée. Ce qui est techniquement vrai."], en: ["I reported {a.first}'s business to management. Selling at work banned. {a:He|She} put me on {a:his|her} 'energetic' blacklist. I'll live.", "Email to HR. The booth was dismantled. {a.first} looks at me like I killed {a:his|her} upline. Which is technically true."] }, fx: { rel: -15, perf: 2 } },
     ],
   },
@@ -2177,7 +2177,7 @@ export const friends2Events: EventDef[] = [
         "Au mariage de {a.first}, le champagne coule à flots. À 2 h, tu te réveilles dans la suite nuptiale. Seul{|e}. Mais il y a un voile dans tes cheveux et {w:gross} sur l'oreiller.",
       ],
       en: [
-        "{a.first}, {a.rel}, invites you to a castle wedding. You're at table 23, the 'coworkers' table, between the 2nd floor's human copier and an uncle who smells of {w:smell}.",
+        "{a.first}, {a.rel}, invites you to a castle wedding. You're at table 23, the 'coworkers' table, between the 2nd floor's human copier and an uncle who gives off {w:smell}.",
         "{a.first}'s wedding. Mandatory gift, registry: {w:gift} for {$amount}. The DJ plays {w:song}. {a.first} takes your hand to dance. Your career depends on this slow dance.",
         "You're invited to {a.first}'s wedding. During cocktails, you catch the new spouse making out with someone who isn't {a.first}. Behind the wedding cake.",
         "At {a.first}'s wedding, champagne flows freely. At 2 a.m. you wake up in the bridal suite. Alone. But there's a veil in your hair and {w:gross} on the pillow.",
@@ -2829,7 +2829,7 @@ export const friends2Events: EventDef[] = [
         "At a bar, a stranger named {a.first} pitches a plan: crash a rich people's wedding at the castle next door. 'Unlimited buffet, open bar, and nobody knows anybody.'",
         "{a.first}, met ten minutes ago {w:at_place}, hands you a stolen waiter's uniform. 'There's a wedding. Foie gras, lobster, and a bride who looks like {w:celeb}. Coming?'",
         "A charismatic stranger, {a.first}, drags you toward a party: 'Millionaire wedding. I have two fake invitations. You'll be the cousin from Canada.'",
-        "{a.first}, a stranger who smells of {w:smell}, swears there's a wedding with a champagne fountain. 'Trust me.'",
+        "{a.first}, a stranger who gives off {w:smell}, swears there's a wedding with a champagne fountain. 'Trust me.'",
       ],
     },
     choices: [
@@ -2889,7 +2889,7 @@ export const friends2Events: EventDef[] = [
         "{a.first} m'a gardé une place à côté de {a:lui|elle} dans le bus de la sortie scolaire {w:to_place}. On a chanté tout le trajet. Le chauffeur, moins.",
       ],
       en: [
-        "{a.first}, {a.my}, lent me a scented eraser. It smells like {w:smell}. We're friends for life now.",
+        "{a.first}, {a.my}, lent me a scented eraser. It gives off {w:smell}. We're friends for life now.",
         "At recess, {a.first} taught me how to imitate {w:sound}. We both got detention. Worth it.",
         "{a.first} and I spent lunch trading theories. {a:He|She} is sure {w:conspiracy}. I didn't dare disagree.",
         "{a.first} saved me a seat on the bus for the school trip {w:to_place}. We sang the whole way. The driver, less so.",

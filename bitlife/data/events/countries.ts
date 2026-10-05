@@ -3568,4 +3568,359 @@ export const countryEvents: EventDef[] = [
       },
     ],
   },
+  // ═════════════════════════════ BRÉSIL ═════════════════════════════
+  {
+    id: 'cy_br_pelada',
+    icon: '⚽',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'park', mood: 'happy', prop: 'ball' },
+    when: { country: ['br'], age: [6, 14] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Match de foot pieds nus dans la rue de ton quartier à {city}. Les buts sont deux tongs. Le ballon est à moitié dégonflé. Un homme en survêtement, assis sur un muret, prend des notes. On dit que c'est un recruteur.",
+        "Partie de foot sur la plage. Le sable brûle, les vagues mangent le terrain toutes les cinq minutes, et l'arbitre est un vendeur de noix de coco qui siffle avec la bouche. L'équipe adverse a un gamin de 9 ans qui jongle comme {w:celeb}.",
+        "Le ballon vient de passer par-dessus le mur du voisin, qui a un chien énorme nommé Pelé. C'est ton tour d'aller le chercher. Les autres te regardent. Le chien aussi, à travers le portail, en bavant.",
+        "Tournoi de foot du quartier. Ta grand-mère est dans les tribunes avec {w:object} et une voix qui porte jusqu'à l'autre bout de la ville. Elle crie ton prénom à chaque fois que tu touches le ballon, même pour une touche.",
+      ],
+      en: [
+        "Barefoot street football in your {city} neighborhood. The goals are two flip-flops. The ball is half flat. A man in a tracksuit, sitting on a low wall, is taking notes. They say he's a scout.",
+        "Beach football. The sand is scorching, the waves eat the pitch every five minutes, and the ref is a coconut vendor whistling with his mouth. The other team has a 9-year-old who juggles like {w:celeb}.",
+        "The ball just sailed over the neighbor's wall, and he has a huge dog named Pelé. It's your turn to fetch it. The others are watching. So is the dog, through the gate, drooling.",
+        "Neighborhood tournament. Your grandma is in the stands with {w:object} and a voice that carries across town. She screams your name every time you touch the ball, even for a throw-in.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Faire un petit pont', en: 'Nutmeg someone' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai fait un petit pont au meilleur joueur, puis un coup du sombrero, puis j'ai marqué entre les deux tongs. Le recruteur a souri. Il m'a laissé sa carte. C'était un vendeur d'assurances, mais quand même.", "Petit pont, roulette, but. Toute la rue a crié « Golaço ! ». Une mamie a jeté des fleurs depuis sa fenêtre. En fait c'étaient ses géraniums, pot compris. Mais j'étais un héros."], en: ["I nutmegged the best player, flicked it over another's head, then scored between the flip-flops. The scout smiled. He left me his card. He sold insurance, but still.", "Nutmeg, spin, goal. The whole street yelled “Golaço!” A granny threw flowers from her window. Actually it was her geraniums, pot included. But I was a hero."] }, fx: { happy: 9, athletic: 3, fame: 1 }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai tenté un petit pont et je me suis fait un petit pont à moi-même. Je suis tombé{|e} sur les fesses. Le gamin de 9 ans a marqué. Ma grand-mère a crié mon prénom quand même, par loyauté."], en: ["I tried a nutmeg and nutmegged myself. Fell on my butt. The 9-year-old scored. Grandma screamed my name anyway, out of loyalty."] }, fx: { happy: -2, athletic: 1 }, mood: 'sad' },
+        ],
+      },
+      {
+        label: { fr: 'Récupérer le ballon', en: 'Fetch the ball' },
+        out: [
+          { w: 1, odds: { athletic: 1 }, text: { fr: ["J'ai escaladé le mur. Pelé, le chien, a couru vers moi, a pris le ballon dans la gueule et me l'a rapporté en remuant la queue. Il voulait juste jouer. Il est notre gardien de but maintenant.", "J'ai sauté le mur, attrapé le ballon et sauté de l'autre côté avant que le chien comprenne. Il m'a regardé{|e} avec admiration. Les copains m'ont surnommé{|e} « Ninja »."], en: ["I climbed the wall. Pelé the dog ran at me, grabbed the ball in his mouth and brought it to me wagging his tail. He just wanted to play. He's our goalkeeper now.", "I hopped the wall, grabbed the ball and leapt back before the dog figured it out. He looked at me admiringly. My friends nicknamed me “Ninja.”"] }, fx: { happy: 7, athletic: 2 }, mood: 'happy' },
+          { w: 1, text: { fr: ["Pelé m'a coursé{|e} dans tout le jardin. J'ai laissé mon short accroché au portail. Je suis rentré{|e} en slip avec le ballon. Toute la rue a applaudi."], en: ["Pelé chased me around the whole yard. I left my shorts hanging on the gate. I came back in my underwear with the ball. The whole street applauded."] }, fx: { happy: 3, stress: 4 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Être gardien', en: 'Play goalkeeper' },
+        text: { fr: ["Je me suis mis{|e} dans les buts. J'ai arrêté trois tirs avec le visage. Mon nez saigne, mais les buts étaient inviolés. On m'appelle « Le Mur », et ma mère m'appelle « Le Nez ».", "Gardien. Le gamin de 9 ans m'a mis cinq buts dont un en retourné. J'ai applaudi le dernier. C'est ça, le jogo bonito."], en: ["I went in goal. Stopped three shots with my face. My nose is bleeding, but the goal stayed clean. They call me “The Wall,” and my mom calls me “The Nose.”", "Keeper. The 9-year-old scored five on me, one with a bicycle kick. I applauded the last one. That's jogo bonito."] },
+        fx: { happy: 4, health: -2 },
+      },
+    ],
+  },
+  {
+    id: 'cy_br_novela',
+    icon: '📺',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'home', mood: 'shock', prop: 'tv' },
+    when: { country: ['br'], age: [10, 95] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "21 h : l'heure sacrée de la telenovela. Toute la famille est devant la télé. Ta grand-mère a interdit les téléphones, les conversations et la respiration bruyante. Ce soir, on découvre enfin qui est le vrai père de Maria Clara.",
+        "La telenovela en est à l'épisode 187. L'héroïne vient d'apprendre que son mari est en fait son frère jumeau perdu, qui est aussi son patron, et que sa mère est vivante et vit {w:far_place}. Ta tante pleure dans un torchon.",
+        "Tu as vu le dernier épisode de la telenovela en avance, sur internet. Toute la famille attend ce soir pour le regarder ensemble. Ta grand-mère a préparé {w:food} pour l'occasion. Le secret te brûle la langue.",
+        "Coupure de courant à {city} à 20 h 58, deux minutes avant la finale de la telenovela. Les voisins hurlent. Ta grand-mère attrape une lampe de poche et un transistor, déterminée.",
+      ],
+      en: [
+        "9 p.m.: sacred telenovela hour. The whole family is in front of the TV. Grandma has banned phones, conversation and loud breathing. Tonight we finally learn who Maria Clara's real father is.",
+        "The telenovela is on episode 187. The heroine just learned her husband is actually her long-lost twin brother, who is also her boss, and that her mother is alive and living {w:far_place}. Your aunt is crying into a dish towel.",
+        "You watched the last telenovela episode early, online. The whole family is waiting to watch it together tonight. Grandma made {w:food} for the occasion. The secret is burning your tongue.",
+        "Power cut in {city} at 8:58 p.m., two minutes before the telenovela finale. Neighbors are screaming. Grandma grabs a flashlight and a transistor radio, determined.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Regarder en famille', en: 'Watch with the family' },
+        out: [
+          { w: 2, text: { fr: ["Le vrai père de Maria Clara, c'était le jardinier, qui est aussi le maire. Toute la famille a crié en même temps. Le chien a aboyé. Ma grand-mère a dû s'allonger.", "On a regardé l'épisode en se tenant la main. À la fin, tout le monde pleurait, même mon oncle, qui prétend détester les novelas et connaît tous les personnages par cœur."], en: ["Maria Clara's real father was the gardener, who's also the mayor. The whole family screamed at once. The dog barked. Grandma had to lie down.", "We watched holding hands. At the end everyone was crying, even my uncle, who claims to hate novelas and knows every character by heart."] }, fx: { happy: 7, stress: -3 }, mood: 'cry' },
+        ],
+      },
+      {
+        label: { fr: 'Spoiler la fin', en: 'Spoil the ending' },
+        out: [
+          { w: 2, text: { fr: ["J'ai dit « c'est le jardinier » avant le générique. Silence glacial. Ma grand-mère m'a lancé une pantoufle avec une précision militaire. On ne m'a pas resservi de dessert pendant une semaine.", "J'ai spoilé la fin. Ma tante a quitté la pièce en pleurant. Mon oncle m'a déshérité{|e} symboliquement. Le chien m'a mordu{|e}, je crois qu'il suivait aussi la série."], en: ["I said “it's the gardener” before the opening credits. Icy silence. Grandma threw a slipper at me with military precision. No dessert for a week.", "I spoiled the ending. My aunt left the room crying. My uncle symbolically disinherited me. The dog bit me; I think he was following the show too."] }, fx: { happy: 2, karma: -4 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Écouter à la radio', en: 'Listen on the radio' },
+        text: { fr: ["Pendant la coupure, on a écouté la telenovela à la radio, à la lampe de poche, serrés autour du transistor comme en 1950. C'était la plus belle soirée de l'année. Le courant est revenu au générique.", "On a suivi la finale sur le téléphone du voisin, à quinze personnes autour d'un écran de 6 pouces. Personne ne voyait rien. Tout le monde a pleuré au bon moment."], en: ["During the outage we listened to the telenovela on the radio by flashlight, huddled around the transistor like it was 1950. Best evening of the year. Power came back for the end credits.", "We watched the finale on the neighbor's phone, fifteen people around a 6-inch screen. Nobody could see anything. Everyone cried at the right moment."] },
+        fx: { happy: 6, karma: 2 },
+      },
+    ],
+  },
+  {
+    id: 'cy_br_aniversario',
+    icon: '🎂',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'party', mood: 'party', prop: 'brigadeiro', fx: 'confetti' },
+    when: { country: ['br'], age: [5, 12] },
+    weight: 8,
+    cooldown: 2,
+    text: {
+      fr: [
+        "C'est ton anniversaire ! Il y a 300 brigadeiros (des boules de chocolat sucrées à mourir), un gâteau en forme de {w:animal}, toute ta famille, tous les voisins et des gens que personne ne connaît. Ils chantent « Parabéns pra você » en tapant dans les mains.",
+        "Fête d'anniversaire brésilienne : après la chanson, tout le monde crie « Com quem será ? » (avec qui va-t-il se marier ?) et propose des noms d'enfants de ta classe. Ta tante vient de crier le nom de ton pire ennemi.",
+        "Le buffet de ton anniversaire contient des coxinhas, des brigadeiros, des beijinhos, du gâteau et {w:food}. Ta mère a cuisiné pendant trois jours. Tu as mangé onze brigadeiros avant l'arrivée des invités.",
+        "Tradition : la première part de gâteau doit être offerte à la personne la plus importante pour toi. Ta mère, ta grand-mère, ton père et ton meilleur ami sont tous là, et ils attendent, en souriant beaucoup trop.",
+      ],
+      en: [
+        "It's your birthday! There are 300 brigadeiros (deadly sweet chocolate balls), a cake shaped like {w:animal}, your whole family, all the neighbors and people nobody knows. They're singing “Parabéns pra você” and clapping.",
+        "Brazilian birthday party: after the song, everyone shouts “Com quem será?” (who will they marry?) and suggests names of kids in your class. Your aunt just shouted the name of your worst enemy.",
+        "Your birthday buffet has coxinhas, brigadeiros, beijinhos, cake and {w:food}. Your mom cooked for three days. You ate eleven brigadeiros before the guests arrived.",
+        "Tradition: the first slice of cake goes to the most important person in your life. Your mom, grandma, dad and best friend are all here, waiting, smiling far too much.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Manger les brigadeiros', en: 'Eat the brigadeiros' },
+        out: [
+          { w: 2, text: { fr: ["J'ai mangé 34 brigadeiros. Mon visage était couvert de chocolat. J'ai couru partout en hurlant de joie pendant deux heures, puis je me suis effondré{|e} dans un coin, endormi{|e} avec un brigadeiro dans la main.", "Brigadeiros à volonté. J'ai eu mal au ventre, mais aussi la meilleure journée de ma vie. Ma mère a pris 500 photos. Sur toutes, j'ai du chocolat jusqu'aux oreilles."], en: ["I ate 34 brigadeiros. My face was covered in chocolate. I ran around screaming with joy for two hours, then collapsed in a corner, asleep with a brigadeiro in hand.", "Unlimited brigadeiros. Stomach ache, but best day of my life. Mom took 500 photos. In all of them I have chocolate up to my ears."] }, fx: { happy: 10, health: -2, weight: 0.02 }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Donner la 1re part', en: 'Give the first slice' },
+        out: [
+          { w: 2, text: { fr: ["J'ai donné la première part à ma grand-mère. Elle a pleuré. Ma mère a souri en serrant les dents. Mon père a fait semblant de s'en ficher. Mon meilleur ami a mangé la deuxième part. Tout le monde était content, à peu près.", "J'ai donné la première part au chien. Tout le monde a ri. Sauf ma mère, qui avait fait le gâteau pendant six heures. Le chien, lui, était ému."], en: ["I gave the first slice to Grandma. She cried. Mom smiled through gritted teeth. Dad pretended not to care. My best friend ate the second slice. Everyone was happy, more or less.", "I gave the first slice to the dog. Everyone laughed. Except Mom, who'd spent six hours on the cake. The dog was very moved."] }, fx: { happy: 6, karma: 2 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Fuir le « Com quem será »', en: 'Dodge the “who will you marry”' },
+        text: { fr: ["Quand ils ont crié le nom de mon pire ennemi, je me suis caché{|e} sous la table du buffet. J'y ai trouvé trois cousins et un chat. On a mangé des coxinhas en secret jusqu'à la fin de la fête.", "J'ai crié « personne, je vais vivre avec mon chien ! ». Tout le monde a applaudi. Ma grand-mère a dit que c'était « la réponse la plus sage de la famille »."], en: ["When they shouted my worst enemy's name, I hid under the buffet table. Found three cousins and a cat there. We ate coxinhas in secret till the party ended.", "I yelled, “Nobody, I'm going to live with my dog!” Everyone applauded. Grandma said it was “the wisest answer in the family.”"] },
+        fx: { happy: 5 },
+      },
+    ],
+  },
+  {
+    id: 'cy_br_praia',
+    icon: '🏖️',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'beach', mood: 'happy', prop: 'caipirinha' },
+    when: { country: ['br'], age: [16, 70] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Plage de Copacabana. En une heure, des vendeurs t'ont proposé : du fromage grillé sur un bâton, des caipirinhas, un hamac, des lunettes de soleil, un tatouage au henné, un chapeau, {w:object} et une perruque. Ils ne s'arrêtent jamais.",
+        "Tu arrives à la plage de {city} en maillot une-pièce ou short de bain long. Autour de toi, tout le monde porte un maillot minuscule, quel que soit l'âge ou la silhouette. Une mamie de 75 ans en string te regarde avec pitié.",
+        "Footvolley sur la plage : des types musclés jouent au volley avec les pieds, la tête et la poitrine, sans jamais toucher le ballon avec les mains. Il en manque un. Ils te regardent, en bronzant de façon arrogante.",
+        "Fin d'après-midi à la plage. Tout le monde applaudit le coucher de soleil, comme à la fin d'un spectacle. Tu as bu trois caipirinhas, mangé {w:food} et pris un coup de soleil en forme de bretelles.",
+      ],
+      en: [
+        "Copacabana beach. In one hour, vendors have offered you: grilled cheese on a stick, caipirinhas, a hammock, sunglasses, a henna tattoo, a hat, {w:object} and a wig. They never stop.",
+        "You arrive at the {city} beach in a one-piece or long board shorts. Everyone around you wears a tiny swimsuit, whatever their age or shape. A 75-year-old granny in a thong looks at you with pity.",
+        "Footvolley on the beach: muscular guys playing volleyball with feet, head and chest, never touching the ball with their hands. They're one short. They look at you, tanning arrogantly.",
+        "Late afternoon at the beach. Everyone applauds the sunset, like at the end of a show. You've had three caipirinhas, eaten {w:food} and got a sunburn shaped like suspenders.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Acheter tout', en: 'Buy everything' },
+        out: [
+          { w: 2, text: { fr: ["J'ai tout acheté. Je suis reparti{|e} de la plage avec un hamac, quatre caipirinhas dans le sang, un chapeau, un tatouage au henné en forme de perroquet et aucun souvenir d'avoir dit oui à la perruque.", "J'ai dit oui au premier vendeur. La rumeur s'est répandue. En dix minutes, j'étais entouré{|e} de vingt vendeurs. J'ai dépensé 150 reais et je possède maintenant un ananas sculpté en forme de mon visage."], en: ["I bought everything. I left the beach with a hammock, four caipirinhas in my blood, a hat, a parrot-shaped henna tattoo and no memory of agreeing to the wig.", "I said yes to the first vendor. Word spread. In ten minutes, twenty vendors surrounded me. I spent 150 reais and now own a pineapple carved into my face."] }, fx: { happy: 7, money: -40, addiction: ['alcohol', 2] }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Jouer au footvolley', en: 'Play footvolley' },
+        out: [
+          { w: 1, odds: { athletic: 1 }, text: { fr: ["J'ai renvoyé le ballon d'une talonnade improvisée. Les gars ont crié « Que isso ! ». J'ai joué deux heures. Mes abdos sont apparus par magie. Je reviens demain.", "J'ai fait une reprise de volée par miracle. Ils m'ont adopté{|e}. Je joue avec eux tous les dimanches. Je suis le moins musclé, mais le plus enthousiaste."], en: ["I returned the ball with an improvised backheel. The guys shouted “Que isso!” I played two hours. Abs appeared by magic. Coming back tomorrow.", "I hit a volley by miracle. They adopted me. I play with them every Sunday. I'm the least muscular but the most enthusiastic."] }, fx: { happy: 8, athletic: 3, looks: 1 }, mood: 'proud' },
+          { w: 2, text: { fr: ["J'ai pris le ballon dans la figure dès la première passe. Puis dans le ventre. Puis plus bas. Je suis tombé{|e} dans le sable en position fœtale. Ils ont continué à jouer autour de moi.", "J'ai touché le ballon avec la main par réflexe. Silence. Un des gars a juste dit « gringo… » en secouant la tête. Je suis retourné{|e} sur ma serviette."], en: ["I took the ball in the face on the first pass. Then the stomach. Then lower. I fell into the sand in fetal position. They kept playing around me.", "I touched the ball with my hand on reflex. Silence. One guy just said “gringo…” shaking his head. I went back to my towel."] }, fx: { health: -3, happy: -2 }, mood: 'sad' },
+        ],
+      },
+      {
+        label: { fr: 'Adopter le mini-maillot', en: 'Go tiny swimsuit' },
+        text: { fr: ["J'ai acheté le maillot le plus petit de la plage. J'ai bronzé là où le soleil n'avait jamais été. La mamie en string m'a fait un clin d'œil. Je me suis senti{|e} libre et un peu brûlé{|e} aux endroits stratégiques.", "J'ai adopté le mini-maillot. Coup de soleil intégral, sauf sur un petit triangle. Je ressemble à un drapeau étrange. Les Brésiliens m'ont félicité{|e} pour mon courage."], en: ["I bought the tiniest swimsuit on the beach. I tanned where the sun had never been. The thong granny winked at me. I felt free and a bit burned in strategic places.", "I went tiny-swimsuit. Full-body sunburn except one little triangle. I look like a strange flag. The locals congratulated me on my courage."] },
+        fx: { happy: 6, looks: 2, health: -2 },
+      },
+    ],
+  },
+  {
+    id: 'cy_br_churrasco',
+    icon: '🍖',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'party', mood: 'happy', prop: 'skewer' },
+    when: { country: ['br'], age: [18, 80] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Churrascaria à volonté. Sur ta table, une petite carte : côté vert, les serveurs t'apportent de la viande ; côté rouge, ils s'arrêtent. Ta carte est verte. Quinze serveurs avec des épées de viande foncent vers toi comme une cavalerie.",
+        "Churrasco du dimanche chez ton oncle. Il est à la grille depuis 9 h du matin, torse nu, une bière à la main, et il refuse que quiconque touche à la viande. Il te tend un morceau de picanha qui dégouline. Il attend ton avis.",
+        "Au rodízio, le serveur te propose pour la onzième fois du cœur de poulet grillé. Tu as déjà mangé de la picanha, de la saucisse, de l'agneau, de l'ananas grillé et {w:food}. Ta ceinture a abandonné.",
+        "Ton beau-père te met au défi : manger autant de viande que lui au churrasco. Il a 65 ans, 120 kilos et un palmarès légendaire. Il a déjà dit « on commence doucement » et avalé une saucisse entière.",
+      ],
+      en: [
+        "All-you-can-eat steakhouse. On your table, a little card: green side, servers bring you meat; red side, they stop. Your card is green. Fifteen servers with meat swords charge at you like cavalry.",
+        "Sunday churrasco at your uncle's. He's been at the grill since 9 a.m., shirtless, beer in hand, and refuses to let anyone touch the meat. He hands you a dripping piece of picanha. He awaits your verdict.",
+        "At the rodízio, the server offers you grilled chicken hearts for the eleventh time. You've already had picanha, sausage, lamb, grilled pineapple and {w:food}. Your belt has given up.",
+        "Your father-in-law challenges you: eat as much meat as him at the churrasco. He's 65, 265 pounds and has a legendary record. He already said “let's start slow” and swallowed a whole sausage.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Carte verte à vie', en: 'Green card forever' },
+        out: [
+          { w: 2, odds: { health: 1 }, text: { fr: ["J'ai laissé la carte sur vert pendant deux heures. J'ai mangé une vache entière, en pièces détachées. J'ai transpiré de la graisse. J'ai fait la sieste dans la voiture. Je recommencerai demain.", "J'ai mangé jusqu'à ce que la carte verte devienne un défi personnel. Les serveurs m'ont applaudi{|e}. Le gérant m'a demandé de ne plus revenir, « pour la rentabilité »."], en: ["I left the card on green for two hours. I ate an entire cow, in separate parts. I sweated grease. I napped in the car. I'll do it again tomorrow.", "I ate until the green card became a personal challenge. The servers applauded. The manager asked me not to return, “for profitability.”"] }, fx: { happy: 9, weight: 0.04, health: -3 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Défier le beau-père', en: 'Take on the father-in-law' },
+        out: [
+          { w: 1, odds: { health: 1 }, text: { fr: ["J'ai battu mon beau-père d'une saucisse. Il s'est levé, m'a serré dans ses bras et a dit : « Maintenant, tu fais partie de la famille. » Puis il a vomi dans le jardin. On est liés à vie.", "Match nul. On a mangé tellement qu'on s'est endormis tous les deux, côte à côte, dans le hamac. Ma femme ou mon mari nous a pris en photo. C'est la photo de famille officielle."], en: ["I beat my father-in-law by one sausage. He stood up, hugged me and said: “Now you're family.” Then puked in the garden. We're bonded for life.", "Tie. We ate so much we both fell asleep side by side in the hammock. My spouse took a photo of us. It's the official family photo."] }, fx: { happy: 10, weight: 0.04, karma: 2 }, mood: 'proud' },
+          { w: 2, text: { fr: ["Au bout de 40 minutes, j'ai déclaré forfait. Mon beau-père a continué une heure de plus, en me regardant dans les yeux, en mâchant lentement. Il ne me respecte plus. Il me ressert à chaque repas, par pitié.", "J'ai abandonné après le cœur de poulet. Mon beau-père a dit « fraco » (faible) et toute la famille a hoché la tête. Je suis officiellement le gendre faible."], en: ["After 40 minutes, I forfeited. My father-in-law went on another hour, looking me in the eye, chewing slowly. He no longer respects me. He serves me extra at every meal, out of pity.", "I gave up after the chicken hearts. My father-in-law said “fraco” (weak) and the whole family nodded. I'm officially the weak in-law."] }, fx: { happy: -3, weight: 0.03 }, mood: 'sad' },
+        ],
+      },
+      {
+        label: { fr: 'Retourner la carte', en: 'Flip to red' },
+        text: { fr: ["J'ai retourné la carte sur rouge. Un serveur est passé quand même : « Juste un petit morceau. » Puis un autre. La carte rouge est une suggestion, pas une règle. J'ai encore mangé une heure.", "J'ai mis la carte sur rouge et commandé une salade. Les serveurs ont été choqués. Mon oncle aussi. Il a crié depuis la grille : « Tu es malade ? » J'ai eu honte."], en: ["I flipped to red. A server came by anyway: “Just a little piece.” Then another. The red card is a suggestion, not a rule. I ate for another hour.", "I flipped to red and ordered a salad. The servers were shocked. So was my uncle. He shouted from the grill, “Are you sick?” I was ashamed."] },
+        fx: { happy: 3, weight: 0.01 },
+      },
+    ],
+  },
+  {
+    id: 'cy_br_carnaval',
+    icon: '🎭',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'stadium', mood: 'party', prop: 'feathers', fx: 'confetti' },
+    when: { country: ['br'], age: [18, 60] },
+    weight: 7,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Carnaval de Rio. Tu défiles dans une école de samba au Sambódromo. Ton costume : trois plumes, des paillettes et 40 grammes de tissu stratégiquement placé. 70 000 spectateurs. Huit heures de danse. Tu as bu de la cachaça pour te détendre.",
+        "Bloco de rue au carnaval de {city}. Un million de personnes déguisées suivent un camion qui joue de la musique à un volume interdit par la convention de Genève. Ton voisin de bloco est habillé en bébé géant, en couche, avec {w:object} à la main.",
+        "Quatrième jour de carnaval sans dormir. Tu as perdu tes amis, tes chaussures et la notion du temps. Tu as des paillettes dans des endroits qui ne voient jamais le jour. Un inconnu en costume de banane t'offre une bière et {w:food}.",
+        "Ton école de samba t'a choisi{|e} pour monter sur le char principal, à 10 mètres de haut, en costume de plumes de 25 kilos. Il fait 35 °C. Tu dois sourire et danser pendant 80 minutes sans tomber.",
+      ],
+      en: [
+        "Rio carnival. You're parading with a samba school at the Sambódromo. Your costume: three feathers, glitter and 40 grams of strategically placed fabric. 70,000 spectators. Eight hours of dancing. You drank cachaça to loosen up.",
+        "Street bloco at the {city} carnival. A million people in costume follow a truck playing music at a volume banned by the Geneva Convention. The person next to you is dressed as a giant baby in a diaper and holding {w:object}.",
+        "Day four of carnival without sleep. You've lost your friends, your shoes and all sense of time. You have glitter in places that never see daylight. A stranger in a banana costume offers you a beer and {w:food}.",
+        "Your samba school picked you to ride the main float, 30 feet up, in a 55-pound feather costume. It's 95°F. You must smile and dance for 80 minutes without falling.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Danser jusqu\'au bout', en: 'Dance till the end' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai dansé huit heures. Mes plumes ont fondu, mes fesses ont bronzé, et j'ai perdu un morceau de costume au tour 3 sans m'en rendre compte. Je suis passé{|e} à la télé nationale. Flouté{|e}. Partiellement.", "J'ai sambé jusqu'à l'aube. J'ai embrassé onze inconnus, un policier et un drapeau. J'ai trouvé des paillettes dans mes oreilles jusqu'en juillet. Meilleure semaine de ma vie."], en: ["I danced eight hours. My feathers melted, my butt tanned, and I lost a piece of costume on lap 3 without noticing. I was on national TV. Blurred. Partially.", "I samba'd till dawn. I kissed eleven strangers, a cop and a flag. I found glitter in my ears until July. Best week of my life."] }, fx: { happy: 12, athletic: 3, health: -5, fame: 2, visual: 'confetti' }, mood: 'party' },
+          { w: 1, text: { fr: ["Je suis tombé{|e} du char, dix mètres, en costume de plumes. Les plumes ont amorti la chute. Un peu. J'ai atterri sur un vendeur de bière. Lui et moi avons fini à l'hôpital, en paillettes. On a reçu une note de 10 pour « l'audace »."], en: ["I fell off the float, thirty feet, in my feather costume. The feathers broke my fall. A bit. I landed on a beer vendor. He and I ended up in hospital, covered in glitter. We got a 10 for “daring.”"] }, fx: { health: -15, disease: 'broken_arm', happy: 4, visual: 'gore' }, mood: 'sick' },
+        ],
+      },
+      {
+        label: { fr: 'Suivre le bloco', en: 'Follow the bloco' },
+        out: [
+          { w: 2, text: { fr: ["J'ai suivi le bloco pendant 14 heures. Je me suis réveillé{|e} sur une plage, en costume de sirène, avec un tatouage frais « CARNAVAL 4EVER » et le numéro d'un bébé géant.", "Bloco réussi. J'ai uriné dans une bouteille, puis dans un buisson, puis dans un buisson qui était en réalité un homme déguisé en buisson. Il ne m'en veut pas. C'est le carnaval."], en: ["I followed the bloco for 14 hours. I woke up on a beach in a mermaid costume with a fresh “CARNAVAL 4EVER” tattoo and a giant baby's phone number.", "Bloco done. I peed in a bottle, then a bush, then a bush that was actually a man dressed as a bush. He doesn't hold it against me. It's carnival."] }, fx: { happy: 10, health: -6, addiction: ['alcohol', 6] }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Regarder des gradins', en: 'Watch from the stands' },
+        text: { fr: ["J'ai regardé depuis les gradins, habillé{|e} normalement. J'étais la seule personne habillée normalement sur 70 000. Des touristes m'ont pris{|e} en photo comme une curiosité.", "J'ai payé une fortune pour un siège. Je n'ai pas pu m'asseoir une seule seconde : tout le monde dansait debout. J'ai dansé aussi. Le siège était décoratif."], en: ["I watched from the stands in normal clothes. I was the only normally dressed person out of 70,000. Tourists photographed me as a curiosity.", "I paid a fortune for a seat. I couldn't sit for a single second: everyone danced standing. I danced too. The seat was decorative."] },
+        fx: { happy: 5, money: -100 },
+      },
+    ],
+  },
+  {
+    id: 'cy_br_transito',
+    icon: '🚁',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'office', mood: 'angry', prop: 'traffic' },
+    when: { country: ['br'], age: [18, 70] },
+    weight: 6,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Embouteillage à São Paulo : 300 km de bouchons cumulés, record battu. Tu es coincé{|e} depuis trois heures. Au-dessus de toi, des hélicoptères emmènent les riches au travail. Un vendeur te propose des chips, un chargeur de téléphone et un chiot à travers la fenêtre.",
+        "Tu es dans le bus pour aller travailler à {city}. Le trajet devait durer 40 minutes. Ça fait deux heures. Tu as fini ton livre, ta batterie et ta patience. Un passager vient de commencer une sieste sur ton épaule.",
+        "Bouchons monstres. Ton collègue riche te propose de partager son hélicoptère « pour seulement » 400 reais. Le chauffeur de moto-taxi, lui, te propose de faire le trajet en 15 minutes, sans casque, en zigzaguant entre les camions.",
+        "Ça fait quatre heures que tu es dans les bouchons et tu as très, très envie de faire pipi. Le prochain café est à 2 km, soit 90 minutes. Tu as une bouteille vide et {w:object} dans la voiture.",
+      ],
+      en: [
+        "São Paulo gridlock: 190 miles of combined traffic jams, a new record. You've been stuck for three hours. Above you, helicopters fly the rich to work. A vendor offers chips, a phone charger and a puppy through your window.",
+        "You're on the bus to work in {city}. The ride should take 40 minutes. It's been two hours. You've finished your book, your battery and your patience. A passenger just started napping on your shoulder.",
+        "Monster traffic. Your rich coworker offers to share his helicopter “for just” 400 reais. The moto-taxi driver offers to get you there in 15 minutes, no helmet, zigzagging between trucks.",
+        "You've been stuck in traffic for four hours and you really, really need to pee. The next café is a mile away, which means 90 minutes. You have an empty bottle and {w:object} in the car.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Prendre la moto-taxi', en: 'Take the moto-taxi' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai fait le trajet en moto-taxi en 14 minutes, en frôlant onze rétroviseurs et une vache. J'ai hurlé tout le long. Le chauffeur chantait {w:song}. Je suis arrivé{|e} à l'heure, avec les cheveux en forme de tornade.", "Moto-taxi : on est passé{|e}s entre deux bus avec trois centimètres de chaque côté. J'ai vu ma vie défiler, puis ma mort, puis mon bureau. J'ai donné un pourboire énorme pour être en vie."], en: ["I took the moto-taxi: 14 minutes, grazing eleven side mirrors and a cow. I screamed the whole way. The driver sang {w:song}. I arrived on time, with tornado hair.", "Moto-taxi: we squeezed between two buses with an inch on each side. I saw my life flash by, then my death, then my office. I tipped huge for being alive."] }, fx: { happy: 6, stress: 8, perf: 2, money: -15 }, mood: 'shock' },
+          { w: 1, text: { fr: ["La moto a dérapé sur une flaque d'huile. On a glissé sous un camion et ressorti de l'autre côté, sans une égratignure. Le chauffeur a dit « normal ». Moi, j'ai fait pipi dans mon pantalon. Pas normal."], en: ["The bike skidded on an oil patch. We slid under a truck and came out the other side without a scratch. The driver said “normal.” I wet my pants. Not normal."] }, fx: { stress: 12, happy: -3 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: "Payer l'hélico", en: 'Pay for the helicopter' },
+        out: [
+          { w: 1, text: { fr: ["J'ai payé l'hélicoptère. Vue magnifique sur 300 km de voitures immobiles. J'ai fait coucou à mes collègues coincés en bas. Arrivé{|e} en avance, ruiné{|e}, mais avec un sentiment de supériorité inédit.", "Hélicoptère. Pendant le vol, mon collègue m'a parlé de ses investissements pendant 25 minutes. J'aurais préféré les bouchons. J'ai vomi en atterrissant, sur ses chaussures italiennes."], en: ["I paid for the helicopter. Gorgeous view of 190 miles of stationary cars. I waved at my coworkers stuck below. Arrived early, broke, but with an unprecedented sense of superiority.", "Helicopter. During the flight, my coworker talked about his investments for 25 minutes. I'd have preferred the traffic. I puked on landing, on his Italian shoes."] }, fx: { money: -120, happy: 5, stress: -3 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Utiliser la bouteille', en: 'Use the bottle' },
+        out: [
+          { w: 2, text: { fr: ["J'ai utilisé la bouteille, discrètement, sous une couverture. Le chauffeur du camion d'à côté m'a vu{|e} d'en haut. Il m'a fait un pouce levé. On a tous nos moments de faiblesse dans les bouchons.", "La bouteille a débordé. J'ai improvisé avec {w:object}. Ma voiture sent encore ce moment. Je l'ai vendue. Le nouveau propriétaire m'a appelé{|e} pour demander « c'est quoi cette odeur ? »."], en: ["I used the bottle, discreetly, under a blanket. The truck driver next to me saw from above. He gave me a thumbs-up. We all have weak moments in traffic.", "The bottle overflowed. I improvised with {w:object}. My car still smells of that moment. I sold it. The new owner called to ask, “What's that smell?”"] }, fx: { happy: 2, stress: -4, visual: 'poop' }, mood: 'neutral' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cy_br_copa',
+    icon: '🇧🇷',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'party', mood: 'party', prop: 'jersey', fx: 'explosion' },
+    when: { country: ['br'], age: [18, 75] },
+    weight: 6,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Coupe du monde. Le Brésil joue. Le pays entier s'arrête : les banques ferment, les écoles ferment, les hôpitaux mettent la télé en salle d'opération. Toute ta rue regarde le match sur un écran géant installé par un voisin, avec {w:drink} à volonté.",
+        "Finale de la Coupe du monde. Ton voisin a promis de se raser la tête, les sourcils et « le reste » si le Brésil gagne. Il a déjà un rasoir à la main. Les feux d'artifice sont prêts sur tous les toits de {city}.",
+        "Demi-finale. Ton oncle, 72 ans, est encore traumatisé par une défaite historique d'il y a des années. Il regarde le match à travers ses doigts. Au premier but adverse, il a mordu {w:object}. Le score est 0-1.",
+        "Le Brésil vient de marquer à la 89e minute. Ta rue explose : feux d'artifice, klaxons, casseroles, un inconnu t'embrasse sur la bouche, un autre lance un pétard dans une poubelle. Il y a {w:sound} partout.",
+      ],
+      en: [
+        "World Cup. Brazil is playing. The whole country stops: banks close, schools close, hospitals put TVs in operating rooms. Your whole street watches on a giant screen a neighbor set up, with unlimited {w:drink}.",
+        "World Cup final. Your neighbor promised to shave his head, eyebrows and “the rest” if Brazil wins. He's already holding a razor. Fireworks are ready on every rooftop in {city}.",
+        "Semifinal. Your 72-year-old uncle is still traumatized by a historic defeat from years ago. He watches through his fingers. At the first opposing goal, he bit {w:object}. It's 0-1.",
+        "Brazil just scored in the 89th minute. Your street explodes: fireworks, horns, pots and pans, a stranger kisses you on the mouth, another throws a firecracker into a trash can. There's {w:sound} everywhere.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Célébrer comme un fou', en: 'Celebrate like crazy' },
+        out: [
+          { w: 2, text: { fr: ["J'ai célébré en courant dans la rue torse nu, en pleurant, en embrassant tout le monde, y compris un chien et un policier. J'ai perdu ma voix pendant quatre jours. Ça valait chaque seconde.", "Victoire ! Le voisin a tenu sa promesse : crâne, sourcils et « le reste ». Il a fait le tour du quartier en slip pour montrer. Personne n'avait demandé. Tout le monde a applaudi."], en: ["I celebrated running shirtless down the street, crying, kissing everyone, including a dog and a cop. Lost my voice for four days. Worth every second.", "Victory! The neighbor kept his promise: head, eyebrows and “the rest.” He paraded around the block in his underwear to prove it. Nobody asked. Everyone applauded."] }, fx: { happy: 12, health: -3, visual: 'confetti' }, mood: 'party' },
+          { w: 1, text: { fr: ["Un feu d'artifice mal orienté m'a frôlé l'oreille et a cramé mes sourcils. Je ressemble à un œuf surpris. Je souris sur toutes les photos de la victoire, sans sourcils, avec l'air étonné pour toujours."], en: ["A misaimed firework grazed my ear and torched my eyebrows. I look like a surprised egg. I'm smiling in every victory photo, eyebrowless, looking permanently astonished."] }, fx: { health: -4, looks: -5, happy: 8, visual: 'fire' }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Rassurer mon oncle', en: 'Comfort my uncle' },
+        out: [
+          { w: 1, text: { fr: ["J'ai tenu la main de mon oncle pendant toute la deuxième mi-temps. Au but égalisateur, il a hurlé si fort qu'il s'est déboîté la mâchoire. Il a célébré la victoire la bouche ouverte, coincée. Heureux.", "J'ai rassuré mon oncle. Le Brésil a perdu quand même. On a pleuré ensemble, dans les bras l'un de l'autre, jusqu'à 3 h. Il m'a dit « c'est la vie ». Puis il a mordu le canapé."], en: ["I held my uncle's hand the whole second half. At the equalizer he screamed so loud he dislocated his jaw. He celebrated the win with his mouth stuck open. Happy.", "I comforted my uncle. Brazil lost anyway. We cried in each other's arms until 3 a.m. He said “that's life.” Then he bit the couch."] }, fx: { karma: 4, happy: 3 }, mood: 'cry' },
+          { w: 1, rating: 2, text: { fr: ["Au troisième but adverse, le cœur de mon oncle a lâché. Il est mort en criant « VAR ! » vers la télé. Aux funérailles, on l'a enterré avec son maillot, son écharpe et la télécommande. Il aurait voulu revoir le match."], en: ["At the third opposing goal, my uncle's heart gave out. He died screaming “VAR!” at the TV. At the funeral we buried him in his jersey, his scarf and with the remote. He'd have wanted to rewatch the game."] }, fx: { happy: -10, stress: 8 }, mood: 'cry' },
+        ],
+      },
+      {
+        label: { fr: 'Allumer un feu d\'artifice', en: 'Light a firework' },
+        out: [
+          { w: 1, text: { fr: ["J'ai allumé une fusée pour fêter le but. Elle est partie à l'horizontale, a traversé la rue, est entrée par la fenêtre du voisin et a explosé dans sa cuisine. Il l'a très bien pris : « C'était pour le Brésil. »", "J'ai lancé une fusée. Elle a fait un looping, est revenue sur moi et m'a explosé entre les jambes. J'ai sauté si haut que j'ai touché un fil électrique. Ma rue m'appelle « Fogos »."], en: ["I lit a rocket to celebrate the goal. It flew sideways across the street, through the neighbor's window and exploded in his kitchen. He took it very well: “It was for Brazil.”", "I launched a rocket. It looped, came back and exploded between my legs. I jumped so high I touched a power line. My street calls me “Fogos.”"] }, fx: { health: -6, happy: 6, visual: 'explosion' }, mood: 'shock' },
+        ],
+      },
+    ],
+  },
 ];

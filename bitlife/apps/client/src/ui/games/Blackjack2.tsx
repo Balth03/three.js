@@ -321,7 +321,7 @@ export function Blackjack2({ onDone, l }: GameProps) {
     const mdX = cx, mdY = T + h * 0.065 - st.dealerBounce * 6, mdR = Math.min(h * 0.055, 34);
     ctx.save(); glow(ctx, '#ffd166', 18); ctx.fillStyle = '#2b1606'; ctx.beginPath(); ctx.arc(mdX, mdY, mdR, 0, Math.PI * 2); ctx.fill();
     ctx.strokeStyle = '#ffd166'; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
-    ctx.font = `${mdR * 1.25}px serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('🤵', mdX, mdY + 2);
+    ctx.fillStyle = '#fff'; ctx.font = `${mdR * 1.25}px serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('🤵', mdX, mdY + 2);
     if (playing || g.phase === 'done') {
       const qt = st.quip[lang.value === 'fr' ? 0 : 1];
       const k = Math.min(1, st.quipT * 6);
