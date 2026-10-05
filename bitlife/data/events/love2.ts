@@ -955,8 +955,20 @@ export const love2Events: EventDef[] = [
     weight: 8,
     cooldown: 4,
     text: {
-      fr: ["L'appli de coparentalité m'a notifié : « {a.first} a ajouté une note : les enfants sont rentrés avec des poux ET un nouveau mot de vocabulaire. » Le mot est très grossier. Les poux aussi.", "{a.first}, mon ex, et moi ne communiquons plus que par l'appli de coparentalité, avec des messages si polis qu'ils en deviennent menaçants : « Bien reçu. Cordialement. »"],
-      en: ["The co-parenting app pinged me: '{a.first} added a note: the kids came back with lice AND a new vocabulary word.' The word is very rude. So are the lice.", "{a.first}, my ex, and I only communicate through the co-parenting app now, with messages so polite they're threatening: 'Received. Kind regards.'"],
+      fr: [
+        "L'appli de coparentalité m'a notifié : « {a.first} a ajouté une note : les enfants sont rentrés avec des poux ET un nouveau mot de vocabulaire. » Le mot est très grossier. Les poux aussi.",
+        "{a.first}, mon ex, et moi ne communiquons plus que par l'appli de coparentalité, avec des messages si polis qu'ils en deviennent menaçants : « Bien reçu. Cordialement. »",
+        "Les enfants sont revenus de chez {a.first} avec {w:animal}, qu'{a:il|elle} leur a « offert pour compenser ». Je n'ai pas la place. {a:Il|Elle} le savait parfaitement.",
+        "Échange de garde {w:at_place}, {w:time}. {a.first} m'a tendu les enfants, un sac de linge sale et un mot : « Ils ont mangé {w:food} trois fois. Bon courage. » On ne s'est pas dit bonjour.",
+        "{a.first} et moi avons passé [[deux heures|une soirée|trois jours]] à négocier par écrit qui garde les enfants pour les vacances. Les enfants, eux, ont tranché : ils veulent aller {w:to_place} avec mamie.",
+      ],
+      en: [
+        "The co-parenting app pinged me: '{a.first} added a note: the kids came back with lice AND a new vocabulary word.' The word is very rude. So are the lice.",
+        "{a.first}, my ex, and I only communicate through the co-parenting app now, with messages so polite they're threatening: 'Received. Kind regards.'",
+        "The kids came back from {a.first}'s with {w:animal}, a gift 'to make up for things'. I don't have room. {a:He|She} knew that perfectly well.",
+        "Custody handoff {w:at_place}, {w:time}. {a.first} handed me the kids, a bag of dirty laundry and a note: 'They had {w:food} three times. Good luck.' We didn't say hello.",
+        "{a.first} and I spent [[two hours|an evening|three days]] negotiating in writing over who gets the kids for the holidays. The kids settled it themselves: they want to go {w:to_place} with Grandma.",
+      ],
     },
     fx: { stress: 2, rel: -2 },
   },

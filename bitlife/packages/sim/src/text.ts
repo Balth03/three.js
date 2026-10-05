@@ -150,7 +150,12 @@ export function renderString(tpl: string, ctx: TextCtx, lang: Lang, draws: numbe
       const all = ctx.content.words![pool];
       const base = pool === 'gross' || pool === 'swear' ? 1 : 0;
       const list = all?.some((e) => (e[2] ?? base) > maxR) ? all.filter((e) => (e[2] ?? base) <= maxR) : all;
-      if (!list?.length) return whole;
+      if (!list?.length) {
+        // Everything in this pool is too adult for this character: neutral stand-in.
+        const SAFE: Record<string, [string, string]> = { gross: ['un truc immonde', 'something disgusting'], swear: ['Zut alors !', 'Darn it!'] };
+        const f = SAFE[pool] ?? ['un truc', 'a thing'];
+        return all?.length ? f[lang === 'fr' ? 0 : 1] : whole;
+      }
       const n = (occ[pool] = (occ[pool] ?? -1) + 1);
       let h = 2166136261 ^ seed;
       for (let i = 0; i < pool.length; i++) h = Math.imul(h ^ pool.charCodeAt(i), 16777619);
@@ -172,7 +177,20 @@ export function renderString(tpl: string, ctx: TextCtx, lang: Lang, draws: numbe
     }
     return resolveVar(inner, ctx, lang) ?? whole;
   });
+  if (lang === 'fr') s = frenchFix(s);
+  // Capitalise after sentence ends too (tokens like {a.my} can start a sentence).
+  s = s.replace(/([.!?…] +)([a-zàâäéèêëîïôöùûüç])/g, (_, p: string, c: string) => p + c.toUpperCase());
   return capitalize(s);
+}
+
+/** French elisions & contractions after token substitution: « de Alex » → « d'Alex », « à le coude » → « au coude »… */
+export function frenchFix(s: string): string {
+  return s
+    .replace(/\b([dDjJmMtTsSnN])e (?=[aeiouàâäéèêëîïôöùûüœAEIOUÀÂÉÈÊÎÔŒ])/g, "$1'")
+    .replace(/\b([qQ])ue (?=[aeiouàâäéèêëîïôöùûüAEIOUÀÂÉÈÊÎÔ])/g, "$1u'")
+    .replace(/\b([lL])[ea] (?=[aeiouàâäéèêëîïôöùûüAEIOUÀÂÉÈÊÎÔ])(?![A-ZÀÂÉÈÊÎÔ][a-z]*\b)/g, "$1'")
+    .replace(/(^|[\s«(])à les /g, '$1aux ').replace(/(^|[\s«(])à le /g, '$1au ').replace(/(^|[\s«(])À le /g, '$1Au ')
+    .replace(/\bde les /g, 'des ').replace(/\bde le /g, 'du ').replace(/\bDe le /g, 'Du ');
 }
 
 function resolveVar(name: string, ctx: TextCtx, lang: Lang): string | undefined {

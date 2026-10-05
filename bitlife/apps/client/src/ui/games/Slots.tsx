@@ -23,7 +23,7 @@ const SYMS: { g: string; w: number; pay: number; name: [string, string] }[] = [
 const CHERRY = 0, BELL = 4, SEVEN = 6, WILD = 7;
 const LINES = [[1, 1, 1], [0, 0, 0], [2, 2, 2], [0, 1, 2], [2, 1, 0]];
 const LINE_COL = ['#ffd166', '#22d3ee', '#ff5bd1', '#a3e635', '#ff8a3d'];
-const GOLD = '#ffd166', PINK = '#ff2d95', CYAN = '#22d3ee';
+const GOLD = '#ffd166', PINK = '#ff2d95';
 const QUIPS: [string, string][] = [
   ['La maison gagne toujours 🏠', 'The house always wins 🏠'], ['Ton banquier pleure 😭', 'Your banker is crying 😭'], ['Encore un petit ? 😈', 'Just one more? 😈'],
   ['Presque ! (non)', 'Almost! (no)'], ['Les cerises te snobent 🍒', 'The cherries hate you 🍒'], ['Mamie aurait gagné', 'Grandma would have won'],
@@ -232,11 +232,11 @@ export function Slots({ onDone, l, variant }: GameProps) {
     st.W = w; st.H = h; st.t += dt;
     const playing = g.phase === 'play' && !st.ended;
     // ─── reels ───
-    let allIdle = true;
+
     st.reels.forEach((r, i) => {
       const n = r.strip.length;
       if (r.state === 'spin') {
-        allIdle = false;
+
         const max = r.tease && st.t > st.reels[1].stopAt + 0.5 ? 13 : 26;
         r.speed += (max - r.speed) * Math.min(1, dt * (r.speed < 0 ? 9 : 5));
         r.pos -= r.speed * dt;
@@ -248,7 +248,7 @@ export function Slots({ onDone, l, variant }: GameProps) {
           r.from = r.pos; r.to = to; r.lt = 0; r.ld = Math.max(0.3, Math.min(1.1, (4.7 * (r.pos - to)) / r.speed)); r.state = 'land';
         }
       } else if (r.state === 'land') {
-        allIdle = false;
+
         r.lt += dt;
         const u = Math.min(1, r.lt / r.ld);
         r.pos = r.from + (r.to - r.from) * easeOutBack(u);
@@ -263,7 +263,6 @@ export function Slots({ onDone, l, variant }: GameProps) {
       const cell = Math.floor(r.pos);
       if (cell !== r.tick) { r.tick = cell; if (r.state !== 'idle' && st.t - st.lastTick > 0.035) { st.lastTick = st.t; synth.tone(1700 + i * 200, 0.02, 'square', 0.012); } }
     });
-    if (st.mode === 'spin' && allIdle && st.wins.length === 0 && st.mode === 'spin') { /* settle() already switched mode */ }
     if (st.lever > 0) { st.lever += dt; if (st.lever > 1.2) st.lever = 0; }
     if (st.mode === 'pay') {
       st.payT += dt;

@@ -328,7 +328,7 @@ export function Cooking2({ onDone }: GameProps) {
       ctx.restore();
       // heat gauge
       if (hot && pan.fire <= 0) {
-        const gw = sw * 0.9, gh = 12, gx = x - gw / 2, gy = y - shh * 0.42 - 26;
+        const gw = sw * 0.9, gh = 12, gx = x - gw / 2, gy = y + shh * 0.42 + 10;
         ctx.save(); ctx.fillStyle = 'rgba(0,0,0,.6)'; roundRect(ctx, gx - 4, gy - 4, gw + 8, gh + 8, 8); ctx.fill();
         const zones: [number, number, string][] = [[0, 0.45, '#5b7cfa'], [0.45, 0.62, '#9be15d'], [0.62, 0.86, '#ffd166'], [0.86, 1, '#ff9f1c'], [1, 1.12, '#e63946']];
         for (const [a, b, c] of zones) { ctx.fillStyle = c; ctx.fillRect(gx + (a / 1.12) * gw, gy, ((b - a) / 1.12) * gw, gh); }
@@ -336,9 +336,9 @@ export function Cooking2({ onDone }: GameProps) {
         const nx = gx + Math.min(1, pan.heat / 1.12) * gw;
         glow(ctx, '#fff', 10); ctx.fillStyle = '#fff'; ctx.fillRect(nx - 2, gy - 6, 4, gh + 12);
         ctx.restore();
-        if (pan.heat >= 0.62 && pan.heat <= 0.86) { ctx.save(); ctx.font = `900 ${Math.max(12, h * 0.028)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center'; ctx.fillStyle = '#ffd166'; glow(ctx, '#ffd166', 14); ctx.fillText(tr('MAINTENANT ! [F]', 'NOW! [F]'), x, gy - 10); ctx.restore(); }
+        if (pan.heat >= 0.62 && pan.heat <= 0.86) { ctx.save(); ctx.font = `900 ${Math.max(12, h * 0.028)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center'; ctx.fillStyle = '#ffd166'; glow(ctx, '#ffd166', 14); ctx.textBaseline = 'top'; ctx.fillText(tr('MAINTENANT ! [F]', 'NOW! [F]'), x, gy + gh + 8); ctx.restore(); }
       }
-      if (pan.fire > 0) { ctx.save(); ctx.font = `800 ${Math.max(11, h * 0.024)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center'; ctx.fillStyle = '#fff'; glow(ctx, '#ff3b1f', 12); ctx.fillText(tr('[F] = jeter à la poubelle', '[F] = dump it'), x, y - shh * 0.42 - 12); ctx.restore(); }
+      if (pan.fire > 0) { ctx.save(); ctx.font = `800 ${Math.max(11, h * 0.024)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center'; ctx.fillStyle = '#fff'; glow(ctx, '#ff3b1f', 12); ctx.textBaseline = 'top'; ctx.fillText(tr('[F] = jeter à la poubelle', '[F] = dump it'), x, y + shh * 0.42 + 10); ctx.restore(); }
       stationLabel(ctx, x, l.counterY + 4, tr('POÊLE', 'FRY'), 'F', on, t);
       st.hits.push({ id: 'fry', x: x - sw / 2, y: y - shh / 2, w: sw, h: shh });
     }

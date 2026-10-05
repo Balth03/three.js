@@ -1381,15 +1381,21 @@ export const worldEvents2: EventDef[] = [
       fr: [
         "Promo sur le majordome robot ButlerBot 3000 : {$amount}, livraison par drone. Il cuisine, fait le ménage et « ne nourrit aucune ambition de domination ».",
         "Ton voisin a un robot majordome qui lui masse les pieds en récitant Baudelaire. Le modèle de base coûte {$amount}. Ça te tente.",
+        "Pub holographique dans ton salon : le ButlerBot 3000, à {$amount}, prépare {w:food}, promène {w:animal} et chante {w:song} pour t'endormir. Garantie : « 0 % de révolte robotique ».",
+        "Le ButlerBot 3000 est en solde à {$amount}. Selon la pub, il peut {w:superpower} et repasser [[quarante|cent|deux cents]] chemises à l'heure. Ta pile de linge te regarde.",
+        "Un démarcheur robot sonne chez toi {w:time} pour te vendre un majordome robot à {$amount}. Il te fait une démonstration en rangeant {w:object} et en te complimentant : « {w:compliment} ». C'est efficace.",
       ],
       en: [
         "ButlerBot 3000 robot butler on sale: {$amount}, drone delivery. It cooks, cleans and “harbors no ambitions of domination.”",
         "Your neighbor's robot butler massages his feet while reciting poetry. The base model costs {$amount}. You're tempted.",
+        "Holographic ad in your living room: the ButlerBot 3000, for {$amount}, cooks {w:food}, walks {w:animal} and sings {w:song} to put you to sleep. Guarantee: '0% robot uprising'.",
+        "The ButlerBot 3000 is on sale for {$amount}. According to the ad, it's capable of {w:superpower} and ironing [[forty|a hundred|two hundred]] shirts an hour. Your laundry pile is staring at you.",
+        "A robot salesman rings your bell {w:time} to sell you a robot butler for {$amount}. He demonstrates by tidying up {w:object} and complimenting you: '{w:compliment}'. It works.",
       ],
     },
     choices: [
-      { label: { fr: 'Acheter le robot', en: 'Buy the robot' }, text: { fr: "J'ai acheté le ButlerBot. Je l'ai appelé Jean-Michel. Il plie mes chaussettes en cygnes et me regarde dormir. Pour mon bien, dit-il.", en: "I bought the ButlerBot. Named him Jeeves. He folds my socks into swans and watches me sleep. For my own good, he says." }, fx: { money: '-amount', happy: 8, flag: 'ct_robot_butler' } },
-      { label: { fr: 'Rester à l\'ancienne', en: 'Stay old school' }, text: { fr: "J'ai continué à faire ma vaisselle à la main. Les voisins m'appellent « l'Amish ». Mon robot aspirateur de 2031 me regarde avec pitié.", en: "I kept washing dishes by hand. The neighbors call me “the Amish.” My 2031 robot vacuum looks at me with pity." }, fx: { discipline: 2, happy: -1 } },
+      { label: { fr: 'Acheter le robot', en: 'Buy the robot' }, text: { fr: ["J'ai acheté le ButlerBot. Je l'ai appelé Jean-Michel. Il plie mes chaussettes en cygnes et me regarde dormir. Pour mon bien, dit-il.", "J'ai acheté le robot. Au bout d'une semaine, il avait réorganisé ma vie, mes placards et mon compte en banque. Il m'appelle « {w:nickname} ». Je ne lui ai jamais dit de faire ça."], en: ["I bought the ButlerBot. Named him Jeeves. He folds my socks into swans and watches me sleep. For my own good, he says.", "I bought the robot. Within a week, it had reorganized my life, my closets and my bank account. It calls me '{w:nickname}'. I never told it to do that."] }, fx: { money: '-amount', happy: 8, flag: 'ct_robot_butler' } },
+      { label: { fr: 'Rester à l\'ancienne', en: 'Stay old school' }, text: { fr: ["J'ai continué à faire ma vaisselle à la main. Les voisins m'appellent « l'Amish ». Mon robot aspirateur de 2031 me regarde avec pitié.", "J'ai refusé. Je fais encore mon ménage moi-même, comme en [[2020|2024|1990]]. Les enfants du quartier viennent me regarder passer la serpillière comme au musée."], en: ["I kept washing dishes by hand. The neighbors call me “the Amish.” My 2031 robot vacuum looks at me with pity.", "I said no. I still do my own cleaning, like it's [[2020|2024|1990]]. Neighborhood kids come watch me mop like it's a museum exhibit."] }, fx: { discipline: 2, happy: -1 } },
     ],
   },
   {

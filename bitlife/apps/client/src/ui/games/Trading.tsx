@@ -259,7 +259,7 @@ export function Trading({ onDone, l }: GameProps) {
           if (st.alarmT <= 0) { st.alarmT = danger > 0.8 ? 0.18 : 0.36; synth.tone(danger > 0.8 ? 1320 : 990, 0.08, 'square', 0.05); }
         }
         // P&L flashing
-        if (Math.abs(u - st.flashRef) > st.pos.margin * 0.015) { st.pnlFlash = 1; st.pnlFlashUp = u > st.flashRef; st.flashRef = u; }
+        if (st.pos && Math.abs(u - st.flashRef) > st.pos.margin * 0.015) { st.pnlFlash = 1; st.pnlFlashUp = u > st.flashRef; st.flashRef = u; }
       } else { st.danger = 0; st.flashRef = 0; }
       const eq = equity();
       st.peak = Math.max(st.peak, eq);
@@ -363,15 +363,21 @@ export function Trading({ onDone, l }: GameProps) {
     ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
     ctx.font = `${Math.round(30 * k)}px serif`; ctx.fillText(tk.icon, 14 * k, hh / 2 + 2);
     ctx.save(); glow(ctx, AMBER, 12); ctx.fillStyle = AMBER; ctx.font = F(24, 900, true); ctx.fillText(`$${tk.sym}`, 54 * k, hh / 2 - 8 * k); ctx.restore();
-    ctx.fillStyle = 'rgba(200,255,230,.6)'; ctx.font = F(11, 600, true); ctx.fillText(`${tr(tk.fr, tk.en)} · NASDAQ-ISH · ${tr('EN DIRECT', 'LIVE')}`, 54 * k, hh / 2 + 13 * k);
+    ctx.fillStyle = 'rgba(200,255,230,.6)'; ctx.font = F(11, 600, true); ctx.fillText(w < 560 ? tr(tk.fr, tk.en) : `${tr(tk.fr, tk.en)} · NASDAQ-ISH · ${tr('EN DIRECT', 'LIVE')}`, 54 * k, hh / 2 + 13 * k);
     // live dot
     ctx.fillStyle = Math.sin(tAll * 6) > 0 ? DOWN : 'rgba(255,51,102,.3)'; ctx.beginPath(); ctx.arc(46 * k, hh / 2 - 8 * k, 3.5 * k, 0, 7); ctx.fill();
     // price
     const chg = st.price / st.open0 - 1;
     const col = chg >= 0 ? UP : DOWN;
-    const px = Math.max(250 * k, w * 0.36);
-    ctx.save(); glow(ctx, st.tickDir > 0 ? UP : DOWN, 16 + st.pulse * 10); ctx.fillStyle = st.tickDir > 0 ? '#d9fff0' : '#ffd9e2'; ctx.font = F(30, 800, true); ctx.fillText(fmtPrice(st.price), px, hh / 2); const pw = ctx.measureText(fmtPrice(st.price)).width; ctx.restore();
-    ctx.font = F(15, 800, true); ctx.fillStyle = col; ctx.fillText(`${chg >= 0 ? '▲' : '▼'} ${(Math.abs(chg) * 100).toFixed(2)}%`, px + pw + 12 * k, hh / 2);
+    const chgTxt = `${chg >= 0 ? '▲' : '▼'} ${(Math.abs(chg) * 100).toFixed(2)}%`;
+    if (w < 560) {
+      ctx.save(); ctx.textAlign = 'right'; glow(ctx, st.tickDir > 0 ? UP : DOWN, 12 + st.pulse * 8); ctx.fillStyle = st.tickDir > 0 ? '#d9fff0' : '#ffd9e2'; ctx.font = F(26, 800, true); ctx.fillText(fmtPrice(st.price), w - 12 * k, hh / 2 - 8 * k);
+      ctx.shadowBlur = 0; ctx.font = F(13, 800, true); ctx.fillStyle = col; ctx.fillText(chgTxt, w - 12 * k, hh / 2 + 14 * k); ctx.restore();
+    } else {
+      const px = Math.max(250 * k, w * 0.36);
+      ctx.save(); glow(ctx, st.tickDir > 0 ? UP : DOWN, 16 + st.pulse * 10); ctx.fillStyle = st.tickDir > 0 ? '#d9fff0' : '#ffd9e2'; ctx.font = F(30, 800, true); ctx.fillText(fmtPrice(st.price), px, hh / 2); const pw = ctx.measureText(fmtPrice(st.price)).width; ctx.restore();
+      ctx.font = F(15, 800, true); ctx.fillStyle = col; ctx.fillText(chgTxt, px + pw + 12 * k, hh / 2);
+    }
     // fear & greed gauge
     if (w > 560) {
       const n = st.candles.length; const ref = st.candles[Math.max(0, n - 8)]?.o ?? st.price;

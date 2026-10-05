@@ -73,7 +73,7 @@ export function Escape2({ onDone }: GameProps) {
     guards: [mk(14, 6, 0, [[25, 6], [3, 6]]), mk(14, 12, Math.PI, [[2, 12], [26, 13]]), mk(23, 2, Math.PI / 2, [[27, 9], [23, 15], [27, 9], [23, 2]]), mk(6, 9, 0, [[10, 10], [9, 8], [6, 9]])],
     cams: [{ x: 13.15, y: 7.15, base: Math.PI * 0.3, amp: 0.65, sp: 0.9, a: 0, susp: 0 }, { x: 28.8, y: 5.2, base: Math.PI * 0.72, amp: 0.38, sp: 0.7, a: 0, susp: 0 }] as Cam[],
     t: 0, walk: 0, siren: 0, ended: false, end: null as null | { win: boolean; t: number; why: string }, dist: 0, spotted: 0, hidden: false, lockMsg: 0, ptr: null as null | { x: number; y: number },
-    dark: null as HTMLCanvasElement | null, stat: null as HTMLCanvasElement | null, statKey: '', lay: { ox: 0, oy: 0, ts: 1 }, steps: [] as { x: number; y: number; t: number }[], rings: [] as { x: number; y: number; t: number; c: string }[],
+    dark: null as HTMLCanvasElement | null, stat: null as HTMLCanvasElement | null, edges: null as HTMLCanvasElement | null, statKey: '', lay: { ox: 0, oy: 0, ts: 1 }, steps: [] as { x: number; y: number; t: number }[], rings: [] as { x: number; y: number; t: number; c: string }[],
   });
   if (import.meta.env.DEV) (window as unknown as Record<string, unknown>).__esc = s.current;
   useKeys((e) => s.current.keys.add(e.code), (e) => s.current.keys.delete(e.code));
@@ -136,7 +136,7 @@ export function Escape2({ onDone }: GameProps) {
     // ── static map (cached) ──
     const dpr = Math.min(2, window.devicePixelRatio || 1);
     const key = `${w}x${h}x${dpr}`;
-    if (st.statKey !== key || !st.stat) { st.stat = renderStatic(w, h, ox, oy, ts, dpr); st.statKey = key; }
+    if (st.statKey !== key || !st.stat) { st.stat = renderStatic(w, h, ox, oy, ts, dpr); st.edges = renderEdges(w, h, ox, oy, ts, dpr); st.statKey = key; }
     ctx.clearRect(0, 0, w, h);
     ctx.fillStyle = '#05060b'; ctx.fillRect(0, 0, w, h);
     ctx.drawImage(st.stat, 0, 0, w, h);
@@ -179,7 +179,7 @@ export function Escape2({ onDone }: GameProps) {
     if (d) {
       d.globalCompositeOperation = 'source-over';
       d.clearRect(0, 0, dk.width, dk.height);
-      d.fillStyle = st.alarm > 0 ? `rgba(30,0,6,${0.66 + 0.08 * Math.sin(t * 8)})` : 'rgba(3,5,16,0.7)';
+      d.fillStyle = st.alarm > 0 ? `rgba(30,0,6,${0.6 + 0.08 * Math.sin(t * 8)})` : 'rgba(3,5,16,0.64)';
       d.fillRect(0, 0, dk.width, dk.height);
       d.globalCompositeOperation = 'destination-out';
       const hole = (x: number, y: number, r: number, a: number) => { const gg = d.createRadialGradient(X(x), Y(y), 0, X(x), Y(y), r * ts); gg.addColorStop(0, `rgba(0,0,0,${a})`); gg.addColorStop(1, 'rgba(0,0,0,0)'); d.fillStyle = gg; d.beginPath(); d.arc(X(x), Y(y), r * ts, 0, Math.PI * 2); d.fill(); };
@@ -194,6 +194,7 @@ export function Escape2({ onDone }: GameProps) {
       }
       ctx.drawImage(dk, 0, 0, w, h);
     }
+    if (st.edges) ctx.drawImage(st.edges, 0, 0, w, h);
     // coloured light on top
     ctx.save(); ctx.globalCompositeOperation = 'lighter';
     for (const c of cones) {
@@ -211,6 +212,15 @@ export function Escape2({ onDone }: GameProps) {
     // player
     {
       const caught = st.end && !st.end.win;
+      if (!st.end) { // pulsing marker so you never lose yourself in the dark
+        const pr = ts * (0.45 + 0.08 * Math.sin(t * 6));
+        ctx.save(); ctx.strokeStyle = st.hidden ? 'rgba(150,120,255,.7)' : 'rgba(255,140,40,.75)'; ctx.lineWidth = 2; glow(ctx, ctx.strokeStyle as string, 10);
+        ctx.beginPath(); ctx.arc(X(st.px), Y(st.py), pr, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+        if (G.elapsed < 4 && G.phase === 'play' || G.phase === 'count') {
+          ctx.save(); ctx.font = `900 ${Math.max(11, ts * 0.38)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+          ctx.fillStyle = '#ffb347'; glow(ctx, '#ff7a00', 12); ctx.fillText(tr('TOI ▼', 'YOU ▼'), X(st.px), Y(st.py) - ts * 0.55 - Math.abs(Math.sin(t * 5)) * 6); ctx.restore();
+        }
+      }
       drawPlayer(ctx, X(st.px), Y(st.py), ts, st.pa, st.walk, st.hidden && !caught, caught ? st.end!.t : 0);
       if (st.hasKey) { ctx.font = `${ts * 0.36}px serif`; ctx.textAlign = 'center'; ctx.fillText('🔑', X(st.px) + ts * 0.32, Y(st.py) - ts * 0.38); }
       if (st.hidden && !st.end) { ctx.save(); ctx.font = `700 ${Math.max(9, ts * 0.3)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center'; ctx.fillStyle = '#9fb3ff'; glow(ctx, '#4c6fff', 8); ctx.fillText(tr('CACHÉ', 'HIDDEN'), X(st.px), Y(st.py) - ts * 0.62); ctx.restore(); }
@@ -243,7 +253,7 @@ export function Escape2({ onDone }: GameProps) {
         ctx.save(); glow(ctx, '#ff1f3d', 20); ctx.fillStyle = '#ff3355'; ctx.beginPath(); ctx.arc(bx, by, 6, 0, Math.PI * 2); ctx.fill(); ctx.restore();
       }
       ctx.save(); ctx.font = `900 ${Math.max(20, h * 0.06)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.globalAlpha = 0.6 + 0.4 * p; glow(ctx, '#ff1f3d', 24); ctx.fillStyle = '#fff'; ctx.fillText(tr('🚨 ALARME 🚨', '🚨 ALARM 🚨'), w / 2, oy + ts * 0.5 + h * 0.03); ctx.restore();
+      ctx.globalAlpha = 0.7 + 0.3 * p; glow(ctx, '#ff1f3d', 24); ctx.fillStyle = p > 0.5 ? '#fff' : '#ff6b81'; ctx.fillText(tr('🚨 ALARME 🚨', '🚨 ALARM 🚨'), w / 2, oy + ts * 0.5 + h * 0.03); ctx.restore();
     }
     // vignette
     const vg = ctx.createRadialGradient(w / 2, h / 2, h * 0.35, w / 2, h / 2, w * 0.7);
@@ -469,7 +479,7 @@ function renderStatic(w: number, h: number, ox: number, oy: number, ts: number, 
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     const ch = at(x, y);
     if (ch === '#') {
-      ctx.fillStyle = '#4a5368'; ctx.fillRect(X(x), Y(y), ts + 0.5, ts + 0.5);
+      ctx.fillStyle = '#566079'; ctx.fillRect(X(x), Y(y), ts + 0.5, ts + 0.5);
       ctx.fillStyle = 'rgba(255,255,255,.06)'; ctx.fillRect(X(x), Y(y), ts + 0.5, 2);
       if (y + 1 < H && at(x, y + 1) !== '#') {
         const fy = Y(y) + ts * 0.6;
@@ -503,6 +513,34 @@ function renderStatic(w: number, h: number, ox: number, oy: number, ts: number, 
   return c;
 }
 
+function renderEdges(w: number, h: number, ox: number, oy: number, ts: number, dpr: number): HTMLCanvasElement {
+  const c = document.createElement('canvas');
+  c.width = Math.max(1, Math.round(w * dpr)); c.height = Math.max(1, Math.round(h * dpr));
+  const ctx = c.getContext('2d'); if (!ctx) return c;
+  ctx.scale(dpr, dpr);
+  const X = (x: number) => ox + x * ts, Y = (y: number) => oy + y * ts;
+  const solid = (x: number, y: number) => at(x, y) === '#';
+  // hiding spots: soft violet hatch so they read as "shadow" even in the dark
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    if (at(x, y) !== 's') continue;
+    ctx.save(); ctx.beginPath(); ctx.rect(X(x), Y(y), ts, ts); ctx.clip();
+    ctx.strokeStyle = 'rgba(150,120,255,.22)'; ctx.lineWidth = 1.5;
+    for (let k = -ts; k < ts * 2; k += 7) { ctx.beginPath(); ctx.moveTo(X(x) + k, Y(y) + ts); ctx.lineTo(X(x) + k + ts, Y(y)); ctx.stroke(); }
+    ctx.restore();
+  }
+  // wall outlines (blueprint glow)
+  ctx.strokeStyle = 'rgba(127,220,255,.32)'; ctx.lineWidth = 1.5; ctx.shadowColor = 'rgba(127,220,255,.6)'; ctx.shadowBlur = 6;
+  ctx.beginPath();
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    if (!solid(x, y)) continue;
+    if (!solid(x, y - 1) && y > 0) { ctx.moveTo(X(x), Y(y)); ctx.lineTo(X(x + 1), Y(y)); }
+    if (!solid(x, y + 1) && y < H - 1) { ctx.moveTo(X(x), Y(y + 1)); ctx.lineTo(X(x + 1), Y(y + 1)); }
+    if (!solid(x - 1, y) && x > 0) { ctx.moveTo(X(x), Y(y)); ctx.lineTo(X(x), Y(y + 1)); }
+    if (!solid(x + 1, y) && x < W - 1) { ctx.moveTo(X(x + 1), Y(y)); ctx.lineTo(X(x + 1), Y(y + 1)); }
+  }
+  ctx.stroke();
+  return c;
+}
 function drawKey(ctx: CanvasRenderingContext2D, x: number, y: number, s: number, t: number) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(Math.sin(t * 2) * 0.3);
   ctx.strokeStyle = '#ffd166'; ctx.fillStyle = '#ffd166'; ctx.lineWidth = s * 0.18;

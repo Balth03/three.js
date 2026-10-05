@@ -25,7 +25,7 @@ const CHANNELS: [number, number][][] = [
   [[0.47, 30], [0.6, 30], [0.6, 70], [0.73, 70], [0.73, 150]],
   [[0.84, -6], [0.84, -40], [0.7, -52], [0.7, -140]],
 ];
-const OBJ_R = 16, HALF_W = 28;
+const OBJ_R = 16, HALF_W = 30;
 
 interface Obj { kind: Kind; x: number; y: number; ch: { x: number; y: number }[]; done: boolean; held: boolean; fly: number; fx: number; fy: number; slot: number; touchT: number }
 interface Drop { x: number; y: number; z: number; vx: number; vy: number; vz: number; r: number }
@@ -107,7 +107,8 @@ export function Surgery2({ onDone }: GameProps) {
     return [((r.left + st.ox + x * st.S * (r.width / st.W)) / window.innerWidth) * 100, ((r.top + st.oy + y * st.S * (r.height / st.H)) / window.innerHeight) * 100];
   };
   /** Effective tool tip = mouse + hand tremor. */
-  const tip = (st: S) => { const k = 2 + st.stress * 0.9 + Math.max(0, st.bpm - 80) * 0.06; return { x: st.mx + (Math.sin(st.t * 23) + Math.sin(st.t * 37) * 0.6) * k, y: st.my + (Math.cos(st.t * 29) + Math.sin(st.t * 17) * 0.6) * k }; };
+  const tremor = (st: S) => 1.5 + Math.min(6, st.stress * 0.5) + Math.max(0, st.bpm - 85) * 0.03;
+  const tip = (st: S) => { const k = tremor(st); return { x: st.mx + (Math.sin(st.t * 23) + Math.sin(st.t * 37) * 0.6) * k, y: st.my + (Math.cos(st.t * 29) + Math.sin(st.t * 17) * 0.6) * k }; };
 
   const mistake = (st: S, x: number, y: number, label: string, blood = 14) => {
     st.stress += 1; st.bpm = Math.min(200, st.bpm + 13); st.spike = 1; st.shake = 1; st.eyes = 1.4;
@@ -243,14 +244,14 @@ export function Surgery2({ onDone }: GameProps) {
       if (phone && st.ringT <= 0) { st.ringT = 2.4; snd.ring(); }
       if (st.held >= 0) {
         const o = st.objs[st.held];
-        o.x += (tp.x - o.x) * Math.min(1, dt * 22); o.y += (tp.y - o.y) * Math.min(1, dt * 22);
+        o.x += (tp.x - o.x) * Math.min(1, dt * 30); o.y += (tp.y - o.y) * Math.min(1, dt * 30);
         const nr = polyNearest(o, o.ch);
         const lim = HALF_W - OBJ_R;
         if (nr.d > lim) {
           // wall contact
           const k = (lim - 1) / nr.d;
           o.x = nr.x + (o.x - nr.x) * k; o.y = nr.y + (o.y - nr.y) * k;
-          if (st.t - o.touchT > 0.5) { o.touchT = st.t; st.touches++; snd.buzz(); mistake(st, o.x, o.y, 'BZZZT !', 10); }
+          if (st.t - o.touchT > 0.6) { o.touchT = st.t; st.touches++; snd.buzz(); mistake(st, o.x, o.y, 'BZZZT !', 10); }
           if (Math.hypot(tp.x - o.x, tp.y - o.y) > 70) { o.held = false; st.held = -1; }
         }
         if (nr.seg === o.ch.length - 2 && nr.k > 0.82) {
@@ -297,7 +298,7 @@ export function Surgery2({ onDone }: GameProps) {
 
   const canvas = useCanvas((ctx, w, h, dt) => {
     const st = s.current;
-    st.W = w; st.H = h;
+    st.W = w; st.H = h; (window as unknown as Record<string, unknown>).__surg = st;
     st.S = Math.min(w / VW, h / VH); st.ox = (w - VW * st.S) / 2; st.oy = (h - VH * st.S) / 2;
     st.t += dt;
     if (!st.inited) { st.inited = true; }
@@ -616,14 +617,14 @@ export function Surgery2({ onDone }: GameProps) {
       else { ctx.lineWidth = 2; ctx.strokeStyle = ctx.fillStyle as string; ctx.stroke(); if (cur) { ctx.beginPath(); ctx.arc(X + 22, y, 4 + Math.sin(t * 8), 0, Math.PI * 2); ctx.fill(); } }
     });
     // tremor meter
-    const trem = clamp01((st.stress * 0.9 + Math.max(0, st.bpm - 80) * 0.06) / 9);
+    const trem = clamp01((tremor(st) - 1.5) / 7);
     ctx.fillStyle = '#fff'; ctx.font = `800 12px ${FONT}`; ctx.fillText(tr('MAINS QUI TREMBLENT', 'SHAKY HANDS'), X + 4, 410);
     ctx.fillStyle = 'rgba(255,255,255,.12)'; roundRect(ctx, X, 418, Wd, 12, 6); ctx.fill();
     const tc = trem > 0.66 ? '#ff4d6d' : trem > 0.33 ? '#ffd166' : '#a3e635';
     ctx.save(); glow(ctx, tc, 10); ctx.fillStyle = tc; roundRect(ctx, X, 418, Math.max(12, Wd * trem), 12, 6); ctx.fill(); ctx.restore();
     const errs = st.cutErr + st.touches + st.sMiss;
     ctx.fillStyle = errs >= FLAT_ERR - 2 ? '#ff4d6d' : 'rgba(255,255,255,.65)'; ctx.font = `700 12px ${FONT}`;
-    ctx.fillText(`${tr('Erreurs', 'Mistakes')} : ${errs} / ${FLAT_ERR} ${errs >= FLAT_ERR ? tr('💀 DANGER', '💀 DANGER') : ''}`, X + 4, 448);
+    ctx.fillText(errs >= FLAT_ERR ? tr(`💀 ARRÊT CARDIAQUE IMMINENT (${errs})`, `💀 CARDIAC ARREST INCOMING (${errs})`) : `${tr('Erreurs', 'Mistakes')} : ${errs} / ${FLAT_ERR}`, X + 4, 448);
     // tray (kidney dish)
     ctx.fillStyle = '#8fa3b6'; ctx.beginPath(); ctx.ellipse(X + Wd / 2, 512, Wd / 2, 46, 0, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = '#c8d5e2'; ctx.beginPath(); ctx.ellipse(X + Wd / 2, 510, Wd / 2 - 8, 38, 0, 0, Math.PI * 2); ctx.fill();
@@ -666,7 +667,7 @@ function drawBubble(ctx: CanvasRenderingContext2D, x: number, y: number, txt: st
 }
 
 function drawTool(ctx: CanvasRenderingContext2D, x: number, y: number, tool: string, closed: boolean, shadow: boolean) {
-  ctx.save(); ctx.translate(x, y);
+  ctx.save(); ctx.translate(x, y); ctx.scale(1.35, 1.35);
   const metal = shadow ? 'rgba(0,0,0,.28)' : '#dfe7ef', dark = shadow ? 'rgba(0,0,0,.28)' : '#7b8a99';
   ctx.lineCap = 'round'; ctx.lineJoin = 'round';
   if (tool === 'scalpel') {

@@ -717,8 +717,20 @@ export const careerEvents: EventDef[] = [
     when: { job: STREAM, chance: 0.5 },
     cooldown: 3,
     text: {
-      fr: ["L'algorithme m'a mis en avant sans raison sur une vidéo où je cherche mes clés. 200 000 vues. Je n'ai toujours pas trouvé mes clés.", "Une de mes vidéos a explosé en Indonésie. Je ne sais pas pourquoi. Je reçois des messages d'amour dans une langue que je ne lis pas."],
-      en: ["The algorithm randomly boosted a video of me looking for my keys. 200,000 views. I still haven't found my keys.", "One of my videos blew up in Indonesia. No idea why. I'm getting love messages in a language I can't read."],
+      fr: [
+        "L'algorithme m'a mis en avant sans raison sur une vidéo où je cherche mes clés. 200 000 vues. Je n'ai toujours pas trouvé mes clés.",
+        "Une de mes vidéos a explosé en Indonésie. Je ne sais pas pourquoi. Je reçois des messages d'amour dans une langue que je ne lis pas.",
+        "Ma vidéo la plus vue, c'est moi en train de faire tomber {w:object} en plein live. [[Un million|Trois millions|Cinq cent mille]] de vues. Mes vrais contenus plafonnent à 40. L'algorithme a parlé.",
+        "L'algorithme {w:app} a décidé que j'étais la nouvelle star de la niche « {w:hobby} ». Je n'y connais rien. J'ai gagné 80 000 abonnés en deux jours. J'apprends en direct.",
+        "Une vidéo où {w:animal} me vole mon sandwich est devenue virale {w:far_place}. Je suis maintenant « la personne du sandwich ». Des marques m'écrivent. Elles veulent l'animal, pas moi.",
+      ],
+      en: [
+        "The algorithm randomly boosted a video of me looking for my keys. 200,000 views. I still haven't found my keys.",
+        "One of my videos blew up in Indonesia. No idea why. I'm getting love messages in a language I can't read.",
+        "My most-viewed video is me dropping {w:object} mid-livestream. [[A million|Three million|Five hundred thousand]] views. My real content tops out at 40. The algorithm has spoken.",
+        "The {w:app} algorithm decided I'm the new star of the '{w:hobby}' niche. I know nothing about it. I gained 80,000 followers in two days. I'm learning live on air.",
+        "A video of {w:animal} stealing my sandwich went viral {w:far_place}. I'm now 'the sandwich person'. Brands are emailing me. They want the animal, not me.",
+      ],
     },
     fx: { followers: 25000, happy: 4 },
   },

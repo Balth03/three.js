@@ -304,7 +304,7 @@ export function Fight({ onDone, l, variant }: GameProps) {
       if (perfect) { st.perfect++; st.slow = 0.35; g.hit('perfect'); g.add(200, tr('PARFAIT !', 'PERFECT!'), 50, 34, '#22d3ee'); }
       else { g.hit('good'); g.add(80, tr('ESQUIVE', 'DODGED'), 50, 34, '#a3e635'); }
       comic(st, cx, h * 0.25, tr('CONTRE !', 'COUNTER!'), '#22d3ee', 40);
-      o.next = 'stunned'; o.nextDur = perfect ? 1.25 : 0.95; st.winHits = 0;
+      o.next = 'stunned'; o.nextDur = perfect ? 1.1 : 0.85; st.winHits = 0;
       if (o.atk === 'S') { // item smashes on the floor
         glass(); for (let i = 0; i < 26; i++) st.parts.push({ x: w / 2 - st.viewX + rand(-60, 60), y: h * 0.82, vx: rand(-500, 500), vy: rand(-700, -200), life: 0, max: rand(0.8, 1.6), kind: 'glass', r: rand(4, 10), rot: rand(0, 6), vr: rand(-12, 12), floor: h * rand(0.85, 1), color: st.set === 'bar' ? '#5fbf6a' : '#c7ccd4' });
         say(st, [['Ma bouteille !!', 'My bottle!!'], ['Raté, mince.', 'Missed, dang.'], ['Grrr !', 'Grrr!']], 1);
@@ -348,8 +348,8 @@ export function Fight({ onDone, l, variant }: GameProps) {
     if (o.state === 'ko' || st.ending) return;
     const isHook = kind === 'hook';
     let mult = 1, clean = true, crit = false, interrupt = false;
-    if (o.state === 'stunned') mult = 1.5;
-    else if (o.state === 'taunt') { mult = 1.25; o.state = 'idle'; o.t = 0; o.dur = 0.25; }
+    if (o.state === 'stunned') mult = 1.35;
+    else if (o.state === 'taunt') { mult = 1.1; o.state = 'idle'; o.t = 0; o.dur = 0.25; }
     else if (o.state === 'windup') { if (isHook && o.t < o.dur * 0.85) { crit = true; interrupt = true; mult = 2; } }
     else if (o.state === 'idle' || o.state === 'recover') {
       const blockChance = isHook ? 0.55 : 0.72;
@@ -362,11 +362,11 @@ export function Fight({ onDone, l, variant }: GameProps) {
       if (o.guardHits >= 2) { o.guardHits = 0; startAttack(st, 1, 0.45); say(st, [['Bien essayé !', 'Nice try!'], ['Ma garde est en béton !', 'My guard is concrete!']], 1); }
       return;
     }
-    let dmg = (isHook ? 9.5 : 4.5) * mult * st.pow * (weak ? 0.45 : 1);
+    let dmg = (isHook ? 7.5 : 3.6) * mult * st.pow * (weak ? 0.45 : 1);
     if (o.state === 'stunned' && st.winHits >= 2 && isHook) { dmg *= 1.25; crit = true; }
     dmg = Math.round(dmg * 10) / 10;
     o.hp = Math.max(0, o.hp - dmg); st.dealt += dmg; st.landed++;
-    if (o.state === 'stunned') st.winHits++;
+    if (o.state === 'stunned') { st.winHits++; if (st.winHits >= 4) { o.t = Math.max(o.t, o.dur - 0.05); say(st, [['Ok ça suffit !', 'Okay, enough!'], ['Je me réveille !', "I'm awake now!"]], 1); } }
     if (interrupt) { o.state = 'stunned'; o.t = 0; o.dur = 0.9; comic(st, w / 2, h * 0.22, tr('INTERROMPU !', 'INTERRUPTED!'), '#22d3ee', 38); }
     // juice
     const dirX = isHook ? -1 : rand(-0.3, 0.3);

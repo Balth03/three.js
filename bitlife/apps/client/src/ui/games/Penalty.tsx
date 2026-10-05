@@ -197,7 +197,7 @@ export function Penalty({ onDone, l }: GameProps) {
     }
     const curl = (q === 'perfect' ? rand(0.35, 0.6) : rand(0.08, 0.3)) * (tx >= 0 ? -1 : 1);
     st.shot = { tx, ty, F, curl, arc, out, q, dx, dy, stay };
-    st.stage = 'shot'; st.sc = 0;
+    st.stage = 'shot'; st.sc = 0; st.banner = null;
     const diveAt = react ? KICK + 0.1 : KICK - 0.07;
     st.k.diveAt = diveAt; st.k.diveDur = Math.max(0.16, KICK + F - diveAt);
   };
@@ -265,8 +265,8 @@ export function Penalty({ onDone, l }: GameProps) {
     const top = sh.ty > 0.72 && Math.abs(sh.tx) > 0.78;
     if (sh.out === 'goal') {
       st.shake = 1; st.strobe = 1.6; st.hype = 1; st.net = { x: sh.tx, h: sh.ty, a: 1, t: 0 };
-      snd.net(); snd.roar(1.1); snd.horn();
-      confetti(st, 90, v.w);
+      snd.net();
+      if (!keepMode) { snd.roar(1.1); snd.horn(); confetti(st, 90, v.w); } else { snd.ooh(); st.strobe = 0; }
       st.tifo = keepMode ? tr('NOOON', 'NOOO') : tr('BUUUT', 'GOAL'); st.tifoMode = keepMode ? 'boo' : 'goal';
       if (!keepMode) {
         st.goals++; if (sh.q === 'perfect') st.perfects++;

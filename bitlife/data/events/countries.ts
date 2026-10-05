@@ -432,7 +432,7 @@ export const countryEvents: EventDef[] = [
       {
         label: { fr: 'Courir en terrasse', en: 'Rush to a terrace' },
         out: [
-          { w: 2, text: { fr: ["J'ai trouvé une place en terrasse, commandé un verre et levé le visage vers le ciel. Quatre minutes après, déluge. J'ai fini mon verre sous l'auvent, trempé{|e} et heureux{|se}.", "Terrasse conquise de haute lutte. J'ai attrapé un coup de soleil en vingt minutes : ma peau avait oublié ce que c'était."], en: ["I grabbed a terrace seat, ordered a drink and turned my face to the sky. Four minutes later, deluge. I finished my drink under the awning, soaked and happy.", "Terrace conquered after a fierce battle. I got sunburned in twenty minutes: my skin had forgotten what the sun was."] }, fx: { happy: 7, health: -1 }, mood: 'happy' },
+          { w: 2, text: { fr: ["J'ai trouvé une place en terrasse, commandé un verre et levé le visage vers le ciel. Quatre minutes après, déluge. J'ai fini mon verre sous l'auvent, trempé{|e} et heureu{x|se}.", "Terrasse conquise de haute lutte. J'ai attrapé un coup de soleil en vingt minutes : ma peau avait oublié ce que c'était."], en: ["I grabbed a terrace seat, ordered a drink and turned my face to the sky. Four minutes later, deluge. I finished my drink under the awning, soaked and happy.", "Terrace conquered after a fierce battle. I got sunburned in twenty minutes: my skin had forgotten what the sun was."] }, fx: { happy: 7, health: -1 }, mood: 'happy' },
         ],
       },
       {
@@ -706,7 +706,7 @@ export const countryEvents: EventDef[] = [
       {
         label: { fr: 'Rester professionnel{|le}', en: 'Stay professional' },
         out: [
-          { w: 2, odds: { discipline: 1 }, text: { fr: ["Je n'ai rien goûté. Pas une miette. Le chocolatier m'a promu{|e} « apprenti officiel ». Le soir, chez moi, j'ai mangé une tablette de supermarché en pleurant de frustration.", "J'ai résisté trois heures, puis j'ai léché la spatule en cachette dans les toilettes. Personne n'a rien vu. Je me sens sale et heureux{|se}."], en: ["I tasted nothing. Not a crumb. The chocolatier promoted me to “official apprentice.” At home, I ate a supermarket bar, crying with frustration.", "I resisted for three hours, then secretly licked the spatula in the bathroom. Nobody saw. I feel dirty and happy."] }, fx: { discipline: 4, happy: 2, money: 400 }, mood: 'proud' },
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["Je n'ai rien goûté. Pas une miette. Le chocolatier m'a promu{|e} « apprenti officiel ». Le soir, chez moi, j'ai mangé une tablette de supermarché en pleurant de frustration.", "J'ai résisté trois heures, puis j'ai léché la spatule en cachette dans les toilettes. Personne n'a rien vu. Je me sens sale et heureu{x|se}."], en: ["I tasted nothing. Not a crumb. The chocolatier promoted me to “official apprentice.” At home, I ate a supermarket bar, crying with frustration.", "I resisted for three hours, then secretly licked the spatula in the bathroom. Nobody saw. I feel dirty and happy."] }, fx: { discipline: 4, happy: 2, money: 400 }, mood: 'proud' },
         ],
       },
       {
@@ -848,7 +848,7 @@ export const countryEvents: EventDef[] = [
       },
       {
         label: { fr: 'Faire semblant de boiter', en: 'Fake a limp' },
-        text: { fr: ["J'ai simulé une blessure au genou pendant l'échauffement. Le coach m'a envoyé{|e} à l'infirmerie, qui m'a envoyé{|e} en club d'échecs. J'y suis très heureux{|se}.", "J'ai boité de manière très convaincante. Trop : on m'a mis{|e} sur une civière, emmené{|e} sous les applaudissements. Mon père croit que je suis un héros blessé."], en: ["I faked a knee injury during warm-ups. The coach sent me to the nurse, who sent me to chess club. I'm very happy there.", "I limped very convincingly. Too convincingly: they stretchered me off to applause. Dad thinks I'm a wounded hero."] },
+        text: { fr: ["J'ai simulé une blessure au genou pendant l'échauffement. Le coach m'a envoyé{|e} à l'infirmerie, qui m'a envoyé{|e} en club d'échecs. J'y suis très heureu{x|se}.", "J'ai boité de manière très convaincante. Trop : on m'a mis{|e} sur une civière, emmené{|e} sous les applaudissements. Mon père croit que je suis un héros blessé."], en: ["I faked a knee injury during warm-ups. The coach sent me to the nurse, who sent me to chess club. I'm very happy there.", "I limped very convincingly. Too convincingly: they stretchered me off to applause. Dad thinks I'm a wounded hero."] },
         fx: { happy: 4, athletic: -1, karma: -1 },
       },
     ],
@@ -1229,7 +1229,7 @@ export const countryEvents: EventDef[] = [
         "Tu es invité{|e} à une garden-party royale. On t'a appris la révérence pendant trois heures. Le Duc de Petit-Ronflement, quarante-septième dans l'ordre de succession, s'approche de toi avec {w:drink}.",
         "Un membre mineur de la famille royale inaugure le nouveau rond-point de {city}. Tu es au premier rang. Il te tend la main. Personne ne t'a dit si on la serre, si on l'embrasse ou si on fait un salto.",
         "Le protocole a placé ta chaise à côté d'une comtesse de 97 ans qui ne connaît que deux sujets : ses corgis et {w:hobby}. La Duchesse de Quelque-Part te regarde manger tes scones de travers.",
-        "Tu travailles comme serveur{|se} lors d'un dîner au château. Sur ton plateau : des petits fours, une coupe de champagne, et la responsabilité de ne pas éternuer sur un Lord. Un Prince te demande où sont les toilettes.",
+        "Tu travailles comme serv{eur|euse} lors d'un dîner au château. Sur ton plateau : des petits fours, une coupe de champagne, et la responsabilité de ne pas éternuer sur un Lord. Un Prince te demande où sont les toilettes.",
       ],
       en: [
         "You're invited to a royal garden party. They spent three hours teaching you to bow. The Duke of Little Snoring, forty-seventh in line to the throne, approaches you holding {w:drink}.",
@@ -2036,7 +2036,7 @@ export const countryEvents: EventDef[] = [
       {
         label: { fr: 'Cacher le tatouage', en: 'Hide the tattoo' },
         out: [
-          { w: 2, text: { fr: ["J'ai collé un pansement géant sur ma fesse. Il s'est décollé dans l'eau et a flotté jusqu'au visage d'un monsieur. On m'a raccompagné{|e} à la sortie, tout nu{|e}, avec une révérence.", "J'ai marché à reculons jusqu'au bassin pour cacher mon tatouage. J'ai glissé sur le carrelage et fait un grand écart nu devant douze retraités. L'un d'eux a applaudi."], en: ["I stuck a giant band-aid on my butt. It came off in the water and floated to a man's face. I was escorted out, naked, with a bow.", "I walked backwards to the pool to hide my tattoo. I slipped on the tiles and did the splits naked in front of twelve retirees. One of them clapped."] }, fx: { happy: -3, stress: 6, health: -2 }, mood: 'shock' },
+          { w: 2, text: { fr: ["J'ai collé un pansement géant sur ma fesse. Il s'est décollé dans l'eau et a flotté jusqu'au visage d'un monsieur. On m'a raccompagné{|e} à la sortie, {tout nu|toute nue}, avec une révérence.", "J'ai marché à reculons jusqu'au bassin pour cacher mon tatouage. J'ai glissé sur le carrelage et fait un grand écart nu devant douze retraités. L'un d'eux a applaudi."], en: ["I stuck a giant band-aid on my butt. It came off in the water and floated to a man's face. I was escorted out, naked, with a bow.", "I walked backwards to the pool to hide my tattoo. I slipped on the tiles and did the splits naked in front of twelve retirees. One of them clapped."] }, fx: { happy: -3, stress: 6, health: -2 }, mood: 'shock' },
         ],
       },
       {
@@ -2049,7 +2049,7 @@ export const countryEvents: EventDef[] = [
       {
         label: { fr: 'Chasser le singe', en: 'Chase the monkey' },
         out: [
-          { w: 1, text: { fr: ["J'ai poursuivi le singe tout nu{|e} dans la neige. Un car de touristes est arrivé. J'apparais dans 400 albums de vacances, flouté{|e} au mieux. Le singe a gardé la serviette.", "Le singe m'a rendu ma serviette... après s'être essuyé les fesses avec. Puis il m'a mordu{|e} le mollet. J'ai fini la soirée à l'infirmerie, nu{|e} sous une couverture."], en: ["I chased the monkey naked through the snow. A tour bus arrived. I appear in 400 vacation albums, blurred at best. The monkey kept the towel.", "The monkey gave back my towel… after wiping its butt with it. Then it bit my calf. I spent the evening at the infirmary, naked under a blanket."] }, fx: { happy: 2, health: -4, fame: 1 }, mood: 'angry' },
+          { w: 1, text: { fr: ["J'ai poursuivi le singe {tout nu|toute nue} dans la neige. Un car de touristes est arrivé. J'apparais dans 400 albums de vacances, flouté{|e} au mieux. Le singe a gardé la serviette.", "Le singe m'a rendu ma serviette... après s'être essuyé les fesses avec. Puis il m'a mordu{|e} le mollet. J'ai fini la soirée à l'infirmerie, nu{|e} sous une couverture."], en: ["I chased the monkey naked through the snow. A tour bus arrived. I appear in 400 vacation albums, blurred at best. The monkey kept the towel.", "The monkey gave back my towel… after wiping its butt with it. Then it bit my calf. I spent the evening at the infirmary, naked under a blanket."] }, fx: { happy: 2, health: -4, fame: 1 }, mood: 'angry' },
         ],
       },
     ],
@@ -2181,7 +2181,7 @@ export const countryEvents: EventDef[] = [
       },
       {
         label: { fr: 'Résister au sommeil', en: 'Fight the sleep' },
-        text: { fr: ["J'ai lutté contre la sieste avec trois cafés. À 16 h, je me suis endormi{|e} debout contre le frigo, la tasse à la main. On m'a retrouvé{|e} là à 18 h, avec un chat sur l'épaule.", "J'ai voulu être productif{|ve} pendant la sieste. Je suis sorti{|e} {w:weather} et j'ai attrapé une insolation en dix minutes. L'Espagne gagne toujours."], en: ["I fought the siesta with three coffees. At 4 p.m., I fell asleep standing against the fridge, mug in hand. They found me there at 6, with a cat on my shoulder.", "I tried to be productive during the siesta. I went out {w:weather} and got heatstroke in ten minutes. Spain always wins."] },
+        text: { fr: ["J'ai lutté contre la sieste avec trois cafés. À 16 h, je me suis endormi{|e} debout contre le frigo, la tasse à la main. On m'a retrouvé{|e} là à 18 h, avec un chat sur l'épaule.", "J'ai voulu être producti{f|ve} pendant la sieste. Je suis sorti{|e} {w:weather} et j'ai attrapé une insolation en dix minutes. L'Espagne gagne toujours."], en: ["I fought the siesta with three coffees. At 4 p.m., I fell asleep standing against the fridge, mug in hand. They found me there at 6, with a cat on my shoulder.", "I tried to be productive during the siesta. I went out {w:weather} and got heatstroke in ten minutes. Spain always wins."] },
         fx: { health: -2, stress: 2 },
       },
     ],
@@ -2302,7 +2302,7 @@ export const countryEvents: EventDef[] = [
       {
         label: { fr: "Tenir jusqu'aux churros", en: 'Last until churros' },
         out: [
-          { w: 2, odds: { health: 1 }, text: { fr: ["J'ai tenu jusqu'à 7 h. Churros, chocolat épais comme du goudron, lever de soleil. Je suis allé{|e} travailler sans dormir. Mes collègues espagnols aussi. Ils étaient en pleine forme. Moi, je suis mort{|e} intérieurement.", "Dîner à minuit, boîte à 2 h, churros à l'aube. Je n'ai jamais été aussi heureux{|se} et aussi fatigué{|e}. J'ai compris que les Espagnols ont une batterie cachée."], en: ["I made it to 7 a.m. Churros, chocolate thick as tar, sunrise. Went to work without sleeping. So did my Spanish coworkers. They were thriving. I died inside.", "Dinner at midnight, club at 2, churros at dawn. Never been happier or more exhausted. I've realized Spaniards have a hidden battery."] }, fx: { happy: 10, health: -4, addiction: ['alcohol', 3] }, mood: 'party' },
+          { w: 2, odds: { health: 1 }, text: { fr: ["J'ai tenu jusqu'à 7 h. Churros, chocolat épais comme du goudron, lever de soleil. Je suis allé{|e} travailler sans dormir. Mes collègues espagnols aussi. Ils étaient en pleine forme. Moi, je suis mort{|e} intérieurement.", "Dîner à minuit, boîte à 2 h, churros à l'aube. Je n'ai jamais été aussi heureu{x|se} et aussi fatigué{|e}. J'ai compris que les Espagnols ont une batterie cachée."], en: ["I made it to 7 a.m. Churros, chocolate thick as tar, sunrise. Went to work without sleeping. So did my Spanish coworkers. They were thriving. I died inside.", "Dinner at midnight, club at 2, churros at dawn. Never been happier or more exhausted. I've realized Spaniards have a hidden battery."] }, fx: { happy: 10, health: -4, addiction: ['alcohol', 3] }, mood: 'party' },
           { w: 1, text: { fr: ["Je me suis endormi{|e} la tête dans le plat de patatas bravas à 1 h 30. Mes amis ont continué la soirée autour de moi. Ils m'ont réveillé{|e} pour les churros, puis je me suis rendormi{|e} dedans."], en: ["I fell asleep face-first in the patatas bravas at 1:30. My friends partied on around me. They woke me for churros, then I fell asleep in those too."] }, fx: { happy: 4, looks: -2 }, mood: 'sleepy' },
         ],
       },
@@ -2314,7 +2314,7 @@ export const countryEvents: EventDef[] = [
       },
       {
         label: { fr: 'Rentrer à minuit', en: 'Go home at midnight' },
-        text: { fr: ["Je suis rentré{|e} à minuit. Mes amis m'ont regardé{|e} partir avec inquiétude, comme si j'étais malade. L'un d'eux m'a demandé « tu vas bien ? Tu es triste ? ».", "J'ai dit bonne nuit à minuit, au moment où les plats arrivaient. Un serveur m'a demandé si c'était une urgence médicale. Je suis rentré{|e} affamé{|e} et honteux{|se}."], en: ["I went home at midnight. My friends watched me leave with concern, as if I were ill. One asked, “Are you okay? Are you sad?”", "I said goodnight at midnight, just as the food arrived. A waiter asked if it was a medical emergency. I went home starving and ashamed."] },
+        text: { fr: ["Je suis rentré{|e} à minuit. Mes amis m'ont regardé{|e} partir avec inquiétude, comme si j'étais malade. L'un d'eux m'a demandé « tu vas bien ? Tu es triste ? ».", "J'ai dit bonne nuit à minuit, au moment où les plats arrivaient. Un serveur m'a demandé si c'était une urgence médicale. Je suis rentré{|e} affamé{|e} et honteu{x|se}."], en: ["I went home at midnight. My friends watched me leave with concern, as if I were ill. One asked, “Are you okay? Are you sad?”", "I said goodnight at midnight, just as the food arrived. A waiter asked if it was a medical emergency. I went home starving and ashamed."] },
         fx: { health: 2, happy: -3 },
       },
     ],
@@ -2420,7 +2420,7 @@ export const countryEvents: EventDef[] = [
     cooldown: 4,
     text: {
       fr: [
-        "Été à la plage. Tu es serveur{|se} dans une station balnéaire. Un groupe de touristes rouges comme des homards, en chaussettes-sandales, commande 14 seaux de sangria à 10 h du matin et demande où se trouve « la vraie Espagne ».",
+        "Été à la plage. Tu es serv{eur|euse} dans une station balnéaire. Un groupe de touristes rouges comme des homards, en chaussettes-sandales, commande 14 seaux de sangria à 10 h du matin et demande où se trouve « la vraie Espagne ».",
         "Ton appartement à {city} est entouré de locations touristiques. À 4 h du matin, un groupe d'enterrement de vie de garçon chante {w:song} sur le balcon d'en face. L'un d'eux est déguisé en pénis géant. Un autre essaie de sauter dans la piscine depuis le troisième étage.",
         "Un touriste te demande ton chemin en criant très lentement, comme si tu étais sourd{|e} : « LA-PLA-YA ? » Il porte un sombrero mexicain, un maillot de foot et un coup de soleil en forme de débardeur.",
         "Ta plage préférée est envahie. Il y a des serviettes jusqu'à l'eau, un type qui joue de la musique sur une enceinte grosse comme {w:object}, et un vendeur qui propose « mojito, cerveza, massage, mangue ».",
@@ -2711,7 +2711,7 @@ export const countryEvents: EventDef[] = [
       {
         label: { fr: 'Rester, c\'est confortable', en: 'Stay, it’s comfy' },
         out: [
-          { w: 2, text: { fr: ["Je suis resté{|e}. Mes caleçons sont repassés, mon assiette est pleine et mon compte en banque se porte à merveille. Ma vie amoureuse, elle, est en soins palliatifs.", "J'ai dit à {a.my} que je restais encore « un an ou deux ». Elle a fait un tiramisu de célébration. J'en ai mangé la moitié, en pyjama, à 34 ans. Je suis heureux{|se}."], en: ["I stayed. My underwear is ironed, my plate is full and my bank account is thriving. My love life is in palliative care.", "I told {a.my} I'd stay “another year or two.” She made a celebration tiramisu. I ate half of it, in pajamas, at 34. I'm happy."] }, fx: { happy: 4, rel: 8, money: 500, discipline: -2 }, mood: 'happy' },
+          { w: 2, text: { fr: ["Je suis resté{|e}. Mes caleçons sont repassés, mon assiette est pleine et mon compte en banque se porte à merveille. Ma vie amoureuse, elle, est en soins palliatifs.", "J'ai dit à {a.my} que je restais encore « un an ou deux ». Elle a fait un tiramisu de célébration. J'en ai mangé la moitié, en pyjama, à 34 ans. Je suis heureu{x|se}."], en: ["I stayed. My underwear is ironed, my plate is full and my bank account is thriving. My love life is in palliative care.", "I told {a.my} I'd stay “another year or two.” She made a celebration tiramisu. I ate half of it, in pajamas, at 34. I'm happy."] }, fx: { happy: 4, rel: 8, money: 500, discipline: -2 }, mood: 'happy' },
         ],
       },
       {
@@ -2931,7 +2931,7 @@ export const countryEvents: EventDef[] = [
       {
         label: { fr: 'Trier parfaitement', en: 'Sort perfectly' },
         out: [
-          { w: 2, odds: { discipline: 1 }, text: { fr: ["J'ai lavé mes pots de yaourt, retiré les étiquettes, séparé les couvercles. Frau Schmidt m'a laissé un nouveau mot : « Gut. » Je l'ai encadré.", "J'ai trié avec une précision chirurgicale. J'ai récupéré 21,75 € de consigne. Un retraité m'a félicité{|e} pour ma « technique d'insertion ». Je suis fier{|e}."], en: ["I washed my yogurt pots, removed labels, separated lids. Frau Schmidt left me a new note: “Gut.” I framed it.", "I sorted with surgical precision. Got €21.75 in deposits back. A retiree complimented my “insertion technique.” I'm proud."] }, fx: { discipline: 4, karma: 3, money: 20 }, mood: 'proud' },
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["J'ai lavé mes pots de yaourt, retiré les étiquettes, séparé les couvercles. Frau Schmidt m'a laissé un nouveau mot : « Gut. » Je l'ai encadré.", "J'ai trié avec une précision chirurgicale. J'ai récupéré 21,75 € de consigne. Un retraité m'a félicité{|e} pour ma « technique d'insertion ». Je suis fi{er|ère}."], en: ["I washed my yogurt pots, removed labels, separated lids. Frau Schmidt left me a new note: “Gut.” I framed it.", "I sorted with surgical precision. Got €21.75 in deposits back. A retiree complimented my “insertion technique.” I'm proud."] }, fx: { discipline: 4, karma: 3, money: 20 }, mood: 'proud' },
         ],
       },
       {
@@ -3203,7 +3203,7 @@ export const countryEvents: EventDef[] = [
       {
         label: { fr: "Supporter l'Aufguss", en: 'Endure the Aufguss' },
         out: [
-          { w: 2, odds: { health: 1 }, text: { fr: ["J'ai tenu les trois tours de serviette du maître. Ma peau a pris la couleur d'une saucisse grillée. À la fin, j'ai applaudi avec les autres, sans savoir pourquoi. C'est la tradition.", "Aufguss terminé. Je suis sorti{|e} en titubant, rouge, purifié{|e}, et j'ai plongé dans l'eau glacée. Mon cœur s'est arrêté une seconde puis est reparti. Je me sens neuf{|ve}."], en: ["I survived the master's three towel rounds. My skin turned the color of a grilled sausage. At the end I applauded with everyone, not knowing why. It's tradition.", "Aufguss over. I staggered out, red, purified, and plunged into the ice water. My heart stopped for a second, then restarted. I feel brand new."] }, fx: { health: 5, happy: 5, stress: -5 }, mood: 'happy' },
+          { w: 2, odds: { health: 1 }, text: { fr: ["J'ai tenu les trois tours de serviette du maître. Ma peau a pris la couleur d'une saucisse grillée. À la fin, j'ai applaudi avec les autres, sans savoir pourquoi. C'est la tradition.", "Aufguss terminé. Je suis sorti{|e} en titubant, rouge, purifié{|e}, et j'ai plongé dans l'eau glacée. Mon cœur s'est arrêté une seconde puis est reparti. Je me sens neu{f|ve}."], en: ["I survived the master's three towel rounds. My skin turned the color of a grilled sausage. At the end I applauded with everyone, not knowing why. It's tradition.", "Aufguss over. I staggered out, red, purified, and plunged into the ice water. My heart stopped for a second, then restarted. I feel brand new."] }, fx: { health: 5, happy: 5, stress: -5 }, mood: 'happy' },
           { w: 1, text: { fr: ["Au deuxième tour de serviette, je me suis évanoui{|e}, nu{|e}, sur les genoux d'un inconnu. Il ne m'a pas lâché{|e} et a continué la conversation avec son voisin. On m'a réveillé{|e} à l'eau froide."], en: ["On the second towel round I fainted, naked, into a stranger's lap. He held me steady and continued his conversation with his neighbor. They woke me with cold water."] }, fx: { health: -4, stress: 4 }, mood: 'sick' },
         ],
       },
@@ -3249,7 +3249,7 @@ export const countryEvents: EventDef[] = [
       {
         label: { fr: 'Régler ma montre', en: 'Fix my watch' },
         out: [
-          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai démonté ma montre et je l'ai remontée, avec deux pièces en trop. Elle marche à la seconde près. Le prof de maths m'a regardé{|e} avec un respect nouveau. Je serai horloger{|ère}.", "J'ai synchronisé ma montre avec l'horloge atomique. Maintenant c'est elle qui corrige celle de la classe. Le prof est jaloux."], en: ["I took my watch apart and reassembled it, with two parts left over. It's accurate to the second. The math teacher looked at me with newfound respect. I'll be a watchmaker.", "I synced my watch to the atomic clock. Now it corrects the classroom clock. The teacher is jealous."] }, fx: { smarts: 3, discipline: 2, happy: 3 }, mood: 'proud' },
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai démonté ma montre et je l'ai remontée, avec deux pièces en trop. Elle marche à la seconde près. Le prof de maths m'a regardé{|e} avec un respect nouveau. Je serai horlog{er|ère}.", "J'ai synchronisé ma montre avec l'horloge atomique. Maintenant c'est elle qui corrige celle de la classe. Le prof est jaloux."], en: ["I took my watch apart and reassembled it, with two parts left over. It's accurate to the second. The math teacher looked at me with newfound respect. I'll be a watchmaker.", "I synced my watch to the atomic clock. Now it corrects the classroom clock. The teacher is jealous."] }, fx: { smarts: 3, discipline: 2, happy: 3 }, mood: 'proud' },
         ],
       },
       {
@@ -3518,7 +3518,7 @@ export const countryEvents: EventDef[] = [
       {
         label: { fr: 'Voler la croûte', en: 'Steal the crust' },
         out: [
-          { w: 1, text: { fr: ["Pendant le débat sur mon gage, j'ai volé la croûte du fond du caquelon. Trahison absolue. On m'a banni{|e} de la table. J'ai mangé la croûte seul{|e} sur le balcon, heureux{|se} et maudit{|e}.", "J'ai pris la croûte. Le beau-père a sorti son couteau suisse et l'a posé sur la table, lame ouverte, sans rien dire. J'ai partagé la croûte en quatre. Il a souri."], en: ["During the debate over my forfeit, I stole the crust from the bottom of the pot. Absolute betrayal. I was banished from the table. I ate the crust alone on the balcony, happy and cursed.", "I took the crust. My father-in-law placed his Swiss Army knife on the table, blade open, silently. I split the crust into four. He smiled."] }, fx: { happy: 6, karma: -3 }, mood: 'shock' },
+          { w: 1, text: { fr: ["Pendant le débat sur mon gage, j'ai volé la croûte du fond du caquelon. Trahison absolue. On m'a banni{|e} de la table. J'ai mangé la croûte seul{|e} sur le balcon, heureu{x|se} et maudit{|e}.", "J'ai pris la croûte. Le beau-père a sorti son couteau suisse et l'a posé sur la table, lame ouverte, sans rien dire. J'ai partagé la croûte en quatre. Il a souri."], en: ["During the debate over my forfeit, I stole the crust from the bottom of the pot. Absolute betrayal. I was banished from the table. I ate the crust alone on the balcony, happy and cursed.", "I took the crust. My father-in-law placed his Swiss Army knife on the table, blade open, silently. I split the crust into four. He smiled."] }, fx: { happy: 6, karma: -3 }, mood: 'shock' },
         ],
       },
     ],
@@ -4275,6 +4275,718 @@ export const countryEvents: EventDef[] = [
         label: { fr: 'Siroter poliment', en: 'Sip politely' },
         text: { fr: ["J'ai siroté chaque mezcal lentement, comme le maître l'a dit : « On l'embrasse, on ne le boit pas. » J'ai compris la terre, le feu et l'agave. Et j'étais quand même bourré{|e}.", "J'ai bu à petites gorgées. Le guide m'a félicité{|e} pour ma « maturité ». Puis il m'a servi un dixième verre. La maturité a des limites."], en: ["I sipped each mezcal slowly, as the master said: “You kiss it, you don't drink it.” I understood the earth, the fire and the agave. And I still got hammered.", "I took small sips. The guide praised my “maturity.” Then poured me a tenth glass. Maturity has limits."] },
         fx: { happy: 5, smarts: 1, addiction: ['alcohol', 2] },
+      },
+    ],
+  },
+  // ═════════════════════════════ MAROC ═════════════════════════════
+  {
+    id: 'cy_ma_souk',
+    icon: '🧺',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'park', mood: 'neutral', prop: 'carpet', fx: 'money' },
+    when: { country: ['ma'], age: [14, 85] },
+    vars: { amount: [60, 400] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Souk de {city}. Tu veux juste un pouf en cuir. Le vendeur t'a déjà servi un thé, montré 40 tapis, présenté son cousin et annoncé le prix « spécial pour toi, mon ami » : {$amount}. Tu sais que c'est quatre fois trop.",
+        "Le marchand de tapis t'a fait asseoir, a déroulé 22 tapis l'un sur l'autre et te jure que celui du dessus a été tissé par sa grand-mère pendant sept ans. Il en demande {$amount}. Il y a une étiquette « made in » sous le coin.",
+        "Tu cherches {w:gift} pour un ami au souk. Un vendeur t'attrape par le bras : « Regarder, c'est gratuit ! » Quarante minutes plus tard, tu as un thé à la main, une babouche à chaque pied et une négociation en cours.",
+        "Un vendeur d'épices t'a reconnu{|e} : « Ah, c'est toi ! Le fils ou la fille de… de… ! » Il ne te connaît pas. Mais il te fait « un prix famille » sur 2 kilos de safran à {$amount}. Ça sent {w:smell} et le cumin.",
+      ],
+      en: [
+        "The {city} souk. You just want a leather pouf. The seller has already served you tea, shown you 40 rugs, introduced his cousin and named his “special price for you, my friend”: {$amount}. You know it's four times too much.",
+        "The rug merchant sat you down, unrolled 22 rugs on top of each other and swears the top one took his grandmother seven years to weave. He wants {$amount}. There's a “made in” tag under the corner.",
+        "You're looking for {w:gift} for a friend at the souk. A vendor grabs your arm: “Looking is free!” Forty minutes later you have tea in hand, a slipper on each foot and a negotiation underway.",
+        "A spice seller recognizes you: “Ah, it's you! The child of… of…!” He doesn't know you. But he offers a “family price” on 2 kilos of saffron at {$amount}. It smells of {w:smell} and cumin.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Marchander à mort', en: 'Haggle to the death' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai proposé un quart du prix. Il a crié, s'est tenu le cœur, a appelé son cousin à témoin. J'ai fait semblant de partir trois fois. On a conclu à un tiers du prix, avec un thé et une poignée de main. On est amis maintenant.", "Négociation de 1 h 20. Il a juré sur la tête de ses enfants, de ses ancêtres et de son âne. J'ai obtenu le pouf, deux babouches et un porte-clés en forme de chameau pour le prix du pouf seul."], en: ["I offered a quarter of the price. He yelled, clutched his heart, called his cousin as a witness. I pretended to leave three times. We settled at a third, with tea and a handshake. We're friends now.", "A 1-hour-20 negotiation. He swore on his children's heads, his ancestors and his donkey. I got the pouf, two slippers and a camel keychain for the price of the pouf alone."] }, fx: { happy: 8, smarts: 2, money: -40 }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai marchandé si fort que le vendeur a fini par me demander de l'argent pour avoir perdu son temps. J'ai payé. Je ne sais pas comment. Je suis reparti{|e} sans pouf et avec un tapis."], en: ["I haggled so hard the seller ended up charging me for wasting his time. I paid. I don't know how. I left without the pouf and with a rug."] }, fx: { money: '-amount', happy: -2 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Payer le prix affiché', en: 'Pay full price' },
+        out: [
+          { w: 2, text: { fr: ["J'ai payé {$amount} sans discuter. Le vendeur a eu l'air déçu, presque vexé : « Mais tu ne négocies pas ? » Il m'a rendu une partie de l'argent par respect pour la tradition. Puis il a fermé boutique pour la journée.", "Prix plein. Le vendeur m'a regardé{|e} comme un touriste perdu. Il m'a serré la main deux fois et appelé « mon frère » dix fois. Je crois que j'ai payé son mariage."], en: ["I paid {$amount} without arguing. The seller looked disappointed, almost offended: “You don't negotiate?” He gave some money back out of respect for tradition. Then closed for the day.", "Full price. The seller looked at me like a lost tourist. He shook my hand twice and called me “my brother” ten times. I think I paid for his wedding."] }, fx: { money: '-amount', happy: 3 }, mood: 'neutral' },
+        ],
+      },
+      {
+        label: { fr: 'Fuir dans les ruelles', en: 'Escape into the alleys' },
+        text: { fr: ["J'ai fui dans les ruelles. Je me suis perdu{|e} pendant trois heures. Un enfant m'a guidé{|e} jusqu'à la sortie pour 20 dirhams. C'était le neveu du vendeur. Le système est parfait.", "J'ai dit « je reviens » et je suis parti{|e}. Le vendeur m'a suivi{|e} sur 300 mètres en baissant le prix tous les dix pas. Au bout de la rue, le pouf était presque gratuit. Je l'ai pris."], en: ["I fled into the alleys. Got lost for three hours. A kid guided me out for 20 dirhams. He was the seller's nephew. The system is perfect.", "I said “I'll be back” and left. The seller followed me 300 yards, dropping the price every ten steps. By the end of the street the pouf was almost free. I took it."] },
+        fx: { happy: 4, money: -5 },
+      },
+    ],
+  },
+  {
+    id: 'cy_ma_atay',
+    icon: '🍵',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'home', mood: 'happy', prop: 'teapot' },
+    when: { country: ['ma'], age: [8, 90] },
+    actor: 'grandparent',
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "{a.rel} t'apprend à servir le thé à la menthe comme il faut : la théière levée à un mètre au-dessus du verre, pour faire de la mousse. Sans en mettre à côté. Devant les invités. {a.rel} te tend la théière brûlante.",
+        "Visite chez {a.rel} à {city}. Le thé arrive : vert, menthe fraîche, et une quantité de sucre qui ferait pleurer un dentiste. C'est le troisième verre. On ne refuse jamais le troisième verre. Il y a aussi {w:food} sur le plateau.",
+        "La tradition : le premier verre est « doux comme la vie », le deuxième « fort comme l'amour », le troisième « amer comme la mort ». {a.rel} te sert le quatrième, qui n'a pas de proverbe, « parce que tu es trop maigre ».",
+        "Des invités arrivent à l'improviste. {a.rel} te confie la mission la plus importante de la journée : préparer le thé. Tout le monde va goûter. Tout le monde va juger. Même {w:animal} qui traîne dans la cour te regarde.",
+      ],
+      en: [
+        "{a.rel} is teaching you to pour mint tea properly: teapot raised a meter above the glass to make foam. Without spilling. In front of guests. {a.rel} hands you the scalding teapot.",
+        "Visiting {a.rel} in {city}. The tea arrives: green, fresh mint, and an amount of sugar that would make a dentist weep. This is the third glass. You never refuse the third glass. There's also {w:food} on the tray.",
+        "Tradition: the first glass is “sweet like life,” the second “strong like love,” the third “bitter like death.” {a.rel} pours you a fourth, which has no proverb, “because you're too skinny.”",
+        "Guests drop in unannounced. {a.rel} entrusts you with the most important mission of the day: making the tea. Everyone will taste it. Everyone will judge. Even {w:animal} wandering in the courtyard is watching.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Verser de très haut', en: 'Pour from way up' },
+        out: [
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["J'ai levé la théière très haut. Le jet est tombé pile dans le verre, avec une mousse parfaite. Les invités ont applaudi. {a.my} a dit « mabrouk » en souriant. J'ai le geste. Je l'aurai toute ma vie.", "Versé de haut, sans une goutte à côté. {a.my} a goûté, hoché la tête et dit que j'étais prêt{|e} à me marier. Je verserai plus lentement à l'avenir."], en: ["I raised the teapot high. The stream landed dead center with perfect foam. The guests applauded. {a.my} said “mabrouk” with a smile. I've got the knack. I'll have it all my life.", "Poured from up high, not a drop spilled. {a.my} tasted, nodded and said I was ready to get married. I'll pour more slowly from now on."] }, fx: { happy: 8, rel: 8, discipline: 2 }, mood: 'proud' },
+          { w: 1, text: { fr: ["J'ai levé trop haut. Le jet a raté le verre, inondé le plateau, éclaboussé l'invité et le chat. Le chat a fui. L'invité a souri poliment, le pantalon trempé de thé brûlant. {a.my} m'a repris la théière sans un mot."], en: ["I raised it too high. The stream missed the glass, flooded the tray, splashed the guest and the cat. The cat fled. The guest smiled politely, his pants soaked in scalding tea. {a.my} took the teapot back without a word."] }, fx: { happy: -3, stress: 4 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Boire tous les verres', en: 'Drink every glass' },
+        out: [
+          { w: 2, text: { fr: ["J'ai bu sept verres de thé. J'ai tellement de sucre dans le sang que j'entends les couleurs. J'ai fait le ménage de toute la maison en 20 minutes, puis dormi 11 heures.", "Thé, thé, thé. {a.my} était {a:ravi|ravie}. Moi, j'avais les mains qui tremblaient et le cœur qui battait en morse. Mais je n'ai pas refusé un seul verre. L'honneur est sauf."], en: ["I drank seven glasses of tea. I have so much sugar in my blood I can hear colors. I cleaned the whole house in 20 minutes, then slept 11 hours.", "Tea, tea, tea. {a.my} was delighted. My hands were shaking and my heart beat in Morse code. But I didn't refuse a single glass. Honor intact."] }, fx: { happy: 6, rel: 6, health: -1 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Demander sans sucre', en: 'Ask for no sugar' },
+        text: { fr: ["J'ai demandé du thé sans sucre. {a.my} m'a regardé{|e} comme si j'avais demandé de l'eau de mer. {a:Il|Elle} a mis « juste un peu » de sucre. Juste un peu, c'était quatre morceaux.", "Thé sans sucre. Les invités ont eu un petit silence gêné. Un oncle a dit « c'est la mode en Europe, ça ». Je suis l'Européen{|ne} de la famille, maintenant."], en: ["I asked for tea without sugar. {a.my} looked at me like I'd asked for seawater, then added “just a little” sugar. Just a little was four cubes.", "Sugar-free tea. The guests went quiet, embarrassed. An uncle said, “That's the fashion in Europe.” I'm the family's European now."] },
+        fx: { health: 1, rel: -2 },
+      },
+    ],
+  },
+  {
+    id: 'cy_ma_foot',
+    icon: '🦁',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'park', mood: 'party', prop: 'flag', fx: 'confetti' },
+    when: { country: ['ma'], age: [6, 16] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Les Lions de l'Atlas jouent ce soir ! Toute la rue de {city} est décorée de drapeaux rouges et verts. Ton père a sorti la télé sur le trottoir. Les voisins ont apporté des chaises, du thé et {w:food}. Ta grand-mère porte un maillot.",
+        "Match de foot dans le derb, la ruelle. Les buts : une porte en bois d'un côté, deux poubelles de l'autre. Le ballon a déjà atterri dans trois cuisines. Une voisine menace de le confisquer « pour toujours, cette fois ».",
+        "Le Maroc vient de marquer en Coupe du monde. Toute la ville explose : klaxons, youyous, gens qui dansent sur les voitures. Ton oncle pleure. Ton père pleure. Le chat a disparu sous le lit et ne reviendra pas avant demain.",
+        "Tournoi de l'école. Tu joues avec un maillot du Maroc trop grand de trois tailles. L'équipe adverse a un garçon de 11 ans qui fait 1,75 m et qui ressemble à {w:celeb}. Ton entraîneur te dit : « Lui, tu le marques. »",
+      ],
+      en: [
+        "The Atlas Lions play tonight! The whole {city} street is decked in red and green flags. Your dad brought the TV out onto the sidewalk. Neighbors brought chairs, tea and {w:food}. Your grandma is wearing a jersey.",
+        "Football in the derb, the alley. Goals: a wooden door at one end, two trash cans at the other. The ball has already landed in three kitchens. A neighbor is threatening to confiscate it “forever, this time.”",
+        "Morocco just scored at the World Cup. The whole city explodes: horns, ululations, people dancing on cars. Your uncle is crying. Your dad is crying. The cat has vanished under the bed and won't come out until tomorrow.",
+        "School tournament. You're playing in a Morocco jersey three sizes too big. The other team has an 11-year-old who's 5'9\" and looks like {w:celeb}. Your coach says, “You mark him.”",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Célébrer dans la rue', en: 'Celebrate in the street' },
+        out: [
+          { w: 2, text: { fr: ["J'ai couru dans la rue avec le drapeau sur les épaules, en hurlant « Dima Maghrib ! ». Un inconnu m'a porté{|e} sur ses épaules. J'ai vu toute la ville danser d'en haut. Je n'oublierai jamais.", "On a fait la fête jusqu'à minuit. Ma grand-mère a dansé sur le capot de la voiture du voisin. Le voisin a applaudi. Il n'y a pas de règles les soirs de victoire."], en: ["I ran down the street with the flag on my shoulders, shouting “Dima Maghrib!” A stranger lifted me onto his shoulders. I saw the whole city dancing from above. I'll never forget it.", "We partied till midnight. My grandma danced on the hood of the neighbor's car. The neighbor applauded. There are no rules on victory nights."] }, fx: { happy: 10 }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Jouer dans le derb', en: 'Play in the alley' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai marqué un but entre les deux poubelles d'une reprise de volée. Toute la ruelle a crié. La voisine a même applaudi depuis sa fenêtre. Puis elle a confisqué le ballon, mais avec respect.", "J'ai dribblé trois garçons, un chat et une mobylette. But dans la porte en bois. Le propriétaire de la porte est sorti, a regardé l'impact, et a dit « joli but ». Puis il a fermé à clé."], en: ["I scored between the two trash cans with a volley. The whole alley cheered. The neighbor even clapped from her window. Then she confiscated the ball, but respectfully.", "I dribbled past three boys, a cat and a moped. Goal into the wooden door. The door's owner came out, inspected the dent and said, “Nice goal.” Then locked it."] }, fx: { happy: 8, athletic: 3 }, mood: 'proud' },
+          { w: 1, text: { fr: ["Mon tir a traversé la fenêtre de la voisine et atterri dans son tajine. Elle est sortie avec le ballon couvert de sauce et de pruneaux. Elle l'a gardé. Elle a aussi gardé ma réputation."], en: ["My shot went through the neighbor's window and landed in her tagine. She came out holding the ball covered in sauce and prunes. She kept it. She kept my reputation too."] }, fx: { happy: -2, karma: -1 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Marquer le géant', en: 'Mark the giant' },
+        text: { fr: ["J'ai marqué le géant de 11 ans pendant tout le match. Il m'a dépassé{|e} deux fois, mais je lui ai collé aux basques comme un timbre. On a gagné 1-0. Il m'a serré la main. On est amis maintenant.", "J'ai essayé de marquer le géant. Il m'a écarté{|e} comme une mouche. J'ai fait un roulé-boulé, puis un deuxième. L'entraîneur a dit « au moins tu l'as gêné ». Je l'ai gêné par terre."], en: ["I marked the 11-year-old giant all game. He got past me twice, but I stuck to him like a stamp. We won 1-0. He shook my hand. We're friends now.", "I tried to mark the giant. He brushed me aside like a fly. I rolled, then rolled again. The coach said, “At least you bothered him.” I bothered him from the ground."] },
+        fx: { happy: 4, athletic: 2 },
+      },
+    ],
+  },
+  {
+    id: 'cy_ma_mariage',
+    icon: '💍',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'party', mood: 'party', prop: 'amariya', fx: 'confetti' },
+    when: { country: ['ma'], age: [18, 85] },
+    weight: 7,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Mariage de ta cousine : trois jours de fête, 800 invités, un orchestre de dakka marrakchia qui joue des tambours jusqu'à 5 h du matin. La mariée change de tenue sept fois. Tu en es à ton quatrième repas de la soirée. Il est 2 h.",
+        "Au mariage de ton cousin à {city}, les tantes t'ont repéré{|e}. Elles approchent en formation, comme un escadron. Question numéro 1 : « Et toi, c'est pour quand ? » Question numéro 2 : « Tu veux qu'on te présente quelqu'un ? »",
+        "Les mariés vont être portés sur l'amariya, un trône doré, au-dessus de la foule. On cherche quatre porteurs. Ton oncle te désigne. La mariée porte une robe brodée de 12 kilos et 4 kilos de bijoux.",
+        "Mariage traditionnel. La negafa, l'organisatrice, a un planning militaire : entrée, robe 1, tajine, robe 2, pastilla, robe 3, méchoui, robe 4, gâteaux, robe 5… Tu as mangé {w:food} et trois pastillas. Ta ceinture a demandé l'asile.",
+      ],
+      en: [
+        "Your cousin's wedding: three days of celebration, 800 guests, a dakka marrakchia band drumming until 5 a.m. The bride changes outfits seven times. You're on your fourth meal of the night. It's 2 a.m.",
+        "At your cousin's wedding in {city}, the aunties have spotted you. They approach in formation, like a squadron. Question 1: “And you, when's your turn?” Question 2: “Want us to introduce you to someone?”",
+        "The newlyweds are about to be carried on the amariya, a golden throne, above the crowd. They need four bearers. Your uncle points at you. The bride wears a 26-pound embroidered gown and 9 pounds of jewelry.",
+        "Traditional wedding. The negafa, the wedding planner, runs a military schedule: entrance, outfit 1, tagine, outfit 2, pastilla, outfit 3, roast lamb, outfit 4, pastries, outfit 5… You've eaten {w:food} and three pastillas. Your belt has requested asylum.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Danser jusqu\'à l\'aube', en: 'Dance till dawn' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai dansé jusqu'à 6 h du matin, entouré{|e} de tantes qui faisaient des youyous. J'ai perdu trois kilos et une chaussure. Une tante m'a glissé le numéro de sa voisine « très bien élevée ».", "Danse non-stop. Les tambours m'ont mis en transe. J'ai dansé avec un oncle de 85 ans qui avait plus d'énergie que moi. À la fin, c'est lui qui m'a raccompagné{|e}."], en: ["I danced till 6 a.m., surrounded by ululating aunties. I lost six pounds and a shoe. One aunt slipped me her neighbor's number, “very well brought up.”", "Non-stop dancing. The drums put me in a trance. I danced with an 85-year-old uncle who had more energy than me. At the end, he was the one who walked me home."] }, fx: { happy: 10, athletic: 2 }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Esquiver les tantes', en: 'Dodge the aunties' },
+        out: [
+          { w: 1, odds: { smarts: 1 }, text: { fr: ["J'ai inventé un amour imaginaire « qui vit au Canada et travaille dans la médecine ». Les tantes étaient ravies. Elles demandent maintenant des nouvelles tous les mois. J'ai dû créer un faux profil.", "J'ai répondu « bientôt, les tantes, bientôt » avec un grand sourire et j'ai disparu au buffet. Elles m'ont retrouvé{|e} en quatre minutes. Elles ont un radar."], en: ["I invented an imaginary fiancé(e) “who lives in Canada and works in medicine.” The aunties were thrilled. Now they ask for news every month. I had to create a fake profile.", "I answered “soon, aunties” with a huge smile and vanished to the buffet. They found me in four minutes. They have radar."] }, fx: { happy: 4, stress: 3 }, mood: 'neutral' },
+          { w: 1, text: { fr: ["Les tantes m'ont encerclé{|e}. En une soirée, on m'a présenté sept personnes « célibataires et sérieuses », dont deux cousins éloignés et un monsieur de 62 ans. J'ai dit oui à un café. Avec le monsieur, par politesse."], en: ["The aunties surrounded me. In one evening I was introduced to seven “single and serious” people, including two distant cousins and a 62-year-old man. I agreed to coffee. With the man, out of politeness."] }, fx: { stress: 6, happy: 2 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: "Porter l'amariya", en: 'Carry the amariya' },
+        out: [
+          { w: 1, odds: { athletic: 1 }, text: { fr: ["J'ai porté l'amariya avec trois cousins. On a fait le tour de la salle sous les youyous, la mariée souriant au-dessus de nos têtes. Mon épaule a craqué, mais c'était le plus beau moment de la soirée.", "On a soulevé l'amariya. La mariée a failli tomber deux fois. J'ai tenu bon, en transpirant comme jamais. Elle m'a remercié{|e} en pleurant. Mon dos, lui, me remerciera plus tard."], en: ["I carried the amariya with three cousins. We circled the hall to ululations, the bride smiling above our heads. My shoulder cracked, but it was the best moment of the night.", "We lifted the amariya. The bride nearly fell twice. I held firm, sweating like never before. She thanked me in tears. My back will thank me later."] }, fx: { happy: 8, athletic: 2, health: -2 }, mood: 'proud' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cy_ma_taxi',
+    icon: '🚕',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'park', mood: 'shock', prop: 'taxi' },
+    when: { country: ['ma'], age: [18, 75] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Grand taxi collectif entre {city} et le village de ta tante. C'est une vieille Mercedes de 1984. Il y a six passagers plus le chauffeur. Tu partages le siège avant avec un monsieur, sa valise et un carton de poussins vivants.",
+        "Le petit taxi rouge refuse de mettre le compteur. Le chauffeur te propose un « prix fixe, très bon prix ». Il conduit d'une main, parle au téléphone de l'autre et klaxonne avec le genou. Ça sent {w:smell}.",
+        "Le grand taxi ne part que quand il est plein. Il manque une personne. Ça fait 1 h 40 que vous attendez. Le chauffeur boit son troisième thé. Un passager dort. Une dame a sorti {w:food} pour tout le monde.",
+        "Ton chauffeur de taxi te raconte sa vie entière en 20 minutes : sa femme, ses enfants, son cousin à Paris, sa théorie {w:conspiracy}, et son avis sur l'équipe nationale. Il a raté ta rue trois fois.",
+      ],
+      en: [
+        "Shared grand taxi between {city} and your aunt's village. It's a 1984 Mercedes. Six passengers plus the driver. You're sharing the front seat with a man, his suitcase and a box of live chicks.",
+        "The little red taxi refuses to run the meter. The driver offers a “fixed price, very good price.” He drives one-handed, talks on the phone with the other and honks with his knee. It smells of {w:smell}.",
+        "The grand taxi only leaves when full. One person missing. You've been waiting 1 hour 40. The driver is on his third tea. One passenger is asleep. A lady brought out {w:food} for everyone.",
+        "Your taxi driver tells you his whole life in 20 minutes: his wife, kids, cousin in Paris, his theory {w:conspiracy}, and his opinion of the national team. He's missed your street three times.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Accepter le voyage', en: 'Go along with it' },
+        out: [
+          { w: 2, text: { fr: ["J'ai fait le trajet avec un poussin sur la tête et le coude du voisin dans les côtes. Trois heures de route, un pneu crevé, un arrêt pour acheter des oranges. À l'arrivée, on était tous amis. Le poussin aussi.", "Le chauffeur a mis de la musique chaâbi à fond et tout le taxi a chanté. Même le monsieur aux poussins. On est arrivé{|e}s deux heures en retard et heureux."], en: ["I rode with a chick on my head and my neighbor's elbow in my ribs. Three hours, a flat tire, a stop for oranges. By arrival we were all friends. The chick too.", "The driver blasted chaabi music and the whole taxi sang. Even the chick guy. We arrived two hours late and happy."] }, fx: { happy: 7, stress: -2 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Négocier le prix', en: 'Negotiate the fare' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai négocié en darija avec un accent atroce. Le chauffeur a tellement ri qu'il m'a fait moitié prix. « Pour l'effort. » Il m'a donné son numéro pour la prochaine fois.", "Négociation intense. Il a dit « 100 », j'ai dit « 30 », il a dit « tu veux me ruiner ? », j'ai dit « 40 ». On a fini à 50 et une discussion sur le foot."], en: ["I negotiated in Darija with an atrocious accent. The driver laughed so hard he gave me half price. “For the effort.” He gave me his number for next time.", "Intense negotiation. He said “100,” I said “30,” he said “you want to ruin me?”, I said “40.” We settled at 50 and a chat about football."] }, fx: { happy: 5, money: 5 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Payer la place vide', en: 'Pay for the empty seat' },
+        text: { fr: ["J'ai payé la place manquante pour qu'on parte enfin. Les autres passagers m'ont remercié{|e} comme un héros. La dame m'a donné deux msemen. Le chauffeur a dit que j'étais « quelqu'un de bien ». Il ne me connaît pas.", "J'ai payé la sixième place. On est partis. Au bout de 5 km, le chauffeur s'est arrêté pour prendre un autre passager, qui a payé aussi. Il a gagné deux fois. Je l'admire."], en: ["I paid for the missing seat so we could finally go. The other passengers thanked me like a hero. The lady gave me two msemen. The driver said I was “a good person.” He doesn't know me.", "I paid for the sixth seat. We left. After 3 miles the driver stopped to pick up another passenger, who paid too. He got paid twice. I admire him."] },
+        fx: { karma: 4, money: -5, happy: 3 },
+      },
+    ],
+  },
+  {
+    id: 'cy_ma_hammam',
+    icon: '🧼',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'party', mood: 'shock', prop: 'kessa' },
+    when: { country: ['ma'], age: [18, 85] },
+    vars: { amount: [8, 30] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Hammam du quartier à {city}. La kessala, une dame aux avant-bras de bûcheron, t'allonge sur la pierre chaude, te tartine de savon noir et sort le gant de kessa. « Détends-toi. » Tu entends quelqu'un hurler dans la salle d'à côté.",
+        "Premier hammam traditionnel. Trois salles : chaude, très chaude et « enfer ». Des seaux d'eau brûlante, de la vapeur, et des habitués qui te regardent comme un débutant. Le gommage coûte {$amount}. On te promet « une peau de bébé ».",
+        "La kessala frotte ton dos avec le gant de crin. Des rouleaux de peau morte tombent par terre, gris, longs comme des nouilles. Il y en a tellement que tu pourrais en faire un deuxième toi. Elle dit : « Tu ne t'étais pas lavé{|e} depuis quand ? »",
+        "Hammam entre amis. L'un d'eux t'a convaincu{|e} que le gommage « fait du bien au moral ». Tu es en maillot, assis{|e} dans la vapeur, avec un seau, {w:object} qui traîne là sans raison, et une sensation de cuisson lente.",
+      ],
+      en: [
+        "The {city} neighborhood hammam. The attendant, a woman with lumberjack forearms, lays you on the hot stone, slathers you in black soap and pulls out the kessa glove. “Relax.” You hear someone screaming in the next room.",
+        "First traditional hammam. Three rooms: hot, very hot and “hell.” Buckets of scalding water, steam, and regulars eyeing you like a rookie. The scrub costs {$amount}. They promise “baby skin.”",
+        "The attendant scrubs your back with the horsehair glove. Rolls of dead skin fall to the floor, grey, long as noodles. There's so much you could build a second you. She says: “When did you last wash?”",
+        "Hammam with friends. One convinced you a scrub “is good for morale.” You're in a swimsuit, sitting in the steam, with a bucket, {w:object} lying around for no reason, and a slow-cooking sensation.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Le gommage complet', en: 'The full scrub' },
+        out: [
+          { w: 2, text: { fr: ["La kessala m'a frotté{|e} pendant 25 minutes. J'ai perdu trois couches de peau et un grain de beauté. J'ai crié comme un animal. En sortant, j'étais rose, lisse et lég{er|ère}. Ma peau brille dans le noir.", "Gommage intégral. Elle a frotté des endroits que je ne savais pas avoir. Quand elle a versé le seau d'eau glacée à la fin, j'ai poussé un cri qui a fait taire tout le hammam. Je me sens neu{f|ve}."], en: ["The attendant scrubbed me for 25 minutes. I lost three layers of skin and a mole. I screamed like an animal. I came out pink, smooth and light. My skin glows in the dark.", "Full scrub. She scrubbed places I didn't know I had. When she dumped the bucket of ice water at the end, I let out a scream that silenced the whole hammam. I feel brand new."] }, fx: { money: '-amount', looks: 4, happy: 6, stress: -8, health: 2 }, mood: 'happy' },
+          { w: 1, text: { fr: ["Elle a frotté trop fort. J'ai saigné du dos, un peu. Elle a dit « c'est le mauvais sang qui sort ». J'ai hoché la tête, en larmes, sans argumenter. Je ressemble à une tomate pelée."], en: ["She scrubbed too hard. My back bled, a little. She said, “That's the bad blood coming out.” I nodded, in tears, without arguing. I look like a peeled tomato."] }, fx: { money: '-amount', health: -4, looks: -2, visual: 'gore' }, mood: 'cry' },
+        ],
+      },
+      {
+        label: { fr: 'La salle « enfer »', en: 'The “hell” room' },
+        out: [
+          { w: 2, odds: { health: 1 }, text: { fr: ["Je suis entré{|e} dans la salle la plus chaude. Un vieux monsieur y méditait. J'ai tenu 4 minutes. Il était là depuis une heure. En sortant, j'ai transpiré tout le couscous de la semaine.", "J'ai tenu dix minutes dans la salle « enfer ». Mes pores se sont ouverts comme des fenêtres. J'ai expulsé des toxines de 2009. Je suis sorti{|e} purifié{|e} et légèrement cuit{|e}."], en: ["I entered the hottest room. An old man was meditating there. I lasted 4 minutes. He'd been there an hour. On the way out, I sweated out the week's couscous.", "I lasted ten minutes in the “hell” room. My pores opened like windows. I expelled toxins from 2009. I came out purified and slightly cooked."] }, fx: { health: 4, stress: -6 }, mood: 'happy' },
+          { w: 1, text: { fr: ["Je me suis évanoui{|e} dans la salle « enfer ». On m'a traîné{|e} jusqu'à la salle froide par les pieds, comme un sac de semoule. On m'a réveillé{|e} avec un seau d'eau glacée et un verre de thé. Les deux en même temps."], en: ["I fainted in the “hell” room. They dragged me to the cool room by the feet, like a sack of semolina. They revived me with a bucket of ice water and a glass of tea. Both at once."] }, fx: { health: -5, stress: 4 }, mood: 'sick' },
+        ],
+      },
+      {
+        label: { fr: 'Juste me rincer', en: 'Just rinse off' },
+        text: { fr: ["J'ai juste fait couler de l'eau tiède sur ma tête. La kessala m'a regardé{|e} avec une pitié profonde. Les habitués ont chuchoté. Je suis sorti{|e} propre, mais pas « propre de hammam ». Il y a une différence.", "J'ai refusé le gommage. La kessala a haussé les épaules et frotté mon ami à la place. Il est sorti en hurlant de bonheur. J'ai regretté toute la soirée."], en: ["I just poured lukewarm water over my head. The attendant looked at me with deep pity. The regulars whispered. I came out clean, but not “hammam clean.” There's a difference.", "I refused the scrub. The attendant shrugged and scrubbed my friend instead. He came out screaming with joy. I regretted it all evening."] },
+        fx: { happy: -1 },
+      },
+    ],
+  },
+  {
+    id: 'cy_ma_jemaa',
+    icon: '🐍',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'park', mood: 'shock', prop: 'snake', fx: 'money' },
+    when: { country: ['ma'], age: [18, 70] },
+    weight: 6,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Place Jemaa el-Fna, Marrakech, avec ton cousin français en vacances. En trois minutes, un charmeur de serpents lui a posé un cobra sur les épaules, un singe lui a volé ses lunettes et une dame lui a dessiné du henné sur la main sans demander. Tout le monde réclame de l'argent.",
+        "Tu fais visiter la grande place à des amis touristes. Ils veulent « l'authenticité ». Un homme avec un singe en gilet s'approche, puis un charmeur de serpents, puis un dentiste de rue qui exhibe un bocal de dents arrachées. Ça sent {w:smell} et les brochettes.",
+        "Le soir sur la place, les stands de nourriture s'allument. Des rabatteurs te tirent par le bras : « Stand numéro 14, le meilleur ! » « Non, numéro 31 ! » L'un d'eux te jure qu'il a vu {w:celeb} manger chez lui.",
+        "Ton cousin de France a voulu prendre une photo d'un charmeur de serpents sans payer. Le charmeur l'a vu. Le serpent aussi. Le singe aussi. Ils avancent vers vous. Le cousin tient {w:object} comme un bouclier.",
+      ],
+      en: [
+        "Jemaa el-Fna square, Marrakech, with your French cousin on vacation. In three minutes, a snake charmer put a cobra on his shoulders, a monkey stole his glasses and a woman drew henna on his hand without asking. Everyone wants money.",
+        "You're showing tourist friends the big square. They want “authenticity.” A man with a vest-wearing monkey approaches, then a snake charmer, then a street dentist displaying a jar of pulled teeth. It smells of {w:smell} and kebabs.",
+        "At night the square's food stalls light up. Touts grab your arm: “Stall 14, the best!” “No, 31!” One swears he saw {w:celeb} eat at his stall.",
+        "Your cousin from France tried to photograph a snake charmer without paying. The charmer saw. So did the snake. So did the monkey. They're advancing toward you. Your cousin holds up {w:object} like a shield.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Laisser faire le cousin', en: 'Let the cousin handle it' },
+        out: [
+          { w: 2, text: { fr: ["J'ai laissé mon cousin gérer. Il a payé le serpent, le singe, le henné, la photo, la photo de la photo, et un monsieur qui passait « pour l'ambiance ». Il a dépensé 600 dirhams en 20 minutes. Il dit que c'était « authentique ».", "Le cousin a voulu négocier avec le singe. Le singe lui a fait pipi sur l'épaule, a pris ses lunettes et un billet de 100. Le dresseur a dit : « Il aime bien les Français. »"], en: ["I let my cousin handle it. He paid for the snake, the monkey, the henna, the photo, the photo of the photo, and a passerby “for the atmosphere.” He spent 600 dirhams in 20 minutes. He calls it “authentic.”", "My cousin tried to negotiate with the monkey. The monkey peed on his shoulder, took his glasses and a 100-dirham note. The handler said, “He likes the French.”"] }, fx: { happy: 9, karma: -1 }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Parler en darija', en: 'Speak Darija' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai parlé en darija avec le charmeur. Il a souri, compris que je n'étais pas un touriste, et fait le prix local. Il a même laissé le serpent faire un bisou à mon cousin. Gratuitement. Le cousin s'est évanoui.", "Trois mots en darija et le singe m'a rendu les lunettes de mon cousin. Le dresseur m'a offert un thé. Le cousin, lui, a dû payer quand même. C'est la règle pour les cousins de France."], en: ["I spoke Darija with the charmer. He smiled, realized I wasn't a tourist and gave the local price. He even let the snake kiss my cousin. Free. My cousin fainted.", "Three words of Darija and the monkey gave back my cousin's glasses. The handler offered me tea. My cousin still had to pay. That's the rule for cousins from France."] }, fx: { happy: 7, smarts: 2 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Aller chez le dentiste de rue', en: 'Visit the street dentist' },
+        out: [
+          { w: 1, text: { fr: ["Mon cousin, par bravade, a voulu « voir comment ça marche » chez le dentiste de rue. Le dentiste lui a arraché une dent saine en deux secondes, avec une pince à vélo. Il l'a ajoutée au bocal. Le cousin est reparti avec un trou et une histoire.", "J'ai assisté à une extraction en direct. Le patient n'a pas crié. Moi si. Le dentiste m'a proposé un « détartrage promo ». J'ai couru jusqu'à l'autre bout de la place."], en: ["My cousin, out of bravado, wanted to “see how it works” at the street dentist. The dentist yanked a healthy tooth in two seconds with bike pliers and added it to the jar. My cousin left with a gap and a story.", "I watched a live extraction. The patient didn't scream. I did. The dentist offered me a “promo cleaning.” I ran to the other end of the square."] }, fx: { happy: 5, stress: 4, visual: 'gore' }, mood: 'shock' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cy_ma_mre',
+    icon: '🚗',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'park', mood: 'angry', prop: 'roofrack', fx: 'poop' },
+    when: { country: ['ma'], age: [18, 75] },
+    weight: 6,
+    cooldown: 4,
+    text: {
+      fr: [
+        "C'est l'été : les cousins de l'étranger rentrent au pays. Ton cousin de Belgique arrive en voiture avec, sur le toit, trois matelas, une machine à laver, un vélo, quatre valises et {w:object}, tenus par une seule corde. La voiture touche presque le sol.",
+        "File d'attente au port de Tanger, en plein mois d'août. Quinze heures de queue sous 40 °C. Des milliers de voitures chargées jusqu'au ciel. Ton oncle vit en France depuis 30 ans et il a ramené {w:gift} pour chaque membre de la famille. La famille compte 112 personnes.",
+        "Le cousin de France est là, et il le fait savoir : lunettes de soleil, chemise ouverte, parfum qu'on sent à 50 mètres, et des phrases qui commencent par « en France, nous… ». Il a loué une voiture de sport pour faire le tour du quartier de {city} en klaxonnant.",
+        "Dans la file du port, il y a 12 heures d'attente et les toilettes les plus proches sont à 3 km. Ton cousin a bu deux litres de soda. Il te regarde avec désespoir. Il y a une bouteille vide et un buisson.",
+      ],
+      en: [
+        "Summer: the cousins from abroad are coming home. Your cousin from Belgium arrives by car with three mattresses, a washing machine, a bike, four suitcases and {w:object} on the roof, held by a single rope. The car almost scrapes the ground.",
+        "Queue at the Tangier port in the middle of August. Fifteen hours of waiting at 104°F. Thousands of cars loaded sky-high. Your uncle has lived in France for 30 years and brought {w:gift} for every family member. The family has 112 members.",
+        "The cousin from France is here, and everyone knows it: sunglasses, open shirt, cologne you can smell from 50 yards, and sentences starting with “in France, we…” He rented a sports car to cruise the {city} neighborhood, honking.",
+        "In the port queue, there's a 12-hour wait and the nearest toilets are 2 miles away. Your cousin drank two liters of soda. He looks at you in despair. There's an empty bottle and a bush.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Aider à décharger', en: 'Help unload' },
+        out: [
+          { w: 2, text: { fr: ["J'ai aidé à décharger. La corde a lâché. Les trois matelas, la machine à laver et le vélo ont dévalé la rue comme une avalanche. La machine à laver a fini dans la boutique du voisin, qui l'a gardée. Compromis familial.", "On a déchargé la voiture pendant deux heures. Il y avait des cadeaux pour tout le monde : 40 paires de chaussettes, 12 parfums de supermarché et une télé. Ma grand-mère a pleuré devant les chaussettes."], en: ["I helped unload. The rope snapped. The three mattresses, the washing machine and the bike tumbled down the street like an avalanche. The washer ended up in the neighbor's shop, and he kept it. Family compromise.", "We unloaded the car for two hours. Gifts for everyone: 40 pairs of socks, 12 supermarket perfumes and a TV. Grandma cried over the socks."] }, fx: { happy: 7, karma: 3 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Remettre le cousin à sa place', en: 'Take the cousin down a peg' },
+        out: [
+          { w: 2, text: { fr: ["Je lui ai rappelé qu'en France, il habite un studio de 18 m² à Créteil et prend le RER B tous les matins. Silence. Les tantes ont ri. Il a rendu la voiture de sport le lendemain.", "Je l'ai défié au foot dans le derb, en sandales. Il est tombé, a déchiré sa chemise de marque et a pleuré pour ses lunettes cassées. On l'aime quand même. Surtout là."], en: ["I reminded him that in France he lives in a 200-square-foot studio in the suburbs and takes the commuter train every morning. Silence. The aunts laughed. He returned the sports car the next day.", "I challenged him to football in the alley, in sandals. He fell, ripped his designer shirt and cried over his broken sunglasses. We love him anyway. Especially then."] }, fx: { happy: 8, karma: -2 }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Gérer la crise du port', en: 'Handle the port crisis' },
+        out: [
+          { w: 1, text: { fr: ["J'ai tenu une couverture pendant que mon cousin utilisait la bouteille. Le vent a soufflé. La couverture s'est envolée. 200 voitures ont vu. Il est devenu une légende du port de Tanger. On en parle encore à chaque été.", "Le cousin a couru vers le buisson. Le buisson était déjà occupé par trois autres personnes. Ils ont fait la queue. Même là, il y avait une file. Il est revenu traumatisé et soulagé."], en: ["I held up a blanket while my cousin used the bottle. The wind blew. The blanket flew off. 200 cars saw. He became a Tangier port legend. People still talk about it every summer.", "My cousin ran to the bush. The bush was already occupied by three other people. They queued. Even there, there was a line. He came back traumatized and relieved."] }, fx: { happy: 9, karma: 1, visual: 'poop' }, mood: 'party' },
+        ],
+      },
+    ],
+  },
+  // ═════════════════════════════ AUSTRALIE ═════════════════════════════
+  {
+    id: 'cy_au_slang',
+    icon: '🦘',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'park', mood: 'happy', prop: 'thongs' },
+    when: { country: ['au'], age: [8, 90] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Ton cousin français est en visite à {city}. Ton pote lui dit : « G'day mate, on se fait un barbie cet arvo après le servo, apporte tes thongs et un slab de tinnies. » Ton cousin te regarde, terrifié. Il a compris « string ».",
+        "Ta grand-mère te demande d'aller acheter « des snags, des bangers et un sanga pour le smoko ». Tu ne sais plus si c'est de l'anglais. Le vendeur, lui, a compris tout de suite et te tend {w:food}.",
+        "Nouveau collègue anglais au bureau. Ton chef lui dit qu'il est « flat out like a lizard drinking » et qu'on se voit « after brekkie, no worries ». Le collègue anglais hoche la tête poliment. Il n'a rien compris. Toi non plus, à moitié.",
+        "Un touriste te demande son chemin. Tu réponds sans réfléchir : « Straya, mate, it's just past the bottle-o, near the maccas, can't miss it. » Il te remercie, l'air perdu, et part dans la direction opposée, vers {w:to_place}.",
+      ],
+      en: [
+        "Your French cousin is visiting {city}. Your mate tells him: “G'day mate, barbie this arvo after the servo, bring your thongs and a slab of tinnies.” Your cousin looks at you, terrified. In his English, “thongs” means underwear.",
+        "Your grandma asks you to buy “snags, bangers and a sanga for smoko.” You're no longer sure it's English. The shopkeeper understood instantly and hands you {w:food}.",
+        "New English coworker at the office. Your boss tells him he's “flat out like a lizard drinking” and they'll catch up “after brekkie, no worries.” The English guy nods politely. He understood nothing. You, about half.",
+        "A tourist asks for directions. You answer without thinking: “Straya, mate, just past the bottle-o, near Maccas, can't miss it.” He thanks you, looking lost, and heads the opposite way, {w:to_place}.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Traduire gentiment', en: 'Translate kindly' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai tout traduit : barbie = barbecue, arvo = après-midi, servo = station-service, thongs = tongs. Mon cousin a eu l'air soulagé, surtout pour les thongs. Il est venu au barbecue en tongs. Pas en string.", "J'ai fait un petit dictionnaire pour mon cousin. Il l'a appris par cœur. Il dit maintenant « no worries » à tout, même quand il y a vraiment des soucis. Il est devenu plus australien que moi."], en: ["I translated it all: barbie = barbecue, arvo = afternoon, servo = gas station, thongs = flip-flops. My cousin looked relieved, especially about the thongs. He came to the barbecue in flip-flops. Not underwear.", "I made my cousin a mini dictionary. He learned it by heart. Now he says “no worries” to everything, even when there are real worries. He's more Aussie than me."] }, fx: { happy: 5, karma: 2 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Le laisser deviner', en: 'Let him guess' },
+        out: [
+          { w: 2, text: { fr: ["Je ne lui ai rien expliqué. Il est arrivé au barbecue en string, avec une glacière vide et un bouquet de fleurs « pour le barbie ». Les Australiens l'ont adopté immédiatement. C'est lui la star de la soirée.", "J'ai laissé mon cousin se débrouiller. Il a demandé un « flat white » à la station-service et une « essence » au café. Il est rentré avec un litre de lait et un regard vide."], en: ["I explained nothing. He showed up to the barbecue in a thong, with an empty cooler and a bouquet “for the barbie.” The Aussies adopted him instantly. He's the star of the night.", "I let my cousin fend for himself. He ordered a flat white at the gas station and gasoline at the café. He came back with a quart of milk and a blank stare."] }, fx: { happy: 8, karma: -1 }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Inventer de l\'argot', en: 'Invent fake slang' },
+        text: { fr: ["J'ai appris à mon cousin de l'argot inventé : « Struth, the wombat's on the dunny ». Il l'a répété à un policier. Le policier a ri pendant cinq minutes et l'a laissé repartir sans amende pour excès de vitesse.", "J'ai inventé une expression, « fair suck of the didgeridoo, mate ». Mon cousin l'a répétée partout. Elle s'est répandue. On l'entend maintenant dans les pubs de {city}. Je suis linguiste."], en: ["I taught my cousin made-up slang: “Struth, the wombat's on the dunny.” He said it to a cop. The cop laughed for five minutes and let him off a speeding ticket.", "I invented an expression, “fair suck of the didgeridoo, mate.” My cousin repeated it everywhere. It spread. You now hear it in {city} pubs. I'm a linguist."] },
+        fx: { happy: 6, smarts: 1 },
+      },
+    ],
+  },
+  {
+    id: 'cy_au_magpie',
+    icon: '🐦',
+    cat: 'country',
+    rating: 0,
+    scene: { place: 'school', mood: 'shock', prop: 'helmet' },
+    when: { country: ['au'], age: [6, 12] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "C'est la saison des pies. Au printemps, les pies australiennes attaquent tout ce qui passe près de leur nid. Pour aller à l'école, tous les enfants portent un casque de vélo hérissé de colliers de serrage, comme des porcs-épics. Ta mère t'en tend un.",
+        "Sur le chemin de {school}, une pie te fixe depuis un arbre. Elle a déjà attaqué le facteur, deux cyclistes et la directrice. Elle te suit d'arbre en arbre. Tu entends {w:sound}.",
+        "Une pie a fait son nid au-dessus de la cour de récré. La récré se fait maintenant à l'intérieur, sauf pour les courageux. Tu as un casque, des lunettes de soleil peintes avec des yeux à l'arrière et {w:object} comme bouclier.",
+        "Ton prof explique que les pies reconnaissent les visages et gardent rancune pendant des années. Hier, tu as lancé une chips à une pie. Ce matin, elle t'attendait devant ta maison, avec ses copines.",
+      ],
+      en: [
+        "It's magpie season. In spring, Australian magpies attack anything near their nest. To get to school, every kid wears a bike helmet bristling with zip ties, like porcupines. Your mom hands you one.",
+        "On the way to {school}, a magpie stares at you from a tree. It has already attacked the postman, two cyclists and the principal. It follows you tree to tree. You hear {w:sound}.",
+        "A magpie nested above the playground. Recess is now indoors, except for the brave. You've got a helmet, sunglasses with eyes painted on the back and {w:object} as a shield.",
+        "Your teacher explains that magpies recognize faces and hold grudges for years. Yesterday you threw a chip at a magpie. This morning it was waiting outside your house, with friends.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Courir en zigzag', en: 'Run zigzag' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai couru en zigzag jusqu'à l'école en hurlant. La pie m'a raté{|e} trois fois. Elle a attaqué un cycliste à la place. Je suis arrivé{|e} premi{er|ère} en classe pour la première fois de ma vie.", "Zigzag parfait. La pie a fini par abandonner, épuisée. Mes camarades m'ont appelé{|e} « le lièvre ». J'ai couru comme ça tout le printemps. J'ai gagné le cross de l'école."], en: ["I zigzagged all the way to school, screaming. The magpie missed me three times. It attacked a cyclist instead. I got to class first for the first time in my life.", "Perfect zigzag. The magpie gave up, exhausted. My classmates called me “the hare.” I ran like that all spring. I won the school cross-country."] }, fx: { happy: 7, athletic: 3 }, mood: 'proud' },
+          { w: 1, text: { fr: ["La pie m'a piqué la tête par derrière. Ça a fait un bruit de bec sur casque, « toc ! ». Les colliers de serrage n'ont servi à rien. J'ai pleuré, puis j'ai compris que j'étais vivant{|e}. C'est déjà ça."], en: ["The magpie swooped my head from behind. Beak on helmet: “tok!” The zip ties did nothing. I cried, then realized I was alive. That's something."] }, fx: { happy: -3, health: -1 }, mood: 'cry' },
+        ],
+      },
+      {
+        label: { fr: 'Devenir ami avec la pie', en: 'Befriend the magpie' },
+        out: [
+          { w: 2, text: { fr: ["J'ai laissé un peu de pain et un ver de terre au pied de l'arbre tous les jours. La pie a arrêté de m'attaquer. Maintenant, elle m'escorte jusqu'à l'école et attaque les autres enfants. J'ai une garde du corps.", "Je me suis excusé{|e} auprès de la pie pour la chips. Elle m'a écouté{|e}, la tête penchée. Elle m'a pardonné. Elle m'apporte maintenant des cadeaux : une capsule, une clé, une dent."], en: ["I left some bread and a worm at the foot of the tree every day. The magpie stopped attacking me. Now it escorts me to school and attacks the other kids. I have a bodyguard.", "I apologized to the magpie for the chip. It listened, head tilted. It forgave me. Now it brings me gifts: a bottle cap, a key, a tooth."] }, fx: { happy: 8, karma: 3 }, mood: 'love' },
+        ],
+      },
+      {
+        label: { fr: 'Faire un détour', en: 'Take a detour' },
+        text: { fr: ["J'ai fait un détour de 2 km pour éviter la pie. J'ai croisé un serpent. Puis une araignée. C'est l'Australie : chaque chemin a son monstre. Je suis arrivé{|e} en retard et traumatisé{|e}.", "Grand détour par le parc. Une autre pie m'y attendait. Les pies communiquent. C'est une organisation. J'ai pris le bus. Elle était sur le toit."], en: ["I took a mile detour to avoid the magpie. Ran into a snake. Then a spider. It's Australia: every path has its monster. I got there late and traumatized.", "Big detour through the park. Another magpie was waiting. Magpies communicate. It's an organization. I took the bus. It was on the roof."] },
+        fx: { stress: 4 },
+      },
+    ],
+  },
+  {
+    id: 'cy_au_barbie',
+    icon: '🌭',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'park', mood: 'party', prop: 'grill' },
+    when: { country: ['au'], age: [18, 75] },
+    weight: 8,
+    cooldown: 3,
+    text: {
+      fr: [
+        "Barbecue au parc de {city}. Les barbecues électriques publics sont gratuits, l'esky (la glacière) est pleine de bières, les saucisses grésillent. Une mouette et trois ibis, surnommés « poulets de poubelle », encerclent ta table.",
+        "Le sausage sizzle du magasin de bricolage : une saucisse dans une tranche de pain de mie, avec des oignons et de la sauce tomate, pour deux dollars. C'est une institution nationale. Le bénévole te demande : « Oignons dessus ou dessous ? » Le pays entier est divisé.",
+        "Tu es aux commandes du barbecue chez ton beau-père, qui considère que tenir la pince est un honneur sacré. Il te surveille, une bière à la main. Tu viens de faire tomber {w:food} dans les braises.",
+        "Barbecue de Noël à la plage, par 38 °C. Crevettes, saucisses, pavlova qui fond, et ton oncle en bonnet de Père Noël et maillot de bain. Une pie vient de voler une saucisse entière dans l'assiette de ta tante.",
+      ],
+      en: [
+        "Barbie at the {city} park. Public electric grills are free, the esky is full of beers, the snags are sizzling. A seagull and three ibises, aka “bin chickens,” are circling your table.",
+        "The hardware store sausage sizzle: a sausage on a slice of white bread with onions and tomato sauce, two bucks. A national institution. The volunteer asks, “Onions on top or underneath?” The whole country is divided.",
+        "You're manning the grill at your father-in-law's, who considers holding the tongs a sacred honor. He's watching you, beer in hand. You just dropped {w:food} into the coals.",
+        "Christmas barbecue at the beach, 100°F. Prawns, snags, melting pavlova, and your uncle in a Santa hat and budgie smugglers. A magpie just stole an entire sausage from your aunt's plate.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Défendre la viande', en: 'Defend the meat' },
+        out: [
+          { w: 2, text: { fr: ["J'ai défendu le barbecue avec la pince, une serviette et des cris. Un ibis m'a quand même piqué une saucisse et a fui en se dandinant. Je l'ai poursuivi. Il a gagné. Il pue, mais il est rapide.", "J'ai combattu la mouette, les ibis et la pie. J'ai sauvé onze saucisses sur douze. Mon beau-père m'a tapé dans le dos : « Good on ya, mate. » C'est la première fois qu'il me parle."], en: ["I defended the grill with tongs, a towel and yelling. An ibis still nicked a sausage and waddled off. I chased it. It won. It stinks, but it's fast.", "I fought the seagull, the ibises and the magpie. Saved eleven of twelve sausages. My father-in-law slapped my back: “Good on ya, mate.” First time he's ever spoken to me."] }, fx: { happy: 7, athletic: 1 }, mood: 'proud' },
+          { w: 1, text: { fr: ["Un ibis a sauté sur la table, renversé ma bière, piqué une saucisse et fait caca dans le bol de salade. J'ai crié « {w:swear} » devant les enfants de la famille. On ne m'invite plus au barbecue."], en: ["An ibis jumped on the table, knocked over my beer, nicked a sausage and pooped in the salad bowl. I yelled “{w:swear}” in front of the family kids. I'm no longer invited to barbecues."] }, fx: { happy: -3, karma: -1 }, mood: 'angry' },
+        ],
+      },
+      {
+        label: { fr: 'Oignons dessous', en: 'Onions underneath' },
+        out: [
+          { w: 2, odds: { smarts: 1 }, text: { fr: ["J'ai dit « dessous, pour que les oignons ne tombent pas ». Le bénévole a hoché la tête avec respect. Une file de 30 personnes a applaudi. J'ai compris que j'étais devenu{|e} australien{|ne}.", "Oignons dessous. Un monsieur derrière moi a dit « that's the way, mate ». Une dame a dit « non, dessus ». Ils se sont disputés vingt minutes. J'ai mangé ma saucisse tranquillement."], en: ["I said “underneath, so the onions don't fall off.” The volunteer nodded respectfully. A 30-person line applauded. I realized I'd become Australian.", "Onions underneath. A guy behind me said “that's the way, mate.” A lady said “no, on top.” They argued for twenty minutes. I ate my sausage in peace."] }, fx: { happy: 6, money: -2 }, mood: 'happy' },
+        ],
+      },
+      {
+        label: { fr: 'Piquer la pince', en: 'Steal the tongs' },
+        text: { fr: ["J'ai pris la pince des mains de mon beau-père. Silence total. Les oiseaux eux-mêmes se sont tus. Il m'a regardé{|e}, a pris une gorgée de bière, et a dit « Righto ». J'ai brûlé toutes les saucisses. Il ne me la rendra jamais.", "Pince en main, j'ai fait cuire les meilleures saucisses de l'histoire familiale. Mon beau-père a goûté, a pleuré un peu, et m'a officiellement transmis le titre de « Barbie King ». C'est héréditaire."], en: ["I took the tongs from my father-in-law. Total silence. Even the birds went quiet. He looked at me, sipped his beer, and said “Righto.” I burned every sausage. He'll never hand them over again.", "Tongs in hand, I cooked the best sausages in family history. My father-in-law tasted one, teared up a little, and officially passed me the title of “Barbie King.” It's hereditary."] },
+        fx: { happy: 5, stress: 3 },
+      },
+    ],
+  },
+  {
+    id: 'cy_au_surf',
+    icon: '🏄',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'beach', mood: 'shock', prop: 'surfboard' },
+    when: { country: ['au'], age: [16, 60] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Premier cours de surf à Bondi. Ton moniteur s'appelle Davo, il a les cheveux décolorés par le sel et dit « mate » toutes les quatre secondes. Il t'explique les courants, les méduses et les requins « mais t'inquiète, ils préfèrent les phoques ».",
+        "Tu es sur ta planche, à 100 mètres du rivage de {city}, quand une sirène retentit sur la plage. Les sauveteurs agitent des drapeaux. Tout le monde nage vers le bord. Quelque chose de gris vient de passer sous ta planche.",
+        "Grosse houle aujourd'hui. Les surfeurs locaux te regardent comme un touriste, ce que tu es. Une vague de trois mètres arrive. Davo crie « paddle, mate, PADDLE ! ». Tu as bu {w:drink} au petit déj et tu le regrettes.",
+        "Tu as enfin réussi à te lever sur ta planche ! Pendant deux secondes. Une méduse-boîte, l'une des plus venimeuses du monde, flotte juste devant toi. Davo dit : « Ah. Ça. C'est pas idéal. »",
+      ],
+      en: [
+        "First surf lesson at Bondi. Your instructor is Davo, salt-bleached hair, says “mate” every four seconds. He explains rips, jellyfish and sharks, “but no worries, they prefer seals.”",
+        "You're on your board, 100 yards off the {city} shore, when a siren goes off on the beach. Lifeguards wave flags. Everyone swims for shore. Something grey just passed under your board.",
+        "Big swell today. Local surfers eye you like a tourist, which you are. A ten-foot wave is coming. Davo yells “paddle, mate, PADDLE!” You had {w:drink} for breakfast and regret it.",
+        "You finally stood up on your board! For two seconds. A box jellyfish, one of the most venomous creatures on Earth, is floating right in front of you. Davo says: “Ah. That. Not ideal.”",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Ramer comme un fou', en: 'Paddle like mad' },
+        out: [
+          { w: 2, odds: { athletic: 1 }, text: { fr: ["J'ai ramé si vite que j'ai doublé deux surfeurs pros et un dauphin. Arrivé{|e} sur la plage, les sauveteurs m'ont dit que c'était… un dauphin, justement. J'ai fait la une du journal local : « Le touriste qui a fui Flipper ».", "J'ai ramé, attrapé la vague par accident et surfé jusqu'à la plage, debout, en hurlant. Davo a crié « LEGEND ! ». Les locaux m'ont offert une bière. Je suis surf{eur|euse} maintenant."], en: ["I paddled so fast I passed two pro surfers and a dolphin. On the beach, lifeguards told me it was… a dolphin. I made the local paper: “Tourist Flees Flipper.”", "I paddled, caught the wave by accident and rode it to the beach, standing, screaming. Davo yelled “LEGEND!” The locals bought me a beer. I'm a surfer now."] }, fx: { happy: 9, athletic: 3, fame: 1 }, mood: 'proud' },
+          { w: 1, text: { fr: ["La vague m'a pris{|e} comme une machine à laver. J'ai fait onze tours sous l'eau, perdu mon maillot et avalé la moitié de l'océan. Je suis ressorti{|e} nu{|e} sur la plage de Bondi. Les Australiens n'ont même pas réagi."], en: ["The wave took me like a washing machine. I spun eleven times underwater, lost my swimsuit and swallowed half the ocean. I came out naked on Bondi Beach. The Aussies didn't even react."] }, fx: { health: -5, happy: -2, stress: 6 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Éviter la méduse', en: 'Avoid the jellyfish' },
+        out: [
+          { w: 2, text: { fr: ["J'ai fait un virage parfait autour de la méduse. Mon premier virage de surf, sans le faire exprès. Davo a pleuré de fierté. Je suis tombé{|e} juste après, mais loin de la méduse.", "J'ai sauté de la planche et nagé dans l'autre sens. La méduse a continué sa route, indifférente. Ma planche, elle, a été emportée vers la Nouvelle-Zélande. Davo m'en a prêté une autre en soupirant."], en: ["I carved a perfect turn around the jellyfish. My first surf turn, completely by accident. Davo cried with pride. I fell right after, but far from the jellyfish.", "I jumped off the board and swam the other way. The jellyfish drifted on, indifferent. My board got swept toward New Zealand. Davo lent me another, sighing."] }, fx: { happy: 5, athletic: 1 }, mood: 'happy' },
+          { w: 1, text: { fr: ["La méduse m'a frôlé{|e} la jambe. Douleur atroce. J'ai crié des mots qui n'existent pas. Un sauveteur m'a versé du vinaigre sur la jambe. Je sens la salade depuis trois jours, mais je suis vivant{|e}."], en: ["The jellyfish brushed my leg. Excruciating pain. I screamed words that don't exist. A lifeguard poured vinegar on my leg. I've smelled like salad for three days, but I'm alive."] }, fx: { health: -12, stress: 8 }, mood: 'sick' },
+        ],
+      },
+      {
+        label: { fr: 'Rester sur la plage', en: 'Stay on the beach' },
+        text: { fr: ["Je suis resté{|e} sur la plage avec Davo. Il m'a raconté sa vie : surf, bière, surf, rupture, surf. On a mangé des fish and chips. Une mouette m'a volé une frite en plein vol. C'est l'Australie.", "J'ai regardé les autres surfer depuis ma serviette. J'ai attrapé un coup de soleil en 12 minutes. L'Australie veut te tuer, même quand tu ne fais rien."], en: ["I stayed on the beach with Davo. He told me his life: surf, beer, surf, breakup, surf. We ate fish and chips. A seagull stole a chip mid-air. It's Australia.", "I watched the others surf from my towel. Got sunburned in 12 minutes. Australia wants to kill you even when you're doing nothing."] },
+        fx: { happy: 3, health: -1 },
+      },
+    ],
+  },
+  {
+    id: 'cy_au_dropbear',
+    icon: '🐨',
+    cat: 'country',
+    rating: 1,
+    scene: { place: 'park', mood: 'party', prop: 'koala' },
+    when: { country: ['au'], age: [16, 70] },
+    weight: 6,
+    cooldown: 5,
+    text: {
+      fr: [
+        "Des backpackers européens campent près de chez toi. La tradition locale exige de leur parler des « drop bears » : des koalas carnivores qui se jettent des arbres sur la tête des touristes. Ça n'existe pas. Ils ne le savent pas.",
+        "Un touriste te demande si les koalas sont dangereux. Tu as une seconde pour décider : dire la vérité, ou lui parler du drop bear, le koala tueur. Tes potes, derrière lui, te font signe : « Vas-y. »",
+        "Soirée au pub de {city} avec des touristes anglais. Ton pote leur explique très sérieusement qu'il faut mettre du Vegemite derrière les oreilles pour repousser les drop bears. Ils prennent des notes. L'un d'eux a déjà acheté un pot.",
+        "Ton cousin débarque de l'étranger pour la première fois. Il a peur de tout : serpents, araignées, requins. Tu sens une opportunité. Il y a un eucalyptus au-dessus de sa tente. Il tient {w:object} pour se protéger.",
+      ],
+      en: [
+        "European backpackers are camping near your place. Local tradition demands you tell them about “drop bears”: carnivorous koalas that leap from trees onto tourists' heads. They don't exist. The backpackers don't know that.",
+        "A tourist asks if koalas are dangerous. You have one second to decide: tell the truth, or tell him about the drop bear, the killer koala. Your mates behind him are signaling: “Do it.”",
+        "Pub night in {city} with English tourists. Your mate very seriously explains that you must put Vegemite behind your ears to repel drop bears. They're taking notes. One has already bought a jar.",
+        "Your cousin is visiting from overseas for the first time. He's scared of everything: snakes, spiders, sharks. You sense an opportunity. There's a eucalyptus tree over his tent. He's holding {w:object} for protection.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Raconter le drop bear', en: 'Tell the drop bear tale' },
+        out: [
+          { w: 2, text: { fr: ["J'ai raconté l'histoire avec des détails sanglants : les griffes, les cris, les touristes disparus. Les backpackers ont passé la nuit dans leur voiture, casque de vélo sur la tête. Ils ont mis 5 étoiles au camping « pour la sécurité ».", "J'ai parlé du drop bear avec tant de conviction qu'un touriste a acheté un parapluie renforcé et l'a gardé ouvert pendant trois semaines en forêt. Il est rentré en Allemagne en racontant qu'il y avait survécu."], en: ["I told the story with gory details: claws, screams, missing tourists. The backpackers spent the night in their car wearing bike helmets. They gave the campsite 5 stars “for safety.”", "I talked about drop bears so convincingly a tourist bought a reinforced umbrella and kept it open for three weeks in the bush. He went home to Germany telling everyone he'd survived them."] }, fx: { happy: 9, karma: -2 }, mood: 'party' },
+          { w: 1, text: { fr: ["Pendant mon histoire, un vrai koala est tombé d'un arbre, pile sur ma tête. Il dormait et il a glissé. Les touristes ont hurlé. Moi aussi. Le koala, lui, s'est rendormi sur mon épaule. Ils me croient pour toujours."], en: ["Mid-story, a real koala fell out of a tree, right onto my head. It was asleep and slipped. The tourists screamed. So did I. The koala fell back asleep on my shoulder. They'll believe me forever."] }, fx: { happy: 10, health: -2, fame: 1 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Mettre en scène une attaque', en: 'Stage an attack' },
+        out: [
+          { w: 1, text: { fr: ["J'ai grimpé dans l'eucalyptus avec une peluche de koala, et je l'ai lâchée sur la tente de mon cousin en poussant un cri de bête. Il a déchiré la tente, couru 2 km en slip et appelé les secours. Ils ont ri. Lui, moins.", "Mise en scène parfaite : bruits de griffes, grognements, peluche lâchée sur la tête. Le touriste a fait une crise de panique, puis a ri, puis m'a frappé. Puis on a bu des bières. Je l'ai mérité."], en: ["I climbed the eucalyptus with a stuffed koala and dropped it on my cousin's tent with a beastly scream. He tore through the tent, ran a mile in his undies and called emergency services. They laughed. He didn't.", "Perfect staging: claw noises, growls, plush dropped on his head. The tourist panicked, then laughed, then punched me. Then we had beers. I deserved it."] }, fx: { happy: 9, karma: -3, health: -2 }, mood: 'party' },
+        ],
+      },
+      {
+        label: { fr: 'Dire la vérité', en: 'Tell the truth' },
+        text: { fr: ["J'ai dit la vérité : les koalas dorment 20 heures par jour et sont aussi dangereux qu'un coussin. Le touriste a eu l'air déçu. Mes potes m'ont regardé{|e} comme un traître à la nation.", "J'ai été honnête. Le touriste m'a remercié{|e}. Puis il s'est fait piquer par une vraie araignée en sortant du pub. Les koalas, c'était bien le seul danger qui n'existait pas."], en: ["I told the truth: koalas sleep 20 hours a day and are as dangerous as a cushion. The tourist looked disappointed. My mates looked at me like a traitor to the nation.", "I was honest. The tourist thanked me. Then got bitten by a real spider leaving the pub. Koalas were the only danger that didn't exist."] },
+        fx: { karma: 3, happy: -1 },
+      },
+    ],
+  },
+  {
+    id: 'cy_au_spider',
+    icon: '🕷️',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'home', mood: 'shock', prop: 'spider' },
+    when: { country: ['au'], age: [18, 80] },
+    weight: 7,
+    cooldown: 4,
+    text: {
+      fr: [
+        "Tu roules à 100 km/h sur l'autoroute de {city}. Tu baisses le pare-soleil. Une araignée huntsman de la taille de ta main en tombe, atterrit sur tes genoux et te regarde avec ses huit yeux. Elle est poilue. Elle bouge.",
+        "Tu enfiles ta botte en caoutchouc dans le jardin. Il y a quelque chose dedans. Quelque chose qui bouge. Quelque chose qui a beaucoup de pattes. Ton voisin, de l'autre côté de la clôture, dit calmement : « Ah, c'est la saison. »",
+        "Une araignée grosse comme {w:food} est sur le mur de ta chambre, juste au-dessus du lit. Il est 2 h du matin. Tu as éteint la lumière une seconde pour chercher une chaussure. Quand tu as rallumé, elle n'était plus là.",
+        "Toilettes extérieures, dans le bush, chez ton oncle. Tu t'assois. Tu sens quelque chose te chatouiller la fesse gauche. Ton oncle crie depuis la maison : « Vérifie sous la lunette, y'a souvent une redback ! » Trop tard.",
+      ],
+      en: [
+        "You're doing 60 mph on the {city} freeway. You flip down the sun visor. A huntsman spider the size of your hand drops onto your lap and stares at you with eight eyes. It's hairy. It's moving.",
+        "You pull on your rubber boot in the garden. Something's inside. Something moving. Something with a lot of legs. Your neighbor, over the fence, says calmly: “Ah, it's the season.”",
+        "A spider as big as {w:food} is on your bedroom wall, right above the bed. It's 2 a.m. You turned off the light for one second to find a shoe. When you turned it back on, it was gone.",
+        "Outhouse in the bush at your uncle's. You sit down. You feel something tickling your left butt cheek. Your uncle shouts from the house: “Check under the seat, there's often a redback!” Too late.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Paniquer totalement', en: 'Panic completely' },
+        out: [
+          { w: 2, text: { fr: ["J'ai hurlé, lâché le volant, fait trois embardées et fini dans un champ de canne à sucre. L'araignée est sortie par la fenêtre, tranquillement. La dépanneuse a dit que c'était le quatrième accident d'araignée de la semaine.", "J'ai sauté si haut que je me suis cogné la tête au plafond. J'ai crié « {w:swear} » onze fois. L'araignée a disparu. Elle est toujours dans la maison. Je dors dans la voiture depuis."], en: ["I screamed, let go of the wheel, swerved three times and ended up in a sugarcane field. The spider calmly exited through the window. The tow truck driver said it was the fourth spider crash this week.", "I jumped so high I hit my head on the ceiling. I yelled “{w:swear}” eleven times. The spider vanished. It's still in the house. I've been sleeping in the car."] }, fx: { stress: 10, health: -4, money: -500 }, mood: 'shock' },
+          { w: 1, rating: 2, text: { fr: ["La redback m'a piqué la fesse. Ma fesse a doublé de volume et pris une couleur aubergine. J'ai dû expliquer aux urgences, à plat ventre, devant trois internes qui retenaient leur rire. Ils ont pris des photos « pour la formation »."], en: ["The redback bit my butt. My cheek doubled in size and turned eggplant purple. I had to explain it in the ER, face down, in front of three interns trying not to laugh. They took photos “for training.”"] }, fx: { health: -10, happy: -4, visual: 'gore' }, mood: 'sick' },
+        ],
+      },
+      {
+        label: { fr: 'Rester calme', en: 'Stay calm' },
+        out: [
+          { w: 2, odds: { discipline: 1 }, text: { fr: ["Je suis resté{|e} calme, je me suis garé{|e} sur le bas-côté et j'ai ouvert la portière. L'araignée est sortie poliment. Elle m'a fait un signe de patte. Je crois. Puis j'ai pleuré pendant 20 minutes.", "J'ai pris un verre et un carton, et j'ai capturé l'araignée comme un vrai Australien. Je l'ai relâchée dans le jardin. Elle est revenue le soir même, avec sa famille."], en: ["I stayed calm, pulled over and opened the door. The spider exited politely. It waved a leg at me. I think. Then I cried for 20 minutes.", "I grabbed a glass and a piece of cardboard and caught the spider like a true Aussie. Released it in the garden. It came back that night, with family."] }, fx: { discipline: 3, stress: 4 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Brûler la maison', en: 'Burn the house down' },
+        out: [
+          { w: 1, text: { fr: ["J'ai appelé un exterminateur, puis un deuxième, puis j'ai envisagé sérieusement de mettre le feu à la maison. Mon voisin m'a calmé{|e} avec une bière : « Elle mange les moustiques, mate. C'est ta coloc. » Elle s'appelle Sheila maintenant.", "J'ai vaporisé une bombe insecticide entière dans la chambre. J'ai été intoxiqué{|e}. L'araignée, non. Elle m'a regardé{|e} depuis le plafond, en pleine forme, pendant que les secours m'emmenaient."], en: ["I called an exterminator, then another, then seriously considered burning the house down. My neighbor calmed me with a beer: “She eats the mozzies, mate. She's your flatmate.” Her name is Sheila now.", "I emptied an entire bug bomb in the bedroom. I got poisoned. The spider didn't. It watched me from the ceiling, thriving, as the paramedics carried me out."] }, fx: { health: -5, happy: 2, stress: 6 }, mood: 'shock' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cy_au_croc',
+    icon: '🐊',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'party', mood: 'shock', prop: 'crocodile', fx: 'gore' },
+    when: { country: ['au'], age: [18, 80] },
+    weight: 5,
+    cooldown: 6,
+    text: {
+      fr: [
+        "Pub de Darwin, 23 h. Tu vas aux toilettes. Il y a un crocodile de trois mètres dans les toilettes. Il est entré par la porte de derrière, restée ouverte. Le barman dit : « Ah, c'est Kevin. Utilise celles des filles. »",
+        "Pêche en bateau dans le nord. Le panneau sur la berge dit « Attention crocodiles ». Ton guide, un vieux bonhomme avec trois doigts, dit qu'il n'y a « aucun problème si on ne laisse pas pendre le bras ». Tu as le bras qui pend.",
+        "Baignade dans un trou d'eau magnifique près de {city}. L'eau est claire, il fait 37 °C. Un panneau à moitié effacé dit « No swi… ». Le reste a été arraché. On dirait des traces de dents. Tes amis sont déjà dans l'eau.",
+        "Ton voisin a trouvé un crocodile d'eau salée dans sa piscine. Il te demande de l'aider à le sortir avec une serpillière, une corde et {w:object}. Il a déjà ouvert une bière « pour le courage ».",
+      ],
+      en: [
+        "Darwin pub, 11 p.m. You go to the toilets. There's a ten-foot crocodile in the toilets. It came in through the back door, left open. The bartender says, “Ah, that's Kevin. Use the ladies'.”",
+        "Boat fishing up north. The sign on the bank says “Beware crocodiles.” Your guide, an old bloke with three fingers, says there's “no problem as long as you don't dangle your arm.” Your arm is dangling.",
+        "Swimming in a gorgeous waterhole near {city}. Clear water, 99°F. A half-faded sign reads “No swi…”. The rest was torn off. Looks like tooth marks. Your friends are already in the water.",
+        "Your neighbor found a saltwater croc in his pool. He wants your help getting it out with a mop, a rope and {w:object}. He's already opened a beer “for courage.”",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Affronter la bête', en: 'Face the beast' },
+        out: [
+          { w: 2, text: { fr: ["Avec mon voisin, on a sorti le crocodile de la piscine avec une corde et beaucoup de cris. Il nous a coursés autour du barbecue, puis il est reparti vers la rivière, vexé. On a fini les bières. Héros du quartier.", "J'ai fixé le crocodile droit dans les yeux. Il m'a fixé{|e} aussi. Je crois qu'on s'est compris. Il est reparti par la porte de derrière. Le barman m'a offert une bière : « Kevin t'aime bien. »"], en: ["My neighbor and I got the croc out of the pool with a rope and a lot of yelling. It chased us around the barbecue, then went back to the river, offended. We finished the beers. Neighborhood heroes.", "I stared the croc straight in the eye. It stared back. I think we understood each other. It left by the back door. The bartender bought me a beer: “Kevin likes you.”"] }, fx: { happy: 9, fame: 2, stress: 6 }, mood: 'proud' },
+          { w: 1, text: { fr: ["Le crocodile m'a attrapé la jambe et fait un « death roll ». J'ai tourné comme une saucisse dans une poêle. Mon voisin l'a frappé avec la serpillière. Il a lâché. J'ai gardé la jambe, pas la chaussure. Ni deux orteils."], en: ["The croc grabbed my leg and did a death roll. I spun like a sausage in a pan. My neighbor whacked it with the mop. It let go. I kept the leg, not the shoe. Or two toes."] }, fx: { health: -18, disease: 'missing_finger', visual: 'gore' }, mood: 'sick' },
+          { w: 1, rating: 2, text: { fr: ["Le crocodile a gagné. Très vite. Le barman a dit : « Kevin avait faim. » Le pub a accroché ma photo au-dessus du bar, à côté de celle des trois autres. Kevin a le droit de rester : c'est un habitué."], en: ["The croc won. Very fast. The bartender said, “Kevin was hungry.” The pub hung my photo above the bar, next to the three others. Kevin's allowed to stay: he's a regular."] }, fx: { die: { fr: 'mangé{|e} par un crocodile nommé Kevin dans les toilettes d\'un pub', en: 'eaten by a crocodile named Kevin in a pub toilet' }, visual: 'gore' }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Rentrer le bras', en: 'Pull my arm in' },
+        out: [
+          { w: 2, text: { fr: ["J'ai rentré le bras une seconde avant qu'une mâchoire claque à l'endroit exact où était ma main. Le guide a dit « bonne réaction ». J'ai pêché le reste de la journée en position fœtale au fond du bateau.", "J'ai rentré le bras. Le guide a hoché la tête et m'a montré ses trois doigts : « Moi, j'ai réagi trop tard. » On n'a rien pêché. Je n'ai rien voulu pêcher."], en: ["I pulled my arm in a second before jaws snapped exactly where my hand had been. The guide said, “Good reflexes.” I fished the rest of the day in fetal position in the bottom of the boat.", "I pulled my arm in. The guide nodded and showed me his three fingers: “I reacted too late.” We caught nothing. I didn't want to catch anything."] }, fx: { stress: 8, happy: 2 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Ne pas se baigner', en: "Don't swim" },
+        text: { fr: ["Je suis resté{|e} sur la berge. Mes amis se sont moqués. Puis une ombre de quatre mètres est passée dans l'eau. Ils sont sortis plus vite que je ne l'aurais cru possible. Je n'ai rien dit. Mon silence était très bruyant.", "Je ne me suis pas baigné{|e}. J'ai fait une sieste sous un arbre. Un python est tombé de l'arbre sur mon ventre. Il n'y a aucun endroit sûr dans ce pays."], en: ["I stayed on the bank. My friends mocked me. Then a thirteen-foot shadow passed through the water. They got out faster than I thought humanly possible. I said nothing. My silence was very loud.", "I didn't swim. I napped under a tree. A python fell out of the tree onto my belly. There is no safe place in this country."] },
+        fx: { stress: 4, happy: 3 },
+      },
+    ],
+  },
+  {
+    id: 'cy_au_kangaroo',
+    icon: '🥊',
+    cat: 'country',
+    rating: 2,
+    scene: { place: 'park', mood: 'angry', prop: 'kangaroo', fx: 'gore' },
+    when: { country: ['au'], age: [18, 70] },
+    weight: 6,
+    cooldown: 5,
+    text: {
+      fr: [
+        "Un kangourou de deux mètres, musclé comme un bodybuilder, est dans ton jardin. Il mange ta pelouse. Il te regarde. Il gonfle les pectoraux. Il prend la posture d'un boxeur. Il veut se battre.",
+        "Golf à {city}. Un groupe de kangourous traîne sur le green. Le plus gros, surnommé « Big Jack » par le club, a des biceps plus gros que tes cuisses. Ta balle a atterri entre ses pattes.",
+        "Tu fais ton jogging matinal. Un kangourou surgit sur le chemin et commence à courir à côté de toi, à ta vitesse, en te regardant. Puis il accélère. Puis il ralentit. Il se moque de toi.",
+        "La nuit, sur une route de campagne, un kangourou bondit devant ta voiture. Tu freines à temps. Il se retourne, s'approche de ta portière, et frappe à la vitre. Avec {w:object} dans la poche ventrale.",
+      ],
+      en: [
+        "A six-foot kangaroo, ripped like a bodybuilder, is in your backyard. It's eating your lawn. It looks at you. It puffs its chest. It takes a boxer's stance. It wants a fight.",
+        "Golf in {city}. A mob of kangaroos lounges on the green. The biggest, nicknamed “Big Jack” by the club, has biceps bigger than your thighs. Your ball landed between his feet.",
+        "You're on your morning jog. A kangaroo appears on the path and starts running next to you, at your pace, watching you. Then speeds up. Then slows down. It's mocking you.",
+        "At night on a country road, a kangaroo leaps in front of your car. You brake in time. It turns, approaches your door and knocks on the window. With {w:object} in its pouch.",
+      ],
+    },
+    choices: [
+      {
+        label: { fr: 'Accepter le combat', en: 'Accept the fight' },
+        out: [
+          { w: 2, text: { fr: ["J'ai levé les poings. Le kangourou s'est appuyé sur sa queue et m'a envoyé un double coup de pied dans le ventre. J'ai volé par-dessus la clôture, dans la piscine du voisin. Le voisin a dit « Classic Jack ».", "Combat de trois secondes. Il m'a pris en clé de bras avec ses petites pattes avant, puis m'a griffé le torse en forme de grille de morpion. Il est reparti manger ma pelouse. J'ai perdu par KO et par humiliation."], en: ["I raised my fists. The kangaroo leaned back on its tail and double-kicked me in the gut. I flew over the fence into the neighbor's pool. The neighbor said, “Classic Jack.”", "Three-second fight. It put me in an armlock with its little forearms, then clawed my chest into a tic-tac-toe grid. It went back to eating my lawn. I lost by KO and humiliation."] }, fx: { health: -12, happy: -3, visual: 'gore' }, mood: 'sick' },
+          { w: 1, odds: { athletic: 1 }, text: { fr: ["Je me suis battu{|e} comme un lion. Enfin, comme quelqu'un qui a vu des films de boxe. J'ai esquivé un coup, touché son épaule. Le kangourou m'a regardé{|e}, surpris, et s'est incliné. Respect mutuel. Il revient chaque matin me saluer."], en: ["I fought like a lion. Well, like someone who's watched boxing movies. Dodged a kick, landed one on its shoulder. The kangaroo looked at me, surprised, and bowed. Mutual respect. It comes back every morning to say hi."] }, fx: { happy: 10, athletic: 3, fame: 1 }, mood: 'proud' },
+        ],
+      },
+      {
+        label: { fr: 'Récupérer ma balle', en: 'Retrieve my ball' },
+        out: [
+          { w: 1, text: { fr: ["J'ai rampé jusqu'à Big Jack pour récupérer ma balle. Il m'a regardé{|e}, s'est gratté le ventre, et s'est assis sur ma balle. Puis sur moi. J'ai abandonné le golf. Big Jack a gagné le tournoi par forfait.", "J'ai tendu la main vers ma balle. Big Jack m'a donné un coup de patte à la tête, pas méchant, comme on corrige un enfant. J'ai compris. J'ai pris une nouvelle balle. Il a gardé l'autre."], en: ["I crawled to Big Jack for my ball. He looked at me, scratched his belly, and sat on my ball. Then on me. I quit golf. Big Jack won the tournament by forfeit.", "I reached for my ball. Big Jack cuffed my head, not mean, like correcting a kid. I got the message. I took a new ball. He kept the other."] }, fx: { happy: 3, health: -3 }, mood: 'shock' },
+        ],
+      },
+      {
+        label: { fr: 'Rentrer à reculons', en: 'Back away slowly' },
+        text: { fr: ["J'ai reculé lentement jusqu'à la maison, sans le quitter des yeux. Il m'a suivi{|e} jusqu'à la porte, a collé son nez contre la vitre et est resté là toute la journée. Il est encore là. Il m'attend. J'ai commandé mes courses en ligne.", "J'ai reculé. Le kangourou a avancé. J'ai reculé encore. On a fait comme ça trois fois le tour du jardin. Ma voisine a filmé : « Le tango du kangourou ». 2 millions de vues."], en: ["I backed slowly into the house, never taking my eyes off it. It followed me to the door, pressed its nose to the glass and stayed there all day. It's still there. Waiting. I ordered my groceries online.", "I backed up. The kangaroo advanced. I backed up again. We circled the yard three times like that. My neighbor filmed it: “The Kangaroo Tango.” 2 million views."] },
+        fx: { stress: 5, followers: 2000 },
       },
     ],
   },

@@ -123,7 +123,7 @@ export function BeerPong({ onDone }: GameProps) {
   const canvas = useCanvas((ctx, w, h, dt, t) => {
     const st = s.current; if (!st) return;
     try {
-      dims.current = { w, h, f: 2.75 * Math.min(h, w * 0.8) };
+      dims.current = { w, h, f: 2.75 * Math.min(h, w * (w < 600 ? 1.25 : 0.8)) };
       step(st, dt, w, h);
       // offscreen scene → main with drunk sway / blur / double vision
       const main = ctx.canvas;
@@ -353,9 +353,9 @@ export function BeerPong({ onDone }: GameProps) {
     ctx.strokeStyle = '#140317'; ctx.lineWidth = 6; ctx.strokeRect(wx, wy, ww, wh); ctx.beginPath(); ctx.moveTo(wx + ww / 2, wy); ctx.lineTo(wx + ww / 2, wy + wh); ctx.stroke();
     // neon sign
     ctx.save(); const fl = Math.sin(t * 31) > 0.95 ? 0.35 : 1; ctx.globalAlpha = fl;
-    glow(ctx, '#ff2d95', 26); ctx.fillStyle = '#ff8ad0'; ctx.font = `900 ${Math.round(h * 0.06)}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center';
-    ctx.fillText('BEER PONG', w * 0.74, h * 0.12); glow(ctx, '#22d3ee', 18); ctx.fillStyle = '#a5f3fc'; ctx.font = `700 ${Math.round(h * 0.022)}px Fredoka Variable, sans-serif`;
-    ctx.fillText(tr('🍺 RÈGLE N°1 : ON NE VOMIT PAS SUR LA TABLE', '🍺 RULE #1: NO PUKING ON THE TABLE'), w * 0.74, h * 0.16, w * 0.4); ctx.restore();
+    glow(ctx, '#ff2d95', 26); ctx.fillStyle = '#ff8ad0'; ctx.font = `900 ${Math.round(Math.min(h * 0.06, w * 0.075))}px Fredoka Variable, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText('BEER PONG', w * (w >= 600 ? 0.74 : 0.6), h * 0.12); glow(ctx, '#22d3ee', 18); ctx.fillStyle = '#a5f3fc'; ctx.font = `700 ${Math.round(h * 0.022)}px Fredoka Variable, sans-serif`;
+    if (w >= 600) ctx.fillText(tr('🍺 RÈGLE N°1 : ON NE VOMIT PAS SUR LA TABLE', '🍺 RULE #1: NO PUKING ON THE TABLE'), w * 0.74, h * 0.16, w * 0.4); ctx.restore();
     // string lights
     for (let row = 0; row < 2; row++) {
       ctx.strokeStyle = '#0c020f'; ctx.lineWidth = 2; ctx.beginPath();
@@ -582,7 +582,7 @@ export function BeerPong({ onDone }: GameProps) {
     ctx.font = '800 13px Fredoka Variable, sans-serif'; const vs = `VS « ${tr(st.opp[0], st.opp[1])} »`; ctx.strokeText(vs, 16, 54); ctx.fillStyle = '#ffd166'; ctx.fillText(vs, 16, 54);
     ctx.restore();
     // drunk meter: a beer glass filling up
-    const gx = w - 56, gy = h * 0.2, gw = 36, gh = h * 0.42, d = st.drunkShow;
+    const narrow = w < 600, gw = narrow ? 24 : 36, gx = w - gw - (narrow ? 12 : 20), gy = h * (narrow ? 0.3 : 0.2), gh = h * (narrow ? 0.3 : 0.42), d = st.drunkShow;
     ctx.save();
     ctx.fillStyle = 'rgba(255,255,255,.08)'; ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(gx, gy); ctx.lineTo(gx + gw, gy); ctx.lineTo(gx + gw - 5, gy + gh); ctx.lineTo(gx + 5, gy + gh); ctx.closePath(); ctx.fill();
