@@ -264,7 +264,7 @@ export const anecdotesAdults: AnecdoteDef[] = [
   A('erasmus', '✈️', 1, { age: [18, 26] }, [
     `Mon pote est revenu d'Erasmus avec un accent bizarre et une passion pour {w:hobby}. Insupportable.`,
     `J'ai passé un week-end {w:far_place}, j'ai dormi [[4|6|9]] heures en tout et bu {w:drink} au petit-déj.`,
-    `En vacances {w:far_place}, j'ai embrassé un inconnu sous {w:weather}. Je ne sais toujours pas son prénom.`,
+    `En vacances {w:far_place}, j'ai embrassé un inconnu {w:weather}. Je ne sais toujours pas son prénom.`,
   ], [
     `My buddy came back from his semester abroad with a weird accent and a passion for {w:hobby}. Unbearable.`,
     `Spent a weekend {w:far_place}, slept [[4|6|9]] hours total and had {w:drink} for breakfast.`,
@@ -327,11 +327,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
   A('bad_trip', '🍄', 2, { age: [18, 32] }, [
     `Un ami m'a filé un champignon « tranquille ». J'ai discuté avec {w:animal} pendant quatre heures. Il m'a insulté{|e}.`,
     `En plein bad trip, j'étais persuadé{|e} {w:conspiracy}. J'ai appelé ma mère pour la prévenir.`,
-    `J'ai cru que mes mains étaient en {w:food}. J'ai essayé d'en manger un doigt. Petite morsure, gros cri.`,
+    `J'ai cru que mes doigts étaient des frites. J'ai essayé d'en manger un. Petite morsure, gros cri.`,
   ], [
     `A friend gave me a "chill" mushroom. I talked to {w:animal} for four hours. It insulted me.`,
     `Mid bad trip I was convinced {w:conspiracy}. I called my mom to warn her.`,
-    `I thought my hands were made of {w:food}. I tried eating a finger. Small bite, big scream.`,
+    `I thought my fingers were fries. I tried eating one. Small bite, big scream.`,
   ]),
   A('uber_eats', '🛵', 0, { age: [18, 35] }, [
     `J'ai commandé {w:food} sur {w:app}. Le livreur a mangé la moitié des frites en route. Il me l'a avoué, les yeux dans les yeux.`,
@@ -380,11 +380,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
   ]),
   A('bachelor_party', '🎉', 2, { age: [22, 38] }, [
     `EVG {w:far_place} : le futur marié s'est réveillé rasé, tatoué et fiancé à quelqu'un d'autre.`,
-    `À l'enterrement de vie de jeune fille, on a eu un strip-teaseur déguisé en {w:weird_job}. Il a glissé sur le cocktail.`,
+    `À l'enterrement de vie de jeune fille, on a eu un strip-teaseur qui jouait {w:weird_job}. Il a glissé sur le cocktail.`,
     `EVJF : on a perdu la future mariée {w:at_place}. Retrouvée six heures plus tard en train de vomir dans {w:vehicle}.`,
   ], [
     `Stag do {w:far_place}: the groom woke up shaved, tattooed and engaged to someone else.`,
-    `At the bachelorette we had a stripper dressed as {w:weird_job}. He slipped on a cocktail.`,
+    `At the bachelorette we had a stripper playing {w:weird_job}. He slipped on a cocktail.`,
     `Hen party: we lost the bride {w:at_place}. Found her six hours later puking into {w:vehicle}.`,
   ]),
   A('crypto_young', '📉', 1, { age: [18, 35] }, [
@@ -706,11 +706,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `I dropped the kids at school in my pyjamas. Nobody noticed. Well, every parent noticed.`,
   ]),
   A('kids_drawing', '🖍️', 1, { age: [25, 55], has: 'child' }, [
-    `Mon enfant m'a dessiné en {w:animal}. Il paraît que c'est ressemblant.`,
+    `Mon enfant a fait mon portrait. On y voit {w:animal}. Il paraît que c'est ressemblant.`,
     `Réunion parents-profs : mon enfant a raconté à toute la classe que je pratique {w:hobby} tout nu{|e}.`,
     `Mon enfant m'a offert {w:gift} pour la fête des parents. J'ai pleuré. Puis je l'ai rangé dans un placard pour toujours.`,
   ], [
-    `My kid drew me as {w:animal}. Apparently it's a good likeness.`,
+    `My kid drew my portrait. It shows {w:animal}. Apparently it's a good likeness.`,
     `Parent-teacher meeting: my kid told the whole class I do {w:hobby} naked.`,
     `My kid gave me {w:gift} for Parents' Day. I cried. Then I put it in a cupboard forever.`,
   ]),
@@ -1023,11 +1023,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
     `I picked the shortest line. The lady in front paid in pennies, then tried to return {w:object}.`,
   ]),
   A('car_breakdown', '🚗', 0, { age: [22, 80] }, [
-    `Ma voiture est tombée en panne {w:weather}. Le dépanneur est arrivé en {w:vehicle}.`,
+    `Ma voiture est tombée en panne {w:weather}. Le dépanneur conduisait {w:vehicle}.`,
     `Le garagiste a soulevé le capot et sifflé. Ça m'a coûté [[400|900|1 300]] €, rien que le sifflement.`,
     `Un voyant inconnu s'est allumé sur le tableau de bord. J'ai mis un post-it dessus. Problème réglé.`,
   ], [
-    `My car broke down {w:weather}. The tow truck showed up as {w:vehicle}.`,
+    `My car broke down {w:weather}. The tow guy was driving {w:vehicle}.`,
     `The mechanic opened the hood and whistled. It cost me [[$400|$900|$1,300]], just the whistle.`,
     `A mystery warning light came on on the dashboard. I put a post-it over it. Problem solved.`,
   ]),
@@ -2109,11 +2109,11 @@ export const anecdotesAdults: AnecdoteDef[] = [
   ]),
   A('pr_psych', '🧠', 1, { age: [18, 120], prison: true }, [
     `Séance avec la psy de la prison : elle m'a demandé ce que je ressentais. J'ai répondu « la faim ».`,
-    `La psy m'a demandé de dessiner ma colère. J'ai dessiné le juge en {w:animal}. Elle a dit « intéressant ».`,
+    `La psy m'a demandé de dessiner ma colère. J'ai dessiné le juge. On aurait dit {w:animal}. Elle a dit « intéressant ».`,
     `Atelier « gestion des émotions » : un braqueur a pleuré, un autre a cassé {w:object}. Progrès.`,
   ], [
     `Session with the prison shrink: she asked what I was feeling. I said "hungry".`,
-    `The shrink asked me to draw my anger. I drew the judge as {w:animal}. She said "interesting".`,
+    `The shrink asked me to draw my anger. I drew the judge. It looked like {w:animal}. She said "interesting".`,
     `"Managing emotions" workshop: one robber cried, another smashed {w:object}. Progress.`,
   ]),
   A('pr_noise', '🔔', 0, { age: [18, 120], prison: true }, [
